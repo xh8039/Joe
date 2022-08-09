@@ -1,0 +1,141 @@
+/* 文章页面的样式 */
+
+/*代替首页大图标题和简介的样式*/
+.HeaderImg .infomation .title {
+    font-weight:normal;
+    letter-spacing: 0.3rem;
+}
+.HeaderImg .infomation .desctitle {
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.2rem;
+}
+@media (max-width: 768px) {
+    .HeaderImg .infomation .title {
+        letter-spacing:0.1rem;
+    }
+    .HeaderImg .infomation .desctitle {
+        font-size: 1.1rem;
+        letter-spacing:0.3rem;
+    }
+}
+
+.joe_post__ad {
+	margin-top: 10px
+}
+
+.joe_post__ad-link {
+	display: block;
+	position: relative
+}
+
+.joe_post__ad-link .image {
+	width: 100%;
+	height: 200px;
+	-o-object-fit: cover;
+	object-fit: cover;
+	border-radius: var(--radius-inner);
+	transition: opacity 0.35s
+}
+
+.joe_post__ad-link .image:hover {
+	opacity: 0.85
+}
+
+.joe_post__ad-link .icon {
+	position: absolute;
+	z-index: 1;
+	top: 10px;
+	right: 10px;
+	font-size: 12px;
+	background: rgba(0, 0, 0, 0.25);
+	padding: 2px 5px;
+	border-radius: 2px;
+	color: #ebebeb;
+	pointer-events: none
+}
+
+.joe_bread {
+	padding-top: 15px
+}
+
+.joe_bread__bread {
+	display: flex;
+	align-items: center
+}
+
+.joe_bread__bread .line {
+	color: var(--seat);
+	padding: 0 8px
+}
+
+.joe_bread__bread .item {
+	color: var(--minor);
+	white-space: nowrap
+}
+
+.joe_bread__bread .item .link {
+	color: var(--routine);
+	transition: color 0.35s
+}
+
+.joe_bread__bread .item .link:hover {
+	color: var(--theme)
+}
+
+.joe_bread__bread .item .icon {
+	width: 15px;
+	height: 15px;
+	min-width: 15px;
+	min-height: 15px;
+	fill: var(--routine);
+	margin-right: 2px
+}
+
+.joe_bread__bread .item:first-child {
+	display: flex;
+	align-items: center
+}
+
+.joe_post__pagination {
+	display: flex;
+	justify-content: space-between
+}
+
+.joe_post__pagination-item {
+	margin-bottom: 15px
+}
+
+.joe_post__pagination-item a {
+	display: block;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 15px;
+	color: #fff;
+	border-radius: 3px;
+	background: var(--back-line-right);
+	font-size: 12px;
+	box-shadow: var(--box-shadow)
+}
+
+.joe_post__pagination-item a:hover {
+	-webkit-animation: pulse 1s;
+	animation: pulse 1s;
+	box-shadow: 0 0 0 20px rgba(255, 255, 255, 0)
+}
+
+.joe_post__pagination-item.next {
+	margin-left: auto
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 var(--theme)
+	}
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 var(--theme)
+	}
+}

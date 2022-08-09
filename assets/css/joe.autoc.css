@@ -1,0 +1,240 @@
+/* ==================== 图标 ==================== */
+@font-face {
+    font-family: 'icomoon';
+    font-style: normal;
+    font-weight: normal;
+    src: url('https://cdn.jsdelivr.net/gh/yaohaixiao/autocjs/dist/css/fonts/icomoon.eot?y21yht');
+    src: url('https://cdn.jsdelivr.net/gh/yaohaixiao/autocjs/dist/css/fonts/icomoon.eot?y21yht#iefix') format('embedded-opentype'),
+    url('https://cdn.jsdelivr.net/gh/yaohaixiao/autocjs/dist/css/fonts/icomoon.ttf?y21yht') format('truetype'),
+    url('https://cdn.jsdelivr.net/gh/yaohaixiao/autocjs/dist/css/fonts/icomoon.woff?y21yht') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/yaohaixiao/autocjs/dist/css/fonts/icomoon.svg?y21yht#icomoon') format('svg');
+}
+
+[class*=" icon-"],
+[class^="icon-"] {
+    /* 更好的字体渲染 =========== */
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+
+    /*使用 !important 是要防止浏览器扩展更改字体的问题*/
+    font-family: 'icomoon' !important;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+    text-transform: none;
+    color: var(--theme);
+}
+
+.icon-menu:before {
+    content: "\e9bd";
+}
+
+.icon-arrow-up:before {
+    content: "\ea32";
+}
+
+.icon-section:before {
+    content: "\ea76";
+}
+
+/* ==================== 标题 ==================== */
+.outline-heading {
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+}
+
+.outline-heading-anchor {
+    height: 100%;
+    text-align: center;
+    width: 1em;
+}
+
+.outline-heading-anchor-at-front {
+    left: -1em;
+    line-height: 150%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+/* ==================== 内部 ==================== */
+.outline-inside {
+    border: 1px solid #e2e3e9;
+    margin: 1.2em auto;
+    overflow: hidden;
+}
+
+.outline-inside-header {
+    background-color: #f8f8f9;
+    border-bottom: 1px solid #e2e3e9;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.outline-inside-title {
+    font-size: 16px;
+    font-weight: normal;
+    height: 40px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.outline-inside-body {
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 15px;
+}
+
+/* ==================== 外部 ==================== */
+.outline-outside-modal {
+    background-color: var(--background);
+    border-right: 1px solid var(--classC);
+    box-shadow: 0 0 15px var(--classD);
+    height: 100%;
+    overflow: visible;
+    position: fixed;
+    top: 0;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.35s;
+    width: auto;
+    min-width: 200px;
+    max-width: 75%;
+    z-index: 201;
+}
+
+.outline-outside-modal-opened {
+    padding-top: 105px;
+    left: 0;
+}
+
+.outline-outside-header {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.outline-outside-title {
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    color: var(--main);
+}
+
+.outline-outside-body {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+    padding: 40px 0 0;
+    position: relative;
+    z-index: 1;
+}
+
+.outline-outside-list {
+    height: 100%;
+    overflow: auto;
+}
+
+.outline-outside-footer {
+    background-color: #fff;
+    border: 1px solid #e2e3e9;
+    border-left: none;
+    height: 40px;
+    margin: -40px 0 0;
+    overflow: hidden;
+    position: absolute;
+    right: -41px;
+    top: 50%;
+    width: 40px;
+    z-index: 2;
+}
+
+.outline-outside-button {
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    width: 40px;
+}
+
+.outline-outside-button:hover {
+    background-color: #f1f1f1;
+}
+
+.outline-outside-overlay {
+    background-color: var(--back-trn-6);
+    height: 100%;
+    left: 0;
+    margin: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+}
+
+.outline-inside-list,
+.outline-outside-list,
+.outline-chapter,
+.outline-subject {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==================== 章节 ==================== */
+.outline-chapter {
+    font-size: 0.95rem;
+    line-height: 28px;
+    overflow: hidden;
+    padding: 0 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.outline-chapter-code {
+    padding-right: 5px;
+}
+
+.outline-link:link,
+.outline-link:visited {
+    color: var(--routine);
+    text-decoration: none;
+    transition: 0.15s;
+}
+
+.outline-link:hover {
+    color: var(--theme);
+}
+
+/* ==================== 全局 ==================== */
+.outline-hidden {
+    display: none;
+}
+
+.backdropfilter {
+    backdrop-filter: saturate(5) blur(1px);
+}
+
+@media (max-width: 768px) {
+    .outline-outside-modal-opened {
+        padding-top: 55px !important;
+    }
+}

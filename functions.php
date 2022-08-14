@@ -25,7 +25,7 @@ function themeConfig($form)
 	        title : '<?php Helper::options()->title() ?>',
 	        version : '<?php echo _getVersion() ?>',
 	        domain : window.location.host,
-	        service_domain : '//wy.bri6.cn/api/joe/',
+	        service_domain : '//web.bri6.cn/api/joe/',
 	        logo : '<?php Helper::options()->JLogo() ?>',
 	        Favicon : '<?php Helper::options()->JFavicon() ?>'
 	    };
@@ -53,7 +53,7 @@ function themeConfig($form)
 	$JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JFavicon',
 		NULL,
-		NULL,
+		'http://cdn.bri6.cn/images/202207181951929.ico',
 		'网站 Favicon 设置',
 		'介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -65,7 +65,7 @@ function themeConfig($form)
 	$JLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JLogo',
 		NULL,
-		NULL,
+		'http://cdn.bri6.cn/images/202207181948553.png',
 		'网站 Logo 设置',
 		'介绍：用于设置网站 Logo，一个好的 Logo 能为网站带来有效的流量 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -82,10 +82,20 @@ function themeConfig($form)
 		'介绍：将本主题所需要的CSS、JS等资源文件使用某个站点来提供，以便节省服务器宽带 提升小型服务器加载速度<br>
 		 注意：必须保证对方站点同样为再续前缘版并且版本一致<br>
     	 格式：blog.bri6.cn（此站点虽是同款，然已启用防盗链，无需再试了）<br>
-    	 其他：本站同款站点列表 <a target="_blank" href="http://wy.bri6.cn/api/joe/JoeLinks.php">wy.bri6.cn/api/joe/JoeLinks.php</a>'
+    	 其他：本站同款站点列表 <a target="_blank" href="http://web.bri6.cn/api/joe/JoeLinks.php">web.bri6.cn/api/joe/JoeLinks.php</a>'
 	);
 	$JStorageUrl->setAttribute('class', 'joe_content joe_global');
 	$form->addInput($JStorageUrl);
+	
+	$JPendant_SSL = new Typecho_Widget_Helper_Form_Element_Select(
+		'JPendant_SSL',
+		array('on' => '开启（默认）', 'off' => '关闭'),
+		'on',
+		'是否SSL安全认证图标',
+		'介绍：开启后站点右下角将会显示SSL安全认证图标'
+	);
+	$JPendant_SSL->setAttribute('class', 'joe_content joe_global');
+	$form->addInput($JPendant_SSL->multiMode());
 
 	$JPrevent = new Typecho_Widget_Helper_Form_Element_Select(
 		'JPrevent',
@@ -517,7 +527,7 @@ function themeConfig($form)
 	$JAside_Author_Motto = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JAside_Author_Motto',
 		NULL,
-		'//wy.bri6.cn/api/随机一言/api.php',
+		'//web.bri6.cn/api/随机一言/api.php',
 		'博主栏座右铭（一言）- PC/WAP',
 		'介绍：用于修改博主栏的座右铭（一言） <br />
          格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />
@@ -744,8 +754,8 @@ function themeConfig($form)
 	$JLazyload->setAttribute('class', 'joe_content joe_image');
 	$form->addInput($JLazyload);
 
-	$JDynamic_Background = new Typecho_Widget_Helper_Form_Element_Select(
-		'JDynamic_Background',
+	$JDynamic_Background_PC = new Typecho_Widget_Helper_Form_Element_Select(
+		'JDynamic_Background_PC',
 		array(
 			'off' => '关闭（默认）',
 			'backdrop1.js' => '效果1',
@@ -753,15 +763,36 @@ function themeConfig($form)
 			'backdrop3.js' => '效果3',
 			'backdrop4.js' => '效果4',
 			'backdrop5.js' => '效果5',
-			'backdrop6.js' => '效果6'
+			'backdrop6.js' => '效果6',
+			'backdrop7.js' => '效果7'
 		),
 		'off',
-		'是否开启动态背景图（仅限PC）',
+		'是否开启PC端动态背景图',
 		'介绍：用于设置PC端动态背景<br />
          注意：如果您填写了下方PC端静态壁纸，将优先展示下方静态壁纸！如需显示动态壁纸，请将PC端静态壁纸设置成空'
 	);
-	$JDynamic_Background->setAttribute('class', 'joe_content joe_image');
-	$form->addInput($JDynamic_Background->multiMode());
+	$JDynamic_Background_PC->setAttribute('class', 'joe_content joe_image');
+	$form->addInput($JDynamic_Background_PC->multiMode());
+	
+	$JDynamic_Background_WAP = new Typecho_Widget_Helper_Form_Element_Select(
+		'JDynamic_Background_WAP',
+		array(
+			'off' => '关闭（默认）',
+			'backdrop1.js' => '效果1',
+			'backdrop2.js' => '效果2',
+			'backdrop3.js' => '效果3',
+			'backdrop4.js' => '效果4',
+			'backdrop5.js' => '效果5',
+			'backdrop6.js' => '效果6',
+			'backdrop7.js' => '效果7'
+		),
+		'off',
+		'是否开启移动端动态背景图',
+		'介绍：用于设置移动端动态背景<br />
+         注意：如果您填写了下方移动端静态壁纸，将优先展示下方静态壁纸！如需显示动态壁纸，请将移动端静态壁纸设置成空'
+	);
+	$JDynamic_Background_WAP->setAttribute('class', 'joe_content joe_image');
+	$form->addInput($JDynamic_Background_WAP->multiMode());
 
 	$JWallpaper_Background_PC = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JWallpaper_Background_PC',
@@ -779,12 +810,22 @@ function themeConfig($form)
 		'JWallpaper_Background_WAP',
 		NULL,
 		NULL,
-		'WAP端网站背景图片（非必填）',
-		'介绍：WAP端网站的背景图片，不填写时显示默认的灰色。<br />
+		'移动端网站背景图片（非必填）',
+		'介绍：移动端网站的背景图片，不填写时显示默认的灰色。<br />
          格式：图片URL地址 或 随机图片api 例如：https://api.btstu.cn/sjbz/?lx=m_dongman'
 	);
 	$JWallpaper_Background_WAP->setAttribute('class', 'joe_content joe_image');
 	$form->addInput($JWallpaper_Background_WAP);
+	
+	$JWallpaper_Background_Optimal = new Typecho_Widget_Helper_Form_Element_Select(
+		'JWallpaper_Background_Optimal',
+		array('off' => '关闭（默认）','on' => '开启'),
+		'off',
+		'是否开启自定义背景壁纸优化',
+		'介绍：开启后将对自定义背景壁纸模式下没有覆盖到的小地方的样式进行优化'
+	);
+	$JWallpaper_Background_Optimal->setAttribute('class', 'joe_content joe_image');
+	$form->addInput($JWallpaper_Background_Optimal->multiMode());
 
 	$JShare_QQ_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JShare_QQ_Image',
@@ -802,7 +843,8 @@ function themeConfig($form)
 		NULL,
 		'https://tenapi.cn/bing/',
 		'首页顶部大图背景壁纸',
-		'格式：图片地址 或 Base64地址'
+		'格式：图片地址 或 Base64地址<br>
+		 填写 “透明” 即使用透明壁纸 可配合背景壁纸使用'
 	);
 	$JIndex_Header_Img->setAttribute('class', 'joe_content joe_index');
 	$form->addInput($JIndex_Header_Img);
@@ -987,16 +1029,17 @@ function themeConfig($form)
 	$JFriends_shuffle->setAttribute('class', 'joe_content joe_other');
 	$form->addInput($JFriends_shuffle->multiMode());
 
-	$baidu_access_token = new Typecho_Widget_Helper_Form_Element_Text(
-		'baidu_access_token',
+	$baidu_statistics = new Typecho_Widget_Helper_Form_Element_Textarea(
+		'baidu_statistics',
 		NULL,
 		NULL,
-		'百度统计 access_token（非必填）',
+		'百度统计配置（非必填）',
 		'介绍：用于展示站点的百度统计信息<br>
+		 格式：第一行填写：access_token，二：refresh_token，三：API Key，四：Secret Key<br>
 		 百度统计API文档：<a href="https://tongji.baidu.com/api/manual/Chapter2/openapi.html">tongji.baidu.com/api/manual/Chapter2/openapi.html</a>'
 	);
-	$baidu_access_token->setAttribute('class', 'joe_content joe_other');
-	$form->addInput($baidu_access_token);
+	$baidu_statistics->setAttribute('class', 'joe_content joe_other');
+	$form->addInput($baidu_statistics);
 
 	$JMaccmsAPI = new Typecho_Widget_Helper_Form_Element_Text(
 		'JMaccmsAPI',
@@ -1204,7 +1247,8 @@ function themeConfig($form)
 		NULL,
 		'文章页顶部大图背景壁纸',
 		'介绍：填写后将强制代替文章页顶部大图所有背景壁纸并忽略顶部大图开关<br>
-		 格式：图片地址 或 Base64地址'
+		 格式：图片地址 或 Base64地址<br>
+		 填写 “透明” 即使用透明壁纸 可配合背景壁纸使用'
 	);
 	$JPost_Header_Img->setAttribute('class', 'joe_content joe_post');
 	$form->addInput($JPost_Header_Img);

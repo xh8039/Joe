@@ -1,123 +1,181 @@
 <?php
 $useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
-if (strpos($useragent, 'iphone') !== false || strpos($useragent, 'ipod') !== false) {
-    $alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rLrNvRzmibibqrjTFj5g2kzGyoQj3ViartAEQ/0" class="icon-safari" /> <span id="openm">Safari打开</span>';
-} elseif (strpos($useragent, 'micromessenger') !== false) {
-    $alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rLbNVmztN9ia6GPRJ0IFicucFTr4Pp8xzibsw/0" class="icon-safari" /> <span id="openm">浏览器打开</span>';
+// if (strpos($useragent, 'iphone') !== false || strpos($useragent, 'ipod') !== false) {
+//     $alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rLrNvRzmibibqrjTFj5g2kzGyoQj3ViartAEQ/0" class="icon-safari" /> <span id="openm">Safari打开</span>';
+// } else
+if (strpos($useragent, 'micromessenger') !== false) {
+	$alert = '//ae01.alicdn.com/kf/Ha91852136d9041c5a27f9e3b9663d39d4.png';
+?>
+	<div style="width: 100%;height:3px;background-color:rgb(7, 193, 96);position:fixed;top:0px;z-index:9999999999;">
+	</div>
+<?php
 } else {
-    $alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rOCTm6gtUeQKX7m84xg47iaVosibGckrP0JQ/0" class="icon-safari" /> <span id="openm">浏览器打开</span>';
+	$alert = '//external-30160.picsz.qpic.cn/f5c4cd695818494d727d8715bcfe7239';
 }
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>请使用浏览器打开</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta content="false" name="twcClient" id="twcClient" />
-    <meta name="aplus-touch" content="1" />
-    <style>
-        body,
-        html {
-            width: 100%;
-            height: 100%
-        }
-
-        * {
-            margin: 0;
-            padding: 0
-        }
-
-        body {
-            background-color: #fff
-        }
-
-        .top-bar-guidance {
-            font-size: 15px;
-            color: #fff;
-            height: 70%;
-            line-height: 1.8;
-            padding-left: 20px;
-            padding-top: 20px;
-            background: url(//gw.alicdn.com/tfs/TB1eSZaNFXXXXb.XXXXXXXXXXXX-750-234.png) center top/contain no-repeat
-        }
-
-        .top-bar-guidance .icon-safari {
-            width: 25px;
-            height: 25px;
-            vertical-align: middle;
-            margin: 0 .2em
-        }
-
-        .app-download-tip {
-            margin: 0 auto;
-            width: 290px;
-            text-align: center;
-            font-size: 15px;
-            color: #2466f4;
-            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAcAQMAAACak0ePAAAABlBMVEUAAAAdYfh+GakkAAAAAXRSTlMAQObYZgAAAA5JREFUCNdjwA8acEkAAAy4AIE4hQq/AAAAAElFTkSuQmCC) left center/auto 15px repeat-x
-        }
-
-        .app-download-tip .guidance-desc {
-            background-color: #fff;
-            padding: 0 5px
-        }
-
-        .app-download-btn {
-            display: block;
-            width: 214px;
-            height: 40px;
-            line-height: 40px;
-            margin: 18px auto 0 auto;
-            text-align: center;
-            font-size: 18px;
-            color: #2466f4;
-            border-radius: 20px;
-            border: .5px #2466f4 solid;
-            text-decoration: none
-        }
-    </style>
+	<meta charset="UTF-8">
+	<title>请使用浏览器打开</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="wap-font-scale" content="no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<style type="text/css">
+		@charset "utf-8";
+		html {
+			color: #000;
+			overflow-y: scroll;
+			-webkit-text-size-adjust: 100%;
+			-ms-text-size-adjust: 100%
+		}
+		html * {
+			outline: 0;
+			-webkit-text-size-adjust: none;
+			-webkit-tap-highlight-color: transparent
+		}
+		body,html {
+			font-family: sans-serif
+		}
+		a:hover {
+			text-decoration: underline
+		}
+		a,ins {
+			text-decoration: none
+		}
+		#app,body,html {
+			width: 100%;
+			height: 100vh;
+			margin: 0;
+			padding: 0
+		}
+		.ios-wechat-qq {
+			height: 100%;
+			width: 100%;
+			position: relative
+		}
+		.left-22 {
+			width: 38%;
+			margin-top: 2.32rem;
+			float: left
+		}
+		.right-33 {
+			width: 38%;
+			margin-right: 10px;
+			float: right
+		}
+		.description-1 {
+			font-size: 15px;
+			margin-left: 5px;
+			margin-top: 30%;
+			float: left
+		}
+		.description-1 .t-1 {
+			color: #757575;
+			letter-spacing: 0
+		}
+		.description-1 .t-2 {
+			color: #0f0f0f;
+			letter-spacing: 0
+		}
+		.line-1 {
+			width: 14%;
+			float: right
+		}
+		.line-2 {
+			top: 5.33333rem;
+			width: 8%;
+			float: left
+		}
+		.description-2 {
+			text-align: center;
+			font-size: 15px;
+			margin-left: 10px;
+			margin-top: 10px;
+			float: right
+		}
+		.download-area {
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-direction: row;
+			width: 80%;
+			margin: 40% auto auto auto;
+			padding: 5%;
+			background: #f9f9f9;
+			border-radius: 4px;
+			-ms-flex-align: center;
+			align-items: center
+		}
+		.download-area .logo {
+			width: 15%;
+			margin-right: 5%
+		}
+		.download-area .t-1 {
+			text-align: left;
+			font-size: 14px;
+			color: #fb7299
+		}
+		.download-area .t-2 {
+			text-align: left;
+			margin-top: .21333rem;
+			font-size: 15px;
+			color: #999
+		}
+		.download-area .button {
+			font-size: 14px;
+			color: #fff;
+			width: 5rem;
+			height: 1.5rem;
+			line-height: 1.5rem;
+			text-align: center;
+			background: #fb7299;
+			border-radius: 4px;
+			margin-left: auto
+		}
+		.linear {
+			background-image: url("https://external-30160.picsz.qpic.cn/632d2c7051d7d9d8764fb3f8983bce4c");
+			height: 100%;
+		}
+	</style>
 </head>
 
 <body>
-    <div class="top-bar-guidance">
-        <p>点击右上角<?php echo $alert ?></p>
-        <p>可以继续浏览本站哦~</p>
-    </div>
-    <div class="app-download-tip">
-        <span class="guidance-desc">您也可以复制本站网址，到其它浏览器打开</span>
-    </div>
-    <a class="app-download-btn" id="J_BtnDowanloadApp">点此继续访问</a>
-    <a style="display: none;" href="" id="vurl" rel="noreferrer"></a>
-
-    <script src="//lib.baomitu.com/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        function openu(u) {
-            document.getElementById("vurl").href = u;
-            document.getElementById("vurl").click();
-        }
-        var url = window.location.href;
-        document.querySelector('body').addEventListener('touchmove', function(event) {
-            event.preventDefault();
-        });
-        if (navigator.userAgent.indexOf("QQ/") > -1) {
-            openu("x-web-search://" + url);
-            openu("ucbrowser://" + url);
-            openu("mttbrowser://url=" + url);
-            openu("baiduboxapp://browse?url=" + url);
-            openu("googlechrome://browse?url=" + url);
-            $("html").on("click", function() {
-                openu("ucbrowser://" + url);
-                openu("mttbrowser://url=" + url);
-                openu("baiduboxapp://browse?url=" + url);
-                openu("googlechrome://browse?url=" + url);
-            });
-        }
-    </script>
+	<div class="linear">
+		<img src="<?php echo $alert ?>" width="100%" />
+	</div>
+	<div style="width:100%;max-width:560px;position:fixed;bottom: 0;font-size: 12px;margin-bottom: 10px;" class="download-area">
+		<img src="//external-30160.picsz.qpic.cn/60d9f46afebf468646b2e008a020d1a2" class="logo">
+		<div>
+			<div class="t-1">管家检测正常，请按上图提示打开。</div>
+			<div width="10">您所访问的地址：http://blog.bri6.cn</div>
+		</div>
+	</div>
+	<a style="display: none;" href="" id="vurl" rel="noreferrer"></a>
+	<script>
+		function openu(u) {
+			document.getElementById("vurl").href = u;
+			document.getElementById("vurl").click();
+		}
+		var url = window.location.href;
+		document.querySelector('body').addEventListener('touchmove', function(event) {
+			event.preventDefault();
+		});
+		if (navigator.userAgent.indexOf("QQ/") > -1) {
+			openu("ucbrowser://" + url);
+			openu("mttbrowser://url=" + url);
+			openu("baiduboxapp://browse?url=" + url);
+			openu("googlechrome://browse?url=" + url);
+			document.getElementsByTagName('html')[0].onclick = function() {
+				openu("ucbrowser://" + url);
+				openu("mttbrowser://url=" + url);
+				openu("baiduboxapp://browse?url=" + url);
+				openu("googlechrome://browse?url=" + url);
+			}
+		}
+	</script>
 </body>
 
 </html>

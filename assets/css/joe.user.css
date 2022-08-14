@@ -86,6 +86,9 @@ button, input, optgroup, select, textarea {
 .btn-light:active {
     transform: scale(0.75);
 }
+.btn-light:hover {
+    /*animation: 5s ease-in-out 0s infinite normal none running shaked;*/
+}
 .input-group>.form-control {
     border-right: none;
 }
@@ -95,6 +98,10 @@ button, input, optgroup, select, textarea {
     padding: .45rem .9rem;
     background: var(--classB);
     color: var(--main);
+}
+.input-group>.btn:hover {
+    border-color: var(--seat);
+    background: var(--classA);
 }
 .input-group>.btn:focus {
     background: var(--seat);

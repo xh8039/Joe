@@ -72,6 +72,10 @@ function themeInit($self)
 			case 'article_filing':
 				_getArticleFiling($self);
 				break;
+// 			友链列表
+			case 'friend_list':
+				_friendList($self);
+				break;
             //提交友链
 			case 'friend_submit':
 				_friendSubmit($self);

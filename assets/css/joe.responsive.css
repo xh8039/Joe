@@ -377,7 +377,8 @@
 	}
 
 	html .joe_list__item.default .title {
-		margin-bottom: 0
+		padding-bottom: 2px;
+		margin-bottom: 0px;
 	}
 
 	html .joe_list__item.default .meta .items {

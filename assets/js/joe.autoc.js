@@ -50,6 +50,7 @@ var AutocJs = function () {
     }
 
     _createClass(AutocJs, [{
+        // 初始化
         key: 'initialize',
         value: function initialize(options) {
             var elements = this.getElements();
@@ -71,6 +72,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 重新加载
         key: 'reload',
         value: function reload(options) {
             this.destroy().initialize(options).render().addListeners();
@@ -86,6 +88,7 @@ var AutocJs = function () {
          */
 
     }, {
+        //设置
         key: 'set',
         value: function set(prop, val) {
             var utils = AutocJs.Utils;
@@ -105,21 +108,25 @@ var AutocJs = function () {
         // 获取属性值
 
     }, {
+        // 获取
         key: 'get',
         value: function get(prop) {
             return this.attributes[prop];
         }
     }, {
+        // 获取元素
         key: 'getElements',
         value: function getElements() {
             return this.elements;
         }
     }, {
+        // 获取数据
         key: 'getData',
         value: function getData() {
             return this.data;
         }
     }, {
+        // 生成标题
         key: 'generateHeadings',
         value: function generateHeadings(nodes) {
             var headings = [];
@@ -137,6 +144,7 @@ var AutocJs = function () {
             return headings;
         }
     }, {
+        // 生成章节
         key: 'generateChapters',
         value: function generateChapters(headings) {
             var utils = AutocJs.Utils;
@@ -214,6 +222,7 @@ var AutocJs = function () {
             return chapters;
         }
     }, {
+        // 生成章节代码
         key: 'generateChapterCode',
         value: function generateChapterCode(chapters) {
             var utils = AutocJs.Utils;
@@ -249,6 +258,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 渲染锚点
         key: 'renderAnchors',
         value: function renderAnchors() {
             var _this = this;
@@ -295,6 +305,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 渲染轮廓
         key: 'renderOutline',
         value: function renderOutline() {
             var position = this.get('position').toLowerCase();
@@ -318,6 +329,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 渲染外部轮廓
         key: 'renderOutsideOutline',
         value: function renderOutsideOutline() {
             var utils = AutocJs.Utils;
@@ -375,6 +387,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 渲染内部轮廓
         key: 'renderInsideOutline',
         value: function renderInsideOutline() {
             var utils = AutocJs.Utils;
@@ -408,6 +421,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 渲染章节
         key: 'renderChapters',
         value: function renderChapters() {
             var _this2 = this;
@@ -470,6 +484,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 滚动至
         key: 'scrollTo',
         value: function scrollTo(top) {
             var _this3 = this;
@@ -519,6 +534,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 停止
         key: 'stop',
         value: function stop() {
             clearTimeout(this.timer);
@@ -527,6 +543,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 显示
         key: 'show',
         value: function show() {
             var elements = this.getElements();
@@ -536,6 +553,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 隐藏
         key: 'hide',
         value: function hide() {
             var elements = this.getElements();
@@ -545,6 +563,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 切换
         key: 'toggle',
         value: function toggle() {
             if (AutocJs.Utils.DOM.hasClass(this.getElements().modal, 'outline-outside-modal-opened')) {
@@ -556,6 +575,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 删除
         key: 'remove',
         value: function remove() {
             var elements = this.getElements();
@@ -574,6 +594,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 销毁
         key: 'destroy',
         value: function destroy() {
             this.remove();
@@ -607,6 +628,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 删除侦听器
         key: 'removeListeners',
         value: function removeListeners() {
             var elements = this.getElements();
@@ -634,6 +656,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 添加侦听器
         key: 'addListeners',
         value: function addListeners() {
             var elements = this.getElements();
@@ -662,6 +685,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 处理文章标题鼠标输入
         key: '_handleArticleHeadingMouseEnter',
         value: function _handleArticleHeadingMouseEnter(evt) {
             var target = evt.delegateTarget;
@@ -674,6 +698,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 处理文章标题鼠标离开
         key: '_handleArticleHeadingMouseLeave',
         value: function _handleArticleHeadingMouseLeave(evt) {
             var target = evt.delegateTarget;
@@ -686,25 +711,25 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 处理标题锚定单击
         key: '_handleHeadingAnchorClick',
         value: function _handleHeadingAnchorClick(evt) {
-            
+            var height = $('.joe_header').height();
             var anchor = evt.delegateTarget;
             var rel = anchor.getAttribute('rel');
             var heading = document.querySelector('#' + rel);
             var utils = AutocJs.Utils;
             var dom = utils.DOM;
             var events = utils.Events;
-            var offsetTop = dom.offset(heading).top - height -10;
-
+            var offsetTop = dom.offset(heading).top - height - 10;
             if (utils.isEmpty(this.get('anchorURL'))) {
                 this.stop().scrollTo(offsetTop);
                 events.stop(evt);
             }
-
             return this;
         }
     }, {
+        // 处理章节单击
         key: '_handleChapterClick',
         value: function _handleChapterClick(evt) {
             var height = $('.joe_header').height();
@@ -724,6 +749,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 手柄开关点击
         key: '_handleSwitcherClick',
         value: function _handleSwitcherClick() {
             this.toggle();
@@ -731,6 +757,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 手柄顶部点击
         key: '_handleTopClick',
         value: function _handleTopClick(evt) {
             
@@ -744,6 +771,7 @@ var AutocJs = function () {
             return this;
         }
     }, {
+        // 处理覆盖单击
         key: '_handleOverlayClick',
         value: function _handleOverlayClick() {
             this.hide();

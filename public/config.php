@@ -15,11 +15,14 @@
 	detectIE() && (alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。'), (location.href = 'https://www.baidu.com'))
 	localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
 	window.Joe = {
+		TITLE: `<?php $this->options->title() ?>`,
 		THEME_URL: `<?php _JStorageUrl(false) ?>`,
 		LIVE2D: `<?php $this->options->JLive2d() ?>`,
 		BASE_API: `<?php echo $this->options->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api' ?>`,
-		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
+		DYNAMIC_BACKGROUND_PC: `<?php $this->options->JDynamic_Background_PC() ?>`,
+		DYNAMIC_BACKGROUND_WAP: `<?php $this->options->JDynamic_Background_WAP() ?>`,
 		WALLPAPER_BACKGROUND_PC: `<?php $this->options->JWallpaper_Background_PC() ?>`,
+		WALLPAPER_BACKGROUND_WAP: `<?php $this->options->JWallpaper_Background_WAP() ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
 		BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
 		BING_PUSH: <?php echo $this->options->JBingToken ? 'true' : 'false' ?>,
@@ -43,22 +46,39 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 ?>
 <style>
 	<?php
-		if ($this->options->JGrey_Model == 'on') {
-			?>
-			html {
-				-webkit-filter: grayscale(1);
-			}
-			<?php
+	if ($this->options->JGrey_Model == 'on') {
+	?>
+	    html {
+		    -webkit-filter: grayscale(1);
+	    }
+	<?php
+	}
+	if ((!_isMobile()) && ($this->options->JHeader_Blur != 'on')) {
+	?>
+	    html .joe_header {
+		    -webkit-backdrop-filter: none;
+	    	backdrop-filter: none;
+		    background: var(--background);
+	    }
+	<?php
+	}
+	if ($this->options->JWallpaper_Background_Optimal == 'on') {
+	    ?>
+	    html .joe_footer .joe_container>.item,
+	    html .joe_footer .joe_container a,
+		html .joe_bread__bread .item,
+		html .joe_bread__bread .item .link,
+		html .text-muted {
+			color: var(--classC);
 		}
-		if ( (!_isMobile()) && ($this->options->JHeader_Blur != 'on') ) {
-			?>
-			.joe_header {
-				-webkit-backdrop-filter: none !important;
-				backdrop-filter:none !important; 
-				background: var(--background) !important;
-			}
-			<?php
+		html .joe_bread__bread>.item>.icon {
+			fill: var(--classC);
 		}
+		html .text-muted>a {
+			color: var(--classD);
+		}
+	<?php
+	}
 	?>
 	@font-face {
 		font-family: 'Joe Font';
@@ -77,11 +97,14 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 	}
 
 	body::before {
-		background: <?php if (_isMobile()) {
-						echo $this->options->JWallpaper_Background_WAP ? "url(" . $this->options->JWallpaper_Background_WAP . ")" : "#f5f5f5";
-					} else {
-						echo $this->options->JWallpaper_Background_PC ? "url(" . $this->options->JWallpaper_Background_PC . ")" : "#f5f5f5";
-					} ?>;
+		background: <?php
+			if (_isMobile()) {
+				echo $this->options->JWallpaper_Background_WAP ? "url(" . $this->options->JWallpaper_Background_WAP . ")" : "#f5f5f5";
+			} else {
+				echo $this->options->JWallpaper_Background_PC ? "url(" . $this->options->JWallpaper_Background_PC . ")" : "#f5f5f5";
+			}
+		?>;
+		background-blend-mode: multiply;
 		background-position: center 0;
 		background-repeat: no-repeat;
 		background-size: cover;

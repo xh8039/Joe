@@ -66,9 +66,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 动态背景 */
 	{
-		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND !== "off" && Joe.DYNAMIC_BACKGROUND && !Joe
+		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND_PC !== "off" && Joe.DYNAMIC_BACKGROUND_PC && !Joe
 			.WALLPAPER_BACKGROUND_PC) {
-			$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
+			$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.DYNAMIC_BACKGROUND_PC}`);
+		}
+		if ( (Joe.IS_MOBILE) && (Joe.DYNAMIC_BACKGROUND_WAP !== "off") && (Joe.DYNAMIC_BACKGROUND_WAP) && (!Joe
+			.WALLPAPER_BACKGROUND_WAP)) {
+			$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.DYNAMIC_BACKGROUND_WAP}`);
 		}
 	}
 

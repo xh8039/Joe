@@ -26,37 +26,52 @@ $this->need('public/common.php');
 </head>
 
 <body>
-    <h1 style="display:none"><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php $this->options->title(); ?></h1>
+	<h1 style="display:none"><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php $this->options->title(); ?></h1>
 	<div id="Joe">
 		<?php $this->need('public/header.php'); ?>
 		<?php
-		    if ($this->options->JIndex_Header_Img) {
-		        ?>
-		        <div class="HeaderImg" style="background: url(<?php $this->options->JIndex_Header_Img() ?>) center; background-size:cover;">
-                <div class="infomation">
-                    <div class="title"><?php $this->options->title(); ?></div>
-                    <div class="desctitle">
-                        <span class="motto joe_motto"></span>
-                    </div>
-                </div>
-                <section class="HeaderImg_bottom">
-                    <svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                        <defs>
-                            <path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
-                        </defs>
-                        <g class="parallax">
-                            <use xlink:href="#gentle-wave" x="48" y="0"></use>
-                            <use xlink:href="#gentle-wave" x="48" y="3"></use>
-                            <use xlink:href="#gentle-wave" x="48" y="5"></use>
-                            <use xlink:href="#gentle-wave" x="48" y="7"></use>
-                        </g>
-                    </svg>
-                </section>
-            </div>
-		        <?php
-		    }
+		if ($this->options->JIndex_Header_Img) {
 		?>
-		
+			<div class="HeaderImg" style="background: url(<?php $this->options->JIndex_Header_Img() ?>) center; background-size:cover;">
+				<div class="infomation">
+					<div class="title"><?php $this->options->title(); ?></div>
+					<div class="desctitle">
+						<span class="motto joe_motto"></span>
+					</div>
+				</div>
+				<?php
+				if ($this->options->JIndex_Header_Img == '透明') {
+				?>
+					<style>
+						.HeaderImg:before {
+							background: transparent;
+						}
+					</style>
+
+				<?php
+				} else {
+				?>
+					<section class="HeaderImg_bottom">
+						<svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+							<defs>
+								<path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+							</defs>
+							<g class="parallax">
+								<use xlink:href="#gentle-wave" x="48" y="0"></use>
+								<use xlink:href="#gentle-wave" x="48" y="3"></use>
+								<use xlink:href="#gentle-wave" x="48" y="5"></use>
+								<use xlink:href="#gentle-wave" x="48" y="7"></use>
+							</g>
+						</svg>
+					</section>
+				<?php
+				}
+				?>
+			</div>
+		<?php
+		}
+		?>
+
 		<div class="joe_container">
 			<div class="joe_main">
 				<div class="joe_index">
@@ -67,27 +82,27 @@ $this->need('public/common.php');
 						$carousel_arr = explode("\r\n", $carousel_text);
 						if (count($carousel_arr) > 0) {
 							for ($i = 0; $i < count($carousel_arr); $i++) {
-							    if (is_numeric($carousel_arr[$i])) {
-							        $this->widget('Widget_Contents_Post@' . $carousel_arr[$i], 'cid=' . $carousel_arr[$i])->to($item);
-							        $img = _getThumbnails($item)[0];
-							        $url = $item->permalink;
-							        $title = $item->title;
-							    } else {
-								    $img = explode("||", $carousel_arr[$i])[0];
-								    $url = explode("||", $carousel_arr[$i])[1];
-								    $title = explode("||", $carousel_arr[$i])[2];
-							    }
+								if (is_numeric($carousel_arr[$i])) {
+									$this->widget('Widget_Contents_Post@' . $carousel_arr[$i], 'cid=' . $carousel_arr[$i])->to($item);
+									$img = _getThumbnails($item)[0];
+									$url = $item->permalink;
+									$title = $item->title;
+								} else {
+									$img = explode("||", $carousel_arr[$i])[0];
+									$url = explode("||", $carousel_arr[$i])[1];
+									$title = explode("||", $carousel_arr[$i])[2];
+								}
 								$carousel[] = array("img" => trim($img), "url" => trim($url), "title" => trim($title));
 							};
 						}
 					}
-					
+
 					$recommend = [];
 					$recommend_text = $this->options->JIndex_Recommend;
 					if ($recommend_text) {
 						$recommend_arr = explode("||", $recommend_text);
 						if (count($recommend_arr) === 2) {
-						    $recommend = $recommend_arr;
+							$recommend = $recommend_arr;
 						}
 					}
 					?>
@@ -155,7 +170,7 @@ $this->need('public/common.php');
 					if ($index_ad_text) {
 						$index_ad_arr = explode("||", $index_ad_text);
 						if (count($index_ad_arr) === 2) {
-						    $index_ad = array("image" => trim($index_ad_arr[0]), "url" => trim($index_ad_arr[1]));
+							$index_ad = array("image" => trim($index_ad_arr[0]), "url" => trim($index_ad_arr[1]));
 						}
 					}
 					?>
@@ -167,20 +182,20 @@ $this->need('public/common.php');
 							</a>
 						</div>
 					<?php endif; ?>
-                    <?php
-						if ($this->options->JIndex_Google_AdSense_switch == 'ad') {
-						?>
-							<div class="joe_index__ad">
-								<?php
-								if (_isMobile()) {
-									$this->options->JIndex_Google_AdSense_phone();
-								} else {
-									$this->options->JIndex_Google_AdSense_pc();
-								}
-								?>
-							</div>
-						<?php
-						}
+					<?php
+					if ($this->options->JIndex_Google_AdSense_switch == 'ad') {
+					?>
+						<div class="joe_index__ad">
+							<?php
+							if (_isMobile()) {
+								$this->options->JIndex_Google_AdSense_phone();
+							} else {
+								$this->options->JIndex_Google_AdSense_pc();
+							}
+							?>
+						</div>
+					<?php
+					}
 					?>
 					<div class="joe_index__title">
 

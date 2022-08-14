@@ -27,44 +27,59 @@
 	<div id="Joe">
 		<?php $this->need('public/header.php'); ?>
 		<?php
-		    if ( ($this->options->JPost_Header_Img_Switch == 'on') && ($this->options->JPost_Header_Img || _getThumbnails($this)[0]) ) {
-		        ?>
-		        <div class="HeaderImg" style="background: url(<?php echo ($this->options->JPost_Header_Img ? $this->options->JPost_Header_Img :  _getThumbnails($this)[0]) ?>) center; background-size:cover;">
-                <div class="infomation">
-                    <?php
-                    if ($this->options->JPost_Header_Img) {
-                        ?>
-                        <div class="title"><?php $this->options->title(); ?></div>
-                        <div class="desctitle">
-                            <span class="motto joe_motto"></span>
-                        </div>
-                        <?php
-                    }else {
-                        ?>
-                        <div class="title"><?php $this->title(); ?></div>
-                        <div class="desctitle">
-                            <span class="motto"><?php $this->options->title(); ?></span>
-                        </div>
-                        <?php
-                    }
-                    ?>
-                </div>
-                <section class="HeaderImg_bottom">
-                    <svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                        <defs>
-                            <path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
-                        </defs>
-                        <g class="parallax">
-                            <use xlink:href="#gentle-wave" x="48" y="0"></use>
-                            <use xlink:href="#gentle-wave" x="48" y="3"></use>
-                            <use xlink:href="#gentle-wave" x="48" y="5"></use>
-                            <use xlink:href="#gentle-wave" x="48" y="7"></use>
-                        </g>
-                    </svg>
-                </section>
-            </div>
-		        <?php
-		    }
+		if (($this->options->JPost_Header_Img_Switch == 'on') && ($this->options->JPost_Header_Img || _getThumbnails($this)[0])) {
+		?>
+			<div class="HeaderImg" style="background: url(<?php echo ($this->options->JPost_Header_Img ? $this->options->JPost_Header_Img :  _getThumbnails($this)[0]) ?>) center; background-size:cover;">
+				<div class="infomation">
+					<?php
+					if (($this->options->JPost_Header_Img) && ($this->options->JPost_Header_Img != '透明')) {
+					?>
+						<div class="title"><?php $this->options->title(); ?></div>
+						<div class="desctitle">
+							<span class="motto joe_motto"></span>
+						</div>
+					<?php
+					} else {
+					?>
+						<div class="title"><?php $this->title(); ?></div>
+						<div class="desctitle">
+							<span class="motto"><?php $this->options->title(); ?></span>
+						</div>
+					<?php
+					}
+					?>
+				</div>
+				<?php
+				if ($this->options->JPost_Header_Img == '透明') {
+				?>
+					<style>
+						.HeaderImg:before {
+							background: transparent;
+						}
+					</style>
+
+				<?php
+				} else {
+				?>
+					<section class="HeaderImg_bottom">
+						<svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+							<defs>
+								<path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+							</defs>
+							<g class="parallax">
+								<use xlink:href="#gentle-wave" x="48" y="0"></use>
+								<use xlink:href="#gentle-wave" x="48" y="3"></use>
+								<use xlink:href="#gentle-wave" x="48" y="5"></use>
+								<use xlink:href="#gentle-wave" x="48" y="7"></use>
+							</g>
+						</svg>
+					</section>
+				<?php
+				}
+				?>
+			</div>
+		<?php
+		}
 		?>
 		<div class="joe_container joe_bread">
 			<ul class="joe_bread__bread">
@@ -105,36 +120,36 @@
 							</div>
 						</div>
 					<?php endif; ?>
-					
+
 					<?php
 					$post_ad_text = $this->options->JPost_Ad;
 					if ($post_ad_text) {
-					    $post_ad_arr = explode("\r\n", $post_ad_text);
+						$post_ad_arr = explode("\r\n", $post_ad_text);
 						foreach ($post_ad_arr as $key => $value) {
-						    $post_ad_arr_arr[] = [
-						        'url' => trim(explode("||", $post_ad_arr[$key])[1]),
-						        'image' => trim(explode("||", $post_ad_arr[$key])[0])
-						    ];
+							$post_ad_arr_arr[] = [
+								'url' => trim(explode("||", $post_ad_arr[$key])[1]),
+								'image' => trim(explode("||", $post_ad_arr[$key])[0])
+							];
 						}
 					}
 					if (!empty($post_ad_arr_arr[0]['image'])) {
-					    foreach ($post_ad_arr_arr as $key => $value) {
-					        ?>
-					        <div class="joe_post__ad">
-							<a class="joe_post__ad-link" href="<?php echo $post_ad_arr_arr[$key]['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
-								<img width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo $post_ad_arr_arr[$key]['image'] ?>" alt="<?php echo $post_ad_arr_arr[$key]['url'] ?>" />
-								<span class="icon">广告</span>
-							</a>
-						    </div>
-					        <?php
-					    }
+						foreach ($post_ad_arr_arr as $key => $value) {
+					?>
+							<div class="joe_post__ad">
+								<a class="joe_post__ad-link" href="<?php echo $post_ad_arr_arr[$key]['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
+									<img width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo $post_ad_arr_arr[$key]['image'] ?>" alt="<?php echo $post_ad_arr_arr[$key]['url'] ?>" />
+									<span class="icon">广告</span>
+								</a>
+							</div>
+					<?php
+						}
 					}
 					$this->need('public/article.php');
 					$this->need('public/handle.php');
 					$this->need('public/operate.php');
 					$this->need('public/copyright.php');
 					$this->need('public/related.php');
-				?>
+					?>
 				</div>
 				<ul class="joe_post__pagination">
 					<?php $this->theNext('<li class="joe_post__pagination-item prev">%s</li>', '', ['title' => '上一篇']); ?>
@@ -146,73 +161,67 @@
 		</div>
 		<?php $this->need('public/footer.php'); ?>
 	</div>
-	<?php if ($this->options->JAutoc == 'on') {?>
-	<script type="text/javascript">
-		if ($(".joe_detail__article").length > 0) {
-			// 创建文章导读目录    
-			let navigation = new AutocJs({
-				// 文章正文 DOM 节点的 ID 选择器
-				article: '.joe_detail__article',
+	<?php if ($this->options->JAutoc == 'on') { ?>
+		<script type="text/javascript">
+			if ($(".joe_detail__article").length > 0) {
+				// 创建文章导读目录    
+				let navigation = new AutocJs({
+					// 文章正文 DOM 节点的 ID 选择器
+					article: '.joe_detail__article',
 
-				// 要收集的标题选择器
-				selector: 'h1,h2,h3,h4,h5,h6',
+					// 要收集的标题选择器
+					selector: 'h1,h2,h3,h4,h5,h6',
 
-				// 侧边栏导航的标题
-				title: '文章导读',
+					// 侧边栏导航的标题
+					title: '文章导读',
 
-				// 文章导读导航的位置
-				// outside - 以侧边栏菜单形式显示（默认值）
-				// inside - 在文章正文一开始的地方显示
-				//只有设置了 isGenerateOutline 为 true，position 参数才会起效。
-				position: 'outside',
+					// 文章导读导航的位置
+					// outside - 以侧边栏菜单形式显示（默认值）
+					// inside - 在文章正文一开始的地方显示
+					//只有设置了 isGenerateOutline 为 true，position 参数才会起效。
+					position: 'outside',
 
-				//用来指定文章标题锚点链接图标的链接地址：'' - 点击链接页面滚动到标题位置，其它 URL 值 - 就直接跳转到指定页面了
-				// 标题图标链接的 URL 地址
-				// （默认）没有设置定制，点击链接页面滚动到标题位置
-				// 设置了链接地址，则不会滚动定位
-				anchorURL: '',
+					//用来指定文章标题锚点链接图标的链接地址：'' - 点击链接页面滚动到标题位置，其它 URL 值 - 就直接跳转到指定页面了
+					// 标题图标链接的 URL 地址
+					// （默认）没有设置定制，点击链接页面滚动到标题位置
+					// 设置了链接地址，则不会滚动定位
+					anchorURL: '',
 
-				// 链接的显示位置
-				// front - 在标题最前面（默认值）
-				// back - 在标题后面
-				anchorAt: 'back',
+					// 链接的显示位置
+					// front - 在标题最前面（默认值）
+					// back - 在标题后面
+					anchorAt: 'back',
 
-				// 是否生成文章导读导航
-				isGenerateOutline: true,
+					// 是否生成文章导读导航
+					isGenerateOutline: true,
 
-				// 是否在文章导读导航中显示段落章节编号
-				isGenerateOutlineChapterCode: false,
+					// 是否在文章导读导航中显示段落章节编号
+					isGenerateOutlineChapterCode: false,
 
-				// 是否在正文的文章标题中显示段落章节编号
-				isGenerateHeadingChapterCode: false,
+					// 是否在正文的文章标题中显示段落章节编号
+					isGenerateHeadingChapterCode: false,
 
-				// 用来指定是否在文章标题位置生成锚点链接图标：true - 生成锚点链接图标，并给标题添加 ID 属性，false - 不生成锚点链接图标，仅给标题添加 ID 属性。
-				isGenerateHeadingAnchor: false
-			});
-			// 可以在创建导航后，重置配置信息，重新生成新的导航
-			// 	navigation.reload({
-			// 		// 调整位直接在文章内生成导航
-			// 		position: 'outside',
-			// 		// 并且在文章标题前显示段落的章节层次索引值
-			// 		isGenerateHeadingChapterCode: true
-			// 	})
-		}
-		if ($('.outline-chapter').length <= 0) {
-			$('.outline-outside-switcher').remove();
-		}
-		if ($('.outline-heading').length > 0) {
-		    let modal_width = '-' + ($('.outline-outside-modal').outerWidth() + 10) + 'px';
-		    let style = `
-		        .outline-outside-modal {
-		            left : ${modal_width}
-		        }
-		    `;
-		    $('style')[0].prepend(style);
-		}else {
-		    $('.outline-outside').hide()
-		}
-	</script>
-	<?php }?>
+					// 用来指定是否在文章标题位置生成锚点链接图标：true - 生成锚点链接图标，并给标题添加 ID 属性，false - 不生成锚点链接图标，仅给标题添加 ID 属性。
+					isGenerateHeadingAnchor: false
+				});
+				// 可以在创建导航后，重置配置信息，重新生成新的导航
+				// 	navigation.reload({
+				// 		// 调整位直接在文章内生成导航
+				// 		position: 'outside',
+				// 		// 并且在文章标题前显示段落的章节层次索引值
+				// 		isGenerateHeadingChapterCode: true
+				// 	})
+			}
+			if ($('.outline-chapter').length <= 0) {
+				$('.outline-outside-switcher').remove();
+			}
+			if ($('.outline-heading').length > 0) {
+				//CSS V3版本666好吧
+			} else {
+				$('.outline-outside').hide()
+			}
+		</script>
+	<?php } ?>
 </body>
 
 </html>

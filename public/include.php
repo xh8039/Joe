@@ -18,7 +18,7 @@
 	<?php $this->header(); ?>
 <?php endif; ?>
 <link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.mode.css'); ?>">
-<link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.normalize.min.css'); ?>">
+<link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.responsive.css'); ?>">
 <link rel="stylesheet" href="<?php _JStorageUrl('assets/css/qmsg.css'); ?>">
@@ -41,6 +41,6 @@
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
 	<script src="<?php _JStorageUrl('assets/cursor/' . $this->options->JCursorEffects); ?>" async></script>
 <?php endif; ?>
-<script src="<?php _JStorageUrl('assets/js/joe.global.js?v=7.3.0'); ?>"></script>
-<script src="<?php _JStorageUrl('assets/js/joe.short.js?v=7.2.9'); ?>"></script>
+<script src="<?php _JStorageUrl('assets/js/joe.global.js'); ?>"></script>
+<script src="<?php _JStorageUrl('assets/js/joe.short.js'); ?>"></script>
 <?php $this->options->JCustomHeadEnd() ?>

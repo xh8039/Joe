@@ -1479,7 +1479,9 @@
 }
 
 .joe_list__item .information .title {
-	margin-bottom: 10px;
+	padding-bottom: 4px;
+	margin-bottom: 6px;
+	position: relative;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	/*! autoprefixer: off */
@@ -1494,8 +1496,23 @@
 	transition: color 0.35s
 }
 
+.joe_list__item .information .title::after {
+	content: '';
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 0;
+	height: 1.5px;
+	background: var(--theme);
+	transition: all 0.35s
+}
+
 .joe_list__item .information .title:hover {
 	color: var(--theme)
+}
+
+.joe_list__item .information .title:hover::after {
+    width: 100%
 }
 
 .joe_list__item .information .title .badge {

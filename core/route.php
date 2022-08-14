@@ -71,23 +71,85 @@ function _getPost($self)
 	$self->response->throwJson(array("data" => $result));
 }
 
+// 获取友链列表
+function _friendList($self)
+{
+	$friends = [];
+	$friends_text = Helper::options()->JFriends;
+	if ($friends_text) {
+		$friends_arr = explode("\r\n", $friends_text);
+		if (count($friends_arr) > 0) {
+			for ($i = 0; $i < count($friends_arr); $i++) {
+				$name = explode("||", $friends_arr[$i])[0];
+				$url = explode("||", $friends_arr[$i])[1];
+				$avatar = explode("||", $friends_arr[$i])[2];
+				$desc = explode("||", $friends_arr[$i])[3];
+				$friends[] = array("name" => trim($name), "url" => trim($url), "avatar" => trim($avatar), "desc" => trim($desc));
+			};
+		}
+	}
+	if (empty(sizeof($friends))) {
+		$self->response->throwJson([
+			'code' => 0,
+		]);
+	}
+	if (Helper::options()->JFriends_shuffle == 'on') {
+		shuffle($friends);
+	}
+	$self->response->setStatus(200);
+	$self->response->throwJson([
+		'code' => 200,
+		'data' => $friends
+	]);
+}
+
 // 百度统计展示
 function _getstatistics($self)
 {
-	$access_token = Helper::options()->baidu_access_token;
-	if (empty($access_token)) {
+	$statistics_config = explode(PHP_EOL, Helper::options()->baidu_statistics);
+	if (is_array($statistics_config)) {
+		$GLOBALS['access_token'] = trim($statistics_config[0]);
+		$GLOBALS['refresh_token'] = trim($statistics_config[1]);
+		$GLOBALS['client_id'] = trim($statistics_config[2]);
+		$GLOBALS['client_secret'] = trim($statistics_config[3]);
+	} else {
+		$self->response->setStatus(200);
+		$self->response->throwJson(array('access_token' => 'off'));
+	}
+	if (empty($GLOBALS['access_token'])) {
 		$self->response->setStatus(200);
 		$self->response->throwJson(array('access_token' => 'off'));
 	}
 	// 获取站点列表
 	function baidu_list($self)
 	{
-		$access_token = Helper::options()->baidu_access_token;
-		$url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . $access_token;
-		$data = _curl_post($url, null, null);
-		$data = json_decode($data['body'], true);
+		$url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . $GLOBALS['access_token'];
+		$data = json_decode(file_get_contents($url), true);
 		if (isset($data['error_code'])) {
 			$self->response->setStatus(404);
+			if ($data['error_code'] == 111) {
+				$self->response->throwJson(['msg' => '请更新您的access_token']);
+				//   卡在更新access_token时更新不成功出现安全验证页面了 暂时不搞了 费脑...
+				$refresh_token = $GLOBALS['refresh_token'];
+				$client_id = $GLOBALS['client_id'];
+				$client_secret = $GLOBALS['client_secret'];
+				$config = json_decode(@file_get_contents("http://openapi.baidu.com/oauth/2.0/token?grant_type=refresh_token&refresh_token=$refresh_token&client_id=$client_id&client_secret=$client_secret"), true);
+				if (empty($config['expires_in'])) {
+					$self->response->throwJson(array('access_token' => 'off'));
+				}
+				$GLOBALS['access_token'] = $config['access_token'];
+				$access_token = $config['access_token'];
+				$refresh_token = $config['refresh_token'];
+				$statistics_config = [
+					'access_token' => $access_token,
+					'refresh_token' => $refresh_token,
+					'client_id' => $GLOBALS['client_id'],
+					'client_secret' => $GLOBALS['client_secret']
+				];
+				$statistics_config = implode("\n", $statistics_config);
+				Helper::options()->baidu_statistics = $statistics_config;
+				return baidu_list($self);
+			}
 			$self->response->throwJson($data);
 		}
 		return $data['list'];
@@ -95,7 +157,7 @@ function _getstatistics($self)
 	// 获取站点详情
 	function web_metrics($list, $start_date, $end_date)
 	{
-		$access_token = Helper::options()->baidu_access_token;
+		$access_token = $GLOBALS['access_token'];
 		$site_id = $list['site_id'];
 		$url = "https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=$access_token&site_id=$site_id&method=trend/time/a&start_date=$start_date&end_date=$end_date&metrics=pv_count,ip_count&gran=day";
 		$data = _curl_post($url, null, null);
@@ -190,26 +252,26 @@ function _getRecord($self)
 	$site = $self->request->site;
 	$url = 'https://www.baidu.com/s';
 	$param = [
-	    'ie' => 'utf8',
-	    'wd' => $site
+		'ie' => 'utf8',
+		'wd' => $site
 	];
 	$options = [
 		'header' => [
 			'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-			 'Accept-Encoding: gzip, deflate',
-			 'Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-			 'Connection: keep-alive',
-			 'Host: www.baidu.com',
-			 'Referer: https://wappass.baidu.com/',
-			 'sec-ch-ua: " Not;A Brand";v="99", "Microsoft Edge";v="103", "Chromium";v="103"',
-			 'sec-ch-ua-mobile: ?0',	
-			 'sec-ch-ua-platform: "Windows"',
-			 'Sec-Fetch-Dest: document',
-			 'Sec-Fetch-Mode: navigate',
-			 'Sec-Fetch-Site: same-site',
-			 'Sec-Fetch-User: ?1',
-			 'Upgrade-Insecure-Requests: 1',
-			 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77'
+			'Accept-Encoding: gzip, deflate',
+			'Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+			'Connection: keep-alive',
+			'Host: www.baidu.com',
+			'Referer: https://wappass.baidu.com/',
+			'sec-ch-ua: " Not;A Brand";v="99", "Microsoft Edge";v="103", "Chromium";v="103"',
+			'sec-ch-ua-mobile: ?0',
+			'sec-ch-ua-platform: "Windows"',
+			'Sec-Fetch-Dest: document',
+			'Sec-Fetch-Mode: navigate',
+			'Sec-Fetch-Site: same-site',
+			'Sec-Fetch-User: ?1',
+			'Upgrade-Insecure-Requests: 1',
+			'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77'
 		],
 		'cookie' => '__yjs_duid=1_ac4d0f87736bc5e2ab5596ce1a7367601643347382579; H_WISE_SIDS=110085_127969_179345_184716_185637_189755_191068_191251_192385_194085_194529_195343_196425_196527_197242_197711_197956_198418_199022_199313_199568_199996_200149_200960_200993_201108_201192_201545_201707_202059_202759_202910_203309_203360_203519_203605_203886_204031_204132_204265_204322_204405_204432_204675_204725_204824_204859_204919_204940_205009_205087_205094_205218_205380_205386_205412_205485_205656_205690_205710_205831_205847_205919_206098_206283_206476_206767_206927_207005_207124_207136_207212_207234_207363_207497_207506_8000076_8000128_8000140_8000150_8000159_8000163_8000167_8000177_8000179_8000186; BD_UPN=12314753; PSTM=1656921064; BIDUPSID=1C10D9F853DBCC6E9738B268FCC46875; BAIDUID=40E6CCC7EEB3D860EB05C626C3F2C44B:FG=1; H_WISE_SIDS_BFESS=110085_127969_179345_184716_185637_189755_191068_191251_192385_194085_194529_195343_196425_196527_197242_197711_197956_198418_199022_199313_199568_199996_200149_200960_200993_201108_201192_201545_201707_202059_202759_202910_203309_203360_203519_203605_203886_204031_204132_204265_204322_204405_204432_204675_204725_204824_204859_204919_204940_205009_205087_205094_205218_205380_205386_205412_205485_205656_205690_205710_205831_205847_205919_206098_206283_206476_206767_206927_207005_207124_207136_207212_207234_207363_207497_207506_8000076_8000128_8000140_8000150_8000159_8000163_8000167_8000177_8000179_8000186; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BA_HECTOR=81al8g05a48lal01052l1cdj1heel6a16; ZFY=UN3DgzqvtqoeRQZLRr7OUad79UfJKR3Npye2ytuzKYQ:C; delPer=0; PSINO=2; BD_HOME=1; H_PS_PSSID=36832_36559_36753_36726_36413_36955_36167_36918_36570_36804_36965_36740_26350_22160'
 	];
@@ -477,9 +539,9 @@ function _getArticleFiling($self)
 	$result = [];
 	$sql_version = $db->fetchAll('select VERSION()')[0]['VERSION()'];
 	if ($sql_version >= 8) {
-        $sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') LIMIT {$pageSize} OFFSET {$offset}";
-	}else {
-	    $sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') DESC LIMIT {$pageSize} OFFSET {$offset}";
+		$sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') LIMIT {$pageSize} OFFSET {$offset}";
+	} else {
+		$sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') DESC LIMIT {$pageSize} OFFSET {$offset}";
 	}
 	$temp = $db->fetchAll($sql);
 	$options = Typecho_Widget::widget('Widget_Options');

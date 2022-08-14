@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			success(res) {
 				if (!res.data) {
 					if (Joe.BAIDU_PUSH) {
-					    $('#Joe_Baidu_Record').html(`<a href="javascript:submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
-					    return
+						$('#Joe_Baidu_Record').html(`<a href="javascript:submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
+						return
 					}
-				    const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
+					const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
 					$('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
 					return
 				}
@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 				/* 如果填写了Token，则自动推送给百度 */
 				if ((res.data == '未收录') && (Joe.BAIDU_PUSH)) {
-                    submit_baidu('未收录，推送中...');
+					submit_baidu('未收录，推送中...');
 					return
 				}
 				if (Joe.BAIDU_PUSH) {
-				$('#Joe_Baidu_Record').html(`<a href="javascript:submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
-				    return
+					$('#Joe_Baidu_Record').html(`<a href="javascript:submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
+					return
 				}
 				const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
 				$('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
@@ -48,19 +48,40 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 激活代码高亮 */
 	{
 		Prism.highlightAll();
-		$("pre[class*='language-']").each(function(index, item) {
+		$("pre[class*='language-']").each(function (index, item) {
 			let text = $(item).find("code[class*='language-']").text();
+			text = text.replace(/    /g, '	');
 			let span = $(`<span class="copy"><i class="fa fa-clone"></i></span>`);
 			new ClipboardJS(span[0], {
 				text: () => text
-			}).on('success', () => Qmsg.success('复制成功！'));
+			}).on('success', () => {
+				window.code_copy = true;
+				Qmsg.success(`复制成功 内容版权属于 ${Joe.TITLE} 转载请标明出处！`, { 'showClose': true, 'autoClose': false });
+			});
 			$(item).append(span);
+		});
+	}
+
+	/* 监听网页复制行为 */
+	{
+		document.addEventListener("copy", function (e) {
+			setTimeout(function () {
+				if (window.code_copy !== true && window.post_copy !== true) {
+					let options = {
+						'showClose': true,
+						'autoClose': false
+					}
+					Qmsg.warning(`本文版权属于 ${Joe.TITLE} 转载请标明出处！`, options)
+					window.post_copy = true;
+				}
+				window.code_copy = false;
+			}, 100);
 		});
 	}
 
 	/* 激活图片预览功能 */
 	{
-		$('.joe_detail__article img:not(img.owo_image)').each(function() {
+		$('.joe_detail__article img:not(img.owo_image)').each(function () {
 			$(this).wrap($(
 				`<span style="display: block;" data-fancybox="Joe" href="${$(this).attr('src')}"></span>`
 			));
@@ -69,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 设置文章内的链接为新窗口打开 */
 	{
-		$('.joe_detail__article a:not(.joe_detail__article-anote)').each(function() {
+		$('.joe_detail__article a:not(.joe_detail__article-anote)').each(function () {
 			$(this).attr({
 				target: '_blank',
 				rel: 'noopener noreferrer nofollow'
@@ -110,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (agreeArr.includes(cid)) $('.joe_detail__agree .icon-1').addClass('active');
 		else $('.joe_detail__agree .icon-2').addClass('active');
 		let _loading = false;
-		$('.joe_detail__agree .icon').on('click', function() {
+		$('.joe_detail__agree .icon').on('click', function () {
 			if (_loading) return;
 			_loading = true;
 			agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage
@@ -154,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 密码保护文章，输入密码访问 */
 	{
 		let isSubmit = false;
-		$('.joe_detail__article-protected').on('submit', function(e) {
+		$('.joe_detail__article-protected').on('submit', function (e) {
 			e.preventDefault();
 			const url = $(this).attr('action') + '&time=' + +new Date();
 			const protectPassword = $(this).find('input[type="password"]').val();
@@ -193,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	{
 		if ($('.joe_detail__article-video').length > 0) {
 			const player = $('.joe_detail__article-video .play iframe').attr('data-player');
-			$('.joe_detail__article-video .episodes .item').on('click', function() {
+			$('.joe_detail__article-video .episodes .item').on('click', function () {
 				$(this).addClass('active').siblings().removeClass('active');
 				const url = $(this).attr('data-src');
 				$('.joe_detail__article-video .play iframe').attr({
@@ -217,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 	/* 判断地址栏是否有锚点链接，有则跳转到对应位置 */
 	{
 		const scroll = new URLSearchParams(location.search).get('scroll');
@@ -260,13 +281,13 @@ function submit_baidu(msg = '推送中...') {
 			}
 		},
 		error(res) {
-		    $('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，请检查！</span>');
+			$('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，请检查！</span>');
 		}
 	});
-// 	顺便推送URL到必应
-    if (!Joe.BAIDU_PUSH) {
-        return
-    }
+	// 	顺便推送URL到必应
+	if (!Joe.BAIDU_PUSH) {
+		return
+	}
 	$.ajax({
 		url: Joe.BASE_API,
 		type: 'POST',

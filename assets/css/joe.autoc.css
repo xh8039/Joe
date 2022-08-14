@@ -103,7 +103,8 @@
     overflow: visible;
     position: fixed;
     top: 0;
-    -webkit-transition-duration: 0.5s;
+    left: 0;
+    transform: translate3d(calc(-100% - 15px), 0, 0);
     transition-duration: 0.35s;
     width: auto;
     min-width: 200px;
@@ -113,7 +114,7 @@
 
 .outline-outside-modal-opened {
     padding-top: 105px;
-    left: 0;
+    transform: translate3d(0, 0, 0);
 }
 
 .outline-outside-header {
@@ -230,7 +231,7 @@
 }
 
 .backdropfilter {
-    backdrop-filter: saturate(5) blur(1px);
+    backdrop-filter: blur(1px);
 }
 
 @media (max-width: 768px) {

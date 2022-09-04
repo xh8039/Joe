@@ -9,7 +9,14 @@
 <meta itemprop="image" content="<?php $this->options->JShare_QQ_Image() ?>" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
 <link rel="shortcut icon" href="<?php $this->options->JFavicon() ?>" />
-<title><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php $this->options->title(); ?></title>
+<title><?php
+    if ($this->is('index') && !empty($this->options->JIndex_Title)) {
+        $this->options->JIndex_Title();
+    } else {
+        $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); 
+        $this->options->title();
+    }
+?></title>
 <?php if ($this->is('single')) : ?>
 <meta name="keywords" content="<?php echo $this->fields->keywords ? $this->fields->keywords : $this->keywords; ?>" />
 <meta name="description" content="<?php echo $this->fields->description ? $this->fields->description : _FilterMarkdown($this->description); ?>" />

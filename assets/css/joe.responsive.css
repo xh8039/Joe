@@ -1,9 +1,7 @@
 /* 基类：基于 最大屏幕 + 有侧边栏 下进行适配 */
 
 @media (max-width: 1760px) {
-	html #live2d-widget {
-		visibility: hidden
-	}
+	
 }
 
 @media (max-width: 1400px) {
@@ -129,7 +127,8 @@
 		grid-template-rows: 125px
 	}
 
-	html .joe_list__item.default .thumbnail {
+	html .joe_list__item.default .thumbnail,
+	html .joe_list__loading .item .thumbnail {
 		width: 185px;
 		height: 125px
 	}
@@ -152,21 +151,13 @@
 	}
 
 	html .joe_index__banner-recommend {
-		padding-top: 15px;
-		width: 100%;
-		margin-left: 0;
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 15px
+	    grid-template-columns: repeat(3, 1fr);
 	}
 
 	html .joe_index__banner-recommend.noswiper {
-		padding-top: 0
 	}
 
 	html .joe_index__banner-recommend .item {
-		height: 145px;
-		margin: 0 !important
 	}
 
 	html .joe_census__basic-item.category #category {
@@ -196,6 +187,10 @@
 }
 
 @media (max-width: 992px) {
+    html #live2d-widget {
+		visibility: hidden
+	}
+	
 	html .joe_vplayer {
 		height: 400px
 	}
@@ -234,7 +229,7 @@
 
 	html .joe_index__banner-recommend .item {
 		height: 135px;
-		margin: 0 !important
+		/*margin: 0 !important*/
 	}
 
 	html .joe_header__above-logo {
@@ -293,12 +288,14 @@
 	}
 
 	html .joe_header__above-logo {
-		height: 55px;
+		height: 50px;
 		margin-right: 0
 	}
 
 	html .joe_header__above-logo img {
-		max-height: 45px
+		max-height: 45px;
+		padding-top: 2.5px;
+		padding-bottom: 2.5px;
 	}
 
 	html .joe_header__above-searchicon {
@@ -314,11 +311,12 @@
 	}
 
 	html .joe_index__banner-recommend {
-		gap: 10px
+		gap: 10px;
+		grid-template-columns: repeat(2, 1fr);
 	}
 
 	html .joe_index__banner-recommend .item {
-		height: 100px
+		height: 110px;
 	}
 
 	html .joe_index__hot-list {
@@ -341,6 +339,11 @@
 
 	html .joe_list__item .information .title {
 		font-size: 16px
+	}
+	
+	html .joe_list__item .information .title::after {
+		height: 1.5px;
+		transition: all 0.5s;
 	}
 
 	html .joe_list__item .information .abstract {
@@ -365,7 +368,8 @@
 		font-size: 15px
 	}
 
-	html .joe_list__item.default .thumbnail {
+	html .joe_list__item.default .thumbnail,
+	html .joe_list__loading .item .thumbnail{
 		width: 120px;
 		height: 80px;
 		margin-right: 10px

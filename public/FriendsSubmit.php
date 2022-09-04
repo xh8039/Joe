@@ -45,11 +45,11 @@ if ($this->options->JFriends_Submit == 'on' && _EmailConfig()) {
 		width: 100%;
 		display: block;
 		padding: 0 10px;
-		border-radius: 2px 0 0 2px;
+		border-radius: 2px;
 		color: var(--routine);
-		background: var(--classD);
-		border: 1px solid transparent;
-		transition: border 0.25s, background 0.15s;
+		background: transparent;
+		border: 1.5px solid var(--classA);
+		transition: 0.3s;
 	}
 
 	.friend_submit>.input>input:focus {
@@ -76,7 +76,6 @@ if ($this->options->JFriends_Submit == 'on' && _EmailConfig()) {
 	}
 
 	.friend_submit>.button>.reset {
-		background: var(--background);
 		color: var(--main);
 		background: var(--classC);
 		transition: 0.3s;

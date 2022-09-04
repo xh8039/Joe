@@ -100,10 +100,7 @@ $this->need('public/common.php');
 					$recommend = [];
 					$recommend_text = $this->options->JIndex_Recommend;
 					if ($recommend_text) {
-						$recommend_arr = explode("||", $recommend_text);
-						if (count($recommend_arr) === 2) {
-							$recommend = $recommend_arr;
-						}
+						$recommend = explode("||", $recommend_text);
 					}
 					?>
 					<?php if (count($carousel) > 0 || count($recommend) === 2) : ?>
@@ -128,26 +125,29 @@ $this->need('public/common.php');
 									<div class="swiper-button-prev"></div>
 								</div>
 							<?php endif; ?>
-							<?php if (count($recommend) === 2) : ?>
-								<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
-									<?php foreach ($recommend as $cid) : ?>
-										<?php $this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item); ?>
-										<figure class="item">
-											<a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
-												<img width="100%" height="100%" class="lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
-											</a>
-											<span class="type">推荐</span>
-											<figcaption class="information">
-												<div class="text"><?php $item->title() ?></div>
-											</figcaption>
-										</figure>
-									<?php endforeach; ?>
-								</div>
-							<?php endif; ?>
 						</div>
 					<?php endif; ?>
-					<?php if ($this->options->JIndex_Hot === "on") : ?>
-						<?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=4')->to($item); ?>
+
+					<?php if (count($recommend) >= 1) : ?>
+						<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
+							<?php foreach ($recommend as $cid) : ?>
+								<?php $this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item); ?>
+								<figure class="item">
+									<a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
+										<img width="100%" height="100%" class="lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
+									</a>
+									<span class="type">推荐</span>
+									<figcaption class="information">
+										<div class="text"><?php $item->title() ?></div>
+									</figcaption>
+								</figure>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
+
+
+					<?php if ((is_numeric($this->options->JIndex_Hot)) &&  ($this->options->JIndex_Hot >= 1)) : ?>
+						<?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=' . $this->options->JIndex_Hot)->to($item); ?>
 						<div class="joe_index__hot">
 							<ul class="joe_index__hot-list">
 								<?php while ($item->next()) : ?>
@@ -156,9 +156,33 @@ $this->need('public/common.php');
 											<figure class="inner">
 												<span class="views"><?php echo number_format($item->views); ?> ℃</span>
 												<img width="100%" height="120" class="image lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
-												<figcaption class="title"><?php $item->title(); ?></figcaption>
 											</figure>
 										</a>
+										<div class="item-body">
+											<h2 class="item-heading">
+												<a href="<?php $item->permalink(); ?>"><?php $item->title(); ?></a>
+											</h2>
+											<div class="item-tags-category">
+												<span class="item-category">
+													<?php
+													$color_array = [
+														'c-blue',
+														'c-yellow'
+													];
+													foreach ($item->categories as $key => $value) {
+													?>
+														<a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">
+															<i class="fa fa-folder-open-o"></i><?= $value['name'] ?>
+														</a>
+													<?php
+													}
+													?>
+												</span>
+												<span class="item-tags">
+													<?php $item->tags('')  ?>
+												</span>
+											</div>
+										</div>
 									</li>
 								<?php endwhile; ?>
 							</ul>
@@ -242,26 +266,22 @@ $this->need('public/common.php');
 						?>
 						<ul class="joe_list"></ul>
 						<ul class="joe_list__loading">
-							<li class="item">
-								<div class="thumbnail"></div>
-								<div class="information">
-									<div class="title"></div>
-									<div class="abstract">
-										<p></p>
-										<p></p>
+							<?php
+							for ($i = 0; $i <= $this->options->pageSize; $i++) {
+							?>
+								<li class="item">
+									<div class="thumbnail"></div>
+									<div class="information">
+										<div class="title"></div>
+										<div class="abstract">
+											<p></p>
+											<p></p>
+										</div>
 									</div>
-								</div>
-							</li>
-							<li class="item">
-								<div class="thumbnail"></div>
-								<div class="information">
-									<div class="title"></div>
-									<div class="abstract">
-										<p></p>
-										<p></p>
-									</div>
-								</div>
-							</li>
+								</li>
+							<?php
+							}
+							?>
 						</ul>
 					</div>
 				</div>

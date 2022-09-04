@@ -23,6 +23,7 @@
 		DYNAMIC_BACKGROUND_WAP: `<?php $this->options->JDynamic_Background_WAP() ?>`,
 		WALLPAPER_BACKGROUND_PC: `<?php $this->options->JWallpaper_Background_PC() ?>`,
 		WALLPAPER_BACKGROUND_WAP: `<?php $this->options->JWallpaper_Background_WAP() ?>`,
+		FLOAT_OBJECT: `<?php $this->options->JFloat_Object() ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
 		BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
 		BING_PUSH: <?php echo $this->options->JBingToken ? 'true' : 'false' ?>,
@@ -46,41 +47,67 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 ?>
 <style>
 	<?php
+	if (_isMobile()) {
+	?>.joe_index__hot-list .item>.item-body>.item-tags-category::-webkit-scrollbar {
+		display: none;
+	}
+
+	<?php
+	}
+	if (!_isMobile()) {
+
+		if ($this->options->JHeader_Blur != 'on') {
+		?>
+			html .joe_header {
+			-webkit-backdrop-filter: none;
+			backdrop-filter: none;
+			background: var(--background);
+			}
+		<?php
+		}
+		
+		if ($this->is('index')) {
+			?>
+			.joe_index__hot-list .item>.item-body>.item-tags-category {
+				padding-bottom: 3px;
+			}
+			<?php
+		}
+	}
 	if ($this->options->JGrey_Model == 'on') {
 	?>
-	    html {
-		    -webkit-filter: grayscale(1);
-	    }
-	<?php
-	}
-	if ((!_isMobile()) && ($this->options->JHeader_Blur != 'on')) {
-	?>
-	    html .joe_header {
-		    -webkit-backdrop-filter: none;
-	    	backdrop-filter: none;
-		    background: var(--background);
-	    }
-	<?php
-	}
-	if ($this->options->JWallpaper_Background_Optimal == 'on') {
-	    ?>
-	    html .joe_footer .joe_container>.item,
-	    html .joe_footer .joe_container a,
-		html .joe_bread__bread .item,
-		html .joe_bread__bread .item .link,
-		html .text-muted {
-			color: var(--classC);
-		}
-		html .joe_bread__bread>.item>.icon {
-			fill: var(--classC);
-		}
-		html .text-muted>a {
-			color: var(--classD);
+		html {
+			-webkit-filter: grayscale(1);
 		}
 	<?php
 	}
-	?>
-	@font-face {
+
+	if (
+		($this->options->JWallpaper_Background_Optimal == 'all') ||
+		(_isMobile() && $this->options->JWallpaper_Background_Optimal == 'wap') ||
+		((!_isMobile()) && ($this->options->JWallpaper_Background_Optimal == 'pc'))
+	) {
+	?>html .joe_footer .joe_container>.item,
+	html .joe_footer .joe_container a,
+	html .joe_bread__bread .item,
+	html .joe_bread__bread .item .link,
+	html .text-muted,
+	html .joe_index__title-title>.item,
+	html .joe_index__title-notice>a {
+		color: var(--classC);
+	}
+
+	html .joe_bread__bread>.item>.icon {
+		fill: var(--classC);
+	}
+
+	html .text-muted>a {
+		color: var(--classD);
+	}
+
+	<?php
+	}
+	?>@font-face {
 		font-family: 'Joe Font';
 		font-weight: 400;
 		font-style: normal;
@@ -98,12 +125,12 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 
 	body::before {
 		background: <?php
-			if (_isMobile()) {
-				echo $this->options->JWallpaper_Background_WAP ? "url(" . $this->options->JWallpaper_Background_WAP . ")" : "#f5f5f5";
-			} else {
-				echo $this->options->JWallpaper_Background_PC ? "url(" . $this->options->JWallpaper_Background_PC . ")" : "#f5f5f5";
-			}
-		?>;
+					if (_isMobile()) {
+						echo $this->options->JWallpaper_Background_WAP ? "url(" . $this->options->JWallpaper_Background_WAP . ")" : "#f5f5f5";
+					} else {
+						echo $this->options->JWallpaper_Background_PC ? "url(" . $this->options->JWallpaper_Background_PC . ")" : "#f5f5f5";
+					}
+					?>;
 		background-blend-mode: multiply;
 		background-position: center 0;
 		background-repeat: no-repeat;

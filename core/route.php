@@ -80,11 +80,12 @@ function _friendList($self)
 		$friends_arr = explode("\r\n", $friends_text);
 		if (count($friends_arr) > 0) {
 			for ($i = 0; $i < count($friends_arr); $i++) {
-				$name = explode("||", $friends_arr[$i])[0];
-				$url = explode("||", $friends_arr[$i])[1];
-				$avatar = explode("||", $friends_arr[$i])[2];
-				$desc = explode("||", $friends_arr[$i])[3];
-				$friends[] = array("name" => trim($name), "url" => trim($url), "avatar" => trim($avatar), "desc" => trim($desc));
+			    $friends_array = explode("||", $friends_arr[$i]);
+				$name = trim($friends_array[0]);
+				$url = trim($friends_array[1]);
+				$avatar = empty(trim($friends_array[2])) ? _getAvatarLazyload(false) : $friends_array[2];
+				$desc = trim($friends_array[3]);
+				$friends[] = array("name" => $name, "url" => $url, "avatar" => trim($avatar), "desc" => $desc);
 			};
 		}
 	}
@@ -129,26 +130,6 @@ function _getstatistics($self)
 			$self->response->setStatus(404);
 			if ($data['error_code'] == 111) {
 				$self->response->throwJson(['msg' => '请更新您的access_token']);
-				//   卡在更新access_token时更新不成功出现安全验证页面了 暂时不搞了 费脑...
-				$refresh_token = $GLOBALS['refresh_token'];
-				$client_id = $GLOBALS['client_id'];
-				$client_secret = $GLOBALS['client_secret'];
-				$config = json_decode(@file_get_contents("http://openapi.baidu.com/oauth/2.0/token?grant_type=refresh_token&refresh_token=$refresh_token&client_id=$client_id&client_secret=$client_secret"), true);
-				if (empty($config['expires_in'])) {
-					$self->response->throwJson(array('access_token' => 'off'));
-				}
-				$GLOBALS['access_token'] = $config['access_token'];
-				$access_token = $config['access_token'];
-				$refresh_token = $config['refresh_token'];
-				$statistics_config = [
-					'access_token' => $access_token,
-					'refresh_token' => $refresh_token,
-					'client_id' => $GLOBALS['client_id'],
-					'client_secret' => $GLOBALS['client_secret']
-				];
-				$statistics_config = implode("\n", $statistics_config);
-				Helper::options()->baidu_statistics = $statistics_config;
-				return baidu_list($self);
 			}
 			$self->response->throwJson($data);
 		}

@@ -53,7 +53,7 @@ function themeConfig($form)
 	$JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JFavicon',
 		NULL,
-		'http://cdn.bri6.cn/images/202207181951929.ico',
+		'http://blog.bri6.cn/usr/uploads/logo/favicon.ico',
 		'网站 Favicon 设置',
 		'介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -86,6 +86,23 @@ function themeConfig($form)
 	);
 	$JStorageUrl->setAttribute('class', 'joe_content joe_global');
 	$form->addInput($JStorageUrl);
+	
+	$JFloat_Object = new Typecho_Widget_Helper_Form_Element_Select(
+		'JFloat_Object',
+		array(
+			'off' => '关闭',
+			'backdrop1.js' => '拟态蛛网',
+			'backdrop2.js' => '绚烂彩光',
+			'backdrop3.js' => '活力彩虹条',
+			'backdrop4.js' => '仿真樱花（默认）',
+			'backdrop5.js' => '素描气球',
+			'backdrop6.js' => '一条光线'
+		),
+		'backdrop4.js',
+		'是否开启全局动态飘落物体特效'
+	);
+	$JFloat_Object->setAttribute('class', 'joe_content joe_global');
+	$form->addInput($JFloat_Object->multiMode());
 	
 	$JPendant_SSL = new Typecho_Widget_Helper_Form_Element_Select(
 		'JPendant_SSL',
@@ -309,36 +326,36 @@ function themeConfig($form)
 		'JLive2d',
 		array(
 			'off' => '关闭（默认）',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json' => 'shizuku',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-izumi@1.0.5/assets/izumi.model.json' => 'izumi',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-haru@1.0.5/01/assets/haru01.model.json' => 'haru01',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-haru@1.0.5/02/assets/haru02.model.json' => 'haru02',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json' => 'wanko',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json' => 'hijiki',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json' => 'koharu',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json' => '志津久(shizuku)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-izumi@1.0.5/assets/izumi.model.json' => '泉(izumi)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-haru@1.0.5/01/assets/haru01.model.json' => '李夏露01(haru01)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-haru@1.0.5/02/assets/haru02.model.json' => '李夏露02(haru02)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json' => '王淑玲(wanko)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json' => '羊栖菜(hijiki)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json' => '小春(koharu)',
 			'https://fastly.jsdelivr.net/npm/live2d-widget-model-z16@1.0.5/assets/z16.model.json' => 'z16',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-haruto@1.0.5/assets/haruto.model.json' => 'haruto',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-tororo@1.0.5/assets/tororo.model.json' => 'tororo',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-chitose@1.0.5/assets/chitose.model.json' => 'chitose',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json' => 'miku',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-epsilon2_1@1.0.5/assets/Epsilon2.1.model.json' => 'Epsilon2.1',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-unitychan@1.0.5/assets/unitychan.model.json' => 'unitychan',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-nico@1.0.5/assets/nico.model.json' => 'nico',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-rem@1.0.1/assets/rem.model.json' => 'rem',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-haruto@1.0.5/assets/haruto.model.json' => '哈鲁托(haruto)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-tororo@1.0.5/assets/tororo.model.json' => '托罗罗(tororo)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-chitose@1.0.5/assets/chitose.model.json' => '千岁(chitose)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json' => '米库(miku)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-epsilon2_1@1.0.5/assets/Epsilon2.1.model.json' => '艾司隆2.1(Epsilon2.1)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-unitychan@1.0.5/assets/unitychan.model.json' => '陈统一(unitychan)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-nico@1.0.5/assets/nico.model.json' => '尼科(nico)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-rem@1.0.1/assets/rem.model.json' => '雷姆(rem)',
 			'https://fastly.jsdelivr.net/npm/live2d-widget-model-nito@1.0.5/assets/nito.model.json' => 'nito',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-nipsilon@1.0.5/assets/nipsilon.model.json' => 'nipsilon',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-ni-j@1.0.5/assets/ni-j.model.json' => 'ni-j',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-nietzsche@1.0.5/assets/nietzche.model.json' => 'nietzche',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-platelet@1.1.0/assets/platelet.model.json' => 'platelet',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-isuzu@1.0.4/assets/model.json' => 'isuzu',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-jth@1.0.0/assets/model/katou_01/katou_01.model.json' => 'katou_01',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-mikoto@1.0.0/assets/mikoto.model.json' => 'mikoto',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-mashiro-seifuku@1.0.1/assets/seifuku.model.json' => 'seifuku',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-ichigo@1.0.1/assets/ichigo.model.json' => 'ichigo',
-			'https://fastly.jsdelivr.net/npm/live2d-widget-model-hk_fos@1.0.0/assets/hk416.model.json' => 'hk416'
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-nipsilon@1.0.5/assets/nipsilon.model.json' => '尼普西隆(nipsilon)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-ni-j@1.0.5/assets/ni-j.model.json' => '杰倪(ni-j)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-nietzsche@1.0.5/assets/nietzche.model.json' => '采尼(nietzche)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-platelet@1.1.0/assets/platelet.model.json' => '血小板(platelet)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-isuzu@1.0.4/assets/model.json' => '铃十五(isuzu)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-jth@1.0.0/assets/model/katou_01/katou_01.model.json' => '卡图01(katou_01)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-mikoto@1.0.0/assets/mikoto.model.json' => '米科托(mikoto)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-mashiro-seifuku@1.0.1/assets/seifuku.model.json' => '艾福斯(seifuku)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-ichigo@1.0.1/assets/ichigo.model.json' => '圆脸女孩(ichigo)',
+			'https://fastly.jsdelivr.net/npm/live2d-widget-model-hk_fos@1.0.0/assets/hk416.model.json' => '女枪手(hk416)'
 		),
 		'off',
-		'选择一款喜爱的Live2D动态人物模型（仅在屏幕分辨率大于1760px下显示）',
+		'选择一款喜爱的Live2D动态人物模型（仅在屏幕分辨率大于1400px下显示）',
 		'介绍：开启后会在右下角显示一个小人'
 	);
 	$JLive2d->setAttribute('class', 'joe_content joe_global');
@@ -819,7 +836,12 @@ function themeConfig($form)
 	
 	$JWallpaper_Background_Optimal = new Typecho_Widget_Helper_Form_Element_Select(
 		'JWallpaper_Background_Optimal',
-		array('off' => '关闭（默认）','on' => '开启'),
+		[
+		    'off' => '关闭（默认）',
+		    'pc' => '仅PC端',
+		    'wap' => '仅移动端',
+		    'all' => '全部'
+		],
 		'off',
 		'是否开启自定义背景壁纸优化',
 		'介绍：开启后将对自定义背景壁纸模式下没有覆盖到的小地方的样式进行优化'
@@ -830,7 +852,7 @@ function themeConfig($form)
 	$JShare_QQ_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JShare_QQ_Image',
 		NULL,
-		"data:image/png;base64,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",
+		"http://blog.bri6.cn/usr/uploads/logo/favicon.ico",
 		'QQ分享链接图片',
 		'介绍：用于修改在QQ内分享时卡片链接显示的图片 <br/>
          格式：图片地址'
@@ -838,6 +860,16 @@ function themeConfig($form)
 	$JShare_QQ_Image->setAttribute('class', 'joe_content joe_image');
 	$form->addInput($JShare_QQ_Image);
     
+    $JIndex_Title = new Typecho_Widget_Helper_Form_Element_Text(
+		'JIndex_Title',
+		NULL,
+		NULL,
+		'自定义首页标题',
+		'介绍：填写后可自定义站点首页的标题'
+	);
+	$JIndex_Title->setAttribute('class', 'joe_content joe_index');
+	$form->addInput($JIndex_Title);
+	
     $JIndex_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JIndex_Header_Img',
 		NULL,
@@ -884,11 +916,10 @@ function themeConfig($form)
 		'JIndex_Recommend',
 		NULL,
 		NULL,
-		'首页推荐文章（非必填，填写时请填写2个，否则不显示！）',
+		'首页推荐文章（非必填）',
 		'介绍：用于显示推荐文章，请务必填写正确的格式 <br/>
          格式：文章的id || 文章的id （中间使用两个竖杠分隔）<br />
-         例如：1 || 2 <br />
-         注意：如果填写的不是2个，将不会显示'
+         例如：1 || 2'
 	);
 	$JIndex_Recommend->setAttribute('class', 'joe_content joe_index');
 	$form->addInput($JIndex_Recommend);
@@ -904,13 +935,13 @@ function themeConfig($form)
 	);
 	$JIndexSticky->setAttribute('class', 'joe_content joe_index');
 	$form->addInput($JIndexSticky);
-
-	$JIndex_Hot = new Typecho_Widget_Helper_Form_Element_Radio(
+	
+	$JIndex_Hot = new Typecho_Widget_Helper_Form_Element_Text(
 		'JIndex_Hot',
-		array('off' => '关闭（默认）', 'on' => '开启'),
-		'off',
-		'是否开启首页热门文章',
-		'介绍：开启后，网站首页将会显示浏览量最多的4篇热门文章'
+		NULL,
+		'0',
+		'首页热门文章显示数量',
+		'介绍：填写指定数字后，网站首页将会显示浏览量最多的指定数量篇数热门文章'
 	);
 	$JIndex_Hot->setAttribute('class', 'joe_content joe_index');
 	$form->addInput($JIndex_Hot->multiMode());
@@ -1028,7 +1059,8 @@ function themeConfig($form)
 	);
 	$JFriends_shuffle->setAttribute('class', 'joe_content joe_other');
 	$form->addInput($JFriends_shuffle->multiMode());
-
+    
+    $statistics_config = _baiduStatisticConfig();
 	$baidu_statistics = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'baidu_statistics',
 		NULL,
@@ -1036,6 +1068,7 @@ function themeConfig($form)
 		'百度统计配置（非必填）',
 		'介绍：用于展示站点的百度统计信息<br>
 		 格式：第一行填写：access_token，二：refresh_token，三：API Key，四：Secret Key<br>
+		 操作：<a href="http://openapi.baidu.com/oauth/2.0/token?grant_type=refresh_token&refresh_token='.urlencode($statistics_config['refresh_token']).'&client_id='.urlencode($statistics_config['client_id']).'&client_secret='.urlencode($statistics_config['client_secret']).'">一键更新access_token</a>（获取后请手动在主题设置处填写已更新的token）<br>
 		 百度统计API文档：<a href="https://tongji.baidu.com/api/manual/Chapter2/openapi.html">tongji.baidu.com/api/manual/Chapter2/openapi.html</a>'
 	);
 	$baidu_statistics->setAttribute('class', 'joe_content joe_other');

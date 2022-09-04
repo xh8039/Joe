@@ -2,7 +2,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return '1.1.6';
+	return '1.1.7';
 };
 
 /* 判断是否是手机 */
@@ -24,6 +24,20 @@ function _isMobile()
 		}
 	}
 	return false;
+}
+
+function _baiduStatisticConfig() {
+    $statistics_config = explode(PHP_EOL, Helper::options()->baidu_statistics);
+	if (is_array($statistics_config)) {
+	    $statistics_config = [
+	        'access_token' => trim($statistics_config[0]),
+	        'refresh_token' => trim($statistics_config[1]),
+	        'client_id' => trim($statistics_config[2]),
+	        'client_secret' => trim($statistics_config[3])
+	    ];
+	    return $statistics_config;
+	}
+	return NULL;
 }
 
 /* 根据评论agent获取浏览器类型 */

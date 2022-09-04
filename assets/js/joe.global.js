@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 	// 顶部浏览进度条
-	$(window).scroll(function() {
+	$(window).scroll(function () {
 		let a = $(window).scrollTop(),
 			c = $(document).height(),
 			b = $(window).height();
@@ -14,29 +14,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// 展示百度统计信息
 	if ($('#statistics').is(':visible')) {
-	    $.ajax({
-		url: Joe.BASE_API,
-		type: 'POST',
-		dataType: 'json',
-		data: {
-			routeType: 'statistics'
-		},
-		success(data) {
-			if (data.access_token == 'off') {
+		$.ajax({
+			url: Joe.BASE_API,
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				routeType: 'statistics'
+			},
+			success(data) {
+				if (data.access_token == 'off') {
+					$("#statistics").remove();
+					return;
+				}
+				let statistics = $('#statistics span strong');
+				$(statistics[0]).text(data['today'][1]);
+				$(statistics[1]).text(data['yesterday'][1]);
+				$(statistics[2]).text(data['month'][0]);
+			},
+			error() {
 				$("#statistics").remove();
-				return;
+				// 			写了个这个代码忘了干啥用的了... 先注释掉
+				// 			$(".joe_footer .joe_container").find('.item').eq(1).addClass('run');
 			}
-			let statistics = $('#statistics span strong');
-			$(statistics[0]).text(data['today'][1]);
-			$(statistics[1]).text(data['yesterday'][1]);
-			$(statistics[2]).text(data['month'][0]);
-		},
-		error() {
-			$("#statistics").remove();
-// 			写了个这个代码忘了干啥用的了... 先注释掉
-// 			$(".joe_footer .joe_container").find('.item').eq(1).addClass('run');
-		}
-	});
+		});
 	}
 
 	/* 初始化昼夜模式 */
@@ -70,9 +70,29 @@ document.addEventListener("DOMContentLoaded", () => {
 			.WALLPAPER_BACKGROUND_PC) {
 			$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.DYNAMIC_BACKGROUND_PC}`);
 		}
-		if ( (Joe.IS_MOBILE) && (Joe.DYNAMIC_BACKGROUND_WAP !== "off") && (Joe.DYNAMIC_BACKGROUND_WAP) && (!Joe
+		if ((Joe.IS_MOBILE) && (Joe.DYNAMIC_BACKGROUND_WAP !== "off") && (Joe.DYNAMIC_BACKGROUND_WAP) && (!Joe
 			.WALLPAPER_BACKGROUND_WAP)) {
 			$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.DYNAMIC_BACKGROUND_WAP}`);
+		}
+	}
+
+	/* 全局飘落物 */
+	{
+		if (Joe.FLOAT_OBJECT) {
+			setTimeout(function () {
+				$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.FLOAT_OBJECT}`, () => {
+					// 为什么要重复三次 自然是考虑低端设备性能问题 区区三次也不至于写循环计时器 就这样
+					setTimeout(function () {
+						$('canvas:last').css('z-index', '999999999999999999');
+					}, 100);
+					setTimeout(function () {
+						$('canvas:last').css('z-index', '999999999999999999');
+					}, 500);
+					setTimeout(function () {
+						$('canvas:last').css('z-index', '999999999999999999');
+					}, 1500);
+				});
+			}, 3000);
 		}
 	}
 
@@ -82,14 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			e.stopPropagation();
 			$(".joe_header__above-search .result").addClass("active");
 		});
-		$(document).on("click", function() {
+		$(document).on("click", function () {
 			$(".joe_header__above-search .result").removeClass("active");
 		});
 	}
 
 	/* 激活全局下拉框功能 */
 	{
-		$(".joe_dropdown").each(function(index, item) {
+		$(".joe_dropdown").each(function (index, item) {
 			const menu = $(this).find(".joe_dropdown__menu");
 			const trigger = $(item).attr("trigger") || "click";
 			const placement = $(item).attr("placement") || $(this).height() || 0;
@@ -100,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					() => $(this).removeClass("active")
 				);
 			} else {
-				$(this).on("click", function(e) {
+				$(this).on("click", function (e) {
 					$(this).toggleClass("active");
 					$(document).one("click", () => $(this).removeClass("active"));
 					e.stopPropagation();
@@ -115,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		let _debounce = null;
 		const handleScroll = () => ((document.documentElement.scrollTop || document.body.scrollTop) > 300 ? $(
 			".joe_action_item.scroll").addClass("active") : $(".joe_action_item.scroll").removeClass(
-			"active"));
+				"active"));
 		handleScroll();
 		$(document).on("scroll", () => {
 			clearTimeout(_debounce);
@@ -131,29 +151,29 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		if ($(".joe_aside__item.timelife").length) {
 			let timelife = [{
-					title: "今日已经过去",
-					endTitle: "小时",
-					num: 0,
-					percent: "0%"
-				},
-				{
-					title: "这周已经过去",
-					endTitle: "天",
-					num: 0,
-					percent: "0%"
-				},
-				{
-					title: "本月已经过去",
-					endTitle: "天",
-					num: 0,
-					percent: "0%"
-				},
-				{
-					title: "今年已经过去",
-					endTitle: "个月",
-					num: 0,
-					percent: "0%"
-				},
+				title: "今日已经过去",
+				endTitle: "小时",
+				num: 0,
+				percent: "0%"
+			},
+			{
+				title: "这周已经过去",
+				endTitle: "天",
+				num: 0,
+				percent: "0%"
+			},
+			{
+				title: "本月已经过去",
+				endTitle: "天",
+				num: 0,
+				percent: "0%"
+			},
+			{
+				title: "今年已经过去",
+				endTitle: "个月",
+				num: 0,
+				percent: "0%"
+			},
 			]; {
 				let nowDate = +new Date();
 				let todayStartDate = new Date(new Date().toLocaleDateString()).getTime();
@@ -393,13 +413,13 @@ document.addEventListener("DOMContentLoaded", () => {
 						scale: 1
 					},
 					mobile: {
-						show: false
+						show: true
 					},
 					display: {
-						position: "right",
-						width: 160,
-						height: 200,
-						hOffset: 70,
+						position: "left",
+						width: 130,
+						height: 170,
+						hOffset: 0,
 						vOffset: 0
 					},
 				});
@@ -410,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	/* 评论框点击切换画图模式和文本模式 */
 	{
 		if ($(".joe_comment").length) {
-			$(".joe_comment__respond-type .item").on("click", function() {
+			$(".joe_comment__respond-type .item").on("click", function () {
 				$(this).addClass("active").siblings().removeClass("active");
 				if ($(this).attr("data-type") === "draw") {
 					$(".joe_comment__respond-form .body .draw").show().siblings().hide();
@@ -442,12 +462,12 @@ document.addEventListener("DOMContentLoaded", () => {
 			$(".joe_comment__respond-form .body .draw .icon-animate").on("click", () => window.sketchpad
 				.animate(10));
 			/* 更改画板的线宽 */
-			$(".joe_comment__respond-form .body .draw .line li").on("click", function() {
+			$(".joe_comment__respond-form .body .draw .line li").on("click", function () {
 				window.sketchpad.penSize = $(this).attr("data-line");
 				$(this).addClass("active").siblings().removeClass("active");
 			});
 			/* 更改画板的颜色 */
-			$(".joe_comment__respond-form .body .draw .color li").on("click", function() {
+			$(".joe_comment__respond-form .body .draw .color li").on("click", function () {
 				window.sketchpad.color = $(this).attr("data-color");
 				$(this).addClass("active").siblings().removeClass("active");
 			});
@@ -459,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if ($(".joe_comment__respond").length) {
 			const respond = $(".joe_comment__respond");
 			/* 重写回复功能 */
-			$(".joe_comment__reply").on("click", function() {
+			$(".joe_comment__reply").on("click", function () {
 				/* 父级ID */
 				const coid = $(this).attr("data-coid");
 				/* 当前的项 */
@@ -475,7 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				});
 			});
 			/* 重写取消回复功能 */
-			$(".joe_comment__cancle").on("click", function() {
+			$(".joe_comment__cancle").on("click", function () {
 				/* 移除自定义属性父级ID */
 				respond.find(".joe_comment__respond-form").removeAttr("data-coid");
 				$(".joe_comment__cancle").hide();
@@ -493,7 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		if ($(".joe_comment").length) {
 			let isSubmit = false;
-			$(".joe_comment__respond-form").on("submit", function(e) {
+			$(".joe_comment__respond-form").on("submit", function (e) {
 				e.preventDefault();
 				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
 				const type = $(".joe_comment__respond-form").attr("data-type");
@@ -590,13 +610,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 小屏幕伸缩侧边栏 */
 	{
-		$(".joe_header__above-slideicon").on("click", function() {
+		$(".joe_header__above-slideicon").on("click", function () {
 			/* 关闭搜索框 */
 			$(".joe_header__searchout").removeClass("active");
 			/* 处理开启关闭状态 */
 			if ($(".joe_header__slideout").hasClass("active")) {
 				$("body").css("overflow", "");
-				setTimeout(function() {
+				setTimeout(function () {
 					$('.joe_header').css({
 						'backdrop-filter': 'saturate(5) blur(20px)'
 					}, {
@@ -621,13 +641,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 小屏幕搜索框 */
 	{
-		$(".joe_header__above-searchicon").on("click", function() {
+		$(".joe_header__above-searchicon").on("click", function () {
 			/* 关闭侧边栏 */
 			$(".joe_header__slideout").removeClass("active");
 			/* 处理开启关闭状态 */
 			if ($(".joe_header__searchout").hasClass("active")) {
 				$("body").css("overflow", "");
-				setTimeout(function() {
+				setTimeout(function () {
 					$('.joe_header').css({
 						'backdrop-filter': 'saturate(5) blur(20px)'
 					}, {
@@ -653,9 +673,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 点击遮罩层关闭 */
 	{
-		$(".joe_header__mask").on("click", function() {
+		$(".joe_header__mask").on("click", function () {
 			$("body").css("overflow", "");
-			setTimeout(function() {
+			setTimeout(function () {
 				$('.joe_header').css({
 					'backdrop-filter': 'saturate(5) blur(20px)'
 				}, {
@@ -673,7 +693,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		$(".joe_header__slideout-menu .current").parents(".panel-body").show().siblings(".panel").addClass(
 			"in");
-		$(".joe_header__slideout-menu .panel").on("click", function() {
+		$(".joe_header__slideout-menu .panel").on("click", function () {
 			const panelBox = $(this).parent().parent();
 			/* 清除全部内容 */
 			panelBox.find(".panel").not($(this)).removeClass("in");
@@ -707,7 +727,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			$(".joe_run__second").html(second);
 		};
 		if (Joe.BIRTHDAY && /(\d{4})\/(\d{1,2})\/(\d{1,2}) (\d{1,2})\:(\d{1,2})\:(\d{1,2})/.test(Joe
-				.BIRTHDAY)) {
+			.BIRTHDAY)) {
 			getRunTime();
 			setInterval(getRunTime, 1000);
 		}
@@ -726,32 +746,32 @@ document.addEventListener("DOMContentLoaded", () => {
 						const item = res[key];
 						barStr += `<div class="item" data-type="${key}">${key}</div>`;
 						scrollStr += `
-						    <ul class="scroll" data-type="${key}">
+							<ul class="scroll" data-type="${key}">
 								${item.map((_) => `<li class="item" data-text="${_.data}">${key === "颜文字" ? `${_.icon}` : `<img src="${window.Joe.THEME_URL + _.icon}" title="${/.*?\((.*?)\)/.exec(_.data)[1]}"	alt="${/.*?\((.*?)\)/.exec(_.data)[1]}"/>`}</li>`).join("")}
-                            </ul>`;
+							</ul>`;
 					}
 					$(".joe_owo__contain").html(`
-                        <div class="seat">OωO</div>
-                        <div class="box">
-                            ${scrollStr}
-                            <div class="bar">${barStr}</div>
-                        </div>
-                    `);
-					$(document).on("click", function() {
+						<div class="seat">OωO</div>
+						<div class="box">
+							${scrollStr}
+							<div class="bar">${barStr}</div>
+						</div>
+					`);
+					$(document).on("click", function () {
 						$(".joe_owo__contain .box").stop().slideUp("fast");
 					});
-					$(".joe_owo__contain .seat").on("click", function(e) {
+					$(".joe_owo__contain .seat").on("click", function (e) {
 						e.stopPropagation();
 						$(this).siblings(".box").stop().slideToggle("fast");
 					});
-					$(".joe_owo__contain .box .bar .item").on("click", function(e) {
+					$(".joe_owo__contain .box .bar .item").on("click", function (e) {
 						e.stopPropagation();
 						$(this).addClass("active").siblings().removeClass("active");
 						const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(
 							this).attr("data-type") + '"]';
 						$(scrollIndx).show().siblings(".scroll").hide();
 					});
-					$(".joe_owo__contain .scroll .item").on("click", function() {
+					$(".joe_owo__contain .scroll .item").on("click", function () {
 						const text = $(this).attr("data-text");
 						$(".joe_owo__target").insertContent(text);
 					});

@@ -11,6 +11,7 @@ if ($this->options->JPendant_SSL == 'on') {
 			position: fixed;
 			right: 0;
 			bottom: 0;
+			cursor: pointer;
 		}
 	</style>
 	<div id="cc-myssl-seal">

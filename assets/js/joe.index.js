@@ -146,9 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.joe_index__list .joe_list').html('');
 			$('.joe_load').show();
 			let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]');
-			let activeLine = $('.joe_index__title-title .line');
 			activeItem.addClass('active').siblings().removeClass('active');
-			activeLine.css({ left: activeItem.position().left, width: activeItem.width() });
 		};
 		const pushDom = () => {
 			return new Promise((reslove, reject) => {
@@ -164,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					    $('.joe_index__title-title .item').css({'pointer-events':'none','cursor':'not-allowed'});
 					},
 					success(res) {
-					    $('.joe_index__title-title .item').css({'pointer-events':'auto','cursor':'auto'});
+					    $('.joe_index__title-title .item').css({'pointer-events':'auto','cursor':'pointer'});
 						if (res.data.length === 0) {
 							$('.joe_load').removeAttr('loading');
 							$('.joe_index__list .joe_list__loading').hide(500);
@@ -179,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						reslove(res.data.length > 0 ? res.data.length - 1 : 0);
 					},
 					error() {
-					    $('.joe_index__title-title .item').css('pointer-events','auto');
+					    $('.joe_index__title-title .item').css({'pointer-events':'auto','cursor':'pointer'});
 					}
 				});
 			});

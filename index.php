@@ -160,7 +160,7 @@ $this->need('public/common.php');
 										</a>
 										<div class="item-body">
 											<h2 class="item-heading">
-												<a href="<?php $item->permalink(); ?>"><?php $item->title(); ?></a>
+												<a title="<?php $item->title(); ?>" alt="<?php $item->title(); ?>" href="<?php $item->permalink(); ?>"><?php $item->title(); ?></a>
 											</h2>
 											<div class="item-tags-category">
 												<span class="item-category">

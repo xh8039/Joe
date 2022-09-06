@@ -2,7 +2,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return '1.1.7';
+	return '1.1.8';
 };
 
 /* 判断是否是手机 */
@@ -26,9 +26,37 @@ function _isMobile()
 	return false;
 }
 
+/** 对部分背景壁纸效果进行适配 */
+function _backgroundAdaptation() {
+    ?>
+    html .joe_footer .joe_container>.item,
+	html .joe_footer .joe_container a,
+	html .joe_bread__bread .item,
+	html .joe_bread__bread .item .link,
+	html .text-muted,
+	html .joe_index__title-title>.item,
+	html .joe_index__title-notice>a {
+		color: var(--classC);
+	}
+
+	html .joe_bread__bread>.item>.icon {
+		fill: var(--classC);
+	}
+
+	html .text-muted>a {
+		color: var(--classD);
+	}
+	
+	html .joe_action_item {
+	    background: var(--back-trn-85);
+	}
+    <?php
+}
+
+/** 获取百度统计配置 */
 function _baiduStatisticConfig() {
-    $statistics_config = explode(PHP_EOL, Helper::options()->baidu_statistics);
-	if (is_array($statistics_config)) {
+    $statistics_config = Helper::options()->baidu_statistics ? explode(PHP_EOL, Helper::options()->baidu_statistics) : [];
+	if (is_array($statistics_config) && count($statistics_config) == 4) {
 	    $statistics_config = [
 	        'access_token' => trim($statistics_config[0]),
 	        'refresh_token' => trim($statistics_config[1]),

@@ -65,7 +65,7 @@ function themeConfig($form)
 	$JLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JLogo',
 		NULL,
-		'http://cdn.bri6.cn/images/202207181948553.png',
+		'http://blog.bri6.cn/usr/uploads/logo/logo.png',
 		'网站 Logo 设置',
 		'介绍：用于设置网站 Logo，一个好的 Logo 能为网站带来有效的流量 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -156,10 +156,10 @@ function themeConfig($form)
 	
 	$JHeader_Blur = new Typecho_Widget_Helper_Form_Element_Select(
 		'JHeader_Blur',
-		array('off' => '关闭（默认）', 'on' => '开启'),
+		array('off' => '关闭（默认）', 'wap' => '仅移动端', 'pc' => '仅PC端', 'all' => '不限设备'),
 		'off',
-		'是否开启PC端导航栏背景擦玻璃效果',
-		'介绍：擦玻璃效果启动后部分PC端浏览页面可能会产生卡顿'
+		'导航栏背景毛玻璃效果',
+		'介绍：毛玻璃效果启动后部分PC端浏览页面可能会产生卡顿'
 	);
 	$JHeader_Blur->setAttribute('class', 'joe_content joe_global');
 	$form->addInput($JHeader_Blur->multiMode());
@@ -873,7 +873,7 @@ function themeConfig($form)
     $JIndex_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'JIndex_Header_Img',
 		NULL,
-		'https://tenapi.cn/bing/',
+		'http://p7.qhimg.com/bdr/__85/t014d46a590e4d07543.jpg',
 		'首页顶部大图背景壁纸',
 		'格式：图片地址 或 Base64地址<br>
 		 填写 “透明” 即使用透明壁纸 可配合背景壁纸使用'
@@ -1061,6 +1061,7 @@ function themeConfig($form)
 	$form->addInput($JFriends_shuffle->multiMode());
     
     $statistics_config = _baiduStatisticConfig();
+    $update_access_token_url = $statistics_config ? '操作：<a href="http://openapi.baidu.com/oauth/2.0/token?grant_type=refresh_token&refresh_token='.urlencode($statistics_config['refresh_token']).'&client_id='.urlencode($statistics_config['client_id']).'&client_secret='.urlencode($statistics_config['client_secret']).'">一键更新access_token</a>（获取后请手动在主题设置处填写已更新的token）<br>' : NULL;
 	$baidu_statistics = new Typecho_Widget_Helper_Form_Element_Textarea(
 		'baidu_statistics',
 		NULL,
@@ -1068,7 +1069,7 @@ function themeConfig($form)
 		'百度统计配置（非必填）',
 		'介绍：用于展示站点的百度统计信息<br>
 		 格式：第一行填写：access_token，二：refresh_token，三：API Key，四：Secret Key<br>
-		 操作：<a href="http://openapi.baidu.com/oauth/2.0/token?grant_type=refresh_token&refresh_token='.urlencode($statistics_config['refresh_token']).'&client_id='.urlencode($statistics_config['client_id']).'&client_secret='.urlencode($statistics_config['client_secret']).'">一键更新access_token</a>（获取后请手动在主题设置处填写已更新的token）<br>
+		 ' . $update_access_token_url . '
 		 百度统计API文档：<a href="https://tongji.baidu.com/api/manual/Chapter2/openapi.html">tongji.baidu.com/api/manual/Chapter2/openapi.html</a>'
 	);
 	$baidu_statistics->setAttribute('class', 'joe_content joe_other');

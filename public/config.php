@@ -46,26 +46,57 @@ elseif (strpos($fontUrl, 'eot') !== false) $fontFormat = 'embedded-opentype';
 elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 ?>
 <style>
-	<?php
-	if (_isMobile()) {
-	?>.joe_index__hot-list .item>.item-body>.item-tags-category::-webkit-scrollbar {
-		display: none;
+    <?php
+    
+    // 移动端情况下
+    if (_isMobile()) {
+	   // 移动端屏蔽热门文章滚动条
+	   if ($this->is('index')) {
+			?>
+			.joe_index__hot-list .item>.item-body>.item-tags-category::-webkit-scrollbar {
+		        display: none;
+	        }
+			<?php
+		}
+	   // 导航栏背景毛玻璃效果设置检测
+	    if ($this->options->JHeader_Blur == 'wap' || $this->options->JHeader_Blur == 'all') {
+	        ?>
+	        html .joe_header {
+                backdrop-filter: saturate(5) blur(20px);
+                background: var(--back-trn-85);
+	        }
+	        <?php
+	    }
+	    // 部分背景壁纸适配优化
+	    if ($this->options->JWallpaper_Background_Optimal == 'all' || $this->options->JWallpaper_Background_Optimal == 'wap') {
+	        _backgroundAdaptation();
+	    }
+	    
+	    // 移动端自定义背景壁纸
+	    if ($this->options->JWallpaper_Background_WAP) {
+	        ?>
+	        html body::before {
+		        background: url(<?php $this->options->JWallpaper_Background_WAP(); ?>)
+	        }
+	        <?php
+	    }
+	    
+	    
 	}
-
-	<?php
-	}
+	
+    // 非移动端情况下
 	if (!_isMobile()) {
 
-		if ($this->options->JHeader_Blur != 'on') {
-		?>
-			html .joe_header {
-			-webkit-backdrop-filter: none;
-			backdrop-filter: none;
-			background: var(--background);
-			}
-		<?php
-		}
+		if ($this->options->JHeader_Blur == 'pc' || $this->options->JHeader_Blur == 'all') {
+	        ?>
+	        html .joe_header {
+                backdrop-filter: saturate(5) blur(20px);
+                background: var(--back-trn-85);
+	        }
+	        <?php
+	    }
 		
+		// 首页热门文章滚动条内部下边距
 		if ($this->is('index')) {
 			?>
 			.joe_index__hot-list .item>.item-body>.item-tags-category {
@@ -73,7 +104,23 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 			}
 			<?php
 		}
+		
+		if ($this->options->JWallpaper_Background_Optimal == 'all' || $this->options->JWallpaper_Background_Optimal == 'pc') {
+	        _backgroundAdaptation();
+	    }
+	    
+	    // PC端自定义背景壁纸
+	    if ($this->options->JWallpaper_Background_PC) {
+	        ?>
+	        html body::before {
+		        background: url(<?php $this->options->JWallpaper_Background_PC(); ?>)
+	        }
+	        <?php
+	    }
+		
 	}
+	
+    // 全局灰色
 	if ($this->options->JGrey_Model == 'on') {
 	?>
 		html {
@@ -81,33 +128,11 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		}
 	<?php
 	}
+    
+    ?>
 
-	if (
-		($this->options->JWallpaper_Background_Optimal == 'all') ||
-		(_isMobile() && $this->options->JWallpaper_Background_Optimal == 'wap') ||
-		((!_isMobile()) && ($this->options->JWallpaper_Background_Optimal == 'pc'))
-	) {
-	?>html .joe_footer .joe_container>.item,
-	html .joe_footer .joe_container a,
-	html .joe_bread__bread .item,
-	html .joe_bread__bread .item .link,
-	html .text-muted,
-	html .joe_index__title-title>.item,
-	html .joe_index__title-notice>a {
-		color: var(--classC);
-	}
 
-	html .joe_bread__bread>.item>.icon {
-		fill: var(--classC);
-	}
-
-	html .text-muted>a {
-		color: var(--classD);
-	}
-
-	<?php
-	}
-	?>@font-face {
+	@font-face {
 		font-family: 'Joe Font';
 		font-weight: 400;
 		font-style: normal;
@@ -123,19 +148,6 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		<?php endif; ?>
 	}
 
-	body::before {
-		background: <?php
-					if (_isMobile()) {
-						echo $this->options->JWallpaper_Background_WAP ? "url(" . $this->options->JWallpaper_Background_WAP . ")" : "#f5f5f5";
-					} else {
-						echo $this->options->JWallpaper_Background_PC ? "url(" . $this->options->JWallpaper_Background_PC . ")" : "#f5f5f5";
-					}
-					?>;
-		background-blend-mode: multiply;
-		background-position: center 0;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
 
 	<?php $this->options->JCustomCSS() ?>
 </style>

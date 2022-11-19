@@ -129,7 +129,8 @@
 	overflow: hidden;
 	transition: 0.3s;
 	background: var(--background);
-	border-radius: 4px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgb(116 116 116 / 30%);
 }
 
 .joe_index__hot-list .item:hover {
@@ -151,7 +152,7 @@
 
 .joe_index__hot-list .item>.item-body>.item-heading {
 	margin-bottom: 5px;
-	font-size: 13px;
+	font-size: 14px;
 	line-height: 1.4em;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
@@ -163,7 +164,6 @@
 
 .joe_index__hot-list .item>.item-body>.item-heading>a {
 	color: var(--main);
-	/*font-weight: bold;*/
 	transition: 0.2s;
 }
 

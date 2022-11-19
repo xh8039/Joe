@@ -33,22 +33,32 @@ document.addEventListener('DOMContentLoaded', () => {
 					url: this.getAttribute('url'),
 					theme: this.getAttribute('theme') || '#1989fa',
 					cover: this.getAttribute('cover'),
-					autoplay: this.getAttribute('autoplay') ? true : false
+					autoplay: this.getAttribute('autoplay') ? true : false,
+					loop: this.getAttribute('loop'),
+					artist: this.getAttribute('artist'),
+					lrc: this.getAttribute('lrc'),
+					autotheme: this.getAttribute('autotheme')
 				};
 				this.render();
 			}
 			render() {
 				if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
-				new APlayer({
+				new MusicPlayer({
 					container: getChildren(this, '_content'),
 					theme: this.options.theme,
 					autoplay: this.options.autoplay,
+					loop: this.options.loop,
+					preload: 'auto',
+					lrcType: 3,
+					autotheme: this.options.autotheme,
 					audio: [
 						{
 							url: this.options.url,
 							name: this.options.name,
-							cover: this.options.cover
+							cover: this.options.cover,
+							artist: this.options.artist,
+							lrc: this.options.lrc
 						}
 					]
 				});
@@ -64,7 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.options = {
 					id: this.getAttribute('id'),
 					color: this.getAttribute('color') || '#1989fa',
-					autoplay: this.getAttribute('autoplay') ? true : false
+					autoplay: this.getAttribute('autoplay') ? true : false,
+					autotheme: this.getAttribute('autotheme'),
+					loop: this.getAttribute('loop')
 				};
 				this.render();
 			}
@@ -73,11 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
 				fetch('https://www.vvhan.com/usr/themes/Joe/NeteaseCloudMusicApi.php?id=' + this.options.id).then(async response => {
 					const audio = await response.json();
-					new APlayer({
+					new MusicPlayer({
 						container: getChildren(this, '_content'),
 						lrcType: 1,
 						theme: this.options.color,
 						autoplay: this.options.autoplay,
+						autotheme : this.options.autotheme,
+						loop: this.options.loop,
+						preload: 'auto',
 						audio
 					});
 				});
@@ -93,7 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.options = {
 					id: this.getAttribute('id'),
 					color: this.getAttribute('color') || '#1989fa',
-					autoplay: this.getAttribute('autoplay') ? true : false
+					autoplay: this.getAttribute('autoplay') ? true : false,
+					autotheme: this.getAttribute('autotheme'),
+					loop: this.getAttribute('loop'),
+					order: this.getAttribute('order')
 				};
 				this.render();
 			}
@@ -102,11 +120,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
 				fetch('https://api.i-meto.com/meting/api?server=netease&type=playlist&id=' + this.options.id).then(async response => {
 					const audio = await response.json();
-					new APlayer({
+					new MusicPlayer({
 						container: getChildren(this, '_content'),
 						lrcType: 3,
 						theme: this.options.color,
 						autoplay: this.options.autoplay,
+						autotheme : this.options.autotheme,
+						loop: this.options.loop,
+						order : this.options.order,
+						preload: 'auto',
 						audio
 					});
 				});
@@ -520,18 +542,43 @@ document.addEventListener('DOMContentLoaded', () => {
 				super();
 				this.options = {
 					src: this.getAttribute('src'),
+					pic: this.getAttribute('pic'),
+					theme: encodeURIComponent(this.getAttribute('theme') ? this.getAttribute('theme') : (getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') ? getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') : getComputedStyle(document.documentElement).getPropertyValue('--theme')).trim()),
+					autoplay: this.getAttribute('autoplay') ? this.getAttribute('autoplay') : 0,
+					loop: this.getAttribute('loop') ? this.getAttribute('loop') : 0,
+					screenshot: this.getAttribute('screenshot') ? this.getAttribute('screenshot') : 0,
 					player: this.getAttribute('player')
 				};
 				this.render();
 			}
 			render() {
 				if (this.options.src) {
+				    if (this.options.pic == decodeURIComponent(this.options.pic)) {
+				        this.options.pic = encodeURIComponent(this.options.pic);
+				    }
 				    // 如果url等于已经解码的url，说明url未编码
 				    if (this.options.src == decodeURIComponent(this.options.src)) {
-				    // 对url进行编码
-				        this.options.src = encodeURIComponent(this.options.src);
+				        this.options.src = encodeURIComponent(this.options.src); // 对url进行编码
 				    }
-				    this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${this.options.player + this.options.src}"></iframe>`;
+				    let options = {
+				        pic: this.options.pic,
+				        theme: this.options.theme,
+				        autoplay: this.options.autoplay,
+				        loop: this.options.loop,
+				        screenshot: this.options.screenshot
+				    }
+				    let fnParams2Url = function (obj) {
+			            let array_url = [];
+			            let fnAdd = function (key, value) {
+			            	return key + '=' + value;
+			            }
+			            for (var k in obj) {
+			            	array_url.push(fnAdd(k, obj[k]));
+			            }
+			            return (array_url.join('&'));
+		            }
+				    let url = this.options.player + this.options.src + '&' + fnParams2Url(options);
+				    this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${url}"></iframe>`;
 			    } else {
 			   	    this.innerHTML = '播放地址未填写！';
 			    }

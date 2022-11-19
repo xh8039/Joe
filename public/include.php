@@ -37,6 +37,8 @@
 <script src="<?php _JStorageUrl('assets/js/joe.scroll.js'); ?>"></script>
 <script src="//cdn.staticfile.org/lazysizes/5.3.0/lazysizes.min.js"></script>
 <script src="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
+<script src="//cdn.bootcdn.net/ajax/libs/color-thief/2.3.2/color-thief.min.js"></script>
+<script src="<?php _JStorageUrl('assets/js/MusicPlayer.js'); ?>"></script>
 <script src="<?php _JStorageUrl('assets/js/joe.sketchpad.js'); ?>"></script>
 <script src="//cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 <script src="<?php _JStorageUrl('assets/js/joe.extend.min.js'); ?>"></script>

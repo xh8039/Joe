@@ -72,13 +72,17 @@ function themeInit($self)
 			case 'article_filing':
 				_getArticleFiling($self);
 				break;
-// 			友链列表
+            // 友链列表
 			case 'friend_list':
 				_friendList($self);
 				break;
-            //提交友链
+            // 提交友链
 			case 'friend_submit':
 				_friendSubmit($self);
+				break;
+			// 全局音乐数据
+			case 'music_list':
+				_musicList($self);
 				break;
 			case 'statistics':
 				_getstatistics($self);
@@ -195,11 +199,10 @@ function themeFields($layout)
 		NULL,
 		'M3U8或MP4地址（非必填）',
 		'填写后，文章会插入一个视频模板 <br>
-         格式：视频名称$视频地址。如果有多个，换行写即可 <br>
+         格式：视频名称$视频地址$视频介绍。如果有多个，换行写即可 <br>
          例如：<br>
-            第01集$https://iqiyi.cdn9-okzy.com/20201104/17638_8f3022ce/index.m3u8 <br>
-            第02集$https://iqiyi.cdn9-okzy.com/20201104/17639_5dcb8a3b/index.m3u8 
-        '
+            第01集$https://txmov2.a.kwimgs.com/upic/2022/08/20/07/BMjAyMjA4MjAwNzA5MzJfMTg0NzU1MDY3M184MjI2NDMxMTgyOV8yXzM=_b_Bb964ab3fd8fad18a949ed715402c992b.mp4$凭什么仙家就可以遨游天地，而我等凡人只能做这井底之蛙<br>
+            第02集$https://alimov2.a.kwimgs.com/upic/2022/07/24/23/BMjAyMjA3MjQyMzU1MzdfMjYxMzE4ODhfODAwNTQ2NzczNDhfMl8z_b_B6e7adb80a3c3cad6f66d318c66c48b68.mp4$韩大哥，没有灵根......真的不能成为修仙者吗'
 	);
 	$layout->addItem($video);
 }

@@ -31,7 +31,7 @@
 	}
 
 	html .joe_detail__article-video .play .box iframe {
-		height: 500px
+		min-height: 500px
 	}
 
 	html .joe_detail__leaving-list {
@@ -70,7 +70,7 @@
 	}
 
 	html .joe_detail__article-video .play .box iframe {
-		height: 430px
+		min-height: 430px
 	}
 
 	html .joe_detail__article-video .episodes .box {
@@ -208,7 +208,7 @@
 	}
 
 	html .joe_detail__article-video .play .box iframe {
-		height: 400px
+		min-height: 400px
 	}
 
 	html .joe_detail__article-video .episodes .box {
@@ -515,7 +515,7 @@
     }
 
 	html .joe_detail__article-video .play .box iframe {
-		height: 225px
+		min-height: 225px
 	}
 
 	html .joe_detail__article-video .episodes .box {

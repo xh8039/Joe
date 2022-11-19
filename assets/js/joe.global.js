@@ -1,42 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	// 顶部浏览进度条
-	$(window).scroll(function () {
-		let a = $(window).scrollTop(),
-			c = $(document).height(),
-			b = $(window).height();
-		scrollPercent = a / (c - b) * 100;
-		scrollPercent = scrollPercent.toFixed(1);
-		$("#HeaderCounter").css({
-			width: scrollPercent + "%"
+	// 设置$.getScript()方法缓存
+	{
+		jQuery.ajaxSetup({
+			cache: true
 		});
-	}).trigger("scroll");
+	}
+
+	// 顶部浏览进度条
+	{
+		$(window).scroll(function () {
+			let a = $(window).scrollTop(),
+				c = $(document).height(),
+				b = $(window).height();
+			scrollPercent = a / (c - b) * 100;
+			scrollPercent = scrollPercent.toFixed(1);
+			$("#HeaderCounter").css({
+				width: scrollPercent + "%"
+			});
+		}).trigger("scroll");
+	}
 
 	// 展示百度统计信息
-	if ($('#statistics').is(':visible')) {
-		$.ajax({
-			url: Joe.BASE_API,
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				routeType: 'statistics'
-			},
-			success(data) {
-				if (data.access_token == 'off') {
+	{
+		if ($('#statistics').is(':visible')) {
+			$.ajax({
+				url: Joe.BASE_API,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					routeType: 'statistics'
+				},
+				success(data) {
+					if (data.access_token == 'off') {
+						$("#statistics").remove();
+						return;
+					}
+					let statistics = $('#statistics span strong');
+					$(statistics[0]).text(data['today'][1]);
+					$(statistics[1]).text(data['yesterday'][1]);
+					$(statistics[2]).text(data['month'][0]);
+				},
+				error() {
 					$("#statistics").remove();
-					return;
+					// 写了个这个代码忘了干啥用的了... 先注释掉
+					// $(".joe_footer .joe_container").find('.item').eq(1).addClass('run');
 				}
-				let statistics = $('#statistics span strong');
-				$(statistics[0]).text(data['today'][1]);
-				$(statistics[1]).text(data['yesterday'][1]);
-				$(statistics[2]).text(data['month'][0]);
-			},
-			error() {
-				$("#statistics").remove();
-				// 			写了个这个代码忘了干啥用的了... 先注释掉
-				// 			$(".joe_footer .joe_container").find('.item').eq(1).addClass('run');
-			}
-		});
+			});
+		}
 	}
 
 	/* 初始化昼夜模式 */
@@ -78,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 全局飘落物 */
 	{
-		if (Joe.FLOAT_OBJECT) {
+		if (Joe.FLOAT_OBJECT != 'off') {
 			setTimeout(function () {
 				$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.FLOAT_OBJECT}`, () => {
 					// 为什么要重复三次 自然是考虑低端设备性能问题 区区三次也不至于写循环计时器 就这样

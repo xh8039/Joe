@@ -150,7 +150,7 @@ if (strpos($useragent, 'micromessenger') !== false) {
 		<img src="//external-30160.picsz.qpic.cn/60d9f46afebf468646b2e008a020d1a2" class="logo">
 		<div>
 			<div class="t-1">管家检测正常，请按上图提示打开。</div>
-			<div width="10">您所访问的地址：http://blog.bri6.cn</div>
+			<div width="10">您所访问的地址：<?= $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] ?></div>
 		</div>
 	</div>
 	<a style="display: none;" href="" id="vurl" rel="noreferrer"></a>

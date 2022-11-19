@@ -6,7 +6,6 @@
  * @author Joe、易航
  * @link http://blog.bri6.cn
  * 二开人：易航
- * 链接：http://blog.bri6.cn
  */
 $this->need('public/common.php');
 ?>

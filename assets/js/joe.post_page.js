@@ -217,9 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.joe_detail__article-video .episodes .item').on('click', function () {
 				$(this).addClass('active').siblings().removeClass('active');
 				const url = $(this).attr('data-src');
+				let alt = $(this).attr('alt');
 				$('.joe_detail__article-video .play iframe').attr({
-					src: player + url
+					src: player + url + '&autoplay=1&screenshot=1&theme=' + encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--theme').trim())
 				});
+				alt ? $('.joe_detail__article-video .play .title').html(alt) : null;
 			});
 			$('.joe_detail__article-video .episodes .item').first().click();
 		}

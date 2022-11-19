@@ -2,7 +2,7 @@ button, input, optgroup, select, textarea {
     font-family: 'Joe Font';
 }
 .container {
-    margin-top: 8vh;
+    margin-top: 4vh;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -83,6 +83,9 @@ button, input, optgroup, select, textarea {
     box-shadow: var(--box-shadow);
     border: none;
 }
+.btn-light:hover {
+    transform: scale(0.9);
+}
 .btn-light:active {
     transform: scale(0.75);
 }
@@ -116,6 +119,6 @@ button, input, optgroup, select, textarea {
 }
 @media (max-width: 768px) {
     .container {
-        margin-top: 5vh;
+        margin-top: 3vh;
     }
 }

@@ -80,7 +80,7 @@ function _friendList($self)
 		$friends_arr = explode("\r\n", $friends_text);
 		if (count($friends_arr) > 0) {
 			for ($i = 0; $i < count($friends_arr); $i++) {
-			    $friends_array = explode("||", $friends_arr[$i]);
+				$friends_array = explode("||", $friends_arr[$i]);
 				$name = trim($friends_array[0]);
 				$url = trim($friends_array[1]);
 				$avatar = empty(trim($friends_array[2])) ? _getAvatarLazyload(false) : $friends_array[2];

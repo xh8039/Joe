@@ -9,7 +9,7 @@
 	<?php endif; ?>
 	<link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.post.css'); ?>">
 	<script src="//cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
-	<script src="<?= Joe::themeUrl('assets/js/prism.min.js'); ?>"></script>
+	<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
 	<script src="<?= Joe::themeUrl('assets/js/joe.post_page.js'); ?>"></script>
 </head>
 

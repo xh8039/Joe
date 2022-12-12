@@ -3,7 +3,7 @@
 if ($this->options->JMusic == 'on') {
 ?>
 	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="AllFixed" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
-	<script src="<?= Joe::themeUrl('assets/js/Meting.js'); ?>"></script>
+	<script src="<?= Joe::jsdelivrUrl('js/Meting.js'); ?>"></script>
 <?php
 }
 
@@ -60,7 +60,7 @@ if ($this->options->JPendant_SSL == 'on') {
 	</div>
 	<?php
 	if ($this->options->JFooter_Fish == 'on') {
-        echo '<div id="footer_fish"></div><script src="'. Joe::themeUrl('assets/js/footer_fish.js') .'"></script>';
+        echo '<div id="footer_fish"></div><script src="'. Joe::jsdelivrUrl('js/FooterFish.js') .'"></script>';
 	}
 	?>
 </footer>

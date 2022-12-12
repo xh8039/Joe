@@ -43,8 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				},
 				error() {
 					$("#statistics").remove();
-					// 写了个这个代码忘了干啥用的了... 先注释掉
-					// $(".joe_footer .joe_container").find('.item').eq(1).addClass('run');
 				}
 			});
 		}

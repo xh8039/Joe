@@ -3,6 +3,12 @@
 class Joe
 {
 
+	static public function jsdelivrUrl($path)
+	{
+		$path = self::urlQueryBuilder($path, ['version' => JOE_VERSION]);
+		return 'https://cdn.jsdelivr.net/gh/xh8039/static-assets/' . $path;
+	}
+
 	static public function themeUrl($path)
 	{
 		if (empty(Helper::options()->JStaticAssetsUrl)) {

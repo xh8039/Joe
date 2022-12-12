@@ -2,9 +2,9 @@
 
 /**
  * 直播
- * 
- * @package custom 
- * 
+ *
+ * @package custom
+ *
  **/
 $this->need('public/common.php');
 ?>

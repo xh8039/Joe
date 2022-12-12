@@ -143,7 +143,7 @@
 		<script src="<?= Joe::themeUrl('assets/js/joe.autoc.js'); ?>"></script>
 		<script type="text/javascript">
 			if ($(".joe_detail__article").length > 0) {
-				// 创建文章导读目录    
+				// 创建文章导读目录
 				let navigation = new AutocJs({
 					// 文章正文 DOM 节点的 ID 选择器
 					article: '.joe_detail__article',

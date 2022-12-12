@@ -3,7 +3,7 @@
 class Joe
 {
 
-    static public function themeUrl($path)
+	static public function themeUrl($path)
 	{
 		if (empty(Helper::options()->JStaticAssetsUrl)) {
 			$path = self::urlQueryBuilder($path, ['version' => JOE_VERSION]);

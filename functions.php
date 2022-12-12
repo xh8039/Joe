@@ -66,7 +66,7 @@ function themeConfig($form)
 
 	// 全局设置
 	require_once('set/global.php');
-	
+
 	// 安全设置
 	require_once('set/safe.php');
 
@@ -93,16 +93,16 @@ function themeConfig($form)
 
 	// 友链设置
 	require_once('set/friend.php');
-	
+
 	// 评论设置
 	require_once('set/comment.php');
-	
+
 	// 统计设置
 	require_once('set/statistic.php');
 
 	// 消息推送
 	require_once('set/message.php');
-	
+
 	// 自定义代码
 	require_once('set/code.php');
 

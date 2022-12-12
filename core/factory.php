@@ -178,13 +178,13 @@ class Editor
 ?>
 		<link rel="stylesheet" href="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css">
 		<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-one-light-dark@1.0.4/prism-onedark.min.css">
-		<link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.css') ?>">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/css/joe.write.min.css">
 		<script>
 			window.JoeConfig = {
 				uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
-				emojiAPI: '<?php Helper::options()->themeUrl('typecho/write/json/emoji.json') ?>',
-				expressionAPI: '<?php Helper::options()->themeUrl('typecho/write/json/expression.json') ?>',
-				characterAPI: '<?php Helper::options()->themeUrl('typecho/write/json/character.json') ?>',
+				emojiAPI: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/json/emoji.json',
+				expressionAPI: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/json/expression.json',
+				characterAPI: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/json/character.json',
 				playerAPI: '<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('library/player.php?url=') ?>',
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: '<?php Helper::options()->themeUrl(); ?>',
@@ -193,8 +193,8 @@ class Editor
 		</script>
 		<script src="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
 		<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
-		<script src="<?php Helper::options()->themeUrl('typecho/write/parse/parse.min.js') ?>"></script>
-		<script src="<?php Helper::options()->themeUrl('typecho/write/dist/index.bundle.js') ?>"></script>
+		<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/parse/parse.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/dist/index.bundle.js"></script>
 		<script src="<?php Helper::options()->themeUrl('assets/js/joe.short.js') ?>"></script>
 		<section class="typecho-post-option">
 			<label for="token-input-tags" class="typecho-label"><?php _e('标签'); ?></label>

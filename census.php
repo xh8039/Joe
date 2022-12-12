@@ -6,7 +6,6 @@
  * @package custom 
  * 
  **/
-$this->need('public/common.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +13,9 @@ $this->need('public/common.php');
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.census.css'); ?>">
+    <link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.census.css'); ?>">
     <script src="//cdn.staticfile.org/echarts/5.1.1/echarts.min.js"></script>
-    <script src="<?php _JStorageUrl('assets/js/joe.census.js'); ?>"></script>
+    <script src="<?= Joe::themeUrl('assets/js/joe.census.js'); ?>"></script>
 </head>
 
 <body>

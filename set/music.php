@@ -6,7 +6,7 @@ $JMusic = new Typecho_Widget_Helper_Form_Element_Select(
 	'JMusic',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
-	'前端音乐开关',
+	'全局音乐开关',
 	'介绍：开启后站点前端将全局播放网易云音乐'
 );
 $JMusic->setAttribute('class', 'joe_content joe_music');

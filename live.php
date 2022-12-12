@@ -14,8 +14,8 @@ $this->need('public/common.php');
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.live.min.css'); ?>">
-    <script src="<?php _JStorageUrl('assets/js/joe.live.js'); ?>"></script>
+    <link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.live.min.css'); ?>">
+    <script src="<?= Joe::themeUrl('assets/js/joe.live.js'); ?>"></script>
 </head>
 
 <body>

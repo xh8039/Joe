@@ -101,19 +101,6 @@ $JAside_Author_Nav = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Nav->multiMode());
 /* --------------------------------------- */
-$JAside_Author_Float = new Typecho_Widget_Helper_Form_Element_Select(
-	'JAside_Author_Float',
-	array(
-		'on' => '开启（默认）',
-		'off' => '关闭'
-	),
-	'on',
-	'是否开启博主栏鼠标移入飘落物品',
-	NULL
-);
-$JAside_Author_Float->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Author_Float->multiMode());
-/* --------------------------------------- */
 $JAside_Timelife_Status = new Typecho_Widget_Helper_Form_Element_Select(
 	'JAside_Timelife_Status',
 	array(
@@ -201,17 +188,6 @@ $JADContent = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JADContent->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JADContent);
 /* --------------------------------------- */
-$JCustomAside = new Typecho_Widget_Helper_Form_Element_Textarea(
-	'JCustomAside',
-	NULL,
-	NULL,
-	'自定义侧边栏模块 - PC',
-	'介绍：用于自定义侧边栏模块 <br />
-		 格式：请填写前端代码，不会写请勿填写 <br />
-		 例如：您可以在此处添加一个搜索框、时间、宠物、恋爱计时等等'
-);
-$JCustomAside->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JCustomAside);
 /* --------------------------------------- */
 $JAside_3DTag = new Typecho_Widget_Helper_Form_Element_Select(
 	'JAside_3DTag',
@@ -252,23 +228,3 @@ $JAside_History_Today = new Typecho_Widget_Helper_Form_Element_Select(
 );
 $JAside_History_Today->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_History_Today->multiMode());
-$JAside_Login_Url = new Typecho_Widget_Helper_Form_Element_Text(
-	'JAside_Login_Url',
-	NULL,
-	NULL,
-	'自定义侧边栏登录URL函数（非必填）',
-	'介绍：请务必填写正确 <br />
-		 例如：Helper::options()->adminUrl(\'login.php\')'
-);
-$JAside_Login_Url->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Login_Url);
-$JAside_Register_Url = new Typecho_Widget_Helper_Form_Element_Text(
-	'JAside_Register_Url',
-	NULL,
-	NULL,
-	'自定义侧边栏注册URL函数（非必填）',
-	'介绍：请务必填写正确 <br />
-		 例如：Helper::options()->adminUrl(\'register.php\')'
-);
-$JAside_Register_Url->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Register_Url);

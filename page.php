@@ -1,4 +1,3 @@
-<?php $this->need('public/common.php'); ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -10,8 +9,8 @@
         <link rel="stylesheet" href="//cdn.staticfile.org/prism/1.23.0/themes/prism.min.css">
     <?php endif; ?>
     <script src="//cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <script src="<?php _JStorageUrl('assets/js/prism.min.js'); ?>"></script>
-    <script src="<?php _JStorageUrl('assets/js/joe.post_page.js?v=1.0.0'); ?>"></script>
+    <script src="<?= Joe::themeUrl('assets/js/prism.min.js'); ?>"></script>
+    <script src="<?= Joe::themeUrl('assets/js/joe.post_page.js'); ?>"></script>
 </head>
 
 <body>

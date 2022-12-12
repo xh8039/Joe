@@ -368,7 +368,7 @@ var AutocJs = function () {
             // 创建导航菜单遮罩层
             if (Joe.IS_MOBILE) {
                 elements.overlay = dom.createElement('div', {
-                    className: 'outline-outside-overlay outline-hidden backdropfilter'
+                    className: 'outline-outside-overlay outline-hidden'
                 });
             }else {
                 elements.overlay = dom.createElement('div', {

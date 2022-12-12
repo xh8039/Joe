@@ -2,6 +2,9 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+define('JOE_VERSION', '1.22');
+define('JOE_ROOT', dirname(__FILE__) . '/');
+
 /* Joe核心文件 */
 require_once("core/core.php");
 
@@ -19,28 +22,28 @@ function themeConfig($form)
 	} catch (Exception $e) {
 	}
 ?>
+	<link rel="stylesheet" href="<?= Joe::themeUrl('typecho/config/css/joe.config.css') ?>">
 	<script src="//cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
 	<script src="//cdn.staticfile.org/layer/3.5.1/layer.min.js"></script>
-	<link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/config/css/joe.config.css?v=');echo _getVersion() ?>">
 	<script>
 		window.Joe = {
 			title: '<?php Helper::options()->title() ?>',
-			version: '<?php echo _getVersion() ?>',
+			version: '<?= JOE_VERSION ?>',
 			domain: window.location.host,
-			service_domain: '//web.bri6.cn/api/joe/',
+			service_domain: '//auth.bri6.cn/server/joe/',
 			logo: '<?php Helper::options()->JLogo() ?>',
 			Favicon: '<?php Helper::options()->JFavicon() ?>'
-		};
+		}
 	</script>
-	<script src="<?php Helper::options()->themeUrl('typecho/config/js/joe.config.js?v=');
-					echo _getVersion() ?>"></script>
+	<script src="<?= Joe::themeUrl('typecho/config/js/joe.config.js') ?>"></script>
 	<div class="joe_config">
 		<div>
 			<div class="joe_config__aside">
-				<div class="logo">Joe再续前缘<?php echo _getVersion() ?></div>
+				<div class="logo">Joe再续前缘<?= JOE_VERSION ?></div>
 				<ul class="tabs">
 					<li class="item" data-current="joe_notice">最新公告</li>
 					<li class="item" data-current="joe_global">全局设置</li>
+					<li class="item" data-current="joe_safe">安全设置</li>
 					<li class="item" data-current="joe_image">图片设置</li>
 					<li class="item" data-current="joe_post">文章设置</li>
 					<li class="item" data-current="joe_aside">侧栏设置</li>
@@ -52,6 +55,7 @@ function themeConfig($form)
 					<li class="item" data-current="joe_comment">评论设置</li>
 					<li class="item" data-current="joe_statistic">统计设置</li>
 					<li class="item" data-current="joe_message">消息推送</li>
+					<li class="item" data-current="joe_code">DIY代码</li>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
 				<?php require_once('core/backup.php'); ?>
@@ -62,6 +66,9 @@ function themeConfig($form)
 
 	// 全局设置
 	require_once('set/global.php');
+	
+	// 安全设置
+	require_once('set/safe.php');
 
 	// 图片设置
 	require_once('set/image.php');
@@ -95,6 +102,9 @@ function themeConfig($form)
 
 	// 消息推送
 	require_once('set/message.php');
+	
+	// 自定义代码
+	require_once('set/code.php');
 
 	// 其他设置
 	require_once('set/other.php');

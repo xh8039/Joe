@@ -23,7 +23,7 @@
 	position: -webkit-sticky;
 	position: sticky;
 	top: 15px;
-	width: 200px;
+	width: 250px;
 	background: #fff;
 	padding: 10px;
 	box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.22);
@@ -41,10 +41,13 @@
 }
 
 .joe_config__aside .tabs {
+    display: flex;
+    flex-wrap: wrap;
 	margin-bottom: 10px
 }
 
 .joe_config__aside .tabs .item {
+    width: 50%;
 	border-radius: 20px;
 	text-align: center;
 	height: 40px;
@@ -67,8 +70,14 @@
 	font-weight: 500
 }
 
+.joe_config__aside .backup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5%;
+}
+
 .joe_config__aside .backup input {
-	width: 170px;
+	width: 45%;
 	height: 40px;
 	line-height: 40px;
 	margin-bottom: 10px;
@@ -97,7 +106,7 @@
 }
 
 .joe_config__aside .backup input:last-child {
-	margin-bottom: 0;
+	
 }
 
 .joe_config>form {
@@ -274,7 +283,6 @@
 	}
 
 	.joe_config__aside .backup {
-		display: flex;
 		align-items: center;
 		justify-content: space-between
 	}
@@ -287,14 +295,6 @@
 		line-height: 36px;
 		border-radius: 18px
 	}
-
-	.joe_config__aside .backup input {
-	    margin-right: 10px;
-	}
-	
-	.joe_config__aside .backup input:last-child {
-	    margin-right: 0;
-    }
 
 	.joe_config>form {
 		margin-left: 0

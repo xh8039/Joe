@@ -1,5 +1,12 @@
 <?php
 
+if ($this->options->JMusic == 'on') {
+?>
+	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="AllFixed" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
+	<script src="<?= Joe::themeUrl('assets/js/Meting.js'); ?>"></script>
+<?php
+}
+
 if ($this->options->JPendant_SSL == 'on') {
 	// SSL安全认证
 ?>
@@ -7,7 +14,7 @@ if ($this->options->JPendant_SSL == 'on') {
 		#cc-myssl-seal {
 			width: 65px;
 			height: 65px;
-			z-index: 99;
+			z-index: 9;
 			position: fixed;
 			right: 0;
 			bottom: 0;
@@ -20,22 +27,6 @@ if ($this->options->JPendant_SSL == 'on') {
 		</div>
 	</div>
 <?php
-}
-
-if ($this->options->JMusic == 'on') {
-    ?>
-    <meting-js
-        fixed="true"
-        preload="metadata"
-        mutex="false"
-        order="<?= $this->options->JMusicOrder ?>"
-        server="<?= $this->options->JMusicServer ?>"
-        type="<?= $this->options->JMusicType ?>"
-        id="<?= $this->options->JMusicId ?>"
-        <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>
-    ></meting-js>
-    <script src="<?php _JStorageUrl('assets/js/Meting.js'); ?>"></script>
-    <?php
 }
 
 ?>
@@ -69,10 +60,7 @@ if ($this->options->JMusic == 'on') {
 	</div>
 	<?php
 	if ($this->options->JFooter_Fish == 'on') {
-	?>
-		<div id="footer_fish"></div>
-		<script src="<?php _JStorageUrl('assets/js/footer_fish.js'); ?>"></script>
-	<?php
+        echo '<div id="footer_fish"></div><script src="'. Joe::themeUrl('assets/js/footer_fish.js') .'"></script>';
 	}
 	?>
 </footer>
@@ -107,7 +95,12 @@ if ($this->options->JMusic == 'on') {
 	Typecho_Cookie::delete('__typecho_notice');
 	Typecho_Cookie::delete('__typecho_notice_type');
 	?>
-	console.log("%c页面加载耗时：<?php _endCountTime(); ?> | Theme By Joe再续前缘版", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
+	console.log("%cTheme By Joe再续前缘版", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
+	<?php
+	if (strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false && $this->options->JQQReportPrevent == 'on') {
+	    echo 'document.getElementsByTagName = function(a) {if (a == "meta") {window.location.href = "http://www.baidu.com";}}',PHP_EOL;
+	}
+	?>
 	<?php $this->options->JCustomScript() ?>
 </script>
 

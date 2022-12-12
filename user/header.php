@@ -1,5 +1,4 @@
 <?php
-$this->need('public/common.php');
 if ($this->user->hasLogin()) {
     ?>
     <script>

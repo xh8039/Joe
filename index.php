@@ -7,7 +7,6 @@
  * @link http://blog.bri6.cn
  * 二开人：易航
  */
-$this->need('public/common.php');
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +17,8 @@ $this->need('public/common.php');
 	<link rel="stylesheet" href="//cdn.staticfile.org/Swiper/5.4.5/css/swiper.min.css" />
 	<script src="//cdn.staticfile.org/Swiper/5.4.5/js/swiper.min.js"></script>
 	<script src="https://fastly.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
-	<link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.index.css?v=1.0.0'); ?>">
-	<script src="<?php _JStorageUrl('assets/js/joe.index.js'); ?>"></script>
-	<style>
-	</style>
+	<link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.index.css'); ?>">
+	<script src="<?= Joe::themeUrl('assets/js/joe.index.js'); ?>"></script>
 </head>
 
 <body>
@@ -38,34 +35,19 @@ $this->need('public/common.php');
 						<span class="motto joe_motto"></span>
 					</div>
 				</div>
-				<?php
-				if ($this->options->JIndex_Header_Img == '透明') {
-				?>
-					<style>
-						.HeaderImg:before {
-							background: transparent;
-						}
-					</style>
-
-				<?php
-				} else {
-				?>
-					<section class="HeaderImg_bottom">
-						<svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-							<defs>
-								<path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
-							</defs>
-							<g class="parallax">
-								<use xlink:href="#gentle-wave" x="48" y="0"></use>
-								<use xlink:href="#gentle-wave" x="48" y="3"></use>
-								<use xlink:href="#gentle-wave" x="48" y="5"></use>
-								<use xlink:href="#gentle-wave" x="48" y="7"></use>
-							</g>
-						</svg>
-					</section>
-				<?php
-				}
-				?>
+				<section class="HeaderImg_bottom">
+					<svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+						<defs>
+							<path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+						</defs>
+						<g class="parallax">
+							<use xlink:href="#gentle-wave" x="48" y="0"></use>
+							<use xlink:href="#gentle-wave" x="48" y="3"></use>
+							<use xlink:href="#gentle-wave" x="48" y="5"></use>
+							<use xlink:href="#gentle-wave" x="48" y="7"></use>
+						</g>
+					</svg>
+				</section>
 			</div>
 		<?php
 		}
@@ -205,23 +187,7 @@ $this->need('public/common.php');
 							</a>
 						</div>
 					<?php endif; ?>
-					<?php
-					if ($this->options->JIndex_Google_AdSense_switch == 'ad') {
-					?>
-						<div class="joe_index__ad">
-							<?php
-							if (_isMobile()) {
-								$this->options->JIndex_Google_AdSense_phone();
-							} else {
-								$this->options->JIndex_Google_AdSense_pc();
-							}
-							?>
-						</div>
-					<?php
-					}
-					?>
 					<div class="joe_index__title">
-
 						<ul class="joe_index__title-title">
 							<li class="item" data-type="created">最新文章</li>
 							<li class="item" data-type="views">热门文章</li>
@@ -248,21 +214,6 @@ $this->need('public/common.php');
 						<?php endif; ?>
 					</div>
 					<div class="joe_index__list" data-wow="<?php $this->options->JList_Animate() ?>">
-						<?php
-						if ($this->options->JIndex_Google_AdSense_switch == 'list') {
-						?>
-							<div style="border-bottom: 1px solid var(--classC);margin-top:15px">
-								<?php
-								if (_isMobile()) {
-									$this->options->JIndex_Google_AdSense_phone();
-								} else {
-									$this->options->JIndex_Google_AdSense_pc();
-								}
-								?>
-							</div>
-						<?php
-						}
-						?>
 						<ul class="joe_list"></ul>
 						<ul class="joe_list__loading">
 							<?php

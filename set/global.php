@@ -2,38 +2,18 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-$JStorageUrl = new Typecho_Widget_Helper_Form_Element_Text(
-	'JStorageUrl',
+$JStaticAssetsUrl = new Typecho_Widget_Helper_Form_Element_Text(
+	'JStaticAssetsUrl',
 	null,
 	null,
 	'自定义存储空间资源',
 	'介绍：将本主题所需要的CSS、JS等资源文件使用某个站点来提供，以便节省服务器宽带 提升小型服务器加载速度<br>
 		 注意：必须保证对方站点同样为再续前缘版并且版本一致<br>
-		 格式：blog.bri6.cn（此站点虽是同款，然已启用防盗链，无需再试了）<br>
-		 其他：本站同款站点列表 <a target="_blank" href="http://web.bri6.cn/api/joe/JoeLinks.php">web.bri6.cn/api/joe/JoeLinks.php</a>'
+		 例如：http://blog.bri6.cn/usr/themes/Joe（此站点虽是同款，然已启用防盗链，无需再试了）<br>
+		 其他：本站同款站点列表 <a target="_blank" href="http://auth.bri6.cn/server/joe/sitelist">auth.bri6.cn/server/joe/sitelist</a>'
 );
-$JStorageUrl->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JStorageUrl);
-
-$JPendant_SSL = new Typecho_Widget_Helper_Form_Element_Select(
-	'JPendant_SSL',
-	array('on' => '开启（默认）', 'off' => '关闭'),
-	'on',
-	'是否SSL安全认证图标',
-	'介绍：开启后站点右下角将会显示SSL安全认证图标'
-);
-$JPendant_SSL->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JPendant_SSL->multiMode());
-
-$JPrevent = new Typecho_Widget_Helper_Form_Element_Select(
-	'JPrevent',
-	array('off' => '关闭（默认）', 'on' => '开启'),
-	'off',
-	'是否开启QQ、微信防红拦截',
-	'介绍：开启后，如果在QQ里打开网站，则会提示跳转浏览器打开'
-);
-$JPrevent->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JPrevent->multiMode());
+$JStaticAssetsUrl->setAttribute('class', 'joe_content joe_global');
+$form->addInput($JStaticAssetsUrl);
 
 $JNavMaxNum = new Typecho_Widget_Helper_Form_Element_Select(
 	'JNavMaxNum',
@@ -90,61 +70,6 @@ $JFooter_Right = new Typecho_Widget_Helper_Form_Element_Textarea(
 );
 $JFooter_Right->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JFooter_Right);
-
-$JDocumentTitle = new Typecho_Widget_Helper_Form_Element_Text(
-	'JDocumentTitle',
-	NULL,
-	'网站崩溃了...',
-	'网页被隐藏时显示的标题',
-	'介绍：在PC端切换网页标签时，网站标题显示的内容。如果不填写，则默认不开启 <br />
-		 注意：严禁加单引号或双引号！！！否则会导致网站出错！！'
-);
-$JDocumentTitle->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JDocumentTitle);
-
-$JCustomCSS = new Typecho_Widget_Helper_Form_Element_Textarea(
-	'JCustomCSS',
-	NULL,
-	NULL,
-	'自定义CSS（非必填）',
-	'介绍：请填写自定义CSS内容，填写时无需填写style标签。<br />
-		 其他：如果想修改主题色、卡片透明度等，都可以通过这个实现 <br />
-		 例如：body { --theme: #ff6800; --background: rgba(255,255,255,0.85) }'
-);
-$JCustomCSS->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JCustomCSS);
-
-$JCustomScript = new Typecho_Widget_Helper_Form_Element_Textarea(
-	'JCustomScript',
-	NULL,
-	NULL,
-	'自定义JS（非必填）',
-	'介绍：请填写自定义JS内容，例如网站统计等，填写时无需填写script标签。'
-);
-$JCustomScript->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JCustomScript);
-
-$JCustomHeadEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
-	'JCustomHeadEnd',
-	NULL,
-	NULL,
-	'自定义增加&lt;head&gt;&lt;/head&gt;里内容（非必填）',
-	'介绍：此处用于在&lt;head&gt;&lt;/head&gt;标签里增加自定义内容 <br />
-		 例如：可以填写引入第三方css、js等等'
-);
-$JCustomHeadEnd->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JCustomHeadEnd);
-
-$JCustomBodyEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
-	'JCustomBodyEnd',
-	NULL,
-	NULL,
-	'自定义&lt;body&gt;&lt;/body&gt;末尾位置内容（非必填）',
-	'介绍：此处用于填写在&lt;body&gt;&lt;/body&gt;标签末尾位置的内容 <br>
-		 例如：可以填写引入第三方js脚本等等'
-);
-$JCustomBodyEnd->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JCustomBodyEnd);
 
 $JBirthDay = new Typecho_Widget_Helper_Form_Element_Text(
 	'JBirthDay',

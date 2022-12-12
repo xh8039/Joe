@@ -2,7 +2,7 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-$statistics_config = _baiduStatisticConfig();
+$statistics_config = Joe::baiduStatisticConfig();
 $update_access_token_url = $statistics_config ? '操作：<a href="http://openapi.baidu.com/oauth/2.0/token?grant_type=refresh_token&refresh_token=' . urlencode($statistics_config['refresh_token']) . '&client_id=' . urlencode($statistics_config['client_id']) . '&client_secret=' . urlencode($statistics_config['client_secret']) . '">一键更新access_token</a>（获取后请手动在主题设置处填写已更新的token）<br>' : NULL;
 $baidu_statistics = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'baidu_statistics',

@@ -1,7 +1,17 @@
 <?php
 
+require_once 'tencent_protect.php';
+if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
+	// 我就不信这次腾讯会再给封了！！！
+	require JOE_ROOT . 'public/jump.php';
+	exit;
+}
+
 /* 继承方法函数 */
 require_once('widget.php');
+
+/* 自动加载Joe类 */
+require_once(JOE_ROOT . 'class/Autoloader.php');
 
 /* 公用函数 */
 require_once('function.php');
@@ -14,9 +24,6 @@ require_once('route.php');
 
 /* 插件方法 */
 require_once('factory.php');
-
-/* 页面加载计时 */
-_startCountTime();
 
 /* 主题初始化 */
 function themeInit($self)
@@ -72,17 +79,9 @@ function themeInit($self)
 			case 'article_filing':
 				_getArticleFiling($self);
 				break;
-            // 友链列表
-			case 'friend_list':
-				_friendList($self);
-				break;
-            // 提交友链
+				// 提交友链
 			case 'friend_submit':
 				_friendSubmit($self);
-				break;
-			// 全局音乐数据
-			case 'music_list':
-				_musicList($self);
 				break;
 			case 'statistics':
 				_getstatistics($self);
@@ -142,7 +141,7 @@ function themeFields($layout)
 		'default',
 		'文章显示方式',
 		'介绍：用于设置当前文章在首页和搜索页的显示方式 <br /> 
-         注意：独立页面该功能不会生效'
+		 注意：独立页面该功能不会生效'
 	);
 	$layout->addItem($mode);
 
@@ -152,9 +151,9 @@ function themeFields($layout)
 		NULL,
 		'SEO关键词（非常重要！）',
 		'介绍：用于设置当前页SEO关键词 <br />
-         注意：多个关键词使用英文逗号进行隔开 <br />
-         例如：Typecho,Typecho主题,Typecho模板 <br />
-         其他：如果不填写此项，则默认取文章标签'
+		 注意：多个关键词使用英文逗号进行隔开 <br />
+		 例如：Typecho,Typecho主题,Typecho模板 <br />
+		 其他：如果不填写此项，则默认取文章标签'
 	);
 	$layout->addItem($keywords);
 
@@ -164,8 +163,8 @@ function themeFields($layout)
 		NULL,
 		'SEO描述语（非常重要！）',
 		'介绍：用于设置当前页SEO描述语 <br />
-         注意：SEO描述语不应当过长也不应当过少 <br />
-         其他：如果不填写此项，则默认截取文章片段'
+		 注意：SEO描述语不应当过长也不应当过少 <br />
+		 其他：如果不填写此项，则默认截取文章片段'
 	);
 	$layout->addItem($description);
 
@@ -175,7 +174,7 @@ function themeFields($layout)
 		NULL,
 		'自定义摘要（非必填）',
 		'填写时：将会显示填写的摘要 <br>
-         不填写时：默认取文章里的内容'
+		 不填写时：默认取文章里的内容'
 	);
 	$layout->addItem($abstract);
 
@@ -185,11 +184,11 @@ function themeFields($layout)
 		NULL,
 		'自定义缩略图（非必填）',
 		'填写时：将会显示填写的文章缩略图 <br>
-         不填写时：<br>
-            1、若文章有图片则取文章内图片 <br>
-            2、若文章无图片，并且外观设置里未填写·自定义缩略图·选项，则取模板自带图片 <br>
-            3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片 <br>
-         注意：多个缩略图时换行填写，一行一个（仅在三图模式下生效）'
+		 不填写时：<br>
+			1、若文章有图片则取文章内图片 <br>
+			2、若文章无图片，并且外观设置里未填写·自定义缩略图·选项，则取模板自带图片 <br>
+			3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片 <br>
+		 注意：多个缩略图时换行填写，一行一个（仅在三图模式下生效）'
 	);
 	$layout->addItem($thumb);
 
@@ -199,10 +198,10 @@ function themeFields($layout)
 		NULL,
 		'M3U8或MP4地址（非必填）',
 		'填写后，文章会插入一个视频模板 <br>
-         格式：视频名称$视频地址$视频介绍。如果有多个，换行写即可 <br>
-         例如：<br>
-            第01集$https://txmov2.a.kwimgs.com/upic/2022/08/20/07/BMjAyMjA4MjAwNzA5MzJfMTg0NzU1MDY3M184MjI2NDMxMTgyOV8yXzM=_b_Bb964ab3fd8fad18a949ed715402c992b.mp4$凭什么仙家就可以遨游天地，而我等凡人只能做这井底之蛙<br>
-            第02集$https://alimov2.a.kwimgs.com/upic/2022/07/24/23/BMjAyMjA3MjQyMzU1MzdfMjYxMzE4ODhfODAwNTQ2NzczNDhfMl8z_b_B6e7adb80a3c3cad6f66d318c66c48b68.mp4$韩大哥，没有灵根......真的不能成为修仙者吗'
+		 格式：视频名称$视频地址$视频介绍。如果有多个，换行写即可 <br>
+		 例如：<br>
+			第01集$https://txmov2.a.kwimgs.com/upic/2022/08/20/07/BMjAyMjA4MjAwNzA5MzJfMTg0NzU1MDY3M184MjI2NDMxMTgyOV8yXzM=_b_Bb964ab3fd8fad18a949ed715402c992b.mp4$凭什么仙家就可以遨游天地，而我等凡人只能做这井底之蛙<br>
+			第02集$https://alimov2.a.kwimgs.com/upic/2022/07/24/23/BMjAyMjA3MjQyMzU1MzdfMjYxMzE4ODhfODAwNTQ2NzczNDhfMl8z_b_B6e7adb80a3c3cad6f66d318c66c48b68.mp4$韩大哥，没有灵根......真的不能成为修仙者吗'
 	);
 	$layout->addItem($video);
 }

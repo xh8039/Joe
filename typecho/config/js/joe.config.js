@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				var e = JSON.parse(c.responseText);
 				t.innerHTML = e.success ? '<p class="title">最新版本：' + e.title + "</p>" + e.content : "请求失败！"
 			} else t.innerHTML = "请求失败！"
-	}, c.open("get", `${Joe.service_domain}api.php?type=msg&domain=${Joe.domain}`, !0), c.send(
+	}, c.open("get", `${Joe.service_domain}message`, !0), c.send(
 		null)
 });
 
@@ -46,7 +46,7 @@ $(document).ready(() => {
 })
 
 //模拟form表单提交打开新的页面
-function open_page(url, param) {
+function open_page(url, param = {}) {
 	var form = '<form action="' + url + '"  target="_blank"  id="windowOpen" style="display:none">';
 	if (param) {
 		for (var key in param) {
@@ -62,14 +62,13 @@ function open_page(url, param) {
 function update(type = 'passive') {
 	$.ajax({
 		type: "post",
-		url: Joe.service_domain + 'api.php',
+		url: `${Joe.service_domain}update`,
 		data: {
-		    type : 'version',
 		    title : Joe.title,
 			version : Joe.version,
 			domain : Joe.domain,
 			logo : Joe.logo,
-			Favicon : Joe.Favicon
+			favicon : Joe.Favicon
 		},
 		dataType: "json",
 		beforeSend: () => {

@@ -21,8 +21,7 @@ $JPost_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
 	NULL,
 	'文章页顶部大图背景壁纸',
 	'介绍：填写后将强制代替文章页顶部大图所有背景壁纸并忽略顶部大图开关<br>
-		 格式：图片地址 或 Base64地址<br>
-		 填写 “透明” 即使用透明壁纸 可配合背景壁纸使用'
+	格式：图片地址 或 Base64地址<br>'
 );
 $JPost_Header_Img->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Header_Img);

@@ -127,7 +127,6 @@ class MetingJSElement extends HTMLElement {
 
 		let div = document.createElement('div')
 		options.container = div
-		options.autotheme = true
 		this.appendChild(div)
 
 		this.aplayer = new MusicPlayer(options)

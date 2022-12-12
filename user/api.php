@@ -49,7 +49,7 @@ switch ($action) {
 		}
 
 		if ($hashValidate) {
-			_SetLogin($result[0]['uid']);
+			Joe::userLogin($result[0]['uid']);
 			$this->response->throwJson([
 				'code' => 1,
 				'msg' => '登录成功'
@@ -81,7 +81,7 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱'
 		]);
-		if (_EmailConfig()) {
+		if (Joe::EmailConfig()) {
 			if (!isset($code)) $this->response->throwJson([
 				'code' => 0,
 				'msg' => '请输入验证码'
@@ -135,7 +135,7 @@ switch ($action) {
 				'msg' => '你输入的邮箱已经注册账号'
 			]);
 		}
-		if (_EmailConfig()) {
+		if (Joe::EmailConfig()) {
 			if ($_SESSION["Gm_Reg_Code"] != $code || $_SESSION["Gm_Reg_Email"] != trim($email)) {
 				$this->response->throwJson([
 					'code' => 0,
@@ -156,7 +156,7 @@ switch ($action) {
 		if ($result) {
 			$_SESSION['Gm_Reg_Code'] = null;
 			$_SESSION['Gm_Reg_Email'] = null;
-			_SetLogin($result);
+			Joe::userLogin($result);
 			$this->response->throwJson([
 				'code' => 1,
 				'msg' => '注册成功'
@@ -220,7 +220,7 @@ switch ($action) {
 			$updateRows = $db->query($update);
 			if ($updateRows) {
 				$_SESSION[$state] = null;
-				_SetLogin($uid);
+				Joe::userLogin($uid);
 				$this->response->throwJson([
 					'code' => 1,
 					'msg' => '设置新密码成功'

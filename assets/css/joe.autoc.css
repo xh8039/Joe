@@ -230,10 +230,6 @@
     display: none;
 }
 
-.backdropfilter {
-    backdrop-filter: blur(1px);
-}
-
 @media (max-width: 768px) {
     .outline-outside-modal-opened {
         padding-top: 55px !important;

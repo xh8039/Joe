@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JFavicon',
 	NULL,
-	'http://blog.bri6.cn/usr/uploads/logo/favicon.ico',
+	'http://blog.bri6.cn/favicon.ico',
 	'网站 Favicon 设置',
 	'介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
 		 格式：图片 URL地址 或 Base64 地址 <br />
@@ -48,46 +48,6 @@ $JLazyload = new Typecho_Widget_Helper_Form_Element_Textarea(
 );
 $JLazyload->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JLazyload);
-
-$JDynamic_Background_PC = new Typecho_Widget_Helper_Form_Element_Select(
-	'JDynamic_Background_PC',
-	array(
-		'off' => '关闭（默认）',
-		'backdrop1.js' => '效果1',
-		'backdrop2.js' => '效果2',
-		'backdrop3.js' => '效果3',
-		'backdrop4.js' => '效果4',
-		'backdrop5.js' => '效果5',
-		'backdrop6.js' => '效果6',
-		'backdrop7.js' => '效果7'
-	),
-	'off',
-	'是否开启PC端动态背景图',
-	'介绍：用于设置PC端动态背景<br />
-		 注意：如果您填写了下方PC端静态壁纸，将优先展示下方静态壁纸！如需显示动态壁纸，请将PC端静态壁纸设置成空'
-);
-$JDynamic_Background_PC->setAttribute('class', 'joe_content joe_image');
-$form->addInput($JDynamic_Background_PC->multiMode());
-
-$JDynamic_Background_WAP = new Typecho_Widget_Helper_Form_Element_Select(
-	'JDynamic_Background_WAP',
-	array(
-		'off' => '关闭（默认）',
-		'backdrop1.js' => '效果1',
-		'backdrop2.js' => '效果2',
-		'backdrop3.js' => '效果3',
-		'backdrop4.js' => '效果4',
-		'backdrop5.js' => '效果5',
-		'backdrop6.js' => '效果6',
-		'backdrop7.js' => '效果7'
-	),
-	'off',
-	'是否开启移动端动态背景图',
-	'介绍：用于设置移动端动态背景<br />
-		 注意：如果您填写了下方移动端静态壁纸，将优先展示下方静态壁纸！如需显示动态壁纸，请将移动端静态壁纸设置成空'
-);
-$JDynamic_Background_WAP->setAttribute('class', 'joe_content joe_image');
-$form->addInput($JDynamic_Background_WAP->multiMode());
 
 $JWallpaper_Background_PC = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JWallpaper_Background_PC',

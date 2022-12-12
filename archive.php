@@ -1,12 +1,11 @@
-<?php $this->need('public/common.php'); ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
     <?php $this->need('public/include.php'); ?>
     <script src="https://fastly.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
-    <link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.archive.css'); ?>">
-    <script src="<?php _JStorageUrl('assets/js/joe.archive.js'); ?>"></script>
+    <link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.archive.css'); ?>">
+    <script src="<?= Joe::themeUrl('assets/js/joe.archive.js'); ?>"></script>
 </head>
 
 <body>

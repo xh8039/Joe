@@ -2,16 +2,6 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-$JIndex_Title = new Typecho_Widget_Helper_Form_Element_Text(
-	'JIndex_Title',
-	NULL,
-	NULL,
-	'自定义首页标题',
-	'介绍：填写后可自定义站点首页的标题'
-);
-$JIndex_Title->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Title);
-
 $JIndex_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JIndex_Header_Img',
 	NULL,
@@ -99,40 +89,6 @@ $JIndex_Ad = new Typecho_Widget_Helper_Form_Element_Textarea(
 );
 $JIndex_Ad->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Ad);
-
-$JIndex_Google_AdSense_switch = new Typecho_Widget_Helper_Form_Element_Select(
-	'JIndex_Google_AdSense_switch',
-	array(
-		'off' => '关闭（默认）',
-		'list' => '文章列表处',
-		'ad' => '文章列表上方'
-	),
-	'off',
-	'首页谷歌广告展示方式',
-	'介绍：首页谷歌广告展示方式，关闭后即便部署代码也将不再展示'
-);
-$JIndex_Google_AdSense_switch->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Google_AdSense_switch);
-
-$JIndex_Google_AdSense_phone = new Typecho_Widget_Helper_Form_Element_Textarea(
-	'JIndex_Google_AdSense_phone',
-	NULL,
-	NULL,
-	'首页移动端谷歌广告代码',
-	'介绍：用于移动端显示首页文章列表谷歌广告代码'
-);
-$JIndex_Google_AdSense_phone->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Google_AdSense_phone);
-
-$JIndex_Google_AdSense_pc = new Typecho_Widget_Helper_Form_Element_Textarea(
-	'JIndex_Google_AdSense_pc',
-	NULL,
-	NULL,
-	'首页PC端谷歌广告代码',
-	'介绍：用于PC端显示首页文章列表谷歌广告代码'
-);
-$JIndex_Google_AdSense_pc->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Google_AdSense_pc);
 
 $JIndex_Notice = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JIndex_Notice',

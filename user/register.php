@@ -7,7 +7,7 @@ $this->need('user/header.php');
 <head>
 	<title>账号注册 - <?php $this->options->title() ?></title>
 	<?php $this->need('public/include.php'); ?>
-	<link href="<?php _JStorageUrl('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
+	<link href="<?= Joe::themeUrl('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -34,7 +34,7 @@ $this->need('user/header.php');
 					<input class="form-control" type="text" id="email" placeholder="邮箱">
 				</div>
 				<?php
-				if (_EmailConfig()) {
+				if (Joe::EmailConfig()) {
 				?>
 					<div class="form-group">
 						<label>验证码</label>
@@ -135,7 +135,7 @@ $this->need('user/header.php');
 				if (!username) return Qmsg.warning("请输入用户名");
 				if (!email) return Qmsg.warning("请输入邮箱");
 				<?php
-				if (_EmailConfig()) {
+				if (Joe::EmailConfig()) {
 				?>
 					if (!code) return Qmsg.warning("请输入验证码");
 				<?php

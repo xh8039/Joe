@@ -8,14 +8,13 @@
  **/
 
 ?>
-<?php $this->need('public/common.php'); ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="<?php _JStorageUrl('assets/css/joe.video.min.css'); ?>">
-    <script src="<?php _JStorageUrl('assets/js/joe.video.js'); ?>"></script>
+    <link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.video.min.css'); ?>">
+    <script src="<?= Joe::themeUrl('assets/js/joe.video.js'); ?>"></script>
 </head>
 
 <body>

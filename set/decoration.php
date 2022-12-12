@@ -2,22 +2,35 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-$JFloat_Object = new Typecho_Widget_Helper_Form_Element_Select(
-	'JFloat_Object',
-	array(
-		'off' => '关闭',
-		'backdrop1.js' => '拟态蛛网',
-		'backdrop2.js' => '绚烂彩光',
-		'backdrop3.js' => '活力彩虹条',
-		'backdrop4.js' => '仿真樱花（默认）',
-		'backdrop5.js' => '素描气球',
-		'backdrop6.js' => '一条光线'
-	),
-	'backdrop4.js',
-	'是否开启全局动态飘落物体特效'
+$JLoading = new Typecho_Widget_Helper_Form_Element_Select(
+	'JLoading',
+	array('on' => '开启（默认）', 'off' => '关闭'),
+	'on',
+	'是否开启主题加载动画',
+	'介绍：开启后可防止使用谷歌内核的浏览器出现闪动问题'
 );
-$JFloat_Object->setAttribute('class', 'joe_content joe_decoration');
-$form->addInput($JFloat_Object->multiMode());
+$JLoading->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JLoading->multiMode());
+
+$JIndex_Link_Active = new Typecho_Widget_Helper_Form_Element_Select(
+	'JIndex_Link_Active',
+	array('on' => '开启（默认）', 'off' => '关闭'),
+	'on',
+	'是否开启文章列表选中动画',
+	'介绍：开启后首页和搜索页面展示的文章列表中文章被鼠标移入或者选中则会出现浮起动画'
+);
+$JIndex_Link_Active->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JIndex_Link_Active->multiMode());
+
+$JPendant_SSL = new Typecho_Widget_Helper_Form_Element_Select(
+	'JPendant_SSL',
+	array('on' => '开启（默认）', 'off' => '关闭'),
+	'on',
+	'是否开启SSL安全认证图标',
+	'介绍：开启后站点右下角将会显示SSL安全认证图标'
+);
+$JPendant_SSL->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JPendant_SSL->multiMode());
 
 $JGrey_Model = new Typecho_Widget_Helper_Form_Element_Select(
 	'JGrey_Model',
@@ -48,16 +61,6 @@ $JFooter_Fish = new Typecho_Widget_Helper_Form_Element_Select(
 );
 $JFooter_Fish->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JFooter_Fish->multiMode());
-
-$JHeader_Blur = new Typecho_Widget_Helper_Form_Element_Select(
-	'JHeader_Blur',
-	array('off' => '关闭（默认）', 'wap' => '仅移动端', 'pc' => '仅PC端', 'all' => '不限设备'),
-	'off',
-	'导航栏背景毛玻璃效果',
-	'介绍：毛玻璃效果启动后部分PC端浏览页面可能会产生卡顿'
-);
-$JHeader_Blur->setAttribute('class', 'joe_content joe_decoration');
-$form->addInput($JHeader_Blur->multiMode());
 
 $JList_Animate = new Typecho_Widget_Helper_Form_Element_Select(
 	'JList_Animate',
@@ -207,3 +210,14 @@ $JCursorEffects = new Typecho_Widget_Helper_Form_Element_Select(
 );
 $JCursorEffects->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JCursorEffects->multiMode());
+
+$JDocumentTitle = new Typecho_Widget_Helper_Form_Element_Text(
+	'JDocumentTitle',
+	NULL,
+	'网站崩溃了...',
+	'网页被隐藏时显示的标题',
+	'介绍：在PC端切换网页标签时，网站标题显示的内容。如果不填写，则默认不开启 <br />
+		 注意：严禁加单引号或双引号！！！否则会导致网站出错！！'
+);
+$JDocumentTitle->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JDocumentTitle);

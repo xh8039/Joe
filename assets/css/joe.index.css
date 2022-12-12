@@ -18,6 +18,7 @@
 	flex-wrap: wrap;
 	gap: 15px;
 	grid-template-columns: repeat(4, 1fr);
+	margin-bottom: 2vh;
 }
 
 .joe_index__banner-recommend.noswiper {
@@ -112,10 +113,6 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis
-}
-
-.joe_index__hot {
-	padding-top: 15px
 }
 
 .joe_index__hot-list {

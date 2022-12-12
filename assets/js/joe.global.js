@@ -75,38 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	/* 动态背景 */
-	{
-		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND_PC !== "off" && Joe.DYNAMIC_BACKGROUND_PC && !Joe
-			.WALLPAPER_BACKGROUND_PC) {
-			$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.DYNAMIC_BACKGROUND_PC}`);
-		}
-		if ((Joe.IS_MOBILE) && (Joe.DYNAMIC_BACKGROUND_WAP !== "off") && (Joe.DYNAMIC_BACKGROUND_WAP) && (!Joe
-			.WALLPAPER_BACKGROUND_WAP)) {
-			$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.DYNAMIC_BACKGROUND_WAP}`);
-		}
-	}
-
-	/* 全局飘落物 */
-	{
-		if (Joe.FLOAT_OBJECT != 'off') {
-			setTimeout(function () {
-				$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.FLOAT_OBJECT}`, () => {
-					// 为什么要重复三次 自然是考虑低端设备性能问题 区区三次也不至于写循环计时器 就这样
-					setTimeout(function () {
-						$('canvas:last').css('z-index', '999999999999999999');
-					}, 100);
-					setTimeout(function () {
-						$('canvas:last').css('z-index', '999999999999999999');
-					}, 500);
-					setTimeout(function () {
-						$('canvas:last').css('z-index', '999999999999999999');
-					}, 1500);
-				});
-			}, 3000);
-		}
-	}
-
 	/* 搜索框弹窗 */
 	{
 		$(".joe_header__above-search .input").on("click", (e) => {
@@ -627,23 +595,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			/* 处理开启关闭状态 */
 			if ($(".joe_header__slideout").hasClass("active")) {
 				$("body").css("overflow", "");
-				setTimeout(function () {
-					$('.joe_header').css({
-						'backdrop-filter': 'saturate(5) blur(20px)'
-					}, {
-						'-webkit-backdrop-filter': 'saturate(5) blur(20px)'
-					});
-				}, 350);
 				$(".joe_header__mask").removeClass("active slideout");
 				$(".joe_header__slideout").removeClass("active");
 			} else {
 				$("body").css("overflow", "hidden");
-				$('.joe_header').css({
-					'backdrop-filter': 'none'
-				}, {
-					'-webkit-backdrop-filter': 'none'
-				});
-				$('.joe_header__above').hide('fast');
 				$(".joe_header__mask").addClass("active slideout");
 				$(".joe_header__slideout").addClass("active");
 			}
@@ -658,24 +613,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			/* 处理开启关闭状态 */
 			if ($(".joe_header__searchout").hasClass("active")) {
 				$("body").css("overflow", "");
-				setTimeout(function () {
-					$('.joe_header').css({
-						'backdrop-filter': 'saturate(5) blur(20px)'
-					}, {
-						'-webkit-backdrop-filter': 'saturate(5) blur(20px)'
-					});
-				}, 350);
-				$('.joe_header__above').show('fast');
 				$(".joe_header__mask").removeClass("active slideout");
 				$(".joe_header__searchout").removeClass("active");
 			} else {
 				$("body").css("overflow", "hidden");
-				$('.joe_header__above').hide('fast')
-				$('.joe_header').css({
-					'backdrop-filter': 'none'
-				}, {
-					'-webkit-backdrop-filter': 'none'
-				});
 				$(".joe_header__mask").addClass("active");
 				$(".joe_header__searchout").addClass("active");
 			}
@@ -686,14 +627,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		$(".joe_header__mask").on("click", function () {
 			$("body").css("overflow", "");
-			setTimeout(function () {
-				$('.joe_header').css({
-					'backdrop-filter': 'saturate(5) blur(20px)'
-				}, {
-					'-webkit-backdrop-filter': 'saturate(5) blur(20px)'
-				});
-			}, 200);
-			$('.joe_header__above').show('fast');
 			$(".joe_header__mask").removeClass("active slideout");
 			$(".joe_header__searchout").removeClass("active");
 			$(".joe_header__slideout").removeClass("active");

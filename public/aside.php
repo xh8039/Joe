@@ -1,29 +1,4 @@
 <aside class="joe_aside">
-	<?php
-	if ($this->options->JAside_Author_Float == 'on') {
-	?>
-		<style type="text/css">
-			.joe_aside__item.author::after {
-				display: none;
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 273px;
-				background: url(<?php _JStorageUrl('assets/images/Author_Float.gif') ?>) no-repeat;
-				background-size: cover;
-				z-index: 3;
-				pointer-events: none
-			}
-
-			.joe_aside__item.author:hover::after {
-				display: block
-			}
-		</style>
-	<?php
-	}
-	?>
 	<section class="joe_aside__item author">
 		<img width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php $this->options->JAside_Author_Image() ?>" alt="博主栏壁纸" />
 		<div class="user">

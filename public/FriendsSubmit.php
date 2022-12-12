@@ -1,5 +1,5 @@
 <?php
-if ($this->options->JFriends_Submit == 'on' && _EmailConfig()) {
+if ($this->options->JFriends_Submit == 'on' && Joe::EmailConfig()) {
 ?>
 <style type="text/css">
 	.friend_submit {
@@ -102,7 +102,7 @@ if ($this->options->JFriends_Submit == 'on' && _EmailConfig()) {
 	</div>
 	<div class="input">
 		<label class="input-label">图标</label>
-		<input type="url" placeholder="LOGO地址，NULL = true" id="logo">
+		<input type="url" placeholder="LOGO地址，不填写则使用您的QQ头像" id="logo">
 	</div>
 	<div class="input">
 		<label class="input-label">Q Q</label>

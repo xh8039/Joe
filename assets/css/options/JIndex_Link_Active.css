@@ -1,0 +1,32 @@
+.joe_list__item:hover {
+	opacity: 1;
+	border-radius: 0.7vh;
+	transform: translateY(-3px);
+	box-shadow: 0 2px 10px rgb(0 0 0 / 15%);
+	animation: index-link-active 1s cubic-bezier(0.315, 0.605, 0.375, 0.925) forwards;
+}
+
+.joe_detail__friends-item .contain:hover {
+	animation: index-link-active 1s cubic-bezier(0.315, 0.605, 0.375, 0.925) forwards;
+}
+
+.joe_detail__related-content .item:hover {
+	-webkit-transform: translateY(-5px);
+	transform: translateY(-5px);
+	box-shadow: 0 34px 20px -24px rgba(136, 161, 206, 0.3);
+	animation: index-link-active 1s cubic-bezier(0.315, 0.605, 0.375, 0.925) forwards;
+}
+
+@keyframes index-link-active {
+	0% {
+		transform: perspective(2000px) rotateX(0) rotateY(0) translateZ(0);
+	}
+
+	16% {
+		transform: perspective(2000px) rotateX(10deg) rotateY(5deg) translateZ(25px);
+	}
+
+	100% {
+		transform: perspective(2000px) rotateX(0) rotateY(0) translateZ(40px);
+	}
+}

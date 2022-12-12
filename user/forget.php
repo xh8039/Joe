@@ -7,7 +7,7 @@ $this->need('user/header.php');
 <head>
 	<title>重置密码 - <?php $this->options->title() ?></title>
 	<?php $this->need('public/include.php'); ?>
-	<link href="<?php _JStorageUrl('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
+	<link href="<?= Joe::themeUrl('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
 </head>
 
 <body>

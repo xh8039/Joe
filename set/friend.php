@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $JFriends = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JFriends',
 	NULL,
-	'易航博客 || http://blog.bri6.cn || http://blog.bri6.cn/usr/uploads/logo/favicon.ico || 一名编程爱好者的博客，记录与分享编程、学习中的知识点',
+	'易航博客 || http://blog.bri6.cn || http://blog.bri6.cn/favicon.ico || 一名编程爱好者的博客，记录与分享编程、学习中的知识点',
 	'友情链接（非必填）',
 	'介绍：用于填写友情链接 <br />
          注意：您需要先增加友链链接页面（新增独立页面-右侧模板选择友链），该项才会生效 <br />

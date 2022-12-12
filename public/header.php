@@ -1,30 +1,12 @@
+<?php $this->options->JLoading == 'on' ? $this->need('public/loading.php') : null ?>
 <header class="joe_header <?php echo $this->is('post') ? 'current' : '' ?>">
-    
+
 	<div class="joe_header__above">
 		<div class="joe_container">
 			<svg class="joe_header__above-slideicon" viewBox="0 0 1152 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
 				<path d="M76.032 872a59.968 59.968 0 1 0 0 120h999.936a59.968 59.968 0 1 0 0-120H76.032zm16-420.032a59.968 59.968 0 1 0 0 120h599.936a59.968 59.968 0 1 0 0-119.936H92.032zM76.032 32a59.968 59.968 0 1 0 0 120h999.936a60.032 60.032 0 0 0 0-120H76.032z" />
 			</svg>
 			<a title="<?php $this->options->title(); ?>" class="joe_header__above-logo" href="<?php $this->options->siteUrl(); ?>">
-				<style>
-					html[data-night='night'] .joe_header__above-logo iframe {
-						display: none;
-					}
-
-					.joe_header__above-logo iframe {
-						max-width: 150px;
-						max-height: 45px;
-						-o-object-fit: cover;
-						object-fit: cover;
-					}
-
-					@media (max-width: 768px) {
-						html .joe_header__above-logo iframe {
-							max-width: 150px;
-							max-height: 45px;
-						}
-					}
-				</style>
 				<img data-src="<?php $this->options->JLogo() ?>" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="<?php $this->options->title(); ?>" class="lazyload" />
 				<svg class="profile-color-modes" height="45" viewBox="0 0 106 60" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
 					<g class="profile-color-modes-illu-group profile-color-modes-illu-red">
@@ -240,23 +222,18 @@
 							<path d="M114.223 1024a46.91 46.91 0 0 1-46.91-46.91 465.281 465.281 0 0 1 468.332-460.704 475.197 475.197 0 0 1 228.827 58.35 46.91 46.91 0 1 1-45.384 82.378 381.378 381.378 0 0 0-183.443-46.909 371.08 371.08 0 0 0-374.131 366.886A47.29 47.29 0 0 1 114.223 1024zM944.483 755.129a38.138 38.138 0 0 0-58.733 0l-146.449 152.55-92.675-91.53a38.138 38.138 0 0 0-58.732 0 43.858 43.858 0 0 0 0 61.402l117.083 122.422a14.492 14.492 0 0 0 8.39 4.577c4.196 0 4.196 4.195 8.39 4.195h32.037c4.195 0 4.195-4.195 8.39-4.195s4.195-4.577 8.39-4.577L946.39 816.15a48.054 48.054 0 0 0-1.906-61.02z" />
 							<path d="M763.328 776.104L730.53 744.45a79.708 79.708 0 0 0 32.798 31.654" />
 						</svg>
-						<a href="<?php _JAside_LR_Url('login'); ?>" rel="noopener noreferrer nofollow">登录</a>
+						<a href="<?= Joe::userUrl('login'); ?>" rel="noopener noreferrer nofollow">登录</a>
 						<?php if ($this->options->allowRegister) : ?>
 							<span class="split">/</span>
-							<a href="<?php _JAside_LR_Url('register'); ?>" rel="noopener noreferrer nofollow">注册</a>
+							<a href="<?= Joe::userUrl('register'); ?>" rel="noopener noreferrer nofollow">注册</a>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 			</div>
 		</div>
 	</div>
-	<?php
-    if ($this->options->JHeader_Counter == 'on') {
-        ?>
-        <div id="HeaderCounter"></div>
-        <?php
-    }
-    ?>
+	<?php if ($this->options->JHeader_Counter == 'on') echo '<div id="HeaderCounter"></div>'; ?>
+
 	<div class="joe_header__searchout">
 		<div class="joe_container">
 			<div class="joe_header__searchout-inner">
@@ -473,9 +450,9 @@
 					</a>
 					<ul class="slides panel-body">
 						<li>
-							<a class="link" href="<?php _JAside_LR_Url('login'); ?>" rel="noopener noreferrer nofollow">登录</a>
+							<a class="link" href="<?= Joe::userUrl('login'); ?>" rel="noopener noreferrer nofollow">登录</a>
 							<?php if ($this->options->allowRegister) : ?>
-								<a class="link" href="<?php _JAside_LR_Url('register'); ?>" rel="noopener noreferrer nofollow">注册</a>
+								<a class="link" href="<?= Joe::userUrl('register'); ?>" rel="noopener noreferrer nofollow">注册</a>
 							<?php endif; ?>
 						</li>
 					</ul>

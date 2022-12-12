@@ -71,60 +71,22 @@ function _getPost($self)
 	$self->response->throwJson(array("data" => $result));
 }
 
-// 获取友链列表
-function _friendList($self)
-{
-	$friends = [];
-	$friends_text = Helper::options()->JFriends;
-	if ($friends_text) {
-		$friends_arr = explode("\r\n", $friends_text);
-		if (count($friends_arr) > 0) {
-			for ($i = 0; $i < count($friends_arr); $i++) {
-				$friends_array = explode("||", $friends_arr[$i]);
-				$name = trim($friends_array[0]);
-				$url = trim($friends_array[1]);
-				$avatar = empty(trim($friends_array[2])) ? _getAvatarLazyload(false) : $friends_array[2];
-				$desc = trim($friends_array[3]);
-				$friends[] = array("name" => $name, "url" => $url, "avatar" => trim($avatar), "desc" => $desc);
-			};
-		}
-	}
-	if (empty(sizeof($friends))) {
-		$self->response->throwJson([
-			'code' => 0,
-		]);
-	}
-	if (Helper::options()->JFriends_shuffle == 'on') {
-		shuffle($friends);
-	}
-	$self->response->setStatus(200);
-	$self->response->throwJson([
-		'code' => 200,
-		'data' => $friends
-	]);
-}
-
 // 百度统计展示
 function _getstatistics($self)
 {
-	$statistics_config = explode(PHP_EOL, Helper::options()->baidu_statistics);
+	$statistics_config = Joe::baiduStatisticConfig();
 	if (is_array($statistics_config)) {
-		$GLOBALS['access_token'] = trim($statistics_config[0]);
-		$GLOBALS['refresh_token'] = trim($statistics_config[1]);
-		$GLOBALS['client_id'] = trim($statistics_config[2]);
-		$GLOBALS['client_secret'] = trim($statistics_config[3]);
 	} else {
 		$self->response->setStatus(200);
 		$self->response->throwJson(array('access_token' => 'off'));
 	}
-	if (empty($GLOBALS['access_token'])) {
+	if (empty($statistics_config['access_token'])) {
 		$self->response->setStatus(200);
 		$self->response->throwJson(array('access_token' => 'off'));
 	}
 	// 获取站点列表
-	function baidu_list($self)
-	{
-		$url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . $GLOBALS['access_token'];
+	$baidu_list = function() use ($statistics_config, $self) {
+	    $url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . $statistics_config['access_token'];
 		$data = json_decode(file_get_contents($url), true);
 		if (isset($data['error_code'])) {
 			$self->response->setStatus(404);
@@ -134,20 +96,20 @@ function _getstatistics($self)
 			$self->response->throwJson($data);
 		}
 		return $data['list'];
-	}
+	};
 	// 获取站点详情
-	function web_metrics($list, $start_date, $end_date)
+	$web_metrics = function($list, $start_date, $end_date) use ($statistics_config)
 	{
-		$access_token = $GLOBALS['access_token'];
+		$access_token = $statistics_config['access_token'];
 		$site_id = $list['site_id'];
 		$url = "https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=$access_token&site_id=$site_id&method=trend/time/a&start_date=$start_date&end_date=$end_date&metrics=pv_count,ip_count&gran=day";
-		$data = _curl_post($url, null, null);
-		$data = json_decode($data['body'], true);
+		Curl::post($url);
+		$data = Curl::toArray();
 		$data = $data['result']['sum'][0];
 		return $data;
-	}
+	};
 	$domain = $_SERVER['HTTP_HOST'];
-	$list = baidu_list($self);
+	$list = $baidu_list();
 	for ($i = 0; $i < count($list); $i++) {
 		if ($list[$i]['domain'] == $domain) {
 			$list = $list[$i];
@@ -161,9 +123,9 @@ function _getstatistics($self)
 		$self->response->setStatus(404);
 		$self->response->throwJson($data);
 	}
-	$today = web_metrics($list, date('Ymd'), date('Ymd'));
-	$yesterday = web_metrics($list, date('Ymd', strtotime("-1 days")), date('Ymd', strtotime("-1 days")));
-	$moon = web_metrics($list, date('Ym') . '01', date('Ymd'));
+	$today = $web_metrics($list, date('Ymd'), date('Ymd'));
+	$yesterday = $web_metrics($list, date('Ymd', strtotime("-1 days")), date('Ymd', strtotime("-1 days")));
+	$moon = $web_metrics($list, date('Ym') . '01', date('Ymd'));
 	$data = array(
 		'today' => $today,
 		'yesterday' => $yesterday,
@@ -230,14 +192,11 @@ function _handleAgree($self)
 function _getRecord($self)
 {
 	$self->response->setStatus(200);
-	$site = $self->request->site;
-	$url = 'https://www.baidu.com/s';
-	$param = [
+	Curl::param([
 		'ie' => 'utf8',
-		'wd' => $site
-	];
-	$options = [
-		'header' => [
+		'wd' => $self->request->site
+	]);
+	Curl::header([
 			'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
 			'Accept-Encoding: gzip, deflate',
 			'Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -252,11 +211,10 @@ function _getRecord($self)
 			'Sec-Fetch-Site: same-site',
 			'Sec-Fetch-User: ?1',
 			'Upgrade-Insecure-Requests: 1',
-			'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77'
-		],
-		'cookie' => '__yjs_duid=1_ac4d0f87736bc5e2ab5596ce1a7367601643347382579; H_WISE_SIDS=110085_127969_179345_184716_185637_189755_191068_191251_192385_194085_194529_195343_196425_196527_197242_197711_197956_198418_199022_199313_199568_199996_200149_200960_200993_201108_201192_201545_201707_202059_202759_202910_203309_203360_203519_203605_203886_204031_204132_204265_204322_204405_204432_204675_204725_204824_204859_204919_204940_205009_205087_205094_205218_205380_205386_205412_205485_205656_205690_205710_205831_205847_205919_206098_206283_206476_206767_206927_207005_207124_207136_207212_207234_207363_207497_207506_8000076_8000128_8000140_8000150_8000159_8000163_8000167_8000177_8000179_8000186; BD_UPN=12314753; PSTM=1656921064; BIDUPSID=1C10D9F853DBCC6E9738B268FCC46875; BAIDUID=40E6CCC7EEB3D860EB05C626C3F2C44B:FG=1; H_WISE_SIDS_BFESS=110085_127969_179345_184716_185637_189755_191068_191251_192385_194085_194529_195343_196425_196527_197242_197711_197956_198418_199022_199313_199568_199996_200149_200960_200993_201108_201192_201545_201707_202059_202759_202910_203309_203360_203519_203605_203886_204031_204132_204265_204322_204405_204432_204675_204725_204824_204859_204919_204940_205009_205087_205094_205218_205380_205386_205412_205485_205656_205690_205710_205831_205847_205919_206098_206283_206476_206767_206927_207005_207124_207136_207212_207234_207363_207497_207506_8000076_8000128_8000140_8000150_8000159_8000163_8000167_8000177_8000179_8000186; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BA_HECTOR=81al8g05a48lal01052l1cdj1heel6a16; ZFY=UN3DgzqvtqoeRQZLRr7OUad79UfJKR3Npye2ytuzKYQ:C; delPer=0; PSINO=2; BD_HOME=1; H_PS_PSSID=36832_36559_36753_36726_36413_36955_36167_36918_36570_36804_36965_36740_26350_22160'
-	];
-	$output = _curl_get($url, $param, $options)['body'];
+			'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77',
+			'Cookie: __yjs_duid=1_ac4d0f87736bc5e2ab5596ce1a7367601643347382579; H_WISE_SIDS=110085_127969_179345_184716_185637_189755_191068_191251_192385_194085_194529_195343_196425_196527_197242_197711_197956_198418_199022_199313_199568_199996_200149_200960_200993_201108_201192_201545_201707_202059_202759_202910_203309_203360_203519_203605_203886_204031_204132_204265_204322_204405_204432_204675_204725_204824_204859_204919_204940_205009_205087_205094_205218_205380_205386_205412_205485_205656_205690_205710_205831_205847_205919_206098_206283_206476_206767_206927_207005_207124_207136_207212_207234_207363_207497_207506_8000076_8000128_8000140_8000150_8000159_8000163_8000167_8000177_8000179_8000186; BD_UPN=12314753; PSTM=1656921064; BIDUPSID=1C10D9F853DBCC6E9738B268FCC46875; BAIDUID=40E6CCC7EEB3D860EB05C626C3F2C44B:FG=1; H_WISE_SIDS_BFESS=110085_127969_179345_184716_185637_189755_191068_191251_192385_194085_194529_195343_196425_196527_197242_197711_197956_198418_199022_199313_199568_199996_200149_200960_200993_201108_201192_201545_201707_202059_202759_202910_203309_203360_203519_203605_203886_204031_204132_204265_204322_204405_204432_204675_204725_204824_204859_204919_204940_205009_205087_205094_205218_205380_205386_205412_205485_205656_205690_205710_205831_205847_205919_206098_206283_206476_206767_206927_207005_207124_207136_207212_207234_207363_207497_207506_8000076_8000128_8000140_8000150_8000159_8000163_8000167_8000177_8000179_8000186; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BA_HECTOR=81al8g05a48lal01052l1cdj1heel6a16; ZFY=UN3DgzqvtqoeRQZLRr7OUad79UfJKR3Npye2ytuzKYQ:C; delPer=0; PSINO=2; BD_HOME=1; H_PS_PSSID=36832_36559_36753_36726_36413_36955_36167_36918_36570_36804_36965_36740_26350_22160'
+		]);
+	$output = Curl::get('https://www.baidu.com/s');
 	$res = str_replace([' ', "\n", "\r"], '', $output);
 	if ((strpos($res, "抱歉，没有找到与")) || (strpos($res, "找到相关结果约0个")) || (strpos($res, "没有找到该URL")) || (strpos($res, "抱歉没有找到"))) {
 		$self->response->throwJson(array("data" => "未收录"));
@@ -271,7 +229,6 @@ function _getRecord($self)
 function _pushRecord($self)
 {
 	$self->response->setStatus(200);
-
 	$token = Helper::options()->JBaiduToken;
 	$domain = $self->request->domain;
 	$url = $self->request->url;
@@ -334,7 +291,7 @@ function _getWallpaperType($self)
 {
 	$self->response->setStatus(200);
 
-	$json = _curl("http://cdn.apc.360.cn/index.php?c=WallPaper&a=getAllCategoriesV2&from=360chrome");
+	$json = Curl::get("http://cdn.apc.360.cn/index.php?c=WallPaper&a=getAllCategoriesV2&from=360chrome");
 	$res = json_decode($json, TRUE);
 	if ($res['errno'] == 0) {
 		$self->response->throwJson([
@@ -357,7 +314,7 @@ function _getWallpaperList($self)
 	$cid = $self->request->cid;
 	$start = $self->request->start;
 	$count = $self->request->count;
-	$json = _curl("http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome");
+	$json = Curl::get("http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome");
 	$res = json_decode($json, TRUE);
 	if ($res['errno'] == 0) {
 		$self->response->throwJson([
@@ -385,7 +342,7 @@ function _getMaccmsList($self)
 	$pg = $self->request->pg ? $self->request->pg : '';
 	$wd = $self->request->wd ? $self->request->wd : '';
 	if ($cms_api) {
-		$json = _curl("{$cms_api}?ac={$ac}&ids={$ids}&t={$t}&pg={$pg}&wd={$wd}");
+		$json = Curl::get("{$cms_api}?ac={$ac}&ids={$ids}&t={$t}&pg={$pg}&wd={$wd}");
 		$res = json_decode($json, TRUE);
 		if ($res['code'] === 1) {
 			$self->response->throwJson([
@@ -413,7 +370,7 @@ function _getHuyaList($self)
 
 	$gameId = $self->request->gameId;
 	$page = $self->request->page;
-	$json = _curl("https://www.huya.com/cache.php?m=LiveList&do=getLiveListByPage&gameId={$gameId}&tagAll=0&page={$page}");
+	$json = Curl::get("https://www.huya.com/cache.php?m=LiveList&do=getLiveListByPage&gameId={$gameId}&tagAll=0&page={$page}");
 	$res = json_decode($json, TRUE);
 	if ($res['status'] === 200) {
 		$self->response->throwJson([
@@ -572,10 +529,13 @@ function _friendSubmit($self)
 			'msg' => '必填项不能为空'
 		]);
 	}
+	if (empty($logo)) {
+	    $logo = 'http://q4.qlogo.cn/headimg_dl?dst_uin=' . $qq . '&spec=640';
+	}
 	$EmailTitle = '友链申请';
 	$subtitle = $title . '向您提交了友链申请：';
 	$content = "$title || $link || $logo || $description<br><br>对方QQ号：$qq";
-	$SendEmail = _SendEmail($EmailTitle, $subtitle, $content);
+	$SendEmail = Joe::sendEmail($EmailTitle, $subtitle, $content);
 	if ($SendEmail == 'success') {
 		$self->response->throwJson([
 			'code' => 1,

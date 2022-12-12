@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					preload: 'auto',
 					lrcType: 3,
 					autotheme: this.options.autotheme,
+					storage: this.options.url,
 					audio: [
 						{
 							url: this.options.url,
@@ -90,7 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
 						lrcType: 1,
 						theme: this.options.color,
 						autoplay: this.options.autoplay,
-						autotheme : this.options.autotheme,
+						autotheme: this.options.autotheme,
+						storage: this.options.id,
 						loop: this.options.loop,
 						preload: 'auto',
 						audio
@@ -126,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						theme: this.options.color,
 						autoplay: this.options.autoplay,
 						autotheme : this.options.autotheme,
+						storage: this.options.id,
 						loop: this.options.loop,
 						order : this.options.order,
 						preload: 'auto',

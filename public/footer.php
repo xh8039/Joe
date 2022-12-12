@@ -96,11 +96,6 @@ if ($this->options->JPendant_SSL == 'on') {
 	Typecho_Cookie::delete('__typecho_notice_type');
 	?>
 	console.log("%cTheme By Joe再续前缘版", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
-	<?php
-	if (strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false && $this->options->JQQReportPrevent == 'on') {
-	    echo 'document.getElementsByTagName = function(a) {if (a == "meta") {window.location.href = "http://www.baidu.com";}}',PHP_EOL;
-	}
-	?>
 	<?php $this->options->JCustomScript() ?>
 </script>
 

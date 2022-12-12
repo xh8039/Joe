@@ -21,13 +21,3 @@ $JTencentProtect = new Typecho_Widget_Helper_Form_Element_Select(
 );
 $JTencentProtect->setAttribute('class', 'joe_content joe_safe');
 $form->addInput($JTencentProtect->multiMode());
-
-$JQQReportPrevent = new Typecho_Widget_Helper_Form_Element_Select(
-	'JQQReportPrevent',
-	array('on' => '开启（默认）', 'off' => '关闭'),
-	'on',
-	'是否开启反QQ用户恶意举报',
-	'介绍：开启后，用户在QQ客户端内举报网站将会自动跳转到百度页面'
-);
-$JQQReportPrevent->setAttribute('class', 'joe_content joe_safe');
-$form->addInput($JQQReportPrevent->multiMode());

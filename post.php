@@ -140,7 +140,7 @@
 	</div>
 	<?php if ($this->options->JAutoc == 'on') { ?>
 		<link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.autoc.css'); ?>">
-		<script src="<?= Joe::themeUrl('assets/js/joe.autoc.js'); ?>"></script>
+		<script src="<?= Joe::jsdelivrUrl('Joe/assets/js/joe.autoc.min.js'); ?>"></script>
 		<script type="text/javascript">
 			if ($(".joe_detail__article").length > 0) {
 				// 创建文章导读目录

@@ -194,7 +194,7 @@ class Editor
 		<script src="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
 		<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/parse/parse.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/dist/index.bundle.js"></script>
+		<script src="<?= Joe::jsdelivrUrl('Joe/typecho/write/dist/index.bundle.min.js') ?>"></script>
 		<script src="<?php Helper::options()->themeUrl('assets/js/joe.short.js') ?>"></script>
 		<section class="typecho-post-option">
 			<label for="token-input-tags" class="typecho-label"><?php _e('标签'); ?></label>

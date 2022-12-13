@@ -1,9 +1,6 @@
 <?php
 
 /* 判断是否是手机 */
-
-use Utils\Helper;
-
 function _isMobile()
 {
 	if (isset($_SERVER['HTTP_X_WAP_PROFILE']))
@@ -135,11 +132,11 @@ function _getAgree($item, $type = true)
 /* 通过邮箱生成头像地址 */
 function _getAvatarByMail($mail)
 {
-    if (empty($mail)) {
-        $db = Typecho_Db::get();
-        $authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
-        $mail = $authoInfo['mail'];
-    }
+	if (empty($mail)) {
+		$db = Typecho_Db::get();
+		$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
+		$mail = $authoInfo['mail'];
+	}
 	$gravatarsUrl = Helper::options()->JCustomAvatarSource ? Helper::options()->JCustomAvatarSource : 'https://gravatar.helingqi.com/wavatar/';
 	$mailLower = strtolower($mail);
 	$md5MailLower = md5($mailLower);
@@ -176,7 +173,7 @@ function _getAbstract($item, $type = true)
 	}
 	if ($abstract === '') {
 		$abstract = "暂无简介";
-	}else {
+	} else {
 		$abstract = Joe::markdownFilter($abstract);
 	}
 	if ($type) echo $abstract;

@@ -29,6 +29,8 @@ function themeConfig($form)
 		window.Joe = {
 			title: '<?php Helper::options()->title() ?>',
 			version: '<?= JOE_VERSION ?>',
+			domain: window.location.host,
+			service_domain: '//auth.bri6.cn/server/joe/',
 			logo: '<?php Helper::options()->JLogo() ?>',
 			Favicon: '<?php Helper::options()->JFavicon() ?>'
 		}

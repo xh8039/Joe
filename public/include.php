@@ -40,7 +40,7 @@
 <?php endif; ?>
 <script src="<?= Joe::themeUrl('assets/js/joe.smooth.js'); ?>" async></script>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
-	<script src="<?= Joe::themeUrl('assets/cursor/' . $this->options->JCursorEffects); ?>" async></script>
+	<script src="<?= 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/cursor/' . $this->options->JCursorEffects ?>" async></script>
 <?php endif; ?>
 <script src="<?= Joe::themeUrl('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= Joe::themeUrl('assets/js/joe.short.js'); ?>"></script>

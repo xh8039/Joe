@@ -19,6 +19,7 @@
 		THEME_URL: `<?php $this->options->themeUrl() ?>`,
 		LIVE2D: `<?php $this->options->JLive2d() ?>`,
 		BASE_API: `<?php echo $this->options->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api' ?>`,
+		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
 		BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
 		BING_PUSH: <?php echo $this->options->JBingToken ? 'true' : 'false' ?>,
@@ -74,10 +75,6 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		if ($this->options->JWallpaper_Background_PC) {
 			echo 'html body::before {background: url(' . $this->options->JWallpaper_Background_PC . ')}';
 		}
-	}
-
-	if ($this->options->JHeader_Counter == 'on') {
-		echo '#HeaderCounter {width: 0;height: 3px;z-index: 1001;background-image: var(--back-line-right);border-radius: 5px;transition: width 0.45s;}';
 	}
 
 	// 全局灰色

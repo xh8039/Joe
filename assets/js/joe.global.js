@@ -1,27 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	// 设置$.getScript()方法缓存
+	/* 设置$.getScript()方法缓存 */
 	{
 		jQuery.ajaxSetup({
 			cache: true
 		});
 	}
 
-	// 顶部浏览进度条
-	{
-		$(window).scroll(function () {
-			let a = $(window).scrollTop(),
-				c = $(document).height(),
-				b = $(window).height();
-			scrollPercent = a / (c - b) * 100;
-			scrollPercent = scrollPercent.toFixed(1);
-			$("#HeaderCounter").css({
-				width: scrollPercent + "%"
-			});
-		}).trigger("scroll");
-	}
-
-	// 展示百度统计信息
+	/* 展示百度统计信息 */
 	{
 		if ($('#statistics').is(':visible')) {
 			$.ajax({
@@ -71,6 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
 				localStorage.setItem("data-night", "night");
 			}
 		});
+	}
+
+	/* 动态背景 */
+	{
+		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND !== "off" && Joe.DYNAMIC_BACKGROUND && !Joe.WALLPAPER_BACKGROUND_PC) {
+			$.getScript(`https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
+		}
 	}
 
 	/* 搜索框弹窗 */
@@ -727,7 +720,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		let motto = Joe.MOTTO;
 		if (!motto) motto = "有钱终成眷属，没钱亲眼目睹";
-		if (motto.includes("//")) {
+		var pattern = /http[s]?:\/\//;
+		if (pattern.test(motto)) {
 			$.ajax({
 				url: motto,
 				dataType: "text",

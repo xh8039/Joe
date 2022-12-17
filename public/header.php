@@ -232,7 +232,38 @@
 			</div>
 		</div>
 	</div>
-	<?php if ($this->options->JHeader_Counter == 'on') echo '<div id="HeaderCounter"></div>'; ?>
+
+	<?php
+	if ($this->options->JHeader_Counter == 'on') {
+	?>
+		<!-- 顶部浏览进度条开始 -->
+		<style>
+			#HeaderCounter {
+				width: 0;
+				height: 3px;
+				z-index: 1001;
+				background-image: var(--back-line-right);
+				border-radius: 5px;
+				transition: width 0.45s;
+			}
+		</style>
+		<div id="HeaderCounter"></div>
+		<script>
+			$(window).scroll(function() {
+				let a = $(window).scrollTop(),
+					c = $(document).height(),
+					b = $(window).height();
+				scrollPercent = a / (c - b) * 100;
+				scrollPercent = scrollPercent.toFixed(1);
+				$("#HeaderCounter").css({
+					width: scrollPercent + "%"
+				});
+			}).trigger("scroll");
+		</script>
+		<!-- 顶部浏览进度条结束 -->
+	<?php
+	}
+	?>
 
 	<div class="joe_header__searchout">
 		<div class="joe_container">

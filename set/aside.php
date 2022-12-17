@@ -40,7 +40,7 @@ $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
 	NULL,
 	"https://fastly.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/wap_aside_image.jpg",
 	'博主栏背景壁纸 - WAP',
-	'介绍：用于修改WAP端博主栏的背景壁纸 <br/>
+	'介绍：用于修改移动端博主栏的背景壁纸 <br/>
 		 格式：图片地址 或 Base64地址'
 );
 $JAside_Wap_Image->setAttribute('class', 'joe_content joe_aside');
@@ -51,7 +51,7 @@ $JAside_Wap_Image_Height = new Typecho_Widget_Helper_Form_Element_Text(
 	NULL,
 	'150px',
 	'博主栏背景壁纸高度 - WAP',
-	'介绍：用于修改WAP端博主栏的背景壁纸高度 <br>
+	'介绍：用于修改移动端博主栏的背景壁纸高度 <br>
 		 例如：100%丨auto丨150px'
 );
 $JAside_Wap_Image_Height->setAttribute('class', 'joe_content joe_aside');

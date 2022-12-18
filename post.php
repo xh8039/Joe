@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 	<?php $this->need('public/include.php'); ?>
 	<?php if ($this->options->JPrismTheme) : ?>
@@ -138,21 +139,16 @@
 			</div>
 			<?php $this->need('public/footer.php'); ?>
 	</div>
-	<?php if ($this->options->JAside_Autoc == 'on' && !_isMobile()) { ?>
-		<link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.autoc.css'); ?>">
+	<?php if ($this->options->JAside_Autoc == 'on') { ?>
+		<link rel="stylesheet" href="<?= Joe::jsdelivrUrl('Joe/assets/css/joe.autoc.min.css'); ?>">
 		<script src="<?= Joe::jsdelivrUrl('Joe/assets/js/joe.autoc.min.js'); ?>"></script>
 		<script type="text/javascript">
 			if ($(".joe_detail__article").length > 0) {
 				// 创建文章导读目录
-				let navigation = new AutocJs({
-					// 文章正文 DOM 节点的 ID 选择器
-					article: '.joe_detail__article',
-
-					// 要收集的标题选择器
-					selector: 'h1,h2,h3,h4,h5,h6',
-
-					// 侧边栏导航的标题
-					title: '文章导读',
+				new AutocJs({
+					article: '.joe_detail__article', // 文章正文 DOM 节点的 ID 选择器
+					selector: 'h1,h2,h3,h4,h5,h6', // 要收集的标题选择器
+					title: '文章导读', // 侧边栏导航的标题
 
 					// 文章导读导航的位置
 					// outside - 以侧边栏菜单形式显示（默认值）
@@ -170,18 +166,10 @@
 					// front - 在标题最前面（默认值）
 					// back - 在标题后面
 					anchorAt: 'back',
-
-					// 是否生成文章导读导航
-					isGenerateOutline: true,
-
-					// 是否在文章导读导航中显示段落章节编号
-					isGenerateOutlineChapterCode: false,
-
-					// 是否在正文的文章标题中显示段落章节编号
-					isGenerateHeadingChapterCode: false,
-
-					// 用来指定是否在文章标题位置生成锚点链接图标：true - 生成锚点链接图标，并给标题添加 ID 属性，false - 不生成锚点链接图标，仅给标题添加 ID 属性。
-					isGenerateHeadingAnchor: false
+					isGenerateOutline: true, // 是否生成文章导读导航
+					isGenerateOutlineChapterCode: false, // 是否在文章导读导航中显示段落章节编号
+					isGenerateHeadingChapterCode: false, // 是否在正文的文章标题中显示段落章节编号
+					isGenerateHeadingAnchor: false // 用来指定是否在文章标题位置生成锚点链接图标：true - 生成锚点链接图标，并给标题添加 ID 属性，false - 不生成锚点链接图标，仅给标题添加 ID 属性。
 				});
 				// 可以在创建导航后，重置配置信息，重新生成新的导航
 				// 	navigation.reload({
@@ -192,12 +180,45 @@
 				// 	})
 			}
 			if ($('.outline-heading').length > 0) {
-				$('.joe_header').css('position','static')
+				$('.joe_header').css('position', 'static')
 			} else {
 				$('.outline-outside').remove()
 			}
 		</script>
-	<?php
+		<?php
+		if (_isMobile()) { ?>
+			<style>
+				.joe_action>.joe_action_item.outline-outside-switcher {
+					margin-top: 15px;
+					position: relative;
+				}
+
+				.joe_action_item .outline-outside {
+					position: absolute;
+					display: none;
+					right: 50px;
+					bottom: 0px;
+					padding: 10px;
+					border-radius: var(--radius-wrap);
+				}
+
+				.joe_action_item .outline-outside.active {
+					display: block;
+				}
+			</style>
+			<script>
+				$('.joe_action').append('<div class="joe_action_item outline-outside-switcher"><svg t="1671370562018" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3733" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M896 256H128V128h768v128z m0 192H128v128h768V448z m0 320H128v128h768V768z" p-id="3734"></path></svg></div>')
+				let joe_aside = $('.joe_aside .joe_aside__item.outline-outside .joe_aside__item-contain').html()
+				$('.joe_aside .joe_aside__item.outline-outside').remove()
+				let html = document.createElement('div')
+				html.className = 'outline-outside'
+				html.innerHTML = joe_aside
+				$('.outline-outside-switcher').append(html)
+				$('.joe_action_item.outline-outside-switcher').click(() => {
+					$('.joe_action_item.outline-outside-switcher .outline-outside').toggle(200);
+				})
+			</script>
+	<?php }
 	}
 	?>
 </body>

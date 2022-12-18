@@ -200,6 +200,7 @@
 					bottom: 0px;
 					padding: 10px;
 					border-radius: var(--radius-wrap);
+					box-shadow: 0 0 10px rgb(116 116 116 / 20%);
 				}
 
 				.joe_action_item .outline-outside.active {

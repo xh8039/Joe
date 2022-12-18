@@ -138,7 +138,7 @@
 			</div>
 			<?php $this->need('public/footer.php'); ?>
 	</div>
-	<?php if ($this->options->JAutoc == 'on') { ?>
+	<?php if ($this->options->JAside_Autoc == 'on' && !_isMobile()) { ?>
 		<link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.autoc.css'); ?>">
 		<script src="<?= Joe::jsdelivrUrl('Joe/assets/js/joe.autoc.min.js'); ?>"></script>
 		<script type="text/javascript">
@@ -191,13 +191,10 @@
 				// 		isGenerateHeadingChapterCode: true
 				// 	})
 			}
-			if ($('.outline-chapter').length <= 0) {
-				$('.outline-outside-switcher').remove();
-			}
 			if ($('.outline-heading').length > 0) {
-				//CSS V3版本666好吧
+				$('.joe_header').css('position','static')
 			} else {
-				$('.outline-outside').hide()
+				$('.outline-outside').remove()
 			}
 		</script>
 	<?php

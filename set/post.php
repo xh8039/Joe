@@ -26,19 +26,6 @@ $JPost_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JPost_Header_Img->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Header_Img);
 
-$JAutoc = new Typecho_Widget_Helper_Form_Element_Select(
-	'JAutoc',
-	array(
-		'on' => '开启（默认）',
-		'off' => '关闭',
-	),
-	'on',
-	'是否生成Joe文章导读目录',
-	'介绍：开启后，文章将生成Joe文章导读目录，以便阅读'
-);
-$JAutoc->setAttribute('class', 'joe_content joe_post');
-$form->addInput($JAutoc->multiMode());
-
 $JArticle_Bottom_Text = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JArticle_Bottom_Text',
 	NULL,

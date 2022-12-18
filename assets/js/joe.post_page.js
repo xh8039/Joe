@@ -245,7 +245,6 @@ window.addEventListener('load', function () {
 	{
 		const scroll = new URLSearchParams(location.search).get('scroll');
 		if (scroll) {
-			const height = $('.joe_header').height();
 			let elementEL = null;
 			if ($('#' + scroll).length > 0) {
 				elementEL = $('#' + scroll);
@@ -253,7 +252,7 @@ window.addEventListener('load', function () {
 				elementEL = $('.' + scroll);
 			}
 			if (elementEL && elementEL.length > 0) {
-				const top = elementEL.offset().top - height - 15;
+				const top = elementEL.offset().top - $('.joe_header').height() - 15;
 				window.scrollTo({
 					top,
 					behavior: 'smooth'

@@ -407,10 +407,14 @@ document.addEventListener("DOMContentLoaded", () => {
 					$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
 					/* 设置表单格式为画图模式 */
 					$(".joe_comment__respond-form").attr("data-type", "draw");
+					/** 隐藏表情包功能 */
+					$('.joe_comment__respond-form .foot .owo').hide();
 				} else {
 					$(".joe_comment__respond-form .body .text").show().siblings().hide();
 					/* 设置表单格式为文字模式 */
 					$(".joe_comment__respond-form").attr("data-type", "text");
+					/** 显示表情包功能 */
+					$('.joe_comment__respond-form .foot .owo').show();
 				}
 			});
 		}

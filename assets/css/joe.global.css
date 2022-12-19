@@ -4048,9 +4048,6 @@
 }
 
 .joe_comment__respond-form .foot .submit {
-	position: absolute;
-	top: 0;
-	right: 15px;
 	white-space: nowrap
 }
 

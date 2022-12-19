@@ -124,7 +124,7 @@ $JIndex_Notice = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'首页通知文字（非必填）',
 	'介绍：请务必填写正确的格式 <br />
 		 格式：通知文字 || 跳转链接（中间使用两个竖杠分隔，限制一个）<br />
-		 例如：欢迎加入Joe官方QQ群 || https://baidu.com'
+		 例如：欢迎加入Joe主题QQ交流群 || https://jq.qq.com/?_wv=1027&k=j9lt1kwg'
 );
 $JIndex_Notice->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Notice);

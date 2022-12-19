@@ -82,6 +82,7 @@ li {
 a {
 	text-decoration: none;
 	transition: color 0.1s;
+	color: var(--theme);
 }
 
 h1,

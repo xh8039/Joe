@@ -186,7 +186,8 @@
 						return
 					}
 					if (!Joe.IS_MOBILE) return;
-					$('.joe_action').append('<div class="joe_action_item outline-outside-switcher"><svg t="1671370562018" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3733" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M896 256H128V128h768v128z m0 192H128v128h768V448z m0 320H128v128h768V768z" p-id="3734"></path></svg></div>')
+					let icon = $('.joe_aside__item.outline-outside .joe_aside__item-title svg').prop("outerHTML")
+					$('.joe_action').append(`<div class="joe_action_item outline-outside-switcher">${icon}</div>`)
 					$('.joe_action .joe_action_item.outline-outside-switcher').css({
 						'margin-top': '15px',
 						'position': 'relative'

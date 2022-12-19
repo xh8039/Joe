@@ -92,6 +92,9 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 				grid-template-columns: repeat(2, 1fr);
 				column-gap: 15px;
 			}
+			.joe_index>.joe_index__list>.joe_list>.joe_list__item {
+				border-radius: var(--radius-wrap);
+			}
 		}';
 	}
 

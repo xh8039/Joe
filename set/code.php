@@ -9,7 +9,7 @@ $JCustomAside = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'自定义侧边栏模块 - PC',
 	'介绍：用于自定义侧边栏模块 <br />
 		 格式：请填写前端代码，不会写请勿填写 <br />
-		 例如：您可以在此处添加一个搜索框、时间、宠物、恋爱计时等等'
+		 例如：您可以在此处添加搜索框、时间、宠物、恋爱计时等等'
 );
 $JCustomAside->setAttribute('class', 'joe_content joe_code');
 $form->addInput($JCustomAside);

@@ -17,6 +17,19 @@ $JCommentStatus = new Typecho_Widget_Helper_Form_Element_Select(
 $JCommentStatus->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JCommentStatus->multiMode());
 
+$Jcomment_draw = new Typecho_Widget_Helper_Form_Element_Select(
+	'Jcomment_draw',
+	array(
+		'on' => '开启（默认）',
+		'off' => '关闭',
+	),
+	'on',
+	'是否启用评论画图模式',
+	'介绍：开启后，可以进行画图评论'
+);
+$Jcomment_draw->setAttribute('class', 'joe_content joe_comment');
+$form->addInput($Jcomment_draw->multiMode());
+
 $JSensitiveWords = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JSensitiveWords',
 	NULL,

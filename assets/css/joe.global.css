@@ -1475,14 +1475,12 @@
 	position: relative;
 	width: 100%;
 	border-bottom: 1px solid var(--classC);
-	padding: 1.5vh 0;
+	padding: 15px;
 	background: var(--background);
-	margin-bottom: 1.5vh;
-	padding-left: 10px;
-	padding-right: 10px;
+	margin-bottom: 10px;
 	box-shadow: 0 0 10px rgba(116, 116, 116, 0.15);
 	transition: .3s;
-	border-radius: 0.55vh;
+	border-radius: var(--radius-inner);
 }
 
 .joe_list__item:last-child {
@@ -1783,8 +1781,8 @@
 	display: flex;
 	position: relative;
 	width: 100%;
-	padding: 1.5vh 0;
-	margin-bottom: 1.5vh;
+	padding: 15px;
+	margin-bottom: 10px;
 }
 
 .joe_list__loading .item:last-child {
@@ -2829,7 +2827,7 @@
 	color: var(--main);
 	font-size: 18px;
 	line-height: 24px;
-	margin-bottom: 1vh;
+	margin-bottom: 10px;
 	position: relative;
 }
 
@@ -2839,7 +2837,7 @@
 .joe_detail__article h4:not(:first-child),
 .joe_detail__article h5:not(:first-child),
 .joe_detail__article h6:not(:first-child) {
-	margin-top: 2vh;
+	margin-top: 15px;
 }
 
 .joe_detail__article h1 {

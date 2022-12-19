@@ -168,6 +168,7 @@ function CommentLink($text, $link, $type)
 /* 加强后台编辑器功能 */
 if (Helper::options()->JEditor !== 'off') {
 	Typecho_Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
+	Typecho_Plugin::factory('admin/write-post.php')->option  = array('Editor', 'labelSelection');
 	Typecho_Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
 }
 
@@ -175,7 +176,7 @@ class Editor
 {
 	public static function Edit()
 	{
-?>
+		?>
 		<link rel="stylesheet" href="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css">
 		<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-one-light-dark@1.0.4/prism-onedark.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/css/joe.write.min.css">
@@ -195,45 +196,54 @@ class Editor
 		<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/parse/parse.min.js"></script>
 		<script src="<?= Joe::jsdelivrUrl('Joe/typecho/write/dist/index.bundle.min.js') ?>"></script>
-		<script src="<?php Helper::options()->themeUrl('assets/js/joe.short.js') ?>"></script>
+		<script src="<?= Joe::themeUrl('assets/js/joe.short.js') ?>"></script>
+		<?php
+	}
+
+	public static function labelSelection()
+	{
+		?>
 		<section class="typecho-post-option">
-			<label for="token-input-tags" class="typecho-label"><?php _e('标签'); ?></label>
-			<p>
-				<input id="tags" name="tags" type="text" class="w-100 text" />
-				<style>
-					.tagshelper {
-						user-select: none;
+			<style>
+				.tagshelper {
+					list-style: none;
+					border: 1px solid #D9D9D6;
+					padding: 6px;
+					max-height: 240px;
+					overflow: auto;
+					background-color: #FFF;
+					border-radius: 2px;
+				}
+
+				.tagshelper a {
+					cursor: pointer;
+					padding: 0px 6px;
+					margin: 2px 0;
+					display: inline-block;
+					border-radius: 2px;
+					text-decoration: none;
+					transition: 0.1s;
+				}
+
+				.tagshelper a:hover {
+					background: #ccc;
+					color: #fff;
+				}
+			</style>
+			<label for="token-input-tags" class="typecho-label"><?php _e('标签选择'); ?></label>
+			<ul class="tagshelper">
+				<?php
+				Typecho_Widget::widget('Widget_Metas_Tag_Cloud')->to($tags);
+				if ($tags->have()) {
+					$i = 0;
+					while ($tags->next()) {
+						echo "<a onclick=\"$('#tags').tokenInput('add', {id: '" . $tags->name . "', tags: '" . $tags->name . "'});\">", $tags->name, "</a>";
+						$i++;
 					}
-					.tagshelper>ul {
-						list-style: none;
-						border: 1px solid #D9D9D6;
-						padding: 6px 12px;
-						max-height: 240px;
-						overflow: auto;
-						background-color: #FFF;
-						border-radius: 2px;
-					}
-					.tagshelper a {
-						cursor: pointer;
-						padding: 0px 6px;
-						margin: 2px 0;
-						display: inline-block;
-						border-radius: 2px;
-						text-decoration: none;
-						transition: 0.1s;
-					}
-					.tagshelper a:hover {
-						background: #ccc;
-						color: #fff;
-					}
-				</style>
-				<script>
-					$(document).ready(function() {
-						$('#tags').after('<div style="margin-top: 35px;" class="tagshelper"><label class="typecho-label">标签选择：</label><ul><?php Typecho_Widget::widget('Widget_Metas_Tag_Cloud')->to($tags);if ($tags->have()) {$i = 0;while ($tags->next()) {echo "<a id=\"$i\" onclick=\"$(\'#tags\').tokenInput(\'add\', {id: \'" . $tags->name . "\', tags: \'" . $tags->name . "\'});\">", $tags->name, "</a>";$i++;echo "  ";}}?></ul></div>');
-					});
-				</script>
-			</p>
+				}
+				?>
+			</ul>
 		</section>
-<?php
+		<?php
 	}
 }

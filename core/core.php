@@ -130,6 +130,16 @@ function themeInit($self)
 /* 增加自定义字段 */
 function themeFields($layout)
 {
+	$icon = new Typecho_Widget_Helper_Form_Element_Text(
+		'icon',
+		null,
+		null,
+		'独立页面图标',
+		'介绍：用于设置独立页面在导航栏的icon图标 <br />
+		 注意：文章页面该功能不会生效'
+	);
+	$layout->addItem($icon);
+
 	$mode = new Typecho_Widget_Helper_Form_Element_Select(
 		'mode',
 		array(
@@ -140,7 +150,7 @@ function themeFields($layout)
 		),
 		'default',
 		'文章显示方式',
-		'介绍：用于设置当前文章在首页和搜索页的显示方式 <br /> 
+		'介绍：用于设置当前文章在首页和搜索页的显示方式 <br />
 		 注意：独立页面该功能不会生效'
 	);
 	$layout->addItem($mode);

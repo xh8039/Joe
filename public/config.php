@@ -82,17 +82,17 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		echo 'html {-webkit-filter: grayscale(1);}';
 	}
 
-	if ($this->is('index') && $this->options->JIndex_Article_Double_Column == 'on') {
+	if (($this->is('index') || $this->is('archive')) && $this->options->JIndex_Article_Double_Column == 'on') {
 		echo '@media(min-width: 1200px) {
 			.joe_aside {
 				display: none;
 			}
-			.joe_index>.joe_index__list>.joe_list {
+			.joe_list {
 				display: grid;
 				grid-template-columns: repeat(2, 1fr);
 				column-gap: 15px;
 			}
-			.joe_index>.joe_index__list>.joe_list>.joe_list__item {
+			.joe_list>.joe_list__item {
 				border-radius: var(--radius-wrap);
 			}
 		}';

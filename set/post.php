@@ -91,6 +91,18 @@ $Jsearch_target = new Typecho_Widget_Helper_Form_Element_Select(
 $Jsearch_target->setAttribute('class', 'joe_content joe_post');
 $form->addInput($Jsearch_target->multiMode());
 
+$JArticle_Guide = new Typecho_Widget_Helper_Form_Element_Select(
+	'JArticle_Guide',
+	array(
+		'on' => '开启（默认）',
+		'off' => '关闭',
+	),
+	'on',
+	'是否开启文章导读目录模块',
+	NULL
+);
+$JArticle_Guide->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JArticle_Guide->multiMode());
 
 $JOverdue = new Typecho_Widget_Helper_Form_Element_Select(
 	'JOverdue',

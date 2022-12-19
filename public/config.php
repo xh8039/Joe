@@ -82,8 +82,20 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		echo 'html {-webkit-filter: grayscale(1);}';
 	}
 
-	?>
-	@font-face {
+	if ($this->is('index') && $this->options->JIndex_Article_Double_Column == 'on') {
+		echo '@media(min-width: 1200px) {
+			.joe_aside {
+				display: none;
+			}
+			.joe_index>.joe_index__list>.joe_list {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				column-gap: 15px;
+			}
+		}';
+	}
+
+	?>@font-face {
 		font-family: 'Joe Font';
 		font-weight: 400;
 		font-style: normal;
@@ -104,7 +116,7 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 <?php
 if ($this->options->JIndex_Link_Active == 'on') {
 	echo '<link rel="stylesheet" href="';
-    Joe::themeUrl('assets/css/options/JIndex_Link_Active.css');
+	Joe::themeUrl('assets/css/options/JIndex_Link_Active.css');
 	echo '">';
 }
 ?>

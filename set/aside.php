@@ -101,19 +101,6 @@ $JAside_Author_Nav = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Nav->multiMode());
 
-$JAside_Autoc = new Typecho_Widget_Helper_Form_Element_Select(
-	'JAside_Autoc',
-	array(
-		'on' => '开启（默认）',
-		'off' => '关闭',
-	),
-	'on',
-	'是否开启文章导读目录模块 - PC',
-	NULL
-);
-$JAside_Autoc->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Autoc->multiMode());
-
 $JAside_Timelife_Status = new Typecho_Widget_Helper_Form_Element_Select(
 	'JAside_Timelife_Status',
 	array(

@@ -53,7 +53,7 @@ function themeConfig($form)
 					<li class="item" data-current="joe_comment">评论设置</li>
 					<li class="item" data-current="joe_statistic">统计设置</li>
 					<li class="item" data-current="joe_message">消息推送</li>
-					<li class="item" data-current="joe_code">DIY代码</li>
+					<li class="item" data-current="joe_code">插入代码</li>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
 				<?php require_once('core/backup.php'); ?>

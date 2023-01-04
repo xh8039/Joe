@@ -6,7 +6,6 @@
  * @package custom
  *
  **/
-$this->need('public/common.php');
 ?>
 
 <!DOCTYPE html>

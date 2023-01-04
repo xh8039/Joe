@@ -9,7 +9,7 @@ $JAside_Notice = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'站点公告模块（非必填）',
 	'介绍：请务必填写正确的格式 <br />
 		 格式：通知文字<br />
-		 例如：欢迎加入Joe主题QQ交流群：<a href="https://jq.qq.com/?_wv=1027&k=j9lt1kwg" target="_blank" rel="noopener noreferrer nofollow">782778569</a>'
+		 例如：' . htmlentities('欢迎加入Joe主题QQ交流群：<a href="https://jq.qq.com/?_wv=1027&k=j9lt1kwg" target="_blank" rel="noopener noreferrer nofollow">782778569</a>')
 );
 $JAside_Notice->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Notice);

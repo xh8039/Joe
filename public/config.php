@@ -56,7 +56,7 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		}
 		// 移动端自定义背景壁纸
 		if ($this->options->JWallpaper_Background_WAP) {
-			echo 'html body::before {background: url(' . $this->options->JWallpaper_Background_WAP() . ')}';
+			echo 'html body::before {background: url(' . $this->options->JWallpaper_Background_WAP . ')}';
 		}
 	}
 

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'tencent_protect.php';
+
 if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
 	// 我就不信这次腾讯会再给封了！！！
 	require JOE_ROOT . 'module/jump.php';

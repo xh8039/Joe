@@ -179,13 +179,13 @@ class Editor
 		?>
 		<link rel="stylesheet" href="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css">
 		<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-one-light-dark@1.0.4/prism-onedark.min.css">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/css/joe.write.min.css">
+		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.min.css') ?>">
 		<script>
 			window.JoeConfig = {
 				uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
-				emojiAPI: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/json/emoji.json',
-				expressionAPI: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/json/expression.json',
-				characterAPI: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/json/character.json',
+				emojiAPI: '<?= joe\theme_url('assets/typecho/write/json/emoji.json') ?>',
+				expressionAPI: '<?= joe\theme_url('assets/typecho/write/json/expression.json') ?>',
+				characterAPI: '<?= joe\theme_url('assets/typecho/write/json/character.json') ?>',
 				playerAPI: '<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>',
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: '<?php Helper::options()->themeUrl(); ?>',
@@ -194,7 +194,7 @@ class Editor
 		</script>
 		<script src="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
 		<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/typecho/write/parse/parse.min.js"></script>
+		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/index.bundle.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
 		<?php

@@ -102,14 +102,14 @@ function getAgentOS($agent)
 /* 获取全局懒加载图 */
 function getLazyload($type = true)
 {
-	if ($type) echo Helper::options()->JLazyload;
-	else return Helper::options()->JLazyload;
+	if ($type) echo \Helper::options()->JLazyload;
+	else return \Helper::options()->JLazyload;
 }
 
 /* 获取头像懒加载图 */
 function getAvatarLazyload($type = true)
 {
-	$str = Helper::options()->themeUrl . '/assets/images/AvatarLazyload.png';
+	$str = \Helper::options()->themeUrl . '/assets/images/AvatarLazyload.png';
 	if ($type) echo $str;
 	else return $str;
 }
@@ -117,7 +117,7 @@ function getAvatarLazyload($type = true)
 /* 查询文章浏览量 */
 function getViews($item, $type = true)
 {
-	$db = Typecho_Db::get();
+	$db = \Typecho_Db::get();
 	$result = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $item->cid))['views'];
 	if ($type) echo number_format($result);
 	else return number_format($result);
@@ -126,7 +126,7 @@ function getViews($item, $type = true)
 /* 查询文章点赞量 */
 function getAgree($item, $type = true)
 {
-	$db = Typecho_Db::get();
+	$db = \Typecho_Db::get();
 	$result = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $item->cid))['agree'];
 	if ($type) echo number_format($result);
 	else return number_format($result);
@@ -136,11 +136,11 @@ function getAgree($item, $type = true)
 function getAvatarByMail($mail)
 {
 	if (empty($mail)) {
-		$db = Typecho_Db::get();
+		$db = \Typecho_Db::get();
 		$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
 		$mail = $authoInfo['mail'];
 	}
-	$gravatarsUrl = Helper::options()->JCustomAvatarSource ? Helper::options()->JCustomAvatarSource : 'https://gravatar.helingqi.com/wavatar/';
+	$gravatarsUrl = \Helper::options()->JCustomAvatarSource ? \Helper::options()->JCustomAvatarSource : 'https://gravatar.helingqi.com/wavatar/';
 	$mailLower = strtolower($mail);
 	$md5MailLower = md5($mailLower);
 	$qqMail = str_replace('@qq.com', '', $mailLower);
@@ -154,7 +154,7 @@ function getAvatarByMail($mail)
 /* 获取侧边栏随机一言 */
 function getAsideAuthorMotto()
 {
-	$JMottoRandom = explode("\r\n", Helper::options()->JAside_Author_Motto);
+	$JMottoRandom = explode("\r\n", \Helper::options()->JAside_Author_Motto);
 	echo $JMottoRandom[array_rand($JMottoRandom, 1)];
 }
 
@@ -207,7 +207,7 @@ function getThumbnails($item)
 	}
 	/* 如果上面的数量不足3个，则直接补充3个随即图进去 */
 	if (sizeof($result) < 3) {
-		$custom_thumbnail = Helper::options()->JThumbnail;
+		$custom_thumbnail = \Helper::options()->JThumbnail;
 		/* 将for循环放里面，减少一次if判断 */
 		if ($custom_thumbnail) {
 			$custom_thumbnail_arr = explode("\r\n", $custom_thumbnail);
@@ -227,7 +227,7 @@ function getThumbnails($item)
 function getParentReply($parent)
 {
 	if ($parent !== "0") {
-		$db = Typecho_Db::get();
+		$db = \Typecho_Db::get();
 		$commentInfo = $db->fetchRow($db->select('author')->from('table.comments')->where('coid = ?', $parent));
 		if (empty($commentInfo['author'])) return;
 		echo '<div class="parent"><span style="vertical-align: 1px;">@</span> ' . $commentInfo['author'] . '</div>';
@@ -237,15 +237,15 @@ function getParentReply($parent)
 /* 获取侧边栏作者随机文章 */
 function getAsideAuthorNav()
 {
-	if (Helper::options()->JAside_Author_Nav && Helper::options()->JAside_Author_Nav !== "off") {
-		$limit = Helper::options()->JAside_Author_Nav;
-		$db = Typecho_Db::get();
+	if (Helper::options()->JAside_Author_Nav && \Helper::options()->JAside_Author_Nav !== "off") {
+		$limit = \Helper::options()->JAside_Author_Nav;
+		$db = \Typecho_Db::get();
 		$prefix = $db->getPrefix();
 		$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT floor( RAND() * ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";
 		$result = $db->query($sql);
-		if ($result instanceof Traversable) {
+		if ($result instanceof \Traversable) {
 			foreach ($result as $item) {
-				$item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
+				$item = \Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
 				$title = htmlspecialchars($item['title']);
 				$permalink = $item['permalink'];
 				echo "<li class='item'><a class='link' href='{$permalink}' title='{$title}'>{$title}</a><svg class='icon' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='16' height='16'><path d='M448.12 320.331a30.118 30.118 0 0 1-42.616-42.586L552.568 130.68a213.685 213.685 0 0 1 302.2 0l38.552 38.551a213.685 213.685 0 0 1 0 302.2L746.255 618.497a30.118 30.118 0 0 1-42.586-42.616l147.034-147.035a153.45 153.45 0 0 0 0-217.028l-38.55-38.55a153.45 153.45 0 0 0-216.998 0L448.12 320.33zM575.88 703.67a30.118 30.118 0 0 1 42.616 42.586L471.432 893.32a213.685 213.685 0 0 1-302.2 0l-38.552-38.551a213.685 213.685 0 0 1 0-302.2l147.065-147.065a30.118 30.118 0 0 1 42.586 42.616L173.297 595.125a153.45 153.45 0 0 0 0 217.027l38.55 38.551a153.45 153.45 0 0 0 216.998 0L575.88 703.64zm-234.256-63.88L639.79 341.624a30.118 30.118 0 0 1 42.587 42.587L384.21 682.376a30.118 30.118 0 0 1-42.587-42.587z'/></svg></li>";
@@ -269,13 +269,13 @@ function checkSensitiveWords($words_str, $str)
 	return false;
 }
 
-function theme_url()
+function theme_url($path)
 {
-	if (empty(Helper::options()->JStaticAssetsUrl)) {
+	if (empty(\Helper::options()->JStaticAssetsUrl)) {
 		$path = url_builder($path, ['version' => JOE_VERSION]);
-		return Helper::options()->themeUrl . '/' . $path;
+		return \Helper::options()->themeUrl . '/' . $path;
 	}
-	$url = Helper::options()->JStaticAssetsUrl . '/' . $path;
+	$url = \Helper::options()->JStaticAssetsUrl . '/' . $path;
 	$url = url_builder($url, ['version' => JOE_VERSION]);
 	return $url;
 }
@@ -296,11 +296,11 @@ function markdown_filter($text)
 
 function user_login($uid, $expire = 30243600)
 {
-	$db = Typecho_Db::get();
-	Typecho_Widget::widget('Widget_User')->simpleLogin($uid);
-	$authCode = function_exists('openssl_random_pseudo_bytes') ? bin2hex(openssl_random_pseudo_bytes(16)) : sha1(Typecho_Common::randString(20));
-	Typecho_Cookie::set('__typecho_uid', $uid, time() + $expire);
-	Typecho_Cookie::set('__typecho_authCode', Typecho_Common::hash($authCode), time() + $expire);
+	$db = \Typecho_Db::get();
+	\Typecho_Widget::widget('Widget_User')->simpleLogin($uid);
+	$authCode = function_exists('openssl_random_pseudo_bytes') ? bin2hex(openssl_random_pseudo_bytes(16)) : sha1(\Typecho_Common::randString(20));
+	\Typecho_Cookie::set('__typecho_uid', $uid, time() + $expire);
+	\Typecho_Cookie::set('__typecho_authCode', \Typecho_Common::hash($authCode), time() + $expire);
 	//更新最后登录时间以及验证码
 	$db->query($db->update('table.users')->expression('logged', 'activated')->rows(array('authCode' => $authCode))->where('uid = ?', $uid));
 }
@@ -314,13 +314,13 @@ function user_url($action)
 	$url = urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
 	switch ($action) {
 		case 'register':
-			$url = Typecho_Common::url('user/register', Helper::options()->index) . '?from=' . $url;
+			$url = \Typecho_Common::url('user/register', \Helper::options()->index) . '?from=' . $url;
 			break;
 		case 'login':
-			$url = Typecho_Common::url('user/login', Helper::options()->index) . '?from=' . $url;
+			$url = \Typecho_Common::url('user/login', \Helper::options()->index) . '?from=' . $url;
 			break;
 		case 'forget':
-			$url = Typecho_Common::url('user/forget', Helper::options()->index) . '?from=' . $url;
+			$url = \Typecho_Common::url('user/forget', \Helper::options()->index) . '?from=' . $url;
 			break;
 	}
 	return $url;
@@ -330,7 +330,7 @@ function user_url($action)
 /** 获取百度统计配置 */
 function baidu_statistic_config()
 {
-	$statistics_config = Helper::options()->baidu_statistics ? explode(PHP_EOL, Helper::options()->baidu_statistics) : null;
+	$statistics_config = \Helper::options()->baidu_statistics ? explode(PHP_EOL, \Helper::options()->baidu_statistics) : null;
 	if (is_array($statistics_config) && count($statistics_config) == 4) {
 		return [
 			'access_token' => trim($statistics_config[0]),
@@ -346,12 +346,12 @@ function baidu_statistic_config()
 function email_config()
 {
 	if (
-		empty(Helper::options()->JCommentMailHost) ||
-		empty(Helper::options()->JCommentMailPort) ||
-		empty(Helper::options()->JCommentMailAccount) ||
-		empty(Helper::options()->JCommentMailFromName) ||
-		empty(Helper::options()->JCommentSMTPSecure) ||
-		empty(Helper::options()->JCommentMailPassword)
+		empty(\Helper::options()->JCommentMailHost) ||
+		empty(\Helper::options()->JCommentMailPort) ||
+		empty(\Helper::options()->JCommentMailAccount) ||
+		empty(\Helper::options()->JCommentMailFromName) ||
+		empty(\Helper::options()->JCommentSMTPSecure) ||
+		empty(\Helper::options()->JCommentMailPassword)
 	) {
 		return false;
 	} else {
@@ -366,37 +366,37 @@ function send_email($title, $subtitle, $content, $email = '')
 		return false;
 	}
 	if (empty($email)) {
-		$db = Typecho_Db::get();
+		$db = \Typecho_Db::get();
 		$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
 		if (empty($authoInfo['mail'])) {
-			$email = Helper::options()->JCommentMailAccount;
+			$email = \Helper::options()->JCommentMailAccount;
 		} else {
 			$email = $authoInfo['mail'];
 		}
 	}
-	$mail = new PHPMailer();
+	$mail = new \PHPMailer();
 	$mail->isSMTP();
 	$mail->SMTPAuth = true;
 	$mail->CharSet = 'UTF-8';
-	$mail->SMTPSecure = Helper::options()->JCommentSMTPSecure;
-	$mail->Host = Helper::options()->JCommentMailHost;
-	$mail->Port = Helper::options()->JCommentMailPort;
-	$mail->FromName = Helper::options()->JCommentMailFromName;
-	$mail->Username = Helper::options()->JCommentMailAccount;
-	$mail->From = Helper::options()->JCommentMailAccount;
-	$mail->Password = Helper::options()->JCommentMailPassword;
+	$mail->SMTPSecure = \Helper::options()->JCommentSMTPSecure;
+	$mail->Host = \Helper::options()->JCommentMailHost;
+	$mail->Port = \Helper::options()->JCommentMailPort;
+	$mail->FromName = \Helper::options()->JCommentMailFromName;
+	$mail->Username = \Helper::options()->JCommentMailAccount;
+	$mail->From = \Helper::options()->JCommentMailAccount;
+	$mail->Password = \Helper::options()->JCommentMailPassword;
 	$mail->isHTML(true);
 	$html = '<style>.Joe{width:550px;margin:0 auto;border-radius:8px;overflow:hidden;font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);word-break:break-all}.Joe_title{color:#fff;background:linear-gradient(-45deg,rgba(9,69,138,0.2),rgba(68,155,255,0.7),rgba(117,113,251,0.7),rgba(68,155,255,0.7),rgba(9,69,138,0.2));background-size:400% 400%;background-position:50% 100%;padding:15px;font-size:15px;line-height:1.5}</style><div class="Joe"><div class="Joe_title">{title}</div><div style="background: #fff;padding: 20px;font-size: 13px;color: #666;"><div style="margin-bottom: 20px;line-height: 1.5;">{subtitle}</div><div style="padding: 15px;margin-bottom: 20px;line-height: 1.5;background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);">{content}</div><div style="line-height: 2">请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div></div></div>';
 	$mail->Body = strtr(
 		$html,
 		array(
-			"{title}" => $title . ' - ' . Helper::options()->title,
+			"{title}" => $title . ' - ' . \Helper::options()->title,
 			"{subtitle}" => $subtitle,
 			"{content}" => $content,
 		)
 	);
 	$mail->addAddress($email);
-	$mail->Subject = $title . ' - ' . Helper::options()->title;
+	$mail->Subject = $title . ' - ' . \Helper::options()->title;
 	if ($mail->send()) {
 		return 'success';
 	} else {

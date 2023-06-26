@@ -1,0 +1,32 @@
+/* ==================== 外部 ==================== */
+.outline-outside {
+    background: var(--background);
+}
+
+/* ==================== 章节 ==================== */
+.outline-chapter {
+    font-size: 0.95rem;
+    line-height: 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.outline-subject {
+    padding-left: 10px;
+}
+
+.outline-chapter-code {
+    padding-right: 5px;
+}
+
+.outline-link:link,
+.outline-link:visited {
+    color: var(--routine);
+    text-decoration: none;
+    transition: 0.15s;
+}
+
+.outline-link:hover {
+    color: var(--theme);
+}

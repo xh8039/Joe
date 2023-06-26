@@ -12,16 +12,16 @@
 <html lang="zh-CN">
 
 <head>
-	<?php $this->need('public/include.php'); ?>
-	<link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.census.css'); ?>">
+	<?php $this->need('module/head.php'); ?>
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.census.css'); ?>">
 	<script src="//cdn.staticfile.org/echarts/5.1.1/echarts.min.js"></script>
-	<script src="<?= Joe::themeUrl('assets/js/joe.census.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.census.js'); ?>"></script>
 </head>
 
 <body>
 	<h1 style="display:none"><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php $this->options->title(); ?></h1>
 	<div id="Joe">
-		<?php $this->need('public/header.php'); ?>
+		<?php $this->need('module/header.php'); ?>
 		<div class="joe_container">
 			<div class="joe_main">
 				<?php Typecho_Widget::widget('Widget_Stat')->to($item); ?>
@@ -126,7 +126,7 @@
 				</div>
 			</div>
 		</div>
-		<?php $this->need('public/footer.php'); ?>
+		<?php $this->need('module/footer.php'); ?>
 	</div>
 </body>
 

@@ -6,12 +6,12 @@ $this->need('user/header.php');
 
 <head>
 	<title>账号注册 - <?php $this->options->title() ?></title>
-	<?php $this->need('public/include.php'); ?>
-	<link href="<?= Joe::themeUrl('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
+	<?php $this->need('module/head.php'); ?>
+	<link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-	<?php $this->need('public/header.php'); ?>
+	<?php $this->need('module/header.php'); ?>
 	<div class="container">
 		<div>
 			<div class="card-body">
@@ -34,7 +34,7 @@ $this->need('user/header.php');
 					<input class="form-control" type="text" id="email" placeholder="邮箱">
 				</div>
 				<?php
-				if (Joe::EmailConfig()) {
+				if (joe\email_config()) {
 				?>
 					<div class="form-group">
 						<label>验证码</label>
@@ -66,7 +66,7 @@ $this->need('user/header.php');
 			?>
 		</div> 
 	</div>
-	<?php $this->need('public/footer.php'); ?>
+	<?php $this->need('module/footer.php'); ?>
 	<script>
 		! function(t) {
 			let from = '<?php print $_GET['from'] ?>';
@@ -135,7 +135,7 @@ $this->need('user/header.php');
 				if (!username) return Qmsg.warning("请输入用户名");
 				if (!email) return Qmsg.warning("请输入邮箱");
 				<?php
-				if (Joe::EmailConfig()) {
+				if (joe\email_config()) {
 				?>
 					if (!code) return Qmsg.warning("请输入验证码");
 				<?php

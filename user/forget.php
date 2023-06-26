@@ -6,12 +6,12 @@ $this->need('user/header.php');
 
 <head>
 	<title>重置密码 - <?php $this->options->title() ?></title>
-	<?php $this->need('public/include.php'); ?>
-	<link href="<?= Joe::themeUrl('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
+	<?php $this->need('module/head.php'); ?>
+	<link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-	<?php $this->need('public/header.php'); ?>
+	<?php $this->need('module/header.php'); ?>
 	<div class="container">
 		<div>
 			<div class="card-body">
@@ -50,7 +50,7 @@ $this->need('user/header.php');
 			?>
 		</div>
 	</div>
-	<?php $this->need('public/footer.php'); ?>
+	<?php $this->need('module/footer.php'); ?>
 	<script>
 		! function(t) {
 			let from = '<?php print $_GET['from'] ?>';

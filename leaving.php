@@ -13,18 +13,18 @@
 <html lang="zh-CN">
 
 <head>
-	<?php $this->need('public/include.php'); ?>
+	<?php $this->need('module/head.php'); ?>
 	<script src="//cdn.staticfile.org/draggabilly/2.3.0/draggabilly.pkgd.min.js"></script>
-	<script src="<?= Joe::themeUrl('assets/js/joe.leaving.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.leaving.js'); ?>"></script>
 </head>
 
 <body>
 	<div id="Joe">
-		<?php $this->need('public/header.php'); ?>
+		<?php $this->need('module/header.php'); ?>
 		<div class="joe_container">
 			<div class="joe_main">
 				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
-					<?php $this->need('public/batten.php'); ?>
+					<?php $this->need('module/batten.php'); ?>
 					<div class="joe_detail__leaving">
 						<?php $this->comments()->to($comments); ?>
 						<?php if ($comments->have()) : ?>
@@ -32,7 +32,7 @@
 								<?php while ($comments->next()) : ?>
 									<li class="item">
 										<div class="user">
-											<img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($comments->mail) ?>" alt="用户头像" />
+											<img class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($comments->mail) ?>" alt="用户头像" />
 											<div class="nickname"><?php $comments->author(); ?></div>
 											<div class="date"><?php $comments->date('Y/m/d'); ?></div>
 										</div>
@@ -47,10 +47,10 @@
 						<?php endif; ?>
 					</div>
 				</div>
-				<?php $this->need('public/comment.php'); ?>
+				<?php $this->need('module/comment.php'); ?>
 			</div>
 		</div>
-		<?php $this->need('public/footer.php'); ?>
+		<?php $this->need('module/footer.php'); ?>
 	</div>
 </body>
 

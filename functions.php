@@ -6,7 +6,7 @@ define('JOE_VERSION', '1.23');
 define('JOE_ROOT', dirname(__FILE__) . '/');
 
 /* Joe核心文件 */
-require_once("core/core.php");
+require_once(__DIR__ . '/public/common.php');
 
 function themeConfig($form)
 {
@@ -22,7 +22,7 @@ function themeConfig($form)
 	} catch (Exception $e) {
 	}
 ?>
-	<link rel="stylesheet" href="<?= Joe::jsdelivrUrl('Joe/typecho/config/css/joe.config.min.css') ?>">
+	<link rel="stylesheet" href="<?= joe\theme_url('typecho/config/css/joe.config.min.css') ?>">
 	<script src="//cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
 	<script src="//cdn.staticfile.org/layer/3.5.1/layer.min.js"></script>
 	<script>
@@ -33,7 +33,7 @@ function themeConfig($form)
 			Favicon: '<?php Helper::options()->JFavicon() ?>'
 		}
 	</script>
-	<script src="<?= Joe::jsdelivrUrl('Joe/typecho/config/js/joe.config.min.js') ?>"></script>
+	<script src="<?= joe\theme_url('typecho/config/js/joe.config.min.js') ?>"></script>
 	<div class="joe_config">
 		<div>
 			<div class="joe_config__aside">
@@ -56,54 +56,54 @@ function themeConfig($form)
 					<li class="item" data-current="joe_code">插入代码</li>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
-				<?php require_once('core/backup.php'); ?>
+				<?php require_once('public/backup.php'); ?>
 			</div>
 		</div>
 		<div class="joe_config__notice">请求数据中...</div>
 	<?php
 
 	// 全局设置
-	require_once('set/global.php');
+	require_once('options/global.php');
 
 	// 安全设置
-	require_once('set/safe.php');
+	require_once('options/safe.php');
 
 	// 图片设置
-	require_once('set/image.php');
+	require_once('options/image.php');
 
 	// 文章设置
-	require_once('set/post.php');
+	require_once('options/post.php');
 
 	// 侧栏设置
-	require_once('set/aside.php');
+	require_once('options/aside.php');
 
 	// 首页设置
-	require_once('set/index.php');
+	require_once('options/index.php');
 
 	// 特效设置
-	require_once('set/decoration.php');
+	require_once('options/decoration.php');
 
 	// 登录设置
-	require_once('set/user.php');
+	require_once('options/user.php');
 
 	// 音乐设置
-	require_once('set/music.php');
+	require_once('options/music.php');
 
 	// 友链设置
-	require_once('set/friend.php');
+	require_once('options/friend.php');
 
 	// 评论设置
-	require_once('set/comment.php');
+	require_once('options/comment.php');
 
 	// 统计设置
-	require_once('set/statistic.php');
+	require_once('options/statistic.php');
 
 	// 消息推送
-	require_once('set/message.php');
+	require_once('options/message.php');
 
 	// 自定义代码
-	require_once('set/code.php');
+	require_once('options/code.php');
 
 	// 其他设置
-	require_once('set/other.php');
+	require_once('options/other.php');
 }

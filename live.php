@@ -12,14 +12,14 @@
 <html lang="zh-CN">
 
 <head>
-    <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.live.min.css'); ?>">
-    <script src="<?= Joe::themeUrl('assets/js/joe.live.js'); ?>"></script>
+    <?php $this->need('module/head.php'); ?>
+    <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.live.min.css'); ?>">
+    <script src="<?= joe\theme_url('assets/js/joe.live.js'); ?>"></script>
 </head>
 
 <body>
     <div id="Joe">
-        <?php $this->need('public/header.php'); ?>
+        <?php $this->need('module/header.php'); ?>
         <div class="joe_container">
             <div class="joe_main">
                 <!-- 播放页 -->
@@ -46,9 +46,9 @@
                     <ul class="joe_live__pagination"></ul>
                 <?php endif; ?>
             </div>
-            <?php $this->need('public/aside.php'); ?>
+            <?php $this->need('module/aside.php'); ?>
         </div>
-        <?php $this->need('public/footer.php'); ?>
+        <?php $this->need('module/footer.php'); ?>
     </div>
 </body>
 

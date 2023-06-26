@@ -1,0 +1,53 @@
+{
+    "packages": [
+        {
+            "name": "network/http",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xh8039/php-net-request.git",
+                "reference": "7ee7af55b18f364a35fc3bf77972e960b9bdfdff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xh8039/php-net-request/zipball/7ee7af55b18f364a35fc3bf77972e960b9bdfdff",
+                "reference": "7ee7af55b18f364a35fc3bf77972e960b9bdfdff",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "time": "2023-04-25T14:10:38+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/helper.php"
+                ],
+                "psr-4": {
+                    "network\\http\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "易航",
+                    "email": "xh118039@qq.com"
+                }
+            ],
+            "description": "一款基于PHP的轻量级HTTP网络请求库",
+            "support": {
+                "issues": "https://github.com/xh8039/php-net-request/issues",
+                "source": "https://github.com/xh8039/php-net-request/tree/master"
+            },
+            "install-path": "../network/http"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

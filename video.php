@@ -12,14 +12,14 @@
 <html lang="zh-CN">
 
 <head>
-	<?php $this->need('public/include.php'); ?>
-	<link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.video.min.css'); ?>">
-	<script src="<?= Joe::themeUrl('assets/js/joe.video.js'); ?>"></script>
+	<?php $this->need('module/head.php'); ?>
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.video.min.css'); ?>">
+	<script src="<?= joe\theme_url('assets/js/joe.video.js'); ?>"></script>
 </head>
 
 <body>
 	<div id="Joe">
-		<?php $this->need('public/header.php'); ?>
+		<?php $this->need('module/header.php'); ?>
 		<div class="joe_container">
 			<div class="joe_main">
 				<?php if (isset($_GET['vod_id'])) : ?>
@@ -31,7 +31,7 @@
 					</div>
 					<div class="joe_video__player joe_video__contain">
 						<div class="joe_video__contain-title">正在播放：</div>
-						<iframe allowfullscreen="true" class="joe_video__player-play" data-player="<?php $this->options->JCustomPlayer ? $this->options->JCustomPlayer() : Helper::options()->themeUrl('library/player.php?url=') ?>"></iframe>
+						<iframe allowfullscreen="true" class="joe_video__player-play" data-player="<?php $this->options->JCustomPlayer ? $this->options->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>"></iframe>
 					</div>
 				<?php else : ?>
 					<div class="joe_video__type joe_video__contain">
@@ -51,9 +51,9 @@
 					<ul class="joe_video__pagination"></ul>
 				<?php endif; ?>
 			</div>
-			<?php $this->need('public/aside.php'); ?>
+			<?php $this->need('module/aside.php'); ?>
 		</div>
-		<?php $this->need('public/footer.php'); ?>
+		<?php $this->need('module/footer.php'); ?>
 	</div>
 </body>
 

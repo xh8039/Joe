@@ -2,16 +2,16 @@
 <html lang="zh-CN">
 
 <head>
-    <?php $this->need('public/include.php'); ?>
+    <?php $this->need('module/head.php'); ?>
     <script src="https://fastly.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
-    <link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.archive.css'); ?>">
-    <script src="<?= Joe::themeUrl('assets/js/joe.archive.js'); ?>"></script>
+    <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.archive.css'); ?>">
+    <script src="<?= joe\theme_url('assets/js/joe.archive.js'); ?>"></script>
 </head>
 
 <body>
     <h1 style="display:none"><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php $this->options->title(); ?></h1>
     <div id="Joe">
-        <?php $this->need('public/header.php'); ?>
+        <?php $this->need('module/header.php'); ?>
         <div class="joe_container">
             <div class="joe_main">
                 <div class="joe_archive">
@@ -35,7 +35,7 @@
                                     <li class="joe_list__item wow default">
                                         <div class="line"></div>
                                         <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer">
-                                            <img width="100%" height="100%" class="lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo _getThumbnails($this)[0] ?>" alt="<?php $this->title() ?>" />
+                                            <img width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo joe\getThumbnails($this)[0] ?>" alt="<?php $this->title() ?>" />
                                             <time datetime="<?php $this->date('Y-m-d'); ?>"><?php $this->date('Y-m-d'); ?></time>
                                             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                                                 <path d="M903.93 107.306H115.787c-51.213 0-93.204 42.505-93.204 93.72V825.29c0 51.724 41.99 93.717 93.717 93.717h788.144c51.72 0 93.717-41.993 93.717-93.717V201.025c-.512-51.214-43.017-93.719-94.23-93.719zm-788.144 64.527h788.657c16.385 0 29.704 13.316 29.704 29.704v390.229L760.54 402.285c-12.805-13.828-30.217-21.508-48.14-19.971-17.924 1.02-34.821 10.754-46.602 26.114l-172.582 239.16-87.06-85.52c-12.29-11.783-27.654-17.924-44.039-17.924-16.39.508-31.755 7.676-43.53 20.48L86.595 821.705V202.05c-1.025-17.416 12.804-30.73 29.191-30.217zm788.145 683.674H141.906l222.255-245.82 87.06 86.037c12.8 12.807 30.212 18.95 47.115 17.417 17.41-1.538 33.797-11.266 45.063-26.118l172.584-238.647 216.111 236.088 2.051-1.54V825.8c.509 16.39-13.315 29.706-30.214 29.706zm0 0" />
@@ -46,13 +46,13 @@
                                             <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer">
                                                 <?php $this->title() ?>
                                             </a>
-                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer"><?php _getAbstract($this) ?></a>
+                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
                                             <div class="meta">
                                                 <ul class="items">
                                                     <li><?php $this->date('Y年m月d日'); ?></li>
-                                                    <li><?php _getViews($this) ?> 阅读</li>
+                                                    <li><?php joe\getViews($this) ?> 阅读</li>
                                                     <li><?php $this->commentsNum('%d'); ?> 评论</li>
-                                                    <li><?php _getAgree($this) ?> 点赞</li>
+                                                    <li><?php joe\getAgree($this) ?> 点赞</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -67,14 +67,14 @@
                                             <div class="meta">
                                                 <ul class="items">
                                                     <li><?php $this->date('Y年m月d日'); ?></li>
-                                                    <li><?php _getViews($this) ?> 阅读</li>
+                                                    <li><?php joe\getViews($this) ?> 阅读</li>
                                                     <li><?php $this->commentsNum('%d'); ?> 评论</li>
-                                                    <li><?php _getAgree($this) ?> 点赞</li>
+                                                    <li><?php joe\getAgree($this) ?> 点赞</li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
-                                            <img width="100%" height="100%" class="lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo _getThumbnails($this)[0] ?>" alt="<?php $this->title() ?>" />
+                                            <img width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo joe\getThumbnails($this)[0] ?>" alt="<?php $this->title() ?>" />
                                             <time datetime="<?php $this->date('Y-m-d'); ?>"><?php $this->date('Y-m-d'); ?></time>
                                             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                                                 <path d="M903.93 107.306H115.787c-51.213 0-93.204 42.505-93.204 93.72V825.29c0 51.724 41.99 93.717 93.717 93.717h788.144c51.72 0 93.717-41.993 93.717-93.717V201.025c-.512-51.214-43.017-93.719-94.23-93.719zm-788.144 64.527h788.657c16.385 0 29.704 13.316 29.704 29.704v390.229L760.54 402.285c-12.805-13.828-30.217-21.508-48.14-19.971-17.924 1.02-34.821 10.754-46.602 26.114l-172.582 239.16-87.06-85.52c-12.29-11.783-27.654-17.924-44.039-17.924-16.39.508-31.755 7.676-43.53 20.48L86.595 821.705V202.05c-1.025-17.416 12.804-30.73 29.191-30.217zm788.145 683.674H141.906l222.255-245.82 87.06 86.037c12.8 12.807 30.212 18.95 47.115 17.417 17.41-1.538 33.797-11.266 45.063-26.118l172.584-238.647 216.111 236.088 2.051-1.54V825.8c.509 16.39-13.315 29.706-30.214 29.706zm0 0" />
@@ -82,7 +82,7 @@
                                             </svg>
                                         </a>
                                         <div class="information" style="margin-bottom: 0;">
-                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php _getAbstract($this) ?></a>
+                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
                                         </div>
                                     </li>
                                 <?php elseif ($this->fields->mode === "multiple") : ?>
@@ -92,20 +92,20 @@
                                             <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                                 <?php $this->title() ?>
                                             </a>
-                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php _getAbstract($this) ?></a>
+                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
                                         </div>
                                         <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
-                                            <?php $image = _getThumbnails($this) ?>
+                                            <?php $image = joe\getThumbnails($this) ?>
                                             <?php for ($x = 0; $x < 3; $x++) : ?>
-                                                <img width="100%" height="100%" class="lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo $image[$x]; ?>" alt="<?php $this->title() ?>" />
+                                                <img width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo $image[$x]; ?>" alt="<?php $this->title() ?>" />
                                             <?php endfor; ?>
                                         </a>
                                         <div class="meta">
                                             <ul class="items">
                                                 <li><?php $this->date('Y年m月d日'); ?></li>
-                                                <li><?php _getViews($this) ?> 阅读</li>
+                                                <li><?php joe\getViews($this) ?> 阅读</li>
                                                 <li><?php $this->commentsNum('%d'); ?> 评论</li>
-                                                <li><?php _getAgree($this) ?> 点赞</li>
+                                                <li><?php joe\getAgree($this) ?> 点赞</li>
                                             </ul>
                                         </div>
                                     </li>
@@ -116,13 +116,13 @@
                                             <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                                 <?php $this->title() ?>
                                             </a>
-                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php _getAbstract($this) ?></a>
+                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
                                             <div class="meta">
                                                 <ul class="items">
                                                     <li><?php $this->date('Y年m月d日'); ?></li>
-                                                    <li><?php _getViews($this) ?> 阅读</li>
+                                                    <li><?php joe\getViews($this) ?> 阅读</li>
                                                     <li><?php $this->commentsNum('%d'); ?> 评论</li>
-                                                    <li><?php _getAgree($this) ?> 点赞</li>
+                                                    <li><?php joe\getAgree($this) ?> 点赞</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -156,9 +156,9 @@
                 );
                 ?>
             </div>
-            <?php $this->need('public/aside.php'); ?>
+            <?php $this->need('module/aside.php'); ?>
         </div>
-        <?php $this->need('public/footer.php'); ?>
+        <?php $this->need('module/footer.php'); ?>
     </div>
 </body>
 

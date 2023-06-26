@@ -2,25 +2,25 @@
 <html lang="zh-CN">
 
 <head>
-	<?php $this->need('public/include.php'); ?>
+	<?php $this->need('module/head.php'); ?>
 	<?php if ($this->options->JPrismTheme) : ?>
 		<link rel="stylesheet" href="<?php $this->options->JPrismTheme() ?>">
 	<?php else : ?>
 		<link rel="stylesheet" href="//cdn.staticfile.org/prism/1.23.0/themes/prism.min.css">
 	<?php endif; ?>
-	<link rel="stylesheet" href="<?= Joe::themeUrl('assets/css/joe.post.css'); ?>">
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
 	<script src="//cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
 	<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
-	<script src="<?= Joe::themeUrl('assets/js/joe.post_page.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.post_page.js'); ?>"></script>
 </head>
 
 <body>
 	<div id="Joe">
-		<?php $this->need('public/header.php'); ?>
+		<?php $this->need('module/header.php'); ?>
 		<?php
-		if (($this->options->JPost_Header_Img_Switch == 'on') && ($this->options->JPost_Header_Img || _getThumbnails($this)[0])) {
+		if (($this->options->JPost_Header_Img_Switch == 'on') && ($this->options->JPost_Header_Img || joe\getThumbnails($this)[0])) {
 		?>
-			<div class="HeaderImg" style="background: url(<?php echo ($this->options->JPost_Header_Img ? $this->options->JPost_Header_Img :  _getThumbnails($this)[0]) ?>) center; background-size:cover;">
+			<div class="HeaderImg" style="background: url(<?php echo ($this->options->JPost_Header_Img ? $this->options->JPost_Header_Img :  joe\getThumbnails($this)[0]) ?>) center; background-size:cover;">
 				<div class="infomation">
 					<?php
 					if ($this->options->JPost_Header_Img) {
@@ -80,7 +80,7 @@
 			<div class="joe_container">
 				<div class="joe_main joe_post">
 					<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
-						<?php $this->need('public/batten.php'); ?>
+						<?php $this->need('module/batten.php'); ?>
 						<?php if ($this->options->JOverdue && $this->options->JOverdue !== 'off' && floor((time() - ($this->modified)) / 86400) > $this->options->JOverdue) : ?>
 							<div class="joe_detail__overdue">
 								<div class="joe_detail__overdue-wrapper">
@@ -115,33 +115,33 @@
 						?>
 								<div class="joe_post__ad">
 									<a class="joe_post__ad-link" href="<?php echo $post_ad_arr_arr[$key]['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
-										<img width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo $post_ad_arr_arr[$key]['image'] ?>" alt="<?php echo $post_ad_arr_arr[$key]['url'] ?>" />
+										<img width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo $post_ad_arr_arr[$key]['image'] ?>" alt="<?php echo $post_ad_arr_arr[$key]['url'] ?>" />
 										<span class="icon">广告</span>
 									</a>
 								</div>
 						<?php
 							}
 						}
-						$this->need('public/article.php');
-						$this->need('public/handle.php');
-						$this->need('public/operate.php');
-						$this->need('public/copyright.php');
-						$this->need('public/related.php');
+						$this->need('module/article.php');
+						$this->need('module/handle.php');
+						$this->need('module/operate.php');
+						$this->need('module/copyright.php');
+						$this->need('module/related.php');
 						?>
 					</div>
 					<ul class="joe_post__pagination">
 						<?php $this->theNext('<li class="joe_post__pagination-item prev">%s</li>', '', ['title' => '上一篇']); ?>
 						<?php $this->thePrev('<li class="joe_post__pagination-item next">%s</li>', '', ['title' => '下一篇']); ?>
 					</ul>
-					<?php $this->need('public/comment.php'); ?>
+					<?php $this->need('module/comment.php'); ?>
 				</div>
-				<?php $this->need('public/aside.php'); ?>
+				<?php $this->need('module/aside.php'); ?>
 			</div>
-			<?php $this->need('public/footer.php'); ?>
+			<?php $this->need('module/footer.php'); ?>
 	</div>
 	<?php if ($this->options->JArticle_Guide == 'on') { ?>
-		<link rel="stylesheet" href="<?= Joe::jsdelivrUrl('Joe/assets/css/joe.autoc.min.css'); ?>">
-		<script src="<?= Joe::jsdelivrUrl('Joe/assets/js/joe.autoc.min.js'); ?>"></script>
+		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.autoc.min.css'); ?>">
+		<script src="<?= joe\theme_url('assets/js/joe.autoc.min.js'); ?>"></script>
 		<script type="text/javascript">
 			if ($(".joe_detail__article").children().length > 0) {
 				(function() {

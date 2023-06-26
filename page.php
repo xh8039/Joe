@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 
 <head>
-    <?php $this->need('public/include.php'); ?>
+    <?php $this->need('module/head.php'); ?>
     <?php if ($this->options->JPrismTheme) : ?>
         <link rel="stylesheet" href="<?php $this->options->JPrismTheme() ?>">
     <?php else : ?>
@@ -10,25 +10,25 @@
     <?php endif; ?>
     <script src="//cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
     <script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
-    <script src="<?= Joe::themeUrl('assets/js/joe.post_page.js'); ?>"></script>
+    <script src="<?= joe\theme_url('assets/js/joe.post_page.js'); ?>"></script>
 </head>
 
 <body>
     <div id="Joe">
-        <?php $this->need('public/header.php'); ?>
+        <?php $this->need('module/header.php'); ?>
         <div class="joe_container">
             <div class="joe_main">
                 <div class="joe_detail" data-cid="<?php echo $this->cid ?>">
-                    <?php $this->need('public/batten.php'); ?>
-                    <?php $this->need('public/article.php'); ?>
-                    <?php $this->need('public/handle.php'); ?>
-                    <?php $this->need('public/copyright.php'); ?>
+                    <?php $this->need('module/batten.php'); ?>
+                    <?php $this->need('module/article.php'); ?>
+                    <?php $this->need('module/handle.php'); ?>
+                    <?php $this->need('module/copyright.php'); ?>
                 </div>
-                <?php $this->need('public/comment.php'); ?>
+                <?php $this->need('module/comment.php'); ?>
             </div>
-            <?php $this->need('public/aside.php'); ?>
+            <?php $this->need('module/aside.php'); ?>
         </div>
-        <?php $this->need('public/footer.php'); ?>
+        <?php $this->need('module/footer.php'); ?>
     </div>
 </body>
 

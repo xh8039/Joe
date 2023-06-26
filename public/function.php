@@ -237,7 +237,7 @@ function getParentReply($parent)
 /* 获取侧边栏作者随机文章 */
 function getAsideAuthorNav()
 {
-	if (Helper::options()->JAside_Author_Nav && \Helper::options()->JAside_Author_Nav !== "off") {
+	if (\Helper::options()->JAside_Author_Nav && \Helper::options()->JAside_Author_Nav !== "off") {
 		$limit = \Helper::options()->JAside_Author_Nav;
 		$db = \Typecho_Db::get();
 		$prefix = $db->getPrefix();

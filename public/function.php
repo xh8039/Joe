@@ -272,11 +272,11 @@ function checkSensitiveWords($words_str, $str)
 function theme_url()
 {
 	if (empty(Helper::options()->JStaticAssetsUrl)) {
-		$path = self::urlQueryBuilder($path, ['version' => JOE_VERSION]);
+		$path = url_builder($path, ['version' => JOE_VERSION]);
 		return Helper::options()->themeUrl . '/' . $path;
 	}
 	$url = Helper::options()->JStaticAssetsUrl . '/' . $path;
-	$url = self::urlQueryBuilder($url, ['version' => JOE_VERSION]);
+	$url = url_builder($url, ['version' => JOE_VERSION]);
 	return $url;
 }
 
@@ -362,7 +362,7 @@ function email_config()
 /** 发送电子邮件 */
 function send_email($title, $subtitle, $content, $email = '')
 {
-	if (!self::EmailConfig()) {
+	if (!email_config()) {
 		return false;
 	}
 	if (empty($email)) {

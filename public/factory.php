@@ -193,7 +193,7 @@ class Editor
 			}
 		</script>
 		<script src="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
-		<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
+		<script src="<?= joe\theme_url('assets/js/prism.min.js'); ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/index.bundle.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>

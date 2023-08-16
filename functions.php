@@ -27,10 +27,10 @@ function themeConfig($form)
 	<script src="//cdn.staticfile.org/layer/3.5.1/layer.min.js"></script>
 	<script>
 		window.Joe = {
-			title: '<?php Helper::options()->title() ?>',
-			version: '<?= JOE_VERSION ?>',
-			logo: '<?php Helper::options()->JLogo() ?>',
-			Favicon: '<?php Helper::options()->JFavicon() ?>'
+			title: `<?php Helper::options()->title() ?>`,
+			version: `<?= JOE_VERSION ?>`,
+			logo: `<?php Helper::options()->JLogo() ?>`,
+			Favicon: `<?php Helper::options()->JFavicon() ?>`
 		}
 	</script>
 	<script src="<?= joe\theme_url('assets/typecho/config/js/joe.config.min.js') ?>"></script>

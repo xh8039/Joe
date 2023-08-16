@@ -7,18 +7,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/xh8039/php-net-request.git",
-                "reference": "7ee7af55b18f364a35fc3bf77972e960b9bdfdff"
+                "reference": "86a583e584e2d48b3286836ae46bb8a70d63aeef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xh8039/php-net-request/zipball/7ee7af55b18f364a35fc3bf77972e960b9bdfdff",
-                "reference": "7ee7af55b18f364a35fc3bf77972e960b9bdfdff",
+                "url": "https://api.github.com/repos/xh8039/php-net-request/zipball/86a583e584e2d48b3286836ae46bb8a70d63aeef",
+                "reference": "86a583e584e2d48b3286836ae46bb8a70d63aeef",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
             },
-            "time": "2023-04-25T14:10:38+00:00",
+            "time": "2023-08-02T15:29:20+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",

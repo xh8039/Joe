@@ -4,8 +4,68 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c866a1ab785036a136c34b54af0ba5a9",
+    "content-hash": "77c1be1c7c95bfbf1a12ca7f17645ec1",
     "packages": [
+        {
+            "name": "metowolf/meting",
+            "version": "v1.5.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/metowolf/Meting.git",
+                "reference": "a88a1dffca16ae32f20cf009d7b65bfa1e9cdbad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/metowolf/Meting/zipball/a88a1dffca16ae32f20cf009d7b65bfa1e9cdbad",
+                "reference": "a88a1dffca16ae32f20cf009d7b65bfa1e9cdbad",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-openssl": "*",
+                "php": ">=5.4.0"
+            },
+            "suggest": {
+                "ext-bcmath": "Required to use BC Math calculate RSA.",
+                "ext-openssl": "Required to use OpenSSL encrypt params."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Metowolf\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "metowolf",
+                    "email": "i@i-meto.com",
+                    "homepage": "https://i-meto.com"
+                }
+            ],
+            "description": "A powerful music API framework to accelerate development.",
+            "homepage": "https://github.com/metowolf/Meting",
+            "keywords": [
+                "lightweight",
+                "lighty",
+                "music api",
+                "php music"
+            ],
+            "support": {
+                "issues": "https://github.com/metowolf/Meting/issues",
+                "source": "https://github.com/metowolf/Meting"
+            },
+            "time": "2021-07-19T11:53:12+00:00"
+        },
         {
             "name": "network/http",
             "version": "dev-master",

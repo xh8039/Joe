@@ -102,6 +102,7 @@ class MetingJSElement extends HTMLElement {
 		fetch(url)
 			.then(res => res.json())
 			.then(result => this._loadPlayer(result))
+			.catch(error => console.error('Error:', error));
 	}
 
 	_loadPlayer(data) {

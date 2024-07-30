@@ -1,6 +1,9 @@
 <?php
 
+use Metowolf\Meting;
+
 /* 获取文章列表 已测试 √  */
+
 function _getPost($self)
 {
 	$self->response->setStatus(200);
@@ -551,5 +554,69 @@ function _friendSubmit($self)
 			'code' => 0,
 			'msg' => '提交失败，请联系本站点管理员进行处理'
 		]);
+	}
+}
+
+function _Meting($self)
+{
+	$extension = ['bcmath', 'curl', 'openssl'];
+	foreach ($extension as  $value) {
+		if (!extension_loaded($value)) {
+			$self->response->setStatus(404);
+			$self->response->throwJson([
+				'code' => 0,
+				'msg' => '请开启PHP的' . $value . '扩展！'
+			]);
+		}
+	}
+	if (empty($_REQUEST['server']) || empty($_REQUEST['type']) || empty($_REQUEST['id'])) {
+		$self->response->setStatus(404);
+	}
+	$api = new Meting($_REQUEST['server']);
+	$type = $_REQUEST['type'];
+	if ($type == 'playlist') {
+		$data = $api->format(true)->cookie($_REQUEST['cookie'])->playlist($_REQUEST['id']);
+		$data = json_decode($data, true);
+		foreach ($data as $key => $value) {
+			unset($data[$key]);
+			$data[$key]['author'] = implode(' / ', $value['artist']);
+			$data[$key]['title'] = $value['name'];
+			$base_url = (Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api/' : Helper::options()->rootUrl . '/joe/api') . '/meting';
+			$data[$key]['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'] . '&cookie=' . $_REQUEST['cookie'];
+			$data[$key]['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $value['pic_id'] . '&cookie=' . $_REQUEST['cookie'];
+			$data[$key]['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'] . '&cookie=' . $_REQUEST['cookie'];
+		}
+		$self->response->setStatus(200);
+		$self->response->throwJson($data);
+	}
+	if ($type == 'url') {
+		$data = json_decode($api->format(true)->cookie($_REQUEST['cookie'])->url($_REQUEST['id']), true);
+		$url = $data['url'];
+		$self->response->setStatus(302);
+		header("Location: $url");
+		exit;
+	}
+	if ($type == 'pic') {
+		$data = json_decode($api->format(true)->cookie($_REQUEST['cookie'])->pic($_REQUEST['id']), true);
+		$url = $data['url'];
+		$self->response->setStatus(302);
+		header("Location: $url");
+		exit;
+	}
+	if ($type == 'lrc') {
+		$data = json_decode($api->format(true)->cookie($_REQUEST['cookie'])->lyric($_REQUEST['id']), true);
+		// 计算180天后的日期
+		$expireTime = gmdate('D, d M Y H:i:s', time() + (180 * 24 * 60 * 60)) . ' GMT';
+		// 设置缓存控制头部
+		$self->response->setStatus(200);
+		header("Cache-Control: max-age=" . (180 * 24 * 60 * 60) . ", public");
+		header("Expires: $expireTime");
+		header("Content-Type: text/plain; charset=utf-8");
+		if (empty($data['tlyric'])) {
+			echo $data['lyric'];
+		} else {
+			echo $data['tlyric'];
+		}
+		exit;
 	}
 }

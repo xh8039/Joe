@@ -87,6 +87,9 @@ function themeInit($self)
 			case 'statistics':
 				_getstatistics($self);
 				break;
+			case 'meting':
+				_Meting($self);
+				break;
 		};
 	}
 
@@ -122,6 +125,13 @@ function themeInit($self)
 		if (strpos($self->request->getRequestUri(), 'sitemap.xml') !== false) {
 			$self->response->setStatus(200);
 			$self->setThemeFile("module/sitemap.php");
+		}
+	}
+
+	/** 全局音乐API */
+	if (Helper::options()->JMusic && Helper::options()->JMusic == 'on') {
+		if (strpos($self->request->getRequestUri(), 'joe/api/meting') !== false) {
+			_Meting($self);
 		}
 	}
 }

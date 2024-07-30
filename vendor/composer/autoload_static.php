@@ -15,12 +15,20 @@ class ComposerStaticInit72d12ca78f20e8125a02612c2639f4e8
         array (
             'network\\http\\' => 13,
         ),
+        'M' => 
+        array (
+            'Metowolf\\' => 9,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'network\\http\\' => 
         array (
             0 => __DIR__ . '/..' . '/network/http/src',
+        ),
+        'Metowolf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/metowolf/meting/src',
         ),
     );
 

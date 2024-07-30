@@ -1,5 +1,6 @@
 {
     "require": {
-        "network/http": "dev-master"
+        "network/http": "dev-master",
+        "metowolf/meting": "^1.5"
     }
 }

@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'network\\http\\' => array($vendorDir . '/network/http/src'),
+    'Metowolf\\' => array($vendorDir . '/metowolf/meting/src'),
 );

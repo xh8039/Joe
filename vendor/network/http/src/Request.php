@@ -4,7 +4,7 @@ namespace network\http;
 
 /**
  * HTTP请求库
- * 
+ *
  * @package network\http
  * @author  易航
  * @version dev
@@ -33,8 +33,8 @@ trait Request
 
 	/**
 	 * 构造函数,初始化请求配置
-	 * 
-	 * @param array $options 要设置的配置项  
+	 *
+	 * @param array $options 要设置的配置项
 	 */
 	public function __construct(array $options = [])
 	{
@@ -59,15 +59,26 @@ trait Request
 				$name = $content[0];
 				$value = $content[1];
 			}
-			$name = strtolower(trim($name));
+			$name = $this->_headerNameUcfirst(strtolower(trim($name)));
 			$value = trim($value);
 			$headers_array[$name] = $value;
 		}
+		$this->options->headers = $headers_array;
 		$headers = [];
 		foreach ($headers_array as $name => $value) {
 			$headers[] = $name . ': ' . $value;
 		}
 		return $headers;
+	}
+
+	private function _headerNameUcfirst($name)
+	{
+		$name = explode('-', $name);
+		foreach ($name as $key => $value) {
+			$name[$key] = ucfirst($value);
+		}
+		$name = implode('-', $name);
+		return $name;
 	}
 
 	/**
@@ -115,6 +126,7 @@ trait Request
 		return $this;
 	}
 
+	// public function timeout(int|string $second)
 	public function timeout($second)
 	{
 		$this->options->timeout = intval($second);
@@ -144,15 +156,16 @@ trait Request
 
 	/**
 	 * 设置请求头
-	 * 
+	 *
 	 * @param string|array $name  请求头名称或数组
-	 * @param string $value 请求头值  
+	 * @param string $value 请求头值
 	 * @return $this
 	 */
 	public function header($name, $value = null)
 	{
-		if (is_array($name) && (!empty($name))) {
-			$this->options->headers = array_merge($this->options->headers, $name);
+		if (is_null($value)) {
+			if (is_string($name)) $name = explode(PHP_EOL, $name);
+			if (is_array($name)) $this->options->headers = array_merge($this->options->headers, $name);
 		} else {
 			$this->options->headers[$name] = $value;
 		}
@@ -161,9 +174,9 @@ trait Request
 
 	/**
 	 * 设置请求参数
-	 * 
-	 * @param string|array $name  参数名称或数组 
-	 * @param string $value 参数值  
+	 *
+	 * @param string|array $name  参数名称或数组
+	 * @param string $value 参数值
 	 * @return $this
 	 */
 	public function param($name, $value = null)
@@ -178,8 +191,8 @@ trait Request
 
 	/**
 	 * 设置请求Cookie
-	 * 
-	 * @param string $value Cookie值  
+	 *
+	 * @param string $value Cookie值
 	 * @return $this
 	 */
 	public function cookie(string $value)
@@ -207,7 +220,7 @@ trait Request
 
 	/**
 	 * 发送请求 支持混合传参
-	 * 
+	 *
 	 * @param $param1 请求方法|请求URL|请求参数
 	 * @param $param2 请求方法|请求URL|请求参数
 	 * @param $param3 请求方法|请求URL|请求参数
@@ -224,12 +237,13 @@ trait Request
 		$this->_initialize();
 
 		$response_body = curl_exec($this->ch);
+		$error = curl_error($this->ch);
 		$http_code = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
 		$header_size = curl_getinfo($this->ch, CURLINFO_HEADER_SIZE);
 
 		curl_close($this->ch); // 关闭curl资源
 
-		$response = $this->response = new Response($http_code, $header_size, $response_body);
+		$response = $this->response = new Response($http_code, $header_size, $response_body, $error);
 
 		return $response;
 	}

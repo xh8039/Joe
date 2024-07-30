@@ -24,11 +24,16 @@ class Response
 	private $headers = null;
 
 	/**
+	 * 错误信息
+	 */
+	private $error;
+
+	/**
 	 * 构造函数,初始化响应内容
 	 * 
 	 * @param $response_body 响应内容
 	 */
-	public function __construct($http_code, $header_size, $response_body)
+	public function __construct($http_code, $header_size, $response_body, $error)
 	{
 		$header = substr($response_body, 0, $header_size);
 		$headers = explode(PHP_EOL, $header);
@@ -37,6 +42,7 @@ class Response
 		// 过滤数组中的空值
 		$headers = array_filter($headers);
 		$body = substr($response_body, $header_size);
+		$this->error = $error;
 		$this->response = [
 			'body' => $body,
 			'header' => $header,
@@ -110,11 +116,11 @@ class Response
 	 * 
 	 * @return array|string 数组或原始响应体
 	 */
-	public function toArray()
+	public function toArray(string $name = null)
 	{
 		$array = json_decode($this->response['body'], true);
 		if (is_array($array)) {
-			return $array;
+			return is_string($name) ? (isset($array[$name]) ? $array[$name] : null) : $array;
 		}
 		return $this->body();
 	}
@@ -125,13 +131,23 @@ class Response
 	 * 
 	 * @return object|string 对象或原始响应体
 	 */
-	public function toObject()
+	public function toObject(string $name = null)
 	{
 		$object = json_decode($this->response['body']);
 		if (is_object($object)) {
-			return $object;
+			return is_string($name) ? (isset($object->$name) ? $object->$name : null) : $object;
 		}
 		return $this->body();
+	}
+
+	/**
+	 * 如果请求错误，获取请求错误的信息
+	 * 
+	 * @return string
+	 */
+	public function error()
+	{
+		return $this->error;
 	}
 
 	/**

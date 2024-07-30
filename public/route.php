@@ -86,7 +86,7 @@ function _getstatistics($self)
 	}
 	// 获取站点列表
 	$baidu_list = function () use ($statistics_config, $self) {
-		$url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . $statistics_config['access_token'];
+		$url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . trim($statistics_config['access_token']);
 		$data = json_decode(file_get_contents($url), true);
 		if (isset($data['error_code'])) {
 			$self->response->setStatus(404);
@@ -99,7 +99,7 @@ function _getstatistics($self)
 	};
 	// 获取站点详情
 	$web_metrics = function ($list, $start_date, $end_date) use ($statistics_config) {
-		$access_token = $statistics_config['access_token'];
+		$access_token = trim($statistics_config['access_token']);
 		$site_id = $list['site_id'];
 		$url = "https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=$access_token&site_id=$site_id&method=trend/time/a&start_date=$start_date&end_date=$end_date&metrics=pv_count,ip_count&gran=day";
 		$data = \network\http\post($url)->toArray();
@@ -417,7 +417,7 @@ function _getServerStatus($self)
 		/* 状态 */
 		"status" => $response ? true : false,
 		/* 信息提示 */
-		"message" => $response['msg'],
+		"message" => $response['msg'] ?? '',
 		/* 上行流量KB */
 		"up" => $response["up"] ? $response["up"] : 0,
 		/* 下行流量KB */

@@ -82,7 +82,7 @@ $form->addInput($JAside_Author_Link);
 $JAside_Author_Motto = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JAside_Author_Motto',
 	NULL,
-	'//web.bri6.cn/api/随机一言/api.php',
+	'//api.bri6.cn/api/random-talk/',
 	'博主栏座右铭（一言）- PC/WAP',
 	'介绍：用于修改博主栏的座右铭（一言） <br />
 		 格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />

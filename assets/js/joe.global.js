@@ -759,7 +759,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		let motto = Joe.MOTTO;
 		if (!motto) motto = "有钱终成眷属，没钱亲眼目睹";
-		var pattern = /http[s]?:\/\//;
+		var pattern = /^\/\//;
 		if (pattern.test(motto)) {
 			$.ajax({
 				url: motto,

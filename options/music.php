@@ -6,7 +6,7 @@ $extension_tip = '';
 $extension = ['bcmath', 'curl', 'openssl'];
 foreach ($extension as  $value) {
 	if (!extension_loaded($value)) {
-		$extension_tip .= '<br /><font color="red">务必先安装 PHP 的 ' . $value . ' 扩展后再开启本功能！安装后重启PHP生效';
+		$extension_tip .= '<br /><font color="red">如果使用系统内置解析器，开启前务必先安装 PHP 的 ' . $value . ' 扩展后再开启本功能！安装后重启PHP生效';
 	}
 }
 
@@ -19,6 +19,16 @@ $JMusic = new Typecho_Widget_Helper_Form_Element_Select(
 );
 $JMusic->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusic);
+
+$JMusicApi = new Typecho_Widget_Helper_Form_Element_Text(
+	'JMusicApi',
+	NUll,
+	'https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r',
+	'音乐解析API接口',
+	'不填写则使用系统内置解析器，例如：https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r'
+);
+$JMusicApi->setAttribute('class', 'joe_content joe_music');
+$form->addInput($JMusicApi);
 
 $JMusicCookie = new Typecho_Widget_Helper_Form_Element_Text(
 	'JMusicCookie',

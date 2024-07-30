@@ -1,0 +1,22 @@
+{
+	"type": "Live2D Model Setting",
+	"name": "live2d-widget-model-platelet",
+	"model": "moc/platelet.moc",
+	"textures": [
+		"moc/platelet.2048/texture_00.png"
+	],
+	"motions":{
+		"idle":[
+			{"file":"mtn/Idle.mtn"}
+		],
+        "sleepy":[
+            {"file":"mtn/Nemui.mtn"}
+        ],
+		"flick_head":[
+			{"file":"mtn/Anone_Synced.mtn"}
+		],
+		"tap_body":[
+			{"file":"mtn/Dance.mtn"}
+		]
+	}
+}

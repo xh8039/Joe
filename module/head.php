@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
-<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.0.0/plugin/qmsg/qmsg.css">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
 <link rel="stylesheet" href="//cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="//cdn.staticfile.org/animate.css/3.7.2/animate.min.css" />
 <link rel="stylesheet" href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,9 +34,9 @@
 <script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
 <script src="//cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>"></script>
-<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.0.0/plugin/qmsg/qmsg.js"></script>
+<script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>"></script>
 <?php if ($this->options->JAside_3DTag === 'on') : ?>
-	<script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.3/plugin/3dtag/3dtag.min.js"></script>
+	<script src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js'); ?>"></script>
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" async></script>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>

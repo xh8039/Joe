@@ -332,7 +332,9 @@
 	</div>
 
 	<div class="joe_header__slideout">
-		<img class="joe_header__slideout-image" height="<?php $this->options->JAside_Wap_Image_Height ? $this->options->JAside_Wap_Image_Height() : print_r('150px'); ?>" src="<?php $this->options->JAside_Wap_Image() ?>" alt="侧边栏壁纸" />
+		<img class="joe_header__slideout-image" height="<?php $this->options->JAside_Wap_Image_Height ? $this->options->JAside_Wap_Image_Height() : print_r('150px'); ?>" src="<?=
+		empty($this->options->JAside_Wap_Image) ? \joe\theme_url('assets/images/wap_aside_image.jpg') : $this->options->JAside_Wap_Image
+		?>" alt="侧边栏壁纸" />
 		<div class="joe_header__slideout-author">
 			<img width="50" height="50" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主昵称" />
 			<div class="info">

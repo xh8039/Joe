@@ -102,8 +102,9 @@ function getAgentOS($agent)
 /* 获取全局懒加载图 */
 function getLazyload($type = true)
 {
-	if ($type) echo \Helper::options()->JLazyload;
-	else return \Helper::options()->JLazyload;
+	$JLazyload = empty(Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.jpg') : Helper::options()->JLazyload;
+	if ($type) echo $JLazyload;
+	else return $JLazyload;
 }
 
 /* 获取头像懒加载图 */
@@ -216,7 +217,11 @@ function getThumbnails($item)
 			}
 		} else {
 			for ($i = 0; $i < 3; $i++) {
-				$result[] = 'https://fastly.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/thumb/' . rand(1, 42) . '.jpg';
+				// 生成一个在 1 到 42 之间的随机数
+				$randomNumber = rand(1, 42);
+				// 将随机数格式化为两位数
+				$formattedNumber = sprintf('%02d', $randomNumber);
+				$result[] = theme_url('assets/images/thumb/' . $formattedNumber . '.jpg');
 			}
 		}
 	}

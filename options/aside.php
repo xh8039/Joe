@@ -39,7 +39,7 @@ $form->addInput($JAside_Author_Avatar);
 $JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JAside_Author_Image',
 	NULL,
-	"https://fastly.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/aside_author_image.jpg",
+	NULL,
 	'博主栏背景壁纸 - PC',
 	'介绍：用于修改PC端博主栏的背景壁纸 <br/>
 		 格式：图片地址 或 Base64地址'
@@ -50,7 +50,7 @@ $form->addInput($JAside_Author_Image);
 $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JAside_Wap_Image',
 	NULL,
-	"https://fastly.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/wap_aside_image.jpg",
+	NULL,
 	'博主栏背景壁纸 - WAP',
 	'介绍：用于修改移动端博主栏的背景壁纸 <br/>
 		 格式：图片地址 或 Base64地址'

@@ -115,7 +115,7 @@ trait Request
 		return $this;
 	}
 
-	public function timeout(int|string $second)
+	public function timeout($second)
 	{
 		$this->options->timeout = intval($second);
 		return $this;

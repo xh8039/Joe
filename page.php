@@ -3,13 +3,13 @@
 
 <head>
     <?php $this->need('module/head.php'); ?>
-    <?php if ($this->options->JPrismTheme) : ?>
-        <link rel="stylesheet" href="<?php $this->options->JPrismTheme() ?>">
+    <?php if (!empty($this->options->JPrismTheme)) : ?>
+        <link rel="stylesheet" href="<?= \Joe\theme_url('assets/plugin/prism/themes/' . $this->options->JPrismTheme) ?>">
     <?php else : ?>
         <link rel="stylesheet" href="//cdn.staticfile.org/prism/1.23.0/themes/prism.min.css">
     <?php endif; ?>
     <script src="//cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <script src="https://fastly.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
+    <script src="<?= joe\theme_url('assets/plugin/prism/prism.min.js') ?>"></script>
     <script src="<?= joe\theme_url('assets/js/joe.post_page.js'); ?>"></script>
 </head>
 

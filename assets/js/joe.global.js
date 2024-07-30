@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	/* 动态背景 */
 	{
 		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND !== "off" && Joe.DYNAMIC_BACKGROUND && !Joe.WALLPAPER_BACKGROUND_PC) {
-			$.getScript(`https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
+			$.getScript(`${Joe.THEME_URL}assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
 		}
 	}
 
@@ -411,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	/* 激活Live2d人物 */
 	{
 		if (Joe.LIVE2D !== "off" && Joe.LIVE2D) {
-			$.getScript("https://fastly.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js", () => {
+			$.getScript(`${Joe.THEME_URL}assets/plugin/live2d/L2Dwidget.min.js`, () => {
 				L2Dwidget.init({
 					model: {
 						jsonPath: Joe.LIVE2D,

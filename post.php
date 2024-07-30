@@ -105,8 +105,8 @@
 							$post_ad_arr = explode("\r\n", $post_ad_text);
 							foreach ($post_ad_arr as $key => $value) {
 								$post_ad_arr_arr[] = [
-									'url' => trim(explode("||", $post_ad_arr[$key])[1]),
-									'image' => trim(explode("||", $post_ad_arr[$key])[0])
+									'url' => trim(explode("||", $post_ad_arr[$key])[1] ?? ''),
+									'image' => trim(explode("||", $post_ad_arr[$key])[0] ?? '')
 								];
 							}
 						}

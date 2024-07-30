@@ -79,10 +79,10 @@
                         $friends_arr = explode("\r\n", $friends_text);
                         if (count($friends_arr) > 0) {
                             for ($i = 0; $i < count($friends_arr); $i++) {
-                                $name = explode("||", $friends_arr[$i])[0];
-                                $url = explode("||", $friends_arr[$i])[1];
-                                $avatar = explode("||", $friends_arr[$i])[2];
-                                $desc = explode("||", $friends_arr[$i])[3];
+                                $name = explode("||", $friends_arr[$i])[0] ?? '';
+                                $url = explode("||", $friends_arr[$i])[1] ?? '';
+                                $avatar = explode("||", $friends_arr[$i])[2] ?? '';
+                                $desc = explode("||", $friends_arr[$i])[3] ?? '';
                                 $friends[] = array("name" => trim($name), "url" => trim($url), "avatar" => trim($avatar), "desc" => trim($desc));
                             };
                         }

@@ -102,7 +102,7 @@ function getAgentOS($agent)
 /* 获取全局懒加载图 */
 function getLazyload($type = true)
 {
-	$JLazyload = empty(Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.jpg') : Helper::options()->JLazyload;
+	$JLazyload = empty(\Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.jpg') : \Helper::options()->JLazyload;
 	if ($type) echo $JLazyload;
 	else return $JLazyload;
 }
@@ -110,7 +110,7 @@ function getLazyload($type = true)
 /* 获取头像懒加载图 */
 function getAvatarLazyload($type = true)
 {
-	$str = \Helper::options()->themeUrl . '/assets/images/AvatarLazyload.png';
+	$str = theme_url('assets/images/AvatarLazyload.png');
 	if ($type) echo $str;
 	else return $str;
 }

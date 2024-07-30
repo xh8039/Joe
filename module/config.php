@@ -24,9 +24,9 @@
 		BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
 		BING_PUSH: <?php echo $this->options->JBingToken ? 'true' : 'false' ?>,
 		DOCUMENT_TITLE: `<?php $this->options->JDocumentTitle() ?>`,
-		LAZY_LOAD: `<?php joe\getLazyload() ?>`,
+		LAZY_LOAD: `<?php \joe\getLazyload() ?>`,
 		BIRTHDAY: `<?php $this->options->JBirthDay() ?>`,
-		MOTTO: `<?php joe\getAsideAuthorMotto() ?>`,
+		MOTTO: `<?php \joe\getAsideAuthorMotto() ?>`,
 		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`
 	}
 </script>

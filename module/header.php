@@ -113,8 +113,8 @@
 					$custom_arr = explode("\r\n", $custom_text);
 					if (count($custom_arr) > 0) {
 						for ($i = 0; $i < count($custom_arr); $i++) {
-							$title = explode("||", $custom_arr[$i])[0];
-							$url = explode("||", $custom_arr[$i])[1];
+							$title = explode("||", $custom_arr[$i])[0] ?? '';
+							$url = explode("||", $custom_arr[$i])[1] ?? '';
 							$custom[] = array("title" => trim($title), "url" => trim($url));
 						};
 					}

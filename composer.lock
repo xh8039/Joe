@@ -12,13 +12,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/xh8039/php-net-request.git",
-                "reference": "86a583e584e2d48b3286836ae46bb8a70d63aeef"
+                "reference": "ecb5b290230ab753057362e8f82a6a07856aa478"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xh8039/php-net-request/zipball/86a583e584e2d48b3286836ae46bb8a70d63aeef",
-                "reference": "86a583e584e2d48b3286836ae46bb8a70d63aeef",
-                "shasum": ""
+                "url": "https://api.github.com/repos/xh8039/php-net-request/zipball/ecb5b290230ab753057362e8f82a6a07856aa478",
+                "reference": "ecb5b290230ab753057362e8f82a6a07856aa478",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=7.4"
@@ -48,7 +54,7 @@
                 "issues": "https://github.com/xh8039/php-net-request/issues",
                 "source": "https://github.com/xh8039/php-net-request/tree/master"
             },
-            "time": "2023-08-02T15:29:20+00:00"
+            "time": "2024-07-30T15:27:59+00:00"
         }
     ],
     "packages-dev": [],
@@ -61,5 +67,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

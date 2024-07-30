@@ -13,7 +13,7 @@ class Response
 
 	/**
 	 * 响应内容
-	 * @var array 
+	 * @var array
 	 */
 	private $response;
 
@@ -30,7 +30,7 @@ class Response
 
 	/**
 	 * 构造函数,初始化响应内容
-	 * 
+	 *
 	 * @param $response_body 响应内容
 	 */
 	public function __construct($http_code, $header_size, $response_body, $error)
@@ -53,17 +53,21 @@ class Response
 
 	/**
 	 * 直接获取响应体内容
-	 *  
+	 *
 	 * @return string 响应体字符串
 	 */
 	public function __toString()
 	{
-		return $this->body();
+		$body = $this->body();
+		if (is_string($body)) {
+			return $body;
+		}
+		return '';
 	}
 
 	/**
 	 * 获取响应体内容
-	 * 
+	 *
 	 * @return string 响应体字符串
 	 */
 	public function body()
@@ -73,7 +77,7 @@ class Response
 
 	/**
 	 * 获取响应状态码
-	 *  
+	 *
 	 * @return integer 响应状态码
 	 */
 	public function code()
@@ -83,7 +87,7 @@ class Response
 
 	/**
 	 * 获取响应头信息
-	 * 
+	 *
 	 * @param string|null $name 响应头名称,为空则获取所有响应头
 	 * @return string|array|null 指定响应头值,或所有响应头数组,或空响应头null
 	 */
@@ -99,7 +103,7 @@ class Response
 
 	/**
 	 * 获取所有响应头信息
-	 * 
+	 *
 	 * @return array 响应头数组
 	 */
 	public function headers()
@@ -113,7 +117,7 @@ class Response
 	/**
 	 * 将JSON响应体转换为PHP数组
 	 * 如果转换失败,返回原响应体字符串
-	 * 
+	 *
 	 * @return array|string 数组或原始响应体
 	 */
 	public function toArray(string $name = null)
@@ -128,7 +132,7 @@ class Response
 	/**
 	 * 将JSON响应体转换为PHP对象
 	 * 如果转换失败,返回原响应体字符串
-	 * 
+	 *
 	 * @return object|string 对象或原始响应体
 	 */
 	public function toObject(string $name = null)
@@ -142,7 +146,7 @@ class Response
 
 	/**
 	 * 如果请求错误，获取请求错误的信息
-	 * 
+	 *
 	 * @return string
 	 */
 	public function error()
@@ -152,8 +156,8 @@ class Response
 
 	/**
 	 * 将字符串响应头转换为关联数组
-	 * 
-	 * @param array $headers 字符串响应头  
+	 *
+	 * @param array $headers 字符串响应头
 	 * @return array 响应头数组
 	 */
 	private function _explodeHeaders(array $headers)

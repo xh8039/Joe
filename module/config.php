@@ -83,7 +83,8 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 	}
 
 	if (($this->is('index') || $this->is('archive')) && $this->options->JIndex_Article_Double_Column == 'on') {
-		echo '@media(min-width: 1200px) {
+		echo '
+		@media(min-width: 1200px) {
 			.joe_aside {
 				display: none;
 			}
@@ -95,7 +96,17 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 			.joe_list>.joe_list__item {
 				border-radius: var(--radius-wrap);
 			}
-		}';
+		}
+		.joe_index__hot-list {
+			grid-template-columns: repeat(4, 1fr);
+		}
+		.swiper-container {
+			height: 550px;
+		}
+		.swiper-container .item {
+			height: 550px;
+		}
+		';
 	}
 
 	?>@font-face {

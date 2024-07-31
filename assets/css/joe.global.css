@@ -811,9 +811,9 @@
 
 .joe_aside__item {
 	position: relative;
-	width: 250px;
+	width: 300px;
 	margin-bottom: 15px;
-	border-radius: var(--radius-wrap);
+	border-radius: var(--radius-inner);
 	box-shadow: var(--box-shadow);
 	overflow: hidden
 }

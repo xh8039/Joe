@@ -112,6 +112,12 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		.joe_index__hot-list {
 			grid-template-columns: repeat(3, 1fr);
 		}
+		.swiper-container {
+			height: 450px;
+		}
+		.swiper-container .item {
+			height: 450px;
+		}
 		';
 	}
 

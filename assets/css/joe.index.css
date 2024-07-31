@@ -400,14 +400,14 @@
 .swiper-container {
 	min-width: 0;
 	flex: 1;
-	height: 450px;
+	/* height: 450px; */
 	--swiper-theme-color: #fff;
 	border-radius: var(--radius-inner)
 }
 
 .swiper-container .item {
 	display: block;
-	height: 450px;
+	/* height: 450px; */
 	border-radius: var(--radius-inner)
 }
 

@@ -1478,7 +1478,7 @@
 	padding: 15px;
 	background: var(--background);
 	margin-bottom: 10px;
-	box-shadow: 0 0 10px rgba(116, 116, 116, 0.15);
+	box-shadow: 0 0 10px rgba(116, 116, 116, 0.08);
 	transition: .3s;
 	border-radius: var(--radius-inner);
 }

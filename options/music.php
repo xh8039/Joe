@@ -24,7 +24,7 @@ $JMusicApi = new Typecho_Widget_Helper_Form_Element_Text(
 	'JMusicApi',
 	NUll,
 	'https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r',
-	'音乐解析API接口',
+	'自定义音乐解析API接口',
 	'不填写则使用系统内置解析器，例如
 	<br>
 	https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r

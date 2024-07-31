@@ -1,4 +1,3 @@
-<?php $this->need('module/config.php');?>
 <meta charset="utf-8" />
 <meta name="renderer" content="webkit" />
 <meta name="format-detection" content="email=no" />
@@ -45,3 +44,4 @@
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 <?php $this->options->JCustomHeadEnd() ?>
+<?php $this->need('module/config.php');?>

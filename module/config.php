@@ -107,6 +107,12 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 			height: 550px;
 		}
 		';
+	}else {
+		echo '
+		.joe_index__hot-list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		';
 	}
 
 	?>@font-face {

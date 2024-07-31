@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="//cdn.staticfile.org/animate.css/3.7.2/animate.min.css" />
 <link rel="stylesheet" href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css">
+<?php $this->need('module/config.php');?>
 <script src="//cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
 <script src="<?= joe\theme_url('assets/js/joe.scroll.js'); ?>"></script>
 <script src="//cdn.staticfile.org/lazysizes/5.3.0/lazysizes.min.js"></script>
@@ -44,4 +45,3 @@
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 <?php $this->options->JCustomHeadEnd() ?>
-<?php $this->need('module/config.php');?>

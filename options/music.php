@@ -25,7 +25,11 @@ $JMusicApi = new Typecho_Widget_Helper_Form_Element_Text(
 	NUll,
 	'https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r',
 	'音乐解析API接口',
-	'不填写则使用系统内置解析器，例如：https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r'
+	'不填写则使用系统内置解析器，例如
+	<br>
+	https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r
+	<br>
+	https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&r=:r'
 );
 $JMusicApi->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicApi);

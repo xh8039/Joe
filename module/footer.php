@@ -7,7 +7,7 @@ if ($this->options->JMusic == 'on') {
 		<?php
 		if (empty($this->options->JMusicApi)) {
 		?>
-			window.meting_api = `${Joe.BASE_API}/meting?server=:server&type=:type&id=:id&r=:r&cookie=<?= $this->options->JMusicCookie ?>`
+			window.meting_api = `${Joe.BASE_API}/meting?server=:server&type=:type&id=:id&r=:r&cookie=<?= urlencode($this->options->JMusicCookie) ?>`
 		<?php
 		} else {
 		?>

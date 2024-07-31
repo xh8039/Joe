@@ -39,7 +39,7 @@ $JMusicCookie = new Typecho_Widget_Helper_Form_Element_Text(
 	NULL,
 	NULL,
 	'账号Cookie',
-	'介绍：登录音乐平台后的Cookie，需要自己抓包获取，如果您有此平台的会员，那么填写上您账号的Cookie就可以解析会员音乐'
+	'介绍：登录音乐平台后的Cookie，需要自己抓包获取，如果使用系统内置解析器则必填，不然歌单列表只能获取到前十首，如果您有此平台的会员，那么填写上您账号的Cookie就可以解析会员音乐'
 );
 $JMusicCookie->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicCookie);

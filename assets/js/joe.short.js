@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			render() {
 				if (!this.options.id) return (this.innerHTML = '网易云歌单ID未填写！');
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
-				fetch('https://api.i-meto.com/meting/api?server=netease&type=playlist&id=' + this.options.id).then(async response => {
+				fetch(`${Joe.BASE_API}/meting?server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 					const audio = await response.json();
 					new MusicPlayer({
 						container: getChildren(this, '_content'),

@@ -9,7 +9,7 @@ if ($this->options->JMusic == 'on') {
 			}
 		}
 	</style>
-	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="AllFixed" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
+	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
 	<script>
 		<?php
 		if (empty($this->options->JMusicApi)) {

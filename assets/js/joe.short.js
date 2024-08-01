@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			render() {
 				if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
-				fetch('https://www.vvhan.com/usr/themes/Joe/NeteaseCloudMusicApi.php?id=' + this.options.id).then(async response => {
+				fetch(`${Joe.BASE_API}/meting?server=netease&type=song&id=${this.options.id}`).then(async response => {
 					const audio = await response.json();
 					new MusicPlayer({
 						container: getChildren(this, '_content'),

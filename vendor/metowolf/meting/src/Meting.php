@@ -42,7 +42,7 @@ class Meting
 
     public function cookie($value)
     {
-        $this->header['Cookie'] = $value;
+        $this->header['Cookie'] = $value ?? '';
 
         return $this;
     }

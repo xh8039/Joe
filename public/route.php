@@ -575,36 +575,36 @@ function _Meting($self)
 	$api = new Meting($_REQUEST['server']);
 	$type = $_REQUEST['type'];
 	if ($type == 'playlist') {
-		$data = $api->format(true)->cookie($_REQUEST['cookie'])->playlist($_REQUEST['id']);
+		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->playlist($_REQUEST['id']);
 		$data = json_decode($data, true);
 		foreach ($data as $key => $value) {
 			unset($data[$key]);
 			$data[$key]['author'] = implode(' / ', $value['artist']);
 			$data[$key]['title'] = $value['name'];
 			$base_url = (Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api/' : Helper::options()->rootUrl . '/joe/api') . '/meting';
-			$data[$key]['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'] . '&cookie=' . $_REQUEST['cookie'];
-			$data[$key]['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $value['pic_id'] . '&cookie=' . $_REQUEST['cookie'];
-			$data[$key]['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'] . '&cookie=' . $_REQUEST['cookie'];
+			$data[$key]['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'];
+			$data[$key]['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $value['pic_id'];
+			$data[$key]['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
 		}
 		$self->response->setStatus(200);
 		$self->response->throwJson($data);
 	}
 	if ($type == 'url') {
-		$data = json_decode($api->format(true)->cookie($_REQUEST['cookie'])->url($_REQUEST['id']), true);
+		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->url($_REQUEST['id']), true);
 		$url = $data['url'];
 		$self->response->setStatus(302);
 		header("Location: $url");
 		exit;
 	}
 	if ($type == 'pic') {
-		$data = json_decode($api->format(true)->cookie($_REQUEST['cookie'])->pic($_REQUEST['id']), true);
+		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->pic($_REQUEST['id']), true);
 		$url = $data['url'];
 		$self->response->setStatus(302);
 		header("Location: $url");
 		exit;
 	}
 	if ($type == 'lrc') {
-		$data = json_decode($api->format(true)->cookie($_REQUEST['cookie'])->lyric($_REQUEST['id']), true);
+		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->lyric($_REQUEST['id']), true);
 		// 计算180天后的日期
 		$expireTime = gmdate('D, d M Y H:i:s', time() + (180 * 24 * 60 * 60)) . ' GMT';
 		// 设置缓存控制头部
@@ -618,5 +618,16 @@ function _Meting($self)
 			echo $data['tlyric'];
 		}
 		exit;
+	}
+	if ($type == 'song') {
+		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->song($_REQUEST['id']);
+		$data = json_decode($data, true);
+		$data['author'] = implode(' / ', $value['artist']);
+		$data['title'] = $value['name'];
+		$base_url = (Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api/' : Helper::options()->rootUrl . '/joe/api') . '/meting';
+		$data['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'];
+		$data['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $value['pic_id'];
+		$data['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
+		$self->response->throwJson($data);
 	}
 }

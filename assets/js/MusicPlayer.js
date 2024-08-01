@@ -57,6 +57,7 @@ class MusicPlayer {
 			this.OPTIONS['autotheme'] ? this.autoTheme(this.PLAYER.list.index) : null
 		})
 		this.PLAYER.on('error', () => {
+			console.log(this.PLAYER.list.audios[this.PLAYER.list.index])
 			this.PLAYER.skipForward()
 			this.PLAYER.seek(0)
 		})
@@ -174,7 +175,7 @@ class MusicPlayer {
 		for (let key in music) {
 			// 音频名称
 			if (!music[key]['name']) {
-				music[key]['name'] = music[key]['title'] ? music[key]['title'] : '歌曲'.key
+				music[key]['name'] = music[key]['title'] ? music[key]['title'] : '歌曲'. key
 			}
 			// 音频作者
 			if (!music[key]['artist']) {

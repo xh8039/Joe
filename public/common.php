@@ -129,10 +129,8 @@ function themeInit($self)
 	}
 
 	/** 全局音乐API */
-	if (Helper::options()->JMusic && Helper::options()->JMusic == 'on') {
-		if (strpos($self->request->getRequestUri(), 'joe/api/meting') !== false) {
-			_Meting($self);
-		}
+	if (strpos($self->request->getRequestUri(), 'joe/api/meting') !== false) {
+		_Meting($self);
 	}
 }
 

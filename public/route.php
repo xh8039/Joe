@@ -622,12 +622,15 @@ function _Meting($self)
 	if ($type == 'song') {
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->song($_REQUEST['id']);
 		$data = json_decode($data, true);
+		$self->response->setStatus(200);
+		$self->response->throwJson($data);
 		$data['author'] = implode(' / ', $value['artist']);
 		$data['title'] = $value['name'];
 		$base_url = (Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api/' : Helper::options()->rootUrl . '/joe/api') . '/meting';
 		$data['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'];
 		$data['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $value['pic_id'];
 		$data['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
+		$self->response->setStatus(200);
 		$self->response->throwJson($data);
 	}
 }

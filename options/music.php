@@ -98,8 +98,8 @@ $form->addInput($JMusicPlay);
 
 $JMusicOrder = new Typecho_Widget_Helper_Form_Element_Select(
 	'JMusicOrder',
-	['random' => '随机播放（默认）', 'list' => '默认排序'],
-	'random',
+	['list' => '默认排序（默认）', 'random' => '随机播放'],
+	'list',
 	'播放顺序',
 	'介绍：播放顺序'
 );

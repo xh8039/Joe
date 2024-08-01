@@ -629,6 +629,6 @@ function _Meting($self)
 		$data['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $data['pic_id'];
 		$data['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];
 		$self->response->setStatus(200);
-		$self->response->throwJson($data);
+		$self->response->throwJson([$data]);
 	}
 }

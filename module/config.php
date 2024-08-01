@@ -48,7 +48,7 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 	if (joe\isMobile()) {
 		// 移动端屏蔽热门文章滚动条
 		if ($this->is('index')) {
-			echo '.joe_index__hot-list .item>.item-body>.item-tags-category::-webkit-scrollbar {display: none;}';
+			// echo '.joe_index__hot-list .item>.item-body>.item-tags-category::-webkit-scrollbar {display: none;}';
 		}
 		// 部分背景壁纸适配优化
 		if ($this->options->JWallpaper_Background_Optimal == 'all' || $this->options->JWallpaper_Background_Optimal == 'wap') {
@@ -61,10 +61,10 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 	}
 
 	// 非移动端情况下
-	if (joe\isMobile()) {
+	if (!joe\isMobile()) {
 		// 首页热门文章滚动条内部下边距
 		if ($this->is('index')) {
-			echo '.joe_index__hot-list .item>.item-body>.item-tags-category {padding-bottom: 3px;}';
+			// echo '.joe_index__hot-list .item>.item-body>.item-tags-category {padding-bottom: 3px;}';
 		}
 
 		if ($this->options->JWallpaper_Background_Optimal == 'all' || $this->options->JWallpaper_Background_Optimal == 'pc') {

@@ -622,6 +622,8 @@ function _Meting($self)
 	if ($type == 'song') {
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->song($_REQUEST['id']);
 		$data = array_shift(json_decode($data, true));
+		$self->response->setStatus(200);
+		$self->response->throwJson($data);
 		$data['author'] = is_array($value['artist']) ? implode(' / ', $value['artist']) : $value['artist'];
 		$data['title'] = $value['name'];
 		$base_url = (Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api/' : Helper::options()->rootUrl . '/joe/api') . '/meting';

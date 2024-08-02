@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
 <link rel="stylesheet" href="//cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="//cdn.staticfile.org/animate.css/3.7.2/animate.min.css" />
-<link rel="stylesheet" href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 <link rel="stylesheet" href="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css">
 <?php $this->need('module/config.php');?>
 <script src="//cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>

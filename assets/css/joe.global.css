@@ -623,7 +623,7 @@
 	transition: transform 0.35s, visibility 0.35s;
 	transition: transform 0.35s, visibility 0.35s, -webkit-transform 0.35s;
 	overflow-y: auto;
-	padding: 135px 15px 15px
+	padding: 10vh 15px 15px
 }
 
 .joe_header__slideout::-webkit-scrollbar {

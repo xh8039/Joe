@@ -583,7 +583,7 @@ function _Meting($self)
 			$data[$key]['title'] = $value['name'];
 			$base_url = (Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api/' : Helper::options()->rootUrl . '/joe/api') . '/meting';
 			$data[$key]['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'];
-			$data[$key]['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $value['pic_id'];
+			$data[$key]['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
 			$data[$key]['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
 		}
 		$self->response->setStatus(200);
@@ -597,7 +597,7 @@ function _Meting($self)
 		exit;
 	}
 	if ($type == 'pic') {
-		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->pic($_REQUEST['id']), true);
+		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->pic($_REQUEST['id'], ($_REQUEST['size'] ?? 300)), true);
 		$url = $data['url'];
 		$self->response->setStatus(302);
 		header("Location: $url");

@@ -83,7 +83,14 @@
                                 $url = explode("||", $friends_arr[$i])[1] ?? '';
                                 $avatar = explode("||", $friends_arr[$i])[2] ?? '';
                                 $desc = explode("||", $friends_arr[$i])[3] ?? '';
-                                $friends[] = array("name" => trim($name), "url" => trim($url), "avatar" => trim($avatar), "desc" => trim($desc));
+                                $rel = explode("||", $friends_arr[$i])[4] ?? 'friend';
+                                $friends[] = array(
+                                    "name" => trim($name),
+                                    "url" => trim($url),
+                                    "avatar" => trim($avatar),
+                                    "desc" => trim($desc),
+                                    'rel' => trim($rel)
+                                );
                             };
                         }
                     }
@@ -96,7 +103,7 @@
 	                        }
                             foreach ($friends as $item) : ?>
                                 <li class="joe_detail__friends-item">
-                                    <a class="contain" href="<?php echo $item['url']; ?>" target="_blank" rel="noopener noreferrer" style="background: <?php echo $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
+                                    <a class="contain" href="<?php echo $item['url']; ?>" target="_blank" rel="<?= $item['rel'] ?>" style="background: <?php echo $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
                                         <span class="title"><?php echo $item['name']; ?></span>
                                         <div class="content">
                                             <div class="desc"><?php echo $item['desc']; ?></div>

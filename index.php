@@ -13,6 +13,7 @@
 <html lang="zh-CN">
 
 <head>
+	<meta name="referrer" content="no-referrer" />
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="//cdn.staticfile.org/Swiper/5.4.5/css/swiper.min.css" />
 	<script src="//cdn.staticfile.org/Swiper/5.4.5/js/swiper.min.js"></script>

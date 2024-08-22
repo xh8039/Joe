@@ -286,9 +286,7 @@ function submit_baidu(msg = '推送中...') {
 		}
 	});
 	// 	顺便推送URL到必应
-	if (!Joe.BAIDU_PUSH) {
-		return
-	}
+	if (!Joe.BAIDU_PUSH) return;
 	$.ajax({
 		url: Joe.BASE_API,
 		type: 'POST',

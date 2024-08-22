@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 
 <head>
+	<meta name="referrer" content="no-referrer" />
 	<?php $this->need('module/head.php'); ?>
 	<?php if (!empty($this->options->JPrismTheme)) : ?>
 		<link rel="stylesheet" href="<?= \Joe\theme_url('assets/plugin/prism/themes/' . $this->options->JPrismTheme) ?>">

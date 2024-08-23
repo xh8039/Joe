@@ -2,53 +2,47 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-?>
-<!-- 核心CSS -->
-<link href="<?= joe\cdn('codemirror/6.65.7/codemirror.min.css') ?>" rel="stylesheet">
-<!-- dracula主题CSS -->
-<link href="<?= joe\cdn('codemirror/6.65.7/theme/dracula.min.css') ?>" rel="stylesheet">
-<!-- 代码提示CSS -->
-<link href="<?= joe\cdn('codemirror/6.65.7/addon/hint/show-hint.min.css') ?>" rel="stylesheet">
-<style>
-	.cm-s-dracula .CodeMirror-gutters,
-	.cm-s-dracula.CodeMirror {
-		background-color: #1f1f1f !important;
-	}
-
-	.lyear-layout-web {
-		background: #181818;
-	}
-
-	form p,
-	form li,
-	form label,
-	form .form-text {
-		color: #ced4da;
-	}
-
-	.CodeMirror {
-		border-radius: 3.5px;
-	}
-
-	/* 隐藏滚动条 */
-	.CodeMirror-vscrollbar,
-	.CodeMirror-hscrollbar {
-		display: none !important;
-	}
-</style>
-<div class="joe_content joe_code">
-	<p style="margin-bottom: 0.1rem;"><b>自定义代码提醒事项：</b></p>
-	<ul style="margin-bottom: 1rem;">
-		<li>任何情况下都不建议修改主题源文件，自定义代码可放于此处</li>
-		<li>在此处添加的自定义代码会保存到数据库，不会因主题升级而丢失</li>
-		<li>使用自义定代码，需要有一定的代码基础</li>
-		<li>代码不规范、或代码错误将会引起意料不到的问题</li>
-		<li>如果网站遇到未知错误，请首先检查此处的代码是否规范、无误</li>
-		<li>一键格式化代码快捷键：Shift+ Alt + F</li>
-		<li>快速注释代码快捷键：Ctrl + /</li>
-	</ul>
-</div>
-<?php
+$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_HTML(
+	'JCustomAsideHTML',
+	'
+	<!-- 核心CSS -->
+	<link href="' . joe\cdn('codemirror/6.65.7/codemirror.min.css') . '" rel="stylesheet">
+	<!-- dracula主题CSS -->
+	<link href="' . joe\cdn('codemirror/6.65.7/theme/dracula.min.css') . '" rel="stylesheet">
+	<!-- 代码提示CSS -->
+	<link href="' . joe\cdn('codemirror/6.65.7/addon/hint/show-hint.min.css') . '" rel="stylesheet">
+	<style>
+		.cm-s-dracula .CodeMirror-gutters, .cm-s-dracula.CodeMirror {
+			background-color: #1f1f1f !important;
+		}
+		.lyear-layout-web {
+			background: #181818;
+		}
+		form p, form li, form label, form .form-text {
+  			color: #ced4da;
+		}
+		.CodeMirror {
+			border-radius: 3.5px;
+		}
+		.CodeMirror-vscrollbar, .CodeMirror-hscrollbar {
+			display: none !important; /* 隐藏滚动条 */
+		}
+	</style>
+	<div class="joe_content joe_code" style="display: none;">
+		<p style="margin-bottom: 0.1rem;"><b>自定义代码提醒事项：</b></p>
+		<ul style="margin-bottom: 1rem;">
+			<li>任何情况下都不建议修改主题源文件，自定义代码可放于此处</li>
+			<li>在此处添加的自定义代码会保存到数据库，不会因主题升级而丢失</li>
+			<li>使用自义定代码，需要有一定的代码基础</li>
+			<li>代码不规范、或代码错误将会引起意料不到的问题</li>
+			<li>如果网站遇到未知错误，请首先检查此处的代码是否规范、无误</li>
+			<li>一键格式化代码快捷键：Shift+ Alt + F</li>
+			<li>快速注释代码快捷键：Ctrl + /</li>
+		</ul>
+	</div>
+	'
+);
+$form->addInput($JCustomAsideHTML);
 
 $JCustomAside = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JCustomAside',
@@ -131,94 +125,73 @@ $JCustomFunctionsCode->setAttribute('class', 'joe_content joe_code');
 $JCustomAside->setAttribute('data-language', 'php');
 $form->addInput($JCustomFunctionsCode);
 
-?>
-<!-- 核心JS -->
-<script src="<?= joe\cdn('codemirror/6.65.7/codemirror.min.js') ?>"></script>
+$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_HTML(
+	'JCustomAsideHTML',
+	'
+	<div class="csf-submessage csf-submessage-warning">
+		<p style="margin-bottom: 0.1rem;"><b>自定义代码提醒事项：</b></p>
+		<ul style="margin-bottom: 1rem;">
+			<li>任何情况下都不建议修改主题源文件，自定义代码可放于此处</li>
+			<li>在此处添加的自定义代码会保存到数据库，不会因主题升级而丢失</li>
+			<li>使用自义定代码，需要有一定的代码基础</li>
+			<li>代码不规范、或代码错误将会引起意料不到的问题</li>
+			<li>如果网站遇到未知错误，请首先检查此处的代码是否规范、无误</li>
+			<li>一键格式化代码快捷键：Shift+ Alt + F</li>
+			<li>快速注释代码快捷键：Ctrl + /</li>
+		</ul>
+	</div>
+	'
+);
+$form->addInput($JCustomAsideHTML);
 
-<!-- 代码提示核心JS -->
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/hint/show-hint.min.js') ?>"></script>
+$JCustomAsideScript = new Typecho_Widget_Helper_Form_Element_HTML(
+	'JCustomAsideScript',
+	'
+	<!-- 核心JS -->
+	<script src="' . joe\cdn('codemirror/6.65.7/codemirror.min.js') . '"></script>
 
-<!-- JavaScript语法高亮 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/mode/javascript/javascript.min.js') ?>"></script>
+	<!-- 代码提示核心JS -->
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/show-hint.min.js') . '"></script>
 
-<!-- CSS语法高亮 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/mode/css/css.min.js') ?>"></script>
+	<!-- JavaScript语法高亮 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/mode/javascript/javascript.min.js') . '"></script>
 
-<!-- HTML语法高亮 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/mode/xml/xml.min.js') ?>"></script>
-<script src="<?= joe\cdn('codemirror/6.65.7/mode/htmlmixed/htmlmixed.min.js') ?>"></script>
+	<!-- CSS语法高亮 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/mode/css/css.min.js') . '"></script>
+		
+	<!-- HTML语法高亮 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/mode/xml/xml.min.js') . '"></script>
+	<script src="' . joe\cdn('codemirror/6.65.7/mode/htmlmixed/htmlmixed.min.js') . '"></script>
 
-<!-- JavaScript代码提示 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/hint/javascript-hint.min.js') ?>"></script>
+	<!-- JavaScript代码提示 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/javascript-hint.min.js') . '"></script>
 
-<!-- HTML代码提示 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/hint/xml-hint.min.js') ?>"></script>
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/hint/html-hint.min.js') ?>"></script>
+	<!-- HTML代码提示 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/xml-hint.min.js') . '"></script>
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/html-hint.min.js') . '"></script>
 
-<!-- CSS代码提示 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/hint/css-hint.min.js') ?>"></script>
+	<!-- CSS代码提示 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/css-hint.min.js') . '"></script>
 
-<!-- anyword代码提示 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/hint/anyword-hint.min.js') ?>"></script>
+	<!-- anyword代码提示 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/anyword-hint.min.js') . '"></script>
 
-<!-- 匹配括号 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/edit/matchbrackets.min.js') ?>"></script>
+	<!-- 匹配括号 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/edit/matchbrackets.min.js') . '"></script>
 
-<!-- 自动闭合括号 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/edit/closebrackets.min.js') ?>"></script>
+	<!-- 自动闭合括号 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/edit/closebrackets.min.js') . '"></script>
 
-<!-- 一键注释 -->
-<script src="<?= joe\cdn('codemirror/6.65.7/addon/comment/comment.min.js') ?>"></script>
+	<!-- 一键注释 -->
+	<script src="' . joe\cdn('codemirror/6.65.7/addon/comment/comment.min.js') . '"></script>
 
-<!-- prettier格式化工具 -->
-<script src="<?= joe\cdn('js-beautify/1.15.1/beautify.min.js') ?>"></script>
-<script src="<?= joe\cdn('js-beautify/1.15.1/beautify-css.min.js') ?>"></script>
-<script src="<?= joe\cdn('js-beautify/1.15.1/beautify-html.min.js') ?>"></script>
+	<!-- prettier格式化工具 -->
+	<script src="' . joe\cdn('js-beautify/1.15.1/beautify.min.js') . '"></script>
+	<script src="' . joe\cdn('js-beautify/1.15.1/beautify-css.min.js') . '"></script>
+	<script src="' . joe\cdn('js-beautify/1.15.1/beautify-html.min.js') . '"></script>
 
-<script>
-	var codeInputArray = Array.from(document.querySelectorAll(".joe_content.joe_code>li>textarea"));
-
-	window.CodeMirrorEditor = {};
-
-	var formatCode = {
-		htmlmixed: html_beautify,
-		css: css_beautify,
-		javascript: js_beautify
-	};
-
-	codeInputArray.forEach(codeInput => {
-		var mode = codeInput.parentElement.parentElement.dataset.language;
-
-		// 将 textarea 转换为 CodeMirror 编辑器实例
-		CodeMirrorEditor[codeInput.name] = CodeMirror.fromTextArea(codeInput, {
-			mode: mode,
-			theme: "dracula",
-			lineNumbers: true,
-			matchBrackets: true,
-			autoCloseBrackets: true,
-			extraKeys: {
-				"Ctrl-Space": "autocomplete",
-				"Shift-Alt-F": function(cm) {
-					let code = formatCode[mode](cm.getValue(), {
-						indent_size: 1,
-						indent_char: '	'
-					});
-					cm.setValue(code);
-				},
-				"Ctrl-/": 'toggleComment' // 绑定 Ctrl+? 快捷键
-			}
-		});
-
-
-		// 监听输入事件
-		CodeMirrorEditor[codeInput.name].on("inputRead", (cm, obj) => {
-			cm.showHint({
-				hint: CodeMirror.hint[mode], // 使用正确的方式获取自动完成函数
-				completeSingle: false, // 不自动选择第一个匹配项
-				closeOnUnfocus: true, // 失去焦点时关闭自动完成列表
-				completeOnSingleClick: false, // 点击第一个建议项不会自动选择
-				alignWithCursor: true // 建议列表与光标对齐
-			});
-		});
-	});
-</script>
+	<!-- 配置文件 -->
+	<script src="' . joe\theme_url('assets/typecho/config/js/joe.code.js') . '"></script>
+	'
+);
+$form->addInput($JCustomAsideScript);

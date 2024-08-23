@@ -2,8 +2,10 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_Raw(
+$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JCustomAsideHTML',
+	NULL,
+    NULL,
 	'
 	<!-- 核心CSS -->
 	<link href="' . joe\cdn('codemirror/6.65.7/codemirror.min.css') . '" rel="stylesheet">
@@ -125,27 +127,10 @@ $JCustomFunctionsCode->setAttribute('class', 'joe_content joe_code');
 $JCustomAside->setAttribute('data-language', 'php');
 $form->addInput($JCustomFunctionsCode);
 
-$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_HTML(
-	'JCustomAsideHTML',
-	'
-	<div class="csf-submessage csf-submessage-warning">
-		<p style="margin-bottom: 0.1rem;"><b>自定义代码提醒事项：</b></p>
-		<ul style="margin-bottom: 1rem;">
-			<li>任何情况下都不建议修改主题源文件，自定义代码可放于此处</li>
-			<li>在此处添加的自定义代码会保存到数据库，不会因主题升级而丢失</li>
-			<li>使用自义定代码，需要有一定的代码基础</li>
-			<li>代码不规范、或代码错误将会引起意料不到的问题</li>
-			<li>如果网站遇到未知错误，请首先检查此处的代码是否规范、无误</li>
-			<li>一键格式化代码快捷键：Shift+ Alt + F</li>
-			<li>快速注释代码快捷键：Ctrl + /</li>
-		</ul>
-	</div>
-	'
-);
-$form->addInput($JCustomAsideHTML);
-
-$JCustomAsideScript = new Typecho_Widget_Helper_Form_Element_Raw(
+$JCustomAsideScript = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JCustomAsideScript',
+	NULL,
+    NULL,
 	'
 	<!-- 核心JS -->
 	<script src="' . joe\cdn('codemirror/6.65.7/codemirror.min.js') . '"></script>

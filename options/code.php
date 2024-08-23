@@ -2,7 +2,7 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
-$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_HTML(
+$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_Raw(
 	'JCustomAsideHTML',
 	'
 	<!-- 核心CSS -->
@@ -144,7 +144,7 @@ $JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_HTML(
 );
 $form->addInput($JCustomAsideHTML);
 
-$JCustomAsideScript = new Typecho_Widget_Helper_Form_Element_HTML(
+$JCustomAsideScript = new Typecho_Widget_Helper_Form_Element_Raw(
 	'JCustomAsideScript',
 	'
 	<!-- 核心JS -->

@@ -20,19 +20,19 @@
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
-<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-<link rel="stylesheet" href="//cdn.staticfile.org/animate.css/3.7.2/animate.min.css" />
-<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-<link rel="stylesheet" href="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css">
+<link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
+<link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />
+<link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
+<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 <?php $this->need('module/config.php');?>
-<script src="//cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+<script src="<?= joe\cdn('jquery/3.5.1/jquery.min.js') ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.scroll.js'); ?>"></script>
-<script src="//cdn.staticfile.org/lazysizes/5.3.0/lazysizes.min.js"></script>
-<script src="//cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
-<script src="//cdn.bootcdn.net/ajax/libs/color-thief/2.3.2/color-thief.min.js"></script>
+<script src="<?= joe\cdn('lazysizes/5.3.0/lazysizes.min.js') ?>"></script>
+<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
+<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script>
 <script src="<?= joe\theme_url('assets/js/MusicPlayer.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
-<script src="//cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>"></script>
 <?php if ($this->options->JAside_3DTag === 'on') : ?>

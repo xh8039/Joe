@@ -436,3 +436,20 @@ function background_adaptive()
 	}
 	';
 }
+
+/**
+ * 输出CDN链接
+ *
+ * @param string|null $path 子路径
+ * @return string
+ */
+function cdn($path)
+{
+	$cdnpublic = empty(\Helper::options()->JCdnUrl) ? '//cdn.bootcdn.net/ajax/libs/' : \Helper::options()->JCdnUrl;
+	$lastChar = substr($cdnpublic, -1);
+	if ($lastChar != '/') {
+		$cdnpublic = $cdnpublic . '/';
+	}
+	$url = $cdnpublic . $path;
+	return $url;
+}

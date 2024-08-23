@@ -6,9 +6,9 @@
     <?php if (!empty($this->options->JPrismTheme)) : ?>
         <link rel="stylesheet" href="<?= \Joe\theme_url('assets/plugin/prism/themes/' . $this->options->JPrismTheme) ?>">
     <?php else : ?>
-        <link rel="stylesheet" href="//cdn.staticfile.org/prism/1.23.0/themes/prism.min.css">
+        <link rel="stylesheet" href="<?= joe\cdn('prism/1.23.0/themes/prism.min.css') ?>">
     <?php endif; ?>
-    <script src="//cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script src="<?= joe\cdn('clipboard.js/2.0.6/clipboard.min.js') ?>"></script>
     <script src="<?= joe\theme_url('assets/plugin/prism/prism.min.js') ?>"></script>
     <script src="<?= joe\theme_url('assets/js/joe.post_page.js'); ?>"></script>
 </head>

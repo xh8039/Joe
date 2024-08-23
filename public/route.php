@@ -106,7 +106,11 @@ function _getstatistics($self)
 		$site_id = $list['site_id'];
 		$url = "https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=$access_token&site_id=$site_id&method=trend/time/a&start_date=$start_date&end_date=$end_date&metrics=pv_count,ip_count&gran=day";
 		$data = \network\http\post($url)->toArray();
-		$data = $data['result']['sum'][0];
+		if (is_array($data)) {
+			$data = $data['result']['sum'][0];
+		}else {
+			$data = 0;
+		}
 		return $data;
 	};
 	$domain = $_SERVER['HTTP_HOST'];

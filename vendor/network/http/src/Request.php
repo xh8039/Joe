@@ -22,6 +22,7 @@ trait Request
 	/**
 	 * 配置信息
 	 * @var object
+	 * @return RequestOptions
 	 */
 	public $options;
 
@@ -38,7 +39,7 @@ trait Request
 	 */
 	public function __construct(array $options = [])
 	{
-		$this->options = new Options;
+		$this->options = new RequestOptions;
 		if ((!empty($options)) && is_array($options)) {
 			$this->options = (object) array_merge((array) $this->options, (array) $options);
 		}
@@ -107,17 +108,31 @@ trait Request
 	private function _initialize()
 	{
 		$this->_initMethod();
-		curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false); //终止从服务端进行验证
-		curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false); //终止从服务端进行验证
-		curl_setopt($this->ch, CURLOPT_ENCODING, ''); //自动发送所有支持的编码类型
-		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true); //返回原生的（Raw）输出
-		curl_setopt($this->ch, CURLOPT_HEADER, 1); //将头文件的信息作为数据流输出
 		curl_setopt($this->ch, CURLOPT_HTTPHEADER, $this->_initHeaders());  //设置请求头
-		//在发起连接前等待的时间，如果设置为0，则无限等待
-		curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, $this->options->connectTime);
-		curl_setopt($this->ch, CURLOPT_TIMEOUT, intval($this->options->timeout)); //设置cURL允许执行的最长秒数
-		curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $this->options->method);
-		curl_setopt($this->ch, CURLOPT_URL, $this->options->url);
+		curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, $this->options->connectTime); //在发起连接前等待的时间，如果设置为0，则无限等待
+		curl_setopt($this->ch, CURLOPT_TIMEOUT, intval($this->options->timeout)); //设置 cURL 允许执行的最长秒数
+		if (!empty($this->options->method)) curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $this->options->method); //请求方法
+		curl_setopt($this->ch, CURLOPT_URL, $this->options->url); //请求URL
+		curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, $this->options->followLocation); //是否跟随location
+		// 自定义 cUrl 配置
+		curl_setopt_array($this->ch, $this->options->setopt);
+	}
+
+	/**
+	 * 自定义Curl配置
+	 *
+	 * @param string|array $option 要设置的 CURLOPT_XXX 选项
+	 * @param string|null $value 选项上要设置的值
+	 * @return $this
+	 */
+	public function setopt($option, $value = null)
+	{
+		if (func_num_args() == 1 && is_array($option)) {
+			$this->options->setopt = array_replace($this->options->setopt, $option);
+		} else {
+			$this->options->setopt[$option] = $value;
+		}
+		return $this;
 	}
 
 	public function method(string $method)
@@ -158,7 +173,7 @@ trait Request
 	 * 设置请求头
 	 *
 	 * @param string|array $name  请求头名称或数组
-	 * @param string $value 请求头值
+	 * @param string|null $value 请求头值
 	 * @return $this
 	 */
 	public function header($name, $value = null)
@@ -247,55 +262,4 @@ trait Request
 
 		return $response;
 	}
-}
-
-class Options
-{
-
-	/**
-	 * 请求头参数
-	 * @return array
-	 */
-	public array $headers = [
-		'Accept' => '*/*',
-		'Accept-Language' => 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-		'Connection' => 'close',
-		'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 Edg/104.0.1293.70'
-	];
-
-	/**
-	 * 请求携带参数
-	 * @return array
-	 */
-	public array $params =  [];
-
-	/**
-	 * 请求URL
-	 * @return string
-	 */
-	public $url;
-
-	/**
-	 * 连接时间 单位:秒
-	 * @return integer
-	 */
-	public $connectTime = 3;
-
-	/**
-	 * 执行请求超时时间 单位:秒
-	 * @return integer
-	 */
-	public $timeout = 5;
-
-	/**
-	 * 用于全局指定基础URL,会自动拼接到所有请求URL前面。一旦设置,客户端发出的所有请求URL都会基于这个基础URL
-	 * @return string
-	 */
-	public $baseUrl;
-
-	/**
-	 * 请求方法
-	 * @return string
-	 */
-	public string $method = 'GET';
 }

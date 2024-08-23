@@ -15,9 +15,9 @@
 <head>
 	<meta name="referrer" content="no-referrer" />
 	<?php $this->need('module/head.php'); ?>
-	<link rel="stylesheet" href="//cdn.staticfile.org/Swiper/5.4.5/css/swiper.min.css" />
-	<script src="//cdn.staticfile.org/Swiper/5.4.5/js/swiper.min.js"></script>
-	<script src="//cdn.bootcdn.net/ajax/libs/wow/1.1.2/wow.min.js"></script>
+	<link rel="stylesheet" href="<?= joe\cdn('Swiper/5.4.5/css/swiper.min.css') ?>" />
+	<script src="<?= joe\cdn('Swiper/5.4.5/js/swiper.min.js') ?>"></script>
+	<script src="<?= joe\cdn('wow/1.1.2/wow.min.js') ?>"></script>
 	<!-- <script src="//fastly.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script> -->
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.index.css'); ?>">
 	<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>

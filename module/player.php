@@ -26,8 +26,8 @@
 
 <body>
 	<div id="dplayer"></div>
-	<script src="//cdn.staticfile.org/hls.js/0.14.16/hls.min.js"></script>
-	<script src="//cdn.staticfile.org/dplayer/1.27.0/DPlayer.min.js"></script>
+	<script src="<?= joe\cdn('hls.js/0.14.16/hls.min.js') ?>"></script>
+	<script src="<?= joe\cdn('dplayer/1.27.0/DPlayer.min.js') ?>"></script>
 	<script>
 		window.videoPlayer = new DPlayer({
 			container: document.getElementById('dplayer'), // 播放器容器元素

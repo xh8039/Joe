@@ -72,7 +72,7 @@ class Response
 	 */
 	public function body()
 	{
-		return $this->response['body'];
+		return (string) $this->response['body'];
 	}
 
 	/**
@@ -82,7 +82,7 @@ class Response
 	 */
 	public function code()
 	{
-		return trim($this->response['code']);
+		return (integer) trim($this->response['code']);
 	}
 
 	/**

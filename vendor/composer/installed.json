@@ -70,24 +70,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/xh8039/php-net-request.git",
-                "reference": "ecb5b290230ab753057362e8f82a6a07856aa478"
+                "reference": "47b42387a1d4d48bc3947820d28bf3318e9aa78a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xh8039/php-net-request/zipball/ecb5b290230ab753057362e8f82a6a07856aa478",
-                "reference": "ecb5b290230ab753057362e8f82a6a07856aa478",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "url": "https://api.github.com/repos/xh8039/php-net-request/zipball/47b42387a1d4d48bc3947820d28bf3318e9aa78a",
+                "reference": "47b42387a1d4d48bc3947820d28bf3318e9aa78a",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
             },
-            "time": "2024-07-30T15:27:59+00:00",
+            "time": "2024-08-21T12:48:29+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "source",

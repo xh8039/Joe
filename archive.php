@@ -3,7 +3,7 @@
 
 <head>
     <?php $this->need('module/head.php'); ?>
-    <script src="//cdn.bootcdn.net/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="<?= joe\cdn('wow/1.1.2/wow.min.js') ?>"></script>
     <!-- <script src="//fastly.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script> -->
     <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.archive.css'); ?>">
     <script src="<?= joe\theme_url('assets/js/joe.archive.js'); ?>"></script>

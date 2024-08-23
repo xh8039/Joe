@@ -15,6 +15,22 @@ $JStaticAssetsUrl = new Typecho_Widget_Helper_Form_Element_Text(
 $JStaticAssetsUrl->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JStaticAssetsUrl);
 
+$JCdnUrl = new Typecho_Widget_Helper_Form_Element_Text(
+	'JCdnUrl',
+	null,
+	'https://cdn.bootcdn.net/ajax/libs/',
+	'公共静态资源CDN',
+	'
+	<span>BootCDN：https://cdn.bootcdn.net/ajax/libs/</span><br>
+	<span>Staticfile CDN：https://cdn.staticfile.net/</span><br>
+	<span>字节跳动静态资源公共库：https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/</span><br>
+	<span>Google Hosted Libraries：https://ajax.googleapis.com/ajax/libs/</span><br>
+	<span>CDNJS：https://cdnjs.cloudflare.com/ajax/libs/</span><br>
+	'
+);
+$JCdnUrl->setAttribute('class', 'joe_content joe_global');
+$form->addInput($JCdnUrl);
+
 $JNavMaxNum = new Typecho_Widget_Helper_Form_Element_Select(
 	'JNavMaxNum',
 	array(

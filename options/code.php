@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JCustomAsideHTML',
 	NULL,
-    NULL,
+	NULL,
 	'
 	<!-- 核心CSS -->
 	<link href="' . joe\cdn('codemirror/6.65.7/codemirror.min.css') . '" rel="stylesheet">
@@ -30,20 +30,17 @@ $JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_Textarea(
 			display: none !important; /* 隐藏滚动条 */
 		}
 	</style>
-	<div class="joe_content joe_code" style="display: none;">
-		<p style="margin-bottom: 0.1rem;"><b>自定义代码提醒事项：</b></p>
-		<ul style="margin-bottom: 1rem;">
-			<li>任何情况下都不建议修改主题源文件，自定义代码可放于此处</li>
-			<li>在此处添加的自定义代码会保存到数据库，不会因主题升级而丢失</li>
-			<li>使用自义定代码，需要有一定的代码基础</li>
-			<li>代码不规范、或代码错误将会引起意料不到的问题</li>
-			<li>如果网站遇到未知错误，请首先检查此处的代码是否规范、无误</li>
-			<li>一键格式化代码快捷键：Shift+ Alt + F</li>
-			<li>快速注释代码快捷键：Ctrl + /</li>
-		</ul>
-	</div>
+	<p style="margin-bottom: 0.1rem;"><b>自定义代码提醒事项：</b></p>
+	<p>任何情况下都不建议修改主题源文件，自定义代码可放于此处</p>
+	<p>在此处添加的自定义代码会保存到数据库，不会因主题升级而丢失</p>
+	<p>使用自义定代码，需要有一定的代码基础</p>
+	<p>代码不规范、或代码错误将会引起意料不到的问题</p>
+	<p>如果网站遇到未知错误，请首先检查此处的代码是否规范、无误</p>
+	<p>一键格式化代码快捷键：Shift+ Alt + F</p>
+	<p>快速注释代码快捷键：Ctrl + /</p>
 	'
 );
+$JCustomAsideHTML->setAttribute('class', 'joe_content joe_code');
 $form->addInput($JCustomAsideHTML);
 
 $JCustomAside = new Typecho_Widget_Helper_Form_Element_Textarea(
@@ -130,7 +127,7 @@ $form->addInput($JCustomFunctionsCode);
 $JCustomAsideScript = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JCustomAsideScript',
 	NULL,
-    NULL,
+	NULL,
 	'
 	<!-- 核心JS -->
 	<script src="' . joe\cdn('codemirror/6.65.7/codemirror.min.js') . '"></script>

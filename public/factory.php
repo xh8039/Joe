@@ -176,7 +176,7 @@ class Editor
 {
 	public static function Edit()
 	{
-		?>
+?>
 		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/prism/prism-onedark.min.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.min.css') ?>">
@@ -197,12 +197,99 @@ class Editor
 		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/index.bundle.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
-		<?php
+		<script>
+			function EditorAutoStorage(form) {
+				if (!form) return;
+				// 从本地存储加载数据并填充到表单的函数
+				function loadFormData() {
+					const formData = localStorage.getItem('form-data');
+					if (formData) {
+						const data = JSON.parse(formData);
+
+						formSlug = document.getElementById('slug').value;
+
+						console.log(formSlug);
+						console.log(data.slug != formSlug);
+						
+						if (data.slug != formSlug) {
+							return;
+						}
+
+						// 遍历 data 对象并填充表单元素
+						for (const key in data) {
+							if (data.hasOwnProperty(key)) {
+								const escapedName = key.replace(/\[/g, "\[");
+								console.log(escapedName);
+								const element = document.querySelector(`[name="${escapedName}"]`);
+								if (element) element.value = data[key];
+							}
+						}
+
+						// 特别处理 CodeMirror 内容
+						window.CodeMirrorEditor.dispatch({
+							changes: {
+								from: 0,
+								to: window.CodeMirrorEditor.state.doc.length,
+								insert: data.text
+							}
+						});
+					}
+				}
+
+				// 保存表单数据的函数
+				function saveFormData() {
+					var formData = new FormData(form);
+					var data = {
+						title: formData.get('title'), // 使用 formData.get 来获取字段值
+						slug: formData.get('slug'),
+						text: window.CodeMirrorEditor.state.doc.toString(),
+						'fields[mode]': formData.get('fields[mode]'),
+						'fields[keywords]': formData.get('fields[keywords]'),
+						'fields[description]': formData.get('fields[description]'),
+						'fields[abstract]': formData.get('fields[abstract]'),
+						'fields[thumb]': formData.get('fields[thumb]'),
+						'fields[video]': formData.get('fields[video]'),
+					};
+					localStorage.setItem('form-data', JSON.stringify(data));
+				}
+
+				// 获取文章内容的元素
+				const contentElement = form; // 假设文章内容的元素是 `textarea`，并且有 `name="text"` 属性
+
+				// 监听内容改变事件
+				contentElement.addEventListener('input', saveFormData);
+
+				// 监听剪切事件
+				contentElement.addEventListener('cut', saveFormData);
+
+				// 监听删除事件
+				contentElement.addEventListener('keydown', (event) => {
+					if (event.key == 'Backspace' || event.key == 'Delete' || event.key == 'y' || event.key == 'z') {
+						saveFormData();
+					}
+				});
+
+				form.onsubmit = function(event) {
+					// 阻止表单提交
+					event.preventDefault();
+					// 删除自动保存的本地存储数据
+					localStorage.removeItem('form-data');
+					// 手动触发表单提交
+					form.submit();
+				};
+
+				// 页面加载时加载本地存储数据
+				window.addEventListener('load', loadFormData);
+			}
+			EditorAutoStorage(document.querySelector('[name="write_post"]'));
+			EditorAutoStorage(document.querySelector('[name="write_page"]'));
+		</script>
+	<?php
 	}
 
 	public static function labelSelection()
 	{
-		?>
+	?>
 		<section class="typecho-post-option">
 			<style>
 				.tagshelper {
@@ -244,6 +331,6 @@ class Editor
 				?>
 			</ul>
 		</section>
-		<?php
+<?php
 	}
 }

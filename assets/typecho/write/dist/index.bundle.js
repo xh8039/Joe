@@ -17766,6 +17766,7 @@
 					]
 				})
 			});
+			window.CodeMirrorEditor = n;
 			$(".cm-mainer").prepend(n.dom), $("#text")[0].form && $("#text")[0].form.addEventListener("submit", (
 				() => $("#text").val(n.state.doc.toString()))), this.cm = n
 		}

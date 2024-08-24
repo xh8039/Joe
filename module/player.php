@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 
 <head>
+	<meta name="referrer" content="no-referrer" />
 	<meta charset="UTF-8" />
 	<meta name="renderer" content="webkit" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
@@ -26,8 +27,8 @@
 
 <body>
 	<div id="dplayer"></div>
-	<script src="<?= joe\cdn('hls.js/0.14.16/hls.min.js') ?>"></script>
-	<script src="<?= joe\cdn('dplayer/1.27.0/DPlayer.min.js') ?>"></script>
+	<script src="https://cdn.staticfile.net/hls.js/0.14.16/hls.min.js"></script>
+	<script src="https://cdn.staticfile.net/dplayer/1.27.0/DPlayer.min.js"></script>
 	<script>
 		window.videoPlayer = new DPlayer({
 			container: document.getElementById('dplayer'), // 播放器容器元素

@@ -200,6 +200,18 @@ class Editor
 		<script>
 			function EditorAutoStorage(form) {
 				if (!form) return;
+
+				function getCurrentTime() {
+					const now = new Date();
+					const year = now.getFullYear();
+					const month = ("0" + (now.getMonth() + 1)).slice(-2); // 月份从 0 开始，需要加 1
+					const day = ("0" + now.getDate()).slice(-2);
+					const hours = ("0" + now.getHours()).slice(-2);
+					const minutes = ("0" + now.getMinutes()).slice(-2);
+					const seconds = ("0" + now.getSeconds()).slice(-2);
+					return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+				}
+
 				// 从本地存储加载数据并填充到表单的函数
 				function loadFormData() {
 					const formData = localStorage.getItem('form-data');
@@ -210,10 +222,12 @@ class Editor
 
 						console.log(formSlug);
 						console.log(data.slug != formSlug);
-						
+
 						if (data.slug != formSlug) {
 							return;
 						}
+
+						alert('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 已自动为您恢复');
 
 						// 遍历 data 对象并填充表单元素
 						for (const key in data) {
@@ -249,6 +263,7 @@ class Editor
 						'fields[abstract]': formData.get('fields[abstract]'),
 						'fields[thumb]': formData.get('fields[thumb]'),
 						'fields[video]': formData.get('fields[video]'),
+						'time': getCurrentTime()
 					};
 					localStorage.setItem('form-data', JSON.stringify(data));
 				}

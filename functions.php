@@ -107,6 +107,9 @@ function themeConfig($form)
 	require_once('options/other.php');
 }
 
+header('Generator: YiHang');
+header('Author: YiHang');
+
 if (!empty(Helper::options()->JCustomFunctionsCode)) {
 	file_put_contents(JOE_ROOT . 'JCustomFunctionsCode.txt', Helper::options()->JCustomFunctionsCode);
 	include_once JOE_ROOT . 'JCustomFunctionsCode.txt';

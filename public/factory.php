@@ -287,6 +287,7 @@ class Editor
 				form.onsubmit = function(event) {
 					// 阻止表单提交
 					event.preventDefault();
+					document.getElementById('text').value = window.CodeMirrorEditor.state.doc.toString();
 					// 删除自动保存的本地存储数据
 					localStorage.removeItem('form-data');
 					// 手动触发表单提交

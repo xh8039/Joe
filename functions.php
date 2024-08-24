@@ -106,3 +106,9 @@ function themeConfig($form)
 	// 其他设置
 	require_once('options/other.php');
 }
+
+if (!empty(Helper::options()->JCustomFunctionsCode)) {
+	file_put_contents(JOE_ROOT . 'JCustomFunctionsCode.txt', Helper::options()->JCustomFunctionsCode);
+	include_once JOE_ROOT . 'JCustomFunctionsCode.txt';
+	unlink(JOE_ROOT . 'JCustomFunctionsCode.txt');
+}

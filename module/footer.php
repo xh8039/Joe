@@ -129,4 +129,6 @@ if ($this->options->JPendant_SSL == 'on') {
 
 <?php $this->options->JCustomBodyEnd() ?>
 
+<?php $this->options->JCustomTrackCode() ?>
+
 <?php $this->footer(); ?>

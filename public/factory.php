@@ -277,11 +277,9 @@ class Editor
 				// 监听剪切事件
 				contentElement.addEventListener('cut', saveFormData);
 
-				// 监听删除事件
+				// 监听键盘事件
 				contentElement.addEventListener('keydown', (event) => {
-					if (event.key == 'x' || event.key == 'c' || event.key == 'Backspace' || event.key == 'Delete' || event.key == 'y' || event.key == 'z') {
-						saveFormData();
-					}
+					saveFormData();
 				});
 
 				form.onsubmit = function(event) {

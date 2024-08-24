@@ -44,4 +44,7 @@
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
+
+<!-- 自定义头部HTML代码 -->
 <?php $this->options->JCustomHeadEnd() ?>
+<!-- 自定义头部HTML代码 -->

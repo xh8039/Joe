@@ -51,7 +51,10 @@
 			<div class="joe_aside__item-contain"></div>
 		</section>
 	<?php endif; ?>
+
+	<!-- 自定义侧边栏模块 - PC -->
 	<?php $this->options->JCustomAside ? $this->options->JCustomAside() : null ?>
+	<!-- 自定义侧边栏模块 - PC -->
 
 	<?php if ($this->options->JAside_History_Today === 'on') : ?>
 		<?php

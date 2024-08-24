@@ -124,11 +124,17 @@ if ($this->options->JPendant_SSL == 'on') {
 	Typecho_Cookie::delete('__typecho_notice_type');
 	?>
 	console.log("%cTheme By Joe再续前缘版", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
+	// 自定义JavaScript
 	<?php $this->options->JCustomScript() ?>
+	// 自定义JavaScript
 </script>
 
+<!-- 自定义底部HTML代码 -->
 <?php $this->options->JCustomBodyEnd() ?>
+<!-- 自定义底部HTML代码 -->
 
+<!-- 网站统计HTML代码 -->
 <?php $this->options->JCustomTrackCode() ?>
+<!-- 网站统计HTML代码 -->
 
 <?php $this->footer(); ?>

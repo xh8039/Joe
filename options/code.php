@@ -135,7 +135,7 @@ $JCustomHeadEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JCustomHeadEnd',
 	NULL,
 	NULL,
-	'自定义增加&lt;head&gt;&lt;/head&gt;里内容（非必填）',
+	'自定义头部HTML代码（非必填）',
 	htmlentities('介绍：位于</head>之前，这部分代码是在主要内容显示之前加载，通常是CSS样式、自定义的<meta>标签、全站头部JS等需要提前加载的代码，需填HTML标签')
 );
 $JCustomHeadEnd->setAttribute('class', 'joe_content joe_code');
@@ -146,7 +146,7 @@ $JCustomBodyEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JCustomBodyEnd',
 	NULL,
 	NULL,
-	'自定义&lt;body&gt;&lt;/body&gt;末尾位置内容（非必填）',
+	'自定义底部HTML代码（非必填）',
 	htmlentities('介绍：位于</body>之前，这部分代码是在主要内容加载完毕加载，通常是JS代码，需填HTML标签，可以填写引入第三方js脚本等等')
 );
 $JCustomBodyEnd->setAttribute('class', 'joe_content joe_code');

@@ -121,7 +121,8 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		';
 	}
 
-	?>@font-face {
+	?>
+	@font-face {
 		font-family: 'Joe Font';
 		font-weight: 400;
 		font-style: normal;
@@ -137,7 +138,9 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		<?php endif; ?>
 	}
 
+	/* 自定义CSS */
 	<?php $this->options->JCustomCSS() ?>
+	/* 自定义CSS */
 </style>
 <?php
 if ($this->options->JIndex_Link_Active == 'on') {

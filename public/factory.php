@@ -177,7 +177,6 @@ class Editor
 	public static function Edit()
 	{
 		?>
-		<meta name="referrer" content="no-referrer" />
 		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/prism/prism-onedark.min.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.min.css') ?>">

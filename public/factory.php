@@ -264,7 +264,7 @@ class Editor
 
 				// 监听删除事件
 				contentElement.addEventListener('keydown', (event) => {
-					if (event.key == 'Backspace' || event.key == 'Delete' || event.key == 'y' || event.key == 'z') {
+					if (event.key == 'x' || event.key == 'c' || event.key == 'Backspace' || event.key == 'Delete' || event.key == 'y' || event.key == 'z') {
 						saveFormData();
 					}
 				});

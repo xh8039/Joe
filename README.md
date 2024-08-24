@@ -29,6 +29,8 @@
 
 ├── module 共用的一些模块文件
 
+├── options 主题设置文件夹
+
 ├── 404.php 404页面
 
 ├── archive.php 搜索页面

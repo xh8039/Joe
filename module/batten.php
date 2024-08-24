@@ -1,3 +1,4 @@
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
 <?php if (sizeof($this->categories) > 0 || $this->user->uid == $this->authorId) : ?>
     <div class="joe_detail__category">
         <?php if (sizeof($this->categories) > 0) : ?>

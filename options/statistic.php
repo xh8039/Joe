@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
 $statistics_config = joe\baidu_statistic_config();
 $update_access_token_url = $statistics_config ? '操作：<a href="http://openapi.baidu.com/oauth/2.0/token?grant_type=refresh_token&refresh_token=' . urlencode($statistics_config['refresh_token']) . '&client_id=' . urlencode($statistics_config['client_id']) . '&client_secret=' . urlencode($statistics_config['client_secret']) . '">一键更新access_token</a>（获取后请手动在主题设置处填写已更新的token）<br>' : NULL;

@@ -1,11 +1,10 @@
 /**
  * @package MusicPlayer
- * @version 1.0
+ * @version 1.1
  * @author 易航
  * @link http://blog.bri6.cn
  * @giant APlayer
 */
-
 class MusicPlayer {
 
 	constructor(options) {
@@ -60,21 +59,34 @@ class MusicPlayer {
 				navigator.mediaSession.metadata = new MediaMetadata({
 					title: music.name,
 					artist: music.artist,
-					// album: '专辑名',
-					artwork: [
-						{src: music.pic},
-						{src: music.cover},
-						// { src: '封面图片URL', sizes: '256x256', type: 'image/png' },
-						// { src: '封面图片URL', sizes: '512x512', type: 'image/png' }
-					]
+					artwork: [{ src: music.pic }, { src: music.cover }]
 				});
 			}
-		});
-		this.PLAYER.on('error', () => {
-			console.log(this.PLAYER.list.audios[this.PLAYER.list.index]);
-			this.PLAYER.skipForward();
-			this.PLAYER.seek(0);
-		});
+		})
+		this.PLAYER.on('error', this.throttle(() => {
+			console.log(this.PLAYER.list.audios[this.PLAYER.list.index])
+			this.PLAYER.skipForward()
+			this.PLAYER.seek(0)
+		}, 3000));
+	}
+
+	/**
+	 * 函数节流，时间戳方案
+	 * @param {*} fn 
+	 * @param {*} wait 
+	 * @returns 
+	 */
+	throttle(fn, wait) {
+		var pre = Date.now();
+		return function () {
+			var context = this;
+			var args = arguments;
+			var now = Date.now();
+			if (now - pre >= wait) {
+				fn.apply(context, args);
+				pre = Date.now();
+			}
+		}
 	}
 
 	/**

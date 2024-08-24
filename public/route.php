@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+
 use Metowolf\Meting;
 
 /* 获取文章列表 已测试 √  */
@@ -206,7 +208,19 @@ function _getRecord($self)
 		if (isset($output['baidu']) && $output['baidu']) {
 			$self->response->throwJson(array("data" => "已收录"));
 		} else {
-			$self->response->throwJson(array("data" => "未收录"));
+			$cid = $self->request->cid;
+			/* sql注入校验 */
+			if (!preg_match('/^\d+$/',  $cid)) {
+				return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
+			}
+			$db = Typecho_Db::get();
+			$sql = $db->select('str_value')->from('table.fields')->where('cid = ?', $cid)->where('name = ?', 'baidu_push');
+			$row = $db->fetchRow($sql);
+			if ($row && $row['str_value'] == 'yes') {
+				$self->response->throwJson(["data" => "未收录，已推送"]);
+			} else {
+				$self->response->throwJson(array("data" => "未收录"));
+			}
 		}
 	} else {
 		$self->response->throwJson(array("data" => "检测失败"));
@@ -217,6 +231,22 @@ function _getRecord($self)
 function _pushRecord($self)
 {
 	$self->response->setStatus(200);
+
+	$cid = $self->request->cid;
+
+	/* sql注入校验 */
+	if (!preg_match('/^\d+$/',  $cid)) {
+		return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
+	}
+
+	$db = Typecho_Db::get();
+	$sql = $db->select('str_value')->from('table.fields')->where('cid = ?', $cid)->where('name = ?', 'baidu_push');
+	$row = $db->fetchRow($sql);
+	if ($row && $row['str_value'] == 'yes') {
+		$self->response->throwJson(['already' => true]);
+		return;
+	}
+
 	$token = Helper::options()->JBaiduToken;
 	$domain = $self->request->domain;
 	$url = $self->request->url;
@@ -233,10 +263,36 @@ function _pushRecord($self)
 	curl_setopt_array($ch, $options);
 	$result = curl_exec($ch);
 	curl_close($ch);
+	$result = json_decode($result, true);
+	if (empty($result['error'])) {
+		// 存储推送记录到文章或者页面的自定义字段里面
+		$db = Typecho_Db::get();
+		if (isset($row['str_value']) && $row['str_value'] != 'yes') {
+			$db->query(
+				$db->update('table.fields')
+					->rows(['str_value' => 'yes'])
+					->where('cid = ?', $cid)
+					->where('name = ?', 'baidu_push')
+			);
+		} else {
+			$db->query(
+				$db
+					->insert('table.fields')
+					->rows(array(
+						'cid' => $cid,
+						'name' => 'baidu_push',
+						'type' => 'str',
+						'str_value' => 'yes',
+						'int_value' => '0',
+						'float_value' => '0',
+					))
+			);
+		}
+	}
 	$self->response->throwJson(array(
 		'domain' => $domain,
 		'url' => $url,
-		'data' => json_decode($result, TRUE)
+		'data' => $result
 	));
 }
 

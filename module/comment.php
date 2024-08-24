@@ -1,3 +1,4 @@
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
 <?php $this->comments()->to($comments); ?>
 
 <div class="joe_comment" id="comment_module">

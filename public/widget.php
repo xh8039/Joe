@@ -1,4 +1,7 @@
 <?php
+
+if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+
 class Widget_Contents_Hot extends Widget_Abstract_Contents
 {
 	public function execute()

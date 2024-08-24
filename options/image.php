@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
 $JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JFavicon',

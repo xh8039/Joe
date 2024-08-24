@@ -13,31 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
 			dataType: 'json',
 			data: {
 				routeType: 'baidu_record',
-				site: window.location.href
+				site: window.location.href,
+				cid: cid
 			},
 			success(res) {
 				if (!res.data) {
 					if (Joe.BAIDU_PUSH) {
-					    $('#Joe_Baidu_Record').html(`<a href="javascript:submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
-					    return
+						$('#Joe_Baidu_Record').html(`<a href="javascript:submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
+						return
 					}
-				    const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
+					const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
 					$('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
 					return
 				}
-				if (res.data === '已收录') {
+				if (res.data == '未收录，已推送') {
+					$('#Joe_Baidu_Record').css('color', '#67C23A');
+					$('#Joe_Baidu_Record').html(res.data);
+					return
+				}
+				if (res.data == '已收录') {
 					$('#Joe_Baidu_Record').css('color', '#67C23A');
 					$('#Joe_Baidu_Record').html('已收录');
 					return
 				}
 				/* 如果填写了Token，则自动推送给百度 */
 				if ((res.data == '未收录') && (Joe.BAIDU_PUSH)) {
-                    submit_baidu('未收录，推送中...');
+					submit_baidu('未收录，推送中...');
 					return
 				}
 				if (Joe.BAIDU_PUSH) {
-				$('#Joe_Baidu_Record').html(`<a href="javascript:submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
-				    return
+					$('#Joe_Baidu_Record').html(`<a href="javascript:submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
+					return
 				}
 				const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
 				$('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
@@ -134,23 +140,28 @@ function submit_baidu(msg = '推送中...') {
 			routeType: 'baidu_push',
 			domain: window.location.protocol + '//' + window
 				.location.hostname,
-			url: encodeURI(window.location.href)
+			url: encodeURI(window.location.href),
+			cid: window.cid
 		},
 		success(res) {
+			if (res.already) {
+				$('#Joe_Baidu_Record').css('color', '#67C23A');
+				$('#Joe_Baidu_Record').html('已推送');
+				return
+			}
 			if (res.data.error) {
-				$('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，请检查！</span>');
+				if (res.data.message == 'over quota') res.data.message = '超过配额';
+				$('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，' + res.data.message + '</span>');
 			} else {
-				$('#Joe_Baidu_Record').html('<span style="color: #67C23A">推送成功！</span>');
+				$('#Joe_Baidu_Record').html('<span style="color: #67C23A">推送成功！还可推送' + res.data.remain + '条</span>');
 			}
 		},
 		error(res) {
-		    $('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，请检查！</span>');
+			$('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，请检查！</span>');
 		}
 	});
-// 	顺便推送URL到必应
-    if (!Joe.BAIDU_PUSH) {
-        return
-    }
+	// 	顺便推送URL到必应
+	if (!Joe.BAIDU_PUSH) return;
 	$.ajax({
 		url: Joe.BASE_API,
 		type: 'POST',

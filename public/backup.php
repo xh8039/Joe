@@ -1,4 +1,5 @@
 <?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 $name = "Joe";
 $db = Typecho_Db::get();
 if (isset($_POST['type'])) {

@@ -1,8 +1,8 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
-define('JOE_VERSION', '1.314');
+define('JOE_VERSION', '1.315');
 define('JOE_ROOT', dirname(__FILE__) . '/');
 /* Joe核心文件 */
 require_once(__DIR__ . '/public/common.php');

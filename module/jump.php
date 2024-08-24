@@ -1,4 +1,5 @@
 <?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 $useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
 // if (strpos($useragent, 'iphone') !== false || strpos($useragent, 'ipod') !== false) {
 //     $alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rLrNvRzmibibqrjTFj5g2kzGyoQj3ViartAEQ/0" class="icon-safari" /> <span id="openm">Safari打开</span>';

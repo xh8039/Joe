@@ -1,5 +1,10 @@
 <?php
 
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+
 require_once("phpmailer.php");
 require_once("smtp.php");
 
@@ -201,6 +206,35 @@ class Editor
 			function EditorAutoStorage(form) {
 				if (!form) return;
 
+				// 从本地存储加载数据并填充到表单的函数
+				function loadFormData() {
+					var localStorageformData = localStorage.getItem('form-data');
+					if (localStorageformData) {
+						const data = JSON.parse(localStorageformData);
+						formSlug = document.getElementById('slug').value;
+						if (data.slug != formSlug) return;
+						alert('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 已自动为您恢复');
+						// 遍历 data 对象并填充表单元素
+						for (const key in data) {
+							if (data.hasOwnProperty(key)) {
+								const escapedName = key.replace(/\[/g, "\[");
+								// console.log(escapedName);
+								const element = document.querySelector(`[name="${escapedName}"]`);
+								if (element) element.value = data[key];
+							}
+						}
+						// 特别处理 CodeMirror 内容
+						window.CodeMirrorEditor.dispatch({
+							changes: {
+								from: 0,
+								to: window.CodeMirrorEditor.state.doc.length,
+								insert: data.text
+							}
+						});
+					}
+				}
+				loadFormData();
+
 				function getCurrentTime() {
 					const now = new Date();
 					const year = now.getFullYear();
@@ -212,60 +246,20 @@ class Editor
 					return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 				}
 
-				// 从本地存储加载数据并填充到表单的函数
-				function loadFormData() {
-					const formData = localStorage.getItem('form-data');
-					if (formData) {
-						const data = JSON.parse(formData);
-
-						formSlug = document.getElementById('slug').value;
-
-						console.log(formSlug);
-						console.log(data.slug != formSlug);
-
-						if (data.slug != formSlug) {
-							return;
-						}
-
-						alert('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 已自动为您恢复');
-
-						// 遍历 data 对象并填充表单元素
-						for (const key in data) {
-							if (data.hasOwnProperty(key)) {
-								const escapedName = key.replace(/\[/g, "\[");
-								console.log(escapedName);
-								const element = document.querySelector(`[name="${escapedName}"]`);
-								if (element) element.value = data[key];
-							}
-						}
-
-						// 特别处理 CodeMirror 内容
-						window.CodeMirrorEditor.dispatch({
-							changes: {
-								from: 0,
-								to: window.CodeMirrorEditor.state.doc.length,
-								insert: data.text
-							}
-						});
-					}
-				}
-
 				// 保存表单数据的函数
 				function saveFormData() {
 					var formData = new FormData(form);
-					var data = {
-						title: formData.get('title'), // 使用 formData.get 来获取字段值
-						slug: formData.get('slug'),
-						text: window.CodeMirrorEditor.state.doc.toString(),
-						'fields[mode]': formData.get('fields[mode]'),
-						'fields[keywords]': formData.get('fields[keywords]'),
-						'fields[description]': formData.get('fields[description]'),
-						'fields[abstract]': formData.get('fields[abstract]'),
-						'fields[thumb]': formData.get('fields[thumb]'),
-						'fields[video]': formData.get('fields[video]'),
-						'time': getCurrentTime()
-					};
-					localStorage.setItem('form-data', JSON.stringify(data));
+					const data = {};
+					for (const [key, value] of formData.entries()) {
+						data[key] = value;
+					}
+					// 等编辑器内容同步
+					setTimeout(() => {
+						data.time = getCurrentTime();
+						data.text = window.CodeMirrorEditor.state.doc.toString();
+						console.log(data);
+						localStorage.setItem('form-data', JSON.stringify(data));
+					}, 500);
 				}
 
 				// 获取文章内容的元素
@@ -274,29 +268,27 @@ class Editor
 				// 监听内容改变事件
 				contentElement.addEventListener('input', saveFormData);
 
-				// 监听剪切事件
-				contentElement.addEventListener('cut', saveFormData);
-
-				// 监听键盘事件
+				// 监听input事件监听不到的按键操作
 				contentElement.addEventListener('keydown', (event) => {
-					saveFormData();
+					// 监听 Ctrl + X, Ctrl + Z, Ctrl + Y, Ctrl + V
+					if (event.ctrlKey && ['x', 'z', 'y', 'v'].includes(event.key)) {
+						saveFormData();
+					}
+					// 监听 Backspace, Delete, Enter, Tab
+					if (['Backspace', 'Delete', 'Enter', 'Tab'].includes(event.key)) {
+						saveFormData();
+					}
 				});
 
 				form.onsubmit = function(event) {
-					// 阻止表单提交
-					event.preventDefault();
-					document.getElementById('text').value = window.CodeMirrorEditor.state.doc.toString();
 					// 删除自动保存的本地存储数据
 					localStorage.removeItem('form-data');
-					// 手动触发表单提交
-					form.submit();
 				};
-
-				// 页面加载时加载本地存储数据
-				window.addEventListener('load', loadFormData);
 			}
-			EditorAutoStorage(document.querySelector('[name="write_post"]'));
-			EditorAutoStorage(document.querySelector('[name="write_page"]'));
+			window.addEventListener('load', () => {
+				EditorAutoStorage(document.querySelector('[name="write_post"]'));
+				EditorAutoStorage(document.querySelector('[name="write_page"]'));
+			});
 		</script>
 	<?php
 	}

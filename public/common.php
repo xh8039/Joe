@@ -1,5 +1,7 @@
 <?php
 
+if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+
 require_once 'tencent_protect.php';
 
 if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
@@ -212,4 +214,16 @@ function themeFields($layout)
 			第02集$https://alimov2.a.kwimgs.com/upic/2022/07/24/23/BMjAyMjA3MjQyMzU1MzdfMjYxMzE4ODhfODAwNTQ2NzczNDhfMl8z_b_B6e7adb80a3c3cad6f66d318c66c48b68.mp4$韩大哥，没有灵根......真的不能成为修仙者吗'
 	);
 	$layout->addItem($video);
+
+	$baidu_push = new Typecho_Widget_Helper_Form_Element_Select(
+		'baidu_push',
+		array(
+			'no' => '未推送',
+			'yes' => '已推送',
+		),
+		'default',
+		'百度收录推送状态',
+	);
+	$layout->addItem($baidu_push);
+
 }

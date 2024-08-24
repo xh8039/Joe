@@ -36,7 +36,7 @@
 			theme: '<?= $_GET['theme'] ? $_GET['theme'] : '#409eff' ?>', // 主题色
 			// lang: '', // 可选值: 'en', 'zh-cn', 'zh-tw'
 			preload: '<?= (isset($_GET['pic']) && $_GET['pic'] != 'null') ? 'metadata' : 'auto' ?>', // 视频预加载，可选值: 'none', 'metadata', 'auto'
-			loop: <?= isset($_GET['loop']) ? 'true' : 'false' ?>, // 视频循环播放
+			loop: <?= (isset($_GET['loop']) && $_GET['loop']) ? 'true' : 'false' ?>, // 视频循环播放
 			screenshot: <?= $_GET['screenshot'] ? 'true' : 'false' ?>, // 开启截图，如果开启，视频和视频封面需要允许跨域
 			airplay: true, // 在 Safari 中开启 AirPlay
 			volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效

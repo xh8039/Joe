@@ -18,8 +18,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		'YisouSpider', // 神马搜索爬虫
 		'Sogou web spider', // 搜狗搜索蜘蛛
 		'Sogou inst spider', // 搜狗搜索蜘蛛
-		'Googlebot/', // 谷歌搜索爬虫
-		'bingbot/', // 必应搜索爬虫
+		'Googlebot', // 谷歌搜索爬虫
+		'bingbot', // 必应搜索爬虫
 		'Bytespider' // 今日头条的 ByteSpider
 	];
 	foreach ($spider as $value) {

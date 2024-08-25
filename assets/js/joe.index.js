@@ -171,8 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
 							return Qmsg.warning('没有更多内容了');
 						}
 						res.data.forEach(_ => $('.joe_index__list .joe_list').append(getListMode(_)));
-                        // 文章列表缩略图加载失败自动使用主题自带缩略图
-                        window.thumbOnerror();
 						$('.joe_load').removeAttr('loading');
 						$('.joe_load').html('查看更多');
 						$('.joe_index__list .joe_list__loading').hide();

@@ -819,5 +819,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				$(this).attr('src', thumb);
 			});
 		}
+		thumbOnError();
 	}
 });

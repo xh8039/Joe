@@ -25,8 +25,9 @@
 		height: 50px;
 		border: 5px solid transparent;
 		border-radius: 50%;
-		border-top-color: #2aab69;
-		border-bottom-color: #2aab69;
+		border-top-color: var(--theme);
+		/* border-bottom-color: #2aab69; */
+		border-bottom-color: var(--theme);
 		animation: huan-rotate 1s cubic-bezier(0.7, 0.1, 0.31, 0.9) infinite
 	}
 

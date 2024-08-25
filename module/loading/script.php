@@ -11,11 +11,11 @@
     }
     if (window.jQuery) {
         $(document).ready(() => {
-            loadEnd();
+            loadingEnd();
         });
     } else {
         document.addEventListener("DOMContentLoaded", () => {
-            loadEnd();
+            loadingEnd();
         });
     }
 </script>

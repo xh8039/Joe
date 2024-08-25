@@ -95,7 +95,7 @@ function _parseContent($post, $login)
 	}
 
 	if (strpos($content, '<img src="') !== false) {
-		$content = str_replace('<img src="', '<img rel="noreferrer" src="', $content);
+		$content = str_replace('<img src="', '<img referrerPolicy="no-referrer" rel="noreferrer" src="', $content);
 	}
 
 	echo $content;

@@ -834,15 +834,18 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			return true;
 		}
-		// a标签加载动画
-		$('a').click(function (e) {
-			if ($(this).attr('target') == '_blank') return true;
-			if ($(this).attr('ajax-replace')) return true;
-			let url = $(this).attr('href');
-			if (checkUrl(url)) window.loadingStart();
-			setTimeout(() => {
-				window.loadingEnd();
-			}, 3000);
-		});
+		window.offLoading = () => {
+			// a标签加载动画
+			$('a').click(function (e) {
+				if ($(this).attr('target') == '_blank') return true;
+				if ($(this).attr('ajax-replace')) return true;
+				let url = $(this).attr('href');
+				if (checkUrl(url)) window.loadingStart();
+				setTimeout(() => {
+					window.loadingEnd();
+				}, 3000);
+			});
+		}
+		offLoading();
 	}
 });

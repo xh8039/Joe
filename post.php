@@ -1,4 +1,7 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+} ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -207,7 +210,10 @@
 						'bottom': '0px',
 						'padding': '10px',
 						'border-radius': 'var(--radius-wrap)',
-						'box-shadow': '0 0 10px rgb(116 116 116 / 50%)'
+						'box-shadow': '0 0 10px rgb(116 116 116 / 50%)',
+						'overflow': 'auto',
+						'max-height': '50vh',
+						'max-width': '30vh'
 					})
 					$('.joe_action_item.outline-outside-switcher').click(() => {
 						$('.joe_action_item.outline-outside-switcher .outline-outside').toggle(200);

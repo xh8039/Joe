@@ -807,15 +807,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
 	{
-		// 使用事件委托，将监听器绑定到一个共同的父元素上
-		$(document).on('error', '.thumbnail>img, .joe_detail__related-content>a>img', function () {
-			// 生成一个 0 到 41 之间的随机整数
-			const randomNumber = Math.floor(Math.random() * 42);
-			// 将随机数格式化为两位数
-			const formattedNumber = ("0" + randomNumber).slice(-2);
-			const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
-			$(event.target).attr('data-src', thumb);
-			$(event.target).attr('src', thumb);
-		});
+		window.thumbOnError = function () {
+			$('.thumbnail>img, .joe_detail__related-content>a>img').on('error', function () {
+				// 生成一个 0 到 41 之间的随机整数
+				const randomNumber = Math.floor(Math.random() * 42);
+				// 将随机数格式化为两位数
+				const formattedNumber = ("0" + randomNumber).slice(-2);
+				const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
+				console.log($(this))
+				$(this).attr('data-src', thumb);
+				$(this).attr('src', thumb);
+			});
+		}
 	}
 });

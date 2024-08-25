@@ -1,8 +1,14 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+    http_response_code(404);
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
+    <meta name="referrer" content="no-referrer" />
     <?php $this->need('module/head.php'); ?>
     <script src="<?= joe\cdn('wow/1.1.2/wow.min.js') ?>"></script>
     <!-- <script src="//fastly.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script> -->

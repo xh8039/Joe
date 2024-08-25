@@ -814,7 +814,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				// 将随机数格式化为两位数
 				const formattedNumber = ("0" + randomNumber).slice(-2);
 				const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
-				console.log($(this))
 				$(this).attr('data-src', thumb);
 				$(this).attr('src', thumb);
 			});

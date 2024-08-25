@@ -1,9 +1,12 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+?>
 <aside class="joe_aside">
 	<section class="joe_aside__item author">
-		<img width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?=
-		empty($this->options->JAside_Author_Image) ? \Joe\theme_url('assets/images/aside_author_image.jpg') : $this->options->JAside_Author_Image
-		?>" alt="博主栏壁纸" />
+		<img width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/aside_author_image.jpg'); ?>" alt="博主栏壁纸" />
 		<div class="user">
 			<img width="75" height="75" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主头像" />
 			<a class="link" target="_blank" href="<?php $this->options->JAside_Author_Link() ?>" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>
@@ -56,7 +59,7 @@
 	<!-- 自定义侧边栏模块 - PC -->
 
 	<?php $this->options->JCustomAside ? $this->options->JCustomAside() : null ?>
-	
+
 	<!-- 自定义侧边栏模块 - PC -->
 
 	<?php if ($this->options->JAside_History_Today === 'on') : ?>
@@ -70,6 +73,7 @@
 		$historyTodaylist = [];
 		if ($result instanceof Traversable) {
 			foreach ($result as $item) {
+				if ($item['year'] == date('Y')) continue;
 				$item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
 				$historyTodaylist[] = array(
 					"title" => htmlspecialchars($item['title']),

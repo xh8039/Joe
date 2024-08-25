@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 use Metowolf\Meting;
 
@@ -478,6 +481,33 @@ function _getServerStatus($self)
 		/* 系统负载 */
 		"load" => $response["load"] ? $response["load"] : ["fifteen" => 0, "five" => 0, "limit" => 0, "max" => 0, "one" => 0, "safe" => 0],
 	));
+}
+
+/** 提交评论 */
+function _submitComment($self)
+{
+	// 实例化评论提交类
+	$comment = new Widget_Comments_Post();
+
+	// 获取评论数据
+	$comment->cid = $_POST['cid'];
+	$comment->author = $_POST['author'];
+	$comment->mail = $_POST['mail'];
+	$comment->url = $_POST['url'];
+	$comment->text = $_POST['text'];
+	$comment->parent = $_POST['parent'];
+	$comment->co = $_POST['co']; // 评论验证码
+
+	// 处理评论提交
+	$result = $comment->doComment();
+
+	if ($result == true) {
+		$self->response->setStatus(200);
+		$self->response->throwJson(['code' => 200]);
+	} else {
+		$self->response->setStatus(501);
+		$self->response->throwHtml('<div class="container">' . $result . '</div>');
+	}
 }
 
 /* 获取最近评论 */

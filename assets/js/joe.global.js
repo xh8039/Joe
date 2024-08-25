@@ -524,7 +524,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			let isSubmit = false;
 			$(".joe_comment__respond-form").on("submit", function (e) {
 				e.preventDefault();
-				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
+				const action = Joe.BASE_API + "?time=" + +new Date();
 				const type = $(".joe_comment__respond-form").attr("data-type");
 				const parent = $(".joe_comment__respond-form").attr("data-coid");
 				const author = $(".joe_comment__respond-form .head input[name='author']").val();
@@ -547,6 +547,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					url: action,
 					type: "POST",
 					data: {
+						routeType: 'comment_submit',
 						author,
 						mail,
 						text,
@@ -554,20 +555,14 @@ document.addEventListener("DOMContentLoaded", () => {
 						url,
 						_
 					},
-					dataType: "text",
+					dataType: "josn",
 					success(res) {
-						let arr = [],
-							str = "";
-						arr = $(res).contents();
-						Array.from(arr).forEach((_) => {
-							if (_.parentNode.className === "container") str = _;
-						});
-						if (!/Joe/.test(res)) {
-							Qmsg.warning(str.textContent.trim() || "");
+						if (res.code == 200) {
+							window.location.reload();
+						} else {
+							Qmsg.warning(str.message || "评论失败");
 							isSubmit = false;
 							$(".joe_comment__respond-form .foot .submit button").html("发表评论");
-						} else {
-							window.location.reload();
 						}
 					},
 					error(res) {

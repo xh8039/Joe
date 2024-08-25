@@ -73,8 +73,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		$historyTodaylist = [];
 		if ($result instanceof Traversable) {
 			foreach ($result as $item) {
-				if ($item['year'] == date('Y')) continue;
 				$item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
+				if ($item['year'] == date('Y')) continue;
 				$historyTodaylist[] = array(
 					"title" => htmlspecialchars($item['title']),
 					"permalink" => $item['permalink'],

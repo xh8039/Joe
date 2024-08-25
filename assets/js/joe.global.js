@@ -820,4 +820,29 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		thumbOnError();
 	}
+
+	/** 全局Loading动画补全 */
+	{
+		function checkUrl(string) {
+			try {
+				console.log(string);
+				let url = new URL(string);
+				console.log(url);
+				if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
+			} catch (error) {
+				return false;
+			}
+			return true;
+		}
+		// a标签加载动画
+		$('a').click(function (e) {
+			if ($(this).attr('target') == '_blank') return true;
+			if ($(this).attr('ajax-replace')) return true;
+			let url = $(this).attr('href');
+			if (checkUrl(url)) window.loadingStart();
+			setTimeout(() => {
+				window.loadingEnd();
+			}, 3000);
+		});
+	}
 });

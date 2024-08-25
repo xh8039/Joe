@@ -1,13 +1,16 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 $JLoading = new Typecho_Widget_Helper_Form_Element_Select(
 	'JLoading',
-	array('on' => '开启（默认）', 'off' => '关闭'),
-	'on',
-	'是否开启主题加载动画',
-	'介绍：开启后可防止使用谷歌内核的浏览器出现闪动问题'
+	['off' => '关闭', 'concise' => '简洁动画（默认）', 'lollipop' => '棒棒糖'],
+	'concise',
+	'全局加载动画',
+	'介绍：页面全局加载loading动画，开启后可防止使用谷歌内核的浏览器出现闪动问题'
 );
 $JLoading->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JLoading->multiMode());

@@ -230,5 +230,28 @@ function themeFields($layout)
 		'百度收录推送状态',
 	);
 	$layout->addItem($baidu_push);
-
 }
+
+// class FriendLinks extends Typecho_Widget implements Widget_Interface_Do
+// {
+// 	public function __construct($request, $response, $params = null)
+// 	{
+// 		parent::__construct($request, $response, $params);
+// 	}
+
+// 	public function action()
+// 	{
+// 		// 在这里处理请求逻辑
+// 		// 例如，保存用户输入的数据
+// 		if ($this->request->isPost()) {
+// 			// 处理 POST 请求
+// 		}
+// 	}
+
+// 	public function toHtml()
+// 	{
+// 		// 显示 HTML 页面
+// 		echo '<h1>My Custom Page</h1>';
+// 		// 这里可以添加表单、数据等
+// 	}
+// }

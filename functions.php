@@ -9,6 +9,9 @@ require_once(__DIR__ . '/public/common.php');
 
 function themeConfig($form)
 {
+	// 注册后台页面
+    // Typecho_Plugin::factory('admin/friend.php')->register('FriendLinks', 'mytheme_page', 'My Custom Page');
+
 	$_db = Typecho_Db::get();
 	$_prefix = $_db->getPrefix();
 	try {

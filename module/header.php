@@ -1,5 +1,13 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
-<?php $this->options->JLoading == 'on' ? $this->need('module/loading.php') : null ?>
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+if ($this->options->JLoading != 'off') {
+	$this->need('module/loading/' . $this->options->JLoading . '.php');
+	$this->need('module/loading/script.php');
+}
+?>
 <header class="joe_header <?php echo $this->is('post') ? 'current' : '' ?>">
 
 	<div class="joe_header__above">
@@ -334,8 +342,8 @@
 
 	<div class="joe_header__slideout">
 		<img class="joe_header__slideout-image" height="<?php $this->options->JAside_Wap_Image_Height ? $this->options->JAside_Wap_Image_Height() : print_r('150px'); ?>" src="<?=
-		empty($this->options->JAside_Wap_Image) ? \joe\theme_url('assets/images/wap_aside_image.jpg') : $this->options->JAside_Wap_Image
-		?>" alt="侧边栏壁纸" />
+																																												empty($this->options->JAside_Wap_Image) ? \joe\theme_url('assets/images/wap_aside_image.jpg') : $this->options->JAside_Wap_Image
+																																												?>" alt="侧边栏壁纸" />
 		<div class="joe_header__slideout-author">
 			<img width="50" height="50" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主昵称" />
 			<div class="info">

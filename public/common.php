@@ -96,8 +96,6 @@ function themeInit($self)
 				break;
 			case 'meting':
 				_Meting($self);
-			case 'comment_submit':
-				_submitComment($self);
 				break;
 		};
 	}
@@ -232,4 +230,5 @@ function themeFields($layout)
 		'百度收录推送状态',
 	);
 	$layout->addItem($baidu_push);
+
 }

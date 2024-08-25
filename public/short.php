@@ -1,5 +1,8 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 function _parseContent($post, $login)
 {
 	$content = $post->content;
@@ -89,6 +92,10 @@ function _parseContent($post, $login)
 	}
 	if (strpos($content, '{copy') !== false) {
 		$content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
+	}
+
+	if (strpos($content, '<img src="') !== false) {
+		$content = str_replace('<img src="', '<img rel="noreferrer" src="', $content);
 	}
 
 	echo $content;

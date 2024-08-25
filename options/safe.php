@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 $JPrevent = new Typecho_Widget_Helper_Form_Element_Select(
 	'JPrevent',
@@ -12,12 +15,12 @@ $JPrevent = new Typecho_Widget_Helper_Form_Element_Select(
 $JPrevent->setAttribute('class', 'joe_content joe_safe');
 $form->addInput($JPrevent->multiMode());
 
-$JTencentProtect = new Typecho_Widget_Helper_Form_Element_Select(
-	'JTencentProtect',
-	array('on' => '开启（默认）', 'off' => '关闭'),
+$JShieldScan = new Typecho_Widget_Helper_Form_Element_Select(
+	'JShieldScan',
+	['on' => '开启（默认）', 'off' => '关闭'],
 	'on',
-	'是否开启反蜘蛛爬虫非法扫描',
-	'介绍：开启后，可以一定程度上屏蔽各种自动扫描蜘蛛爬虫机器人非法扫描站点'
+	'屏蔽扫描',
+	'介绍：用于屏蔽垃圾机器人扫描、腾讯电脑管家网址安全检测、国外用户'
 );
-$JTencentProtect->setAttribute('class', 'joe_content joe_safe');
-$form->addInput($JTencentProtect->multiMode());
+$JShieldScan->setAttribute('class', 'joe_content joe_safe');
+$form->addInput($JShieldScan->multiMode());

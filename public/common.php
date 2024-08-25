@@ -1,8 +1,13 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
-require_once 'tencent_protect.php';
+if (Helper::options()->JShieldScan != 'off') {
+	require_once 'tencent_protect.php';
+}
 
 if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
 	// 我就不信这次腾讯会再给封了！！！

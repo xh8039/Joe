@@ -12,7 +12,7 @@
 <?php if ($this->is('single')) : ?>
 <meta name="keywords" content="<?= $this->fields->keywords ? $this->fields->keywords : $this->keywords; ?>" />
 <meta name="description" content="<?= $this->fields->description ? $this->fields->description : joe\markdown_filter($this->description); ?>" />
-	<?php $this->header('keywords=&description='); ?>
+<?php $this->header('keywords=&description='); ?>
 <?php else : ?>
 	<?php $this->header(); ?>
 <?php endif; ?>
@@ -47,5 +47,7 @@
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 
 <!-- 自定义头部HTML代码 -->
+
 <?php $this->options->JCustomHeadEnd() ?>
+
 <!-- 自定义头部HTML代码 -->

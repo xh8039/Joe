@@ -36,6 +36,7 @@ $fontUrl = $this->options->JCustomFont;
 if (!$fontUrl) {
 	$fontUrl = '';
 }
+$fontFormat = '';
 if (strpos($fontUrl, 'woff2') !== false) $fontFormat = 'woff2';
 elseif (strpos($fontUrl, 'woff') !== false) $fontFormat = 'woff';
 elseif (strpos($fontUrl, 'ttf') !== false) $fontFormat = 'truetype';
@@ -140,7 +141,9 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 	}
 
 	/* 自定义CSS */
+
 	<?php $this->options->JCustomCSS() ?>
+
 	/* 自定义CSS */
 </style>
 <?php

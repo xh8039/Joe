@@ -17,7 +17,7 @@ $form->addInput($JAside_Notice);
 $JAside_Author_Nick = new Typecho_Widget_Helper_Form_Element_Text(
 	'JAside_Author_Nick',
 	NULL,
-	"Typecho",
+	"易航",
 	'博主栏博主昵称 - PC/WAP',
 	'介绍：用于修改博主栏的博主昵称 <br />
 		 注意：如果不填写时则显示 *个人设置* 里的昵称'
@@ -29,7 +29,7 @@ $JAside_Author_Avatar = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JAside_Author_Avatar',
 	NULL,
 	NULL,
-	'博主栏博主头像 - PC/WAP',
+	'博主栏博主头像URL - PC/WAP',
 	'介绍：用于修改博主栏的博主头像 <br />
 		 注意：如果不填写时则显示 *个人设置* 里的头像'
 );
@@ -50,7 +50,7 @@ $form->addInput($JAside_Author_Image);
 $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JAside_Wap_Image',
 	NULL,
-	NULL,
+	'//api.bri6.cn/api/wallpaper/phone.php',
 	'博主栏背景壁纸 - WAP',
 	'介绍：用于修改移动端博主栏的背景壁纸 <br/>
 		 格式：图片地址 或 Base64地址'

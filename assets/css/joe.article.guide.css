@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.posts-nav-box>.joe_aside__item-contain {
+    max-height: 500px;
+}
+
 .posts-nav-lists {
     /* max-height: 400px; */
     padding-left: 10px

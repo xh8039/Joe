@@ -94,8 +94,14 @@ function _parseContent($post, $login)
 		$content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
 	}
 
+	// img图片引入时不携带referrer信息
 	if (strpos($content, '<img src="') !== false) {
 		$content = str_replace('<img src="', '<img referrerPolicy="no-referrer" rel="noreferrer" src="', $content);
+	}
+
+	// 告诉搜索引擎不将这个链接的权重传递给目标页面
+	if (strpos($content, '<a href="') !== false) {
+		$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
 	}
 
 	echo $content;

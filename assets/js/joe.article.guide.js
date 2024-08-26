@@ -44,7 +44,7 @@ if (articleTitleList.length > 0) {
 			let $currentHeading = $('h1');
 			for (let heading of articleTitleList) {
 				const $heading = $(heading);
-				if ($heading.offset().top - $(document).scrollTop() > $('.joe_header').height()) {
+				if (($heading.offset().top - $(document).scrollTop() - $('.joe_header').height()) > $('.joe_header').height()) {
 					break;
 				}
 				$currentHeading = $heading;
@@ -115,4 +115,6 @@ if (articleTitleList.length > 0) {
 		});
 
 	}())
+}else {
+	$('.joe_aside__item.posts-nav-box').remove();
 }

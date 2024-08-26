@@ -101,12 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 设置文章内的链接为新窗口打开 */
 	{
-		$('.joe_detail__article a:not(.joe_detail__article-anote)').each(function () {
-			$(this).attr({
-				target: '_blank',
-				rel: 'noopener noreferrer nofollow'
-			});
-		});
+		// 已通过服务端设置
+		// $('.joe_detail__article a:not(.joe_detail__article-anote)').each(function () {
+		// 	$(this).attr({
+		// 		target: '_blank',
+		// 		rel: 'noopener noreferrer nofollow'
+		// 	});
+		// });
 	}
 
 	/* 激活浏览功能 */
@@ -305,7 +306,7 @@ function submit_baidu(msg = '推送中...') {
 				if (res.data.message == 'over quota') res.data.message = '超过配额';
 				$('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，' + res.data.message + '</span>');
 			} else {
-				$('#Joe_Baidu_Record').html('<span style="color: #67C23A">推送成功！还可推送' + res.data.remain + '条</span>');
+				$('#Joe_Baidu_Record').html('<span style="color: #67C23A">推送成功！今日还可推送' + res.data.remain + '条</span>');
 			}
 		},
 		error(res) {

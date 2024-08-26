@@ -1112,6 +1112,10 @@
 	background: var(--background)
 }
 
+.joe_aside__item.hot>.joe_aside__item-contain {
+	max-height: 450px;
+}
+
 .joe_aside__item.hot .empty {
 	text-align: center;
 	color: var(--routine)
@@ -1269,6 +1273,10 @@
 
 .joe_aside__item.newreply {
 	background: var(--background)
+}
+
+.joe_aside__item.newreply>.joe_aside__item-contain {
+	max-height: 398px;
 }
 
 .joe_aside__item.newreply .empty {

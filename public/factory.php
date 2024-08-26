@@ -184,7 +184,13 @@ class Editor
 ?>
 		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/prism/prism-onedark.min.css') ?>">
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.min.css') ?>">
+		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>">
+		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css') ?>">
+		<!-- 自定义CSS样式 -->
+		<style>
+			<?php Helper::options()->JCustomCSS(); ?>
+		</style>
+		<!-- 自定义CSS样式 -->
 		<script>
 			window.JoeConfig = {
 				uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
@@ -203,8 +209,13 @@ class Editor
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/index.bundle.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
 		<script>
+			// 编辑器内容自动本地存储
 			function EditorAutoStorage(form) {
 				if (!form) return;
+
+				function isEmptyString(string) {
+					return (!string || string.trim() == '' || string.length == 0);
+				}
 
 				// 从本地存储加载数据并填充到表单的函数
 				function loadFormData() {
@@ -213,6 +224,7 @@ class Editor
 						const data = JSON.parse(localStorageformData);
 						formSlug = document.getElementById('slug').value;
 						if (data.slug != formSlug) return;
+						if (isEmptyString(data.text) && isEmptyString(data.title)) return;
 						alert('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 已自动为您恢复');
 						// 遍历 data 对象并填充表单元素
 						for (const key in data) {

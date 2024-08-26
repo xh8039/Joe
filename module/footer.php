@@ -105,7 +105,7 @@ if ($this->options->JPendant_SSL == 'on') {
 		<div class="joe_action_item" title="编辑文章">
 			<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
 		</div>
-	<?php else : ?>
+	<?php elseif ($this->is('page')) : ?>
 		<div class="joe_action_item" title="编辑页面">
 			<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
 		</div>

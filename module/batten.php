@@ -21,9 +21,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</div>
 	</div>
-	<!-- <time class="joe_detail__count-created" datetime="<?php // $this->date('m/d'); 
-															?>"><?php // $this->date('m/d'); 
-																?></time> -->
 </div>
 <div class="relative">
 	<i class="line-form-line"></i>

@@ -2639,7 +2639,7 @@
 .joe_cloud__btn {
 	flex-shrink: 0;
 	margin-left: auto;
-	background: var(--back-line-bottom);
+	background: var(--theme);
 	color: #fff;
 	width: 30px;
 	height: 30px;

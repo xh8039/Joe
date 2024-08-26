@@ -29,7 +29,7 @@ if (articleTitleList.length > 0) {
 				'bottom': '0px',
 				'padding': '15px',
 				'border-radius': 'var(--radius-wrap)',
-				'box-shadow': 'box-shadow: 0 0 10px 8px var(--main-shadow)',
+				'box-shadow': '0 0 10px 8px var(--main-shadow)',
 				'overflow': 'auto',
 				'max-height': '50vh',
 				'max-width': '80vw'

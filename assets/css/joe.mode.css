@@ -1,51 +1,61 @@
 /* 昼夜模式专用css */
 /* 以下配色为全球公认的一套色彩值，如无必要，无需修改下方色彩值（主题色可以修改） */
 html {
-    --theme: #409eff;
-    --background: #fff;
-    --background-grey: #f5f5f5;
-    --back-trn-85: rgba(255,255,255,0.85);
-    --back-trn-6: rgba(255,255,255,0.6);
-    --main: #303133;
-    --routine: #606266;
-    --minor: #909399;
-    --seat: #c0c4cc;
-    --classA: #dcdfe6;
-    --classB: #e4e7ed;
-    --classC: #ebeef5;
-    --classD: #f2f6fc;
-    --radius-wrap: 8px;
-    --radius-inner: 4.5px;
-    --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    --box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.22);
-    --back-line-color-left: var(--theme);
-    --back-line-color-right: #05D1D3;
-    --back-line: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3);
-    --back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
-    --back-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
-    --border-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
-    --transition: 0.1s;
+	--theme: #409eff;
+	--background: #fff;
+	--background-grey: #f5f5f5;
+	--body-bg-color: #f5f6f7;
+	--back-trn-85: rgba(255, 255, 255, 0.85);
+	--back-trn-6: rgba(255, 255, 255, 0.6);
+	--float-btn-bg: rgba(200, 200, 200, 0.4);
+	--main-border-color: rgba(50, 50, 50, 0.06);
+	--main: #303133;
+	--main-color: #4e5358;
+	--muted-color: #777;
+	--muted-2-color: #999;
+	--muted-3-color: #b1b1b1;
+	--muted-color: #777;
+	--routine: #606266;
+	--minor: #909399;
+	--seat: #c0c4cc;
+	--classA: #dcdfe6;
+	--classB: #e4e7ed;
+	--classC: #ebeef5;
+	--classD: #f2f6fc;
+	--radius-wrap: 8px;
+	--radius-inner: 4.5px;
+	--main-radius: 4.5px;
+	--text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+	--box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.22);
+	--main-shadow: rgba(116, 116, 116, 0.08);
+	--back-line-color-left: var(--theme);
+	--back-line-color-right: #05D1D3;
+	--back-line: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3);
+	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
+	--back-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
+	--border-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
+	--transition: 0.1s;
 }
 
 /* 黑夜模式的配色方案 */
 html[data-night='night'] body {
-    --theme: #54b5db;
-    --background: #232323;
-    --back-line-color-left: var(--theme);
-    --back-line-color-right: #6a80e3;
-    --back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
-    --back-trn-85: rgba(35,35,35,0.85);
-    --back-trn-6: rgba(35,35,35,0.6);
-    --main: #999;
-    --routine: #888;
-    --minor: #777;
-    --seat: #666;
-    --classA: #515253;
-    --classB: #454545;
-    --classC: #414243;
-    --classD: #303030;
-    --text-shadow: none;
-    --box-shadow: none;
+	--theme: #54b5db;
+	--background: #232323;
+	--back-line-color-left: var(--theme);
+	--back-line-color-right: #6a80e3;
+	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
+	--back-trn-85: rgba(35, 35, 35, 0.85);
+	--back-trn-6: rgba(35, 35, 35, 0.6);
+	--main: #999;
+	--routine: #888;
+	--minor: #777;
+	--seat: #666;
+	--classA: #515253;
+	--classB: #454545;
+	--classC: #414243;
+	--classD: #303030;
+	--text-shadow: none;
+	--box-shadow: none;
 }
 
 /* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */

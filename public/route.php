@@ -127,7 +127,7 @@ function _getstatistics($self)
 			break;
 		}
 	}
-	if ($list['domain'] !== $domain) {
+	if (!isset($list['domain']) || $list['domain'] != $domain) {
 		$data = array(
 			'msg' => '没有当前站点'
 		);

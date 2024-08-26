@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	/* 动态背景 */
 	{
 		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND !== "off" && Joe.DYNAMIC_BACKGROUND && !Joe.WALLPAPER_BACKGROUND_PC) {
-			$.getScript(`${Joe.THEME_URL}assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
+			$.getScript(`${Joe.THEME_URL}assets/plugin/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
 		}
 	}
 
@@ -809,8 +809,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		window.thumbOnError = function () {
 			$('.thumbnail>img, .joe_detail__related-content>a>img').on('error', function () {
-				// 生成一个 0 到 41 之间的随机整数
-				const randomNumber = Math.floor(Math.random() * 42);
+				// 生成一个 1 到 42 之间的随机整数
+				const randomNumber = Math.floor(Math.random() * 41) + 1;
 				// 将随机数格式化为两位数
 				const formattedNumber = ("0" + randomNumber).slice(-2);
 				const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
@@ -843,7 +843,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				if (checkUrl(url)) window.loadingStart();
 				setTimeout(() => {
 					window.loadingEnd();
-				}, 3000);
+				}, 5000);
 			});
 		}
 		offLoading();

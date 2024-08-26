@@ -7,8 +7,8 @@
 }
 
 ::-webkit-scrollbar {
-	width: 6px;
-	height: 6px
+	width: 4.5px;
+	height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -48,7 +48,7 @@ body::before {
 	bottom: 0;
 	z-index: -520;
 	pointer-events: none;
-	background: #f5f5f5;
+	background: #f5f6f7;
 	background-blend-mode: multiply;
 	background-position: center 0;
 	background-repeat: no-repeat;
@@ -131,7 +131,7 @@ table {
 	display: flex;
 	width: 100%;
 	margin: 0 auto;
-	padding: 0 15px
+	padding: 0 10px
 }
 
 @media (min-width: 576px) {
@@ -160,6 +160,6 @@ table {
 
 @media (min-width: 1400px) {
 	.joe_container {
-		max-width: 1320px
+		max-width: 1200px
 	}
 }

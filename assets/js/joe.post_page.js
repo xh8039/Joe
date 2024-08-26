@@ -71,18 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 监听网页复制行为 */
 	{
-		document.addEventListener("copy", function (e) {
-			setTimeout(function () {
+		// 获取所有具有类名 "joe_detail__article" 的元素
+		const articleElements = document.querySelectorAll('.joe_detail__article');
+		// 遍历每个元素，添加复制事件监听
+		articleElements.forEach(article => {
+			article.addEventListener('copy', (event) => {
+				// 获取被复制的元素
+				// const copiedElement = event.target;
 				if (window.code_copy !== true && window.post_copy !== true) {
-					let options = {
+					Qmsg.warning(`本文版权属于 ${Joe.TITLE} 转载请标明出处！`, {
 						'showClose': true,
 						'autoClose': false
-					}
-					Qmsg.warning(`本文版权属于 ${Joe.TITLE} 转载请标明出处！`, options)
+					});
 					window.post_copy = true;
 				}
 				window.code_copy = false;
-			}, 100);
+			});
 		});
 	}
 
@@ -135,10 +139,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	{
 		let agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage.getItem(
 			encryption('agree')))) : [];
-		if (agreeArr.includes(cid)) $('.joe_detail__agree .icon-1').addClass('active');
-		else $('.joe_detail__agree .icon-2').addClass('active');
+		if (agreeArr.includes(cid)) {
+			$('.action-like').addClass('active');
+			$('.action-like>text').text('已赞');
+		} else {
+			$('.action-like').removeClass('active');
+			$('.action-like>text').text('点赞');
+		}
 		let _loading = false;
-		$('.joe_detail__agree .icon').on('click', function () {
+		$('.action-like').on('click', function () {
 			if (_loading) return;
 			_loading = true;
 			agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage
@@ -153,24 +162,28 @@ document.addEventListener('DOMContentLoaded', () => {
 					cid,
 					type: flag ? 'disagree' : 'agree'
 				},
+				beforeSend: function () {
+					$('.action-like').css('pointer-events', 'none').find('count').html('<i class="loading zts"></i>');
+				},
 				success(res) {
 					if (res.code !== 1) return;
-					$('.joe_detail__agree .text').html(res.data.agree);
+					$('.action-like>count').html(res.data.agree);
 					if (flag) {
 						const index = agreeArr.findIndex(_ => _ === cid);
 						agreeArr.splice(index, 1);
-						$('.joe_detail__agree .icon-1').removeClass('active');
-						$('.joe_detail__agree .icon-2').addClass('active');
-						$('.joe_detail__agree .icon').removeClass('active');
+						$('.action-like').removeClass('active');
+						$('.action-like>text').text('点赞');
+						Qmsg.info('点赞已取消');
 					} else {
 						agreeArr.push(cid);
-						$('.joe_detail__agree .icon-2').removeClass('active');
-						$('.joe_detail__agree .icon-1').addClass('active');
-						$('.joe_detail__agree .icon').addClass('active');
+						$('.action-like').addClass('active');
+						$('.action-like>text').text('已赞');
+						Qmsg.success('已赞，感谢您的支持！');
 					}
 					const name = encryption('agree');
 					const val = encryption(JSON.stringify(agreeArr));
 					localStorage.setItem(name, val);
+					$('.action-like').css('pointer-events', '')
 				},
 				complete() {
 					_loading = false;
@@ -236,13 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 分享 */
 	{
-		if ($('.joe_detail__operate-share').length) {
-			$('.joe_detail__operate-share > svg').on('click', e => {
-				e.stopPropagation();
-				$('.joe_detail__operate-share').toggleClass('active');
-			});
-			$(document).on('click', () => $('.joe_detail__operate-share').removeClass('active'));
-		}
+		// if ($('.joe_detail__operate-share').length) {
+		// 	$('.joe_detail__operate-share > svg').on('click', e => {
+		// 		e.stopPropagation();
+		// 		$('.joe_detail__operate-share').toggleClass('active');
+		// 	});
+		// 	$(document).on('click', () => $('.joe_detail__operate-share').removeClass('active'));
+		// }
 	}
 });
 

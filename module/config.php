@@ -109,7 +109,7 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 			height: 550px;
 		}
 		';
-	}else {
+	} else {
 		echo '
 		.joe_index__hot-list {
 			grid-template-columns: repeat(3, 1fr);
@@ -135,9 +135,7 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 	}
 
 	body {
-		<?php if ($fontUrl) : ?>font-family: 'Joe Font';
-		<?php else : ?>font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-		<?php endif; ?>
+		font-family: <?= $fontUrl ? 'Joe Font' : "'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif" ?>
 	}
 
 	/* 自定义CSS */

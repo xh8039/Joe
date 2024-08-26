@@ -1,8 +1,6 @@
 <script>
 	window.loadingStart = () => {
-		setTimeout(() => {
-			$("#loading-animation").fadeIn(540);
-		}, 500);
+		$("#loading-animation").fadeIn(150);
 	}
 	window.loadingEnd = () => {
 		setTimeout(() => {

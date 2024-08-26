@@ -2,7 +2,10 @@
 
 namespace joe;
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 /* 判断是否是手机 */
 
@@ -454,4 +457,113 @@ function cdn($path)
 	}
 	$url = $cdnpublic . $path;
 	return $url;
+}
+
+/**
+ * 显示上一篇
+ *
+ * 如果没有下一篇,返回null
+ */
+function thePrevCid($widget, $default = NULL)
+{
+	$db = \Typecho_Db::get();
+	$sql = $db->select()->from('table.contents')
+		->where('table.contents.created < ?', $widget->created)
+		->where('table.contents.status = ?', 'publish')
+		->where('table.contents.type = ?', $widget->type)
+		->where('table.contents.password IS NULL')
+		->order('table.contents.created', \Typecho_Db::SORT_DESC)
+		->limit(1);
+	$content = $db->fetchRow($sql);
+
+	if ($content) {
+		return $content["cid"];
+	} else {
+		return $default;
+	}
+};
+
+/**
+ * 获取下一篇文章mid
+ *
+ * 如果没有下一篇,返回null
+ */
+function theNextCid($widget, $default = NULL)
+{
+	$db = \Typecho_Db::get();
+	$sql = $db->select()->from('table.contents')
+		->where('table.contents.created > ?', $widget->created)
+		->where('table.contents.status = ?', 'publish')
+		->where('table.contents.type = ?', $widget->type)
+		->where('table.contents.password IS NULL')
+		->order('table.contents.created', \Typecho_Db::SORT_ASC)
+		->limit(1);
+	$content = $db->fetchRow($sql);
+
+	if ($content) {
+		return $content["cid"];
+	} else {
+		return $default;
+	}
+};
+
+/**
+ * 个性化日期显示
+ * @static
+ * @access public
+ * @param datetime $times 日期
+ * @return string 返回大致日期
+ * @example 示例 ueTime('')
+ */
+function ueTime($times)
+{
+	if ($times == '' || $times == 0) {
+		return false;
+	}
+	//完整时间戳
+	$strtotime = is_int($times) ? $times : strtotime($times);
+	$times_day = date('Y-m-d', $strtotime);
+	$times_day_strtotime = strtotime($times_day);
+
+	//今天
+	$nowdate_str = strtotime(date('Y-m-d'));
+
+	//精确的时间间隔(秒)
+	$interval = time() - $strtotime;
+
+	//今天的
+	if ($times_day_strtotime == $nowdate_str) {
+
+		//小于一分钟
+		if ($interval < 60) {
+			$pct = sprintf("%d秒前", $interval);
+		}
+		//小于1小时
+		elseif ($interval < 3600) {
+			$pct = sprintf("%d分钟前", ceil($interval / 60));
+		} else {
+			$pct = sprintf("%d小时前", floor($interval / 3600));
+		}
+	}
+	//昨天的
+	elseif ($times_day_strtotime == strtotime(date('Y-m-d', strtotime('-1 days')))) {
+		$pct = '昨天' . date('H:i', $strtotime);
+	}
+	//前天的
+	elseif ($times_day_strtotime == strtotime(date('Y-m-d', strtotime('-2 days')))) {
+		$pct = '前天' . date('H:i', $strtotime);
+	}
+	//一个月以内
+	elseif ($interval < (3600 * 24 * 30)) {
+		$pct = date('m月d日', $strtotime);
+	}
+	//一年以内
+	elseif ($interval < (3600 * 24 * 365)) {
+		$pct = date('m月d日', $strtotime);
+	}
+	//一年以上
+	else {
+		$pct = date('Y年m月d日', $strtotime);
+	}
+	return $pct;
 }

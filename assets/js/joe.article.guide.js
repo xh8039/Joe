@@ -49,11 +49,12 @@ if (articleTitleList.length > 0) {
 				}
 				$currentHeading = $heading;
 				const anchorName = $currentHeading.attr('id');
-				const $catalog = $(document.getElementById(`title-${anchorName}`)).parent();
+				const catalog = document.getElementById(`title-${anchorName}`);
+				const $catalog = $(catalog).parent();
 				if (!$catalog.hasClass('active')) {
 					$('.posts-nav-lists>ul>li').removeClass('active');
 					$catalog.addClass('active');
-					$catalog.focus();
+					$(catalog).focus();
 				}
 				if ($catalog.length > 0) {
 					if ($('.posts-nav-box .joe_aside__item-contain').length > 0) {

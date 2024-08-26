@@ -101,7 +101,7 @@ if ($this->options->JPendant_SSL == 'on') {
 		<i class="icon-2 fa fa-compress" title="关闭全屏" style="display: none;"></i>
 	</div>
 	<?php if ($this->user->uid == $this->authorId) : ?>
-		<?php if ($this->is('post')) : ?>\
+		<?php if ($this->is('post')) : ?>
 		<div class="joe_action_item" title="编辑文章">
 			<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
 		</div>

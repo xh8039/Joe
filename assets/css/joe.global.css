@@ -3839,7 +3839,7 @@
 }
 
 .joe_detail__copyright .content .item {
-	color: var(--minor);
+	color: var(--main-color);
 	margin-bottom: 5px;
 	word-break: break-word;
 	line-height: 22px
@@ -3857,7 +3857,7 @@
 }
 
 .joe_detail__copyright .content .item .link {
-	color: var(--minor)
+	color: var(--main-color);
 }
 
 .joe_detail__copyright .content .item .link:hover {
@@ -4622,7 +4622,7 @@
 	background: var(--classD);
 	padding: 12px 15px;
 	border-radius: 0 var(--radius-inner) var(--radius-inner) 10px;
-	color: var(--main);
+	color: var(--main-color);
 	margin-bottom: 8px;
 	word-break: break-word;
 	line-height: 24px

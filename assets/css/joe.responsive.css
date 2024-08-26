@@ -789,9 +789,6 @@
 	html .joe_detail__related-content .item {
 		height: 110px;
 	}
-}
-
-@media (max-width: 390px) {
 	html .joe_index__hot-list .item>.item-body>.item-meta>.meta-right>.meta-like {
 		display: none;
 	}

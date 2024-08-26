@@ -791,6 +791,12 @@
 	}
 }
 
+@media (max-width: 390px) {
+	html .joe_index__hot-list .item>.item-body>.item-meta>.meta-right>.meta-like {
+		display: none;
+	}
+}
+
 @media (max-width: 372px) {
     html .joe_index__title-notice {
 		display: none

@@ -53,6 +53,7 @@ if (articleTitleList.length > 0) {
 				if (!$catalog.hasClass('active')) {
 					$('.posts-nav-lists>ul>li').removeClass('active');
 					$catalog.addClass('active');
+					$catalog.focus();
 				}
 				if ($catalog.length > 0) {
 					if ($('.posts-nav-box .joe_aside__item-contain').length > 0) {

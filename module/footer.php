@@ -100,15 +100,17 @@ if ($this->options->JPendant_SSL == 'on') {
 		<i class="icon-1 fa fa-expand" title="全屏模式"></i>
 		<i class="icon-2 fa fa-compress" title="关闭全屏" style="display: none;"></i>
 	</div>
-	<div class="joe_action_item">
-		<?php if ($this->user->uid == $this->authorId) : ?>
-			<?php if ($this->is('post')) : ?>
-				<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" title="编辑文章"><i class="fa fa-cog fa-spin"></i></a>
-			<?php else : ?>
-				<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>" title="编辑页面"><i class="fa fa-cog fa-spin"></i></a>
-			<?php endif; ?>
-		<?php endif; ?>
-	</div>
+	<?php if ($this->user->uid == $this->authorId) : ?>
+		<?php if ($this->is('post')) : ?>\
+		<div class="joe_action_item" title="编辑文章">
+			<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
+		</div>
+	<?php else : ?>
+		<div class="joe_action_item" title="编辑页面">
+			<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
+		</div>
+	<?php endif; ?>
+<?php endif; ?>
 </div>
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
 <script>

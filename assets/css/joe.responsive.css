@@ -467,6 +467,7 @@
 
 	html .joe_detail__count-information .meta .item {
 		/* justify-content: center */
+		font-size: 12px;
 	}
 
 	html .joe_detail__count-information .meta .item span:nth-child(2),
@@ -771,6 +772,10 @@
 
 	html .joe_detail {
 		padding: 15px 15px;
+	}
+
+	html .joe_index__hot-list .item>.item-body>.item-meta>.meta-right>.meta-comm {
+		display: none;
 	}
 }
 

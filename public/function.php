@@ -555,7 +555,7 @@ function ueTime($times)
 	}
 	//一个月以内
 	elseif ($interval < (3600 * 24 * 30)) {
-		$pct = date('m月d日', $strtotime);
+		$pct = date('本月d日', $strtotime);
 	}
 	//一年以内
 	elseif ($interval < (3600 * 24 * 365)) {
@@ -563,7 +563,7 @@ function ueTime($times)
 	}
 	//一年以上
 	else {
-		$pct = date('Y年m月d日', $strtotime);
+		$pct = date('Y年', $strtotime);
 	}
 	return $pct;
 }

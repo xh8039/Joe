@@ -1,6 +1,7 @@
-if ($(".joe_detail__article").children().length > 0) {
+var articleTitleList = $('.joe_detail__article').find('h1, h2, h3, h4, h5, h6');
+if (articleTitleList.length > 0) {
 	(function () {
-		for (let heading of $('.joe_detail__article').find('h1, h2, h3, h4, h5, h6')) {
+		for (let heading of articleTitleList) {
 			const headingLevel = heading.tagName.toUpperCase();
 			const $heading = $(heading);
 			// console.log($heading);
@@ -19,7 +20,7 @@ if ($(".joe_detail__article").children().length > 0) {
 			let html = document.createElement('div');
 			html.className = 'posts-nav-box';
 			html.innerHTML = joe_aside;
-			console.log(html);
+			// console.log(html);
 			$('.posts-nav-switcher').append(html);
 			$('.joe_action_item .posts-nav-box').css({
 				'position': 'absolute',
@@ -41,7 +42,7 @@ if ($(".joe_detail__article").children().length > 0) {
 		const catalogTrack = () => {
 			// console.log('页面滚动标题监听');
 			let $currentHeading = $('h1');
-			for (let heading of $('.joe_detail__article').find('h1, h2, h3, h4, h5, h6')) {
+			for (let heading of articleTitleList) {
 				const $heading = $(heading);
 				if ($heading.offset().top - $(document).scrollTop() > $('.joe_header').height()) {
 					break;

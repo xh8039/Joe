@@ -78,15 +78,18 @@
     font-size: 20px
 }
 
-.dosc-nav li a:focus,
-.dosc-nav li a:hover,
-.nav .active a,
-.nav>li>a:focus,
-.nav>li>a:hover,
-.posts-nav-lists li a:hover,
-.posts-nav-lists li.active a {
+
+
+.posts-nav-lists>.nav li.active a {
     background: var(--main-shadow);
     color: var(--theme)
+}
+
+@media (min-width: 768px) {
+    .posts-nav-lists>.nav>li>a:hover {
+        background: var(--main-shadow);
+        color: var(--theme)
+    }
 }
 
 .posts-nav-lists li.n-H1 a,

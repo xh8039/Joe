@@ -54,7 +54,6 @@ if (articleTitleList.length > 0) {
 				if (!$catalog.hasClass('active')) {
 					$('.posts-nav-lists>ul>li').removeClass('active');
 					$catalog.addClass('active');
-					$(catalog).focus();
 				}
 				if ($catalog.length > 0) {
 					if ($('.posts-nav-box .joe_aside__item-contain').length > 0) {
@@ -95,6 +94,7 @@ if (articleTitleList.length > 0) {
 		document.querySelectorAll('.posts-nav-lists>ul>li>a').forEach(link => {
 			link.addEventListener('click', (event) => {
 				event.preventDefault(); // 阻止默认跳转行为
+				$(link).addClass('active');
 				// 获取目标元素 ID
 				const targetId = link.getAttribute('href').substring(1);
 				const targetElement = document.getElementById(targetId);

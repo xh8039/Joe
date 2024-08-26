@@ -1511,7 +1511,7 @@
 	color: var(--main);
 	font-size: 18px;
 	line-height: 24px;
-	max-height: 48px;
+	max-height: 50px;
 	transition: color 0.35s
 }
 

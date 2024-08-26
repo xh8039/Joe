@@ -844,6 +844,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				setTimeout(() => {
 					window.loadingEnd();
 				}, 5000);
+				window.addEventListener('unload', function (event) {
+					// 在这里执行你希望在用户离开前运行的代码
+					window.loadingEnd();
+				});
 			});
 		}
 		offLoading();

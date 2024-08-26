@@ -94,7 +94,10 @@ if (articleTitleList.length > 0) {
 		document.querySelectorAll('.posts-nav-lists>ul>li>a').forEach(link => {
 			link.addEventListener('click', (event) => {
 				event.preventDefault(); // 阻止默认跳转行为
-				$(link).addClass('active');
+				if (!$(link).hasClass('active')) {
+					$('.posts-nav-lists>ul>li').removeClass('active');
+					$(link).addClass('active');
+				}
 				// 获取目标元素 ID
 				const targetId = link.getAttribute('href').substring(1);
 				const targetElement = document.getElementById(targetId);

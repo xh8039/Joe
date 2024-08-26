@@ -72,8 +72,3 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php _parseContent($this, $this->user->hasLogin()) ?>
 	<?php endif; ?>
 </article>
-<div class="em09 muted-3-color" style="font-size: .9em;color: var(--muted-3-color);line-height: 1.42857143;">
-	<div><span>©</span> 版权声明</div>
-	<div class="posts-copyright">文章版权归作者所有，未经允许请勿转载。</div>
-</div>
-<div style="margin-bottom: 20px;" class="text-center muted-3-color box-body separator em09">THE END</div>

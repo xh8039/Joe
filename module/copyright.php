@@ -1,5 +1,8 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 if ($this->options->JArticle_Bottom_Text) {
 ?>
 	<div class="joe_detail__copyright">

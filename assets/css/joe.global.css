@@ -3406,7 +3406,7 @@
 	background: none
 }
 
-.separator {
+.joe_detail>.separator {
 	text-align: center;
 	display: flex;
 	justify-content: center;
@@ -3418,8 +3418,8 @@
 	line-height: 1.42857143;
 }
 
-.separator::after,
-.separator::before {
+.joe_detail>.separator::after,
+.joe_detail>.separator::before {
 	content: '';
 	background: var(--main-border-color);
 	max-width: 20%;

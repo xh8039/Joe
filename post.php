@@ -124,11 +124,11 @@
 					<?php
 						}
 					}
-					$this->need('module/article.php');
-					$this->need('module/handle.php');
-					$this->need('module/operate.php');
-					$this->need('module/copyright.php');
-					$this->need('module/related.php');
+					$this->need('module/article.php'); // 文章内容
+					$this->need('module/handle.php'); // 标签分类
+					$this->need('module/operate.php'); // 点赞分享
+					$this->need('module/copyright.php'); // 版权声明
+					$this->need('module/related.php'); // 相关推荐
 					?>
 				</div>
 				<div class="yiyan-box">

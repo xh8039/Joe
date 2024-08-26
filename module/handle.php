@@ -1,3 +1,8 @@
+<div style="font-size: .9em;color: var(--muted-3-color);line-height: 1.42857143;">
+    <div><span>©</span> 版权声明</div>
+    <div class="posts-copyright">文章版权归作者所有，未经允许请勿转载。</div>
+</div>
+<div class="separator">THE END</div>
 <div class="article-tags">
     <?php if (sizeof($this->categories) > 0) : ?>
         <?php foreach (array_slice($this->categories, 0, 5) as $key => $item) : ?>
@@ -13,7 +18,7 @@
     <?php
         }
     } else {
-        echo '<a href="javascript:void(0);">暂无标签</a>';
+        // echo '<a href="javascript:void(0);"># 暂无标签</a>';
     }
     ?>
 </div>

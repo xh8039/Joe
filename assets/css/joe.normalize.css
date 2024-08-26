@@ -48,7 +48,7 @@ body::before {
 	bottom: 0;
 	z-index: -520;
 	pointer-events: none;
-	background: #f5f6f7;
+	background: var(--body-bg-color);
 	background-blend-mode: multiply;
 	background-position: center 0;
 	background-repeat: no-repeat;

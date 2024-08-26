@@ -56,6 +56,25 @@ html[data-night='night'] body {
 	--classD: #303030;
 	--text-shadow: none;
 	--box-shadow: none;
+
+	--body-bg-colo: #292a2d;
+	--key-color: #f8fafc;
+    --main-color: #e5eef7;
+    --main-shadow: rgba(24, 24, 24, 0.1);
+    --muted-color: #b4b6bb;
+    --muted-2-color: #888a8f;
+    --muted-3-color: #636469;
+    --body-bg-color: #292a2d;
+    --main-bg-color: #323335;
+    --muted-bg-color: #2d2e31;
+    --main-border-color: rgba(114, 114, 114, 0.1);
+    --muted-border-color: rgba(184, 184, 184, 0.02);
+    --blur-bg: rgba(50, 51, 53, 0.8);
+    --float-btn-bg: rgba(70, 70, 70, 0.4);
+    --header-bg: var(--blur-bg);
+    --header-color: var(--main-color);
+    --footer-bg: var(--main-bg-color);
+    --footer-color: var(--muted-2-color);
 }
 
 /* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */

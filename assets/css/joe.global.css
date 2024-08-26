@@ -2841,7 +2841,7 @@
 }
 
 .joe_main .joe_detail .single-metabox .post-metas {
-	background: var(--background-grey);
+	background: var(--body-bg-color);
 	right: 0;
 	padding: 5px 6px;
 	border-radius: 100px;

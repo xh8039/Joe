@@ -768,6 +768,10 @@
 	html .joe_main .joe_detail .single-metabox .post-metas item {
 		margin: 0 2px;
 	}
+
+	html .joe_detail {
+		padding: 15px 15px;
+	}
 }
 
 @media (max-width: 500px) {

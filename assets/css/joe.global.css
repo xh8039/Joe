@@ -3839,7 +3839,7 @@
 }
 
 .joe_detail__copyright .content .item {
-	color: var(--main-color);
+	color: var(--muted-2-color);
 	margin-bottom: 5px;
 	word-break: break-word;
 	line-height: 22px
@@ -3857,7 +3857,7 @@
 }
 
 .joe_detail__copyright .content .item .link {
-	color: var(--main-color);
+	color: var(--muted-2-color);
 }
 
 .joe_detail__copyright .content .item .link:hover {

@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				},
 				success(res) {
 					if (res.code !== 1) return;
-					$('#Joe_Article_Views').html(`${res.data.views} 阅读`);
+					$('#Joe_Article_Views').html(res.data.views);
 					viewsArr.push(cid);
 					const name = encryption('views');
 					const val = encryption(JSON.stringify(viewsArr));

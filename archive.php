@@ -58,9 +58,24 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
                                             <div class="meta">
                                                 <ul class="items">
                                                     <li><?php $this->date('Y年m月d日'); ?></li>
-                                                    <li><?php joe\getViews($this) ?> 阅读</li>
-                                                    <li><?php $this->commentsNum('%d'); ?> 评论</li>
-                                                    <li><?php joe\getAgree($this) ?> 点赞</li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-view"></use>
+                                                        </svg>
+                                                        <?php joe\getViews($this) ?>
+                                                    </li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-comment"></use>
+                                                        </svg>
+                                                        <?php $this->commentsNum('%d'); ?>
+                                                    </li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-like"></use>
+                                                        </svg>
+                                                        <?php joe\getAgree($this) ?>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -75,9 +90,24 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
                                             <div class="meta">
                                                 <ul class="items">
                                                     <li><?php $this->date('Y年m月d日'); ?></li>
-                                                    <li><?php joe\getViews($this) ?> 阅读</li>
-                                                    <li><?php $this->commentsNum('%d'); ?> 评论</li>
-                                                    <li><?php joe\getAgree($this) ?> 点赞</li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-view"></use>
+                                                        </svg>
+                                                        <?php joe\getViews($this) ?>
+                                                    </li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-comment"></use>
+                                                        </svg>
+                                                        <?php $this->commentsNum('%d'); ?>
+                                                    </li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-like"></use>
+                                                        </svg>
+                                                        <?php joe\getAgree($this) ?>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -111,9 +141,24 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
                                         <div class="meta">
                                             <ul class="items">
                                                 <li><?php $this->date('Y年m月d日'); ?></li>
-                                                <li><?php joe\getViews($this) ?> 阅读</li>
-                                                <li><?php $this->commentsNum('%d'); ?> 评论</li>
-                                                <li><?php joe\getAgree($this) ?> 点赞</li>
+                                                <li>
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xlink:href="#icon-view"></use>
+                                                    </svg>
+                                                    <?php joe\getViews($this) ?>
+                                                </li>
+                                                <li>
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xlink:href="#icon-comment"></use>
+                                                    </svg>
+                                                    <?php $this->commentsNum('%d'); ?>
+                                                </li>
+                                                <li>
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xlink:href="#icon-like"></use>
+                                                    </svg>
+                                                    <?php joe\getAgree($this) ?>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>
@@ -128,9 +173,24 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
                                             <div class="meta">
                                                 <ul class="items">
                                                     <li><?php $this->date('Y年m月d日'); ?></li>
-                                                    <li><?php joe\getViews($this) ?> 阅读</li>
-                                                    <li><?php $this->commentsNum('%d'); ?> 评论</li>
-                                                    <li><?php joe\getAgree($this) ?> 点赞</li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-view"></use>
+                                                        </svg>
+                                                        <?php joe\getViews($this) ?>
+                                                    </li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-comment"></use>
+                                                        </svg>
+                                                        <?php $this->commentsNum('%d'); ?>
+                                                    </li>
+                                                    <li>
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xlink:href="#icon-like"></use>
+                                                        </svg>
+                                                        <?php joe\getAgree($this) ?>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>

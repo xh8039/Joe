@@ -3113,7 +3113,7 @@
 
 .joe_detail__article a:not([class]) {
 	display: inline-block;
-	line-height: 26px;
+	line-height: 20px;
 	color: var(--theme);
 	position: relative
 }
@@ -3445,6 +3445,7 @@
 	margin: 3px;
 	border-radius: 50px;
 	padding: .3em 1em;
+	transition: color .2s, background .3s, opacity .3s, box-shadow .3s, transform .3s;
 
 	display: inline-block;
 	transition: .15s;
@@ -3479,6 +3480,7 @@
 	display: inline-block;
 	opacity: .7;
 	vertical-align: top;
+	transition: color .2s, background .3s, opacity .3s, box-shadow .3s, transform .3s;
 }
 
 .joe_detail .post-actions .action.active {
@@ -4194,7 +4196,7 @@
 }
 
 .joe_pagination li.active a {
-	background: var(--back-line-right);
+	background: var(--theme);
 	color: #fff;
 	font-weight: 500
 }

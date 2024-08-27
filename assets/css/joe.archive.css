@@ -28,9 +28,7 @@
 }
 
 .joe_archive__title-title .muted {
-	background-image: var(--back-line-right);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+	color: var(--theme);
 	margin: 0 5px
 }
 

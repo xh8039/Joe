@@ -114,7 +114,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div class="input">
 		<label class="input-label">验证</label>
 		<input type="number" placeholder="请输入图片中的内容" id="captcha">
-		<img style="cursor: pointer;max-height: 38px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新">
+		<img style="cursor: pointer;height: 36px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新">
 	</div>
 	<div class="button">
 		<button class="submit" id="friend_submit" type="button">立即提交</button>
@@ -128,6 +128,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		var link = $('#link').val();
 		var logo = $('#logo').val();
 		var qq = $('#qq').val();
+		var captcha = $('#captcha').val();
 		if (!(title && link && qq)) {
 			Qmsg.warning('请填写必填项');
 			return
@@ -141,7 +142,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				description: description,
 				link: link,
 				logo: logo,
-				qq: qq
+				qq: qq,
+				captcha: captcha
 			},
 			dataType: "json",
 			beforeSend() {
@@ -149,7 +151,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			},
 			success(data) {
 				$('#friend_submit').html('立即提交');
-				Qmsg.success(data.msg);
+				if (data.code == 200) {
+					Qmsg.success(data.msg);
+				} else {
+					Qmsg.warning(data.msg);
+				}
 			},
 			error() {
 				$('#friend_submit').html('立即提交');

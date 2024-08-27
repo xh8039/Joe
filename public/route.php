@@ -565,6 +565,28 @@ function _getArticleFiling($self)
 function _friendSubmit($self)
 {
 	$self->response->setStatus(200);
+
+	$captcha = $self->request->captcha;
+	if (empty($captcha)) {
+		$self->response->throwJson([
+			'code' => 0,
+			'msg' => '请输入验证码！'
+		]);
+	}
+	if (empty($_SESSION['joe_captcha'])) {
+		$self->response->throwJson([
+			'code' => 0,
+			'msg' => '验证码过期，请重新获取验证码'
+		]);
+	}
+	if ($_SESSION['joe_captcha'] != $captcha) {
+		unset($_SESSION['joe_captcha']);
+		$self->response->throwJson([
+			'code' => 0,
+			'message' => '验证码错误'
+		]);
+	}
+
 	$title = $self->request->title;
 	$description = $self->request->description;
 	$link = $self->request->link;
@@ -585,7 +607,7 @@ function _friendSubmit($self)
 	$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
 	if ($SendEmail == 'success') {
 		$self->response->throwJson([
-			'code' => 1,
+			'code' => 200,
 			'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待'
 		]);
 	}

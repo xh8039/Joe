@@ -99,7 +99,7 @@ if (articleTitleList.length > 0) {
 			if (!isCatalogClicking) {
 				catalogTrack();
 			}
-		}, 100));
+		}, 200));
 
 		if (!Joe.IS_MOBILE) {
 			// var asideHeight = 0;

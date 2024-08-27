@@ -781,14 +781,14 @@ document.addEventListener("DOMContentLoaded", () => {
 					if (flag) return;
 					$(".joe_header").addClass("active");
 					$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() - 60 +
-						15);
-					$('.outline-outside-modal-opened').css('padding-top', '45px');
+						23);
+					// $('.outline-outside-modal-opened').css('padding-top', '45px');
 					flag = true;
 				} else {
 					if (!flag) return;
 					$(".joe_header").removeClass("active");
 					$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() + 15);
-					$('.outline-outside-modal-opened').css('padding-top', '105px');
+					// $('.outline-outside-modal-opened').css('padding-top', '105px');
 					flag = false;
 				}
 			};

@@ -103,7 +103,7 @@
 	background: var(--background);
 }
 
-.joe_header__above .joe_container {
+.joe_header__above>div {
 	align-items: center;
 	display: flex;
     width: 100%;

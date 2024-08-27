@@ -56,6 +56,12 @@
 	html .joe_census__server-item .content #flow {
 		height: 300px
 	}
+
+	html .joe_header__above>div {
+		max-width: auto;
+		padding-left: 100px;
+		padding-right: 100px;
+	}
 }
 
 @media (max-width: 1200px) {
@@ -179,6 +185,12 @@
 
 	html .swiper-container .item {
 		height: 280px
+	}
+
+	html .joe_header__above>div {
+		max-width: 1140px;
+		padding-left: 0;
+		padding-right: 0;
 	}
 }
 

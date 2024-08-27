@@ -1,14 +1,20 @@
 var articleTitleList = $('.joe_detail__article').find('h1, h2, h3, h4, h5, h6');
 if (articleTitleList.length > 0) {
 	(function () {
+		// 生成唯一ID的计数器
+		let idCounter = 0;
+
 		for (let heading of articleTitleList) {
 			const headingLevel = heading.tagName.toUpperCase();
 			const $heading = $(heading);
 			// console.log($heading);
 			const headingName = $heading.text().trim();
-			const enHeadingName = encodeURIComponent(headingName);
-			$heading.attr('id', `${enHeadingName}`);
-			$('.posts-nav-lists>ul').append(`<li class="n-${headingLevel}"><a id="title-${enHeadingName}" href="#${enHeadingName}">${headingName}</a></li>`);
+			// const enHeadingName = encodeURIComponent(headingName);
+			// 使用计数器生成唯一ID
+			const uniqueId = `heading-${idCounter}`;
+			idCounter++;
+			$heading.attr('id', `${uniqueId}`);
+			$('.posts-nav-lists>ul').append(`<li class="n-${headingLevel}"><a id="catalog-${uniqueId}" href="#${uniqueId}">${headingName}</a></li>`);
 			// const anchorName = $heading.attr('id');
 			// console.log(headingLevel, headingName);
 		}
@@ -44,12 +50,12 @@ if (articleTitleList.length > 0) {
 			let $currentHeading = $('h1');
 			for (let heading of articleTitleList) {
 				const $heading = $(heading);
-				if (($heading.offset().top - $(document).scrollTop() - $('.joe_header').height()) > $('.joe_header').height()) {
+				if (($heading.offset().top - $(document).scrollTop() - 10) > $('.joe_header').height()) {
 					break;
 				}
 				$currentHeading = $heading;
 				const anchorName = $currentHeading.attr('id');
-				const catalog = document.getElementById(`title-${anchorName}`);
+				const catalog = document.getElementById(`catalog-${anchorName}`);
 				const $catalog = $(catalog).parent();
 				if (!$catalog.hasClass('active')) {
 					$('.posts-nav-lists>ul>li').removeClass('active');
@@ -94,9 +100,11 @@ if (articleTitleList.length > 0) {
 		document.querySelectorAll('.posts-nav-lists>ul>li>a').forEach(link => {
 			link.addEventListener('click', (event) => {
 				event.preventDefault(); // 阻止默认跳转行为
-				if (!$(link).hasClass('active')) {
+				catalog = $(link).parent();
+				console.log(catalog);
+				if (!catalog.hasClass('active')) {
 					$('.posts-nav-lists>ul>li').removeClass('active');
-					$(link).addClass('active');
+					catalog.addClass('active');
 				}
 				// 获取目标元素 ID
 				const targetId = link.getAttribute('href').substring(1);
@@ -120,6 +128,6 @@ if (articleTitleList.length > 0) {
 		});
 
 	}())
-}else {
+} else {
 	$('.joe_aside__item.posts-nav-box').remove();
 }

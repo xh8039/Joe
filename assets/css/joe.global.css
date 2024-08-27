@@ -105,6 +105,10 @@
 
 .joe_header__above .joe_container {
 	align-items: center;
+	display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 
 .joe_header__above-logo {
@@ -827,10 +831,10 @@
 }
 
 .joe_aside__item:last-child {
-	position: -webkit-sticky;
+	/* position: -webkit-sticky;
 	position: sticky;
 	margin-bottom: 0;
-	transition: top 0.35s
+	transition: top 0.35s */
 }
 
 .joe_aside__item-title {

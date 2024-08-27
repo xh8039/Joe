@@ -45,6 +45,7 @@
 	white-space: nowrap;
 	color: var(--main-color);
 	width: 100%;
+	font-weight: 700;
 }
 
 .posts-nav-lists .bl::after,
@@ -84,7 +85,6 @@
 	transition: all .2s;
 	font-size: 20px
 }
-
 
 
 .posts-nav-lists>.nav li.active a {

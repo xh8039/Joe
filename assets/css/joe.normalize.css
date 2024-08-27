@@ -156,10 +156,22 @@ table {
 	.joe_container {
 		max-width: 1140px
 	}
+
+	html .joe_header__above>.joe_container {
+		max-width: 1140px;
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
 @media (min-width: 1400px) {
 	.joe_container {
 		max-width: 1200px
+	}
+
+	html .joe_header__above>.joe_container {
+		max-width: auto;
+		padding-left: 100px;
+		padding-right: 100px;
 	}
 }

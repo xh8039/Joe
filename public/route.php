@@ -586,6 +586,7 @@ function _friendSubmit($self)
 			'message' => '验证码错误'
 		]);
 	}
+	unset($_SESSION['joe_captcha']);
 
 	$title = $self->request->title;
 	$description = $self->request->description;

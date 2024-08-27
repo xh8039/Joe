@@ -14,7 +14,7 @@ if (articleTitleList.length > 0) {
 			const uniqueId = `heading-${idCounter}`;
 			idCounter++;
 			$heading.attr('id', `${uniqueId}`);
-			$('.posts-nav-lists>ul').append(`<li class="n-${headingLevel}"><a id="catalog-${uniqueId}" href="#${uniqueId}">${headingName}</a></li>`);
+			$('.posts-nav-lists>ul').append(`<li class="n-${headingLevel}"><a class="catalog-${uniqueId}" href="#${uniqueId}">${headingName}</a></li>`);
 			// const anchorName = $heading.attr('id');
 			// console.log(headingLevel, headingName);
 		}
@@ -38,7 +38,8 @@ if (articleTitleList.length > 0) {
 				'box-shadow': '0 0 10px 8px var(--main-shadow)',
 				'overflow': 'auto',
 				'max-height': '50vh',
-				'max-width': '80vw'
+				'max-width': '80vw',
+				'background': 'var(--background)',
 			})
 			$('.joe_action_item.posts-nav-switcher').click(() => {
 				$('.joe_action_item.posts-nav-switcher .posts-nav-box').fadeToggle(200);
@@ -55,8 +56,8 @@ if (articleTitleList.length > 0) {
 				}
 				$currentHeading = $heading;
 				const anchorName = $currentHeading.attr('id');
-				const catalog = document.getElementById(`catalog-${anchorName}`);
-				const $catalog = $(catalog).parent();
+				// const catalog = $(`.catalog-${anchorName}`);
+				const $catalog = $(`.catalog-${anchorName}`).parent();
 				if (!$catalog.hasClass('active')) {
 					$('.posts-nav-lists>ul>li').removeClass('active');
 					$catalog.addClass('active');
@@ -98,7 +99,18 @@ if (articleTitleList.length > 0) {
 			if (!isCatalogClicking) {
 				catalogTrack();
 			}
-		}, 500));
+		}, 100));
+
+		if (!Joe.IS_MOBILE) {
+			// var asideHeight = 0;
+			// $('.joe_aside>.joe_aside__item').each(function () {
+			// 	console.log($(this).height())
+			// 	asideHeight = asideHeight + $(this).height();
+			// });
+			var Aside = $('.joe_aside');
+			var navAsideClone = $('.joe_aside>.joe_aside__item.posts-nav-box').clone();
+			Aside.append(navAsideClone);
+		}
 
 		function scrollcallback(fn) {
 			let lastScrollTime = 0;

@@ -56,12 +56,15 @@
 }
 
 .joe_bread {
-	padding-top: 15px
+	padding-top: 15px;
+	opacity: .6;
+    color: var(--main-color);
 }
 
 .joe_bread__bread {
 	display: flex;
-	align-items: center
+	align-items: center;
+	padding-left: 8px;
 }
 
 .joe_bread__bread .line {
@@ -70,7 +73,7 @@
 }
 
 .joe_bread__bread .item {
-	color: var(--minor);
+	/* color: var(--minor); */
 	white-space: nowrap
 }
 

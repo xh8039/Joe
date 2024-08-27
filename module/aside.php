@@ -9,7 +9,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php if ($this->options->JArticle_Guide == 'on') : ?>
 		<section class="joe_aside__item posts-nav-box">
 			<div class="joe_aside__item-title">
-				<!-- <i style="margin-right: 8px;" class="fa fa-list-ul"></i> -->
 				<span class="text">文章目录</span>
 			</div>
 			<div class="joe_aside__item-contain">
@@ -145,7 +144,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="joe_aside__item-title">
 				<span class="text">最新回复</span>
 			</div>
-			<?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true&pageSize=5')->to($item); ?>
+			<?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true&pageSize=3')->to($item); ?>
 			<ul class="joe_aside__item-contain">
 				<?php if ($item->have()) : ?>
 					<?php while ($item->next()) : ?>

@@ -4,10 +4,10 @@
 }
 
 .joe_aside__item.posts-nav-box {
-	position: -webkit-sticky;
+	/* position: -webkit-sticky;
 	position: sticky;
 	margin-bottom: 0;
-	transition: top 0.35s
+	transition: top 0.35s */
 }
 
 .posts-nav-box>.joe_aside__item-contain {
@@ -68,6 +68,11 @@
 .posts-nav-lists li {
 	position: relative;
 	display: block;
+	margin-bottom: 3px;
+}
+
+.posts-nav-lists li:last-child {
+	margin-bottom: 0px;
 }
 
 .posts-nav-lists li.yc:not(.active) {

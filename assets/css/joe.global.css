@@ -2675,9 +2675,9 @@
 
 .joe_detail {
 	background: var(--background);
-	border-radius: var(--radius-wrap);
+	border-radius: var(--main-radius);
 	padding: 15px 30px;
-	box-shadow: var(--box-shadow);
+	box-shadow: 0 0 10px var(--main-shadow);
 	margin-bottom: 15px
 }
 

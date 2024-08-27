@@ -781,6 +781,10 @@
 		width: 2.5px;
 		height: 2.5px;
 	}
+
+	html .joe_bread {
+		font-size: 12px;
+	}
 }
 
 @media (max-width: 500px) {

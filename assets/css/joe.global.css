@@ -821,8 +821,8 @@
 	position: relative;
 	width: 311px;
 	margin-bottom: 15px;
-	border-radius: var(--radius-inner);
-	box-shadow: var(--box-shadow);
+	/* border-radius: var(--radius-inner); */
+	/* box-shadow: var(--box-shadow); */
 	overflow: hidden
 }
 
@@ -835,12 +835,15 @@
 
 .joe_aside__item-title {
 	padding: 15px;
-	color: var(--main-color);
 	padding-top: 0;
+}
+
+.joe_aside__item-title>.text {
+	color: var(--main-color);
 	position: relative;
 }
 
-.joe_aside__item-title:before {
+.joe_aside__item-title>.text:before {
 	position: absolute;
 	content: '';
 	width: 4px;

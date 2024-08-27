@@ -50,7 +50,7 @@ if (articleTitleList.length > 0) {
 			let $currentHeading = $('h1');
 			for (let heading of articleTitleList) {
 				const $heading = $(heading);
-				if (($heading.offset().top - $(document).scrollTop() - 10) > $('.joe_header').height()) {
+				if (($heading.offset().top - $(document).scrollTop()) > $('.joe_header').height()) {
 					break;
 				}
 				$currentHeading = $heading;
@@ -101,17 +101,18 @@ if (articleTitleList.length > 0) {
 		}, 500));
 
 		function scrollcallback(fn) {
-			var isScrolling = false;
+			let lastScrollTime = 0;
+			const scrollThreshold = 200; // 滚动完成后等待的时间阈值
 
 			window.addEventListener('scroll', () => {
-				isScrolling = true;
-				requestAnimationFrame(() => {
-					if (!isScrolling) {
+				lastScrollTime = Date.now();
+				setTimeout(() => {
+					if (Date.now() - lastScrollTime > scrollThreshold) {
 						// 滚动完成
+						// console.log("Scroll finished!");
 						fn();
 					}
-					isScrolling = false;
-				});
+				}, scrollThreshold);
 			});
 		}
 

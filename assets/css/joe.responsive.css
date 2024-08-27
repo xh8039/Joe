@@ -812,6 +812,13 @@
 	}
 }
 
+
+@media (max-width: 380px) {
+	html .joe_index__hot-list .item>.item-body>.item-meta>.meta-author>span>span {
+		display: none;
+	}
+}
+
 @media (max-width: 372px) {
 	html .joe_index__title-notice {
 		display: none

@@ -1635,7 +1635,7 @@
 
 .joe_list__item .meta .last .icon {
 	margin-right: 3px;
-	margin-top: 3.5px;
+	margin-top: 2.5px;
 }
 
 .joe_list__item .meta .last .link {
@@ -2731,6 +2731,7 @@
 	margin-bottom: 15px;
 	word-break: break-word;
 	font-weight: 700;
+	line-height: 1.4;
 }
 
 .joe_detail__count {

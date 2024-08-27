@@ -257,6 +257,7 @@
 .joe_index__hot-list .item>.item-body>.item-meta>.meta-author {
 	display: flex;
 	align-items: center;
+	padding-bottom: 2px;
 }
 
 .joe_index__hot-list .item>.item-body>.item-meta>.meta-author .avatar-mini {

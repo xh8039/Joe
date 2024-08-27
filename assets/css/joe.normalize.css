@@ -170,7 +170,7 @@ table {
 	}
 
 	html .joe_header__above>.joe_container {
-		max-width: auto;
+		max-width: 100%;
 		padding-left: 100px;
 		padding-right: 100px;
 	}

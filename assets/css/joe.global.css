@@ -827,10 +827,10 @@
 }
 
 .joe_aside__item:last-child {
-	/* position: -webkit-sticky;
+	position: -webkit-sticky;
 	position: sticky;
 	margin-bottom: 0;
-	transition: top 0.35s */
+	transition: top 0.35s
 }
 
 .joe_aside__item-title {

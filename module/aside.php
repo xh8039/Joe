@@ -7,7 +7,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <aside class="joe_aside">
 
 	<?php if ($this->options->JArticle_Guide == 'on') : ?>
-		<section class="joe_aside__item posts-nav-box" style="top: 108px;">
+		<section class="joe_aside__item posts-nav-box">
 			<div class="joe_aside__item-title">
 				<!-- <i style="margin-right: 8px;" class="fa fa-list-ul"></i> -->
 				<span class="text">文章目录</span>

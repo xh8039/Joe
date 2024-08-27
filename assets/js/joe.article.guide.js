@@ -45,17 +45,18 @@ if (articleTitleList.length > 0) {
 				$('.joe_action_item.posts-nav-switcher .posts-nav-box').fadeToggle(200);
 			});
 		} else {
-			var Aside = $('.joe_aside');
-			var navAsideClone = $('.joe_aside>.joe_aside__item.posts-nav-box').clone();
-			Aside.append(navAsideClone);
+			let navAsideClone = $('.joe_aside>.joe_aside__item.posts-nav-box').clone();
+			$('.joe_aside').append(navAsideClone);
 		}
+
+		var joeHeaderHeight = $('.joe_header').height();
 
 		const catalogTrack = () => {
 			// console.log('页面滚动标题监听');
 			let $currentHeading = $('h1');
 			for (let heading of articleTitleList) {
 				const $heading = $(heading);
-				if (($heading.offset().top - $(document).scrollTop()) > $('.joe_header').height()) {
+				if (($heading.offset().top - $(document).scrollTop()) > (joeHeaderHeight + 10)) {
 					break;
 				}
 				$currentHeading = $heading;
@@ -143,17 +144,15 @@ if (articleTitleList.length > 0) {
 					// 获取目标元素距离页面顶部的距离
 					const targetTop = $(targetElement).offset().top;
 					// console.log(targetTop);
-					// 获取顶栏高度，考虑动态高度变化和内部元素
-					const headerHeight = document.querySelector('.joe_header').offsetHeight;
 					// 计算滚动位置
-					const scrollTop = (targetTop - headerHeight) - 10; // 预留10px的美观距离
+					const scrollTop = (targetTop - joeHeaderHeight) - 10; // 预留10px的美观距离
 					window.scrollTo({
 						top: scrollTop,
 						behavior: 'smooth'
 					});
 					scrollcallback(() => {
 						isCatalogClicking = false;
-						catalogTrack();
+						// catalogTrack();
 					})
 				} else {
 					console.error('目标元素未找到:', targetId);

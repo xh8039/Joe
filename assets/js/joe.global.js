@@ -828,7 +828,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			try {
 				console.log(string);
 				let url = new URL(string);
-				console.log(url);
+				// console.log(url);
 				if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
 			} catch (error) {
 				return false;

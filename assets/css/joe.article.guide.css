@@ -82,7 +82,8 @@
 
 .posts-nav-lists>.nav li.active a {
     background: var(--main-shadow);
-    color: var(--theme)
+    color: var(--theme);
+    width: 100%;
 }
 
 @media (min-width: 768px) {

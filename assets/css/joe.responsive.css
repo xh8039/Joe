@@ -776,6 +776,11 @@
 	html .joe_index__hot-list .item .link .inner .image {
 		height: 150px;
 	}
+
+	::-webkit-scrollbar {
+		width: 2.5px;
+		height: 2.5px;
+	}
 }
 
 @media (max-width: 500px) {

@@ -2964,7 +2964,8 @@
 .joe_detail__article h4,
 .joe_detail__article h5,
 .joe_detail__article h6 {
-	color: var(--main);
+	color: var(--main-color);
+	font-weight: 700;
 	font-size: 18px;
 	line-height: 24px;
 	margin-bottom: 10px;
@@ -3114,7 +3115,7 @@
 
 .joe_detail__article a:not([class]) {
 	display: inline-block;
-	line-height: 20px;
+	line-height: 21px;
 	color: var(--theme);
 	position: relative
 }

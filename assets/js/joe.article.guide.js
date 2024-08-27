@@ -92,20 +92,44 @@ if (articleTitleList.length > 0) {
 			}
 		}
 
+		var isCatalogClicking = false;
+
 		window.addEventListener('scroll', throttle(() => {
-			catalogTrack();
+			if (!isCatalogClicking) {
+				catalogTrack();
+			}
 		}, 500));
+
+		function scrollcallback(fn) {
+			var isScrolling = false;
+
+			window.addEventListener('scroll', () => {
+				isScrolling = true;
+				requestAnimationFrame(() => {
+					if (!isScrolling) {
+						// 滚动完成
+						fn();
+					}
+					isScrolling = false;
+				});
+			});
+		}
 
 		// 监听文章目录a标签点击
 		document.querySelectorAll('.posts-nav-lists>ul>li>a').forEach(link => {
 			link.addEventListener('click', (event) => {
 				event.preventDefault(); // 阻止默认跳转行为
+
+				// 设置标志位，表示正在点击目录链接
+				isCatalogClicking = true;
+
 				catalog = $(link).parent();
 				console.log(catalog);
 				if (!catalog.hasClass('active')) {
 					$('.posts-nav-lists>ul>li').removeClass('active');
 					catalog.addClass('active');
 				}
+
 				// 获取目标元素 ID
 				const targetId = link.getAttribute('href').substring(1);
 				const targetElement = document.getElementById(targetId);
@@ -121,6 +145,9 @@ if (articleTitleList.length > 0) {
 						top: scrollTop,
 						behavior: 'smooth'
 					});
+					scrollcallback(() => {
+						isCatalogClicking = false;
+					})
 				} else {
 					console.error('目标元素未找到:', targetId);
 				}

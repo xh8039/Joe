@@ -160,6 +160,7 @@ if (articleTitleList.length > 0) {
 					});
 					scrollcallback(() => {
 						isCatalogClicking = false;
+						catalogTrack();
 					})
 				} else {
 					console.error('目标元素未找到:', targetId);

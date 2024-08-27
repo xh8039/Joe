@@ -38,6 +38,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color: var(--main-color);
+    width: 100%;
 }
 
 .posts-nav-lists .bl::after,
@@ -83,7 +84,6 @@
 .posts-nav-lists>.nav li.active a {
     background: var(--main-shadow);
     color: var(--theme);
-    width: 100%;
 }
 
 @media (min-width: 768px) {

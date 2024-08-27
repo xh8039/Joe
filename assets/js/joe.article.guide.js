@@ -75,7 +75,26 @@ if (articleTitleList.length > 0) {
 
 		var isCatalogClicking = false;
 
-		window.addEventListener('scroll', Joe.throttle(() => {
+		/**
+		 * 函数节流，时间戳方案
+		 * @param {*} fn 
+		 * @param {*} wait 
+		 * @returns 
+		 */
+		function throttle(fn, wait) {
+			var pre = Date.now();
+			return function () {
+				var context = this;
+				var args = arguments;
+				var now = Date.now();
+				if (now - pre >= wait) {
+					fn.apply(context, args);
+					pre = Date.now();
+				}
+			}
+		}
+
+		window.addEventListener('scroll', throttle(() => {
 			if (!isCatalogClicking) {
 				catalogTrack();
 			}

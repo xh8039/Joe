@@ -134,11 +134,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php $this->need('module/footer.php'); ?>
 	</div>
 	<script>
-		$('.joe_detail__friends .avatar').on('error', Joe.throttle(() => {
-			const AvatarLazyload = `${Joe.THEME_URL}assets/images/AvatarLazyload.png`;
+		const AvatarLazyload = `${Joe.THEME_URL}assets/images/AvatarLazyload.png`;
+		$('.joe_detail__friends .avatar').on('error', function() {
 			$(this).attr('data-src', AvatarLazyload);
 			$(this).attr('src', AvatarLazyload);
-		}, 2000));
+		});
 	</script>
 </body>
 

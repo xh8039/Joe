@@ -1,6 +1,8 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
-if ($this->options->JFriends_Submit == 'on' && joe\email_config()) {
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 ?>
 <style type="text/css">
 	.friend_submit {
@@ -109,6 +111,11 @@ if ($this->options->JFriends_Submit == 'on' && joe\email_config()) {
 		<label class="input-label">Q Q</label>
 		<input type="number" placeholder="你的QQ号" id="qq">
 	</div>
+	<div class="input">
+		<label class="input-label">验证</label>
+		<input type="number" placeholder="请输入图片中的内容" id="captcha">
+		<img style="cursor: pointer;max-height: 38px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新">
+	</div>
 	<div class="button">
 		<button class="submit" id="friend_submit" type="button">立即提交</button>
 		<button type="reset" class="reset">重 置</button>
@@ -151,6 +158,3 @@ if ($this->options->JFriends_Submit == 'on' && joe\email_config()) {
 		});
 	})
 </script>
-<?php
-}
-?>

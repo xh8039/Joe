@@ -1,4 +1,7 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+} ?>
 <script>
 	function detectIE() {
 		var n = window.navigator.userAgent,
@@ -123,8 +126,7 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		';
 	}
 
-	?>
-	@font-face {
+	?>@font-face {
 		font-family: 'Joe Font';
 		font-weight: 400;
 		font-style: normal;
@@ -141,7 +143,6 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 	/* 自定义CSS */
 
 	<?php $this->options->JCustomCSS() ?>
-
 	/* 自定义CSS */
 </style>
 <?php

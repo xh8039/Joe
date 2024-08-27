@@ -119,7 +119,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<?php endforeach; ?>
 						</ul>
 					<?php endif; ?>
-					<?php $this->need('module/FriendsSubmit.php'); ?>
+					<?php
+					if ($this->options->JFriends_Submit == 'on' && joe\email_config()) {
+						$this->need('module/FriendsSubmit.php');
+					}
+					?>
 					<?php $this->need('module/handle.php'); ?>
 					<?php $this->need('module/copyright.php'); ?>
 				</div>
@@ -130,11 +134,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php $this->need('module/footer.php'); ?>
 	</div>
 	<script>
-		$('.joe_detail__friends .avatar').on('error', function() {
+		$('.joe_detail__friends .avatar').on('error', Joe.throttle(() => {
 			const AvatarLazyload = `${Joe.THEME_URL}assets/images/AvatarLazyload.png`;
 			$(this).attr('data-src', AvatarLazyload);
 			$(this).attr('src', AvatarLazyload);
-		});
+		}, 2000));
 	</script>
 </body>
 

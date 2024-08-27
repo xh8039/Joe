@@ -1,3 +1,23 @@
+
+/**
+ * 函数节流，时间戳方案
+ * @param {*} fn 
+ * @param {*} wait 
+ * @returns 
+ */
+window.Joe.throttle = function (fn, wait) {
+	var pre = Date.now();
+	return function () {
+		var context = this;
+		var args = arguments;
+		var now = Date.now();
+		if (now - pre >= wait) {
+			fn.apply(context, args);
+			pre = Date.now();
+		}
+	}
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
 	/* 设置$.getScript()方法缓存 */
@@ -808,7 +828,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
 	{
 		window.thumbOnError = function () {
-			$('.thumbnail>img, .joe_detail__related-content>a>img').on('error', function () {
+			$('.thumbnail>img, .joe_detail__related-content>a>img').on('error', Joe.throttle(() => {
 				// 生成一个 1 到 42 之间的随机整数
 				const randomNumber = Math.floor(Math.random() * 41) + 1;
 				// 将随机数格式化为两位数
@@ -816,7 +836,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
 				$(this).attr('data-src', thumb);
 				$(this).attr('src', thumb);
-			});
+			}, 1500));
 		}
 		thumbOnError();
 	}

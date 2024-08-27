@@ -1,98 +1,103 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
-$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_Hidden(
-	'',
-	NULL,
-	NULL,
-	'
-	<!-- 核心CSS -->
-	<link href="' . joe\cdn('codemirror/6.65.7/codemirror.min.css') . '" rel="stylesheet">
-
-	<!-- dracula主题CSS -->
-	<link href="' . joe\cdn('codemirror/6.65.7/theme/dracula.min.css') . '" rel="stylesheet">
-
-	<!-- 代码提示CSS -->
-	<link href="' . joe\cdn('codemirror/6.65.7/addon/hint/show-hint.min.css') . '" rel="stylesheet">
-
-	<!-- 核心JS -->
-	<script src="' . joe\cdn('codemirror/6.65.7/codemirror.min.js') . '"></script>
-
-	<!-- 代码提示核心JS -->
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/show-hint.min.js') . '"></script>
-
-	<!-- JavaScript代码高亮 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/mode/javascript/javascript.min.js') . '"></script>
-
-	<!-- CSS语法高亮 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/mode/css/css.min.js') . '"></script>
-		
-	<!-- HTML语法高亮 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/mode/xml/xml.min.js') . '"></script>
-	<script src="' . joe\cdn('codemirror/6.65.7/mode/htmlmixed/htmlmixed.min.js') . '"></script>
-
-	<!-- PHP代码高亮 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/mode/clike/clike.min.js') . '"></script>
-	<script src="' . joe\cdn('codemirror/6.65.7/mode/php/php.min.js') . '"></script>
-
-	<!-- JavaScript代码提示 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/javascript-hint.min.js') . '"></script>
-
-	<!-- HTML语法提示 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/xml-hint.min.js') . '"></script>
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/html-hint.min.js') . '"></script>
-
-	<!-- CSS语法提示 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/css-hint.min.js') . '"></script>
-
-	<!-- PHP代码提示 -->
-	<!-- <script src="' . joe\cdn('codemirror/6.65.7/addon/hint/php-hint.min.js') . '"></script> -->
-
-	<!-- anyword代码提示 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/anyword-hint.min.js') . '"></script>
-
-	<!-- 匹配括号 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/edit/matchbrackets.min.js') . '"></script>
-
-	<!-- 自动闭合括号 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/edit/closebrackets.min.js') . '"></script>
-
-	<!-- 一键注释 -->
-	<script src="' . joe\cdn('codemirror/6.65.7/addon/comment/comment.min.js') . '"></script>
-
-	<!-- prettier格式化工具 -->
-	<script src="' . joe\cdn('js-beautify/1.15.1/beautify.min.js') . '"></script>
-	<script src="' . joe\cdn('js-beautify/1.15.1/beautify-css.min.js') . '"></script>
-	<script src="' . joe\cdn('js-beautify/1.15.1/beautify-html.min.js') . '"></script>
-
-	<!-- 配置文件 -->
-	<script src="' . joe\theme_url('assets/typecho/config/js/joe.code.js') . '"></script>
+if (isset($_GET['joe_code'])) {
+	$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_Hidden(
+		'',
+		NULL,
+		NULL,
+		'
+		<!-- 核心CSS -->
+		<link href="' . joe\cdn('codemirror/6.65.7/codemirror.min.css') . '" rel="stylesheet">
 	
-	<style>
-		.cm-s-dracula .CodeMirror-gutters, .cm-s-dracula.CodeMirror {
-			background-color: #1f1f1f !important;
-		}
-		.CodeMirror {
-			border-radius: 3.5px;
-		}
-		.CodeMirror-vscrollbar, .CodeMirror-hscrollbar {
-			display: none !important; /* 隐藏滚动条 */
-		}
-	</style>
-
-	<b>自定义代码提醒事项：</b><br>
-	任何情况下都不建议修改主题源文件，自定义代码可放于此处<br>
-	在此处添加的自定义代码会保存到数据库，不会因主题升级而丢失<br>
-	使用自义定代码，需要有一定的代码基础<br>
-	代码不规范、或代码错误将会引起意料不到的问题<br>
-	如果网站遇到未知错误，请首先检查此处的代码是否规范、无误<br>
-	一键格式化代码快捷键：Shift+ Alt + F<br>
-	快速注释代码快捷键：Ctrl + /<br>
-	'
-);
-$JCustomAsideHTML->setAttribute('class', 'joe_content joe_code');
-$form->addInput($JCustomAsideHTML);
+		<!-- dracula主题CSS -->
+		<link href="' . joe\cdn('codemirror/6.65.7/theme/dracula.min.css') . '" rel="stylesheet">
+	
+		<!-- 代码提示CSS -->
+		<link href="' . joe\cdn('codemirror/6.65.7/addon/hint/show-hint.min.css') . '" rel="stylesheet">
+	
+		<!-- 核心JS -->
+		<script src="' . joe\cdn('codemirror/6.65.7/codemirror.min.js') . '"></script>
+	
+		<!-- 代码提示核心JS -->
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/show-hint.min.js') . '"></script>
+	
+		<!-- JavaScript代码高亮 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/mode/javascript/javascript.min.js') . '"></script>
+	
+		<!-- CSS语法高亮 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/mode/css/css.min.js') . '"></script>
+			
+		<!-- HTML语法高亮 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/mode/xml/xml.min.js') . '"></script>
+		<script src="' . joe\cdn('codemirror/6.65.7/mode/htmlmixed/htmlmixed.min.js') . '"></script>
+	
+		<!-- PHP代码高亮 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/mode/clike/clike.min.js') . '"></script>
+		<script src="' . joe\cdn('codemirror/6.65.7/mode/php/php.min.js') . '"></script>
+	
+		<!-- JavaScript代码提示 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/javascript-hint.min.js') . '"></script>
+	
+		<!-- HTML语法提示 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/xml-hint.min.js') . '"></script>
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/html-hint.min.js') . '"></script>
+	
+		<!-- CSS语法提示 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/css-hint.min.js') . '"></script>
+	
+		<!-- PHP代码提示 -->
+		<!-- <script src="' . joe\cdn('codemirror/6.65.7/addon/hint/php-hint.min.js') . '"></script> -->
+	
+		<!-- anyword代码提示 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/hint/anyword-hint.min.js') . '"></script>
+	
+		<!-- 匹配括号 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/edit/matchbrackets.min.js') . '"></script>
+	
+		<!-- 自动闭合括号 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/edit/closebrackets.min.js') . '"></script>
+	
+		<!-- 一键注释 -->
+		<script src="' . joe\cdn('codemirror/6.65.7/addon/comment/comment.min.js') . '"></script>
+	
+		<!-- prettier格式化工具 -->
+		<script src="' . joe\cdn('js-beautify/1.15.1/beautify.min.js') . '"></script>
+		<script src="' . joe\cdn('js-beautify/1.15.1/beautify-css.min.js') . '"></script>
+		<script src="' . joe\cdn('js-beautify/1.15.1/beautify-html.min.js') . '"></script>
+	
+		<!-- 配置文件 -->
+		<script src="' . joe\theme_url('assets/typecho/config/js/joe.code.js') . '"></script>
+		
+		<style>
+			.cm-s-dracula .CodeMirror-gutters, .cm-s-dracula.CodeMirror {
+				background-color: #1f1f1f !important;
+			}
+			.CodeMirror {
+				border-radius: 3.5px;
+			}
+			.CodeMirror-vscrollbar, .CodeMirror-hscrollbar {
+				display: none !important; /* 隐藏滚动条 */
+			}
+		</style>
+	
+		<b>自定义代码提醒事项：</b><br>
+		任何情况下都不建议修改主题源文件，自定义代码可放于此处<br>
+		在此处添加的自定义代码会保存到数据库，不会因主题升级而丢失<br>
+		使用自义定代码，需要有一定的代码基础<br>
+		代码不规范、或代码错误将会引起意料不到的问题<br>
+		如果网站遇到未知错误，请首先检查此处的代码是否规范、无误<br>
+		一键格式化代码快捷键：Shift+ Alt + F<br>
+		快速注释代码快捷键：Ctrl + /<br>
+		'
+	);
+	$JCustomAsideHTML->setAttribute('class', 'joe_content joe_code');
+	$form->addInput($JCustomAsideHTML);
+}
 
 $JCustomAside = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JCustomAside',

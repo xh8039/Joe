@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				autoCloseBrackets: true, // 自动关闭{}
 				indentUnit: 4, // 缩进单位
 				indentWithTabs: true, // 使用制表符缩进
-				extraKeys: {"Ctrl-/": 'toggleComment'}
+				extraKeys: { "Ctrl-/": 'toggleComment' }
 			});
 			return;
 		}

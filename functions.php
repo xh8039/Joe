@@ -24,7 +24,7 @@ function themeConfig($form)
 	} catch (Exception $e) {
 	}
 ?>
-	<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/config/css/joe.config.min.css') ?>">
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/config/css/joe.config.css') ?>">
 	<script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
 	<script src="<?= joe\cdn('layer/3.5.1/layer.min.js') ?>"></script>
 	<script>
@@ -55,7 +55,7 @@ function themeConfig($form)
 					<li class="item" data-current="joe_comment">评论设置</li>
 					<li class="item" data-current="joe_statistic">统计设置</li>
 					<li class="item" data-current="joe_message">消息推送</li>
-					<li class="item" data-current="joe_code">插入代码</li>
+					<a class="item" data-current="joe_code" href="<?= Helper::options()->rootUrl . __TYPECHO_ADMIN_DIR__ ?>options-theme.php?joe_code=true">插入代码</a>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
 				<?php require_once('public/backup.php'); ?>

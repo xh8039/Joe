@@ -583,7 +583,7 @@ function _friendSubmit($self)
 		unset($_SESSION['joe_captcha']);
 		$self->response->throwJson([
 			'code' => 0,
-			'message' => '验证码错误'
+			'msg' => '验证码错误'
 		]);
 	}
 	unset($_SESSION['joe_captcha']);

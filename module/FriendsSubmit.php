@@ -113,7 +113,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	</div>
 	<div class="input">
 		<label class="input-label">验证</label>
-		<input type="number" placeholder="请输入图片中的内容" id="captcha">
+		<input placeholder="请输入图片中的内容" id="captcha">
 		<img style="cursor: pointer;height: 36px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新">
 	</div>
 	<div class="button">

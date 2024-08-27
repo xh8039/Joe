@@ -44,6 +44,10 @@ if (articleTitleList.length > 0) {
 			$('.joe_action_item.posts-nav-switcher').click(() => {
 				$('.joe_action_item.posts-nav-switcher .posts-nav-box').fadeToggle(200);
 			});
+		} else {
+			var Aside = $('.joe_aside');
+			var navAsideClone = $('.joe_aside>.joe_aside__item.posts-nav-box').clone();
+			Aside.append(navAsideClone);
 		}
 
 		const catalogTrack = () => {
@@ -101,17 +105,6 @@ if (articleTitleList.length > 0) {
 			}
 		}, 200));
 
-		if (!Joe.IS_MOBILE) {
-			// var asideHeight = 0;
-			// $('.joe_aside>.joe_aside__item').each(function () {
-			// 	console.log($(this).height())
-			// 	asideHeight = asideHeight + $(this).height();
-			// });
-			var Aside = $('.joe_aside');
-			var navAsideClone = $('.joe_aside>.joe_aside__item.posts-nav-box').clone();
-			Aside.append(navAsideClone);
-		}
-
 		function scrollcallback(fn) {
 			let lastScrollTime = 0;
 			const scrollThreshold = 200; // 滚动完成后等待的时间阈值
@@ -137,7 +130,7 @@ if (articleTitleList.length > 0) {
 				isCatalogClicking = true;
 
 				catalog = $(link).parent();
-				console.log(catalog);
+				// console.log(catalog);
 				if (!catalog.hasClass('active')) {
 					$('.posts-nav-lists>ul>li').removeClass('active');
 					catalog.addClass('active');

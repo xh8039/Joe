@@ -28,7 +28,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php endif; ?>
 	</section>
 	<?php if ($this->options->JAside_Notice) : ?>
-		<section class="joe_aside__item notice" style="background: var(--background);">
+		<section class="joe_aside__item notice">
 			<div class="joe_aside__item-title">
 				<svg class="icon" style="fill:var(--theme)" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
 					<path d="M656.261 347.208a188.652 188.652 0 1 0 0 324.05v-324.05z"></path>

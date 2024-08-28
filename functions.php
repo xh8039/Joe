@@ -2,7 +2,7 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
-define('JOE_VERSION', '1.318');
+define('JOE_VERSION', '1.319');
 define('JOE_ROOT', dirname(__FILE__) . '/');
 /* Joe核心文件 */
 require_once(__DIR__ . '/public/common.php');

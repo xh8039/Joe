@@ -17,8 +17,8 @@ $form->addInput($JLoading->multiMode());
 
 $JIndex_Link_Active = new Typecho_Widget_Helper_Form_Element_Select(
 	'JIndex_Link_Active',
-	array('on' => '开启（默认）', 'off' => '关闭'),
-	'on',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
 	'是否开启文章列表选中动画',
 	'介绍：开启后首页和搜索页面展示的文章列表中文章被鼠标移入或者选中则会出现浮起动画'
 );

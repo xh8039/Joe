@@ -5,6 +5,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$JPost_Title_Center = new Typecho_Widget_Helper_Form_Element_Select(
+	'JPost_Title_Center',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
+	'是否开启文章标题居中',
+	'介绍：开启后文章页和独立页面的文章标题将会居中显示'
+);
+$JPost_Title_Center->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JPost_Title_Center);
+
 $JPost_Header_Img_Switch = new Typecho_Widget_Helper_Form_Element_Select(
 	'JPost_Header_Img_Switch',
 	['off' => '关闭（默认）', 'on' => '开启'],

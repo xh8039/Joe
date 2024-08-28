@@ -87,6 +87,11 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		echo 'html {-webkit-filter: grayscale(1);}';
 	}
 
+	// 文章标题居中
+	if ($this->options->JPost_Title_Center == 'on') {
+		echo '.joe_detail__title {text-align: center;}';
+	}
+
 	if (($this->is('index') || $this->is('archive')) && $this->options->JIndex_Article_Double_Column == 'on') {
 		echo '
 		@media(min-width: 1200px) {
@@ -126,7 +131,9 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 		';
 	}
 
-	?>@font-face {
+	?>
+
+	@font-face {
 		font-family: 'Joe Font';
 		font-weight: 400;
 		font-style: normal;
@@ -143,12 +150,13 @@ elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 	/* 自定义CSS */
 
 	<?php $this->options->JCustomCSS() ?>
+
 	/* 自定义CSS */
 </style>
 <?php
 if ($this->options->JIndex_Link_Active == 'on') {
 	echo '<link rel="stylesheet" href="';
-	joe\theme_url('assets/css/options/JIndex_Link_Active.css');
+	echo joe\theme_url('assets/css/options/JIndex_Link_Active.css');
 	echo '">';
 }
 ?>

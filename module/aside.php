@@ -46,7 +46,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="joe_aside__item-title">
 				<span class="text">站点公告</span>
 			</div>
-			<div class="joe_aside__item-contain">
+			<div class="joe_aside__item-contain" style="color: var(--main-color);">
 				<?php $this->options->JAside_Notice() ?>
 			</div>
 		</section>

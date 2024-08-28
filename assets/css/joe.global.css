@@ -1,9 +1,9 @@
 /* svg {
-    width: 1em;
-    height: 1em;
-    vertical-align: -.15em;
-    fill: currentColor;
-    overflow: hidden;
+	width: 1em;
+	height: 1em;
+	vertical-align: -.15em;
+	fill: currentColor;
+	overflow: hidden;
 } */
 
 .joe_dropdown {
@@ -840,8 +840,8 @@
 
 .joe_aside__item-title>.text {
 	position: relative;
-    padding-left: 1.2em;
-    font-size: 15px;
+	padding-left: 1.2em;
+	font-size: 15px;
 	color: var(--main-color);
 }
 
@@ -872,15 +872,15 @@
 }
 
 .joe_aside__item-contain {
-    position: relative;
-    /* max-height: 350px; */
-    overflow: auto;
-    clear: both;
-    background: var(--background);
-    padding: 15px;
-    box-shadow: 0 0 10px var(--main-shadow);
-    border-radius: var(--main-radius);
-    margin-bottom: 20px;
+	position: relative;
+	/* max-height: 350px; */
+	overflow: auto;
+	clear: both;
+	background: var(--background);
+	padding: 15px;
+	box-shadow: 0 0 10px var(--main-shadow);
+	border-radius: var(--main-radius);
+	margin-bottom: 20px;
 }
 
 .joe_aside__item.author {
@@ -4235,7 +4235,7 @@
 }
 
 .joe_pagination li a:hover {
-	background: var(--back-line-right);
+	background: var(--theme);
 	color: #fff
 }
 
@@ -4272,7 +4272,12 @@
 	border-radius: 8px;
 	cursor: pointer;
 	margin-top: 6px;
+	transition: 0.3s;
 	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.2) */
+}
+
+.joe_action_item:hover {
+	opacity: 0.8;
 }
 
 .joe_action_item i {
@@ -4288,9 +4293,7 @@
 	visibility: hidden;
 	-webkit-transform: scale(0);
 	transform: scale(0);
-	transition: visibility 0.35s, -webkit-transform 0.35s;
-	transition: visibility 0.35s, transform 0.35s;
-	transition: visibility 0.35s, transform 0.35s, -webkit-transform 0.35s
+	transition: 0.35s;
 }
 
 .joe_action_item.scroll.active {

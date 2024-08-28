@@ -59,13 +59,6 @@ function themeConfig($form)
 					<li class="item" data-current="joe_statistic">统计设置</li>
 					<li class="item" data-current="joe_message">消息推送</li>
 					<a class="item" data-current="joe_code" href="<?= Helper::options()->rootUrl . __TYPECHO_ADMIN_DIR__ ?>options-theme.php?joe_code=true">插入代码</a>
-					<script>
-						if ($('[data-current="joe_code"]').hasClass('active')) {
-							$('.typecho-option-submit>li>button').click(() => {
-								sessionStorage.removeItem("joe_config_current");
-							});
-						}
-					</script>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
 				<?php require_once('public/backup.php'); ?>

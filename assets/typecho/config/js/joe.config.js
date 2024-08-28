@@ -38,6 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
 			} else t.innerHTML = "请求失败！"
 	}, c.open("get", `${Joe.service_domain}message`, !0), c.send(
 		null);
+	if ($('[data-current="joe_code"]').hasClass('active')) {
+		sessionStorage.setItem("joe_config_current", 'joe_notice');
+		// sessionStorage.removeItem("joe_config_current");
+	}
 	//模拟form表单提交打开新的页面
 	function open_page(url, param = {}) {
 		var form = '<form action="' + url + '"  target="_blank"  id="windowOpen" style="display:none">';

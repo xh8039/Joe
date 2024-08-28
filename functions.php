@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 define('JOE_VERSION', '1.319');
 define('JOE_ROOT', dirname(__FILE__) . '/');
@@ -10,7 +13,7 @@ require_once(__DIR__ . '/public/common.php');
 function themeConfig($form)
 {
 	// 注册后台页面
-    // Typecho_Plugin::factory('admin/friend.php')->register('FriendLinks', 'mytheme_page', 'My Custom Page');
+	// Typecho_Plugin::factory('admin/friend.php')->register('FriendLinks', 'mytheme_page', 'My Custom Page');
 
 	$_db = Typecho_Db::get();
 	$_prefix = $_db->getPrefix();
@@ -56,6 +59,13 @@ function themeConfig($form)
 					<li class="item" data-current="joe_statistic">统计设置</li>
 					<li class="item" data-current="joe_message">消息推送</li>
 					<a class="item" data-current="joe_code" href="<?= Helper::options()->rootUrl . __TYPECHO_ADMIN_DIR__ ?>options-theme.php?joe_code=true">插入代码</a>
+					<script>
+						if ($('[data-current="joe_code"]').hasClass('active')) {
+							$('.typecho-option-submit>li>button').click(() => {
+								sessionStorage.removeItem("joe_config_current");
+							});
+						}
+					</script>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
 				<?php require_once('public/backup.php'); ?>

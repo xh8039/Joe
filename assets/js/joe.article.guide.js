@@ -68,11 +68,8 @@ if (articleTitleList.length > 0) {
 					$catalog.addClass('active');
 				}
 				if ($catalog.length > 0) {
-					if ($('.posts-nav-box .joe_aside__item-contain').length > 0) {
-						$('.posts-nav-box .joe_aside__item-contain').scrollTop($catalog[0].offsetTop - 50);
-					} else {
-						$('.posts-nav-box').scrollTop($catalog[0].offsetTop - 50);
-					}
+					const $navBox = Joe.IS_MOBILE ? $('.posts-nav-box') : $('.posts-nav-box .joe_aside__item-contain');
+					$navBox.scrollTop($catalog[0].offsetTop - 50);
 				} else {
 					$('.posts-nav-lists').scrollTop(0);
 				}

@@ -306,7 +306,7 @@ function submit_baidu(msg = '推送中...') {
 				if (res.data.message == 'over quota') res.data.message = '超过配额';
 				$('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，' + res.data.message + '</span>');
 			} else {
-				$('#Joe_Baidu_Record').html('<span style="color: #67C23A">推送成功！今日还可推送' + res.data.remain + '条</span>');
+				$('#Joe_Baidu_Record').html('<span style="color: #67C23A">推送成功！今日剩余' + res.data.remain + '条</span>');
 			}
 		},
 		error(res) {

@@ -86,12 +86,12 @@ html[data-night='night'] body::before {
 	z-index: -500
 }
 
-html[data-night='night'] .joe_header__above-logo img {
-	display: none
+html[data-night='night'] .joe_header__above-logo img.light {
+	display: none;
 }
 
-html[data-night='night'] .joe_header__above-logo svg {
-	display: block
+html[data-night='night'] .joe_header__above-logo img.dark {
+	display: block;
 }
 
 html[data-night='night'] .joe_detail__article-video .episodes .box .item:not(.active) {

@@ -26,6 +26,18 @@ $JLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JLogo->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JLogo);
 
+$JDarkLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
+	'JDarkLogo',
+	NULL,
+	NULL,
+	'网站夜间模式 Logo',
+	'介绍：用于设置网站夜间模式的Logo，一个好的 Logo 能为网站带来有效的流量 <br />
+		 格式：图片 URL地址 或 Base64 地址 <br />
+		 其他：免费制作 logo 网站 <a target="_blank" href="//www.uugai.com">www.uugai.com</a>'
+);
+$JDarkLogo->setAttribute('class', 'joe_content joe_image');
+$form->addInput($JDarkLogo);
+
 $JThumbnail = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JThumbnail',
 	NULL,

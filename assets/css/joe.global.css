@@ -123,7 +123,7 @@
 	object-fit: cover
 }
 
-.joe_header__above-logo svg {
+.joe_header__above-logo>.dark {
 	display: none
 }
 

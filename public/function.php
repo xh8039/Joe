@@ -597,6 +597,6 @@ function ueTime($times)
 	} elseif ($days < 365) {
 		return date('m月d日', $timestamp);
 	} else {
-		return date('Y年', $timestamp) . ' <span>' . date('m月', $timestamp) . '</span>';
+		return date('Y年', $timestamp) . '<span>' . date('m月', $timestamp) . '</span>';
 	}
 }

@@ -118,7 +118,7 @@
 
 .joe_header__above-logo img {
 	max-width: 150px;
-	max-height: 35px;
+	max-height: 33px;
 	-o-object-fit: cover;
 	object-fit: cover
 }
@@ -821,7 +821,7 @@
 	position: relative;
 	width: 311px;
 	margin-bottom: 15px;
-	/* border-radius: var(--radius-inner); */
+	border-radius: var(--radius-inner);
 	/* box-shadow: var(--box-shadow); */
 	overflow: hidden
 }

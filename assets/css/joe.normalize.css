@@ -81,7 +81,7 @@ li {
 
 a {
 	text-decoration: none;
-	transition: color 0.25s;
+	transition: 0.25s;
 	color: var(--theme);
 }
 

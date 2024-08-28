@@ -16,7 +16,7 @@ if ($this->options->JLoading != 'off') {
 				<path d="M76.032 872a59.968 59.968 0 1 0 0 120h999.936a59.968 59.968 0 1 0 0-120H76.032zm16-420.032a59.968 59.968 0 1 0 0 120h599.936a59.968 59.968 0 1 0 0-119.936H92.032zM76.032 32a59.968 59.968 0 1 0 0 120h999.936a60.032 60.032 0 0 0 0-120H76.032z" />
 			</svg>
 			<a title="<?php $this->options->title(); ?>" class="joe_header__above-logo" href="<?php $this->options->siteUrl(); ?>">
-				<img data-src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo ?>" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="<?php $this->options->title(); ?>" class="lazyload light" />
+				<img data-src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="<?php $this->options->title(); ?>" class="lazyload light" />
 				<?php
 				if (empty($this->options->JDarkLogo)) {
 				?>

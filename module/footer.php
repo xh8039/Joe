@@ -34,6 +34,9 @@ if ($this->options->JPendant_SSL == 'on') {
 	// SSL安全认证
 ?>
 	<style>
+		html .joe_action {
+			bottom: 80px;
+		}
 		#cc-myssl-seal {
 			width: 65px;
 			height: 65px;

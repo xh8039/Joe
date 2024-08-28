@@ -17,8 +17,8 @@ $form->addInput($JPrevent->multiMode());
 
 $JShieldScan = new Typecho_Widget_Helper_Form_Element_Select(
 	'JShieldScan',
-	['on' => '开启（默认）', 'off' => '关闭'],
-	'on',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
 	'屏蔽扫描',
 	'介绍：用于屏蔽垃圾机器人扫描、腾讯电脑管家网址安全检测、国外用户（不会屏蔽各大搜索引擎蜘蛛）'
 );

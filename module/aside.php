@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 ?>
 <aside class="joe_aside">
 
-	<?php if ($this->options->JArticle_Guide == 'on') : ?>
+	<?php if ($this->options->JArticle_Guide == 'on' && ($this->is('post') || $this->is('page'))) : ?>
 		<section class="joe_aside__item posts-nav-box">
 			<div class="joe_aside__item-title">
 				<span class="text">文章目录</span>

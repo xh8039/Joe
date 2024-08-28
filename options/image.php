@@ -17,7 +17,7 @@ $form->addInput($JFavicon);
 $JLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JLogo',
 	NULL,
-	'http://blog.bri6.cn/usr/uploads/logo/logo.png',
+	NULL,
 	'网站 Logo 设置',
 	'介绍：用于设置网站 Logo，一个好的 Logo 能为网站带来有效的流量 <br />
 		 格式：图片 URL地址 或 Base64 地址 <br />

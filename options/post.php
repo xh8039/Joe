@@ -1,14 +1,14 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 $JPost_Header_Img_Switch = new Typecho_Widget_Helper_Form_Element_Select(
 	'JPost_Header_Img_Switch',
-	array(
-		'on' => '开启（默认）',
-		'off' => '关闭',
-	),
-	'on',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
 	'是否开启文章页面顶部大图',
 	'介绍：开启后顶部大图将背景将使用文章缩略图 文字将使用文字标题 如果没有文章没有缩略图那么使用首页顶部大图和侧边栏随机一言充当文字'
 );

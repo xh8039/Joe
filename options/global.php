@@ -69,10 +69,10 @@ $form->addInput($JCustomNavs);
 $JFooter_Left = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JFooter_Left',
 	NULL,
-	'2021 - 2022 ©<a href="http://blog.bri6.cn">易航博客</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
+	'2021 - ' . date('Y') . ' © <a href="http://blog.bri6.cn">易航博客</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
 	'自定义底部栏左侧内容（非必填）',
 	'介绍：用于修改全站底部左侧内容（wap端上方） <br>
-		 例如：<style style="display:inline">2021 - 2022 ©<a href="{站点链接}">{站点标题}</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a></style>'
+		 例如：<style style="display:inline">2021 - ' . date('Y') . ' © <a href="{站点链接}">{站点标题}</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a></style>'
 );
 $JFooter_Left->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JFooter_Left);
@@ -80,12 +80,10 @@ $form->addInput($JFooter_Left);
 $JFooter_Right = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JFooter_Right',
 	NULL,
-	'<a href="http://blog.bri6.cn/feed/" target="_blank" rel="noopener noreferrer">RSS</a>
-		 <a href="http://blog.bri6.cn/sitemap.xml" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">MAP</a>
-		 <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">冀ICP备2021010323号</a>',
+	'<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>' . PHP_EOL . '<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>' . PHP_EOL . '<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>',
 	'自定义底部栏右侧内容（非必填）',
 	'介绍：用于修改全站底部右侧内容（wap端下方） <br>
-		 例如：&lt;a href="/"&gt;首页&lt;/a&gt; &lt;a href="/"&gt;关于&lt;/a&gt;'
+	例如：' . htmlentities('<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>') . '<br>' . htmlentities('<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>') . '<br>' . htmlentities('<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>')
 );
 $JFooter_Right->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JFooter_Right);
@@ -93,7 +91,7 @@ $form->addInput($JFooter_Right);
 $JBirthDay = new Typecho_Widget_Helper_Form_Element_Text(
 	'JBirthDay',
 	NULL,
-	NULL,
+	date('Y/n/j H:i:s'),
 	'网站成立日期（非必填）',
 	'介绍：用于显示当前站点已经运行了多少时间。<br>
 		 注意：填写时务必保证填写正确！例如：2021/1/1 00:00:00 <br>

@@ -6,7 +6,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 use Metowolf\Meting;
-use Typecho\Widget\Comments;
 
 /* 获取文章列表 已测试 √  */
 

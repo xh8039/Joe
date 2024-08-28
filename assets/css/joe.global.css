@@ -1607,12 +1607,16 @@
 	align-items: center;
 	margin-top: auto;
 	color: var(--minor);
-	font-size: 13px
+	font-size: 13px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .joe_list__item .meta .items {
 	display: flex;
 	align-items: center;
+	white-space: nowrap;
 }
 
 .joe_list__item .meta .items>li:first-child {

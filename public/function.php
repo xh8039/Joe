@@ -465,20 +465,19 @@ function cdn($path)
  *
  * 如果没有下一篇,返回null
  */
-function thePrevCid($widget, $default = NULL)
+function thePrev($widget, $default = NULL)
 {
 	$db = \Typecho_Db::get();
-	$sql = $db->select()->from('table.contents')
-		->where('table.contents.created < ?', $widget->created)
+	$content = $db->fetchRow($widget->select()->where('table.contents.created < ?', $widget->created)
 		->where('table.contents.status = ?', 'publish')
 		->where('table.contents.type = ?', $widget->type)
-		->where('table.contents.password IS NULL')
-		->order('table.contents.created', \Typecho_Db::SORT_DESC)
-		->limit(1);
-	$content = $db->fetchRow($sql);
+		->where("table.contents.password IS NULL OR table.contents.password = ''")
+		->order('table.contents.created', \Typecho\Db::SORT_DESC)
+		->limit(1));
 
 	if ($content) {
-		return $content["cid"];
+		$content = $widget->filter($content);
+		return $content;
 	} else {
 		return $default;
 	}
@@ -489,20 +488,23 @@ function thePrevCid($widget, $default = NULL)
  *
  * 如果没有下一篇,返回null
  */
-function theNextCid($widget, $default = NULL)
+function theNext($widget, $default = NULL)
 {
 	$db = \Typecho_Db::get();
-	$sql = $db->select()->from('table.contents')
-		->where('table.contents.created > ?', $widget->created)
+	$content = $db->fetchRow($widget->select()->where(
+		'table.contents.created > ? AND table.contents.created < ?',
+		$widget->created,
+		\Helper::options()->time
+	)
 		->where('table.contents.status = ?', 'publish')
 		->where('table.contents.type = ?', $widget->type)
-		->where('table.contents.password IS NULL')
-		->order('table.contents.created', \Typecho_Db::SORT_ASC)
-		->limit(1);
-	$content = $db->fetchRow($sql);
+		->where("table.contents.password IS NULL OR table.contents.password = ''")
+		->order('table.contents.created', \Typecho\Db::SORT_ASC)
+		->limit(1));
 
 	if ($content) {
-		return $content["cid"];
+		$content = $widget->filter($content);
+		return $content;
 	} else {
 		return $default;
 	}

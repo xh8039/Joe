@@ -135,29 +135,27 @@
 					<div class="joe_motto"></div>
 				</div>
 				<?php
-				$nextId = Joe\thePrevCid($this);
-				$prevId = Joe\theNextCid($this);
-				if ($prevId || $nextId) {
+				$thePrev = Joe\thePrev($this);
+				$theNext = Joe\theNext($this);
+				if ($thePrev || $theNext) {
 				?>
 					<div style="height:99px;margin-bottom: 20px;line-height: 1.42857143;">
 						<nav class="article-nav">
 							<!-- 上一篇 -->
-							<?php if (!empty($prevId)) : ?>
+							<?php if (!empty($thePrev)) : ?>
 								<div class="box-body">
-									<?php $this->widget('Widget_Archive@recommend' . $prevId, 'pageSize=1&type=post', 'cid=' . $prevId)->to($prev); ?>
-									<a href="<?php $prev->permalink(); ?>">
+									<a href="<?= $thePrev['permalink']; ?>">
 										<p class="muted-2-color"><i class="fa fa-angle-left em12"></i><i class="fa fa-angle-left em12 mr6"></i> 上一篇</p>
-										<div class="text-ellipsis-2"><?php $prev->title(); ?></div>
+										<div class="text-ellipsis-2"><?= $thePrev['title']; ?></div>
 									</a>
 								</div>
 							<?php endif; ?>
 							<!-- 下一篇 -->
-							<?php if (!empty($nextId)) : ?>
-								<?php $this->widget('Widget_Archive@recommend' . $nextId, 'pageSize=1&type=post', 'cid=' . $nextId)->to($next); ?>
+							<?php if (!empty($theNext)) : ?>
 								<div class="box-body">
-									<a href="<?php $next->permalink(); ?>">
+									<a href="<?= $theNext['permalink']; ?>">
 										<p class="muted-2-color">下一篇 <i class="fa fa-angle-right em12 ml6"></i><i class="fa fa-angle-right em12"></i></p>
-										<div class="text-ellipsis-2"><?php $next->title(); ?></div>
+										<div class="text-ellipsis-2"><?= $theNext['title']; ?></div>
 									</a>
 								</div>
 							<?php endif; ?>
@@ -166,7 +164,6 @@
 				<?php
 				}
 				?>
-
 				<!--
 				<ul class="joe_post__pagination">
 						<?php // $this->theNext('<li class="joe_post__pagination-item prev">%s</li>', '', ['title' => '上一篇']); 

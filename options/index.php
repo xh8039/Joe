@@ -86,6 +86,18 @@ $JIndex_Recommend = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndex_Recommend->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Recommend);
 
+$JIndex_Mobile_Recommend = new Typecho_Widget_Helper_Form_Element_Text(
+	'JIndex_Mobile_Recommend',
+	NULL,
+	NULL,
+	'首页移动端推荐文章（非必填）',
+	'介绍：用于显示移动端推荐文章，请务必填写正确的格式 <br/>
+	格式：文章的id || 文章的id （中间使用两个竖杠分隔）<br />
+	例如：1 || 2'
+);
+$JIndex_Mobile_Recommend->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndex_Mobile_Recommend);
+
 $JIndex_Recommend_Style = new Typecho_Widget_Helper_Form_Element_Select(
 	'JIndex_Recommend_Style',
 	['simple' => '简约样式（默认）', 'full' => '比较全（和热门文章风格相同）',],

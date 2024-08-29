@@ -201,7 +201,7 @@ function getThumbnails($item)
 		$fields_thumb_arr = explode("\r\n", $item->fields->thumb);
 		foreach ($fields_thumb_arr as $list) $result[] = $list;
 	}
-	if (!isset($item->content)) $item->content = '';
+	if (!is_string($item->content)) $item->content = '';
 	/* 如果匹配到正则，则继续补充匹配到的图片 */
 	if (preg_match_all($pattern, $item->content, $thumbUrl)) {
 		foreach ($thumbUrl[1] as $list) $result[] = $list;

@@ -7,8 +7,11 @@
  *
  **/
 
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 ?>
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -52,6 +55,9 @@
 		</div>
 		<?php $this->need('module/footer.php'); ?>
 	</div>
+	<script>
+		$('.joe_detail__leaving-list>li>.user>.nickname>a').attr('target', '_blank');
+	</script>
 </body>
 
 </html>

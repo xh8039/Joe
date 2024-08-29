@@ -2869,12 +2869,13 @@
 	transform: translateY(-50%);
 	z-index: 1;
 	font-size: 15px;
+	line-height: 1.42857143;
 }
 
 .joe_main .joe_detail .single-metabox .post-metas {
 	background: var(--body-bg-color);
 	right: 0;
-	padding: 3px 6px;
+	padding: 2px 6px;
 	border-radius: 100px;
 	color: var(--meta-color);
 }

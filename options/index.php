@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 $JIndex_Article_Double_Column = new Typecho_Widget_Helper_Form_Element_Select(
 	'JIndex_Article_Double_Column',
@@ -83,6 +86,15 @@ $JIndex_Recommend = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndex_Recommend->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Recommend);
 
+$JIndex_Recommend_Style = new Typecho_Widget_Helper_Form_Element_Select(
+	'JIndex_Recommend_Style',
+	['simple' => '简约样式（默认）', 'full' => '比较全（和热门文章风格相同）',],
+	'simple',
+	'首页推荐文章风格',
+);
+$JIndex_Recommend_Style->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndex_Recommend_Style->multiMode());
+
 $JIndexSticky = new Typecho_Widget_Helper_Form_Element_Text(
 	'JIndexSticky',
 	NULL,
@@ -104,6 +116,16 @@ $JIndex_Hot = new Typecho_Widget_Helper_Form_Element_Text(
 );
 $JIndex_Hot->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Hot->multiMode());
+
+$JIndex_Mobile_Hot = new Typecho_Widget_Helper_Form_Element_Text(
+	'JIndex_Mobile_Hot',
+	NULL,
+	'0',
+	'首页移动端热门文章显示数量',
+	'介绍：填写指定数字后，移动端网站首页将会显示浏览量最多的指定数量篇数热门文章'
+);
+$JIndex_Mobile_Hot->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndex_Mobile_Hot->multiMode());
 
 $JIndex_Ad = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JIndex_Ad',

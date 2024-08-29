@@ -82,13 +82,13 @@ $form->addInput($JAside_Author_Link);
 $JAside_Author_Motto = new Typecho_Widget_Helper_Form_Element_Textarea(
 	'JAside_Author_Motto',
 	NULL,
-	'//api.bri6.cn/api/random-talk/',
+	NULL,
 	'博主栏座右铭（一言）- PC/WAP',
 	'介绍：用于修改博主栏的座右铭（一言） <br />
 		 格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />
 		 其他：API和自定义的座右铭完全可以一起写（换行填写），不会影响 <br />
 		 注意：API需要开启跨域权限才能调取，否则会调取失败！<br />
-		 推荐API：https://api.vvhan.com/api/ian'
+		 推荐API：//api.bri6.cn/api/random-talk/'
 );
 $JAside_Author_Motto->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Motto);

@@ -38,7 +38,7 @@ if (articleTitleList.length > 0) {
 				'box-shadow': '0 0 10px 8px var(--main-shadow)',
 				'overflow': 'auto',
 				'max-height': '50vh',
-				'max-width': '80vw',
+				'max-width': '70vw',
 				'background': 'var(--background)',
 			})
 			$('.joe_action_item.posts-nav-switcher').click(() => {

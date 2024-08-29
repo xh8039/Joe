@@ -132,11 +132,8 @@
 					?>
 				</div>
 				<div class="yiyan-box">
-					<div data-toggle="tooltip" data-original-title="点击切换一言" class="yiyan">
-						<div class="en">伤痛会改变一个人，但爱最终总会让你找回最初的自己</div>
-					</div>
+					<div class="joe_motto"></div>
 				</div>
-
 				<?php
 				$nextId = Joe\thePrevCid($this);
 				$prevId = Joe\theNextCid($this);

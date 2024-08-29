@@ -5,8 +5,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+if (PHP_VERSION < (float) base64_decode('Ny40')) {
+	throw new Typecho_Exception(base64_decode('5oKo55qEUEhQ54mI5pys6L+H5L2O77yM6K+35L2/55SoVjcuNOWPiuS7peS4iueJiOacrOi/kOihjCA8YSBocmVmPSJodHRwOi8vYmxvZy5icmk2LmNuL2FyY2hpdmVzLzE4Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5Kb2Xlho3nu63liY3nvJjkuLvpopg8L2E+'));
+}
+
 if (Helper::options()->JShieldScan != 'off') {
-	require_once 'tencent_protect.php';
+	require_once JOE_ROOT . 'public/tencent_protect.php';
 }
 
 if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
@@ -16,22 +20,22 @@ if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 
 }
 
 /* 继承方法函数 */
-require_once('widget.php');
+require_once(JOE_ROOT . 'public/widget.php');
 
 /* Composer自动加载 */
 require_once(JOE_ROOT . 'vendor/autoload.php');
 
 /* 公用函数 */
-require_once('function.php');
+require_once(JOE_ROOT . 'public/function.php');
 
 /* 过滤内容函数 */
-require_once('parse.php');
+require_once(JOE_ROOT . 'public/parse.php');
 
 /* 主题内置开放API */
-require_once('route.php');
+require_once(JOE_ROOT . 'public/route.php');
 
 /* 插件方法 */
-require_once('factory.php');
+require_once(JOE_ROOT . 'public/factory.php');
 
 /* 主题初始化 */
 function themeInit($self)
@@ -231,27 +235,3 @@ function themeFields($layout)
 	);
 	$layout->addItem($baidu_push);
 }
-
-// class FriendLinks extends Typecho_Widget implements Widget_Interface_Do
-// {
-// 	public function __construct($request, $response, $params = null)
-// 	{
-// 		parent::__construct($request, $response, $params);
-// 	}
-
-// 	public function action()
-// 	{
-// 		// 在这里处理请求逻辑
-// 		// 例如，保存用户输入的数据
-// 		if ($this->request->isPost()) {
-// 			// 处理 POST 请求
-// 		}
-// 	}
-
-// 	public function toHtml()
-// 	{
-// 		// 显示 HTML 页面
-// 		echo '<h1>My Custom Page</h1>';
-// 		// 这里可以添加表单、数据等
-// 	}
-// }

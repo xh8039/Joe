@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 环境要求：<br>PHP 7.3 - 8.2<br>Typecho 1.1+
+ * 环境要求：<br>PHP 7.4 - 8.2<br>Typecho 1.1+
  * @package Joe再续前缘版
  * @author Joe、易航
  * @link http://blog.bri6.cn
@@ -113,10 +113,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</div>
 					<?php endif; ?>
 
-					<?php if (count($recommend) >= 1) : ?>
+					<?php
+					if ($this->options->JIndex_Recommend_Style == 'simple') {
+					?>
 						<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
-							<?php foreach ($recommend as $cid) : ?>
-								<?php $this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item); ?>
+							<?php
+							foreach ($recommend as $cid) {
+								$this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
+								if (empty($item->permalink)) continue;
+							?>
 								<figure class="item">
 									<a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
 										<img width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
@@ -126,11 +131,84 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 										<div class="text"><?php $item->title() ?></div>
 									</figcaption>
 								</figure>
-							<?php endforeach; ?>
+							<?php
+							}
+							?>
 						</div>
-					<?php endif; ?>
+					<?php
+					}
+					if ($this->options->JIndex_Recommend_Style == 'full') {
+					?>
+						<div class="joe_index__hot">
+							<ul class="joe_index__hot-list">
+								<?php
+								foreach ($recommend as $cid) {
+									$this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
+									if (empty($item->permalink)) continue;
+								?>
+									<li class="item">
+										<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
+											<figure class="inner">
+												<span class="type">推荐</span>
+												<img width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
+											</figure>
+										</a>
+										<div class="item-body">
+											<h2 class="item-heading">
+												<a title="<?php $item->title(); ?>" alt="<?php $item->title(); ?>" href="<?php $item->permalink(); ?>"><?php $item->title(); ?></a>
+											</h2>
+											<div class="item-tags-category">
+												<span class="item-category">
+													<?php
+													$color_array = ['c-blue', 'c-yellow'];
+													foreach ($item->categories as $key => $value) {
+													?>
+														<a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">
+															<i class="fa fa-folder-open-o"></i><?= $value['name'] ?>
+														</a>
+													<?php
+													}
+													?>
+												</span>
+												<span class="item-tags">
+													<?php $item->tags('')  ?>
+												</span>
+											</div>
+											<div class="item-meta muted-2-color flex jsb ac">
+												<item class="meta-author flex ac">
+													<a href="<?php $item->author->permalink() ?>"><span class="avatar-mini">
+															<img alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-1 ls-is-cached lazyload"></span></a>
+													<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= Joe\ueTime($item->created) ?></span>
+												</item>
+												<div class="meta-right">
+													<item class="meta-comm">
+														<svg class="icon" aria-hidden="true">
+															<use xlink:href="#icon-comment"></use>
+														</svg><?php $item->commentsNum('%d') ?>
+													</item>
+													<item class="meta-view">
+														<svg class="icon" aria-hidden="true">
+															<use xlink:href="#icon-view"></use>
+														</svg><?= number_format($item->views); ?>
+													</item>
+													<item class="meta-like"><svg class="icon" aria-hidden="true">
+															<use xlink:href="#icon-like"></use>
+														</svg><?= number_format($item->agree) ?>
+													</item>
+												</div>
+											</div>
+										</div>
+									</li>
+								<?php
+								}
+								?>
+							</ul>
+						</div>
+					<?php
+					}
+					?>
 
-
+					<?php if (Joe\isMobile()) $this->options->JIndex_Hot = $this->options->JIndex_Mobile_Hot; ?>
 					<?php if ((is_numeric($this->options->JIndex_Hot)) &&  ($this->options->JIndex_Hot >= 1)) : ?>
 						<?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=' . $this->options->JIndex_Hot)->to($item); ?>
 						<div class="joe_index__hot">
@@ -153,10 +231,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 											<div class="item-tags-category">
 												<span class="item-category">
 													<?php
-													$color_array = [
-														'c-blue',
-														'c-yellow'
-													];
+													$color_array = ['c-blue', 'c-yellow'];
 													foreach ($item->categories as $key => $value) {
 													?>
 														<a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">

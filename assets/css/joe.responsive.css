@@ -109,6 +109,10 @@
 		width: calc(100% / 12)
 	}
 
+	html .joe_owo__contain .box .scroll:nth-child(4) .item {
+		width: calc(100% / 3);
+	}
+
 	html .joe_live__play-player {
 		height: 430px
 	}
@@ -648,6 +652,10 @@
 		width: calc(100% / 2)
 	}
 
+	html .joe_owo__contain .box .scroll:nth-child(4) .item {
+		width: calc(100% / 2);
+	}
+
 	html .joe_comment {
 		position: relative
 	}
@@ -804,6 +812,10 @@
 
 	html .joe_index__hot-list .item>.item-body>.item-meta>.meta-right>.meta-like {
 		display: none;
+	}
+
+	html .joe_owo__contain .box .scroll:nth-child(4) .item {
+		width: calc(100% / 1);
 	}
 }
 

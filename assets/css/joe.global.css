@@ -3968,6 +3968,7 @@
 	padding: 5px 10px;
 	transition: .3s;
 	width: 100%;
+	line-height: 22px;
 }
 
 .yiyan-box {
@@ -3981,7 +3982,7 @@
 	text-align: center;
 }
 
-.yiyan .en {
+.yiyan-box>.joe_motto {
 	font-size: .8em;
 	opacity: .8;
 	color: var(--main-color);
@@ -4797,7 +4798,8 @@
 
 .joe_owo__contain .box .scroll:nth-child(4) .item {
 	color: var(--routine);
-	width: calc(100% / 5)
+	width: calc(100% / 4);
+	white-space: nowrap;
 }
 
 .joe_owo__contain .box .bar {

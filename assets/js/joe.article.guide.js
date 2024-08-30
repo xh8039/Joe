@@ -2,7 +2,7 @@ var articleTitleList = $('.joe_detail__article').find('h1, h2, h3, h4, h5, h6');
 if (articleTitleList.length > 0) {
 	(function () {
 
-		$('.joe_aside__item.author').before(`
+		$('.joe_aside__item.author').after(`
 		<section class="joe_aside__item posts-nav-box">
 			<div class="joe_aside__item-title">
 				<span class="text">文章目录</span>

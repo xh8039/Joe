@@ -11,23 +11,27 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	}
 
 	.friend_submit>h2 {
-		color: var(--main);
-		padding: 0 15px;
-		font-size: 18px;
-		line-height: 24px;
 		margin-bottom: 20px;
 		position: relative;
+		padding-bottom: 8px;
+		font-size: 20px;
+		font-weight: 700;
+		color: var(--main-color);
+		line-height: 24px;
 	}
 
 	.friend_submit>h2::before {
-		content: '';
+		transition: .4s;
+		transform-origin: left;
 		position: absolute;
-		top: 0;
-		bottom: 0;
+		content: '';
+		width: 40px;
+		height: 3px;
+		background: var(--theme);
 		left: 0;
-		width: 4px;
-		background: var(--back-line-bottom);
-		border-radius: 0 4px 4px 0;
+		bottom: 3px;
+		border-radius: 5px;
+		box-shadow: 1px 1px 3px -1px var(--theme);
 	}
 
 	.friend_submit>.input {
@@ -90,7 +94,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	}
 </style>
 <form class="friend_submit" id="friend_form">
-	<h2 class="outline-heading">在线申请</h2>
+	<h2>在线申请</h2>
 	<div class="input">
 		<label class="input-label">标题</label>
 		<input type="text" placeholder="站点标题" id="title">

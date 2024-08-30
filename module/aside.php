@@ -6,19 +6,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 ?>
 <aside class="joe_aside">
 
-	<?php if ($this->options->JArticle_Guide == 'on' && ($this->is('post') || $this->is('page'))) : ?>
-		<section class="joe_aside__item posts-nav-box">
-			<div class="joe_aside__item-title">
-				<span class="text">文章目录</span>
-			</div>
-			<div class="joe_aside__item-contain">
-				<div class="posts-nav-lists">
-					<ul class="bl nav"></ul>
-				</div>
-			</div>
-		</section>
-	<?php endif; ?>
-
 	<section class="joe_aside__item author">
 		<img width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/aside_author_image.jpg'); ?>" alt="博主栏壁纸" />
 		<div class="user">
@@ -41,6 +28,20 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<ul class="list"><?php joe\getAsideAuthorNav() ?></ul>
 		<?php endif; ?>
 	</section>
+
+	<?php if ($this->options->JArticle_Guide == 'on' && ($this->is('post') || $this->is('page'))) : ?>
+		<section class="joe_aside__item posts-nav-box">
+			<div class="joe_aside__item-title">
+				<span class="text">文章目录</span>
+			</div>
+			<div class="joe_aside__item-contain">
+				<div class="posts-nav-lists">
+					<ul class="bl nav"></ul>
+				</div>
+			</div>
+		</section>
+	<?php endif; ?>
+
 	<?php if ($this->options->JAside_Notice) : ?>
 		<section class="joe_aside__item notice">
 			<div class="joe_aside__item-title">

@@ -59,14 +59,15 @@
 	position: absolute;
 	bottom: 0;
 	left: -6px;
-	width: 7px;
-	height: 7px;
+	width: 11px;
+	height: 11px;
 	border: 2px solid var(--theme);
 	background: var(--background);
 	border-radius: 15px;
 	content: '';
 	transition: .15s;
 	display: table;
+	box-sizing: border-box;
 }
 
 .posts-nav-lists li {

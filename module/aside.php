@@ -29,19 +29,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php endif; ?>
 	</section>
 
-	<?php if ($this->options->JArticle_Guide == 'on' && ($this->is('post') || $this->is('page'))) : ?>
-		<section class="joe_aside__item posts-nav-box">
-			<div class="joe_aside__item-title">
-				<span class="text">文章目录</span>
-			</div>
-			<div class="joe_aside__item-contain">
-				<div class="posts-nav-lists">
-					<ul class="bl nav"></ul>
-				</div>
-			</div>
-		</section>
-	<?php endif; ?>
-
 	<?php if ($this->options->JAside_Notice) : ?>
 		<section class="joe_aside__item notice">
 			<div class="joe_aside__item-title">

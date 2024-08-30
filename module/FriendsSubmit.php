@@ -34,6 +34,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		box-shadow: 1px 1px 3px -1px var(--theme);
 	}
 
+	.friend_submit>h2:hover::before {
+		transform: scaleX(1.3);
+	}
+
 	.friend_submit>.input {
 		width: 100%;
 		display: flex;

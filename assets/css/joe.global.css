@@ -3025,6 +3025,10 @@
 	/* font-family: inherit; */
 }
 
+.joe_detail__article h2:hover::before {
+	transform: scaleX(1.3);
+}
+
 /* .joe_detail__article h2::before {
 	content: '';
 	position: absolute;

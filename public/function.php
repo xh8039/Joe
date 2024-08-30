@@ -160,7 +160,8 @@ function getAvatarByMail($mail)
 /* 获取侧边栏随机一言 */
 function getAsideAuthorMotto()
 {
-	$JMottoRandom = explode("\r\n", \Helper::options()->JAside_Author_Motto);
+	$Motto = isset(\Helper::options()->JAside_Author_Motto) ? \Helper::options()->JAside_Author_Motto : '';
+	$JMottoRandom = explode("\r\n", $Motto);
 	echo $JMottoRandom[array_rand($JMottoRandom, 1)];
 }
 
@@ -572,9 +573,14 @@ function theNext($widget, $default = NULL)
 // 	return $pct;
 // }
 
+/**
+ * 个性化日期显示
+ * @param datetime|string $times 日期
+ * @return string 返回大致日期
+ */
 function ueTime($times)
 {
-	if (empty($times) || $times === 0) {
+	if (empty($times) || $times == 0) {
 		return false;
 	}
 
@@ -592,9 +598,9 @@ function ueTime($times)
 
 	$days = floor($diff / 86400);
 	if ($days < 3) {
-		return ['昨天', '前天'][$days - 1] . '<span> ' . date('H:i', $timestamp) . '</span>';
+		return ['昨天', '前天'][$days - 1] . '<span>' . date('H:i', $timestamp) . '</span>';
 	} elseif ($days < 10) {
-		return $days . '天前<span> ' . date('H:i', $timestamp) . '</span>';
+		return $days . '天前<span>' . date('H:i', $timestamp) . '</span>';
 	} elseif ($days < 30) {
 		return date('m月d日', $timestamp);
 	} elseif ($days < 365) {

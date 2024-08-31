@@ -7,7 +7,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 $JLoading = new Typecho_Widget_Helper_Form_Element_Select(
 	'JLoading',
-	['off' => '关闭', 'concise' => '简洁动画（默认）', 'lollipop' => '棒棒糖'],
+	['off' => '关闭', 'concise' => '简洁对圈（默认）', 'lollipop' => '七彩棒棒糖'],
 	'concise',
 	'全局加载动画',
 	'介绍：页面全局加载loading动画，开启后可防止使用谷歌内核的浏览器出现闪动问题'

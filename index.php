@@ -1,8 +1,8 @@
 <?php
 
 /**
- * 环境要求：<br>PHP 7.4 - 8.2<br>Typecho 1.1+
- * @package Joe再续前缘版
+ * 环境要求：<br>PHP 7.4 - 8.2<br>Typecho 1.2+
+ * @package Joe再续前缘
  * @author Joe、易航
  * @link http://blog.bri6.cn
  */

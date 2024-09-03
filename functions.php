@@ -7,6 +7,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 define('JOE_VERSION', '1.32');
 define('JOE_ROOT', dirname(__FILE__) . '/');
+define('THEME_NAME', basename(__DIR__));
+
 /* Joe核心文件 */
 require_once(__DIR__ . '/public/common.php');
 

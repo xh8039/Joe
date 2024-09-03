@@ -1,6 +1,6 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
-$name = "Joe";
+$name = THEME_NAME;
 $db = Typecho_Db::get();
 if (isset($_POST['type'])) {
 	if ($_POST["type"] == "备份设置") {

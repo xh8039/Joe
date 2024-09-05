@@ -4,11 +4,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 if ($this->user->hasLogin()) {
-	$from = $_GET['from'];
+	$from = isset($_GET['from']) ? $_GET['from'] : '';
 	if (stripos($from, $_SERVER['HTTP_HOST'])) {
 		?>
 		<script>
-			let from = '<?= $_GET['from'] ?>';
+			let from = '<?= $from ?>';
 			window.location.href = from ? from : "<?= Typecho_Common::url('/', Helper::options()->index) ?>";
 		</script>
 		<?php

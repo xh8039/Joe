@@ -52,7 +52,7 @@ $this->need('user/header.php');
 	<?php $this->need('module/footer.php'); ?>
 	<script>
 		! function(t) {
-			let from = '<?php print $_GET['from'] ?>';
+			let from = '<?= $_GET['from'] ?>';
 			let btn = function(obj, msg, code) {
 			    obj.html(msg);
 			    obj.attr("disabled", code);
@@ -63,7 +63,7 @@ $this->need('user/header.php');
 				if (!username) return Qmsg.warning("请输入邮箱/用户名");
 				if (!password) return Qmsg.warning("请输入密码");
 				$.ajax({
-					url: '<?php print Typecho_Common::url('user/api', Helper::options()->index) ?>',
+					url: '<?= Typecho_Common::url('user/api', Helper::options()->index) ?>',
 					type: 'post',
 					dataType: 'json',
 					async: true,
@@ -86,7 +86,7 @@ $this->need('user/header.php');
 						if (res.code == 1) {
 							Qmsg.success("登录成功");
 							setTimeout(function() {
-								window.location.href = from ? from : "<?php print Typecho_Common::url('/', Helper::options()->index) ?>";
+								window.location.href = from ? from : "<?= Typecho_Common::url('/', Helper::options()->index) ?>";
 							}, 1000);
 						} else {
 							Qmsg.warning(res.msg);

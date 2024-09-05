@@ -70,7 +70,7 @@ $this->need('user/header.php');
 	<?php $this->need('module/footer.php'); ?>
 	<script>
 		! function(t) {
-			let from = '<?php print $_GET['from'] ?>';
+			let from = '<?= isset($_GET['from']) ? $_GET['from'] : '' ?>';
 			let btn = function(obj, msg, code) {
 				obj.html(msg);
 				obj.attr("disabled", code);
@@ -97,7 +97,7 @@ $this->need('user/header.php');
 				let email = $("#email").val();
 				if (!email) return Qmsg.warning("请输入邮箱后发送验证码");
 				$.ajax({
-					url: '<?php print Typecho_Common::url('user/api', Helper::options()->index) ?>',
+					url: '<?= Typecho_Common::url('user/api', Helper::options()->index) ?>',
 					type: 'post',
 					dataType: 'json',
 					async: true,
@@ -146,7 +146,7 @@ $this->need('user/header.php');
 				if (!cpassword) return Qmsg.warning("请输入确认密码");
 				if (cpassword != password) return Qmsg.warning("两次密码不一致");
 				$.ajax({
-					url: '<?php print Typecho_Common::url('user/api', Helper::options()->index) ?>',
+					url: '<?= Typecho_Common::url('user/api', Helper::options()->index) ?>',
 					type: 'post',
 					dataType: 'json',
 					async: true,
@@ -173,7 +173,7 @@ $this->need('user/header.php');
 						if (res.code == 1) {
 							Qmsg.success("注册成功");
 							setTimeout(function() {
-								window.location.href = from ? from : "<?php print Typecho_Common::url('/', Helper::options()->index) ?>";
+								window.location.href = from ? from : "<?= Typecho_Common::url('/', Helper::options()->index) ?>";
 							}, 1000);
 						} else {
 							Qmsg.warning(res.msg);

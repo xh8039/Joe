@@ -1218,7 +1218,7 @@
 }
 
 .joe_aside__item.today {
-	background: var(--background)
+	/* background: var(--background) */
 }
 
 .joe_aside__item.today .joe_aside__item-contain .item {
@@ -1426,7 +1426,7 @@
 }
 
 .joe_aside__item.flatterer {
-	background: var(--background)
+	/* background: var(--background) */
 }
 
 .joe_aside__item.flatterer .content {

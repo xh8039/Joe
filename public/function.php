@@ -326,10 +326,18 @@ function user_url($action)
 	$url = urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
 	switch ($action) {
 		case 'register':
-			$url = \Typecho_Common::url('user/register', \Helper::options()->index) . '?from=' . $url;
+			if (\Helper::options()->JUser_Switch == 'on') {
+				$url = \Typecho_Common::url('user/register', \Helper::options()->index) . '?from=' . $url;
+			} else {
+				$url = \Helper::options()->adminUrl . 'register.php';
+			}
 			break;
 		case 'login':
+			if (\Helper::options()->JUser_Switch == 'on') {
 			$url = \Typecho_Common::url('user/login', \Helper::options()->index) . '?from=' . $url;
+			} else {
+				$url = \Helper::options()->adminUrl . 'login.php';
+			}
 			break;
 		case 'forget':
 			$url = \Typecho_Common::url('user/forget', \Helper::options()->index) . '?from=' . $url;

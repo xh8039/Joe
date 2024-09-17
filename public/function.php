@@ -424,34 +424,6 @@ function send_email($title, $subtitle, $content, $email = '')
 	}
 }
 
-/** 对部分背景壁纸效果的适配CSS代码 */
-function background_adaptive()
-{
-	return '
-		html .joe_footer .joe_container>.item,
-	html .joe_footer .joe_container a,
-	html .joe_bread__bread .item,
-	html .joe_bread__bread .item .link,
-	html .text-muted,
-	html .joe_index__title-title>.item,
-	html .joe_index__title-notice>a {
-	color: var(--classC);
-	}
-
-	html .joe_bread__bread>.item>.icon {
-	fill: var(--classC);
-	}
-
-	html .text-muted>a {
-	color: var(--classD);
-	}
-
-	html .joe_action_item {
-	background: var(--back-trn-85);
-	}
-	';
-}
-
 /**
  * 输出CDN链接
  *

@@ -121,7 +121,7 @@
 
 .joe_index__hot-list {
 	display: grid;
-	/* grid-template-columns: repeat(3, 1fr); */
+	grid-template-columns: repeat(3, 1fr);
 	-webkit-column-gap: 15px;
 	column-gap: 15px;
 	row-gap: 15px;
@@ -488,14 +488,14 @@
 .swiper-container {
 	min-width: 0;
 	flex: 1;
-	/* height: 450px; */
+	height: 400px;
 	--swiper-theme-color: #fff;
 	border-radius: var(--radius-inner)
 }
 
 .swiper-container .item {
 	display: block;
-	/* height: 450px; */
+	height: 400px;
 	border-radius: var(--radius-inner)
 }
 

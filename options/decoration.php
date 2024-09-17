@@ -5,6 +5,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$JLogo_Light_Effect = new Typecho_Widget_Helper_Form_Element_Select(
+	'JLogo_Light_Effect',
+	['on' => '开启（默认）', 'off' => '关闭'],
+	'on',
+	'LOGO扫光效果',
+	'介绍：开启后顶栏的LOGO图标将会有扫光效果'
+);
+$JLogo_Light_Effect->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JLogo_Light_Effect->multiMode());
+
 $JLoading = new Typecho_Widget_Helper_Form_Element_Select(
 	'JLoading',
 	['off' => '关闭', 'concise' => '简洁对圈（默认）', 'lollipop' => '七彩棒棒糖'],

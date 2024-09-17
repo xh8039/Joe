@@ -1,0 +1,27 @@
+html .joe_index__hot-list {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+html .swiper-container {
+    height: 550px;
+}
+
+html .swiper-container .item {
+    height: 550px;
+}
+
+@media(min-width: 1200px) {
+    html .joe_aside {
+        display: none;
+    }
+
+    html .joe_list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 15px;
+    }
+
+    html .joe_list>.joe_list__item {
+        border-radius: var(--radius-wrap);
+    }
+}

@@ -60,10 +60,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		echo "body {font-family: 'Joe Font';}";
 	}
 	?>
+
 	/* 自定义CSS */
-
 	<?php $this->options->JCustomCSS() ?>
-
 	/* 自定义CSS */
 </style>
 <?php

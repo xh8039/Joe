@@ -1,7 +1,9 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
-} ?>
+}
+?>
 <script>
 	localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
 	window.Joe = {
@@ -20,37 +22,22 @@
 		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`
 	}
 </script>
-<?php
-$fontUrl = $this->options->JCustomFont ? $this->options->JCustomFont : '';
-// $fontFormat = '';
-// if (strpos($fontUrl, 'woff2') !== false) $fontFormat = 'woff2';
-// elseif (strpos($fontUrl, 'woff') !== false) $fontFormat = 'woff';
-// elseif (strpos($fontUrl, 'ttf') !== false) $fontFormat = 'truetype';
-// elseif (strpos($fontUrl, 'eot') !== false) $fontFormat = 'embedded-opentype';
-// elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
-?>
 <style>
 	<?php
 	// 移动端情况下
 	if (joe\isMobile()) {
-		// 移动端屏蔽热门文章滚动条
-		if ($this->is('index')) {
-			// echo '.joe_index__hot-list .item>.item-body>.item-tags-category::-webkit-scrollbar {display: none;}';
-		}
 		// 移动端自定义背景壁纸
 		if ($this->options->JWallpaper_Background_WAP) {
+			echo 'html .joe_list>li {opacity: 0.85;}';
 			echo 'html body::before {background: url(' . $this->options->JWallpaper_Background_WAP . ')}';
 		}
 	}
 
 	// 非移动端情况下
 	if (!joe\isMobile()) {
-		// 首页热门文章滚动条内部下边距
-		if ($this->is('index')) {
-			// echo '.joe_index__hot-list .item>.item-body>.item-tags-category {padding-bottom: 3px;}';
-		}
 		// PC端自定义背景壁纸
 		if ($this->options->JWallpaper_Background_PC) {
+			echo 'html .joe_list>li {opacity: 0.85;}';
 			echo 'html body::before {background: url(' . $this->options->JWallpaper_Background_PC . ')}';
 		}
 	}
@@ -62,24 +49,17 @@ $fontUrl = $this->options->JCustomFont ? $this->options->JCustomFont : '';
 
 	// 文章标题居中
 	if ($this->options->JPost_Title_Center == 'on') {
-		echo '.joe_detail__title {text-align: center;}';
+		echo 'html .joe_detail__title {text-align: center;}';
 	}
 
+	// 自定义字体
+	if (empty($this->options->JCustomFont)) {
+		echo "body {font-family: 'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Arial', 'sans-serif'}";
+	} else {
+		echo "@font-face {font-family: 'Joe Font';font-weight: 400;font-style: normal;font-display: swap;src: url('{$this->options->JCustomFont}');}";
+		echo "body {font-family: 'Joe Font';}";
+	}
 	?>
-	@font-face {
-		font-family: 'Joe Font';
-		font-weight: 400;
-		font-style: normal;
-		font-display: swap;
-		src: url('<?php echo $fontUrl ?>');
-		<?php // if ($fontFormat) : ?>src: url('<?php echo $fontUrl ?>') format('<?php echo $fontFormat ?>');
-		<?php // endif; ?>
-	}
-
-	body {
-		font-family: <?= $fontUrl ? 'Joe Font' : "'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif" ?>
-	}
-
 	/* 自定义CSS */
 
 	<?php $this->options->JCustomCSS() ?>

@@ -13,7 +13,7 @@ $JStaticAssetsUrl = new Typecho_Widget_Helper_Form_Element_Text(
 	'介绍：将本主题所需要的CSS、JS等资源文件使用某个站点来提供，以便节省服务器宽带 提升小型服务器加载速度<br>
 		 注意：必须保证对方站点同样为再续前缘版并且版本一致<br>
 		 例如：http://blog.bri6.cn/usr/themes/Joe（此站点虽是同款，然已启用防盗链，无需再试了）<br>
-		 其他：本站同款站点列表 <a target="_blank" href="http://auth.bri6.cn/server/joe/sitelist">auth.bri6.cn/server/joe/sitelist</a>'
+		 其他：<a target="_blank" href="http://auth.bri6.cn/server/joe/sitelist">本站同款站点列表</a>'
 );
 $JStaticAssetsUrl->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JStaticAssetsUrl);
@@ -22,8 +22,9 @@ $JCdnUrl = new Typecho_Widget_Helper_Form_Element_Text(
 	'JCdnUrl',
 	null,
 	'https://cdn.bootcdn.net/ajax/libs/',
-	'公共静态资源CDN',
+	'公共静态资源CDN接口',
 	'
+	<span>默认使用BootCDN，不懂请勿乱填，觉得网站资源加载速度慢可以从下方接口列表选择一个使用</span><br>
 	<span>BootCDN：https://cdn.bootcdn.net/ajax/libs/</span><br>
 	<span>Staticfile CDN：https://cdn.staticfile.net/</span><br>
 	<span>字节跳动静态资源公共库：https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/</span><br>
@@ -106,8 +107,8 @@ $JCustomFont = new Typecho_Widget_Helper_Form_Element_Text(
 	NULL,
 	'自定义网站字体（非必填）',
 	'介绍：用于修改全站字体，填写则使用引入的字体，不填写使用默认字体 <br>
-		 格式：字体URL链接（推荐使用woff格式的字体，网页专用字体格式） <br>
-		 注意：字体文件一般有几兆，建议使用cdn链接'
+		 格式：字体URL链接（推荐使用woff2格式的字体，网页专用字体格式，占用空间小，加载速度更快） <br>
+		 注意：字体文件大小一般上MB，建议使用cdn链接'
 );
 $JCustomFont->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomFont);

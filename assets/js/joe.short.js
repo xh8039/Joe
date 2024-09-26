@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					autoplay: this.getAttribute('autoplay') ? true : false,
 					loop: this.getAttribute('loop').trim(),
 					artist: this.getAttribute('artist').trim(),
-					lrc: this.getAttribute('lrc').trim(),
+					lrc: this.getAttribute('lrc') ? this.getAttribute('lrc').trim() : '[00:00.000] 暂无歌词',
 					autotheme: this.getAttribute('autotheme').trim(),
 					lrcType: this.getAttribute('lrcType').trim()
 				};

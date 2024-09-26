@@ -1,4 +1,374 @@
 {
+	"经典": [
+		{
+			"icon": "assets/images/owo/QQ/E788B1E4BDA0.gif",
+			"data": ":$(爱你)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E788B1E5BF83.gif",
+			"data": ":$(爱心)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E582B2E685A2.gif",
+			"data": ":$(傲慢)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E799BDE79CBC.gif",
+			"data": ":$(白眼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6A392E6A392E7B396.gif",
+			"data": ":$(棒棒糖)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E78886E7AD8B.gif",
+			"data": ":$(爆筋)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E68AB1E68BB3.gif",
+			"data": ":$(抱拳)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E98499E8A786.gif",
+			"data": ":$(鄙视)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E997ADE598B4.gif",
+			"data": ":$(闭嘴)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E693A6E6B197.gif",
+			"data": ":$(擦汗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E88F9CE58880.gif",
+			"data": ":$(菜刀)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E59083.gif",
+			"data": ":$(吃)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E591B2E78999.gif",
+			"data": ":$(呲牙)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5A4A7E585B5.gif",
+			"data": ":$(大兵)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5A4A7E593AD.gif",
+			"data": ":$(大哭)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E89B8B.gif",
+			"data": ":$(蛋)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5BE97E6848F.gif",
+			"data": ":$(得意)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/doge.gif",
+			"data": ":$(doge)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E58F91E59186.gif",
+			"data": ":$(发呆)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E58F91E68092.gif",
+			"data": ":$(发怒)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5A58BE69697.gif",
+			"data": ":$(奋斗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5B0B4E5B0AC.gif",
+			"data": ":$(尴尬)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E58BBEE5BC95.gif",
+			"data": ":$(勾引)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E9BC93E68E8C.gif",
+			"data": ":$(鼓掌)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5AEB3E7BE9E.gif",
+			"data": ":$(害羞)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E686A8E7AC91.gif",
+			"data": ":$(憨笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5A5BDE6A392.gif",
+			"data": ":$(好棒)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E59388E6ACA0.gif",
+			"data": ":$(哈欠)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5969DE5BDA9.gif",
+			"data": ":$(喝彩)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6B2B3E89FB9.gif",
+			"data": ":$(河蟹)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E59D8FE7AC91.gif",
+			"data": ":$(坏笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E9A5A5E9A5BF.gif",
+			"data": ":$(饥饿)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6838AE68190.gif",
+			"data": ":$(惊恐)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6838AE5969C.gif",
+			"data": ":$(惊喜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6838AE8AEB6.gif",
+			"data": ":$(惊讶)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E88F8AE88AB1.gif",
+			"data": ":$(菊花)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E58FAFE788B1.gif",
+			"data": ":$(可爱)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E58FAFE6809C.gif",
+			"data": ":$(可怜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E68AA0E9BCBB.gif",
+			"data": ":$(抠鼻)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E985B7.gif",
+			"data": ":$(酷)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5BFABE593ADE4BA86.gif",
+			"data": ":$(快哭了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E9AAB7E9AB85.gif",
+			"data": ":$(骷髅)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E59BB0.gif",
+			"data": ":$(困)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E7AFAEE79083.gif",
+			"data": ":$(篮球)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6B3AAE5A594.gif",
+			"data": ":$(泪奔)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E586B7E6B197.gif",
+			"data": ":$(冷汗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6B581E6B197.gif",
+			"data": ":$(流汗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6B581E6B3AA.gif",
+			"data": ":$(流泪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E99ABEE8BF87.gif",
+			"data": ":$(难过)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/OK.gif",
+			"data": ":$(OK)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E596B7E8A180.gif",
+			"data": ":$(喷血)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E69287E598B4.gif",
+			"data": ":$(撇嘴)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E595A4E98592.gif",
+			"data": ":$(啤酒)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5BCBA.gif",
+			"data": ":$(强)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E695B2E68993.gif",
+			"data": ":$(敲打)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E4BAB2E4BAB2.gif",
+			"data": ":$(亲亲)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E7B397E5A4A7E4BA86.gif",
+			"data": ":$(糗大了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E68BB3E5A4B4.gif",
+			"data": ":$(拳头)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E9AA9AE689B0.gif",
+			"data": ":$(骚扰)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E889B2.gif",
+			"data": ":$(色)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E8839CE588A9.gif",
+			"data": ":$(胜利)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6898BE69EAA.gif",
+			"data": ":$(手枪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E8A1B0.gif",
+			"data": ":$(衰)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E79DA1.gif",
+			"data": ":$(睡)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E8B083E79AAE.gif",
+			"data": ":$(调皮)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E581B7E7AC91.gif",
+			"data": ":$(偷笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E59090.gif",
+			"data": ":$(吐)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E68998E885AE.gif",
+			"data": ":$(托腮)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5A794E5B188.gif",
+			"data": ":$(委屈)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5BEAEE7AC91.gif",
+			"data": ":$(微笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E68FA1E6898B.gif",
+			"data": ":$(握手)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E68891E69C80E7BE8E.gif",
+			"data": ":$(我最美)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E697A0E5A588.gif",
+			"data": ":$(无奈)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E59093.gif",
+			"data": ":$(吓)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5B08FE7BAA0E7BB93.gif",
+			"data": ":$(小纠结)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E7AC91E593AD.gif",
+			"data": ":$(笑哭)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5B08FE6A0B7E584BF.gif",
+			"data": ":$(小样儿)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E6969CE79CBCE7AC91.gif",
+			"data": ":$(斜眼笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E8A5BFE7939C.gif",
+			"data": ":$(西瓜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E59898.gif",
+			"data": ":$(嘘)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E7BE8AE9A9BC.gif",
+			"data": ":$(羊驼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E998B4E999A9.gif",
+			"data": ":$(阴险)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E79691E997AE.gif",
+			"data": ":$(疑问)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E58FB3E593BCE593BC.gif",
+			"data": ":$(右哼哼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5B9BDE781B5.gif",
+			"data": ":$(幽灵)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E69995.gif",
+			"data": ":$(晕)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5868DE8A781.gif",
+			"data": ":$(再见)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E79CA8E79CBCE79D9B.gif",
+			"data": ":$(眨眼睛)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E68A98E7A3A8.gif",
+			"data": ":$(折磨)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E59292E9AA82.gif",
+			"data": ":$(咒骂)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E68A93E78B82.gif",
+			"data": ":$(抓狂)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/E5B7A6E593BCE593BC.gif",
+			"data": ":$(左哼哼)"
+		}
+	],
 	"泡泡": [
 		{ "icon": "assets/images/owo/paopao/E591B5E591B5_2x.png", "data": "::(呵呵)" },
 		{ "icon": "assets/images/owo/paopao/E59388E59388_2x.png", "data": "::(哈哈)" },

@@ -17295,7 +17295,7 @@
 						const i = t[e];
 						n += `<div class="tabbar-item ${"经典" === e ? "active" : ""}" data-show="${e}">${e}</div>`,
 							r +=
-							`<div class="lists ${"经典" === e ? "active" : ""}" data-show="${e}">${i.map((t => `<div class="lists-item" data-text="${t.data}">${"颜文字" === e ? t.icon : `<img src="${window.JoeConfig.themeURL + t.icon}">`}</div>`)).join(" ")}</div>`
+							`<div class="lists ${"经典" === e ? "active" : ""}" data-show="${e}">${i.map((t => `<div class="lists-item" data-text="${t.data}" title="${item.data}">${"颜文字" === e ? t.icon : `<img src="${window.JoeConfig.themeURL + t.icon}">`}</div>`)).join(" ")}</div>`
 					}
 					this._openModal({
 						title: "普通表情",

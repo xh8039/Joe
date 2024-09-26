@@ -17490,12 +17490,8 @@
 		handleMp3(e) {
 			this._openModal({
 				title: "插入音乐",
-				innerHtml: `
-<div class="fitem">
-    <label>lrc地址</label>
-    <input autocomplete="off" name="lrc" placeholder="请输入lrc文件地址"/>
-</div>
-<div class="fitem">
+				innerHtml: 
+`<div class="fitem">
     <label>音频名称</label>
     <input autocomplete="off" name="name" placeholder="请输入音频名称"/>
 </div>
@@ -17514,6 +17510,17 @@
 <div class="fitem">
     <label>主题色彩</label>
     <input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#f0ad4e" name="theme" type="color"/>
+</div>
+<div class="fitem">
+    <label>歌词内容</label>
+    <input autocomplete="off" name="lrc" placeholder="请输入lrc文件地址"/>
+</div>
+<div class="fitem">
+    <label>歌词类型</label>
+    <select name="lrcType">
+        <option value="3" selected>LRC文件</option>
+        <option value="1">字符串</option>
+    </select>
 </div>
 <div class="fitem">
     <label>循环播放</label>
@@ -17535,10 +17542,15 @@
     <select name="autotheme">
         <option value="1" selected>是</option>
         <option value="0">否</option></select>
+</div>
+<div class="fitem">
+为什么播放器设置自动播放后不生效？
+<br />
+因为大多数浏览器禁止了音频自动播放。
 </div>`,
 				confirm: () => {
 					const t =
-						`\n{mp3 name="${$(".cm-modal input[name='name']").val()}" artist="${$(".cm-modal input[name='artist']").val()}" url="${$(".cm-modal input[name='url']").val()}" loop="${$(".cm-modal input[name='loop']").val()}" cover="${$(".cm-modal input[name='cover']").val()}" autotheme="${$(".cm-modal input[name='autotheme']").val()}" lrc="${$(".cm-modal input[name='lrc']").val()}" theme="${$(".cm-modal input[name='theme']").val()}" ${"1" === $(".cm-modal select[name='autoplay']").val() ? 'autoplay="autoplay"' : ""}/}\n\n`;
+						`\n{mp3 name="${$(".cm-modal input[name='name']").val()}" artist="${$(".cm-modal input[name='artist']").val()}" url="${$(".cm-modal input[name='url']").val()}" cover="${$(".cm-modal input[name='cover']").val()}" theme="${$(".cm-modal input[name='theme']").val()}" lrc="${$(".cm-modal input[name='lrc']").val()}" lrcType="${$(".cm-modal select[name='lrcType']").val()}" loop="${$(".cm-modal select[name='loop']").val()}" ${"1" === $(".cm-modal select[name='autoplay']").val() ? 'autoplay="autoplay"' : ""} autotheme="${$(".cm-modal select[name='autotheme']").val()}" /}\n\n`;
 					this._getLineCh(e) ? this._replaceSelection(e, "\n" + t) : this._replaceSelection(e,
 						t), e.focus()
 				}

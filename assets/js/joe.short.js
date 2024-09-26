@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					loop: this.getAttribute('loop'),
 					artist: this.getAttribute('artist'),
 					lrc: this.getAttribute('lrc'),
-					autotheme: this.getAttribute('autotheme')
+					autotheme: this.getAttribute('autotheme'),
+					lrcType: this.getAttribute('lrcType')
 				};
 				this.render();
 			}
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					autoplay: this.options.autoplay,
 					loop: this.options.loop,
 					preload: 'auto',
-					lrcType: 3,
+					lrcType: this.options.lrcType,
 					autotheme: this.options.autotheme,
 					storage: this.options.url,
 					audio: [
@@ -127,10 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
 						lrcType: 3,
 						theme: this.options.color,
 						autoplay: this.options.autoplay,
-						autotheme : this.options.autotheme,
+						autotheme: this.options.autotheme,
 						storage: this.options.id,
 						loop: this.options.loop,
-						order : this.options.order,
+						order: this.options.order,
 						preload: 'auto',
 						audio
 					});
@@ -557,35 +558,35 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 			render() {
 				if (this.options.src) {
-				    if (this.options.pic == decodeURIComponent(this.options.pic)) {
-				        this.options.pic = encodeURIComponent(this.options.pic);
-				    }
-				    // 如果url等于已经解码的url，说明url未编码
-				    if (this.options.src == decodeURIComponent(this.options.src)) {
-				        this.options.src = encodeURIComponent(this.options.src); // 对url进行编码
-				    }
-				    let options = {
-				        pic: this.options.pic,
-				        theme: this.options.theme,
-				        autoplay: this.options.autoplay,
-				        loop: this.options.loop,
-				        screenshot: this.options.screenshot
-				    }
-				    let fnParams2Url = function (obj) {
-			            let array_url = [];
-			            let fnAdd = function (key, value) {
-			            	return key + '=' + value;
-			            }
-			            for (var k in obj) {
-			            	array_url.push(fnAdd(k, obj[k]));
-			            }
-			            return (array_url.join('&'));
-		            }
-				    let url = this.options.player + this.options.src + '&' + fnParams2Url(options);
-				    this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${url}"></iframe>`;
-			    } else {
-			   	    this.innerHTML = '播放地址未填写！';
-			    }
+					if (this.options.pic == decodeURIComponent(this.options.pic)) {
+						this.options.pic = encodeURIComponent(this.options.pic);
+					}
+					// 如果url等于已经解码的url，说明url未编码
+					if (this.options.src == decodeURIComponent(this.options.src)) {
+						this.options.src = encodeURIComponent(this.options.src); // 对url进行编码
+					}
+					let options = {
+						pic: this.options.pic,
+						theme: this.options.theme,
+						autoplay: this.options.autoplay,
+						loop: this.options.loop,
+						screenshot: this.options.screenshot
+					}
+					let fnParams2Url = function (obj) {
+						let array_url = [];
+						let fnAdd = function (key, value) {
+							return key + '=' + value;
+						}
+						for (var k in obj) {
+							array_url.push(fnAdd(k, obj[k]));
+						}
+						return (array_url.join('&'));
+					}
+					let url = this.options.player + this.options.src + '&' + fnParams2Url(options);
+					this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${url}"></iframe>`;
+				} else {
+					this.innerHTML = '播放地址未填写！';
+				}
 			}
 		}
 	);

@@ -225,7 +225,7 @@ class Editor
 						formSlug = document.getElementById('slug').value;
 						if (data.slug != formSlug) return;
 						if (isEmptyString(data.text) && isEmptyString(data.title)) return;
-						alert('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 已自动为您恢复');
+						if (!window.confirm('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 是否为您恢复？')) return;
 						// 遍历 data 对象并填充表单元素
 						for (const key in data) {
 							if (data.hasOwnProperty(key)) {

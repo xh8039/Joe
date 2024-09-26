@@ -1656,7 +1656,7 @@
 
 .joe_list__item .meta .last .icon {
 	margin-right: 3px;
-	margin-top: 2.5px;
+	/* margin-top: 2.5px; */
 }
 
 .joe_list__item .meta .last .link {

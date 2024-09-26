@@ -29,16 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			constructor() {
 				super();
 				this.options = {
-					name: this.getAttribute('name'),
-					url: this.getAttribute('url'),
-					theme: this.getAttribute('theme') || '#1989fa',
-					cover: this.getAttribute('cover'),
+					name: this.getAttribute('name').trim(),
+					url: this.getAttribute('url').trim(),
+					theme: (this.getAttribute('theme') || '#1989fa').trim(),
+					cover: this.getAttribute('cover').trim(),
 					autoplay: this.getAttribute('autoplay') ? true : false,
-					loop: this.getAttribute('loop'),
-					artist: this.getAttribute('artist'),
-					lrc: this.getAttribute('lrc'),
-					autotheme: this.getAttribute('autotheme'),
-					lrcType: this.getAttribute('lrcType')
+					loop: this.getAttribute('loop').trim(),
+					artist: this.getAttribute('artist').trim(),
+					lrc: this.getAttribute('lrc').trim(),
+					autotheme: this.getAttribute('autotheme').trim(),
+					lrcType: this.getAttribute('lrcType').trim()
 				};
 				this.render();
 			}

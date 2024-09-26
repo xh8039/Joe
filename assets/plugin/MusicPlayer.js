@@ -55,11 +55,11 @@ class MusicPlayer {
 		this.PLAYER.on('loadeddata', () => {
 			this.OPTIONS['autotheme'] ? this.autoTheme(this.PLAYER.list.index) : null;
 			if ('mediaSession' in navigator) {
-				let music = this.PLAYER.list.audios[this.PLAYER.list.index];
+				var music = this.PLAYER.list.audios[this.PLAYER.list.index];
 				navigator.mediaSession.metadata = new MediaMetadata({
 					title: music.name,
 					artist: music.artist,
-					artwork: [{ src: music.pic }, { src: music.cover }]
+					artwork: [{src: music.cover}]
 				});
 			}
 		})

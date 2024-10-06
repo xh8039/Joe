@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         ${_.agree}
                                     </li>
                                 </ul>
-                                <div class="last" style="display: ${_.category.length ? 'flex' : 'none'}">
+                                <div class="last" style="display: ${_.category.length ? 'block' : 'none'}">
                                     <i class="icon fa fa-folder-open-o" aria-hidden="true"></i>
                                     <a class="link" target="${_.target}" rel="noopener noreferrer" href="${_.category.length && _.category[0].permalink}">${_.category.length && _.category[0].name}</a>
                                 </div>

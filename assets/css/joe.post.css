@@ -96,8 +96,8 @@
 }
 
 .joe_bread__bread .item:first-child {
-	display: flex;
-	align-items: center
+	/* display: flex; */
+	/* align-items: center */
 }
 
 .joe_post__pagination {

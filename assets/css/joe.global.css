@@ -1649,8 +1649,8 @@
 
 .joe_list__item .meta .last {
 	margin-left: auto;
-	display: flex;
-	align-items: center;
+	/* display: flex; */
+	/* align-items: center; */
 	text-wrap: nowrap;
 }
 

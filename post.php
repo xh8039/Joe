@@ -66,7 +66,8 @@
 		<div class="joe_container joe_bread">
 			<ul class="joe_bread__bread">
 				<li class="item">
-					<i class="fa fa-map-marker" style="margin-right: 4px;margin-top: 1px;"></i>
+					<i class="fa fa-map-marker" style="margin-right: 2px;"></i>
+					<!-- <i class="fa fa-map-marker" style="margin-right: 4px;margin-top: 1px;"></i> -->
 					<a href="<?php $this->options->siteUrl(); ?>" class="link" title="首页"> 首页</a>
 				</li>
 				<li class="line">/</li>

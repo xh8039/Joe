@@ -35,7 +35,7 @@
 			autoplay: <?= $_GET['autoplay'] ? 'true' : 'false' ?>, // 视频自动播放
 			theme: '<?= $_GET['theme'] ? $_GET['theme'] : '#409eff' ?>', // 主题色
 			// lang: '', // 可选值: 'en', 'zh-cn', 'zh-tw'
-			preload: '<?= (isset($_GET['pic']) && $_GET['pic'] != 'null') ? 'metadata' : 'auto' ?>', // 视频预加载，可选值: 'none', 'metadata', 'auto'
+			preload: '<?= (empty($_GET['pic']) || $_GET['pic'] == 'null') ? 'auto' : 'metadata' ?>', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 			loop: <?= (isset($_GET['loop']) && $_GET['loop']) ? 'true' : 'false' ?>, // 视频循环播放
 			screenshot: <?= $_GET['screenshot'] ? 'true' : 'false' ?>, // 开启截图，如果开启，视频和视频封面需要允许跨域
 			airplay: true, // 在 Safari 中开启 AirPlay
@@ -43,7 +43,7 @@
 			playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
 			video: {
 				url: '<?= $_GET['url'] ?>',
-				<?= empty($_GET['pic']) ? null : 'pic: `'.$_GET['pic'].'`' ?>,
+				<?= (empty($_GET['pic']) || $_GET['pic'] == 'null') ? null : 'pic: `'.$_GET['pic'].'`' ?>,
 			}
 		})
 	</script>

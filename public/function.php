@@ -331,7 +331,7 @@ function markdown_filter(string $text): string
 	$text = preg_replace('/\{cloud title\="(.*?)" type\="\w+" url\="(.*?)" password\="(.*?)"\/\}/', '$1 下载地址：$2 提取码：$3', $text);
 
 	// 音乐标签
-	$text = preg_replace('/\{mp3 name\="(.*?)" artist\="(.*?)"/', '$1 - $2', $text);
+	$text = preg_replace('/\{mp3 name\="(.*?)" artist\="(.*?)".*?\/\}/', '$1 - $2', $text);
 
 	// 标签中有content值
 	$text = preg_replace('/\{.*?content\="(.*?)"\/\}/', '$1', $text);
@@ -350,9 +350,18 @@ function markdown_filter(string $text): string
  */
 function post_description(string $content, string  $title, int $length = 150): ?string
 {
-	$plainTxt = str_replace(["\n", '"'], [' ', '&quot;'], strip_tags(markdown_filter($content)));
-	$plainTxt = empty($plainTxt) ? $title : $plainTxt;
-	return trim(\Typecho\Common::subStr($plainTxt, 0, $length, '...'));
+	function html_filter(string $content, array $tags)
+	{
+		foreach ($tags as $key => $value) {
+			$content = preg_replace('/\<' . $value . '\>(.*?)\<\/' . $value . '\>/i', '$1 ', $content);
+		}
+		return $content;
+	}
+	$content = html_filter($content, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']);
+	$content = str_replace(["\n", '"', '<br>'], [' ', '&quot;', ' '], strip_tags(markdown_filter($content)));
+	$content = preg_replace('/\s+/', ' ', $content);
+	$content = empty($content) ? $title : $content;
+	return trim(\Typecho\Common::subStr($content, 0, $length, '...'));
 }
 
 function user_login($uid, $expire = 30243600)

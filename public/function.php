@@ -304,7 +304,7 @@ function markdown_filter($text)
 {
 	// 居中标题标签
 	$text = preg_replace('/{mtitle title="(.*?)"\/}/', ' $1', $text);
- 
+
 	// 云盘下载
 	$text = preg_replace('/{cloud title="(.*?)" type="\w+" url="(.*?)" password="(.*?)"\/}/', ' $1 下载地址：$2，提取码：$3', $text);
 
@@ -339,6 +339,9 @@ function markdown_filter($text)
 	// 剩下没有文本的单标签
 	$text = preg_replace('/{.*?\/}/', '', $text);
 
+	// 没有展开的单标签
+	$text = preg_replace('/{\w+ .*?\.\.\./', '', $text);
+	
 	$text = trim($text);
 	return $text;
 }

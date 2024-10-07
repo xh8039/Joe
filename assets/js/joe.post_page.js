@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					showConfirmButton: false, // 隐藏默认的确认按钮
 					showCancelButton: false, // 隐藏默认的取消按钮
 					showCloseButton: true,
-					width: 'auto'
+					// width: 'auto'
 				});
 				setTimeout(() => {
 					const createQrCodeAlert = (imageUrl) => {

@@ -53,6 +53,12 @@ html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
 }
 
 /* 赞赏弹窗内容 */
+
+html div:where(.swal2-container) .swal2-html-container {
+	padding: 0;
+	font-size: unset;
+}
+
 .rewards-modal-header {
 	backdrop-filter: unset !important;
 	border-radius: var(--main-radius) var(--main-radius) 0 0;
@@ -68,18 +74,19 @@ html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
 	overflow: hidden;
 	color: var(--background);
     background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
+	margin-bottom: 20px;
 }
 
-.rewards-modal-header>.colorful-bg>.colorful-make {
-	bottom: 0;
-	height: 290px;
-	width: 323px;
-	top: 60%;
+.colorful-bg>.colorful-make {
+    bottom: 0;
+    height: 290px;
+    width: 323px;
+    top: 60%;
 }
 
-.rewards-modal-header>.colorful-bg>.colorful-make,
-.rewards-modal-header>.colorful-bg>.colorful-make::after,
-.rewards-modal-header>.colorful-bg>.colorful-make::before {
+.colorful-bg>.colorful-make,
+.colorful-bg>.colorful-make::after,
+.colorful-bg>.colorful-make::before {
 	position: absolute;
 	color: var(--background);
 	background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
@@ -87,7 +94,7 @@ html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
 	content: ' ';
 }
 
-.rewards-modal-header>.colorful-bg>.colorful-make::before {
+.colorful-bg>.colorful-make::before {
     right: -558px;
     bottom: 0;
     height: 300px;
@@ -97,7 +104,7 @@ html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
     opacity: .6;
 }
 
-.rewards-modal-header>.colorful-bg>.colorful-make::after {
+.colorful-bg>.colorful-make::after {
     left: -262px;
     bottom: 0;
     height: 214px;

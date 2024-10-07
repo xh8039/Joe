@@ -353,7 +353,7 @@ function markdown_filter(string $text): string
  */
 function post_description(string $content, string  $title, int $length = 100): ?string
 {
-	$plainTxt = str_replace("\n", ' ', htmlspecialchars(strip_tags(markdown_filter($content))));
+	$plainTxt = str_replace(["\n",'"'], [' ','&quot;'], markdown_filter($content));
 	$plainTxt = empty($plainTxt) ? $title : $plainTxt;
 	return \Typecho\Common::subStr($plainTxt, 0, $length, '...');
 }

@@ -134,6 +134,39 @@ table {
 	padding: 0 15px
 }
 
+.text-center {
+    text-align: center;
+}
+
+.em2x {
+    font-size: 2em;
+}
+
+.em12 {
+    font-size: 1.2em;
+}
+
+.svg:not(:root) {
+    overflow: hidden;
+}
+
+.svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: -.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.padding-w10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 @media (min-width: 576px) {
 	.joe_container {
 		max-width: 540px

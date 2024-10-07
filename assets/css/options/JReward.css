@@ -4,6 +4,7 @@
 }
 
 @media (min-width: 768px) {
+
 	/* 赞赏弹窗 */
 	html .swal2-show {
 		box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
@@ -32,24 +33,82 @@ div:where(.swal2-container) img:where(.swal2-image) {
 
 /* 右上角关闭图标 */
 html div:where(.swal2-container) button:where(.swal2-close) {
-	font-size: 1.5em;
-	color: #fff;
+	font-size: 1.7em;
+	color: var(--background);
 	opacity: 0.6;
 	position: absolute;
 	top: 5px;
 	right: 5px;
 	transition: 0.2s;
 }
+
 html div:where(.swal2-container) button:where(.swal2-close):hover {
-	color: #fff;
+	color: var(--background);
 	opacity: 0.8;
 }
+
 html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
 	box-shadow: none;
 	opacity: 0.8;
 }
 
 /* 赞赏弹窗内容 */
+.rewards-modal-header {
+	backdrop-filter: unset !important;
+	border-radius: var(--main-radius) var(--main-radius) 0 0;
+	background-size: 120%;
+	position: relative;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.rewards-modal-header>.colorful-bg>.colorful-make {
+	bottom: 0;
+	height: 290px;
+	width: 323px;
+	top: 60%;
+}
+
+.rewards-modal-header>.colorful-bg>.colorful-make,
+.rewards-modal-header>.colorful-bg>.colorful-make::after,
+.rewards-modal-header>.colorful-bg>.colorful-make::before {
+	position: absolute;
+	color: var(--background);
+	background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
+	border-radius: 100%;
+	content: ' ';
+}
+
+.rewards-modal-header>.colorful-bg>.colorful-make::before {
+    right: -558px;
+    bottom: 0;
+    height: 300px;
+    width: 677px;
+    top: -325px;
+    transform: rotate(341deg);
+    opacity: .6;
+}
+
+.rewards-modal-header>.colorful-bg>.colorful-make::after {
+    left: -262px;
+    bottom: 0;
+    height: 214px;
+    width: 402px;
+    top: -170px;
+    transform: rotate(326deg);
+    opacity: .4;
+}
+
+.colorful-bg>.colorful-make+* {
+    position: relative;
+}
+
 .rewards.buttons-container {
 	display: flex;
 	justify-content: center;
@@ -65,6 +124,7 @@ html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
 	color: white;
 	line-height: 13.5px;
 }
+
 .rewards.buttons-container>button:last-child {
 	margin-right: 0px;
 }

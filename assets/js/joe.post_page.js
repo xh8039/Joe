@@ -264,8 +264,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		if ($('a.action-rewards').length > 0) {
 			$('a.action-rewards').click(() => {
 				Swal.fire({
-					title: Joe.REWARD.TITLE ? Joe.REWARD.TITLE : '喜欢就支持一下吧！',
-					html: `<div class="rewards buttons-container">${Joe.REWARD.WeChat ? '<button class="wechat-button">微信赞赏</button>' : ''}${Joe.REWARD.Alipay ? '<button class="alipay-button">支付宝赞赏</button>' : ''}${Joe.REWARD.QQ ? '<button class="qq-button">QQ赞赏</button></div>' : ''}`,
+					html: `
+					<div class="rewards-modal-header colorful-bg jb-blue">
+						<button class="close" data-dismiss="modal">
+							<svg class="ic-close" aria-hidden="true"><use xlink:href="#icon-close"></use></svg>
+						</button>
+						<div class="colorful-make"></div>
+						<div class="text-center">
+							<div class="em2x">
+								<svg class="em12" aria-hidden="true"><use xlink:href="#icon-money"></use></svg>
+								</div>
+							<div class="mt10 em12 padding-w10">${Joe.REWARD.TITLE ? Joe.REWARD.TITLE : '文章很赞！支持一下吧'}</div>
+						</div>
+					</div>
+					<div class="rewards buttons-container">${Joe.REWARD.WeChat ? '<button class="wechat-button">微信赞赏</button>' : ''}${Joe.REWARD.Alipay ? '<button class="alipay-button">支付宝赞赏</button>' : ''}${Joe.REWARD.QQ ? '<button class="qq-button">QQ赞赏</button></div>' : ''}`,
 					showConfirmButton: false, // 隐藏默认的确认按钮
 					showCancelButton: false, // 隐藏默认的取消按钮
 					showCloseButton: true,

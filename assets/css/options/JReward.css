@@ -131,7 +131,7 @@ html div:where(.swal2-container) .swal2-html-container {
 	border-radius: var(--main-radius);
 	cursor: pointer;
 	color: white;
-	line-height: 13.5px;
+	line-height: 14px;
 	font-size: 14px;
 }
 

@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="colorful-make"></div>
 						<div class="text-center">
 							<div class="em2x">
-								<svg class="em12" aria-hidden="true"><use xlink:href="#icon-money"></use></svg>
+								<svg class="em12 svg" aria-hidden="true"><use xlink:href="#icon-money"></use></svg>
 								</div>
 							<div class="mt10 em12 padding-w10">${Joe.REWARD.TITLE ? Joe.REWARD.TITLE : '文章很赞！支持一下吧'}</div>
 						</div>

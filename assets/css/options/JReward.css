@@ -38,6 +38,7 @@ html div:where(.swal2-container) button:where(.swal2-close) {
 	position: absolute;
 	top: 5px;
 	right: 5px;
+	transition: 0.2s;
 }
 html div:where(.swal2-container) button:where(.swal2-close):hover {
 	color: #fff;

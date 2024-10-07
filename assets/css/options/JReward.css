@@ -132,6 +132,7 @@ html div:where(.swal2-container) .swal2-html-container {
 	cursor: pointer;
 	color: white;
 	line-height: 13.5px;
+	font-size: 14px;
 }
 
 .rewards.buttons-container>button:last-child {

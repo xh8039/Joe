@@ -17166,7 +17166,7 @@
 </div>
 <div class="fitem">
     <label>主题色彩</label>
-    <input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#1989fa" name="color" placeholder="请输入十六进制颜色代码"/>
+    <input autocomplete="off" value="#1989fa" name="color" placeholder="请输入十六进制颜色代码"/>
 </div>
 <div class="fitem">
     <label>自动播放</label>
@@ -17509,7 +17509,7 @@
 </div>
 <div class="fitem">
     <label>主题色彩</label>
-    <input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#f0ad4e" name="theme" placeholder="请输入十六进制颜色代码"/>
+    <input autocomplete="off" value="#f0ad4e" name="theme" placeholder="请输入十六进制颜色代码"/>
 </div>
 <div class="fitem">
     <label>歌词内容</label>

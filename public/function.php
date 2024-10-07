@@ -302,7 +302,42 @@ function url_builder($url, array $param)
 /** 过滤Markdown语法代码 */
 function markdown_filter($text)
 {
-	$text = preg_replace('/{.*?}/', '', $text);
+	// 居中标题标签
+	$text = preg_replace('/{mtitle title="(.*?)"\/}/', '$1', $text);
+ 
+	// 云盘下载
+	$text = preg_replace('/{cloud title="(.*?)" type="\w+" url="(.*?)" password="(.*?)"\/}/', '$1 下载地址：$2，提取码：$3', $text);
+
+	// 音乐标签
+	$text = preg_replace('/{mp3 name="(.*?)" artist="(.*?)"/', '$1 - $2', $text);
+
+	// 标签中有content值
+	$text = preg_replace('/{.*?content="(.*?)"\/}/', '$1', $text);
+
+	// 标签页
+	$text = preg_replace('/{tabs}(.*?){\/tabs}/is', '$1', $text);
+
+	// 卡片列表
+	$text = preg_replace('/{card-list}(.*?){\/card-list}/is', '$1', $text);
+
+	// 时间轴
+	$text = preg_replace('/{timeline}(.*?){\/timeline}/is', '$1', $text);
+
+	// 描述卡片
+	$text = preg_replace('/{card-describe title="(.*?)"}(.*?){\/card-describe}/', '$1 - $2', $text);
+
+	// 折叠面板
+	$text = preg_replace('/{collapse}(.*?){\/collapse}/is', '$1', $text);
+	$text = preg_replace('/{collapse-item label="(.*?)" open}(.*?){\/collapse-item}/', '$1 - $2', $text);
+
+	// 宫格
+	$text = preg_replace('/{gird column="\d+" gap="\d+"}(.*?){\/gird}/is', '$1', $text);
+
+	// 其他开合标签
+	$text = preg_replace('/{\w+.*?}(.*?){\/\w+}/is', '$1', $text);
+
+	// 剩下没有文本的单标签
+	$text = preg_replace('/{.*?\/}/', '', $text);
 	return $text;
 }
 
@@ -334,7 +369,7 @@ function user_url($action)
 			break;
 		case 'login':
 			if (\Helper::options()->JUser_Switch == 'on') {
-			$url = \Typecho_Common::url('user/login', \Helper::options()->index) . '?from=' . $url;
+				$url = \Typecho_Common::url('user/login', \Helper::options()->index) . '?from=' . $url;
 			} else {
 				$url = \Helper::options()->adminUrl . 'login.php';
 			}

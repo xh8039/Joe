@@ -306,7 +306,7 @@ function markdown_filter(string $text): string
 	$text = preg_replace('/\{mtitle title\="(.*?)"\/\}/', '$1', $text);
 
 	// 云盘下载
-	$text = preg_replace('/\{cloud title\="(.*?)" type\="\w+" url\="(.*?)" password\="(.*?)"\/\}/', '$1 下载地址：$2，提取码：$3', $text);
+	$text = preg_replace('/\{cloud title\="(.*?)" type\="\w+" url\="(.*?)" password\="(.*?)"\/\}/', '$1 下载地址：$2 提取码：$3', $text);
 
 	// 音乐标签
 	$text = preg_replace('/\{mp3 name\="(.*?)" artist\="(.*?)"/', '$1 - $2', $text);
@@ -353,7 +353,7 @@ function markdown_filter(string $text): string
  */
 function post_description(string $content, string  $title, int $length = 150): ?string
 {
-	$plainTxt = str_replace(["\n",'"'], [' ','&quot;'], strip_tags(markdown_filter($content)));
+	$plainTxt = str_replace(["\n", '"'], [' ', '&quot;'], strip_tags(markdown_filter($content)));
 	$plainTxt = empty($plainTxt) ? $title : $plainTxt;
 	return \Typecho\Common::subStr($plainTxt, 0, $length, '...');
 }

@@ -74,7 +74,6 @@ html div:where(.swal2-container) .swal2-html-container {
 	overflow: hidden;
 	color: var(--background);
     background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
-	margin-bottom: 20px;
 }
 
 .colorful-bg>.colorful-make {
@@ -119,6 +118,7 @@ html div:where(.swal2-container) .swal2-html-container {
 }
 
 .rewards.buttons-container {
+	margin-top: 20px;
 	display: flex;
 	justify-content: center;
 }

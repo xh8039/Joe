@@ -341,9 +341,21 @@ function markdown_filter($text)
 
 	// 没有展开的单标签
 	$text = preg_replace('/\{\w+ .*?\.\.\./', '', $text);
-	
+
 	$text = trim($text);
 	return $text;
+}
+
+/**
+ * 对文章的简短纯文本描述
+ *
+ * @return string|null
+ */
+function post_description(string $content, string  $title, int $length = 100): ?string
+{
+	$plainTxt = str_replace("\n", ' ', markdown_filter(strip_tags($content)));
+	$plainTxt = empty($plainTxt) ? $title : htmlspecialchars($plainTxt);
+	return \Typecho\Common::subStr($plainTxt, 0, $length, '...');
 }
 
 function user_login($uid, $expire = 30243600)

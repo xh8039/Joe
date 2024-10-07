@@ -1,0 +1,52 @@
+.swal2-show {
+	box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+
+@media (min-width: 768px) {
+	html .swal2-show {
+		box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+	}
+}
+
+html div:where(.swal2-container) .swal2-html-container {
+	font-size: unset;
+    padding: 1em 1.6em 0;
+    padding: 0;
+}
+
+/* 右上角关闭图标 */
+html div:where(.swal2-container) button:where(.swal2-close) {
+	font-size: 1.7em;
+	color: var(--background);
+	opacity: 0.6;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	transition: 0.2s;
+}
+
+html div:where(.swal2-container) button:where(.swal2-close):hover {
+	color: var(--background);
+	opacity: 0.8;
+}
+
+html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
+	box-shadow: none;
+	opacity: 0.8;
+}
+
+/* 弹窗 */
+html div:where(.swal2-container) div:where(.swal2-popup) {
+	border-radius: var(--main-radius);
+}
+
+/* 弹窗标题 */
+html div:where(.swal2-container) h2:where(.swal2-title) {
+	font-size: 1.5em;
+}
+
+/* 弹窗图片 */
+html div:where(.swal2-container) img:where(.swal2-image) {
+	border-radius: var(--main-radius) var(--main-radius) 0 0;
+    margin: 0 !important;
+}

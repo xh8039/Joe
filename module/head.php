@@ -21,6 +21,11 @@
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
+
+<!-- Sweetalert弹窗CSS -->
+<link rel="stylesheet" href="<?= joe\cdn('limonte-sweetalert2/11.12.3/sweetalert2.min.css') ?>" />
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/sweetalert2/optimize.css'); ?>">
+
 <link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
@@ -46,7 +51,7 @@
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 <!-- Sweetalert弹窗 -->
-<script src="<?= Joe\cdn('limonte-sweetalert2/11.12.3/sweetalert2.all.min.js') ?>"></script>
+<script src="<?= Joe\cdn('limonte-sweetalert2/11.12.3/sweetalert2.min.js') ?>"></script>
 
 <!-- 自定义头部HTML代码 -->
 

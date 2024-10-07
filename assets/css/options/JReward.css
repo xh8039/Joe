@@ -17,7 +17,7 @@ div:where(.swal2-container) div:where(.swal2-popup) {
 
 /* 赞赏弹窗图片 */
 div:where(.swal2-container) img:where(.swal2-image) {
-	border-radius: var(--main-radius);
+	border-radius: var(--main-radius) var(--main-radius) 0 0;
 }
 
 /* 赞赏弹窗标题 */

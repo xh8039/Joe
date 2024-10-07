@@ -300,19 +300,19 @@ function url_builder($url, array $param)
 }
 
 /** 过滤Markdown语法代码 */
-function markdown_filter($text)
+function markdown_filter(string $text): string
 {
 	// 居中标题标签
-	$text = preg_replace('/\{mtitle title\="(.*?)"\/\}/', ' $1', $text);
+	$text = preg_replace('/\{mtitle title\="(.*?)"\/\}/', '$1', $text);
 
 	// 云盘下载
-	$text = preg_replace('/\{cloud title\="(.*?)" type\="\w+" url\="(.*?)" password\="(.*?)"\/\}/', ' $1 下载地址：$2，提取码：$3', $text);
+	$text = preg_replace('/\{cloud title\="(.*?)" type\="\w+" url\="(.*?)" password\="(.*?)"\/\}/', '$1 下载地址：$2，提取码：$3', $text);
 
 	// 音乐标签
-	$text = preg_replace('/\{mp3 name\="(.*?)" artist\="(.*?)"/', ' $1 - $2', $text);
+	$text = preg_replace('/\{mp3 name\="(.*?)" artist\="(.*?)"/', '$1 - $2', $text);
 
 	// 标签中有content值
-	$text = preg_replace('/\{.*?content\="(.*?)"\/\}/', ' $1', $text);
+	$text = preg_replace('/\{.*?content\="(.*?)"\/\}/', '$1', $text);
 
 	// 标签页
 	$text = preg_replace('/\{tabs\}(.*?)\{\/tabs\}/is', '$1', $text);
@@ -324,23 +324,23 @@ function markdown_filter($text)
 	$text = preg_replace('/\{timeline\}(.*?)\{\/timeline\}/is', '$1', $text);
 
 	// 描述卡片
-	$text = preg_replace('/\{card\-describe title\="(.*?)"\}(.*?)\{\/card\-describe\}/', ' $1 - $2', $text);
+	$text = preg_replace('/\{card\-describe title\="(.*?)"\}(.*?)\{\/card\-describe\}/', '$1 - $2', $text);
 
 	// 折叠面板
 	$text = preg_replace('/\{collapse\}(.*?)\{\/collapse\}/is', '$1', $text);
-	$text = preg_replace('/\{collapse\-item label\="(.*?)" open\}(.*?)\{\/collapse\-item\}/', ' $1 - $2', $text);
+	$text = preg_replace('/\{collapse\-item label\="(.*?)" open\}(.*?)\{\/collapse\-item\}/', '$1 - $2', $text);
 
 	// 宫格
 	$text = preg_replace('/\{gird column\="\d+" gap\="\d+"\}(.*?)\{\/gird\}/is', '$1', $text);
 
 	// 其他开合标签
-	$text = preg_replace('/\{\w+.*?\}(.*?)\{\/\w+\}/is', ' $1', $text);
+	$text = preg_replace('/\{[\w,\-]+.*?\}(.*?)\{\/[\w,\-]+\}/is', '$1', $text);
 
 	// 剩下没有文本的单标签
 	$text = preg_replace('/\{.*?\/\}/', '', $text);
 
 	// 没有展开的单标签
-	$text = preg_replace('/\{\w+ .*?\.\.\./', '', $text);
+	$text = preg_replace('/\{[\w,\-]+ .*?\.\.\./', '', $text);
 
 	$text = trim($text);
 	return $text;
@@ -353,8 +353,8 @@ function markdown_filter($text)
  */
 function post_description(string $content, string  $title, int $length = 100): ?string
 {
-	$plainTxt = str_replace("\n", ' ', markdown_filter(strip_tags($content)));
-	$plainTxt = empty($plainTxt) ? $title : htmlspecialchars($plainTxt);
+	$plainTxt = str_replace("\n", ' ', htmlspecialchars(strip_tags(markdown_filter($content))));
+	$plainTxt = empty($plainTxt) ? $title : $plainTxt;
 	return \Typecho\Common::subStr($plainTxt, 0, $length, '...');
 }
 

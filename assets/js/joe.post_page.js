@@ -281,17 +281,20 @@ document.addEventListener('DOMContentLoaded', () => {
 						});
 					};
 					// 支付宝赞赏按钮点击事件
-					document.querySelector('.rewards.buttons-container>.alipay-button').addEventListener('click', () => {
+					const AlipayButton = document.querySelector('.rewards.buttons-container>.alipay-button');
+					if (AlipayButton) AlipayButton.addEventListener('click', () => {
 						createQrCodeAlert(Joe.REWARD.Alipay); // 打开支付宝赞赏页面
 					});
 
 					// 微信赞赏按钮点击事件
-					document.querySelector('.rewards.buttons-container>.wechat-button').addEventListener('click', () => {
+					const WeChatButton = document.querySelector('.rewards.buttons-container>.wechat-button');
+					if (WeChatButton) WeChatButton.addEventListener('click', () => {
 						createQrCodeAlert(Joe.REWARD.WeChat); // 打开微信赞赏页面
 					});
 
 					// QQ赞赏按钮点击事件
-					document.querySelector('.rewards.buttons-container>.qq-button').addEventListener('click', () => {
+					const QQBUtton = document.querySelector('.rewards.buttons-container>.qq-button');
+					if (QQBUtton) QQBUtton.addEventListener('click', () => {
 						createQrCodeAlert(Joe.REWARD.QQ); // 打开 QQ 赞赏页面
 					});
 				}, 200);

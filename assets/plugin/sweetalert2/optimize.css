@@ -52,6 +52,7 @@ html div:where(.swal2-container) img:where(.swal2-image) {
 
 /* 弹窗按钮 */
 html div:where(.swal2-container) div:where(.swal2-actions) {
+	margin-top: 0;
 	margin-bottom: 20px;
 }
 html div:where(.swal2-container) button:where(.swal2-styled) {

@@ -54,6 +54,7 @@ html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
 	justify-content: center;
 }
 
+/* 赞赏弹窗支付方式按钮 */
 .rewards.buttons-container>button {
 	padding: 1vh 2vw;
 	margin-right: 1vh;
@@ -61,8 +62,8 @@ html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
 	border-radius: var(--main-radius);
 	cursor: pointer;
 	color: white;
+	line-height: 13.5px;
 }
-
 .rewards.buttons-container>button:last-child {
 	margin-right: 0px;
 }

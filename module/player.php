@@ -43,7 +43,7 @@
 			playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
 			video: {
 				url: '<?= $_GET['url'] ?>',
-				pic: <?= isset($_GET['pic']) ? "'" . $_GET['pic'] . "'" : 'null'  ?>,
+				<?= empty($_GET['pic']) ? null : 'pic: `'.$_GET['pic'].'`' ?>,
 			}
 		})
 	</script>

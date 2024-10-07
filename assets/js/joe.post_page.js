@@ -258,6 +258,46 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 	$(document).on('click', () => $('.joe_detail__operate-share').removeClass('active'));
 		// }
 	}
+
+	/** 激活文章赞赏模块 */
+	{
+		if ($('a.action-rewards').length > 0) {
+			$('a.action-rewards').click(() => {
+				Swal.fire({
+					title: Joe.REWARD.TITLE ? Joe.REWARD.TITLE : '喜欢就支持一下吧！',
+					html: `<div class="rewards buttons-container">${Joe.REWARD.WeChat ?? '<button class="wechat-button">微信赞赏</button>'}${Joe.REWARD.Alipay ?? '<button class="alipay-button">支付宝赞赏</button>'}${Joe.REWARD.QQ ?? '<button class="qq-button">QQ赞赏</button></div>'}`,
+					showConfirmButton: false, // 隐藏默认的确认按钮
+					showCancelButton: false // 隐藏默认的取消按钮
+				});
+				setTimeout(() => {
+					const createQrCodeAlert = (imageUrl) => {
+						Swal.fire({
+							title: '请扫码进行赞赏',
+							imageUrl: imageUrl,
+							imageWidth: 250,
+							imageHeight: 250,
+							showConfirmButton: false,
+							showCancelButton: false
+						});
+					};
+					// 支付宝赞赏按钮点击事件
+					document.querySelector('.rewards.buttons-container>.alipay-button').addEventListener('click', () => {
+						createQrCodeAlert(Joe.REWARD.Alipay); // 打开支付宝赞赏页面
+					});
+
+					// 微信赞赏按钮点击事件
+					document.querySelector('.rewards.buttons-container>.wechat-button').addEventListener('click', () => {
+						createQrCodeAlert(Joe.REWARD.WeChat); // 打开微信赞赏页面
+					});
+
+					// QQ赞赏按钮点击事件
+					document.querySelector('.rewards.buttons-container>.qq-button').addEventListener('click', () => {
+						createQrCodeAlert(Joe.REWARD.QQ); // 打开 QQ 赞赏页面
+					});
+				}, 200);
+			});
+		}
+	}
 });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */

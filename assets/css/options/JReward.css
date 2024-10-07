@@ -1,0 +1,32 @@
+div:where(.swal2-container) h2:where(.swal2-title) {
+	font-size: 1.5em !important;
+}
+
+.rewards.buttons-container {
+	display: flex;
+	justify-content: center;
+}
+
+.rewards.buttons-container>button {
+	padding: 1vh 2vw;
+	margin: 0 1vh;
+	border: none;
+	border-radius: var(--main-radius);
+	cursor: pointer;
+	color: white;
+}
+
+.rewards.buttons-container>.alipay-button {
+	/* 支付宝深蓝色 */
+	background-color: #1678FF;
+}
+
+.rewards.buttons-container>.wechat-button {
+	/* 微信绿色 */
+	background-color: #07C160;
+}
+
+.rewards.buttons-container>.qq-button {
+	/* QQ浅蓝色 */
+	background-color: #12B7F5;
+}

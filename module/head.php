@@ -45,6 +45,8 @@
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
+<!-- Sweetalert弹窗 -->
+<script src="<?= Joe\cdn('limonte-sweetalert2/11.12.3/sweetalert2.all.min.js') ?>"></script>
 
 <!-- 自定义头部HTML代码 -->
 

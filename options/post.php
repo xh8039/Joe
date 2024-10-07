@@ -197,3 +197,43 @@ $JPrismTheme = new Typecho_Widget_Helper_Form_Element_Select(
 );
 $JPrismTheme->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPrismTheme->multiMode());
+
+$JRewardTitle = new Typecho_Widget_Helper_Form_Element_Text(
+	'JRewardTitle',
+	NULL,
+	'文章很赞！支持一下吧',
+	'文章赞赏标题',
+	'介绍：请输入图片文件直链'
+);
+$JRewardTitle->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JRewardTitle);
+
+$JWeChatRewardImg = new Typecho_Widget_Helper_Form_Element_Text(
+	'JWeChatRewardImg',
+	NULL,
+	NULL,
+	'微信赞赏收款码',
+	'介绍：请输入图片文件直链'
+);
+$JWeChatRewardImg->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JWeChatRewardImg);
+
+$JAlipayRewardImg = new Typecho_Widget_Helper_Form_Element_Text(
+	'JAlipayRewardImg',
+	NULL,
+	NULL,
+	'支付宝赞赏收款码',
+	'介绍：请输入图片文件直链'
+);
+$JAlipayRewardImg->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JAlipayRewardImg);
+
+$JQQRewardImg = new Typecho_Widget_Helper_Form_Element_Text(
+	'JQQRewardImg',
+	NULL,
+	NULL,
+	'支付宝赞赏收款码',
+	'介绍：请输入图片文件直链'
+);
+$JQQRewardImg->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JQQRewardImg);

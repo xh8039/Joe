@@ -19,7 +19,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		LAZY_LOAD: `<?php \joe\getLazyload() ?>`,
 		BIRTHDAY: `<?php $this->options->JBirthDay() ?>`,
 		MOTTO: `<?php \joe\getAsideAuthorMotto() ?>`,
-		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`
+		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`,
+		REWARD: {
+			TITLE: `<?php $this->options->JRewardTitle() ?>`,
+			WeChat: `<?php $this->options->JWeChatRewardImg() ?>`,
+			Alipay: `<?php $this->options->JAlipayRewardImg() ?>`,
+			QQ: `<?php $this->options->JQQRewardImg() ?>`
+		}
 	}
 </script>
 <style>
@@ -60,7 +66,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		echo "body {font-family: 'Joe Font';}";
 	}
 	?>
-
 	/* 自定义CSS */
 	<?php $this->options->JCustomCSS() ?>
 	/* 自定义CSS */

@@ -62,11 +62,28 @@
 			</div>
 		</div>
 	</span>
-	<a href="javascript:;" data-action="favorite" class="action action-favorite">
-		<svg class="icon" aria-hidden="true">
-			<use xlink:href="#icon-favorite"></use>
-		</svg>
-		<text>收藏</text>
-		<count></count>
-	</a>
+
+	<?php
+	if ($this->options->JWeChatRewardImg || $this->options->JAlipayRewardImg || $this->options->JQQRewardImg) {
+	?>
+		<link rel="stylesheet" href="<?= Joe\theme_url('assets/css/options/JReward.css') ?>">
+		<a href="javascript:;" class="rewards action action-rewards">
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="#icon-money"></use>
+			</svg>
+			<text>赞赏</text>
+		</a>
+	<?php
+	} else {
+	?>
+		<a href="javascript:;" data-action="favorite" class="action action-favorite">
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="#icon-favorite"></use>
+			</svg>
+			<text>收藏</text>
+			<count></count>
+		</a>
+	<?php
+	}
+	?>
 </div>

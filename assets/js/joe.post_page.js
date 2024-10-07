@@ -267,17 +267,19 @@ document.addEventListener('DOMContentLoaded', () => {
 					title: Joe.REWARD.TITLE ? Joe.REWARD.TITLE : '喜欢就支持一下吧！',
 					html: `<div class="rewards buttons-container">${Joe.REWARD.WeChat ? '<button class="wechat-button">微信赞赏</button>' : ''}${Joe.REWARD.Alipay ? '<button class="alipay-button">支付宝赞赏</button>' : ''}${Joe.REWARD.QQ ? '<button class="qq-button">QQ赞赏</button></div>' : ''}`,
 					showConfirmButton: false, // 隐藏默认的确认按钮
-					showCancelButton: false // 隐藏默认的取消按钮
+					showCancelButton: false, // 隐藏默认的取消按钮
+					showCloseButton: true,
 				});
 				setTimeout(() => {
 					const createQrCodeAlert = (imageUrl) => {
 						Swal.fire({
 							title: '请扫码进行赞赏',
 							imageUrl: imageUrl,
-							imageWidth: 250,
-							imageHeight: 250,
+							imageWidth: '300px',
+							width: '300px', // 设置弹出框宽度
 							showConfirmButton: false,
-							showCancelButton: false
+							showCancelButton: false,
+							showCloseButton: true,
 						});
 					};
 					// 支付宝赞赏按钮点击事件

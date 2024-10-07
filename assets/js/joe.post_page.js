@@ -266,9 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				Swal.fire({
 					html: `
 					<div class="rewards-modal-header colorful-bg jb-blue">
-						<button class="close" data-dismiss="modal">
-							<svg class="ic-close" aria-hidden="true"><use xlink:href="#icon-close"></use></svg>
-						</button>
 						<div class="colorful-make"></div>
 						<div class="text-center">
 							<div class="em2x">

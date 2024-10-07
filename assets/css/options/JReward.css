@@ -66,6 +66,8 @@ html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
+	color: var(--background);
+    background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
 }
 
 .rewards-modal-header>.colorful-bg>.colorful-make {

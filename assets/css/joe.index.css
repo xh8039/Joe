@@ -285,6 +285,13 @@
 .joe_index__hot-list .item>.item-body>.item-meta>.meta-author>span {
 	margin-left: 6px;
 	padding-bottom: 1px;
+	white-space: nowrap;
+    overflow: hidden;
+    max-width: 67px;
+}
+
+.joe_index__hot-list .item>.item-body>.item-meta>.meta-right {
+	white-space: nowrap;
 }
 
 .joe_index__hot-list .item>.item-body>.item-meta>.meta-right>item {

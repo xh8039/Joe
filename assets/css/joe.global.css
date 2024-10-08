@@ -1022,11 +1022,7 @@
 }
 
 .joe_aside__item.author .list .item .link:hover {
-	background-image: var(--back-line-right);
-
-	-webkit-background-clip: text;
-
-	-webkit-text-fill-color: transparent;
+	color: var(--theme);
 }
 
 .joe_aside__item.author .list .item .link:hover::after {

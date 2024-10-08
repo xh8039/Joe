@@ -290,7 +290,11 @@ if ($this->options->JLoading != 'off') {
 			<div class="joe_header__searchout-inner">
 				<form class="search" method="post" action="<?php $this->options->siteUrl(); ?>">
 					<input maxlength="16" autocomplete="off" placeholder="请输入关键字..." name="s" value="<?php echo $this->is('search') ? $this->archiveTitle(' &raquo; ', '', '') : '' ?>" class="input" type="text" />
-					<button type="submit" class="submit">搜 索</button>
+					<button type="submit" class="submit">
+						<svg style="fill: #fff;" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+							<path d="M1008.19 932.031L771.72 695.56a431.153 431.153 0 1 0-76.158 76.158l236.408 236.472a53.758 53.758 0 0 0 76.158 0 53.758 53.758 0 0 0 0-76.158zM107.807 431.185a323.637 323.637 0 0 1 323.316-323.381 323.7 323.7 0 0 1 323.381 323.38 323.637 323.637 0 0 1-323.38 323.317 323.637 323.637 0 0 1-323.317-323.316z"></path>
+						</svg>
+					</button>
 				</form>
 				<?php $this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 20))->to($tags); ?>
 				<?php if ($tags->have()) : ?>

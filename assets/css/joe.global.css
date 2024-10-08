@@ -576,7 +576,7 @@
 	padding: 0 10px;
 	height: 36px;
 	border: none;
-	background: var(--back-line-right);
+	background: var(--theme);
 	color: #fff;
 	border-radius: 0 2px 2px 0
 }

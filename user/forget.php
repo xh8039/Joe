@@ -54,7 +54,7 @@ $this->need('user/header.php');
 	<?php $this->need('module/footer.php'); ?>
 	<script>
 		! function(t) {
-			let from = '<?= $_GET['from'] ?>';
+			let from = '<?= addslashes(strip_tags($_GET['from'])) ?>';
 			let btn = function(obj, msg, code) {
 				obj.html(msg);
 				obj.attr("disabled", code);

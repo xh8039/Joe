@@ -8,7 +8,7 @@ if ($this->user->hasLogin()) {
 	if (stripos($from, $_SERVER['HTTP_HOST'])) {
 		?>
 		<script>
-			let from = '<?= $from ?>';
+			let from = '<?= addslashes(strip_tags($from)) ?>';
 			window.location.href = from ? from : "<?= Typecho_Common::url('/', Helper::options()->index) ?>";
 		</script>
 		<?php

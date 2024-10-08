@@ -187,7 +187,9 @@ function _handleAgree($self)
 		if ($type === "agree") {
 			$db->query($db->update('table.contents')->rows(array('agree' => (int)$row['agree'] + 1))->where('cid = ?', $cid));
 		} else {
-			$db->query($db->update('table.contents')->rows(array('agree' => (int)$row['agree'] - 1))->where('cid = ?', $cid));
+			if (intval($row['agree']) - 1 >= 0) {
+				$db->query($db->update('table.contents')->rows(array('agree' => (int)$row['agree'] - 1))->where('cid = ?', $cid));
+			}
 		}
 		$self->response->throwJson(array(
 			"code" => 1,

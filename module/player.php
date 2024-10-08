@@ -42,10 +42,10 @@
 			volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
 			playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
 			video: {
-				url: `<?= $_GET['url'] ?>`,
-				pic: <?= (empty($_GET['pic']) || $_GET['pic'] == 'null') ? 'null' : '`' . $_GET['pic'] . '`' ?>,
+				url: "<?= addslashes(strip_tags($_GET['url'])) ?>",
+				pic: <?= (empty($_GET['pic']) || $_GET['pic'] == 'null') ? 'null' : '"' . addslashes(strip_tags($_GET['pic'])) . '"' ?>,
 			}
-		})
+		});
 	</script>
 </body>
 

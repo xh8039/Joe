@@ -8,46 +8,72 @@ function _parseContent($post, $login)
 	$content = $post->content;
 	$content = _parseReply($content);
 
+	// 跑马灯
 	if (strpos($content, '{lamp/}') !== false) {
 		$content = strtr($content, array(
 			"{lamp/}" => '<span class="joe_lamp"></span>',
 		));
 	}
+
+	// 任务
 	if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
 		$content = strtr($content, array(
+			// 任务已完成
 			"{x}" => '<input type="checkbox" class="joe_checkbox" checked disabled></input>',
+			// 任务未完成
 			"{ }" => '<input type="checkbox" class="joe_checkbox" disabled></input>'
 		));
 	}
+
+	// 网易云音乐
 	if (strpos($content, '{music') !== false) {
+		// 网易云歌单
 		$content = preg_replace('/{music-list([^}]*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
+		// 网易云单首
 		$content = preg_replace('/{music([^}]*)\/}/SU', '<joe-music $1></joe-music>', $content);
 	}
+
+	// 音乐标签
 	if (strpos($content, '{mp3') !== false) {
 		$content = preg_replace('/{mp3([^}]*)\/}/SU', '<joe-mp3 $1></joe-mp3>', $content);
 	}
+
+	// 哔哩哔哩视频
 	if (strpos($content, '{bilibili') !== false) {
 		$content = preg_replace('/{bilibili([^}]*)\/}/SU', '<joe-bilibili $1></joe-bilibili>', $content);
 	}
+
+	// 视频
 	if (strpos($content, '{dplayer') !== false) {
 		$player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : Helper::options()->themeUrl . '/module/player.php?url=';
 		$content = preg_replace('/{dplayer([^}]*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
 	}
+
+	// 居中标题标签
 	if (strpos($content, '{mtitle') !== false) {
 		$content = preg_replace('/{mtitle([^}]*)\/}/SU', '<joe-mtitle $1></joe-mtitle>', $content);
 	}
+
+	// 多彩按钮
 	if (strpos($content, '{abtn') !== false) {
 		$content = preg_replace('/{abtn([^}]*)\/}/SU', '<joe-abtn $1></joe-abtn>', $content);
 	}
+
+	// 云盘下载
 	if (strpos($content, '{cloud') !== false) {
 		$content = preg_replace('/{cloud([^}]*)\/}/SU', '<joe-cloud $1></joe-cloud>', $content);
 	}
+
+	// 便条按钮
 	if (strpos($content, '{anote') !== false) {
 		$content = preg_replace('/{anote([^}]*)\/}/SU', '<joe-anote $1></joe-anote>', $content);
 	}
+
+	// 彩色虚线
 	if (strpos($content, '{dotted') !== false) {
 		$content = preg_replace('/{dotted([^}]*)\/}/SU', '<joe-dotted $1></joe-dotted>', $content);
 	}
+
 	if (strpos($content, '{message') !== false) {
 		$content = preg_replace('/{message([^}]*)\/}/SU', '<joe-message $1></joe-message>', $content);
 	}

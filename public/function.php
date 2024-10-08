@@ -168,23 +168,13 @@ function getAsideAuthorMotto()
 /* 获取文章摘要 */
 function getAbstract($item, $type = true)
 {
-	$abstract = "";
-	if ($item->password) {
-		$abstract = "加密文章，请前往内页查看详情";
+	if ($item->fields->abstract) {
+		$abstract = $item->fields->abstract;
 	} else {
-		if ($item->fields->abstract) {
-			$abstract = $item->fields->abstract;
-		} else {
-			$abstract = strip_tags($item->excerpt);
-			if (strpos($abstract, '{hide') !== false) {
-				$abstract = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '隐藏内容，请前往内页查看详情', $abstract);
-			}
-		}
+		$abstract = post_description($item, null);
 	}
-	if ($abstract === '') {
+	if (empty($abstract)) {
 		$abstract = "暂无简介";
-	} else {
-		$abstract = markdown_filter($abstract);
 	}
 	if ($type) echo $abstract;
 	else return $abstract;
@@ -300,47 +290,98 @@ function url_builder($url, array $param)
 }
 
 /** 过滤Markdown语法代码 */
-function markdown_filter(string $text): string
+function markdown_filter(string $content): string
 {
-	// 标签页
-	$text = preg_replace('/\{tabs\}(.*?)\{\/tabs\}/is', '$1', $text);
 
-	// 卡片列表
-	$text = preg_replace('/\{card\-list\}(.*?)\{\/card\-list\}/is', '$1', $text);
+	// 任务
+	$content = str_replace('{ }', ' ', $content);
+	$content = str_replace('{x}', ' ', $content);
 
-	// 时间轴
-	$text = preg_replace('/\{timeline\}(.*?)\{\/timeline\}/is', '$1', $text);
-
-	// 描述卡片
-	$text = preg_replace('/\{card\-describe title\="(.*?)"\}(.*?)\{\/card\-describe\}/', '$1 - $2', $text);
-
-	// 折叠面板
-	$text = preg_replace('/\{collapse\}(.*?)\{\/collapse\}/is', '$1', $text);
-	$text = preg_replace('/\{collapse\-item label\="(.*?)" open\}(.*?)\{\/collapse\-item\}/', '$1 - $2', $text);
-
-	// 宫格
-	$text = preg_replace('/\{gird column\="\d+" gap\="\d+"\}(.*?)\{\/gird\}/is', '$1', $text);
-
-	// 其他开合标签
-	$text = preg_replace('/\{[\w,\-]+.*?\}(.*?)\{\/[\w,\-]+\}/is', '$1', $text);
-
-	// 居中标题标签
-	$text = preg_replace('/\{mtitle title\="(.*?)"\/\}/', '$1', $text);
-
-	// 云盘下载
-	$text = preg_replace('/\{cloud title\="(.*?)" type\="\w+" url\="(.*?)" password\="(.*?)"\/\}/', '$1 下载地址：$2 提取码：$3', $text);
+	// 网易云音乐
+	$content = preg_replace('/{music-list([^}]*)\/}/', ' ', $content);
+	$content = preg_replace('/{music([^}]*)\/}/', ' ', $content);
 
 	// 音乐标签
-	$text = preg_replace('/\{mp3 name\="(.*?)" artist\="(.*?)".*?\/\}/', '$1 - $2', $text);
+	$content = preg_replace('/\{mp3 name\="(.*?)" artist\="(.*?)".*?\/\}/S', '$1 - $2', $content);
+
+	// 哔哩哔哩视频
+	$content = preg_replace('/{bilibili([^}]*)\/}/', ' ', $content);
+
+	// 视频
+	$content = preg_replace('/{dplayer([^}]*)\/}/', ' ', $content);
+
+	// 居中标题标签
+	$content = preg_replace('/\{mtitle title\="(.*?)"\/\}/', '$1', $content);
+
+	// 多彩按钮
+	$content = preg_replace('/\{abtn.*?content\="(.*?)"\/\}/', '$1', $content);
+
+	// 云盘下载
+	$content = preg_replace('/\{cloud title\="(.*?)" type\="\w+" url\="(.*?)" password\="(.*?)"\/\}/', '$1 下载地址：$2 提取码：$3', $content);
+
+	// 便条按钮
+	$content = preg_replace('/\{anote.*?content\="(.*?)"\/\}/', '$1', $content);
+
+	// 彩色虚线
+	$content = preg_replace('/{dotted([^}]*)\/}/', ' ', $content);
+
+	// 消息提示
+	$content = preg_replace('/\{message type="\w+" content\="(.*?)"\/\}/', '$1', $content);
+
+	// 进度条
+	$content = preg_replace('/\{progress percentage="(\d+)" color\="#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})"\/\}/', '进度$1%', $content);
+
+	// 隐藏内容
+	$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '隐藏内容，请前往内页查看详情', $content);
+
+	// 以下为双标签
+
+	// 默认卡片
+	$content = preg_replace('/\{card\-default label\="(.*?)" width\="\d+"\}([\s\S]*?)\{\/card\-default\}/', '$1 - $2', $content);
+
+	// 标注
+	$content = preg_replace('/\{callout color\="#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})"\}([\s\S]*?)\{\/callout\}/', '$1', $content);
+
+	// 警告提示
+	$content = preg_replace('/\{alert type\="\w+"\}([\s\S]*?)\{\/alert\}/', '$1', $content);
+
+	// 描述卡片
+	$content = preg_replace('/\{card\-describe title\="(.*?)"\}([\s\S]*?)\{\/card\-describe\}/', '$1 - $2', $content);
+
+	// 标签页
+	$content = preg_replace('/\{tabs\}([\s\S]*?)\{\/tabs\}/', '$1', $content);
+	$content = preg_replace('/\{tabs\-pane label\="(.*?)"}([\s\S]*?)\{\/tabs\-pane\}/', '$1 $2', $content);
+
+	// 卡片列表
+	$content = preg_replace('/\{card\-list\}([\s\S]*?)\{\/card\-list\}/', '$1', $content);
+	$content = preg_replace('/\{card\-list\-item\}([\s\S]*?)\{\/card\-list\-item\}/', '$1', $content);
+
+	// 时间轴
+	$content = preg_replace('/\{timeline\}([\s\S]*?)\{\/timeline\}/', '$1', $content);
+	$content = preg_replace('/\{timeline\-item color\="#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})"\}([\s\S]*?)\{\/timeline\-item\}/', '$1', $content);
+
+	// 折叠面板
+	$content = preg_replace('/\{collapse\}([\s\S]*?)\{\/collapse\}/', '$1', $content);
+	$content = preg_replace('/\{collapse\-item label\="(.*?)"\s?[open]*\}([\s\S]*?)\{\/collapse\-item\}/', '$1 - $2', $content);
+
+	// 宫格
+	$content = preg_replace('/\{gird column\="\d+" gap\="\d+"\}([\s\S]*?)\{\/gird\}/', '$1', $content);
+	$content = preg_replace('/\{gird\-item\}([\s\S]*?)\{\/gird\-item\}/', '$1', $content);
+
+	// 复制
+	$content = preg_replace('/\{copy showText\="(.*?)" copyText\="(.*?)"\/\}/', '$1 $2', $content);
+
+	// 其他开合标签
+	// $content = preg_replace('/\{[\w,\-]+.*?\}(.*?)\{\/[\w,\-]+\}/S', '$1', $content);
 
 	// 标签中有content值
-	$text = preg_replace('/\{.*?content\="(.*?)"\/\}/', '$1', $text);
+	// $content = preg_replace('/\{.*?content\="(.*?)"\/\}/S', '$1', $content);
 
 	// 剩下没有文本的单标签
-	$text = preg_replace('/\{.*?\/\}/', '', $text);
+	// $content = preg_replace('/\{.*?\/\}/S', ' ', $content);
 
-	$text = trim($text);
-	return $text;
+	$content = trim($content);
+	return $content;
 }
 
 /**
@@ -348,20 +389,30 @@ function markdown_filter(string $text): string
  *
  * @return string|null
  */
-function post_description(string $content, string  $title, int $length = 150): ?string
+function post_description($item, ?int $length = 150): ?string
 {
-	function html_filter(string $content, array $tags)
-	{
-		foreach ($tags as $key => $value) {
-			$content = preg_replace('/\<' . $value . '\>(.*?)\<\/' . $value . '\>/i', '$1 ', $content);
+	if ($item->password) {
+		$content = "加密文章，请前往内页查看详情";
+	} else {
+		$content = $item->content;
+		$content = html_tags_filter($content, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']);
+		$content = str_replace(['<br>'], [' '], $content);
+		$content = str_replace(["\n", '"'], [' ', '&quot;'], strip_tags(markdown_filter($content)));
+		$content = preg_replace('/\s+/s', ' ', $content);
+		$content = empty($content) ? $item->title : $content;
+		if (is_numeric($length)) {
+			return trim(\Typecho\Common::subStr($content, 0, $length, '...'));
 		}
-		return $content;
+		return trim($content);
 	}
-	$content = html_filter($content, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']);
-	$content = str_replace(["\n", '"', '<br>'], [' ', '&quot;', ' '], strip_tags(markdown_filter($content)));
-	$content = preg_replace('/\s+/', ' ', $content);
-	$content = empty($content) ? $title : $content;
-	return trim(\Typecho\Common::subStr($content, 0, $length, '...'));
+}
+
+function html_tags_filter(string $content, array $tags): string
+{
+	foreach ($tags as $value) {
+		$content = preg_replace('/\<' . $value . '\>(.*?)\<\/' . $value . '\>/i', '$1 ', $content);
+	}
+	return $content;
 }
 
 function user_login($uid, $expire = 30243600)

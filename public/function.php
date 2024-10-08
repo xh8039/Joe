@@ -397,6 +397,7 @@ function post_description($item, ?int $length = 150): ?string
 		$content = $item->content;
 		$content = html_tags_filter($content, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']);
 		$content = str_replace(['<br>'], [' '], $content);
+		$content = preg_replace('/\<img src\=".*?" alt\="(.*?)">/', '$1图片', $content);
 		$content = str_replace(["\n", '"'], [' ', '&quot;'], strip_tags(markdown_filter($content)));
 		$content = preg_replace('/\s+/s', ' ', $content);
 		$content = empty($content) ? $item->title : $content;

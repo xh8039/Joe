@@ -158,7 +158,7 @@ if ($this->options->JLoading != 'off') {
 			</nav>
 			<form class="joe_header__above-search" method="post" action="<?php $this->options->siteUrl(); ?>">
 				<input maxlength="16" autocomplete="off" placeholder="请输入关键字..." name="s" value="<?php echo $this->is('search') ? $this->archiveTitle(' &raquo; ', '', '') : '' ?>" class="input" type="text" />
-				<button type="submit" class="submit">搜 索</button>
+				<button type="submit" class="submit">Search</button>
 				<span class="icon"></span>
 				<nav class="result">
 					<?php $this->widget('Widget_Contents_Hot@Search', 'pageSize=5')->to($item); ?>

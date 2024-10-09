@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-if ($this->options->JLoading != 'off') {
+if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 	$this->need('module/loading/' . $this->options->JLoading . '.php');
 	$this->need('module/loading/script.php');
 }

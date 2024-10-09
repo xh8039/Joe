@@ -252,19 +252,19 @@ function _pushRecord($self)
 		return;
 	}
 
-	$token = Helper::options()->JBaiduToken;
+	$token = trim(Helper::options()->JBaiduToken);
 	$domain = $self->request->domain;
 	$url = $self->request->url;
 	$urls = explode(",", $url);
 	$api = "http://data.zz.baidu.com/urls?site={$domain}&token={$token}";
 	$ch = curl_init();
-	$options =  array(
+	$options =  [
 		CURLOPT_URL => $api,
 		CURLOPT_POST => true,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_POSTFIELDS => implode("\n", $urls),
-		CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
-	);
+		CURLOPT_HTTPHEADER => array('Content-Type: text/plain')
+	];
 	curl_setopt_array($ch, $options);
 	$result = curl_exec($ch);
 	curl_close($ch);
@@ -292,6 +292,20 @@ function _pushRecord($self)
 						'float_value' => '0',
 					))
 			);
+		}
+	}
+	if (!empty($result['message'])) {
+		$messages = [
+			'site error' => '站点未在站长平台验证',
+			'empty content' => 'post内容为空',
+			'only 2000 urls are allowed once' => '每次最多只能提交2000条链接',
+			'over quota' => '超过每日配额了，超配额后再提交都是无效的',
+			'token is not valid' => 'token错误',
+			'not found' => '接口地址填写错误',
+			'internal error, please try later' => '服务器偶然异常，通常重试就会成功'
+		];
+		foreach ($messages as $key => $value) {
+			if ($result['message'] == $key) $result['message'] = $value;
 		}
 	}
 	$self->response->throwJson(array(

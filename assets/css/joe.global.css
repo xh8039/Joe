@@ -2423,7 +2423,7 @@
 .joe_tabs__head-item::after {
 	content: '';
 	position: absolute;
-	background: var(--back-line-right);
+	background: var(--theme);
 	bottom: 0;
 	left: 15px;
 	right: 15px;

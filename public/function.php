@@ -547,8 +547,30 @@ function cdn($path)
 	if ($lastChar != '/') {
 		$cdnpublic = $cdnpublic . '/';
 	}
-	$url = $cdnpublic . $path;
+	if (strstrs($cdnpublic, ['||', '//cdn.jsdelivr.net/npm/', '//jsd.onmicrosoft.cn/npm/']) !== false) {
+		$pos = strpos($cdnpublic, '||'); // 查找 || 的位置
+		if ($pos !== false) {
+			$cdnpublic_explode = explode('||', $cdnpublic, 2); // 通过 || 分割 $cdnpublic
+			$cdnpublic = trim($cdnpublic_explode[0]);// 获取 || 之前的内容
+			$backslash = trim($cdnpublic_explode[1]); // 获取 || 之后的内容
+			$backslash = empty($backslash) ? '@' : $backslash; // 检查 || 之后的内容是否为空
+		} else {
+			$backslash = '@';
+		}
+		$start_backslash = strstr($path, '/');
+		if ($start_backslash !== false) {
+			$path = substr_replace($path, $backslash, $start_backslash, 1);
+		}
+	}
+	$url = trim($cdnpublic) . trim($path);
 	return $url;
+}
+
+function strstrs(string $haystack, array $needles)
+{
+	foreach ($needles as $value) {
+		if (stristr($haystack, $value) !== false) return true;
+	}
 }
 
 /**

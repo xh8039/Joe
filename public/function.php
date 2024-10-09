@@ -547,7 +547,7 @@ function cdn($path)
 	if ($lastChar != '/') {
 		$cdnpublic = $cdnpublic . '/';
 	}
-	if (strstrs($cdnpublic, ['||', '//cdn.jsdelivr.net/npm/', '//jsd.onmicrosoft.cn/npm/']) !== false) {
+	if (strstrs($cdnpublic, ['||', '//cdn.jsdelivr.net/npm/', '//jsd.onmicrosoft.cn/npm/'])) {
 		$pos = strpos($cdnpublic, '||'); // 查找 || 的位置
 		if ($pos !== false) {
 			$cdnpublic_explode = explode('||', $cdnpublic, 2); // 通过 || 分割 $cdnpublic
@@ -557,7 +557,7 @@ function cdn($path)
 		} else {
 			$backslash = '@';
 		}
-		$start_backslash = strstr($path, '/');
+		$start_backslash = strpos($path, '/');
 		if ($start_backslash !== false) {
 			$path = substr_replace($path, $backslash, $start_backslash, 1);
 		}
@@ -566,11 +566,12 @@ function cdn($path)
 	return $url;
 }
 
-function strstrs(string $haystack, array $needles)
+function strstrs(string $haystack, array $needles) : bool
 {
 	foreach ($needles as $value) {
 		if (stristr($haystack, $value) !== false) return true;
 	}
+	return false;
 }
 
 /**

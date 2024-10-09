@@ -27,7 +27,7 @@ html .swal2-close:hover {
 	color: var(--background);
 	opacity: 0.8;
 }
-html .swal2-close:focus-visible {
+html .swal2-close:focus {
 	box-shadow: none;
 	opacity: 0.8;
 }

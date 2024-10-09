@@ -9,12 +9,12 @@
 
 html div:where(.swal2-container) .swal2-html-container {
 	font-size: unset;
-    padding: 1em 1.6em 0;
     padding: 0;
+	margin: 0;
 }
 
 /* 右上角关闭图标 */
-html div:where(.swal2-container) button:where(.swal2-close) {
+html .swal2-close {
 	font-size: 1.7em;
 	color: var(--background);
 	opacity: 0.6;
@@ -23,39 +23,39 @@ html div:where(.swal2-container) button:where(.swal2-close) {
 	right: 5px;
 	transition: 0.2s;
 }
-html div:where(.swal2-container) button:where(.swal2-close):hover {
+html .swal2-close:hover {
 	color: var(--background);
 	opacity: 0.8;
 }
-html div:where(.swal2-container) button:where(.swal2-close):focus-visible {
+html .swal2-close:focus-visible {
 	box-shadow: none;
 	opacity: 0.8;
 }
 
 /* 弹窗 */
-html div:where(.swal2-container) div:where(.swal2-popup) {
+html .swal2-popup {
 	border-radius: var(--main-radius);
 	padding: 0;
 }
 
 /* 弹窗标题 */
-html div:where(.swal2-container) h2:where(.swal2-title) {
+html .swal2-title {
 	font-size: 1.5em;
 	padding: .8em;
 }
 
 /* 弹窗图片 */
-html div:where(.swal2-container) img:where(.swal2-image) {
+html .swal2-image {
 	border-radius: var(--main-radius) var(--main-radius) 0 0;
     margin: 0 !important;
 }
 
 /* 弹窗按钮 */
-html div:where(.swal2-container) div:where(.swal2-actions) {
+html .swal2-actions {
 	margin-top: 0;
 	margin-bottom: 20px;
 }
-html div:where(.swal2-container) button:where(.swal2-styled) {
+html .swal2-styled {
 	margin-top: 0;
     margin-bottom: 0;
 }

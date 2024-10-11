@@ -19,6 +19,8 @@ if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 
 	exit;
 }
 
+session_start();
+
 /* 继承方法函数 */
 require_once(JOE_ROOT . 'public/widget.php');
 

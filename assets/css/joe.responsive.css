@@ -329,6 +329,10 @@
 		display: block;
 	}
 
+	html .joe_index__title-title {
+		margin-bottom: 15px;
+	}
+
 	html .joe_index__title-title .item:nth-child(1),
 	html .joe_index__title-title .item:nth-child(2) {
 		display: block

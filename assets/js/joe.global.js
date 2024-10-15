@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						return;
 					}
 					let statistics = $('#statistics span strong');
-					$(statistics[0]).text(data['today'][1]);
+					$(statistics[0]).text(data['today'][0]);
 					$(statistics[1]).text(data['yesterday'][1]);
 					$(statistics[2]).text(data['month'][0]);
 				},

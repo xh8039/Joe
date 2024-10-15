@@ -78,7 +78,7 @@ if ($this->options->JPendant_SSL == 'on') {
 				}
 			</style>
 			<div class="item" id="statistics">
-				<span>今日访问人数&nbsp;<strong>...</strong>丨</span><span>昨日访问人数&nbsp;<strong>...</strong>丨</span><span>本月访问量&nbsp;<strong>...</strong></span>
+				<span>今日浏览量&nbsp;<strong>...</strong>丨</span><span>昨日访客&nbsp;<strong>...</strong>丨</span><span>本月访问量&nbsp;<strong>...</strong></span>
 			</div>
 		<?php
 		}

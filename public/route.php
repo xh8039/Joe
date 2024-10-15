@@ -38,6 +38,7 @@ function _getPost($self)
 			$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 			if ($item->next()) {
 				$result[] = array(
+					"cid" => $item->cid,
 					"mode" => $item->fields->mode ? $item->fields->mode : 'default',
 					"image" => joe\getThumbnails($item),
 					"time" => date('Y-m-d', $item->created),
@@ -58,22 +59,25 @@ function _getPost($self)
 	}
 	$self->widget('Widget_Contents_Sort', 'page=' . $page . '&pageSize=' . $pageSize . '&type=' . $type)->to($item);
 	while ($item->next()) {
-		$result[] = array(
-			"mode" => $item->fields->mode ? $item->fields->mode : 'default',
-			"image" => joe\getThumbnails($item),
-			"time" => date('Y-m-d', $item->created),
-			"created" => date('Y年m月d日', $item->created),
-			"title" => $item->title,
-			"abstract" => joe\getAbstract($item, false),
-			"category" => $item->categories,
-			"views" => number_format($item->views),
-			"commentsNum" => number_format($item->commentsNum),
-			"agree" => number_format($item->agree),
-			"permalink" => $item->permalink,
-			"lazyload" => joe\getLazyload(false),
-			"type" => "normal",
-			'target' => Helper::options()->Jessay_target,
-		);
+		if (!in_array($item->cid, $sticky_arr)) {
+			$result[] = array(
+				"cid" => $item->cid,
+				"mode" => $item->fields->mode ? $item->fields->mode : 'default',
+				"image" => joe\getThumbnails($item),
+				"time" => date('Y-m-d', $item->created),
+				"created" => date('Y年m月d日', $item->created),
+				"title" => $item->title,
+				"abstract" => joe\getAbstract($item, false),
+				"category" => $item->categories,
+				"views" => number_format($item->views),
+				"commentsNum" => number_format($item->commentsNum),
+				"agree" => number_format($item->agree),
+				"permalink" => $item->permalink,
+				"lazyload" => joe\getLazyload(false),
+				"type" => "normal",
+				'target' => Helper::options()->Jessay_target,
+			);
+		}
 	};
 
 	$self->response->throwJson(array("data" => $result));

@@ -56,6 +56,8 @@ function _getPost($self)
 				);
 			}
 		}
+	} else {
+		$sticky_arr = [];
 	}
 	$self->widget('Widget_Contents_Sort', 'page=' . $page . '&pageSize=' . $pageSize . '&type=' . $type)->to($item);
 	while ($item->next()) {

@@ -30,10 +30,6 @@ if (strpos($url, 'magnet:') === 0) {
 	$parse_url = parse_url($url);
 	$url_extension = pathinfo($parse_url['path'], PATHINFO_EXTENSION);
 	switch ($url_extension) {
-		case 'mp4':
-			$MSE = null;
-			$video_type = 'mp4';
-			break;
 		case 'm3u8':
 			$MSE = joe\cdn('hls.js/1.5.13/hls.min.js');
 			$video_type = 'hls';
@@ -54,12 +50,12 @@ if (strpos($url, 'magnet:') === 0) {
 			break;
 		default:
 			$MSE = null;
-			$video_type = null;
+			$video_type = 'auto';
 			break;
 	}
 }
 $customType = empty($customType) ? 'null' : $customType . PHP_EOL;
-$video_type = empty($video_type) ? 'null' : '"' . $video_type . '"' . PHP_EOL;
+$video_type = '"' . empty($video_type) ? 'auto' : $video_type . '"' . PHP_EOL;
 $MSE = empty($MSE) ? null : '<script src="' . $MSE . '"></script>' . PHP_EOL;
 ?>
 <!DOCTYPE html>

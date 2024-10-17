@@ -30,6 +30,8 @@ function _getPost($self)
 	/* 如果传入0，强制赋值1 */
 	if ($page == 0) $page = 1;
 	$result = [];
+	
+
 	/* 增加置顶文章功能，通过JS判断（如果你想添加其他标签的话，请先看置顶如何实现的） */
 	$sticky_text = Helper::options()->JIndexSticky;
 	if ($sticky_text && $page == 1) {
@@ -59,9 +61,15 @@ function _getPost($self)
 	} else {
 		$sticky_arr = [];
 	}
+	$JIndex_Hide_Post = explode("||", Helper::options()->JIndex_Hide_Post ?? '');
+	$hide_post_list = array_flip(array_merge(array_flip($sticky_arr), array_flip($JIndex_Hide_Post)));
+	$hide_categorize_list = explode("||", Helper::options()->JIndex_Hide_Categorize ?? '');
 	$self->widget('Widget_Contents_Sort', 'page=' . $page . '&pageSize=' . $pageSize . '&type=' . $type)->to($item);
 	while ($item->next()) {
-		if (!in_array($item->cid, $sticky_arr)) {
+		foreach ($item->categories as $key => $categorie) {
+			if (in_array($categorie['slug'], $hide_categorize_list)) continue 2;
+		}
+		if (!in_array($item->cid, $hide_post_list)) {
 			$result[] = array(
 				"cid" => $item->cid,
 				"mode" => $item->fields->mode ? $item->fields->mode : 'default',

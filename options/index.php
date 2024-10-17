@@ -5,6 +5,30 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$JIndex_Hide_Post = new Typecho_Widget_Helper_Form_Element_Text(
+	'JIndex_Hide_Post',
+	NULL,
+	NULL,
+	'首页隐藏文章（非必填）',
+	'介绍：用于隐藏指定文章，请务必填写正确的格式 <br/>
+		 格式：文章的id || 文章的id （中间使用两个竖杠分隔）<br />
+		 例如：1 || 2'
+);
+$JIndex_Hide_Post->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndex_Hide_Post);
+
+$JIndex_Hide_Categorize = new Typecho_Widget_Helper_Form_Element_Text(
+	'JIndex_Hide_Categorize',
+	NULL,
+	NULL,
+	'首页隐藏分类（非必填）',
+	'介绍：用于隐藏指定分类，请务必填写正确的格式 <br/>
+		 格式：分类的缩略名 || 分类的缩略名 （中间使用两个竖杠分隔）<br />
+		 例如：slug || about'
+);
+$JIndex_Hide_Categorize->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndex_Hide_Categorize);
+
 $JIndex_Article_Double_Column = new Typecho_Widget_Helper_Form_Element_Select(
 	'JIndex_Article_Double_Column',
 	array(

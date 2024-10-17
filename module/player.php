@@ -27,7 +27,8 @@ if (strpos($url, 'magnet:') === 0) {
 	$MSE = joe\cdn('webtorrent/1.9.7/webtorrent.min.js');
 	$video_type = 'webtorrent';
 } else {
-	$url_extension = pathinfo($url, PATHINFO_EXTENSION);
+	$parse_url = parse_url($url);
+	$url_extension = pathinfo($parse_url['path'], PATHINFO_EXTENSION);
 	switch ($url_extension) {
 		case 'mp4':
 			$MSE = null;

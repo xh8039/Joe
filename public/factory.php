@@ -183,7 +183,7 @@ class Editor
 	{
 ?>
 		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/prism/prism-onedark.min.css') ?>">
+		<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . Helper::options()->JPrismTheme) ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css') ?>">
 		<!-- 自定义CSS样式 -->
@@ -204,7 +204,7 @@ class Editor
 			}
 		</script>
 		<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
-		<script src="<?= joe\theme_url('assets/plugin/prism/prism.min.js') ?>"></script>
+		<script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/index.bundle.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>

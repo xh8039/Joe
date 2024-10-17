@@ -7,14 +7,10 @@
 
 <head>
 	<?php $this->need('module/head.php'); ?>
-	<?php if (!empty($this->options->JPrismTheme)) : ?>
-		<link rel="stylesheet" href="<?= Joe\theme_url('assets/plugin/prism/themes/' . $this->options->JPrismTheme) ?>">
-	<?php else : ?>
-		<link rel="stylesheet" href="<?= joe\cdn('prism/1.23.0/themes/prism.min.css') ?>">
-	<?php endif; ?>
+	<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . $this->options->JPrismTheme) ?>">
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
-	<script src="<?= joe\cdn('clipboard.js/2.0.6/clipboard.min.js') ?>"></script>
-	<script src="<?= joe\theme_url('assets/plugin/prism/prism.min.js') ?>"></script>
+	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
+	<script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.post_page.js'); ?>"></script>
 </head>
 

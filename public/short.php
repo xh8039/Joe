@@ -46,7 +46,7 @@ function _parseContent($post, $login)
 	// 视频
 	if (strpos($content, '{dplayer') !== false) {
 		$player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : Helper::options()->themeUrl . '/module/player.php?url=';
-		$content = preg_replace('/{dplayer([^}]*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
+		$content = preg_replace('/{dplayer([^}]*)\/}/SU', '<joe-dplayer cid="' . $post->cid . '" player="' . $player . '" $1></joe-dplayer>', $content);
 	}
 
 	// 居中标题标签
@@ -84,6 +84,7 @@ function _parseContent($post, $login)
 		$db = Typecho_Db::get();
 		$hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
 		if ($hasComment || $login) {
+			$content = strtr($content, array("{hide}\r\n" => NULL, "\r\n{/hide}" => NULL));
 			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 		} else {
 			$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);

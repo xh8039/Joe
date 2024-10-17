@@ -53,11 +53,13 @@ if (strpos($url, 'magnet:') === 0) {
 			break;
 		default:
 			$MSE = null;
-			$video_type = 'null';
+			$video_type = null;
 			break;
 	}
 }
-$customType = empty($customType) ? 'null' : $customType;
+$customType = empty($customType) ? 'null' : $customType . PHP_EOL;
+$video_type = empty($video_type) ? 'null' : '"' . $video_type . '"' . PHP_EOL;
+$MSE = empty($MSE) ? null : '<script src="' . $MSE . '"></script>' . PHP_EOL;
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -88,7 +90,7 @@ $customType = empty($customType) ? 'null' : $customType;
 
 <body>
 	<div id="dplayer"></div>
-	<script src="<?= $MSE ?>"></script>
+	<?= $MSE ?>
 	<script src="<?= joe\cdn('dplayer/1.27.0/DPlayer.min.js') ?>"></script>
 	<script>
 		window.videoPlayer = new DPlayer({

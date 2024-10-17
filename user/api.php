@@ -151,7 +151,7 @@ switch ($action) {
 			'mail' => $email,
 			'password' => $hasher->HashPassword($password),
 			'created' => time(),
-			'group' => 'subscriber'
+			'group' => empty(Helper::options()->JUser_Register_Group) ? 'contributor' : Helper::options()->JUser_Register_Group
 		);
 		$result = Typecho_Widget::widget('Widget_Abstract_Users')->insert($data);
 		if ($result) {

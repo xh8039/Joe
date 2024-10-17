@@ -23,7 +23,7 @@ $loop = (isset($_GET['loop']) && $_GET['loop']) ? 'true' : 'false';
 $screenshot = $_GET['screenshot'] ? 'true' : 'false';
 $url = addslashes(strip_tags($_GET['url']));
 $pic = (empty($_GET['pic']) || $_GET['pic'] == 'null') ? 'null' : '"' . addslashes(strip_tags($_GET['pic'])) . '"';
-if (strpos($link, 'magnet:') === 0) {
+if (strpos($url, 'magnet:') === 0) {
 	$MSE = joe\cdn('webtorrent/1.9.7/webtorrent.min.js');
 	$video_type = 'webtorrent';
 } else {

@@ -55,7 +55,7 @@ if (strpos($url, 'magnet:') === 0) {
 	}
 }
 $customType = empty($customType) ? 'null' : $customType . PHP_EOL;
-$video_type = '"' . empty($video_type) ? 'auto' : $video_type . '"' . PHP_EOL;
+$video_type = '"' . (empty($video_type) ? 'auto' : $video_type) . '"' . PHP_EOL;
 $MSE = empty($MSE) ? null : '<script src="' . $MSE . '"></script>' . PHP_EOL;
 ?>
 <!DOCTYPE html>

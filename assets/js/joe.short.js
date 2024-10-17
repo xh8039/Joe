@@ -546,6 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			constructor() {
 				super();
 				this.options = {
+					cid: this.getAttribute('cid'),
 					src: this.getAttribute('src'),
 					pic: this.getAttribute('pic'),
 					theme: encodeURIComponent(this.getAttribute('theme') ? this.getAttribute('theme') : (getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') ? getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') : getComputedStyle(document.documentElement).getPropertyValue('--theme')).trim()),

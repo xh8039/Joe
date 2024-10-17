@@ -567,6 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						this.options.src = encodeURIComponent(this.options.src); // 对url进行编码
 					}
 					let options = {
+						cid: this.options.cid,
 						pic: this.options.pic,
 						theme: this.options.theme,
 						autoplay: this.options.autoplay,

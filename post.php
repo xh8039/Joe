@@ -167,8 +167,7 @@
 				<?php
 				}
 				?>
-				<?php $this->need('module/related.php'); // 相关推荐 
-				?>
+				<?php require_once JOE_ROOT . 'module/related.php'; // 相关推荐 ?>
 				<?php $this->need('module/comment.php'); ?>
 			</div>
 			<?php $this->need('module/aside.php'); ?>

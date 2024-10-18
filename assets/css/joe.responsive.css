@@ -798,9 +798,10 @@
 		font-size: 12px;
 	}
 
-	.swiper-button-next, .swiper-button-prev {
-        display: none;
-    }
+	html .swiper-button-next,
+	html .swiper-button-prev {
+		display: none;
+	}
 }
 
 @media (max-width: 500px) {

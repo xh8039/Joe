@@ -17,12 +17,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 <head>
 	<meta name="referrer" content="no-referrer" />
-	<?php $this->need('module/head.php'); ?>
 	<?php
 	if (!empty($this->options->JIndex_Carousel)) : ?>
 		<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
 		<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
 	<?php endif ?>
+	<?php $this->need('module/head.php'); ?>
 	<script src="<?= joe\cdn('wow/1.1.2/wow.min.js') ?>"></script>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.index.css'); ?>">
 	<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>

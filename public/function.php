@@ -633,8 +633,8 @@ function dateWord($original_date)
 	$length = strlen($original_date);
 
 	// 判断长度，如果大于等于 “2022年08月01日” 的长度，则删除后两位字符
-	if ($length >= 11) { // 11 是 “2022年08月01日” 的长度
-		$formatted_date = substr($original_date, 0, -2);
+	if ($length == 17) { // 11 是 “2022年08月01日” 的长度
+		$formatted_date = substr($original_date, 0, -5);
 	} else {
 		$formatted_date = $original_date;
 	}

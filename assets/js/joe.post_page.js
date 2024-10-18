@@ -7,9 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.cid = cid;
 
 	function loadJS(url, callback) {
-		var script = document.createElement('script'),
-			fn = callback || function () { };
+		// 检查元素是否存在，如果存在，则删除，浏览器不会重复载入
+		const existingScript = document.querySelector(`script[src="${url}"]`);
+		if (existingScript) existingScript.remove();
+
+		var fn = callback || function () { };
+		var script = document.createElement('script');
 		script.type = 'text/javascript';
+
 		//IE
 		if (script.readyState) {
 			script.onreadystatechange = function () {

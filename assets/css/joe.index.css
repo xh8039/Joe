@@ -134,7 +134,7 @@
 	transition: 0.3s;
 	background: var(--background);
 	border-radius: 4.5px;
-	box-shadow: 0 0 10px rgba(116, 116, 116, 0.08);
+	box-shadow: 0 0 10px var(--main-shadow);
 }
 
 /* 

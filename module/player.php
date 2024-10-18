@@ -9,7 +9,7 @@ require_once dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR .
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'function.php';
 if (!empty(Helper::options()->JCustomPlayer)) exit('已使用第三方视频播放器！');
 // $db = Typecho_Db::get();
-// $row = $db->fetchRow($db->select('text,title')->from('table.contents')->where('cid = ?', $cid));
+$row = $db->fetchRow($db->select('text,title')->from('table.contents')->where('cid = ?', $cid));
 // if (sizeof($row) > 0) {
 // 	if (!stripos($row['text'], $_GET['url'])) exit('视频不存在！');
 // } else {
@@ -66,7 +66,7 @@ $MSE = empty($MSE) ? null : ('<script src="' . $MSE . '"></script>' . PHP_EOL);
 	<meta charset="UTF-8" />
 	<meta name="renderer" content="webkit" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
-	<title><?= $row['title'] ?></title>
+	<title><?= Helper::options()->title ?> - DPlayer</title>
 	<style>
 		* {
 			margin: 0;

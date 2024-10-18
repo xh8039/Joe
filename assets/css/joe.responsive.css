@@ -180,6 +180,11 @@
 	html .joe_index__banner>.swiper-container .item {
 		height: 280px
 	}
+
+	html .joe_list__item .information .abstract {
+		-webkit-line-clamp: 1;
+		max-height: 22px;
+	}
 }
 
 @media (max-width: 992px) {

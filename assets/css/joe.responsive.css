@@ -746,6 +746,10 @@
 		left: 4px;
 		width: 3px;
 	}
+
+	html .relates-thumb .swiper-slide {
+		width: 180px;
+	}
 }
 
 @media (max-width: 500px) {

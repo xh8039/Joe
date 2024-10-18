@@ -1499,7 +1499,7 @@
 	word-break: break-word;
 	color: var(--key-color);
 	font-size: 18px;
-	line-height: 24px;
+	/* line-height: 24px; */
 	max-height: 50px;
 	transition: color 0.35s
 }

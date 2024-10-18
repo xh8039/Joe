@@ -183,7 +183,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 													<item class="meta-author flex ac">
 														<a href="<?php $item->author->permalink() ?>"><span class="avatar-mini">
 																<img alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-1 ls-is-cached lazyload"></span></a>
-														<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= $item->dateWord() ?></span>
+														<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= joe\dateWord($item->dateWord) ?></span>
 													</item>
 													<div class="meta-right">
 														<item class="meta-comm">
@@ -256,7 +256,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 												<item class="meta-author flex ac">
 													<a href="<?php $item->author->permalink() ?>"><span class="avatar-mini">
 															<img alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-1 ls-is-cached lazyload"></span></a>
-													<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= $item->dateWord() ?></span>
+													<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= joe\dateWord($item->dateWord) ?></span>
 												</item>
 												<div class="meta-right">
 													<item class="meta-comm">

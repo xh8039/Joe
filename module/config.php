@@ -53,12 +53,17 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 	// 全局灰色
 	if ($this->options->JGrey_Model == 'on') {
-		echo 'html {-webkit-filter: grayscale(1);}';
+		echo 'html {-webkit-filter: grayscale(1)}';
 	}
 
 	// 文章标题居中
 	if ($this->options->JPost_Title_Center == 'on') {
-		echo 'html .joe_detail__title {text-align: center;}';
+		echo 'html .joe_detail__title {text-align: center}';
+	}
+
+	// 文章标题粗体
+	if ($this->options->JPost_Title_Bold == 'on') {
+		echo 'html .joe_list__item .information .title {font-weight: bold; color: var(--main-color)}';
 	}
 
 	// 自定义字体

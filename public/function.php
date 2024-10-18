@@ -107,7 +107,7 @@ function getAgentOS($agent)
 /* 获取全局懒加载图 */
 function getLazyload($type = true)
 {
-	$JLazyload = empty(\Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.jpg') : \Helper::options()->JLazyload;
+	$JLazyload = empty(\Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.gif') : \Helper::options()->JLazyload;
 	if ($type) echo $JLazyload;
 	else return $JLazyload;
 }
@@ -115,7 +115,7 @@ function getLazyload($type = true)
 /* 获取头像懒加载图 */
 function getAvatarLazyload($type = true)
 {
-	$str = theme_url('assets/images/AvatarLazyload.png');
+	$str = theme_url('assets/images/avatar-default.png');
 	if ($type) echo $str;
 	else return $str;
 }
@@ -139,7 +139,7 @@ function getAgree($item, $type = true)
 }
 
 /* 通过邮箱生成头像地址 */
-function getAvatarByMail($mail)
+function getAvatarByMail($mail, $type = true)
 {
 	if (empty($mail)) {
 		$db = \Typecho_Db::get();
@@ -151,10 +151,12 @@ function getAvatarByMail($mail)
 	$md5MailLower = md5($mailLower);
 	$qqMail = str_replace('@qq.com', '', $mailLower);
 	if (strstr($mailLower, "qq.com") && is_numeric($qqMail) && strlen($qqMail) < 11 && strlen($qqMail) > 4) {
-		echo 'https://thirdqq.qlogo.cn/g?b=qq&nk=' . $qqMail . '&s=640';
+		$result =  'https://thirdqq.qlogo.cn/g?b=qq&nk=' . $qqMail . '&s=640';
 	} else {
-		echo $gravatarsUrl . $md5MailLower . '?d=mm';
+		$result = $gravatarsUrl . $md5MailLower . '?d=mm';
 	}
+	if ($type) echo $result;
+	return $result;
 };
 
 /* 获取侧边栏随机一言 */

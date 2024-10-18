@@ -22,6 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 初始化首页列表功能 */
 	{
+		const getTags = (tags) => {
+			let tagsHtml = '';
+			tags.forEach(tag => {
+				tagsHtml += `<a href="${tag.permalink}" title="查看此标签更多文章" class="but"># ${tag.name}</a>`
+			});
+			return tagsHtml;
+		}
+
 		const getListMode = _ => {
 			if (_.mode === 'default') {
 				return `
@@ -38,25 +46,43 @@ document.addEventListener('DOMContentLoaded', () => {
 							</a>
 							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
 							<div class="meta">
-								<ul class="items">
-									<li>${_.created}</li>
-									<li>
-									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-view"></use></svg>
-										${_.views}
-									</li>
-									<li>
-									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-comment"></use></svg>
-										${_.commentsNum}
-									</li>
-									<li>
-									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-like"></use></svg>
-										${_.agree}
-									</li>
-								</ul>
-								<div class="last" style="display: ${_.category.length ? 'block' : 'none'}">
-									<i class="icon fa fa-folder-open-o" aria-hidden="true"></i>
-									<a class="link" target="${_.target}" rel="noopener noreferrer" href="${_.category.length && _.category[0].permalink}">${_.category.length && _.category[0].name}</a>
+
+								<div style="display: ${_.category.length ? 'block' : 'none'}" class="item-tags scroll-x no-scrollbar mb6">
+									<a target="${_.target}" class="but c-blue" title="查看更多分类文章" href="${_.category.length && _.category[0].permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${_.category.length && _.category[0].name}</a>
+									${getTags(_.tags)}
 								</div>
+
+								<div class="item-meta muted-2-color flex jsb ac">
+									<item class="meta-author flex ac">
+										<a href="${_.author_permalink}">
+											<span class="avatar-mini">
+												<img alt="${_.author_screenName}的头像 - ${Joe.TITLE}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+											</span>
+										</a>
+										<span class="hide-sm ml6">${_.author_screenName}</span>
+										<span title="${_.date_time}" class="icon-circle">${_.dateWord}</span>
+									</item>
+									<div class="meta-right">
+										<item class="meta-comm">
+											<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+												<svg class="icon svg" aria-hidden="true">
+													<use xlink:href="#icon-comment"></use>
+												</svg>${_.commentsNum}
+											</a>
+										</item>
+										<item class="meta-view">
+											<svg class="icon svg" aria-hidden="true">
+												<use xlink:href="#icon-view"></use>
+											</svg>${_.views}
+										</item>
+										<item class="meta-like">
+											<svg class="icon svg" aria-hidden="true">
+												<use xlink:href="#icon-like"></use>
+											</svg>${_.agree}
+										</item>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</li>
@@ -207,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							$('.joe_load').html('<i class="fa fa-angle-right"></i>查看更多');
 							return Qmsg.warning('没有更多内容了');
 						}
-						res.data.forEach(_ => $('.joe_index__list .joe_list').append(getListMode(_)));
+						res.data.forEach(data => $('.joe_index__list .joe_list').append(getListMode(data)));
 						// 文章列表缩略图加载失败自动使用主题自带缩略图
 						window.thumbOnError();
 						// a标签点击后的离开Loading动画

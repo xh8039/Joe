@@ -564,7 +564,7 @@
 	}
 
 	html .joe_video__detail-info .description dd:not(:last-child) {
-		line-clamp: 1
+		-webkit-line-clamp: 1
 	}
 
 	html .joe_video__player-play {

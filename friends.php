@@ -130,7 +130,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php $this->need('module/footer.php'); ?>
 	</div>
 	<script>
-		const AvatarLazyload = `${Joe.THEME_URL}assets/images/AvatarLazyload.png`;
+		const AvatarLazyload = `${Joe.THEME_URL}assets/images/avatar-default.png`;
 		$('.joe_detail__friends .avatar').on('error', function() {
 			$(this).attr('data-src', AvatarLazyload);
 			$(this).attr('src', AvatarLazyload);

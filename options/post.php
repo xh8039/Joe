@@ -5,6 +5,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$JPost_Title_Bold = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JPost_Title_Bold',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
+	'是否开启文章标题粗体'
+);
+$JPost_Title_Bold->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JPost_Title_Bold);
+
 $JPost_Title_Center = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPost_Title_Center',
 	['off' => '关闭（默认）', 'on' => '开启'],

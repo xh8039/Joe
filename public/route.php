@@ -45,7 +45,9 @@ function _getPost($self)
 					"mode" => $item->fields->mode ? $item->fields->mode : 'default',
 					"image" => joe\getThumbnails($item),
 					"time" => date('Y-m-d', $item->created),
+					'date_time' => date('Y-m-d H:i:s', $item->created),
 					"created" => date('Y年m月d日', $item->created),
+					'dateWord' => $item->dateWord,
 					"title" => $item->title,
 					"abstract" => joe\getAbstract($item, false),
 					"category" => $item->categories,
@@ -56,6 +58,10 @@ function _getPost($self)
 					"lazyload" => joe\getLazyload(false),
 					"type" => "sticky",
 					'target' => Helper::options()->Jessay_target,
+					'author_screenName' => $item->author->screenName,
+					'author_permalink' => $item->author->permalink,
+					'author_avatar' => joe\getAvatarByMail($item->author->mail, false),
+					'tags' => $item->tags
 				);
 			}
 		}
@@ -76,7 +82,9 @@ function _getPost($self)
 				"mode" => $item->fields->mode ? $item->fields->mode : 'default',
 				"image" => joe\getThumbnails($item),
 				"time" => date('Y-m-d', $item->created),
+				'date_time' => date('Y-m-d H:i:s', $item->created),
 				"created" => date('Y年m月d日', $item->created),
+				'dateWord' => $item->dateWord,
 				"title" => $item->title,
 				"abstract" => joe\getAbstract($item, false),
 				"category" => $item->categories,
@@ -87,6 +95,10 @@ function _getPost($self)
 				"lazyload" => joe\getLazyload(false),
 				"type" => "normal",
 				'target' => Helper::options()->Jessay_target,
+				'author_screenName' => $item->author->screenName,
+				'author_permalink' => $item->author->permalink,
+				'author_avatar' => joe\getAvatarByMail($item->author->mail, false),
+				'tags' => $item->tags
 			);
 		}
 	};

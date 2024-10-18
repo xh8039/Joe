@@ -10,11 +10,6 @@ html {
 	--float-btn-bg: rgba(200, 200, 200, 0.4);
 	--main-border-color: rgba(50, 50, 50, 0.06);
 	--main: #303133;
-	--main-color: #4e5358;
-	--muted-color: #777;
-	--muted-2-color: #999;
-	--muted-3-color: #b1b1b1;
-	--muted-color: #777;
 	--routine: #606266;
 	--minor: #909399;
 	--seat: #c0c4cc;
@@ -37,6 +32,12 @@ html {
 	--transition: 0.1s;
 
 	--main-bg-color: #fff;
+	--key-color: #333;
+	--main-color: #4e5358;
+	--muted-color: #777;
+	--muted-2-color: #999;
+	--muted-3-color: #b1b1b1;
+	--muted-color: #777;
 }
 
 /* 黑夜模式的配色方案 */

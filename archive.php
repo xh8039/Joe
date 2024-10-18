@@ -56,27 +56,56 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
                                             </a>
                                             <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
                                             <div class="meta">
-                                                <ul class="items">
-                                                    <li><?php $this->date('Y年m月d日'); ?></li>
-                                                    <li>
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xlink:href="#icon-view"></use>
-                                                        </svg>
-                                                        <?php joe\getViews($this) ?>
-                                                    </li>
-                                                    <li>
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xlink:href="#icon-comment"></use>
-                                                        </svg>
-                                                        <?php $this->commentsNum('%d'); ?>
-                                                    </li>
-                                                    <li>
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xlink:href="#icon-like"></use>
-                                                        </svg>
-                                                        <?php joe\getAgree($this) ?>
-                                                    </li>
-                                                </ul>
+
+                                                <div style="display: <?= $this->category ? 'block' : 'none' ?>" class="item-tags scroll-x no-scrollbar mb6">
+                                                    <?php
+                                                    $color_array = ['c-blue', 'c-yellow'];
+                                                    foreach ($this->categories as $key => $value) {
+                                                    ?>
+                                                        <a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">
+                                                            <i class="fa fa-folder-open-o" aria-hidden="true"></i><?= $value['name'] ?>
+                                                        </a>
+                                                    <?php
+                                                    }
+                                                    foreach ($this->tags as $key => $value) {
+                                                    ?>
+                                                        <a href="<?= $value['permalink'] ?>" title="查看此标签更多文章" class="but"># <?= $value['name'] ?></a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </div>
+
+                                                <div class="item-meta muted-2-color flex jsb ac">
+                                                    <item class="meta-author flex ac">
+                                                        <a href="<?= $this->author->permalink ?>">
+                                                            <span class="avatar-mini">
+                                                                <img alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
+                                                            </span>
+                                                        </a>
+                                                        <span class="hide-sm ml6"><?= $this->author->screenName ?></span>
+                                                        <span title="${_.date_time}" class="icon-circle"><?= $this->dateWord ?></span>
+                                                    </item>
+                                                    <div class="meta-right">
+                                                        <item class="meta-comm">
+                                                            <a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+                                                                <svg class="icon svg" aria-hidden="true">
+                                                                    <use xlink:href="#icon-comment"></use>
+                                                                </svg><?= number_format($this->commentsNum) ?>
+                                                            </a>
+                                                        </item>
+                                                        <item class="meta-view">
+                                                            <svg class="icon svg" aria-hidden="true">
+                                                                <use xlink:href="#icon-view"></use>
+                                                            </svg><?php joe\getViews($this) ?>
+                                                        </item>
+                                                        <item class="meta-like">
+                                                            <svg class="icon svg" aria-hidden="true">
+                                                                <use xlink:href="#icon-like"></use>
+                                                            </svg><?php joe\getAgree($this) ?>
+                                                        </item>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </li>

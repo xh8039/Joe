@@ -1342,7 +1342,7 @@
 
 .joe_aside__item.newreply .item .reply .link {
 	display: -webkit-box;
-	line-clamp: 2;
+	-webkit-line-clamp: 2;
 	/*! autoprefixer: off */
 	-webkit-box-orient: vertical;
 	overflow: hidden;
@@ -1488,16 +1488,16 @@
 
 .joe_list__item .information .title {
 	padding-bottom: 4px;
-	margin-bottom: 6px;
+	margin-bottom: 1px;
 	position: relative;
 	display: -webkit-box;
-	line-clamp: 2;
+	-webkit-line-clamp: 2;
 	/*! autoprefixer: off */
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-break: break-word;
-	color: var(--main);
+	color: var(--key-color);
 	font-size: 18px;
 	line-height: 24px;
 	max-height: 50px;
@@ -1538,16 +1538,16 @@
 
 .joe_list__item .information .abstract {
 	display: -webkit-box;
-	line-clamp: 2;
+	-webkit-line-clamp: 1;
 	/*! autoprefixer: off */
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	color: var(--minor);
+	color: var(--muted-color);
 	word-break: break-word;
 	line-height: 22px;
-	max-height: 44px;
-	opacity: 0.85
+	max-height: 22px;
+	/* opacity: 0.85 */
 }
 
 .joe_list__item .line {
@@ -1567,7 +1567,41 @@
 	transition: transform 0.35s, -webkit-transform 0.35s
 }
 
-.joe_list__item .meta {
+.joe_list__item .item-tags a {
+	font-size: 11px;
+	padding: 2px 5px;
+	margin-right: 5px;
+}
+
+.joe_list__item .item-tags a .fa {
+	font-size: 1em;
+}
+
+.joe_list__item .item-meta item {
+	margin-right: 8px;
+	font-size: 13px;
+}
+
+.joe_list__item .item-meta a,
+.posts-mini .item-meta a {
+	color: inherit;
+}
+
+.item-meta .avatar-mini {
+	transform: translateY(-1px);
+}
+
+.joe_list__item .item-meta item {
+	margin-right: 8px;
+	font-size: 13px;
+}
+
+.joe_list__item .item-meta a,
+.posts-mini .item-meta a {
+	color: inherit;
+}
+
+/* .joe_list__item .meta {
 	display: flex;
 	align-items: center;
 	margin-top: auto;
@@ -1586,7 +1620,6 @@
 
 .joe_list__item .meta .items>li:first-child {
 	margin-right: 5px;
-	/* margin-top: -2px; */
 }
 
 .joe_list__item .meta .items li {
@@ -1602,26 +1635,17 @@
 	overflow: hidden;
 }
 
-/* .joe_list__item .meta .items li::after {
-	content: '/';
-	color: var(--seat);
-	padding: 0 5px
-} */
-
 .joe_list__item .meta .items li:last-child::after {
 	display: none
 }
 
 .joe_list__item .meta .last {
 	margin-left: auto;
-	/* display: flex; */
-	/* align-items: center; */
 	text-wrap: nowrap;
 }
 
 .joe_list__item .meta .last .icon {
 	margin-right: 3px;
-	/* margin-top: 2.5px; */
 }
 
 .joe_list__item .meta .last .link {
@@ -1631,7 +1655,9 @@
 
 .joe_list__item .meta .last .link:hover {
 	color: var(--theme);
-}
+} */
+
+
 
 .joe_list__item:hover .line {
 	-webkit-transform: scaleY(1);
@@ -1703,7 +1729,8 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	min-width: 0
+	min-width: 0;
+	justify-content: space-between;
 }
 
 .joe_list__item.single:hover .thumbnail img {
@@ -1873,7 +1900,7 @@
 }
 
 .joe_load:hover>.fa {
-    margin-right: 8px;
+	margin-right: 8px;
 }
 
 .joe_load:active {
@@ -3750,12 +3777,12 @@
 }
 
 .joe_detail__related-content {
-    clear: both;
-    background: var(--main-bg-color);
-    padding: 15px;
-    box-shadow: 0 0 10px var(--main-shadow);
-    border-radius: var(--main-radius);
-    margin-bottom: 20px;
+	clear: both;
+	background: var(--main-bg-color);
+	padding: 15px;
+	box-shadow: 0 0 10px var(--main-shadow);
+	border-radius: var(--main-radius);
+	margin-bottom: 20px;
 }
 
 .yiyan-box {
@@ -3812,7 +3839,7 @@
 
 .article-nav .box-body>a>div {
 	height: 2.8em;
-	line-clamp: 2;
+	-webkit-line-clamp: 2;
 	line-height: 1.4em;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
@@ -3870,7 +3897,7 @@
 .joe_detail__friends-item .contain .content .desc {
 	margin-right: 10px;
 	display: -webkit-box;
-	line-clamp: 2;
+	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
@@ -4159,13 +4186,13 @@
 }
 
 .joe_comment__respond-type .item.active {
-	color: #fff;
-	background: var(--theme)
+	color: #2997f7;
+	background: rgba(41, 151, 247, 0.1);
 }
 
 .joe_comment__respond-form {
 	border-radius: 0px 6px 6px 6px;
-	background:var(--body-bg-color)
+	background: var(--body-bg-color)
 }
 
 .joe_comment__respond-form .head {

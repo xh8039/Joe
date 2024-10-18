@@ -120,7 +120,8 @@ canvas {
 button {
 	cursor: pointer;
 	-webkit-appearance: none;
-	font-size: 13px
+	font-size: 13px;
+	line-height: unset;
 }
 
 table {

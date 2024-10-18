@@ -1,124 +1,148 @@
-button, input, optgroup, select, textarea {
-    font-family: 'Joe Font';
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: 'Joe Font';
 }
+
 .container {
-    margin-top: 4vh;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+	margin-top: 4vh;
+	display: flex;
+	justify-content: center;
+	width: 100%;
 }
+
 .container>div>.card-body {
-    padding: 2.25rem;
-    background: var(--background);
-    border-radius: 5px;
-    width: 500px;
-    max-width: 90vw;
-    box-shadow: var(--box-shadow);
-    margin-bottom: 30px;
+	padding: 2.25rem;
+	background: var(--background);
+	border-radius: 5px;
+	width: 500px;
+	max-width: 90vw;
+	box-shadow: var(--box-shadow);
+	margin-bottom: 30px;
 }
+
 .container>div>.text-muted {
-    margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
+
 .title {
-    text-align: center;
-    margin-bottom: 2.25rem;
+	text-align: center;
+	margin-bottom: 2.25rem;
 }
+
 .title>h4 {
-    font-weight: 700;
-    margin-bottom: 10px;
-    font-size: 1.125rem;
-    color: var(--routine);
+	font-weight: 700;
+	margin-bottom: 10px;
+	font-size: 1.125rem;
+	color: var(--routine);
 }
+
 .title>p {
-    color: var(--seat);
+	color: var(--seat);
 }
+
 .form-group {
-    margin-bottom: 1.5rem;
+	margin-bottom: 1.5rem;
 }
+
 .input-group {
-    display: flex;
+	display: flex;
 }
+
 .form-group>label {
-    color: var(--routine);
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: .5rem;
+	color: var(--routine);
+	font-weight: 600;
+	display: inline-block;
+	margin-bottom: .5rem;
 }
+
 .form-group>a {
-    float: right;
-    color: var(--minor);
+	float: right;
+	color: var(--minor);
 }
+
 .form-control {
-    display: block;
-    width: 100%;
-    padding: .45rem .9rem;
-    font-size: .875rem;
-    line-height: 1.5;
-    color: var(--routine);
-    background: var(--background);
-    border: 2px solid var(--classA);
-    border-radius: .1rem;
-    transition: 0.3s;
+	display: block;
+	width: 100%;
+	padding: .45rem .9rem;
+	font-size: .875rem;
+	line-height: 1.5;
+	color: var(--routine);
+	background: var(--background);
+	border: 2px solid var(--classA);
+	border-radius: .1rem;
+	transition: 0.3s;
 }
+
 .form-control:focus {
-    border-color: var(--theme);
+	border-color: var(--theme);
 }
+
 .btn {
-    text-align: center;
-    font-weight: 400;
-    white-space: nowrap;
-    user-select: none;
-    font-size: .875rem;
-    transition: 0.3s;
+	text-align: center;
+	font-weight: 400;
+	white-space: nowrap;
+	user-select: none;
+	font-size: .875rem;
+	transition: 0.3s;
 }
+
 .btn-light {
-    display: block;
-    padding: .45rem 1.2rem;
-    line-height: 1.5;
-    border-radius: .15rem;
-    color: #fff;
-    background: var(--back-line-right);
-    border-color: var(--classB);
-    margin: auto;
-    box-shadow: var(--box-shadow);
-    border: none;
+	display: block;
+	padding: .45rem 1.2rem;
+	line-height: 1.5;
+	border-radius: .15rem;
+	color: #fff;
+	background: var(--back-line-right);
+	border-color: var(--classB);
+	margin: auto;
+	box-shadow: var(--box-shadow);
+	border: none;
 }
+
 .btn-light:hover {
-    transform: scale(0.9);
+	transform: scale(0.9);
 }
+
 .btn-light:active {
-    transform: scale(0.75);
+	transform: scale(0.75);
 }
-.btn-light:hover {
-    /*animation: 5s ease-in-out 0s infinite normal none running shaked;*/
-}
+
 .input-group>.form-control {
-    border-right: none;
+	border-right: none;
 }
+
 .input-group>.btn {
-    border: 2px solid var(--classA);
-    border-left: none;
-    padding: .45rem .9rem;
-    background: var(--classB);
-    color: var(--main);
+	border: 2px solid var(--classA);
+	border-left: none;
+	padding: .45rem .9rem;
+	background: var(--classB);
+	color: var(--main);
 }
+
 .input-group>.btn:hover {
-    border-color: var(--seat);
-    background: var(--classA);
+	border-color: var(--seat);
+	background: var(--classA);
 }
+
 .input-group>.btn:focus {
-    background: var(--seat);
+	background: var(--seat);
 }
+
 .text-muted {
-    color: var(--minor);
-    text-align: center
+	color: var(--minor);
+	text-align: center
 }
+
 .text-muted>a {
-    margin-left: .375rem;
-    color: var(--main);
+	margin-left: .375rem;
+	color: var(--main);
 }
+
 @media (max-width: 768px) {
-    .container {
-        margin-top: 3vh;
-    }
+	.container {
+		margin-top: 3vh;
+	}
 }

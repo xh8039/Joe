@@ -73,7 +73,6 @@
 }
 
 .joe_bread__bread .item {
-	/* color: var(--minor); */
 	white-space: nowrap
 }
 
@@ -93,11 +92,6 @@
 	min-height: 15px;
 	fill: var(--routine);
 	margin-right: 2px
-}
-
-.joe_bread__bread .item:first-child {
-	/* display: flex; */
-	/* align-items: center */
 }
 
 .joe_post__pagination {

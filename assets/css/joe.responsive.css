@@ -156,10 +156,6 @@
 		grid-template-columns: repeat(3, 1fr);
 	}
 
-	html .joe_index__banner-recommend.noswiper {}
-
-	html .joe_index__banner-recommend .item {}
-
 	html .joe_census__basic-item.category #category {
 		height: 220px
 	}
@@ -293,8 +289,6 @@
 		margin-right: 0
 	}
 
-	html .joe_header__above-logo img {}
-
 	html .joe_header__above-searchicon {
 		margin-left: 0
 	}
@@ -333,11 +327,6 @@
 		margin-bottom: 5px;
 	}
 
-	html .joe_index__title-title .item:nth-child(1),
-	html .joe_index__title-title .item:nth-child(2) {
-		/* display: block */
-	}
-
 	html .joe_list__item .information .title {
 		font-size: 16px
 	}
@@ -349,10 +338,6 @@
 
 	html .joe_list__item .information .abstract {
 		display: none
-	}
-
-	html .joe_list__item .meta .last {
-		/* display: none !important */
 	}
 
 	html .joe_list__item.single .thumbnail {
@@ -390,21 +375,8 @@
 		width: 100%
 	}
 
-	html .joe_list__item.default .meta .items li {
-		/* display: none */
-	}
-
 	html .joe_list__item.default .meta .items li:nth-child(1) {
 		display: none;
-	}
-
-	html .joe_list__item.default .meta .items li:nth-child(2) {
-		/* display: block; */
-		/* margin-left: auto */
-	}
-
-	html .joe_list__item.default .meta .items li::after {
-		/* display: none */
 	}
 
 	html .joe_list__item.multiple .thumbnail {
@@ -455,32 +427,14 @@
 		width: 100%
 	}
 
-	html .joe_detail__count-information .avatar {
-		/* display: none */
-	}
-
 	html .joe_detail__count-information .meta {
 		width: 100%;
 		height: unset
 	}
 
-	html .joe_detail__count-information .meta .author {
-		/* display: none */
-	}
-
 	html .joe_detail__count-information .meta .item {
-		/* justify-content: center */
 		font-size: 12px;
 	}
-
-	html .joe_detail__count-information .meta .item span:nth-child(2),
-	html .joe_detail__count-information .meta .item span:nth-child(3) {
-		/* display: none */
-	}
-
-	/* html .joe_detail__count-created {
-		display: none
-	} */
 
 	html .joe_detail__count::after {
 		display: none
@@ -610,7 +564,7 @@
 	}
 
 	html .joe_video__detail-info .description dd:not(:last-child) {
-		-webkit-line-clamp: 1
+		line-clamp: 1
 	}
 
 	html .joe_video__player-play {
@@ -662,26 +616,6 @@
 
 	html .joe_comment {
 		position: relative
-	}
-
-	html .joe_comment__title {
-		/* font-size: 18px;
-		line-height: 32px;
-		text-align: left */
-	}
-
-	html .joe_comment__respond-type {
-		/* position: absolute;
-		top: 15px;
-		right: 15px */
-	}
-
-	html .joe_comment__respond-type .item:first-child {
-		/* border-bottom-left-radius: var(--radius-inner) */
-	}
-
-	html .joe_comment__respond-type .item:last-child {
-		/* border-bottom-right-radius: var(--radius-inner) */
 	}
 
 	html .joe_comment__respond-form .head {

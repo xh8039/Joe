@@ -162,7 +162,7 @@
 	line-height: 1.4em;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
+	line-clamp: 2;
 	overflow: hidden;
 	white-space: normal;
 	height: 2.8em;
@@ -331,20 +331,6 @@
 	transition: opacity 0.35s;
 	/* border-radius: var(--radius-inner) var(--radius-inner) 0 0 */
 	border-radius: var(--radius-inner);
-}
-
-.joe_index__hot-list .item .link .inner .title {
-	/*font-size: 13px;*/
-	/*white-space: nowrap;*/
-	/*overflow: hidden;*/
-	/*text-overflow: ellipsis;*/
-	/*text-align: center;*/
-	/*padding: 0 8px;*/
-	/*line-height: 32px;*/
-	/*color: var(--minor);*/
-	/*background: var(--classD);*/
-	/*transition: background 0.35s;*/
-	/*border-radius: 0 0 var(--radius-inner) var(--radius-inner)*/
 }
 
 .joe_index__hot-list .item .link .inner .views {

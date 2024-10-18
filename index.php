@@ -119,7 +119,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					if (!empty($recommend)) {
 						if ($this->options->JIndex_Recommend_Style == 'simple') {
 					?>
-							<div class="title-theme" style="margin-bottom: 2vh;">推荐文章</div>
+							<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
 							<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
 								<?php
 								foreach ($recommend as $cid) {

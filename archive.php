@@ -83,7 +83,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
                                                             </span>
                                                         </a>
                                                         <span class="hide-sm ml6"><?= $this->author->screenName ?></span>
-                                                        <span title="${_.date_time}" class="icon-circle"><?= $this->dateWord ?></span>
+                                                        <span title="<?= date('Y-m-d H:i:s', $this->created) ?>" class="icon-circle" style="white-space: nowrap;overflow: hidden;max-width: 88px;"><?= $this->dateWord ?></span>
                                                     </item>
                                                     <div class="meta-right">
                                                         <item class="meta-comm">

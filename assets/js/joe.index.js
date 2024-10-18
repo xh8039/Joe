@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>
-										<span title="${_.date_time}" class="icon-circle">${_.dateWord}</span>
+										<span title="${_.date_time}" class="icon-circle" style="white-space: nowrap;overflow: hidden;max-width: 88px;">${_.dateWord}</span>
 									</item>
 									<div class="meta-right">
 										<item class="meta-comm">

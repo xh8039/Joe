@@ -1580,6 +1580,7 @@
 .joe_list__item .item-meta item {
 	margin-right: 8px;
 	font-size: 13px;
+	white-space: nowrap;
 }
 
 .joe_list__item .item-meta a,
@@ -1589,11 +1590,6 @@
 
 .item-meta .avatar-mini {
 	transform: translateY(-1px);
-}
-
-.joe_list__item .item-meta item {
-	margin-right: 8px;
-	font-size: 13px;
 }
 
 .joe_list__item .item-meta a,

@@ -1,7 +1,7 @@
 /* 搜索页的样式 */
 .joe_archive {
 	border-radius: var(--radius-wrap);
-	padding: 0 15px;
+	/* padding: 0 15px; */
 	background: transparent;
 }
 

@@ -4,7 +4,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 ?>
-<?php $this->related(6)->to($relatedPosts); ?>
 <?php if ($relatedPosts->have()) : ?>
 	<div class="joe_detail__related">
 		<div class="joe_detail__related-title title-theme">相关推荐</div>

@@ -6,8 +6,12 @@
 <html lang="zh-CN">
 
 <head>
-	<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
-	<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
+	<?php
+	$this->related(6)->to($relatedPosts);
+	if ($relatedPosts->have()) : ?>
+		<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
+		<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
+	<?php endif ?>
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . $this->options->JPrismTheme) ?>">
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">

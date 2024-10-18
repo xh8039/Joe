@@ -2923,7 +2923,6 @@
 	font-weight: 400;
 	color: var(--this-color);
 	--main-color: var(--this-color);
-	line-height: 1.44;
 }
 
 .joe_main .joe_detail .single-metabox .clearfix>a:hover {
@@ -3494,7 +3493,6 @@
 	--this-shadow: none;
 	--this-color: #888;
 	text-shadow: 0 0 0;
-	line-height: 1.44;
 }
 
 .joe_detail .article-tags a:hover {

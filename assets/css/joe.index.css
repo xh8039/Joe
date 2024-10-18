@@ -208,7 +208,6 @@
 	font-weight: 400;
 	background: rgba(136, 136, 136, .1);
 	color: #888;
-	line-height: 1.44;
 }
 
 .joe_index__hot-list .item>.item-body>.item-tags-category>.item-tags>a::before {
@@ -359,8 +358,8 @@
 	background-color: #f84c39;
 	color: #fff;
 	font-size: 12px;
-	height: 18px;
-	padding: 0 8px;
+	/* height: 18px; */
+	padding: 1px 8px;
 	border-radius: 2px;
 	white-space: nowrap
 }
@@ -911,7 +910,6 @@
 .joe_comment__respond-form .foot .comment_box .dropdown-menu .dropdown-image .text-right .but {
 	border-radius: 4px;
 	display: inline-block;
-	line-height: 1.44;
 	background: var(--theme);
 	color: #fff;
 	padding: .3em 1em

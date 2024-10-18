@@ -3199,7 +3199,8 @@
 .joe_detail__article pre[class*='language-'] code[class*='language-'] {
 	display: block;
 	overflow: auto;
-	padding: 0 15px 12px
+	padding: 0 15px 12px;
+	tab-size: 4 !important;
 }
 
 .joe_detail__article pre[class*='language-']::before {

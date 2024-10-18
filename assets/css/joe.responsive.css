@@ -372,8 +372,8 @@
 	}
 
 	html .joe_list__item.default .title {
-        padding-bottom: 0px;
-        margin-bottom: 5px;
+		padding-bottom: 0px;
+		margin-bottom: 5px;
 	}
 
 	html .joe_list__item.default .meta .items {
@@ -739,6 +739,12 @@
 
 	html .joe_list__item {
 		padding: 10px;
+	}
+
+	html .joe_list__item .line {
+		top: 10px;
+		left: 4px;
+		width: 3px;
 	}
 }
 

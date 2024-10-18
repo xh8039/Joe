@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$JPrevent = new Typecho_Widget_Helper_Form_Element_Select(
+$JPrevent = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPrevent',
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',
@@ -15,7 +15,7 @@ $JPrevent = new Typecho_Widget_Helper_Form_Element_Select(
 $JPrevent->setAttribute('class', 'joe_content joe_safe');
 $form->addInput($JPrevent->multiMode());
 
-$JShieldScan = new Typecho_Widget_Helper_Form_Element_Select(
+$JShieldScan = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JShieldScan',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',

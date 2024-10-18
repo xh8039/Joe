@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$JLogo_Light_Effect = new Typecho_Widget_Helper_Form_Element_Select(
+$JLogo_Light_Effect = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLogo_Light_Effect',
 	['on' => '开启（默认）', 'off' => '关闭'],
 	'on',
@@ -15,7 +15,7 @@ $JLogo_Light_Effect = new Typecho_Widget_Helper_Form_Element_Select(
 $JLogo_Light_Effect->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JLogo_Light_Effect->multiMode());
 
-$JLoading = new Typecho_Widget_Helper_Form_Element_Select(
+$JLoading = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLoading',
 	['off' => '关闭', 'concise' => '简洁对圈（默认）', 'lollipop' => '七彩棒棒糖'],
 	'concise',
@@ -25,7 +25,7 @@ $JLoading = new Typecho_Widget_Helper_Form_Element_Select(
 $JLoading->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JLoading->multiMode());
 
-$JIndex_Link_Active = new Typecho_Widget_Helper_Form_Element_Select(
+$JIndex_Link_Active = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JIndex_Link_Active',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
@@ -35,7 +35,7 @@ $JIndex_Link_Active = new Typecho_Widget_Helper_Form_Element_Select(
 $JIndex_Link_Active->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JIndex_Link_Active->multiMode());
 
-$JPendant_SSL = new Typecho_Widget_Helper_Form_Element_Select(
+$JPendant_SSL = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPendant_SSL',
 	array('on' => '开启（默认）', 'off' => '关闭'),
 	'on',
@@ -45,7 +45,7 @@ $JPendant_SSL = new Typecho_Widget_Helper_Form_Element_Select(
 $JPendant_SSL->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JPendant_SSL->multiMode());
 
-$JGrey_Model = new Typecho_Widget_Helper_Form_Element_Select(
+$JGrey_Model = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JGrey_Model',
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',
@@ -55,7 +55,7 @@ $JGrey_Model = new Typecho_Widget_Helper_Form_Element_Select(
 $JGrey_Model->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JGrey_Model->multiMode());
 
-$JHeader_Counter = new Typecho_Widget_Helper_Form_Element_Select(
+$JHeader_Counter = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JHeader_Counter',
 	array('on' => '开启（默认）', 'off' => '关闭'),
 	'on',
@@ -65,7 +65,7 @@ $JHeader_Counter = new Typecho_Widget_Helper_Form_Element_Select(
 $JHeader_Counter->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JHeader_Counter->multiMode());
 
-$JFooter_Fish = new Typecho_Widget_Helper_Form_Element_Select(
+$JFooter_Fish = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JFooter_Fish',
 	array('on' => '开启（默认）', 'off' => '关闭'),
 	'on',
@@ -75,7 +75,7 @@ $JFooter_Fish = new Typecho_Widget_Helper_Form_Element_Select(
 $JFooter_Fish->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JFooter_Fish->multiMode());
 
-$JList_Animate = new Typecho_Widget_Helper_Form_Element_Select(
+$JList_Animate = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JList_Animate',
 	array(
 		'off' => '关闭（默认）',
@@ -162,7 +162,7 @@ $JList_Animate = new Typecho_Widget_Helper_Form_Element_Select(
 $JList_Animate->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JList_Animate->multiMode());
 
-$JLive2d = new Typecho_Widget_Helper_Form_Element_Select(
+$JLive2d = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLive2d',
 	array(
 		'off' => '关闭（默认）',
@@ -201,7 +201,7 @@ $JLive2d = new Typecho_Widget_Helper_Form_Element_Select(
 $JLive2d->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JLive2d->multiMode());
 
-$JCursorEffects = new Typecho_Widget_Helper_Form_Element_Select(
+$JCursorEffects = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JCursorEffects',
 	array(
 		'off' => '关闭（默认）',
@@ -224,7 +224,7 @@ $JCursorEffects = new Typecho_Widget_Helper_Form_Element_Select(
 $JCursorEffects->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JCursorEffects->multiMode());
 
-$JDocumentTitle = new Typecho_Widget_Helper_Form_Element_Text(
+$JDocumentTitle = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JDocumentTitle',
 	NULL,
 	NULL,

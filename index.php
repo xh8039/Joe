@@ -18,8 +18,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
 	<meta name="referrer" content="no-referrer" />
 	<?php $this->need('module/head.php'); ?>
-	<link rel="stylesheet" href="<?= joe\cdn('Swiper/5.4.5/css/swiper.min.css') ?>" />
-	<script src="<?= joe\cdn('Swiper/5.4.5/js/swiper.min.js') ?>"></script>
+	<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
+	<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
 	<script src="<?= joe\cdn('wow/1.1.2/wow.min.js') ?>"></script>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.index.css'); ?>">
 	<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>
@@ -91,7 +91,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php if (count($carousel) > 0 || count($recommend) === 2) : ?>
 						<div class="joe_index__banner">
 							<?php if (count($carousel) > 0) : ?>
-								<div class="swiper-container">
+								<div class="swiper swiper-container">
 									<div class="swiper-wrapper">
 										<?php foreach ($carousel as $item) : ?>
 											<div class="swiper-slide">
@@ -116,6 +116,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php
 					if ($this->options->JIndex_Recommend_Style == 'simple') {
 					?>
+						<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
 						<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
 							<?php
 							foreach ($recommend as $cid) {
@@ -139,6 +140,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					}
 					if ($this->options->JIndex_Recommend_Style == 'full') {
 					?>
+						<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
 						<div class="joe_index__hot">
 							<ul class="joe_index__hot-list">
 								<?php
@@ -211,7 +213,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php if (Joe\isMobile()) $this->options->JIndex_Hot = $this->options->JIndex_Mobile_Hot; ?>
 					<?php if ((is_numeric($this->options->JIndex_Hot)) &&  ($this->options->JIndex_Hot >= 1)) : ?>
 						<?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=' . $this->options->JIndex_Hot)->to($item); ?>
-						<div class="joe_index__hot" <?= $this->options->JIndex_Recommend_Style == 'full' ? 'style="margin-top: 10px;"' : null ?>>
+						<div class="title-theme" style="margin-bottom: 10px;">热门文章</div>
+						<div class="joe_index__hot">
 							<ul class="joe_index__hot-list">
 								<?php while ($item->next()) : ?>
 									<?php
@@ -292,14 +295,20 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							</a>
 						</div>
 					<?php endif; ?>
+					<!-- <div class="box-body notop nobottom"> -->
+					<div class="title-theme" style="margin-top: 2vh;">最新发布</div>
+					<!-- </div> -->
 					<div class="joe_index__title">
-						<ul class="joe_index__title-title">
-							<li class="item" data-type="created">最新文章</li>
-							<li class="item" data-type="views">热门文章</li>
-							<li class="item" data-type="commentsNum">评论最多</li>
-							<li class="item" data-type="agree">点赞最多</li>
-							<li class="line"></li>
-						</ul>
+						<div class="joe_index__title-content">
+							<div class="splitters-this-r">排序</div>
+							<ul class="joe_index__title-title">
+								<li class="item" data-type="created">最新<span>文章</span></li>
+								<li class="item" data-type="views">热门<span>文章</span></li>
+								<li class="item" data-type="commentsNum">评论<span>最多</span></li>
+								<li class="item" data-type="agree">点赞<span>最多</span></li>
+								<li class="line"></li>
+							</ul>
+						</div>
 						<?php
 						$index_notice_text = $this->options->JIndex_Notice;
 						$index_notice = null;
@@ -340,7 +349,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</ul>
 					</div>
 				</div>
-				<div class="joe_load">查看更多</div>
+				<div class="joe_load_box">
+					<a href="javascript:;" class="joe_load"><i class="fa fa-angle-right"></i>查看更多</a>
+				</div>
 			</div>
 			<?php $this->need('module/aside.php'); ?>
 		</div>

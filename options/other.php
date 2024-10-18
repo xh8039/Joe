@@ -2,7 +2,7 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
-$JMaccmsAPI = new Typecho_Widget_Helper_Form_Element_Text(
+$JMaccmsAPI = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JMaccmsAPI',
 	NULL,
 	NULL,
@@ -15,7 +15,7 @@ $JMaccmsAPI = new Typecho_Widget_Helper_Form_Element_Text(
 $JMaccmsAPI->setAttribute('class', 'joe_content joe_other');
 $form->addInput($JMaccmsAPI);
 
-$JCustomPlayer = new Typecho_Widget_Helper_Form_Element_Text(
+$JCustomPlayer = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCustomPlayer',
 	NULL,
 	NULL,

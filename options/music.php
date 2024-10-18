@@ -10,7 +10,7 @@ foreach ($extension as  $value) {
 	}
 }
 
-$JMusic = new Typecho_Widget_Helper_Form_Element_Select(
+$JMusic = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JMusic',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
@@ -20,7 +20,7 @@ $JMusic = new Typecho_Widget_Helper_Form_Element_Select(
 $JMusic->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusic);
 
-$JMusicApi = new Typecho_Widget_Helper_Form_Element_Text(
+$JMusicApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JMusicApi',
 	NUll,
 	'https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r',
@@ -34,7 +34,7 @@ $JMusicApi = new Typecho_Widget_Helper_Form_Element_Text(
 $JMusicApi->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicApi);
 
-$JMusicCookie = new Typecho_Widget_Helper_Form_Element_Text(
+$JMusicCookie = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JMusicCookie',
 	NULL,
 	NULL,
@@ -44,7 +44,7 @@ $JMusicCookie = new Typecho_Widget_Helper_Form_Element_Text(
 $JMusicCookie->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicCookie);
 
-$JMusicServer = new Typecho_Widget_Helper_Form_Element_Select(
+$JMusicServer = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JMusicServer',
 	[
 		'netease' => '网易云音乐（默认）',
@@ -60,7 +60,7 @@ $JMusicServer = new Typecho_Widget_Helper_Form_Element_Select(
 $JMusicServer->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicServer);
 
-$JMusicType = new Typecho_Widget_Helper_Form_Element_Select(
+$JMusicType = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JMusicType',
 	[
 		'playlist' => '歌单（默认）',
@@ -76,7 +76,7 @@ $JMusicType = new Typecho_Widget_Helper_Form_Element_Select(
 $JMusicType->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicType);
 
-$JMusicId = new Typecho_Widget_Helper_Form_Element_Text(
+$JMusicId = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JMusicId',
 	null,
 	'7757541927',
@@ -86,7 +86,7 @@ $JMusicId = new Typecho_Widget_Helper_Form_Element_Text(
 $JMusicId->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicId);
 
-$JMusicPlay = new Typecho_Widget_Helper_Form_Element_Select(
+$JMusicPlay = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JMusicPlay',
 	['off' => '关闭', 'on' => '开启（默认）'],
 	'on',
@@ -96,7 +96,7 @@ $JMusicPlay = new Typecho_Widget_Helper_Form_Element_Select(
 $JMusicPlay->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicPlay);
 
-$JMusicOrder = new Typecho_Widget_Helper_Form_Element_Select(
+$JMusicOrder = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JMusicOrder',
 	['list' => '默认排序（默认）', 'random' => '随机播放'],
 	'list',

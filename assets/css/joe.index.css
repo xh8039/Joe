@@ -116,7 +116,8 @@
 }
 
 .joe_index__hot {
-	margin-top: 20px;
+	/* margin-top: 20px; */
+	margin-bottom: 2vh;
 }
 
 .joe_index__hot-list {
@@ -284,10 +285,10 @@
 
 .joe_index__hot-list .item>.item-body>.item-meta>.meta-author>span {
 	margin-left: 6px;
-	padding-bottom: 1px;
+	/* padding-bottom: 1px; */
 	white-space: nowrap;
-    overflow: hidden;
-    max-width: 67px;
+	overflow: hidden;
+	max-width: 64px;
 }
 
 .joe_index__hot-list .item>.item-body>.item-meta>.meta-right {
@@ -422,36 +423,57 @@
 	display: flex;
 	align-items: center;
 	margin-top: 10px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
+}
+
+.joe_index__title-content {
+	display: flex;
+	align-items: center;
+}
+
+.joe_index__title>.joe_index__title-content>.splitters-this-r {
+	color: var(--main-color);
+	flex: none;
+	padding: 5px 10px;
+	display: inline-block;
+	padding-left: 0;
 }
 
 .joe_index__title-title {
 	position: relative;
 	display: flex;
-	align-items: center;
 	color: var(--routine);
-	font-weight: 500;
-	height: 40px;
-	line-height: 40px
+	margin-left: 10px;
+	color: var(--muted-2-color);
 }
 
 .joe_index__title-title .item {
 	cursor: pointer;
-	margin-right: 5px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 	transition: 0.2s;
-	padding-right: 8px;
-	padding-left: 8px;
-	line-height: 26px;
-	border-radius: 20px;
+}
+
+.joe_index__title-title .item+.item:before {
+	content: '';
+	width: 4px;
+	height: 4px;
+	margin: 0 .5em;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: middle;
+	background: var(--main-color);
+	opacity: .3;
+	vertical-align: .2em
 }
 
 .joe_index__title-title .item.active {
-	color: #fff;
-	background: var(--theme);
+	pointer-events: none;
+	cursor: not-allowed;
+}
+
+.joe_index__title-title .item.active,
+.joe_index__title-title .item:hover {
+	color: var(--theme);
+	/* background: var(--theme); */
 }
 
 .joe_index__title-title .line {
@@ -546,7 +568,7 @@
 	opacity: 0.5
 }
 
-.swiper-container.swiper-container-horizontal .swiper-pagination-bullets {
+.swiper-container .swiper-pagination-bullets {
 	bottom: unset;
 	left: unset;
 	width: auto;
@@ -864,7 +886,6 @@
 	width: 100%;
 	padding: 6px 12px;
 	font-size: 14px;
-	line-height: 1.42857143;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	border-color: transparent;

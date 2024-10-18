@@ -4,7 +4,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
 $statistics_config = joe\baidu_statistic_config();
 $update_access_token_url = $statistics_config ? '操作：<a href="http://openapi.baidu.com/oauth/2.0/token?grant_type=refresh_token&refresh_token=' . urlencode($statistics_config['refresh_token']) . '&client_id=' . urlencode($statistics_config['client_id']) . '&client_secret=' . urlencode($statistics_config['client_secret']) . '">一键更新access_token</a>（需一月更新一次，获取后请手动在主题设置处填写已更新的token）<br>' : NULL;
-$baidu_statistics = new Typecho_Widget_Helper_Form_Element_Textarea(
+$baidu_statistics = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'baidu_statistics',
 	NULL,
 	NULL,
@@ -17,7 +17,7 @@ $baidu_statistics = new Typecho_Widget_Helper_Form_Element_Textarea(
 $baidu_statistics->setAttribute('class', 'joe_content joe_statistic');
 $form->addInput($baidu_statistics);
 
-$JSiteMap = new Typecho_Widget_Helper_Form_Element_Select(
+$JSiteMap = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JSiteMap',
 	array(
 		'off' => '关闭（默认）',
@@ -45,7 +45,7 @@ $JSiteMap = new Typecho_Widget_Helper_Form_Element_Select(
 $JSiteMap->setAttribute('class', 'joe_content joe_statistic');
 $form->addInput($JSiteMap->multiMode());
 
-$JBTPanel = new Typecho_Widget_Helper_Form_Element_Text(
+$JBTPanel = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JBTPanel',
 	NULL,
 	NULL,
@@ -58,7 +58,7 @@ $JBTPanel = new Typecho_Widget_Helper_Form_Element_Text(
 $JBTPanel->setAttribute('class', 'joe_content joe_statistic');
 $form->addInput($JBTPanel->multiMode());
 
-$JBTKey = new Typecho_Widget_Helper_Form_Element_Text(
+$JBTKey = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JBTKey',
 	NULL,
 	NULL,

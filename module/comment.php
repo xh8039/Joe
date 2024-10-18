@@ -1,9 +1,12 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
-<?php $this->comments()->to($comments); ?>
-
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+$this->comments()->to($comments);
+?>
+<div class="joe_comment__title title-theme">评论 <small><?= ($this->allow('comment') && $this->options->JCommentStatus !== "off") ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
 <div class="joe_comment" id="comment_module">
-	<h3 class="joe_comment__title">评论 <?php if ($this->allow('comment') && $this->options->JCommentStatus !== "off") : ?>(<?php $this->commentsNum(); ?>)<?php endif; ?></h3>
-
 	<?php if ($this->hidden) : ?>
 		<div class="joe_comment__close">
 			<svg class="joe_comment__close-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="18" height="18">

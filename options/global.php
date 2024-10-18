@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$JStaticAssetsUrl = new Typecho_Widget_Helper_Form_Element_Text(
+$JStaticAssetsUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JStaticAssetsUrl',
 	null,
 	null,
@@ -18,7 +18,7 @@ $JStaticAssetsUrl = new Typecho_Widget_Helper_Form_Element_Text(
 $JStaticAssetsUrl->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JStaticAssetsUrl);
 
-$JCdnUrl = new Typecho_Widget_Helper_Form_Element_Text(
+$JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCdnUrl',
 	null,
 	'https://cdn.bootcdn.net/ajax/libs/',
@@ -45,7 +45,7 @@ $JCdnUrl = new Typecho_Widget_Helper_Form_Element_Text(
 $JCdnUrl->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCdnUrl);
 
-$JNavMaxNum = new Typecho_Widget_Helper_Form_Element_Select(
+$JNavMaxNum = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JNavMaxNum',
 	array(
 		'3' => '3个（默认）',
@@ -61,7 +61,7 @@ $JNavMaxNum = new Typecho_Widget_Helper_Form_Element_Select(
 $JNavMaxNum->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JNavMaxNum->multiMode());
 
-$JCustomNavs = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JCustomNavs = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomNavs',
 	NULL,
 	NULL,
@@ -77,7 +77,7 @@ $JCustomNavs = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JCustomNavs->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomNavs);
 
-$JFooter_Left = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JFooter_Left = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFooter_Left',
 	NULL,
 	'2021 - ' . date('Y') . ' © <a href="http://blog.bri6.cn">易航博客</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
@@ -88,7 +88,7 @@ $JFooter_Left = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JFooter_Left->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JFooter_Left);
 
-$JFooter_Right = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JFooter_Right = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFooter_Right',
 	NULL,
 	'<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>' . PHP_EOL . '<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>' . PHP_EOL . '<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>',
@@ -99,7 +99,7 @@ $JFooter_Right = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JFooter_Right->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JFooter_Right);
 
-$JBirthDay = new Typecho_Widget_Helper_Form_Element_Text(
+$JBirthDay = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JBirthDay',
 	NULL,
 	date('Y/n/j H:i:s'),
@@ -111,7 +111,7 @@ $JBirthDay = new Typecho_Widget_Helper_Form_Element_Text(
 $JBirthDay->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JBirthDay);
 
-$JCustomFont = new Typecho_Widget_Helper_Form_Element_Text(
+$JCustomFont = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCustomFont',
 	NULL,
 	NULL,
@@ -123,7 +123,7 @@ $JCustomFont = new Typecho_Widget_Helper_Form_Element_Text(
 $JCustomFont->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomFont);
 
-$JCustomAvatarSource = new Typecho_Widget_Helper_Form_Element_Text(
+$JCustomAvatarSource = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCustomAvatarSource',
 	NULL,
 	NULL,

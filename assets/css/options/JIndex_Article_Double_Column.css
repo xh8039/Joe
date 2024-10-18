@@ -2,11 +2,11 @@ html .joe_index__hot-list {
     grid-template-columns: repeat(4, 1fr);
 }
 
-html .swiper-container {
+html .joe_index__banner>.swiper-container {
     height: 550px;
 }
 
-html .swiper-container .item {
+html .joe_index__banner>.swiper-container .item {
     height: 550px;
 }
 

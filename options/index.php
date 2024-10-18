@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$JIndex_Hide_Post = new Typecho_Widget_Helper_Form_Element_Text(
+$JIndex_Hide_Post = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Hide_Post',
 	NULL,
 	NULL,
@@ -17,7 +17,7 @@ $JIndex_Hide_Post = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndex_Hide_Post->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Hide_Post);
 
-$JIndex_Hide_Categorize = new Typecho_Widget_Helper_Form_Element_Text(
+$JIndex_Hide_Categorize = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Hide_Categorize',
 	NULL,
 	NULL,
@@ -29,7 +29,7 @@ $JIndex_Hide_Categorize = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndex_Hide_Categorize->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Hide_Categorize);
 
-$JIndex_Article_Double_Column = new Typecho_Widget_Helper_Form_Element_Select(
+$JIndex_Article_Double_Column = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JIndex_Article_Double_Column',
 	array(
 		'off' => '关闭（默认）',
@@ -42,7 +42,7 @@ $JIndex_Article_Double_Column = new Typecho_Widget_Helper_Form_Element_Select(
 $JIndex_Article_Double_Column->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Article_Double_Column->multiMode());
 
-$JIndex_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JIndex_Header_Img = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JIndex_Header_Img',
 	NULL,
 	null,
@@ -53,7 +53,7 @@ $JIndex_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JIndex_Header_Img->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Header_Img);
 
-$JIndex_Carousel = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JIndex_Carousel = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JIndex_Carousel',
 	NULL,
 	NULL,
@@ -70,7 +70,7 @@ $JIndex_Carousel = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JIndex_Carousel->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Carousel);
 
-$JIndex_Carousel_Target = new Typecho_Widget_Helper_Form_Element_Select(
+$JIndex_Carousel_Target = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JIndex_Carousel_Target',
 	array(
 		'_self' => '_self（默认，同窗口）',
@@ -84,7 +84,7 @@ $JIndex_Carousel_Target = new Typecho_Widget_Helper_Form_Element_Select(
 $JIndex_Carousel_Target->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Carousel_Target->multiMode());
 
-$Jessay_target = new Typecho_Widget_Helper_Form_Element_Select(
+$Jessay_target = new \Typecho\Widget\Helper\Form\Element\Select(
 	'Jessay_target',
 	array(
 		'_self' => '_self（默认，同窗口）',
@@ -98,7 +98,7 @@ $Jessay_target = new Typecho_Widget_Helper_Form_Element_Select(
 $Jessay_target->setAttribute('class', 'joe_content joe_index');
 $form->addInput($Jessay_target->multiMode());
 
-$JIndex_Recommend = new Typecho_Widget_Helper_Form_Element_Text(
+$JIndex_Recommend = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Recommend',
 	NULL,
 	NULL,
@@ -110,7 +110,7 @@ $JIndex_Recommend = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndex_Recommend->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Recommend);
 
-$JIndex_Mobile_Recommend = new Typecho_Widget_Helper_Form_Element_Text(
+$JIndex_Mobile_Recommend = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Mobile_Recommend',
 	NULL,
 	NULL,
@@ -122,7 +122,7 @@ $JIndex_Mobile_Recommend = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndex_Mobile_Recommend->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Mobile_Recommend);
 
-$JIndex_Recommend_Style = new Typecho_Widget_Helper_Form_Element_Select(
+$JIndex_Recommend_Style = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JIndex_Recommend_Style',
 	['simple' => '简约样式（默认）', 'full' => '比较全（和热门文章风格相同）',],
 	'simple',
@@ -131,7 +131,7 @@ $JIndex_Recommend_Style = new Typecho_Widget_Helper_Form_Element_Select(
 $JIndex_Recommend_Style->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Recommend_Style->multiMode());
 
-$JIndexSticky = new Typecho_Widget_Helper_Form_Element_Text(
+$JIndexSticky = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndexSticky',
 	NULL,
 	NULL,
@@ -143,7 +143,7 @@ $JIndexSticky = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndexSticky->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndexSticky);
 
-$JIndex_Hot = new Typecho_Widget_Helper_Form_Element_Text(
+$JIndex_Hot = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Hot',
 	NULL,
 	'0',
@@ -153,7 +153,7 @@ $JIndex_Hot = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndex_Hot->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Hot->multiMode());
 
-$JIndex_Mobile_Hot = new Typecho_Widget_Helper_Form_Element_Text(
+$JIndex_Mobile_Hot = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Mobile_Hot',
 	NULL,
 	'0',
@@ -163,7 +163,7 @@ $JIndex_Mobile_Hot = new Typecho_Widget_Helper_Form_Element_Text(
 $JIndex_Mobile_Hot->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Mobile_Hot->multiMode());
 
-$JIndex_Ad = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JIndex_Ad = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JIndex_Ad',
 	NULL,
 	NULL,
@@ -175,7 +175,7 @@ $JIndex_Ad = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JIndex_Ad->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Ad);
 
-$JIndex_Notice = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JIndex_Notice = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JIndex_Notice',
 	NULL,
 	NULL,

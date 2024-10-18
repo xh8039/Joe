@@ -2,7 +2,7 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
-$JAside_Notice = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JAside_Notice = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Notice',
 	NULL,
 	NULL,
@@ -14,7 +14,7 @@ $JAside_Notice = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JAside_Notice->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Notice);
 
-$JAside_Author_Nick = new Typecho_Widget_Helper_Form_Element_Text(
+$JAside_Author_Nick = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Author_Nick',
 	NULL,
 	"易航",
@@ -25,7 +25,7 @@ $JAside_Author_Nick = new Typecho_Widget_Helper_Form_Element_Text(
 $JAside_Author_Nick->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Nick);
 
-$JAside_Author_Avatar = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JAside_Author_Avatar = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Author_Avatar',
 	NULL,
 	NULL,
@@ -36,7 +36,7 @@ $JAside_Author_Avatar = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JAside_Author_Avatar->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Avatar);
 
-$JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JAside_Author_Image = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Author_Image',
 	NULL,
 	NULL,
@@ -47,7 +47,7 @@ $JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JAside_Author_Image->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Image);
 
-$JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JAside_Wap_Image = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Wap_Image',
 	NULL,
 	'//api.bri6.cn/api/wallpaper/phone.php',
@@ -58,7 +58,7 @@ $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JAside_Wap_Image->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Wap_Image);
 
-$JAside_Wap_Image_Height = new Typecho_Widget_Helper_Form_Element_Text(
+$JAside_Wap_Image_Height = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Wap_Image_Height',
 	NULL,
 	'100%',
@@ -69,7 +69,7 @@ $JAside_Wap_Image_Height = new Typecho_Widget_Helper_Form_Element_Text(
 $JAside_Wap_Image_Height->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Wap_Image_Height);
 
-$JAside_Author_Link = new Typecho_Widget_Helper_Form_Element_Text(
+$JAside_Author_Link = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Author_Link',
 	NULL,
 	"http://blog.bri6.cn",
@@ -79,7 +79,7 @@ $JAside_Author_Link = new Typecho_Widget_Helper_Form_Element_Text(
 $JAside_Author_Link->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Link);
 
-$JAside_Author_Motto = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JAside_Author_Motto = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Author_Motto',
 	NULL,
 	NULL,
@@ -93,7 +93,7 @@ $JAside_Author_Motto = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JAside_Author_Motto->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Motto);
 
-$JAside_Author_Nav = new Typecho_Widget_Helper_Form_Element_Select(
+$JAside_Author_Nav = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Author_Nav',
 	array(
 		'off' => '关闭（默认）',
@@ -113,7 +113,7 @@ $JAside_Author_Nav = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Nav->multiMode());
 
-$JAside_Timelife_Status = new Typecho_Widget_Helper_Form_Element_Select(
+$JAside_Timelife_Status = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Timelife_Status',
 	array(
 		'off' => '关闭（默认）',
@@ -126,7 +126,7 @@ $JAside_Timelife_Status = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_Timelife_Status->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Timelife_Status->multiMode());
 
-$JAside_Hot_Num = new Typecho_Widget_Helper_Form_Element_Select(
+$JAside_Hot_Num = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Hot_Num',
 	array(
 		'off' => '关闭（默认）',
@@ -146,7 +146,7 @@ $JAside_Hot_Num = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_Hot_Num->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Hot_Num->multiMode());
 
-$JAside_Newreply_Status = new Typecho_Widget_Helper_Form_Element_Select(
+$JAside_Newreply_Status = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Newreply_Status',
 	array(
 		'off' => '关闭（默认）',
@@ -160,7 +160,7 @@ $JAside_Newreply_Status = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_Newreply_Status->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Newreply_Status->multiMode());
 
-$JAside_Weather_Key = new Typecho_Widget_Helper_Form_Element_Text(
+$JAside_Weather_Key = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Weather_Key',
 	NULL,
 	NULL,
@@ -173,7 +173,7 @@ $JAside_Weather_Key = new Typecho_Widget_Helper_Form_Element_Text(
 $JAside_Weather_Key->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Weather_Key);
 
-$JAside_Weather_Style = new Typecho_Widget_Helper_Form_Element_Select(
+$JAside_Weather_Style = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Weather_Style',
 	array(
 		'1' => '自动（默认）',
@@ -188,7 +188,7 @@ $JAside_Weather_Style = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_Weather_Style->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Weather_Style->multiMode());
 
-$JADContent = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JADContent = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JADContent',
 	NULL,
 	NULL,
@@ -201,7 +201,7 @@ $JADContent->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JADContent);
 
 
-$JAside_3DTag = new Typecho_Widget_Helper_Form_Element_Select(
+$JAside_3DTag = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_3DTag',
 	array(
 		'off' => '关闭（默认）',
@@ -214,7 +214,7 @@ $JAside_3DTag = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_3DTag->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_3DTag->multiMode());
 
-$JAside_Flatterer = new Typecho_Widget_Helper_Form_Element_Select(
+$JAside_Flatterer = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Flatterer',
 	array(
 		'off' => '关闭（默认）',
@@ -227,7 +227,7 @@ $JAside_Flatterer = new Typecho_Widget_Helper_Form_Element_Select(
 $JAside_Flatterer->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Flatterer->multiMode());
 
-$JAside_History_Today = new Typecho_Widget_Helper_Form_Element_Select(
+$JAside_History_Today = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_History_Today',
 	array(
 		'off' => '关闭（默认）',

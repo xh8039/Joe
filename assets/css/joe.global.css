@@ -502,7 +502,7 @@
 	display: flex;
 	align-items: center;
 	height: 40px;
-	color: var(--minor)
+	color: var(--minor);
 }
 
 .joe_header__below-sign .item .icon {
@@ -1347,7 +1347,7 @@
 
 .joe_aside__item.newreply .item .reply {
 	position: relative;
-	background: var(--classD);
+	background: var(--body-bg-color);
 	border-radius: 6px;
 	padding: 5px 10px
 }
@@ -1356,7 +1356,7 @@
 	content: '';
 	width: 0;
 	height: 0;
-	border-bottom: 6px solid var(--classD);
+	border-bottom: 6px solid var(--body-bg-color);
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
 	position: absolute;
@@ -1618,7 +1618,7 @@
 
 .joe_list__item .meta .items>li:first-child {
 	margin-right: 5px;
-	margin-top: -2px;
+	/* margin-top: -2px; */
 }
 
 .joe_list__item .meta .items li {
@@ -1880,24 +1880,32 @@
 	animation: list_abstract_loading 0.8s infinite alternate
 }
 
-.joe_load {
-	margin: 15px auto 0;
-	width: 120px;
-	height: 32px;
-	line-height: 32px;
+.joe_load_box {
 	text-align: center;
-	border-radius: 16px;
+	margin-top: 25px;
+	margin-bottom: 10px;
+}
+
+.joe_load {
+	border-radius: 30px;
+	padding: 5px 15px;
+	color: var(--muted-color);
+	opacity: .6;
 	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background: var(--back-line-right);
-	color: #fff;
-	transition: -webkit-transform 0.25s;
-	transition: transform 0.25s;
-	transition: transform 0.25s, -webkit-transform 0.25s;
-	box-shadow: var(--box-shadow)
+}
+
+.joe_load:hover {
+	background: var(--main-border-color);
+	opacity: 1;
+}
+
+.joe_load>.fa {
+	margin-right: 15px;
+	transition: .3s;
+}
+
+.joe_load:hover>.fa {
+    margin-right: 8px;
 }
 
 .joe_load:active {
@@ -2775,7 +2783,6 @@
 .joe_detail__count-information {
 	display: flex;
 	align-items: center;
-	line-height: 1.42857143;
 }
 
 .joe_detail__count-information .avatar {
@@ -2866,7 +2873,6 @@
 	transform: translateY(-50%);
 	z-index: 1;
 	font-size: 15px;
-	line-height: 1.42857143;
 }
 
 .joe_main .joe_detail .single-metabox .post-metas {
@@ -3187,7 +3193,7 @@
 	padding: 30px 0 0;
 	font-size: 14px;
 	border-radius: var(--radius-inner);
-	overflow: hidden
+	/* overflow: hidden; */
 }
 
 .joe_detail__article pre[class*='language-'] code[class*='language-'] {
@@ -3449,7 +3455,6 @@
 	margin-bottom: 20px;
 	font-size: .9em;
 	color: var(--muted-3-color);
-	line-height: 1.42857143;
 }
 
 .joe_detail>.separator::after,
@@ -3864,14 +3869,14 @@
 } */
 
 .joe_detail__copyright {
-	padding-top: 15px;
-	border-top: 1px solid var(--classC)
+	/* padding-top: 15px;
+	border-top: 1px solid var(--classC) */
 }
 
 .joe_detail__copyright .content {
-	background: var(--classD);
-	padding: 15px;
-	border-radius: var(--radius-inner)
+	/* background: var(--classD); */
+	padding: 15px 0;
+	/* border-radius: var(--radius-inner) */
 }
 
 .joe_detail__copyright .content .item {
@@ -3901,20 +3906,22 @@
 }
 
 .joe_detail__related {
-	padding-top: 15px
+	/* padding-top: 15px */
+	margin-bottom: 15px;
 }
 
 .joe_detail__related-title {
-	position: relative;
+	margin-bottom: 15px;
+	/* position: relative;
 	font-size: 18px;
 	font-weight: 500;
 	color: var(--main);
 	padding-left: 15px;
-	margin-bottom: 15px
+	margin-bottom: 15px */
 }
 
 .joe_detail__related-title::before {
-	content: '';
+	/* content: '';
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -3922,42 +3929,45 @@
 	width: 4px;
 	border-radius: 2px;
 	background: var(--theme);
-	box-shadow: 1px 1px 3px -1px var(--theme);
+	box-shadow: 1px 1px 3px -1px var(--theme); */
 }
 
 .joe_detail__related-content {
-	display: grid;
-	gap: 15px;
-	grid-template-columns: repeat(4, 1fr)
+    clear: both;
+    background: var(--main-bg-color);
+    padding: 15px;
+    box-shadow: 0 0 10px var(--main-shadow);
+    border-radius: var(--main-radius);
+    margin-bottom: 20px;
 }
 
 .joe_detail__related-content .item {
-	overflow: hidden;
+	/* overflow: hidden;
 	height: 120px;
 	border-radius: var(--radius-inner);
 	position: relative;
 	transition: box-shadow 0.25s, -webkit-transform 0.25s;
 	transition: transform 0.25s, box-shadow 0.25s;
-	transition: transform 0.25s, box-shadow 0.25s, -webkit-transform 0.25s
+	transition: transform 0.25s, box-shadow 0.25s, -webkit-transform 0.25s */
 }
 
 .joe_detail__related-content .item:hover>img {
-	transform: scale(1.05);
+	/* transform: scale(1.05); */
 }
 
 .joe_detail__related-content .item img {
-	position: absolute;
+	/* position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	-o-object-fit: cover;
 	object-fit: cover;
-	transition: all .2s;
+	transition: all .2s; */
 }
 
 .joe_detail__related-content .item h6 {
-	position: absolute;
+	/* position: absolute;
 	bottom: 0;
 	left: 0;
 	z-index: 1;
@@ -3972,7 +3982,7 @@
 	padding: 5px 10px;
 	transition: .3s;
 	width: 100%;
-	line-height: 22px;
+	line-height: 22px; */
 }
 
 .yiyan-box {
@@ -4337,14 +4347,7 @@
 }
 
 .joe_comment__title {
-	font-weight: 500;
-	text-align: center;
-	font-size: 24px;
-	color: var(--main);
-	text-shadow: var(--text-shadow);
-	border-bottom: 1px solid var(--classC);
 	margin-bottom: 15px;
-	padding-bottom: 15px
 }
 
 .joe_comment__close {
@@ -4362,11 +4365,11 @@
 .joe_comment__respond-type {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end
+	/* justify-content: flex-end */
 }
 
 .joe_comment__respond-type .item {
-	background: var(--classD);
+	background: var(--body-bg-color);
 	padding: 0 15px;
 	height: 32px;
 	color: var(--main);
@@ -4388,8 +4391,8 @@
 }
 
 .joe_comment__respond-form {
-	border-radius: 6px 0 6px 6px;
-	background: var(--classD)
+	border-radius: 0px 6px 6px 6px;
+	background:var(--body-bg-color)
 }
 
 .joe_comment__respond-form .head {
@@ -4662,7 +4665,7 @@
 
 .joe_comment .comment-list__item-contain .term .content .substance {
 	width: 100%;
-	background: var(--classD);
+	background: var(--body-bg-color);
 	padding: 12px 15px;
 	border-radius: 0 var(--radius-inner) var(--radius-inner) 10px;
 	color: var(--main-color);
@@ -4748,7 +4751,7 @@
 .joe_run__minute,
 .joe_run__second {
 	font-weight: 500;
-    color: var(--theme);
+	color: var(--theme);
 }
 
 .joe_owo__contain {

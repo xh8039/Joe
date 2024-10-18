@@ -6,6 +6,8 @@
 <html lang="zh-CN">
 
 <head>
+	<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
+	<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . $this->options->JPrismTheme) ?>">
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
@@ -125,7 +127,7 @@
 					$this->need('module/handle.php'); // 标签分类
 					$this->need('module/operate.php'); // 点赞分享
 					$this->need('module/copyright.php'); // 版权声明
-					$this->need('module/related.php'); // 相关推荐
+
 					?>
 				</div>
 				<div class="yiyan-box">
@@ -161,14 +163,8 @@
 				<?php
 				}
 				?>
-				<!--
-				<ul class="joe_post__pagination">
-						<?php // $this->theNext('<li class="joe_post__pagination-item prev">%s</li>', '', ['title' => '上一篇']); 
-						?>
-						<?php // $this->thePrev('<li class="joe_post__pagination-item next">%s</li>', '', ['title' => '下一篇']); 
-						?>
-				</ul>
-				-->
+				<?php $this->need('module/related.php'); // 相关推荐 
+				?>
 				<?php $this->need('module/comment.php'); ?>
 			</div>
 			<?php $this->need('module/aside.php'); ?>

@@ -3,7 +3,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
 /* 评论发信 */
-$JCommentMail = new Typecho_Widget_Helper_Form_Element_Select(
+$JCommentMail = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JCommentMail',
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',
@@ -15,7 +15,7 @@ $JCommentMail = new Typecho_Widget_Helper_Form_Element_Select(
 $JCommentMail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMail->multiMode());
 
-$JCommentMailHost = new Typecho_Widget_Helper_Form_Element_Text(
+$JCommentMailHost = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailHost',
 	NULL,
 	NULL,
@@ -25,7 +25,7 @@ $JCommentMailHost = new Typecho_Widget_Helper_Form_Element_Text(
 $JCommentMailHost->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailHost->multiMode());
 
-$JCommentSMTPSecure = new Typecho_Widget_Helper_Form_Element_Select(
+$JCommentSMTPSecure = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JCommentSMTPSecure',
 	array('ssl' => 'ssl（默认）', 'tsl' => 'tsl'),
 	'ssl',
@@ -35,7 +35,7 @@ $JCommentSMTPSecure = new Typecho_Widget_Helper_Form_Element_Select(
 $JCommentSMTPSecure->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentSMTPSecure->multiMode());
 
-$JCommentMailPort = new Typecho_Widget_Helper_Form_Element_Text(
+$JCommentMailPort = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailPort',
 	NULL,
 	NULL,
@@ -45,7 +45,7 @@ $JCommentMailPort = new Typecho_Widget_Helper_Form_Element_Text(
 $JCommentMailPort->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailPort->multiMode());
 
-$JCommentMailFromName = new Typecho_Widget_Helper_Form_Element_Text(
+$JCommentMailFromName = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailFromName',
 	NULL,
 	Helper::options()->title,
@@ -55,7 +55,7 @@ $JCommentMailFromName = new Typecho_Widget_Helper_Form_Element_Text(
 $JCommentMailFromName->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailFromName->multiMode());
 
-$JCommentMailAccount = new Typecho_Widget_Helper_Form_Element_Text(
+$JCommentMailAccount = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailAccount',
 	NULL,
 	NULL,
@@ -65,7 +65,7 @@ $JCommentMailAccount = new Typecho_Widget_Helper_Form_Element_Text(
 $JCommentMailAccount->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailAccount->multiMode());
 
-$JCommentMailPassword = new Typecho_Widget_Helper_Form_Element_Text(
+$JCommentMailPassword = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailPassword',
 	NULL,
 	NULL,

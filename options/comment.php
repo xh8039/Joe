@@ -2,7 +2,7 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
-$JCommentStatus = new Typecho_Widget_Helper_Form_Element_Select(
+$JCommentStatus = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JCommentStatus',
 	array(
 		'on' => '开启（默认）',
@@ -17,7 +17,7 @@ $JCommentStatus = new Typecho_Widget_Helper_Form_Element_Select(
 $JCommentStatus->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JCommentStatus->multiMode());
 
-$Jcomment_draw = new Typecho_Widget_Helper_Form_Element_Select(
+$Jcomment_draw = new \Typecho\Widget\Helper\Form\Element\Select(
 	'Jcomment_draw',
 	array(
 		'on' => '开启（默认）',
@@ -30,7 +30,7 @@ $Jcomment_draw = new Typecho_Widget_Helper_Form_Element_Select(
 $Jcomment_draw->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($Jcomment_draw->multiMode());
 
-$JSensitiveWords = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JSensitiveWords = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JSensitiveWords',
 	NULL,
 	'你妈死了 || 傻逼 || 操你妈 || 射你妈一脸',
@@ -41,7 +41,7 @@ $JSensitiveWords = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JSensitiveWords->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JSensitiveWords);
 
-$JLimitOneChinese = new Typecho_Widget_Helper_Form_Element_Select(
+$JLimitOneChinese = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLimitOneChinese',
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',
@@ -52,7 +52,7 @@ $JLimitOneChinese = new Typecho_Widget_Helper_Form_Element_Select(
 $JLimitOneChinese->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JLimitOneChinese->multiMode());
 
-$JTextLimit = new Typecho_Widget_Helper_Form_Element_Text(
+$JTextLimit = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JTextLimit',
 	NULL,
 	NULL,

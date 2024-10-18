@@ -25,6 +25,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			WeChat: `<?php $this->options->JWeChatRewardImg() ?>`,
 			Alipay: `<?php $this->options->JAlipayRewardImg() ?>`,
 			QQ: `<?php $this->options->JQQRewardImg() ?>`
+		},
+		CDN: (path) => {
+			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		}
 	}
 </script>

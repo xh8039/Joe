@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$JPost_Title_Center = new Typecho_Widget_Helper_Form_Element_Select(
+$JPost_Title_Center = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPost_Title_Center',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
@@ -15,7 +15,7 @@ $JPost_Title_Center = new Typecho_Widget_Helper_Form_Element_Select(
 $JPost_Title_Center->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Title_Center);
 
-$JPost_Header_Img_Switch = new Typecho_Widget_Helper_Form_Element_Select(
+$JPost_Header_Img_Switch = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPost_Header_Img_Switch',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
@@ -25,7 +25,7 @@ $JPost_Header_Img_Switch = new Typecho_Widget_Helper_Form_Element_Select(
 $JPost_Header_Img_Switch->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Header_Img_Switch);
 
-$JPost_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JPost_Header_Img = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JPost_Header_Img',
 	NULL,
 	NULL,
@@ -36,7 +36,7 @@ $JPost_Header_Img = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JPost_Header_Img->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Header_Img);
 
-$JArticle_Bottom_Text = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JArticle_Bottom_Text = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JArticle_Bottom_Text',
 	NULL,
 	NULL,
@@ -53,7 +53,7 @@ $JArticle_Bottom_Text = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JArticle_Bottom_Text->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JArticle_Bottom_Text);
 
-$JPost_Ad = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JPost_Ad = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JPost_Ad',
 	NULL,
 	NULL,
@@ -65,7 +65,7 @@ $JPost_Ad = new Typecho_Widget_Helper_Form_Element_Textarea(
 $JPost_Ad->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Ad);
 
-$JBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
+$JBaiduToken = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JBaiduToken',
 	NULL,
 	NULL,
@@ -76,7 +76,7 @@ $JBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
 $JBaiduToken->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JBaiduToken);
 
-$JBingToken = new Typecho_Widget_Helper_Form_Element_Text(
+$JBingToken = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JBingToken',
 	NULL,
 	NULL,
@@ -87,7 +87,7 @@ $JBingToken = new Typecho_Widget_Helper_Form_Element_Text(
 $JBingToken->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JBingToken);
 
-$Jsearch_target = new Typecho_Widget_Helper_Form_Element_Select(
+$Jsearch_target = new \Typecho\Widget\Helper\Form\Element\Select(
 	'Jsearch_target',
 	array(
 		'_blank' => '_blank（默认，新窗口）',
@@ -101,7 +101,7 @@ $Jsearch_target = new Typecho_Widget_Helper_Form_Element_Select(
 $Jsearch_target->setAttribute('class', 'joe_content joe_post');
 $form->addInput($Jsearch_target->multiMode());
 
-$JArticle_Guide = new Typecho_Widget_Helper_Form_Element_Select(
+$JArticle_Guide = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JArticle_Guide',
 	array(
 		'on' => '开启（默认）',
@@ -114,7 +114,7 @@ $JArticle_Guide = new Typecho_Widget_Helper_Form_Element_Select(
 $JArticle_Guide->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JArticle_Guide->multiMode());
 
-$JOverdue = new Typecho_Widget_Helper_Form_Element_Select(
+$JOverdue = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JOverdue',
 	array(
 		'off' => '关闭（默认）',
@@ -134,7 +134,7 @@ $JOverdue = new Typecho_Widget_Helper_Form_Element_Select(
 $JOverdue->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JOverdue->multiMode());
 
-$JEditor = new Typecho_Widget_Helper_Form_Element_Select(
+$JEditor = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JEditor',
 	array(
 		'on' => '开启（默认）',
@@ -148,7 +148,7 @@ $JEditor = new Typecho_Widget_Helper_Form_Element_Select(
 $JEditor->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JEditor->multiMode());
 
-$JPrismTheme = new Typecho_Widget_Helper_Form_Element_Select(
+$JPrismTheme = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPrismTheme',
 	array(
 		'prism-a11y-dark.min.css' => 'prism-a11y-dark',
@@ -204,7 +204,7 @@ $JPrismTheme = new Typecho_Widget_Helper_Form_Element_Select(
 $JPrismTheme->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPrismTheme->multiMode());
 
-$JRewardTitle = new Typecho_Widget_Helper_Form_Element_Text(
+$JRewardTitle = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JRewardTitle',
 	NULL,
 	'文章很赞！支持一下吧',
@@ -214,7 +214,7 @@ $JRewardTitle = new Typecho_Widget_Helper_Form_Element_Text(
 $JRewardTitle->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JRewardTitle);
 
-$JWeChatRewardImg = new Typecho_Widget_Helper_Form_Element_Text(
+$JWeChatRewardImg = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JWeChatRewardImg',
 	NULL,
 	NULL,
@@ -224,7 +224,7 @@ $JWeChatRewardImg = new Typecho_Widget_Helper_Form_Element_Text(
 $JWeChatRewardImg->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JWeChatRewardImg);
 
-$JAlipayRewardImg = new Typecho_Widget_Helper_Form_Element_Text(
+$JAlipayRewardImg = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAlipayRewardImg',
 	NULL,
 	NULL,
@@ -234,7 +234,7 @@ $JAlipayRewardImg = new Typecho_Widget_Helper_Form_Element_Text(
 $JAlipayRewardImg->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JAlipayRewardImg);
 
-$JQQRewardImg = new Typecho_Widget_Helper_Form_Element_Text(
+$JQQRewardImg = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JQQRewardImg',
 	NULL,
 	NULL,

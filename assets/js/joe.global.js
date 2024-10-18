@@ -462,13 +462,13 @@ document.addEventListener("DOMContentLoaded", () => {
 					/* 设置表单格式为画图模式 */
 					$(".joe_comment__respond-form").attr("data-type", "draw");
 					/** 隐藏表情包功能 */
-					$('.joe_comment__respond-form .foot .owo').hide();
+					$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
 				} else {
 					$(".joe_comment__respond-form .body .text").show().siblings().hide();
 					/* 设置表单格式为文字模式 */
 					$(".joe_comment__respond-form").attr("data-type", "text");
 					/** 显示表情包功能 */
-					$('.joe_comment__respond-form .foot .owo').show();
+					$('.joe_comment__respond-form .foot .owo').css('opacity', '1');
 				}
 			});
 		}
@@ -527,7 +527,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				/* 移除自定义属性父级ID */
 				respond.find(".joe_comment__respond-form").removeAttr("data-coid");
 				$(".joe_comment__cancle").hide();
-				$(".joe_comment__title").after(respond);
+				$(".joe_comment>.comment-list").before(respond);
 				$(".joe_comment__respond-type .item[data-type='text']").click();
 				window.scrollTo({
 					top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,

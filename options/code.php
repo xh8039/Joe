@@ -99,7 +99,7 @@ if (isset($_GET['joe_code'])) {
 	$form->addInput($JCustomAsideHTML);
 }
 
-$JCustomAside = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JCustomAside = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomAside',
 	NULL,
 	NULL,
@@ -112,7 +112,7 @@ $JCustomAside->setAttribute('class', 'joe_content joe_code');
 $JCustomAside->setAttribute('data-language', 'htmlmixed');
 $form->addInput($JCustomAside);
 
-$JCustomCSS = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JCustomCSS = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomCSS',
 	NULL,
 	NULL,
@@ -125,7 +125,7 @@ $JCustomCSS->setAttribute('class', 'joe_content joe_code');
 $JCustomCSS->setAttribute('data-language', 'css');
 $form->addInput($JCustomCSS);
 
-$JCustomScript = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JCustomScript = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomScript',
 	NULL,
 	NULL,
@@ -136,7 +136,7 @@ $JCustomScript->setAttribute('class', 'joe_content joe_code');
 $JCustomScript->setAttribute('data-language', 'javascript');
 $form->addInput($JCustomScript);
 
-$JCustomHeadEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JCustomHeadEnd = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomHeadEnd',
 	NULL,
 	NULL,
@@ -147,7 +147,7 @@ $JCustomHeadEnd->setAttribute('class', 'joe_content joe_code');
 $JCustomHeadEnd->setAttribute('data-language', 'htmlmixed');
 $form->addInput($JCustomHeadEnd);
 
-$JCustomBodyEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JCustomBodyEnd = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomBodyEnd',
 	NULL,
 	NULL,
@@ -158,7 +158,7 @@ $JCustomBodyEnd->setAttribute('class', 'joe_content joe_code');
 $JCustomBodyEnd->setAttribute('data-language', 'htmlmixed');
 $form->addInput($JCustomBodyEnd);
 
-$JCustomTrackCode = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JCustomTrackCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomTrackCode',
 	NULL,
 	NULL,
@@ -169,7 +169,7 @@ $JCustomTrackCode->setAttribute('class', 'joe_content joe_code');
 $JCustomTrackCode->setAttribute('data-language', 'htmlmixed');
 $form->addInput($JCustomTrackCode);
 
-$JCustomFunctionsCode = new Typecho_Widget_Helper_Form_Element_Textarea(
+$JCustomFunctionsCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomFunctionsCode',
 	NULL,
 	NULL,

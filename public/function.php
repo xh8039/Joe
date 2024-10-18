@@ -273,13 +273,14 @@ function checkSensitiveWords($words_str, $str)
 
 function theme_url($path)
 {
-	if (empty(\Helper::options()->JStaticAssetsUrl)) {
-		$path = url_builder($path, ['version' => JOE_VERSION]);
-		return \Helper::options()->themeUrl . '/' . $path;
+	$themeUrl = \Helper::options()->themeUrl;
+	$theme_url_domain = parse_url($themeUrl, PHP_URL_HOST);
+	if ($theme_url_domain != $_SERVER['HTTP_HOST']) {
+		$themeUrl = str_replace($theme_url_domain, $_SERVER['HTTP_HOST'], $themeUrl);
 	}
-	$url = \Helper::options()->JStaticAssetsUrl . '/' . $path;
-	$url = url_builder($url, ['version' => JOE_VERSION]);
-	return $url;
+	$url_root = empty(\Helper::options()->JStaticAssetsUrl) ? $themeUrl : \Helper::options()->JStaticAssetsUrl;
+	$url = $url_root . '/' . $path;
+	return url_builder($url, ['version' => JOE_VERSION]);
 }
 
 function url_builder($url, array $param)
@@ -551,7 +552,7 @@ function cdn($path)
 		$pos = strpos($cdnpublic, '||'); // 查找 || 的位置
 		if ($pos !== false) {
 			$cdnpublic_explode = explode('||', $cdnpublic, 2); // 通过 || 分割 $cdnpublic
-			$cdnpublic = trim($cdnpublic_explode[0]);// 获取 || 之前的内容
+			$cdnpublic = trim($cdnpublic_explode[0]); // 获取 || 之前的内容
 			$backslash = trim($cdnpublic_explode[1]); // 获取 || 之后的内容
 			$backslash = empty($backslash) ? '@' : $backslash; // 检查 || 之后的内容是否为空
 		} else {
@@ -566,7 +567,7 @@ function cdn($path)
 	return $url;
 }
 
-function strstrs(string $haystack, array $needles) : bool
+function strstrs(string $haystack, array $needles): bool
 {
 	foreach ($needles as $value) {
 		if (stristr($haystack, $value) !== false) return true;

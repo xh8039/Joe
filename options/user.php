@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$JUser_Switch = new Typecho_Widget_Helper_Form_Element_Select(
+$JUser_Switch = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JUser_Switch',
 	array('on' => '开启（默认）', 'off' => '关闭'),
 	'on',
@@ -16,7 +16,7 @@ $JUser_Switch = new Typecho_Widget_Helper_Form_Element_Select(
 $JUser_Switch->setAttribute('class', 'joe_content joe_user');
 $form->addInput($JUser_Switch->multiMode());
 
-$JUser_Register_Group = new Typecho_Widget_Helper_Form_Element_Select(
+$JUser_Register_Group = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JUser_Register_Group',
 	array('subscriber' => '关注者', 'contributor' => '贡献者（默认）', 'editor' => '编辑', 'administrator' => '管理员'),
 	'contributor',
@@ -31,7 +31,7 @@ $JUser_Register_Group = new Typecho_Widget_Helper_Form_Element_Select(
 $JUser_Register_Group->setAttribute('class', 'joe_content joe_user');
 $form->addInput($JUser_Register_Group->multiMode());
 
-$JUser_Forget = new Typecho_Widget_Helper_Form_Element_Select(
+$JUser_Forget = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JUser_Forget',
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',

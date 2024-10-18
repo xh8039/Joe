@@ -6,6 +6,12 @@
 	-webkit-tap-highlight-color: transparent
 }
 
+*,
+:after,
+:before {
+	outline: 0 !important;
+}
+
 ::-webkit-scrollbar {
 	width: 4.5px;
 	height: 5px;
@@ -37,6 +43,7 @@ body {
 	padding-bottom: constant(safe-area-inset-bottom);
 	padding-bottom: env(safe-area-inset-bottom);
 	overflow-x: hidden;
+	line-height: 1.42857143;
 }
 
 body::before {
@@ -135,36 +142,272 @@ table {
 }
 
 .text-center {
-    text-align: center;
+	text-align: center;
 }
 
 .em2x {
-    font-size: 2em;
+	font-size: 2em;
 }
 
 .em12 {
-    font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 .svg:not(:root) {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .svg {
-    width: 1em;
-    height: 1em;
-    vertical-align: -.15em;
-    fill: currentColor;
-    overflow: hidden;
+	width: 1em;
+	height: 1em;
+	vertical-align: -.15em;
+	fill: currentColor;
+	overflow: hidden;
 }
 
 .mt10 {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .padding-w10 {
-    padding-left: 10px;
-    padding-right: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.title-theme {
+	position: relative;
+	padding-left: 1.2em;
+	font-size: 15px;
+	color: var(--main-color);
+}
+
+.title-theme small {
+	font-size: 80%;
+	opacity: .7
+}
+
+.title-theme:before {
+	position: absolute;
+	content: '';
+	width: 4px;
+	background: var(--theme);
+	top: 10%;
+	left: 2px;
+	bottom: 10%;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px -1px var(--theme)
+}
+
+.splitters-this-l,
+.splitters-this-r,
+.splitters>li+li {
+	position: relative
+}
+
+.splitters-this-l,
+.splitters-this-r:before,
+.splitters>li+li:before {
+	content: '';
+	width: 1px;
+	height: 1.1em;
+	position: absolute;
+	display: inline-block;
+	background: var(--main-color);
+	left: -1px;
+	top: 50%;
+	opacity: .2 !important;
+	transform: translateY(-50%)
+}
+
+.splitters-this-r:before {
+	left: auto;
+	right: 0
+}
+
+.swiper-slide {
+	transform: translate3d(0, 0, 0);
+	flex-shrink: 0;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	transition-property: transform;
+}
+
+.swiper-scroll .swiper-slide {
+	width: unset;
+	margin-right: 10px;
+}
+
+.hover-zoom-img:hover img,
+.hover-zoom:hover,
+.social_loginbar .social-login-item:hover,
+.social_loginbar .xh-social-item:hover {
+	transform: scale(1.05);
+}
+
+.relates-thumb .swiper-slide {
+	width: 220px
+}
+
+.relates-thumb .graphic {
+	margin-bottom: 0
+}
+
+.graphic,
+.page-cover {
+	text-shadow: 0 0 5px rgba(0, 0, 0, .2);
+	--main-color: #fff;
+	color: #fff;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 0 10px var(--main-shadow);
+	padding: 0;
+	padding-bottom: 70%;
+	border-radius: var(--main-radius);
+}
+
+.graphic>.fit-cover {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.avatar,
+.fit-cover,
+.radius-cover {
+	width: 100%;
+	height: 100%;
+	transition: all .2s;
+	overflow: hidden;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+
+.abs-center.conter-bottom,
+.abs-center.left-bottom,
+.abs-center.right-bottom {
+	top: auto;
+	transform: unset;
+	bottom: 0;
+}
+
+.style-3 .graphic-text {
+	background: rgba(0, 0, 0, .2);
+}
+
+.abs-center {
+	left: 0;
+	width: 100%;
+}
+
+.abs-center,
+.abs-left,
+.abs-right,
+.form-select::before,
+.line-form-label,
+.payvip-icon:before,
+.toggle-radius .fa,
+.toggle-radius .icon {
+	position: absolute;
+	top: 50%;
+	right: .7em;
+	transform: translateY(-50%);
+	z-index: 1;
+}
+
+.graphic-text {
+	padding: 5px 10px;
+	transition: .3s;
+}
+
+.text-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.style-3 .graphic-text+.graphic-text {
+	opacity: 0;
+	transform: translateY(100%);
+	white-space: normal;
+	word-break: break-all;
+}
+
+.graphic.style-3:hover .graphic-text {
+	opacity: 0;
+	transform: translateY(100%)
+}
+
+.graphic.style-3:hover .graphic-text+.graphic-text {
+	opacity: 1;
+	transform: unset
+}
+
+.opacity8 {
+	opacity: .8;
+}
+
+.em09 {
+	font-size: .9em;
+}
+
+.mt6 {
+	margin-top: 6px;
+}
+
+.opacity8 {
+	opacity: .8;
+}
+
+.px12 {
+	font-size: 12px;
+}
+
+.pull-right {
+	float: right;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+	font-size: 15px;
+	color: #fff;
+}
+
+.swiper-scroll .swiper-button-next,
+.swiper-scroll .swiper-button-prev,
+.swiper-thumbsbox .swiper-button-next,
+.swiper-thumbsbox .swiper-button-prev {
+	background-color: rgba(0, 0, 0, .5);
+	width: 26px;
+	opacity: 0;
+	transition: .4s;
+	text-shadow: 0 0 6px #444;
+}
+
+.swiper-button-next {
+	right: -15px;
+	/* left: auto; */
+}
+
+.swiper-button-prev {
+	left: -15px;
+	/* right: auto; */
+}
+
+.swiper-initialized:hover .swiper-button-next:not(.swiper-button-disabled) {
+	right: 0;
+	opacity: .8;
+}
+
+.swiper-initialized:hover .swiper-button-prev:not(.swiper-button-disabled) {
+	left: 0;
+	opacity: .8;
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+	opacity: 0;
 }
 
 @media (min-width: 576px) {

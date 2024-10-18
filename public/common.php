@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {
+if (!defined('__TYPECHO_ROOT_DIR__') || empty($_SERVER['HTTP_HOST'])) {
 	http_response_code(404);
 	exit;
 }
@@ -151,7 +151,7 @@ function themeInit($self)
 function themeFields($layout)
 {
 
-	$mode = new Typecho_Widget_Helper_Form_Element_Select(
+	$mode = new \Typecho\Widget\Helper\Form\Element\Select(
 		'mode',
 		array(
 			'default' => '默认模式',
@@ -166,7 +166,7 @@ function themeFields($layout)
 	);
 	$layout->addItem($mode);
 
-	$keywords = new Typecho_Widget_Helper_Form_Element_Text(
+	$keywords = new \Typecho\Widget\Helper\Form\Element\Text(
 		'keywords',
 		NULL,
 		NULL,
@@ -178,7 +178,7 @@ function themeFields($layout)
 	);
 	$layout->addItem($keywords);
 
-	$description = new Typecho_Widget_Helper_Form_Element_Textarea(
+	$description = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'description',
 		NULL,
 		NULL,
@@ -189,7 +189,7 @@ function themeFields($layout)
 	);
 	$layout->addItem($description);
 
-	$abstract = new Typecho_Widget_Helper_Form_Element_Textarea(
+	$abstract = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'abstract',
 		NULL,
 		NULL,
@@ -199,7 +199,7 @@ function themeFields($layout)
 	);
 	$layout->addItem($abstract);
 
-	$thumb = new Typecho_Widget_Helper_Form_Element_Textarea(
+	$thumb = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'thumb',
 		NULL,
 		NULL,
@@ -213,7 +213,7 @@ function themeFields($layout)
 	);
 	$layout->addItem($thumb);
 
-	$video = new Typecho_Widget_Helper_Form_Element_Textarea(
+	$video = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'video',
 		NULL,
 		NULL,
@@ -226,7 +226,7 @@ function themeFields($layout)
 	);
 	$layout->addItem($video);
 
-	$baidu_push = new Typecho_Widget_Helper_Form_Element_Select(
+	$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(
 		'baidu_push',
 		array(
 			'no' => '未推送',

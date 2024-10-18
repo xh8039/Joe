@@ -767,6 +767,18 @@
 	}
 }
 
+@media (max-width: 430px) {
+	html .joe_list__item .item-meta .meta-comm {
+		display: none;
+	}
+}
+
+@media (max-width: 390px) {
+	html .joe_list__item .item-meta .meta-like {
+		display: none;
+	}
+}
+
 @media (max-width: 425px) {
 	html .joe_detail__related-content .item {
 		height: 110px;

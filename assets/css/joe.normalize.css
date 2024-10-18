@@ -415,9 +415,11 @@ table {
 	margin-bottom: 6px;
 }
 
-.no-scrollbar {
-	overflow: -moz-scrollbars-none;
-	scrollbar-width: none;
+.scroll-x,
+.scroll-y {
+	-webkit-overflow-scrolling: touch;
+	overflow: hidden;
+	overflow-x: auto;
 }
 
 .enlighter,
@@ -428,17 +430,14 @@ table {
 	scrollbar-width: thin;
 }
 
+.no-scrollbar {
+	overflow: -moz-scrollbars-none;
+	scrollbar-width: none;
+}
+
 .scroll-x {
 	white-space: nowrap;
 }
-
-.scroll-x,
-.scroll-y {
-	-webkit-overflow-scrolling: touch;
-	overflow: hidden;
-	overflow-x: auto;
-}
-
 
 .badg,
 .but,

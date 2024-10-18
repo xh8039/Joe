@@ -18,8 +18,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
 	<meta name="referrer" content="no-referrer" />
 	<?php $this->need('module/head.php'); ?>
-	<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
-	<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
+	<?php
+	if (!empty($this->options->JIndex_Carousel)) : ?>
+		<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
+		<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
+	<?php endif ?>
 	<script src="<?= joe\cdn('wow/1.1.2/wow.min.js') ?>"></script>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.index.css'); ?>">
 	<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>
@@ -81,14 +84,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							};
 						}
 					}
-
-					$recommend = [];
-					$recommend_text = Joe\isMobile() ? $this->options->JIndex_Mobile_Recommend : $this->options->JIndex_Recommend;
-					if ($recommend_text) {
-						$recommend = explode("||", $recommend_text);
-					}
 					?>
-					<?php if (count($carousel) > 0 || count($recommend) === 2) : ?>
+					<?php if (count($carousel) > 0) : ?>
 						<div class="joe_index__banner">
 							<?php if (count($carousel) > 0) : ?>
 								<div class="swiper swiper-container">
@@ -114,99 +111,106 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php endif; ?>
 
 					<?php
-					if ($this->options->JIndex_Recommend_Style == 'simple') {
-					?>
-						<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
-						<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
-							<?php
-							foreach ($recommend as $cid) {
-								$this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
-								if (empty($item->permalink)) continue;
-							?>
-								<figure class="item">
-									<a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
-										<img width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
-									</a>
-									<span class="type">推荐</span>
-									<figcaption class="information">
-										<div class="text"><?php $item->title() ?></div>
-									</figcaption>
-								</figure>
-							<?php
-							}
-							?>
-						</div>
-					<?php
+					$recommend = [];
+					$recommend_text = Joe\isMobile() ? $this->options->JIndex_Mobile_Recommend : $this->options->JIndex_Recommend;
+					if ($recommend_text) {
+						$recommend = explode("||", $recommend_text);
 					}
-					if ($this->options->JIndex_Recommend_Style == 'full') {
+					if (!empty($recommend)) {
+						if ($this->options->JIndex_Recommend_Style == 'simple') {
 					?>
-						<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
-						<div class="joe_index__hot">
-							<ul class="joe_index__hot-list">
+							<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
+							<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
 								<?php
 								foreach ($recommend as $cid) {
 									$this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 									if (empty($item->permalink)) continue;
 								?>
-									<li class="item">
-										<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
-											<figure class="inner">
-												<span class="type">推荐</span>
-												<img width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
-											</figure>
+									<figure class="item">
+										<a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
+											<img width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
 										</a>
-										<div class="item-body">
-											<h2 class="item-heading">
-												<a title="<?php $item->title(); ?>" alt="<?php $item->title(); ?>" href="<?php $item->permalink(); ?>"><?php $item->title(); ?></a>
-											</h2>
-											<div class="item-tags-category">
-												<span class="item-category">
-													<?php
-													$color_array = ['c-blue', 'c-yellow'];
-													foreach ($item->categories as $key => $value) {
-													?>
-														<a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">
-															<i class="fa fa-folder-open-o"></i><?= $value['name'] ?>
-														</a>
-													<?php
-													}
-													?>
-												</span>
-												<span class="item-tags">
-													<?php $item->tags('')  ?>
-												</span>
-											</div>
-											<div class="item-meta muted-2-color flex jsb ac">
-												<item class="meta-author flex ac">
-													<a href="<?php $item->author->permalink() ?>"><span class="avatar-mini">
-															<img alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-1 ls-is-cached lazyload"></span></a>
-													<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= $item->dateWord() ?></span>
-												</item>
-												<div class="meta-right">
-													<item class="meta-comm">
-														<svg class="icon" aria-hidden="true">
-															<use xlink:href="#icon-comment"></use>
-														</svg><?php $item->commentsNum('%d') ?>
-													</item>
-													<item class="meta-view">
-														<svg class="icon" aria-hidden="true">
-															<use xlink:href="#icon-view"></use>
-														</svg><?= number_format($item->views); ?>
-													</item>
-													<item class="meta-like"><svg class="icon" aria-hidden="true">
-															<use xlink:href="#icon-like"></use>
-														</svg><?= number_format($item->agree) ?>
-													</item>
-												</div>
-											</div>
-										</div>
-									</li>
+										<span class="type">推荐</span>
+										<figcaption class="information">
+											<div class="text"><?php $item->title() ?></div>
+										</figcaption>
+									</figure>
 								<?php
 								}
 								?>
-							</ul>
-						</div>
+							</div>
+						<?php
+						}
+						if ($this->options->JIndex_Recommend_Style == 'full') {
+						?>
+							<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
+							<div class="joe_index__hot">
+								<ul class="joe_index__hot-list">
+									<?php
+									foreach ($recommend as $cid) {
+										$this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
+										if (empty($item->permalink)) continue;
+									?>
+										<li class="item">
+											<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
+												<figure class="inner">
+													<span class="type">推荐</span>
+													<img width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
+												</figure>
+											</a>
+											<div class="item-body">
+												<h2 class="item-heading">
+													<a title="<?php $item->title(); ?>" alt="<?php $item->title(); ?>" href="<?php $item->permalink(); ?>"><?php $item->title(); ?></a>
+												</h2>
+												<div class="item-tags-category">
+													<span class="item-category">
+														<?php
+														$color_array = ['c-blue', 'c-yellow'];
+														foreach ($item->categories as $key => $value) {
+														?>
+															<a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">
+																<i class="fa fa-folder-open-o"></i><?= $value['name'] ?>
+															</a>
+														<?php
+														}
+														?>
+													</span>
+													<span class="item-tags">
+														<?php $item->tags('')  ?>
+													</span>
+												</div>
+												<div class="item-meta muted-2-color flex jsb ac">
+													<item class="meta-author flex ac">
+														<a href="<?php $item->author->permalink() ?>"><span class="avatar-mini">
+																<img alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-1 ls-is-cached lazyload"></span></a>
+														<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= $item->dateWord() ?></span>
+													</item>
+													<div class="meta-right">
+														<item class="meta-comm">
+															<svg class="icon" aria-hidden="true">
+																<use xlink:href="#icon-comment"></use>
+															</svg><?php $item->commentsNum('%d') ?>
+														</item>
+														<item class="meta-view">
+															<svg class="icon" aria-hidden="true">
+																<use xlink:href="#icon-view"></use>
+															</svg><?= number_format($item->views); ?>
+														</item>
+														<item class="meta-like"><svg class="icon" aria-hidden="true">
+																<use xlink:href="#icon-like"></use>
+															</svg><?= number_format($item->agree) ?>
+														</item>
+													</div>
+												</div>
+											</div>
+										</li>
+									<?php
+									}
+									?>
+								</ul>
+							</div>
 					<?php
+						}
 					}
 					?>
 

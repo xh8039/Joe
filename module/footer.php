@@ -126,7 +126,7 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 		foreach ($footer_tabbar as $value) {
 ?>
 			<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?? '' ?>" target="<?= $value[2] ?? '' ?>">
-				<icon><svg class="icon" aria-hidden="true">
+				<icon><svg class="icon svg" aria-hidden="true">
 						<use xlink:href="<?= $value[3] ?? '' ?>"></use>
 					</svg></icon>
 				<text><?= $value[0] ?? '' ?></text>
@@ -154,12 +154,6 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 	?>
 	console.log("%cTheme By Joe再续前缘版", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
 
-	window.addEventListener('load', () => {
-		const performance = window.performance;
-		const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-		console.log('页面加载耗时：', loadTime);
-	});
-
 	/* 自定义JavaScript */
 
 	<?php $this->options->JCustomScript() ?>
@@ -180,3 +174,9 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 <!-- 网站统计HTML代码 -->
 
 <?php $this->footer(); ?>
+
+<script>
+	window.addEventListener('load', () => {
+		console.timeEnd('页面加载耗时');
+	});
+</script>

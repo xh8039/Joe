@@ -16,6 +16,7 @@
 <?php else : ?>
 	<?php $this->header(); ?>
 <?php endif; ?>
+<script>console.time('页面加载耗时');</script>
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">

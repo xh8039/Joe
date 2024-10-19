@@ -50,7 +50,7 @@ $JFooterTabbar = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	NULL,
 	'移动端底部Tab导航',
-	'介绍：在移动端固定显示在最底部的tab导航按钮，支持排序和添加删除，注意开启后按钮不宜过多 | <a target="_blank" href="http://blog.bri6.cn/">查看官网教程</a><br>
+	'介绍：在移动端固定显示在最底部的tab导航按钮，支持排序和添加删除，注意开启后按钮不宜过多 | <a target="_blank" href="http://blog.bri6.cn/archives/232.html">查看官网教程</a><br>
 	格式：导航文字 || 导航链接 || 打开方式 || 导航图标 || 图标大小（可为空使用默认大小）<br>
 	示例：<br>
 	首页 || / || _self || #icon-home-color<br>

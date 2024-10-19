@@ -277,9 +277,11 @@ function theme_url($path)
 {
 	$themeUrl = \Helper::options()->themeUrl;
 	$theme_url_domain = parse_url($themeUrl, PHP_URL_HOST);
-	if ($theme_url_domain != $_SERVER['HTTP_HOST']) {
-		$themeUrl = str_replace($theme_url_domain, $_SERVER['HTTP_HOST'], $themeUrl);
+	$HTTP_HOST = parse_url($_SERVER['HTTP_HOST'], PHP_URL_HOST);
+	if ($theme_url_domain != $HTTP_HOST) {
+		$themeUrl = str_replace($theme_url_domain, $HTTP_HOST, $themeUrl);
 	}
+	$themeUrl = preg_replace("/^https?:\/\//", '//', $themeUrl);
 	$url_root = empty(\Helper::options()->JStaticAssetsUrl) ? $themeUrl : \Helper::options()->JStaticAssetsUrl;
 	$url = $url_root . '/' . $path;
 	return url_builder($url, ['version' => JOE_VERSION]);

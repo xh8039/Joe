@@ -4137,7 +4137,7 @@
 
 .joe_comment {
 	background: var(--background);
-	border-radius: var(--radius-wrap);
+	border-radius: var(--radius-inner);
 	box-shadow: var(--box-shadow);
 	padding: 15px
 }

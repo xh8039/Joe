@@ -5,13 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 if ($this->options->JMusic == 'on') {
 ?>
-	<style>
-		@media (max-width: 510px) {
-			.joe_action {
-				bottom: 80px;
-			}
-		}
-	</style>
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/aplayer.css') ?>">
 	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
 	<script>
 		<?php

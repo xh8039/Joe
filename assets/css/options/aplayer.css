@@ -1,0 +1,63 @@
+/* aplayer */
+
+@media (max-width: 510px) {
+    .joe_action {
+        bottom: 80px;
+    }
+}
+
+html[data-night='night'] .aplayer {
+    background: var(--background);
+}
+
+html[data-night='night'] .aplayer .aplayer-lrc:before {
+    background: linear-gradient(180deg, var(--background) 0, hsla(0, 0%, 100%, 0));
+}
+
+html[data-night='night'] .aplayer .aplayer-lrc:after {
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, var(--background));
+}
+
+html[data-night='night'] .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:hover path,
+html[data-night='night'] .aplayer .aplayer-miniswitcher .aplayer-icon:hover path {
+    fill: #999;
+}
+
+html[data-night='night'] .aplayer.aplayer-fixed .aplayer-info {
+    background: var(--background);
+    border-top: 1px solid var(--classC);
+}
+
+html[data-night='night'] .aplayer .aplayer-miniswitcher {
+    background: var(--classB);
+}
+
+html[data-night='night'] .aplayer .aplayer-info .aplayer-music .aplayer-title,
+html[data-night='night'] .aplayer .aplayer-list ol li>.aplayer-list-title {
+    color: var(--main-color);
+}
+
+html[data-night='night'] .aplayer .aplayer-list ol li.aplayer-list-light {
+    background: var(--classC);
+}
+
+html[data-night='night'] .aplayer .aplayer-list ol li {
+    border-top: 1px solid var(--classC);
+}
+
+html[data-night='night'] .aplayer .aplayer-list ol li:hover {
+    background: var(--classC);
+}
+
+html[data-night='night'] .aplayer.aplayer-fixed .aplayer-list {
+    border: 1px solid var(--classC);
+}
+
+html[data-night='night'] .aplayer .aplayer-list ol::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: var(--classC);
+}
+
+html[data-night='night'] .aplayer .aplayer-list ol::-webkit-scrollbar-thumb:hover {
+    background-color: var(--seat);
+}

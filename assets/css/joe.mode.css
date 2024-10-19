@@ -126,20 +126,3 @@ html[data-night='night'] .joe_detail__overdue-wrapper {
 html[data-night='night'] .joe_list>li {
 	background: var(--background);
 }
-
-/* aplayer */
-html[data-night='night'] .aplayer {
-	background: var(--background);
-}
-
-html[data-night='night'] .aplayer .aplayer-lrc:before {
-	background: linear-gradient(180deg, var(--background) 0, hsla(0, 0%, 100%, 0));
-}
-
-html[data-night='night'] .aplayer .aplayer-lrc:after {
-	background: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, var(--background));
-}
-
-html[data-night='night'] .aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon:hover path {
-	fill: #999;
-}

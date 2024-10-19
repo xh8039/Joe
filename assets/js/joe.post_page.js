@@ -142,17 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	/* 设置文章内的链接为新窗口打开 */
-	{
-		// 已通过服务端设置
-		// $('.joe_detail__article a:not(.joe_detail__article-anote)').each(function () {
-		// 	$(this).attr({
-		// 		target: '_blank',
-		// 		rel: 'noopener noreferrer nofollow'
-		// 	});
-		// });
-	}
-
 	/* 激活浏览功能 */
 	{
 		let viewsArr = localStorage.getItem(encryption('views')) ? JSON.parse(decrypt(localStorage.getItem(

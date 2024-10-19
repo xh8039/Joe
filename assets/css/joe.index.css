@@ -375,7 +375,8 @@
 
 .joe_index__ad-link {
 	display: block;
-	position: relative
+	position: relative;
+	margin-bottom: 1vh;
 }
 
 .joe_index__ad-link .image {

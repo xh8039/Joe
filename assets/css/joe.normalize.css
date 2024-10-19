@@ -432,7 +432,15 @@ table {
 
 .no-scrollbar {
 	overflow: -moz-scrollbars-none;
+	/* Firefox */
 	scrollbar-width: none;
+	/* IE 10+ */
+	-ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+	/* Chrome Safari */
+	display: none;
 }
 
 .scroll-x {

@@ -55,7 +55,15 @@ if (articleTitleList.length > 0) {
 				'max-width': '70vw',
 				'background': 'var(--background)',
 			})
+			var switcher = true;
 			$('.joe_action_item.posts-nav-switcher').click(() => {
+				if (switcher) {
+					$('.joe_action').css('z-index', '100');
+					switcher = false;
+				} else {
+					$('.joe_action').css('z-index', '98');
+					switcher = true;
+				}
 				$('.joe_action_item.posts-nav-switcher .posts-nav-box').fadeToggle(200);
 			});
 		} else {

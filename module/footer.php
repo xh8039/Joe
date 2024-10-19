@@ -100,14 +100,14 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 		foreach ($footer_tabbar as $value) {
 ?>
 			<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?? '' ?>" target="<?= $value[2] ?? '' ?>">
-				<icon <?= empty($value[4]) ? '' : 'style="font-size:'.$value[4].';"' ?>>
+				<icon <?= empty($value[4]) ? '' : 'style="font-size:' . $value[4] . ';"' ?>>
 					<svg class="icon svg" aria-hidden="true">
 						<use xlink:href="<?= $value[3] ?? '' ?>"></use>
 					</svg>
 				</icon>
 				<text><?= $value[0] ?? '' ?></text>
 			</a>
-<?php
+	<?php
 		}
 		echo '</div>';
 	}
@@ -117,28 +117,40 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 // SSL安全认证
 if ($this->options->JPendant_SSL == 'on') {
 	?>
-		<style>
-			html .joe_action {
-				bottom: <?= empty($footer_tabbar) ? '80px' : '120px' ?>;
-			}
-	
-			#cc-myssl-seal {
-				width: 65px;
-				height: 65px;
-				z-index: 9;
-				position: fixed;
-				right: 0;
-				bottom: <?= empty($footer_tabbar) ? '0px' : '80px' ?>;
-				cursor: pointer;
-			}
-		</style>
-		<div id="cc-myssl-seal">
-			<div title="TrustAsia 安全签章" id="myssl_seal" style="text-align: center">
-				<img src="<?= Joe\theme_url('assets/images/myssl-id.png') ?>" alt="SSL" style="width: 100%; height: 100%"></a>
-			</div>
+	<style>
+		html .joe_action {
+			bottom: <?= empty($footer_tabbar) ? '80px' : '150px' ?>;
+		}
+
+		#cc-myssl-seal {
+			width: 65px;
+			height: 65px;
+			z-index: 9;
+			position: fixed;
+			right: 0;
+			bottom: 0;
+			cursor: pointer;
+		}
+	</style>
+	<div id="cc-myssl-seal">
+		<div title="TrustAsia 安全签章" id="myssl_seal" style="text-align: center">
+			<img src="<?= Joe\theme_url('assets/images/myssl-id.png') ?>" alt="SSL" style="width: 100%; height: 100%"></a>
 		</div>
+	</div>
+	<?php
+	if (!empty($footer_tabbar)) {
+	?>
+		<script>
+			const element = document.querySelector('.footer-tabbar');
+			const height = element.clientHeight;
+			console.log(height);
+			document.getElementById('cc-myssl-seal').style.bottom = height;
+		</script>
 	<?php
 	}
+	?>
+<?php
+}
 ?>
 
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>

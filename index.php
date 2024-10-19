@@ -284,24 +284,23 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</div>
 					<?php endif; ?>
 					<?php
-					$index_ad_text = $this->options->JIndex_Ad;
-					$index_ad = null;
-					if ($index_ad_text) {
-						$index_ad_arr = explode("||", $index_ad_text);
-						if (count($index_ad_arr) === 2) {
-							$index_ad = array("image" => trim($index_ad_arr[0]), "url" => trim($index_ad_arr[1]));
-						}
-					}
+					$index_ad = joe\optionMulti($this->options->JIndex_Ad);
+					if (!empty($index_ad)) {
 					?>
-					<?php if ($index_ad) : ?>
 						<div class="title-theme" style="margin-bottom: 10px;">推广宣传</div>
 						<div class="joe_index__ad">
-							<a class="joe_index__ad-link" href="<?php echo $index_ad['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
-								<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo $index_ad['image'] ?>" alt="<?php echo $index_ad['url'] ?>" />
-								<span class="icon">广告</span>
-							</a>
+							<?php foreach ($index_ad as $advert) : ?>
+								<div class="joe_index__ad">
+									<a class="joe_index__ad-link" href="<?php echo $advert[1] ?>" target="_blank" rel="noopener noreferrer nofollow">
+										<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo $advert[0] ?>" alt="<?php echo $advert[1] ?>" />
+										<?= empty($advert[2]) ? '' : '<span class="icon">' . $advert[2] . '</span>' ?>
+									</a>
+								</div>
+							<?php endforeach; ?>
 						</div>
-					<?php endif; ?>
+					<?php
+					}
+					?>
 					<!-- <div class="box-body notop nobottom"> -->
 					<div class="title-theme">最新发布</div>
 					<!-- </div> -->

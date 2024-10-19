@@ -646,6 +646,7 @@ function dateWord($original_date)
 
 function optionMulti(string $string, string $line = "\r\n", ?string $separator = '||'): array
 {
+	if (empty($string)) return [];
 	$custom = [];
 	$customArr = explode($line, $string);
 	foreach ($customArr as $value) {

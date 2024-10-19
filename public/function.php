@@ -641,3 +641,13 @@ function dateWord($original_date)
 
 	return $formatted_date; // 输出: 2022年08月
 }
+
+function optionMulti(string $string, string $line = "\r\n", ?string $separator = '||'): array
+{
+	$custom = [];
+	$customArr = explode($line, $string);
+	foreach ($customArr as $value) {
+		$custom[] = $separator ? explode($separator, $value) : $value;
+	}
+	return $custom;
+}

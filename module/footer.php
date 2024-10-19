@@ -37,6 +37,7 @@ if ($this->options->JPendant_SSL == 'on') {
 		html .joe_action {
 			bottom: 80px;
 		}
+
 		#cc-myssl-seal {
 			width: 65px;
 			height: 65px;
@@ -105,16 +106,38 @@ if ($this->options->JPendant_SSL == 'on') {
 	</div>
 	<?php if ($this->user->uid == $this->authorId) : ?>
 		<?php if ($this->is('post')) : ?>
-		<div class="joe_action_item" title="编辑文章">
-			<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
-		</div>
-	<?php elseif ($this->is('page')) : ?>
-		<div class="joe_action_item" title="编辑页面">
-			<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
-		</div>
+			<div class="joe_action_item" title="编辑文章">
+				<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
+			</div>
+		<?php elseif ($this->is('page')) : ?>
+			<div class="joe_action_item" title="编辑页面">
+				<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
+			</div>
+		<?php endif; ?>
 	<?php endif; ?>
-<?php endif; ?>
 </div>
+
+<?php
+if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
+	$footer_tabbar = joe\optionMulti($this->options->JFooterTabbar);
+	if (!empty($footer_tabbar)) {
+		echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/footer-tabbar.css') . '">';
+		echo '<div class="footer-tabbar">';
+		foreach ($footer_tabbar as $value) {
+?>
+			<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?? '' ?>" target="<?= $value[2] ?? '' ?>">
+				<icon><svg class="icon" aria-hidden="true">
+						<use xlink:href="<?= $value[3] ?? '' ?>"></use>
+					</svg></icon>
+				<text><?= $value[0] ?? '' ?></text>
+			</a>
+<?php
+		}
+		echo '</div>';
+	}
+}
+?>
+
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
 <script>
 	<?php
@@ -130,6 +153,12 @@ if ($this->options->JPendant_SSL == 'on') {
 	Typecho_Cookie::delete('__typecho_notice_type');
 	?>
 	console.log("%cTheme By Joe再续前缘版", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
+
+	window.addEventListener('load', () => {
+		const performance = window.performance;
+		const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+		console.log('页面加载耗时：', loadTime);
+	});
 
 	/* 自定义JavaScript */
 

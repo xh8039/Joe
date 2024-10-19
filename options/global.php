@@ -45,6 +45,24 @@ $JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 $JCdnUrl->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCdnUrl);
 
+$JFooterTabbar = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	'JFooterTabbar',
+	NULL,
+	NULL,
+	'移动端底部Tab导航',
+	'介绍：在移动端固定显示在最底部的tab导航按钮，支持排序和添加删除，注意开启后按钮不宜过多 | <a target="_blank" href="http://blog.bri6.cn/">查看官网教程</a><br>
+	格式：导航文字 || 导航链接 || 打开方式 || 导航图标
+	示例：<br>
+	首页 || / || _self || #icon-home-color<br>
+	APP || /archives/230.html || _self || #icon-tag-color<br>
+	发布文章 || /admin/write-post.php || _blank || #icon-add-color<br>
+	消息 || /admin/manage-comments.php || _blank || #icon-msg-color<br>
+	我的 || /admin/profile.php || _blank || #icon-user-color-2<br>
+	'
+);
+$JFooterTabbar->setAttribute('class', 'joe_content joe_global');
+$form->addInput($JFooterTabbar->multiMode());
+
 $JNavMaxNum = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JNavMaxNum',
 	array(

@@ -142,7 +142,13 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 		<script>
 			const element = document.querySelector('.footer-tabbar');
 			const height = element.clientHeight - 1;
-			if (document.getElementById('cc-myssl-seal')) document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
+			if (document.querySelector('.joe_action')) {
+				document.querySelector('.joe_action').style.bottom = (height + 20) + 'px'
+			}
+			if (document.getElementById('cc-myssl-seal')) {
+				document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
+				document.querySelector('.joe_action').style.bottom = (document.getElementById('cc-myssl-seal').clientHeight + height + 20) + 'px';
+			}
 			// 创建一个新的 `<style>` 标签
 			var style = document.createElement('style');
 			// 设置样式内容

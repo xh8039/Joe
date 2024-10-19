@@ -161,8 +161,4 @@
 	html .footer-tabbar {
 		display: flex;
 	}
-
-	html .joe_action {
-		bottom: 85px;
-	}
 }

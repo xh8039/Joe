@@ -136,7 +136,7 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 			?>
 		</div>
 		<script>
-			const height = element.document.querySelector('.footer-tabbar');
+			const height = document.querySelector('.footer-tabbar');
 
 			if (document.querySelector('.joe_action')) {
 				document.querySelector('.joe_action').style.bottom = (height + 20) + 'px'

@@ -163,6 +163,15 @@ $JIndex_Mobile_Hot = new \Typecho\Widget\Helper\Form\Element\Text(
 $JIndex_Mobile_Hot->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Mobile_Hot->multiMode());
 
+$JIndex_Ad_Title = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JIndex_Ad_Title',
+	NULL,
+	'推广宣传',
+	'首页大屏广告标题'
+);
+$JIndex_Ad_Title->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndex_Ad_Title);
+
 $JIndex_Ad = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JIndex_Ad',
 	NULL,

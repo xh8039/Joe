@@ -143,7 +143,12 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 			const element = document.querySelector('.footer-tabbar');
 			const height = element.clientHeight - 1;
 			if (document.getElementById('cc-myssl-seal')) document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
-			if (document.querySelector('.aplayer.aplayer-fixed .aplayer-body')) document.querySelector('.aplayer.aplayer-fixed .aplayer-body').style.bottom = height + 'px';
+			// 创建一个新的 `<style>` 标签
+			var style = document.createElement('style');
+			// 设置样式内容
+			style.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body {bottom: ${height}px}`;
+			// 将 `<style>` 标签添加到 `<head>` 标签中
+			$('head').append(style);
 			document.querySelector('body').style.paddingBottom = height + 'px';
 		</script>
 <?php

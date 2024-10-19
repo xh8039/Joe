@@ -921,7 +921,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/** 头像加载失败代替 */
 	{
-		document.querySelectorAll('img.avatar').addEventListener('error', () => {
+		$('img.avatar').on('error', () => {
 			this.setAttribute('data-src', Joe.THEME_URL + 'assets/images/avatar-default.png');
 			this.setAttribute('src', Joe.THEME_URL + 'assets/images/avatar-default.png');
 		});

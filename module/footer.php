@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 $joe_action_bottom = 20;
 
 if ($this->options->JMusic == 'on') {
-	$joe_action_bottom = $joe_action_bottom + 65;
+	if (joe\isMobile()) $joe_action_bottom = $joe_action_bottom + 65;
 ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/aplayer.css') ?>">
 	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
@@ -153,7 +153,7 @@ if (!empty($footer_tabbar)) {
 ?>
 <style>
 	html .joe_action {
-		bottom: '<?= $joe_action_bottom ?>px';
+		bottom: <?= $joe_action_bottom ?>px;
 	}
 </style>
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>

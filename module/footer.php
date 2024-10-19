@@ -126,8 +126,10 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 		<div class="footer-tabbar">
 			<?php
 			foreach ($footer_tabbar as $value) {
+				$value[1] = $value[1] ?? '';
+				if (preg_match('/\/admin\/[a-z,-]+\.php/i', $value[1]) && !$this->user->hasLogin()) $value[1] = joe\user_url('login');
 			?>
-				<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?? '' ?>" target="<?= $value[2] ?? '' ?>">
+				<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?>" target="<?= $value[2] ?? '' ?>">
 					<icon <?= empty($value[4]) ? '' : 'style="font-size:' . $value[4] . ';"' ?>>
 						<svg class="icon svg" aria-hidden="true">
 							<use xlink:href="<?= $value[3] ?? '' ?>"></use>
@@ -141,7 +143,7 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 		</div>
 		<script>
 			const element = document.querySelector('.footer-tabbar');
-			const height = element.clientHeight - 1;
+			const height = element.clientHeight;
 			if (document.querySelector('.joe_action')) {
 				document.querySelector('.joe_action').style.bottom = (height + 20) + 'px'
 			}

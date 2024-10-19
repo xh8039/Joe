@@ -106,11 +106,21 @@
 }
 
 .posts-nav-lists li.n-H3 a {
-	padding-left: 25px
+	padding-left: 20px
 }
 
 .posts-nav-lists li.n-H4 a {
-	padding-left: 42px;
+	padding-left: 40px;
+	font-size: 12px
+}
+
+.posts-nav-lists li.n-H5 a {
+	padding-left: 50px;
+	font-size: 12px
+}
+
+.posts-nav-lists li.n-H6 a {
+	padding-left: 60px;
 	font-size: 12px
 }
 

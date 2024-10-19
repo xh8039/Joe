@@ -294,6 +294,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					}
 					?>
 					<?php if ($index_ad) : ?>
+						<div class="title-theme" style="margin-bottom: 10px;">推广宣传</div>
 						<div class="joe_index__ad">
 							<a class="joe_index__ad-link" href="<?php echo $index_ad['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
 								<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo $index_ad['image'] ?>" alt="<?php echo $index_ad['url'] ?>" />

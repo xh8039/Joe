@@ -12,7 +12,7 @@ $JThemeMode = new \Typecho\Widget\Helper\Form\Element\Select(
 	'默认主题风格',
 	'介绍：此处设置为默认风格，实际显示风格以用户设置优先。如需固定风格，则关闭还需下方主题切换按钮'
 );
-$JThemeMode->setAttribute('class', 'joe_content joe_music');
+$JThemeMode->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JThemeMode);
 
 $JStaticAssetsUrl = new \Typecho\Widget\Helper\Form\Element\Text(

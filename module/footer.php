@@ -127,7 +127,7 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 			<?php
 			foreach ($footer_tabbar as $value) {
 			?>
-				<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?? '' ?>" target="<?= $value[2] ?? '' ?>">
+				<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?? '' ?>" target="<?= trim($value[2] ?? '') ?>">
 					<icon <?= empty($value[4]) ? '' : 'style="font-size:' . $value[4] . ';"' ?>>
 						<svg class="icon svg" aria-hidden="true">
 							<use xlink:href="<?= $value[3] ?? '' ?>"></use>

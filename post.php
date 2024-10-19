@@ -70,7 +70,7 @@
 				<li class="item">
 					<a href="<?php $this->options->siteUrl(); ?>" class="link" title="首页"><i class="fa fa-map-marker"></i> 首页</a>
 				</li>
-				<li class="line">/</li>
+				<!-- <li class="line">/</li> -->
 				<?php if (sizeof($this->categories) > 0) : ?>
 					<li class="item">
 						<a class="link" href="<?php echo $this->categories[0]['permalink']; ?>" title="<?php echo $this->categories[0]['name']; ?>"><?php echo $this->categories[0]['name']; ?></a>

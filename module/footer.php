@@ -141,13 +141,14 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 			if (document.querySelector('.joe_action')) {
 				document.querySelector('.joe_action').style.bottom = (height + 20) + 'px'
 			}
+
 			if (document.getElementById('cc-myssl-seal')) {
 				document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
 				document.querySelector('.joe_action').style.bottom = (document.getElementById('cc-myssl-seal').clientHeight + height + 20) + 'px';
 			}
 
 			var aplayerStyle = document.createElement('style');
-			aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${$('.aplayer.aplayer-fixed .aplayer-lrc').css('bottom') + height}px}`;
+			aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${Number($('.aplayer.aplayer-fixed .aplayer-lrc').css('bottom').trim('px')) + height}px}`;
 			$('head').append(aplayerStyle);
 
 			document.querySelector('body').style.paddingBottom = height + 'px';

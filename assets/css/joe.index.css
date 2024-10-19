@@ -170,7 +170,7 @@
 
 .joe_index__hot-list .item>.item-body>.item-heading>a {
 	font-weight: bold;
-	color: var(--main);
+	color: var(--main-color);
 	transition: 0.2s;
 }
 

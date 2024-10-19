@@ -158,19 +158,11 @@
 }
 
 @media (max-width: 767px) {
-	html body {
-		padding-bottom: 64px;
-	}
-
 	html .footer-tabbar {
 		display: flex;
 	}
 
 	html .joe_action {
 		bottom: 85px;
-	}
-
-	html .aplayer.aplayer-fixed .aplayer-body {
-		bottom: 64px;
 	}
 }

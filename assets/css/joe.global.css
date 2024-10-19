@@ -1487,8 +1487,8 @@
 }
 
 .joe_list__item .information .title {
-	padding-bottom: 4px;
-	margin-bottom: 1px;
+	padding-bottom: 2px;
+    margin-bottom: 3px;
 	position: relative;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;

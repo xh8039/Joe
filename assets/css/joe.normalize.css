@@ -652,6 +652,12 @@ table {
 	margin-right: 2px;
 }
 
+.breadcrumb>li+li:before {
+	color: #ccc;
+	content: "/\00a0";
+	padding: 0 0 0 6px;
+	opacity: .6;
+}
 
 @media (min-width: 576px) {
 	.joe_container {

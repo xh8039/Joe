@@ -87,11 +87,11 @@ html[data-night='night'] body::before {
 	z-index: -500
 }
 
-html[data-night='night'] .joe_header__above-logo img.light {
+html[data-night='night'] .joe_header__above-logo>.light {
 	display: none;
 }
 
-html[data-night='night'] .joe_header__above-logo img.dark {
+html[data-night='night'] .joe_header__above-logo>.dark {
 	display: block;
 }
 

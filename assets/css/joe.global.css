@@ -1473,7 +1473,7 @@
 .joe_list__item {
 	position: relative;
 	width: 100%;
-	border-bottom: 1px solid var(--classC);
+	/* border-bottom: 1px solid var(--classC); */
 	padding: 15px;
 	background: var(--background);
 	margin-bottom: 10px;

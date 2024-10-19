@@ -143,8 +143,8 @@ if ($this->options->JPendant_SSL == 'on') {
 		<script>
 			const element = document.querySelector('.footer-tabbar');
 			const height = element.clientHeight;
-			console.log(height);
-			document.getElementById('cc-myssl-seal').style.bottom = height;
+			// console.log(height);
+			document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
 		</script>
 	<?php
 	}

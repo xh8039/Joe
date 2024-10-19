@@ -61,15 +61,15 @@ html[data-night='night'] body {
 	--text-shadow: none;
 	--box-shadow: none;
 
-	--body-bg-colo: #292a2d;
+	--body-bg-color: #292a2d;
 	--key-color: #f8fafc;
 	/* --main-color: #e5eef7; */
-	--main-color: #999;
+	--main-color: #b4b6bb;
 	--main-shadow: rgba(24, 24, 24, 0.1);
 	--muted-color: #b4b6bb;
 	--muted-2-color: #888a8f;
 	--muted-3-color: #636469;
-	--body-bg-color: #000102;
+	/* --body-bg-color: #000102; */
 	--main-bg-color: #323335;
 	--muted-bg-color: #2d2e31;
 	--main-border-color: rgba(114, 114, 114, 0.1);

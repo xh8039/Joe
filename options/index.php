@@ -169,8 +169,8 @@ $JIndex_Ad = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	'首页大屏广告',
 	'介绍：请务必填写正确的格式 <br />
-		 格式：广告图片 || 广告链接 || 广告文字 （中间使用两个竖杠分隔，一行一个）<br />
-		 例如：https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || https://baidu.com || 广告'
+		格式：广告图片 || 广告链接（可为空） || 广告文字（可为空）（中间使用两个竖杠分隔，一行一个）<br />
+		例如：https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || https://baidu.com || 广告'
 );
 $JIndex_Ad->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Ad);

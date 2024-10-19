@@ -1,24 +1,19 @@
 <?php
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
+
+$joe_action_bottom = 20;
+
 if ($this->options->JMusic == 'on') {
+	$joe_action_bottom = $joe_action_bottom + 65;
 ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/aplayer.css') ?>">
 	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
 	<script>
-		<?php
-		if (empty($this->options->JMusicApi)) {
-		?>
-			window.meting_api = `${Joe.BASE_API}/meting?server=:server&type=:type&id=:id&r=:r`
-		<?php
-		} else {
-		?>
-			window.meting_api = '<?= $this->options->JMusicApi ?>'
-		<?php
-		}
-		?>
+		window.meting_api = `<?= empty($this->options->JMusicApi) ? '${Joe.BASE_API}/meting?server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>`
 	</script>
 	<script src="<?= joe\theme_url('assets/plugin/Meting.js'); ?>"></script>
 <?php
@@ -88,12 +83,9 @@ if ($this->options->JMusic == 'on') {
 <?php
 // SSL安全认证
 if ($this->options->JPendant_SSL == 'on') {
+	$joe_action_bottom = $joe_action_bottom + 65;
 ?>
 	<style>
-		html .joe_action {
-			bottom: <?= empty($footer_tabbar) ? '80px' : '150px' ?>;
-		}
-
 		#cc-myssl-seal {
 			width: 65px;
 			height: 65px;
@@ -109,55 +101,61 @@ if ($this->options->JPendant_SSL == 'on') {
 			<img src="<?= Joe\theme_url('assets/images/myssl-id.png') ?>" alt="SSL" style="width: 100%; height: 100%"></a>
 		</div>
 	</div>
-	<?php
+<?php
 }
 
 if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 	$footer_tabbar = joe\optionMulti($this->options->JFooterTabbar);
-	if (!empty($footer_tabbar)) {
-	?>
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">
-		<div class="footer-tabbar">
-			<?php
-			foreach ($footer_tabbar as $value) {
-				$value[1] = $value[1] ?? '';
-				if (preg_match('/\/admin\/[a-z,-]+\.php/i', $value[1]) && !$this->user->hasLogin()) $value[1] = joe\user_url('login');
-			?>
-				<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?>" target="<?= $value[2] ?? '' ?>">
-					<icon <?= empty($value[4]) ? '' : 'style="font-size:' . $value[4] . ';"' ?>>
-						<svg class="icon svg" aria-hidden="true">
-							<use xlink:href="<?= $value[3] ?? '' ?>"></use>
-						</svg>
-					</icon>
-					<text><?= $value[0] ?? '' ?></text>
-				</a>
-			<?php
-			}
-			?>
-		</div>
-		<script>
-			const height = document.querySelector('.footer-tabbar').clientHeight;
+} else {
+	$footer_tabbar = false;
+}
+if (!empty($footer_tabbar)) {
+?>
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">
+	<div class="footer-tabbar">
+		<?php
+		foreach ($footer_tabbar as $value) {
+			$value[1] = $value[1] ?? '';
+			if (preg_match('/\/admin\/[a-z,-]+\.php/i', $value[1]) && !$this->user->hasLogin()) $value[1] = joe\user_url('login');
+		?>
+			<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?>" target="<?= $value[2] ?? '' ?>">
+				<icon <?= empty($value[4]) ? '' : 'style="font-size:' . $value[4] . ';"' ?>>
+					<svg class="icon svg" aria-hidden="true">
+						<use xlink:href="<?= $value[3] ?? '' ?>"></use>
+					</svg>
+				</icon>
+				<text><?= $value[0] ?? '' ?></text>
+			</a>
+		<?php
+		}
+		?>
+	</div>
+	<script>
+		const height = document.querySelector('.footer-tabbar').clientHeight;
 
-			if (document.querySelector('.joe_action')) {
-				document.querySelector('.joe_action').style.bottom = (height + 20) + 'px'
-			}
+		if (document.querySelector('.joe_action')) {
+			document.querySelector('.joe_action').style.bottom = (height + <?= $joe_action_bottom ?>) + 'px'
+		}
 
-			if (document.getElementById('cc-myssl-seal')) {
-				document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
-				document.querySelector('.joe_action').style.bottom = (document.getElementById('cc-myssl-seal').clientHeight + height + 20) + 'px';
-			}
+		if (document.getElementById('cc-myssl-seal')) {
+			document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
+			// document.querySelector('.joe_action').style.bottom = (document.getElementById('cc-myssl-seal').clientHeight + height + 20) + 'px';
+		}
 
-			var aplayerStyle = document.createElement('style');
-			aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${height + 10}px}`;
-			$('head').append(aplayerStyle);
+		var aplayerStyle = document.createElement('style');
+		aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${height + 10}px}`;
+		$('head').append(aplayerStyle);
 
-			document.querySelector('body').style.paddingBottom = height + 'px';
-		</script>
+		document.querySelector('body').style.paddingBottom = height + 'px';
+	</script>
 <?php
-	}
 }
 ?>
-
+<style>
+	html .joe_action {
+		bottom: '<?= $joe_action_bottom ?>px';
+	}
+</style>
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
 <script>
 	<?php

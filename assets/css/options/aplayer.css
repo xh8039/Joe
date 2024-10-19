@@ -10,6 +10,10 @@ html[data-night='night'] .aplayer {
     background: var(--background);
 }
 
+html[data-night='night'] .aplayer.aplayer-fixed .aplayer-body {
+    background: var(--background);
+}
+
 html[data-night='night'] .aplayer .aplayer-lrc:before {
     background: linear-gradient(180deg, var(--background) 0, hsla(0, 0%, 100%, 0));
 }

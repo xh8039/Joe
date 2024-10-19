@@ -1488,7 +1488,7 @@
 
 .joe_list__item .information .title {
 	padding-bottom: 2px;
-    margin-bottom: 3px;
+	margin-bottom: 3px;
 	position: relative;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
@@ -4750,6 +4750,10 @@
 .profile-color-modes-illu-frame:nth-child(10) {
 	-webkit-animation: none;
 	animation: none
+}
+
+html .aplayer {
+	margin: 0;
 }
 
 @-webkit-keyframes wobble-bottom {

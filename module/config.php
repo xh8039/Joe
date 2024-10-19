@@ -32,7 +32,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	}
 
 	// 19:00 PM - 6:00 AM 是黑夜
-	if (Joe.THEME_MODE == 'auto' && (new Date()).getHours() >= 19 && (new Date()).getHours() < 6) {
+	if (Joe.THEME_MODE == 'auto' && ((new Date()).getHours() >= 19 || (new Date()).getHours() < 6)) {
 		document.querySelector("html").setAttribute("data-night", "night");
 	}
 	if (Joe.THEME_MODE == 'night') document.querySelector("html").setAttribute("data-night", "night");

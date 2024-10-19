@@ -5,7 +5,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 ?>
 <script>
-	localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
 	window.Joe = {
 		TITLE: `<?php $this->options->title() ?>`,
 		THEME_URL: `<?php $this->options->themeUrl() ?>`,
@@ -20,6 +19,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		BIRTHDAY: `<?php $this->options->JBirthDay() ?>`,
 		MOTTO: `<?php \joe\getAsideAuthorMotto() ?>`,
 		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`,
+		THEME_MODE: `<?php $this->options->JThemeMode() ?>`,
 		REWARD: {
 			TITLE: `<?php $this->options->JRewardTitle() ?>`,
 			WeChat: `<?php $this->options->JWeChatRewardImg() ?>`,
@@ -30,6 +30,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		}
 	}
+
+	// 19:00 PM - 6:00 AM 是黑夜
+	if (Joe.THEME_MODE == 'auto' && (new Date()).getHours() >= 19 && (new Date()).getHours() < 6) {
+		document.querySelector("html").setAttribute("data-night", "night");
+	}
+	if (Joe.THEME_MODE == 'night') document.querySelector("html").setAttribute("data-night", "night");
+	localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
 </script>
 <style>
 	<?php

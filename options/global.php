@@ -5,6 +5,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$JThemeMode = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JThemeMode',
+	['auto' => '早6晚7自动切换（默认）', 'light' => '日间亮色主题', 'night' => '夜间深色主题',],
+	'auto',
+	'默认主题风格',
+	'介绍：此处设置为默认风格，实际显示风格以用户设置优先。如需固定风格，则关闭还需下方主题切换按钮'
+);
+$JThemeMode->setAttribute('class', 'joe_content joe_music');
+$form->addInput($JThemeMode);
+
 $JStaticAssetsUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JStaticAssetsUrl',
 	null,

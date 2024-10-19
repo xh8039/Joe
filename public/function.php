@@ -276,10 +276,10 @@ function checkSensitiveWords($words_str, $str)
 function theme_url($path)
 {
 	$themeUrl = \Helper::options()->themeUrl;
-	$theme_url_domain = parse_url($themeUrl, PHP_URL_HOST);
-	$HTTP_HOST = parse_url($_SERVER['HTTP_HOST'], PHP_URL_HOST);
-	if ($theme_url_domain != $HTTP_HOST) {
-		$themeUrl = str_replace($theme_url_domain, $HTTP_HOST, $themeUrl);
+	$theme_url_parse = parse_url($themeUrl);
+	$theme_url_domain = $theme_url_parse['host'] . ($theme_url_parse['port'] ?? '');
+	if ($theme_url_domain != $_SERVER['HTTP_HOST']) {
+		$themeUrl = str_replace($theme_url_domain, $_SERVER['HTTP_HOST'], $themeUrl);
 	}
 	$themeUrl = preg_replace("/^https?:\/\//", '//', $themeUrl);
 	$url_root = empty(\Helper::options()->JStaticAssetsUrl) ? $themeUrl : \Helper::options()->JStaticAssetsUrl;

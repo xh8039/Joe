@@ -77,7 +77,7 @@
 					</li>
 					<!-- <li class="line">/</li> -->
 				<?php endif; ?>
-				<li class="item">正文</li>
+				<li class="item"> 正文</li>
 			</ul>
 		</div>
 		<div class="joe_container">

@@ -4378,7 +4378,7 @@
 }
 
 .joe_comment__respond-form .foot .submit button {
-	border-radius: 3px;
+	border-radius: var(--main-radius);
 	height: 32px;
 	padding: 0 15px;
 	border: none;

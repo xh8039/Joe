@@ -133,7 +133,7 @@
 	overflow: hidden;
 	transition: 0.3s;
 	background: var(--background);
-	border-radius: 4.5px;
+	border-radius: var(--main-radius);
 	box-shadow: 0 0 10px var(--main-shadow);
 }
 

@@ -2,8 +2,10 @@
 
 /**
  * 环境要求：<br>PHP 7.4 - 8.2<br>Typecho 1.2+
+ * 
  * @package Joe再续前缘
  * @author Joe、易航
+ * @version 1.33
  * @link http://blog.bri6.cn
  */
 

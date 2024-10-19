@@ -146,13 +146,9 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 				document.querySelector('.joe_action').style.bottom = (document.getElementById('cc-myssl-seal').clientHeight + height + 20) + 'px';
 			}
 
-			if (document.querySelector('.aplayer.aplayer-fixed .aplayer-body')) {
-				document.querySelector('.aplayer.aplayer-fixed .aplayer-body').style.bottom = height + 'px';
-			}
-
-			if (document.querySelector('.aplayer.aplayer-fixed .aplayer-lrc')) {
-				document.querySelector('.aplayer.aplayer-fixed .aplayer-lrc').style.bottom = ($('.aplayer.aplayer-fixed .aplayer-lrc').css('bottom') + height) + 'px';
-			}
+			var aplayerStyle = document.createElement('style');
+			aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${$('.aplayer.aplayer-fixed .aplayer-lrc').css('bottom') + height}px}`;
+			$('head').append(aplayerStyle);
 
 			document.querySelector('body').style.paddingBottom = height + 'px';
 		</script>

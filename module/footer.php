@@ -29,34 +29,8 @@ if ($this->options->JMusic == 'on') {
 	<script src="<?= joe\theme_url('assets/plugin/Meting.js'); ?>"></script>
 <?php
 }
-
-if ($this->options->JPendant_SSL == 'on') {
-	// SSL安全认证
 ?>
-	<style>
-		html .joe_action {
-			bottom: 80px;
-		}
 
-		#cc-myssl-seal {
-			width: 65px;
-			height: 65px;
-			z-index: 9;
-			position: fixed;
-			right: 0;
-			bottom: 0;
-			cursor: pointer;
-		}
-	</style>
-	<div id="cc-myssl-seal">
-		<div title="TrustAsia 安全签章" id="myssl_seal" onclick="window.open('https://seal.trustasia.com/seal/detail?domain=<?= $_SERVER['HTTP_HOST'] ?>','TrustAsia 安全签章','height=800,width=470,top=0,right=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')" style="text-align: center">
-			<img src="//static.myssl.com/res/images/myssl-id.png" alt="" style="width: 100%; height: 100%"></a>
-		</div>
-	</div>
-<?php
-}
-
-?>
 <footer class="joe_footer">
 	<div class="joe_container">
 		<div class="item">
@@ -126,9 +100,11 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 		foreach ($footer_tabbar as $value) {
 ?>
 			<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?? '' ?>" target="<?= $value[2] ?? '' ?>">
-				<icon><svg class="icon svg" aria-hidden="true">
+				<icon <?= empty($value[4]) ? '' : 'style="font-size:'.$value[4].';"' ?>>
+					<svg class="icon svg" aria-hidden="true">
 						<use xlink:href="<?= $value[3] ?? '' ?>"></use>
-					</svg></icon>
+					</svg>
+				</icon>
 				<text><?= $value[0] ?? '' ?></text>
 			</a>
 <?php
@@ -136,6 +112,33 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 		echo '</div>';
 	}
 }
+
+
+// SSL安全认证
+if ($this->options->JPendant_SSL == 'on') {
+	?>
+		<style>
+			html .joe_action {
+				bottom: <?= empty($footer_tabbar) ? '80px' : '120px' ?>;
+			}
+	
+			#cc-myssl-seal {
+				width: 65px;
+				height: 65px;
+				z-index: 9;
+				position: fixed;
+				right: 0;
+				bottom: <?= empty($footer_tabbar) ? '0px' : '80px' ?>;
+				cursor: pointer;
+			}
+		</style>
+		<div id="cc-myssl-seal">
+			<div title="TrustAsia 安全签章" id="myssl_seal" style="text-align: center">
+				<img src="<?= Joe\theme_url('assets/images/myssl-id.png') ?>" alt="SSL" style="width: 100%; height: 100%"></a>
+			</div>
+		</div>
+	<?php
+	}
 ?>
 
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>

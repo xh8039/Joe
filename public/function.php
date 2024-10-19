@@ -647,7 +647,7 @@ function optionMulti(string $string, string $line = "\r\n", ?string $separator =
 	$custom = [];
 	$customArr = explode($line, $string);
 	foreach ($customArr as $value) {
-		$custom[] = $separator ? explode($separator, $value) : $value;
+		$custom[] = $separator ? array_map('trim', explode($separator, $value)) : trim($value);
 	}
 	return $custom;
 }

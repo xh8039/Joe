@@ -136,8 +136,8 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 			?>
 		</div>
 		<script>
-			const element = document.querySelector('.footer-tabbar');
-			const height = element.clientHeight;
+			const height = element.document.querySelector('.footer-tabbar');
+
 			if (document.querySelector('.joe_action')) {
 				document.querySelector('.joe_action').style.bottom = (height + 20) + 'px'
 			}
@@ -145,12 +145,15 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 				document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
 				document.querySelector('.joe_action').style.bottom = (document.getElementById('cc-myssl-seal').clientHeight + height + 20) + 'px';
 			}
-			// 创建一个新的 `<style>` 标签
-			var style = document.createElement('style');
-			// 设置样式内容
-			style.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body {bottom: ${height}px}`;
-			// 将 `<style>` 标签添加到 `<head>` 标签中
-			$('head').append(style);
+
+			if (document.querySelector('.aplayer.aplayer-fixed .aplayer-body')) {
+				document.querySelector('.aplayer.aplayer-fixed .aplayer-body').style.bottom = height + 'px';
+			}
+
+			if (document.querySelector('.aplayer.aplayer-fixed .aplayer-lrc')) {
+				document.querySelector('.aplayer.aplayer-fixed .aplayer-lrc').style.bottom = ($('.aplayer.aplayer-fixed .aplayer-lrc').css('bottom') + height) + 'px';
+			}
+
 			document.querySelector('body').style.paddingBottom = height + 'px';
 		</script>
 <?php

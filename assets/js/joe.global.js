@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 初始化昼夜模式 */
 	{
-		if (localStorage.getItem("data-night")) {
+		if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
 			$(".joe_action_item.mode .icon-1").addClass("active");
 			$(".joe_action_item.mode .icon-2").removeClass("active");
 		} else {

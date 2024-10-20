@@ -28,7 +28,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		},
 		CDN: (path) => {
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
-		}
+		},
+		startTime: performance.now()
 	}
 
 	// 19:00 PM - 6:00 AM 是黑夜

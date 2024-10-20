@@ -171,6 +171,12 @@ if (!empty($footer_tabbar)) {
 	?>
 	console.log("%cTheme By Joe再续前缘版", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
 
+	window.addEventListener('load', () => {
+		// 计算页面加载时间，并转换为秒
+		const loadTime = ((performance.now() - Joe.startTime) / 1000).toFixed(2);
+		console.log(`页面加载耗时：${loadTime} 秒`);
+	});
+
 	/* 自定义JavaScript */
 
 	<?php $this->options->JCustomScript() ?>
@@ -191,9 +197,3 @@ if (!empty($footer_tabbar)) {
 <!-- 网站统计HTML代码 -->
 
 <?php $this->footer(); ?>
-
-<script>
-	window.addEventListener('load', () => {
-		console.timeEnd('页面加载耗时');
-	});
-</script>

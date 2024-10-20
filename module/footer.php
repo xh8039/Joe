@@ -129,7 +129,7 @@ if (!empty($footer_tabbar)) {
 		?>
 	</div>
 	<script>
-		const height = document.querySelector('.footer-tabbar').clientHeight;
+		const height = document.querySelector('.footer-tabbar').clientHeight - 1;
 
 		if (document.querySelector('.joe_action')) {
 			document.querySelector('.joe_action').style.bottom = (height + <?= $joe_action_bottom ?>) + 'px'

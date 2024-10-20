@@ -3,7 +3,8 @@
 	position: fixed;
 	left: 0;
 	right: 0;
-	bottom: 0;
+	bottom: -1px;
+	padding-bottom: 1px;
 	width: 100%;
 	z-index: 1035;
 	justify-content: space-around;

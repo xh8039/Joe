@@ -37,8 +37,8 @@ $form->addInput($JIndex_Link_Active->multiMode());
 
 $JPendant_SSL = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPendant_SSL',
-	array('on' => '开启（默认）', 'off' => '关闭'),
-	'on',
+	array('off' => '关闭（默认）', 'on' => '开启'),
+	'off',
 	'是否开启SSL安全认证图标',
 	'介绍：开启后站点右下角将会显示SSL安全认证图标'
 );

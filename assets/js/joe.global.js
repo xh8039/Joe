@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			$(".joe_action_item.mode .icon-2").addClass("active");
 		}
 		$(".joe_action_item.mode").on("click", () => {
-			if (localStorage.getItem("data-night")) {
+			if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
 				$(".joe_action_item.mode .icon-1").removeClass("active");
 				$(".joe_action_item.mode .icon-2").addClass("active");
 				$("html").removeAttr("data-night");

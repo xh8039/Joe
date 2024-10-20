@@ -631,9 +631,6 @@ function theNext($widget, $default = NULL)
 
 function dateWord($original_date)
 {
-	// 获取字符串长度
-	$length = strlen($original_date);
-
 	// 2022年08月01日 -> 2022年
 	if (preg_match('/(\d+)年\d+月\d+日/i', $original_date, $match)) {
 		$original_date = (date('Y') - $match[1]) . '年前';

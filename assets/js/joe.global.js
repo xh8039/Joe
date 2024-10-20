@@ -892,8 +892,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		function checkUrl(string) {
 			try {
 				console.log(string);
+				if (string.startsWith('/')) return true;
 				let url = new URL(string);
-				// console.log(url);
 				if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
 			} catch (error) {
 				return false;
@@ -902,7 +902,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		window.offLoading = () => {
 			// a标签加载动画
-			$('a').click(function (e) {
+			$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
 				if ($(this).attr('target') == '_blank') return true;
 				if ($(this).attr('ajax-replace')) return true;
 				let url = $(this).attr('href');

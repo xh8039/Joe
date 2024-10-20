@@ -18,7 +18,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <html lang="zh-CN">
 
 <head>
-	<meta name="referrer" content="no-referrer" />
+	<!-- <meta name="referrer" content="no-referrer" /> -->
 	<?php
 	if (!empty($this->options->JIndex_Carousel)) : ?>
 		<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">

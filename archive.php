@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <html lang="zh-CN">
 
 <head>
-	<meta name="referrer" content="no-referrer" />
+	<!-- <meta name="referrer" content="no-referrer" /> -->
 	<?php $this->need('module/head.php'); ?>
 	<script src="<?= joe\cdn('wow/1.1.2/wow.min.js') ?>"></script>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.archive.css'); ?>">

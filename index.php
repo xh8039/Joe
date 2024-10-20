@@ -94,9 +94,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 									<div class="swiper-wrapper">
 										<?php foreach ($carousel as $item) : ?>
 											<div class="swiper-slide">
-												<a class="item" href="<?php echo $item['url'] ?>" target="<?php $this->options->JIndex_Carousel_Target() ?>" rel="noopener noreferrer nofollow">
-													<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="thumbnail lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo $item['img'] ?>" alt="<?php echo $item['title'] ?>" />
-													<div class="title"><?php echo $item['title'] ?></div>
+												<a class="item" href="<?= $item['url'] ?>" target="<?php $this->options->JIndex_Carousel_Target() ?>" rel="noopener noreferrer nofollow">
+													<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="thumbnail lazyload" src="<?php joe\getLazyload() ?>" data-src="<?= $item['img'] ?>" alt="<?= $item['title'] ?>" />
+													<div class="title"><?= $item['title'] ?></div>
 													<svg class="icon" viewBox="0 0 1026 1024" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
 														<path d="M784.3 1007.961a33.2 33.2 0 0 1-27.106-9.062L540.669 854.55 431.766 962.813c-9.062 9.062-36.168 18.044-45.23 9.062a49.72 49.72 0 0 1-27.106-45.23V727.763a33.2 33.2 0 0 1 9.463-27.106l343.071-370.578a44.748 44.748 0 0 1 63.274 63.274l-334.17 361.515v72.175l63.273-54.211a42.583 42.583 0 0 1 54.212-9.062l198.64 126.386L910.847 140.34 151.647 510.837 323.343 619.34c18.044 9.062 27.106 45.23 9.062 63.273-9.062 18.044-45.23 27.106-63.273 18.044L34.082 547.005c-8.981-8.982-18.043-17.723-18.043-36.168s9.062-27.105 27.105-36.167l903.79-451.815c18.043-9.062 36.167-9.062 45.229 0 18.284 9.223 18.284 27.106 18.284 45.15L829.69 971.794c0 18.043-9.062 27.105-27.105 36.167z" />
 													</svg>
@@ -122,7 +122,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						if ($this->options->JIndex_Recommend_Style == 'simple') {
 					?>
 							<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
-							<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
+							<div class="joe_index__banner-recommend <?= sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
 								<?php
 								foreach ($recommend as $cid) {
 									$this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
@@ -130,7 +130,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 								?>
 									<figure class="item">
 										<a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
-											<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
+											<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
 										</a>
 										<span class="type">推荐</span>
 										<figcaption class="information">
@@ -157,7 +157,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 											<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
 												<figure class="inner">
 													<span class="type">推荐</span>
-													<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
+													<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
 												</figure>
 											</a>
 											<div class="item-body">
@@ -229,8 +229,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 									<li class="item">
 										<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
 											<figure class="inner">
-												<span class="views"><?php echo number_format($item->views); ?> ℃</span>
-												<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
+												<span class="views"><?= number_format($item->views); ?> ℃</span>
+												<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
 											</figure>
 										</a>
 										<div class="item-body">
@@ -291,7 +291,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<div class="joe_index__ad">
 							<?php foreach ($index_ad as $advert) : ?>
 								<a class="joe_index__ad-link" <?= empty($advert[1]) ? '' : 'href="' . $advert[1] . '" target="_blank"' ?> rel="nofollow">
-									<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo $advert[0] ?>" alt="<?php echo $advert[1] ?>" />
+									<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?= $advert[0] ?>" alt="" />
 									<?= empty($advert[2]) ? '' : '<span class="icon">' . $advert[2] . '</span>' ?>
 								</a>
 							<?php endforeach; ?>
@@ -327,7 +327,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 									<path d="M656.261 347.208a188.652 188.652 0 1 0 0 324.05v-324.05z" fill="#F4CA1C" />
 									<path d="M668.35 118.881a73.35 73.35 0 0 0-71.169-4.06l-310.01 148.68a4.608 4.608 0 0 1-2.013.46h-155.11a73.728 73.728 0 0 0-73.728 73.636v349.64a73.728 73.728 0 0 0 73.728 73.636h156.554a4.68 4.68 0 0 1 1.94.43l309.592 143.196a73.702 73.702 0 0 0 104.668-66.82V181.206a73.216 73.216 0 0 0-34.453-62.326zM125.403 687.237v-349.64a4.608 4.608 0 0 1 4.608-4.608h122.035v358.882H130.048a4.608 4.608 0 0 1-4.644-4.634zm508.319 150.441a4.608 4.608 0 0 1-6.564 4.193L321.132 700.32V323.773l305.97-146.723a4.608 4.608 0 0 1 6.62 4.157v656.471zM938.26 478.72H788.01a34.509 34.509 0 1 0 0 69.018H938.26a34.509 34.509 0 1 0 0-69.018zM810.01 360.96a34.447 34.447 0 0 0 24.417-10.102l106.245-106.122a34.524 34.524 0 0 0-48.84-48.809L785.587 302.08a34.509 34.509 0 0 0 24.423 58.88zm24.417 314.609a34.524 34.524 0 1 0-48.84 48.814L891.832 830.52a34.524 34.524 0 0 0 48.84-48.809z" fill="#595BB3" />
 								</svg>
-								<a href="<?php echo $index_notice['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?php echo $index_notice['text'] ?></a>
+								<a href="<?= $index_notice['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?= $index_notice['text'] ?></a>
 							</div>
 						<?php endif; ?>
 					</div>

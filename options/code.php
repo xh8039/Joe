@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 if (isset($_GET['joe_code'])) {
-	$JCustomAsideHTML = new Typecho_Widget_Helper_Form_Element_Hidden(
+	$JCustomAsideHTML = new \Typecho\Widget\Helper\Form\Element\Hidden(
 		'',
 		NULL,
 		NULL,

@@ -547,11 +547,9 @@ function send_email($title, $subtitle, $content, $email = '')
  */
 function cdn($path)
 {
-	$cdnpublic = empty(\Helper::options()->JCdnUrl) ? '//cdn.bootcdn.net/ajax/libs/' : \Helper::options()->JCdnUrl;
+	$cdnpublic = empty(\Helper::options()->JCdnUrl) ? preg_replace("/^https?:\/\//", '//', \Helper::options()->themeUrl) : \Helper::options()->JCdnUrl;
 	$lastChar = substr($cdnpublic, -1);
-	if ($lastChar != '/') {
-		$cdnpublic = $cdnpublic . '/';
-	}
+	if ($lastChar != '/') $cdnpublic = $cdnpublic . '/';
 	if (strstrs($cdnpublic, ['||', '//cdn.jsdelivr.net/npm/', '//jsd.onmicrosoft.cn/npm/'])) {
 		$pos = strpos($cdnpublic, '||'); // 查找 || 的位置
 		if ($pos !== false) {

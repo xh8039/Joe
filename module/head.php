@@ -24,7 +24,7 @@
 
 <!-- Sweetalert弹窗CSS -->
 <link rel="stylesheet" href="<?= joe\cdn('limonte-sweetalert2/11.4.4/sweetalert2.min.css') ?>" />
-<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/sweetalert2/optimize.css'); ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/limonte-sweetalert2/11.4.4/sweetalert2-optimize.css') ?>">
 
 <link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />

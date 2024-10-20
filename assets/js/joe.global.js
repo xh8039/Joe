@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 			$(".joe_aside__item-contain .tag").svg3DTagCloud({
 				entries,
-				width: '100%',
+				width: 281,
 				height: 220,
 				radius: "65%",
 				radiusMin: 75,

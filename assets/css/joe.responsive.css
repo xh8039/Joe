@@ -809,6 +809,12 @@
 	}
 }
 
+@media (max-width: 380px) {
+	html .joe_list__item .item-meta item>.hide-sm{
+		display: none;
+	}
+}
+
 @media (max-width: 372px) {
 	html .joe_index__title-notice {
 		display: none

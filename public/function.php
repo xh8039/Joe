@@ -635,13 +635,16 @@ function dateWord($original_date)
 	$length = strlen($original_date);
 
 	// 2022年08月01日 -> 2022年
-	if ($length == 17) $original_date = substr($original_date, 0, -10);
+	if ($length == 17) {
+		$original_date = substr($original_date, 0, -13);
+		$original_date = (date('Y') - $original_date) . '年前';
+	}
 
 	// 昨天 21:11 -> 昨天
 	if ($length == 12) $original_date = substr($original_date, 0, -6);
 
 	// 10月8日 -> 10月
-	$original_date = preg_replace('/(\d+月)\d+日/i', '$1', $original_date); 
+	// $original_date = preg_replace('/(\d+月)\d+日/i', '$1', $original_date); 
 
 	return $original_date;
 }

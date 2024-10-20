@@ -634,14 +634,16 @@ function dateWord($original_date)
 	// 获取字符串长度
 	$length = strlen($original_date);
 
-	// 判断长度，如果大于等于 “2022年08月01日” 的长度，则删除后两位字符
-	if ($length == 17) { // 17 是 “2022年08月01日” 的长度
-		$formatted_date = substr($original_date, 0, -5);
-	} else {
-		$formatted_date = $original_date;
-	}
+	// 2022年08月01日 -> 2022年
+	if ($length == 17) $original_date = substr($original_date, 0, -10);
 
-	return $formatted_date; // 输出: 2022年08月
+	// 昨天 21:11 -> 昨天
+	if ($length == 12) $original_date = substr($original_date, 0, -6);
+
+	// 10月8日 -> 10月
+	$original_date = preg_replace('/(\d+月)\d+日/i', '$1', $original_date); 
+
+	return $original_date;
 }
 
 function optionMulti(string $string, string $line = "\r\n", ?string $separator = '||'): array

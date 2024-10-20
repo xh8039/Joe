@@ -183,7 +183,7 @@ class Editor
 	{
 ?>
 		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
-		<link rel="stylesheet" href="<?= joe\cdn('prism/1.9.0/themes/prism-dark.min.css') ?>">
+		<link rel="stylesheet" href="<?= joe\cdn('prism/1.9.0/themes/prism-tomorrow.min.css') ?>">
 		<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . Helper::options()->JPrismTheme) ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css') ?>">

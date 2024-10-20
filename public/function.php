@@ -637,7 +637,7 @@ function dateWord($original_date)
 	}
 
 	// 昨天 21:11 -> 昨天
-	$original_date = preg_replace('/昨天 \d+:\d+/i', '昨天', $original_date); 
+	$original_date = preg_replace('/昨天 \d+:\d+/i', '昨天', $original_date);
 
 	// 10月8日 -> 10月
 	// $original_date = preg_replace('/(\d+月)\d+日/i', '$1', $original_date); 

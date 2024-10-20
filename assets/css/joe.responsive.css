@@ -802,15 +802,14 @@
 	}
 }
 
-
-@media (max-width: 380px) {
-	html .joe_index__hot-list .item>.item-body>.item-meta>.meta-author>span>span {
+@media (max-width: 400px) {
+	html .joe_list__item .item-meta item>.hide-sm {
 		display: none;
 	}
 }
 
 @media (max-width: 380px) {
-	html .joe_list__item .item-meta item>.hide-sm{
+	html .joe_index__hot-list .item>.item-body>.item-meta>.meta-author>span>span {
 		display: none;
 	}
 }

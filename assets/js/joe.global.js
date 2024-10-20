@@ -874,7 +874,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
 	{
 		window.thumbOnError = function () {
-			$('.thumbnail>img, .joe_detail__related-content>a>img').on('error', function () {
+			$('.thumbnail>img, .joe_detail__related-content>a>img, .graphic>.fit-cover, .joe_index__hot-list .item .link .inner .image').on('error', function () {
 				// 生成一个 1 到 42 之间的随机整数
 				const randomNumber = Math.floor(Math.random() * 41) + 1;
 				// 将随机数格式化为两位数

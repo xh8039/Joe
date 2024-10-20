@@ -13,7 +13,7 @@
 		<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
 	<?php endif ?>
 	<?php $this->need('module/head.php'); ?>
-	<link rel="stylesheet" href="<?= joe\cdn('prism/1.9.0/prism.min.css') ?>">
+	<link rel="stylesheet" href="<?= joe\cdn('prism/1.9.0/themes/prism-dark.min.css') ?>">
 	<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . $this->options->JPrismTheme) ?>">
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
 	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>

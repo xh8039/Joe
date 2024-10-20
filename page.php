@@ -9,7 +9,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 <head>
 	<?php $this->need('module/head.php'); ?>
-	<link rel="stylesheet" href="<?= joe\cdn('prism/1.9.0/themes/prism-tomorrow.min.css') ?>">
 	<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . $this->options->JPrismTheme) ?>">
 	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
 	<script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script>

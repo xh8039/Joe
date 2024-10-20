@@ -9,7 +9,6 @@ $joe_action_bottom = 20;
 
 if ($this->options->JMusic == 'on') {
 ?>
-	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/aplayer.css') ?>">
 	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
 	<script>
 		window.meting_api = `<?= empty($this->options->JMusicApi) ? '${Joe.BASE_API}/meting?server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>`

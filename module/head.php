@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
 <link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
 <?php $this->need('module/config.php');?>
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.scroll.js'); ?>"></script>

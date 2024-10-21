@@ -19,7 +19,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 									<div class="abs-center left-bottom graphic-text">
 										<div class="em09 opacity8"><?php $relatedPosts->title(); ?></div>
 										<div class="px12 opacity8 mt6">
-											<item><?php joe\dateWord($relatedPosts->dateWord) ?></item>
+											<item><?= joe\dateWord($relatedPosts->dateWord) ?></item>
 											<item class="pull-right">
 												<svg class="icon svg" aria-hidden="true">
 													<use xlink:href="#icon-view"></use>

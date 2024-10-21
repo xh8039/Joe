@@ -55,21 +55,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 											</a>
 											<a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
 											<div class="meta">
-
-												<div style="display: <?= !empty($this->categories) ? 'block' : 'none' ?>" class="item-tags scroll-x no-scrollbar mb6">
+												<div class="item-tags scroll-x no-scrollbar mb6">
 													<?php
-													$color_array = ['c-blue', 'c-yellow'];
+													$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 													foreach ($this->categories as $key => $value) {
-													?>
-														<a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">
-															<i class="fa fa-folder-open-o" aria-hidden="true"></i><?= $value['name'] ?>
-														</a>
-													<?php
+														echo '<a class="but ' . $color_array[$key] . '" title="查看更多分类文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
 													}
 													foreach ($this->tags as $key => $value) {
-													?>
-														<a href="<?= $value['permalink'] ?>" title="查看此标签更多文章" class="but"># <?= $value['name'] ?></a>
-													<?php
+														echo '<a href="' . $value['permalink'] . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
 													}
 													?>
 												</div>
@@ -118,18 +111,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 												<div style="display: <?= !empty($this->categories) ? 'block' : 'none' ?>" class="item-tags scroll-x no-scrollbar mb6">
 													<?php
-													$color_array = ['c-blue', 'c-yellow'];
+													$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 													foreach ($this->categories as $key => $value) {
-													?>
-														<a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">
-															<i class="fa fa-folder-open-o" aria-hidden="true"></i><?= $value['name'] ?>
-														</a>
-													<?php
+														echo '<a class="but ' . $color_array[$key] . '" title="查看更多分类文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
 													}
 													foreach ($this->tags as $key => $value) {
-													?>
-														<a href="<?= $value['permalink'] ?>" title="查看此标签更多文章" class="but"># <?= $value['name'] ?></a>
-													<?php
+														echo '<a href="' . $value['permalink'] . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
 													}
 													?>
 												</div>
@@ -195,20 +182,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 										</a>
 										<div class="meta">
 
-											<div style="display: <?= !empty($this->categories) ? 'block' : 'none' ?>" class="item-tags scroll-x no-scrollbar mb6">
+											<div class="item-tags scroll-x no-scrollbar mb6">
 												<?php
-												$color_array = ['c-blue', 'c-yellow'];
+												$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 												foreach ($this->categories as $key => $value) {
-												?>
-													<a class="but <?= $color_array[$key] ?>" title="查看更多分类文章" href="<?= $value['url'] ?>">
-														<i class="fa fa-folder-open-o" aria-hidden="true"></i><?= $value['name'] ?>
-													</a>
-												<?php
+													echo '<a class="but ' . $color_array[$key] . '" title="查看更多分类文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
 												}
 												foreach ($this->tags as $key => $value) {
-												?>
-													<a href="<?= $value['permalink'] ?>" title="查看此标签更多文章" class="but"># <?= $value['name'] ?></a>
-												<?php
+													echo '<a href="' . $value['permalink'] . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
 												}
 												?>
 											</div>

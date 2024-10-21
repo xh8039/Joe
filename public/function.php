@@ -643,13 +643,13 @@ function dateWord($original_date)
 	return $original_date;
 }
 
-function optionMulti($string, string $line = "\r\n", ?string $separator = '||'): array
+function optionMulti($string, string $line = "\r\n", $separator = '||'): array
 {
 	if (empty($string) || !is_string($string)) return [];
 	$custom = [];
 	$customArr = explode($line, $string);
 	foreach ($customArr as $value) {
-		$custom[] = $separator ? array_map('trim', explode($separator, $value)) : trim($value);
+		$custom[] = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
 	}
 	return $custom;
 }

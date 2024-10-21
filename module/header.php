@@ -261,9 +261,9 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 			#HeaderCounter {
 				width: 0;
 				height: 3px;
-				z-index: 1001;
+				z-index: 10;
 				background-image: var(--back-line-right);
-				border-radius: 5px;
+				border-radius: var(--main-radius);
 				transition: width 0.45s;
 			}
 		</style>
@@ -275,9 +275,7 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 					b = $(window).height();
 				scrollPercent = a / (c - b) * 100;
 				scrollPercent = scrollPercent.toFixed(1);
-				$("#HeaderCounter").css({
-					width: scrollPercent + "%"
-				});
+				document.getElementById('HeaderCounter').style.width = scrollPercent + '%';
 			}).trigger("scroll");
 		</script>
 		<!-- 顶部浏览进度条结束 -->

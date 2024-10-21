@@ -22,8 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 初始化首页列表功能 */
 	{
-		const getTags = (tags) => {
+		const getTags = (category, tags) => {
 			let tagsHtml = '';
+			var color = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
+			category.forEach(element, index => {
+				tagsHtml += `<a target="${element.target}" class="but ${color[index]}" title="查看更多分类文章" href="${element.permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${element.name}</a>`;
+			});
 			tags.forEach(tag => {
 				tagsHtml += `<a href="${tag.permalink}" title="查看此标签更多文章" class="but"># ${tag.name}</a>`
 			});
@@ -47,9 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
 							<div class="meta">
 
-								<div style="display: ${_.category.length ? 'block' : 'none'}" class="item-tags scroll-x no-scrollbar mb6">
-									<a target="${_.target}" class="but c-blue" title="查看更多分类文章" href="${_.category.length && _.category[0].permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${_.category.length && _.category[0].name}</a>
-									${getTags(_.tags)}
+								<div class="item-tags scroll-x no-scrollbar mb6">
+									${getTags(_.category, _.tags)}
 								</div>
 								<div class="item-meta muted-2-color flex jsb ac">
 									<item class="meta-author flex ac">
@@ -95,9 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
 								<span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
 							</a>
 							<div class="meta">
-								<div style="display: ${_.category.length ? 'block' : 'none'}" class="item-tags scroll-x no-scrollbar mb6">
-									<a target="${_.target}" class="but c-blue" title="查看更多分类文章" href="${_.category.length && _.category[0].permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${_.category.length && _.category[0].name}</a>
-									${getTags(_.tags)}
+								<div class="item-tags scroll-x no-scrollbar mb6">
+									${getTags(_.category, _.tags)}
 								</div>
 								<div class="item-meta muted-2-color flex jsb ac">
 									<item class="meta-author flex ac">

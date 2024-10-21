@@ -447,6 +447,12 @@ table {
 	white-space: nowrap;
 }
 
+.more-posts a>span,
+.relates-thumb li a>.post-info,
+a[href] {
+	transition: color .2s, background .3s, opacity .3s, box-shadow .3s, transform .3s;
+}
+
 .badg,
 .but,
 .post-page-numbers {

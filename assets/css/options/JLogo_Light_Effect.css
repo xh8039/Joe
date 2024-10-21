@@ -1,18 +1,18 @@
 .joe_header__above-logo {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .joe_header__above-logo::before {
-    content: '';
-    position: absolute;
-    inset: -20%;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 60%);
-    animation: JLogo_Light_Effect 2s infinite;
-    transform: translateX(-100%);
+	content: '';
+	position: absolute;
+	inset: -20%;
+	background: linear-gradient(45deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 60%);
+	animation: JLogo_Light_Effect 2s infinite;
+	transform: translateX(-100%);
 }
 
 @keyframes JLogo_Light_Effect {
-    to {
-        transform: translateX(100%);
-    }
+	to {
+		transform: translateX(100%);
+	}
 }

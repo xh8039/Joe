@@ -436,30 +436,36 @@ function user_login($uid, $expire = 30243600)
 	$db->query($db->update('table.users')->expression('logged', 'activated')->rows(array('authCode' => $authCode))->where('uid = ?', $uid));
 }
 
-function user_url($action)
+function user_url($action, $from = true)
 {
-	$sys_protocal = isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://';
-	$php_self = $_SERVER['PHP_SELF'] ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
-	$path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
-	$relate_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $php_self . (isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : $path_info);
-	$url = urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
+	if ($from === true) {
+		$sys_protocal = isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://';
+		$php_self = $_SERVER['PHP_SELF'] ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
+		$path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
+		$relate_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $php_self . (isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : $path_info);
+		$url = '?from=' . urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
+	} else if (is_string($from)) {
+		$url = '?from=' . $from;
+	} else {
+		$url = '';
+	}
 	switch ($action) {
 		case 'register':
 			if (\Helper::options()->JUser_Switch == 'on') {
-				$url = \Typecho_Common::url('user/register', \Helper::options()->index) . '?from=' . $url;
+				$url = \Typecho_Common::url('user/register', \Helper::options()->index) . $url;
 			} else {
 				$url = \Helper::options()->adminUrl . 'register.php';
 			}
 			break;
 		case 'login':
 			if (\Helper::options()->JUser_Switch == 'on') {
-				$url = \Typecho_Common::url('user/login', \Helper::options()->index) . '?from=' . $url;
+				$url = \Typecho_Common::url('user/login', \Helper::options()->index) . $url;
 			} else {
 				$url = \Helper::options()->adminUrl . 'login.php';
 			}
 			break;
 		case 'forget':
-			$url = \Typecho_Common::url('user/forget', \Helper::options()->index) . '?from=' . $url;
+			$url = \Typecho_Common::url('user/forget', \Helper::options()->index) . $url;
 			break;
 	}
 	return $url;

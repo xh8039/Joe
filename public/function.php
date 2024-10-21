@@ -283,7 +283,9 @@ function theme_url($path, $param = ['version' => JOE_VERSION])
 	}
 	$themeUrl = preg_replace("/^https?:\/\//", '//', $themeUrl);
 	$url_root = empty(\Helper::options()->JStaticAssetsUrl) ? $themeUrl : \Helper::options()->JStaticAssetsUrl;
-	$url = $url_root . '/' . $path;
+	$lastChar = substr($url_root, -1);
+	if ($lastChar != '/') $url_root = $url_root . '/';
+	$url = $url_root . $path;
 	return url_builder($url, $param);
 }
 

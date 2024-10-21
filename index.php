@@ -279,7 +279,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<div class="joe_index__ad">
 							<?php foreach ($index_ad as $advert) : ?>
 								<a class="joe_index__ad-link" <?= empty($advert[1]) ? '' : 'href="' . $advert[1] . '" target="_blank"' ?> rel="nofollow">
-									<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?= $advert[0] ?>" alt="" />
+									<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" class="image" src="<?= $advert[0] ?>" alt="<?= empty($advert[2]) ? '' : $advert[2] ?>" />
 									<?= empty($advert[2]) ? '' : '<span class="icon">' . $advert[2] . '</span>' ?>
 								</a>
 							<?php endforeach; ?>

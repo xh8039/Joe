@@ -302,6 +302,10 @@ function url_builder($url, $param = null)
 function markdown_filter($content): string
 {
 	if (!is_string($content)) return '';
+
+	// 跑马灯
+	$content = str_replace('{lamp/}', ' ', $content);
+
 	// 任务
 	$content = str_replace('{ }', ' ', $content);
 	$content = str_replace('{x}', ' ', $content);

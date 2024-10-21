@@ -163,24 +163,38 @@ document.addEventListener('DOMContentLoaded', () => {
 						.join('')}
 						</a>
 						<div class="meta">
-							<ul class="items">
-								<li>${_.created}</li>
-								<li>
-								<svg class="icon" aria-hidden="true"><use xlink:href="#icon-view"></use></svg>
-									${_.views}
-								</li>
-								<li>
-								<svg class="icon" aria-hidden="true"><use xlink:href="#icon-comment"></use></svg>
-									${_.commentsNum}
-								</li>
-								<li>
-								<svg class="icon" aria-hidden="true"><use xlink:href="#icon-like"></use></svg>
-									${_.agree}
-								</li>
-							</ul>
-							<div class="last" style="display: ${_.category.length ? 'flex' : 'none'}">
-								<i class="icon fa fa-folder-open-o" aria-hidden="true"></i>
-								<a class="link" target="${_.target}" rel="noopener noreferrer" href="${_.category.length && _.category[0].permalink}">${_.category.length && _.category[0].name}</a>
+							<div class="item-tags scroll-x no-scrollbar mb6">
+								${getTags(_.category, _.tags)}
+							</div>
+							<div class="item-meta muted-2-color flex jsb ac">
+								<item class="meta-author flex ac">
+									<a href="${_.author_permalink}">
+										<span class="avatar-mini">
+											<img alt="${_.author_screenName}的头像 - ${Joe.TITLE}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+										</span>
+									</a>
+									<span class="hide-sm ml6">${_.author_screenName}</span>
+									<span title="${_.date_time}" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
+								</item>
+								<div class="meta-right">
+									<item class="meta-comm">
+										<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+											<svg class="icon svg" aria-hidden="true">
+												<use xlink:href="#icon-comment"></use>
+											</svg>${_.commentsNum}
+										</a>
+									</item>
+									<item class="meta-view">
+										<svg class="icon svg" aria-hidden="true">
+											<use xlink:href="#icon-view"></use>
+										</svg>${_.views}
+									</item>
+									<item class="meta-like">
+										<svg class="icon svg" aria-hidden="true">
+											<use xlink:href="#icon-like"></use>
+										</svg>${_.agree}
+									</item>
+								</div>
 							</div>
 						</div>
 					</li>
@@ -195,24 +209,38 @@ document.addEventListener('DOMContentLoaded', () => {
 							</a>
 							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
 							<div class="meta">
-								<ul class="items">
-									<li>${_.created}</li>
-									<li>
-									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-view"></use></svg>
-										${_.views}
-									</li>
-									<li>
-									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-comment"></use></svg>
-										${_.commentsNum}
-									</li>
-									<li>
-									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-like"></use></svg>
-										${_.agree}
-									</li>
-								</ul>
-								<div class="last" style="display: ${_.category.length ? 'flex' : 'none'}">
-									<i class="icon fa fa-folder-open-o" aria-hidden="true"></i>
-									<a class="link" target="${_.target}" rel="noopener noreferrer" href="${_.category.length && _.category[0].permalink}">${_.category.length && _.category[0].name}</a>
+								<div class="item-tags scroll-x no-scrollbar mb6">
+									${getTags(_.category, _.tags)}
+								</div>
+								<div class="item-meta muted-2-color flex jsb ac">
+									<item class="meta-author flex ac">
+										<a href="${_.author_permalink}">
+											<span class="avatar-mini">
+												<img alt="${_.author_screenName}的头像 - ${Joe.TITLE}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+											</span>
+										</a>
+										<span class="hide-sm ml6">${_.author_screenName}</span>
+										<span title="${_.date_time}" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
+									</item>
+									<div class="meta-right">
+										<item class="meta-comm">
+											<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+												<svg class="icon svg" aria-hidden="true">
+													<use xlink:href="#icon-comment"></use>
+												</svg>${_.commentsNum}
+											</a>
+										</item>
+										<item class="meta-view">
+											<svg class="icon svg" aria-hidden="true">
+												<use xlink:href="#icon-view"></use>
+											</svg>${_.views}
+										</item>
+										<item class="meta-like">
+											<svg class="icon svg" aria-hidden="true">
+												<use xlink:href="#icon-like"></use>
+											</svg>${_.agree}
+										</item>
+									</div>
 								</div>
 							</div>
 						</div>

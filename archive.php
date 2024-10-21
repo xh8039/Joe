@@ -96,7 +96,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 														</item>
 													</div>
 												</div>
-
 											</div>
 										</div>
 									</li>
@@ -108,8 +107,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 												<?php $this->title() ?>
 											</a>
 											<div class="meta">
-
-												<div style="display: <?= !empty($this->categories) ? 'block' : 'none' ?>" class="item-tags scroll-x no-scrollbar mb6">
+												<div class="item-tags scroll-x no-scrollbar mb6">
 													<?php
 													$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 													foreach ($this->categories as $key => $value) {
@@ -181,7 +179,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 											<?php endfor; ?>
 										</a>
 										<div class="meta">
-
 											<div class="item-tags scroll-x no-scrollbar mb6">
 												<?php
 												$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
@@ -235,27 +232,47 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 											</a>
 											<a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
 											<div class="meta">
-												<ul class="items">
-													<li><?php $this->date('Y年m月d日'); ?></li>
-													<li>
-														<svg class="icon" aria-hidden="true">
-															<use xlink:href="#icon-view"></use>
-														</svg>
-														<?php joe\getViews($this) ?>
-													</li>
-													<li>
-														<svg class="icon" aria-hidden="true">
-															<use xlink:href="#icon-comment"></use>
-														</svg>
-														<?php $this->commentsNum('%d'); ?>
-													</li>
-													<li>
-														<svg class="icon" aria-hidden="true">
-															<use xlink:href="#icon-like"></use>
-														</svg>
-														<?php joe\getAgree($this) ?>
-													</li>
-												</ul>
+												<div class="item-tags scroll-x no-scrollbar mb6">
+													<?php
+													$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
+													foreach ($this->categories as $key => $value) {
+														echo '<a class="but ' . $color_array[$key] . '" title="查看更多分类文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
+													}
+													foreach ($this->tags as $key => $value) {
+														echo '<a href="' . $value['permalink'] . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
+													}
+													?>
+												</div>
+												<div class="item-meta muted-2-color flex jsb ac">
+													<item class="meta-author flex ac">
+														<a href="<?= $this->author->permalink ?>">
+															<span class="avatar-mini">
+																<img alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
+															</span>
+														</a>
+														<span class="hide-sm ml6"><?= $this->author->screenName ?></span>
+														<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
+													</item>
+													<div class="meta-right">
+														<item class="meta-comm">
+															<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+																<svg class="icon svg" aria-hidden="true">
+																	<use xlink:href="#icon-comment"></use>
+																</svg><?= number_format($this->commentsNum) ?>
+															</a>
+														</item>
+														<item class="meta-view">
+															<svg class="icon svg" aria-hidden="true">
+																<use xlink:href="#icon-view"></use>
+															</svg><?php joe\getViews($this) ?>
+														</item>
+														<item class="meta-like">
+															<svg class="icon svg" aria-hidden="true">
+																<use xlink:href="#icon-like"></use>
+															</svg><?php joe\getAgree($this) ?>
+														</item>
+													</div>
+												</div>
 											</div>
 										</div>
 									</li>

@@ -12,7 +12,7 @@
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	color: var(--background);
+	color: #fff;
     background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
 }
 

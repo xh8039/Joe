@@ -925,4 +925,124 @@ document.addEventListener("DOMContentLoaded", () => {
 			this.setAttribute('src', Joe.THEME_URL + 'assets/images/avatar-default.png');
 		});
 	}
+
+	/** 模态框 */
+	{
+		// 模态框居中
+		$('body').on('show.bs.modal loaded.bs.modal', '.modal:not(.flex)', function () {
+			var o = $(this);
+			var i = o.find('.modal-dialog');
+			o.css('display', 'block'),
+				i.css({
+					'margin-top': Math.max(0, (_hei - i.height()) / 2),
+				});
+		});
+
+		// 每次都刷新的模态框
+		$('body').on('click', '[data-toggle="RefreshModal"]', function () {
+			var _this = $(this);
+			var dataclass = _this.attr('data-class') || '';
+			var remote = _this.attr('data-remote');
+			var height = _this.attr('data-height') || 300;
+			var mobile_bottom = _this.attr('mobile-bottom') && _wid < 769 ? ' bottom' : '';
+			var modal_class = 'modal flex jc fade' + mobile_bottom;
+			var id = 'refresh_modal';
+			var is_new = _this.attr('new');
+			id += is_new ? parseInt((Math.random() + 1) * Math.pow(10, 4)) : '';
+
+			var _id = '#' + id;
+
+			dataclass += ' modal-dialog';
+			var modal_html =
+				'<div class="' +
+				modal_class +
+				'" id="' +
+				id +
+				'" tabindex="-1" role="dialog" aria-hidden="false">\
+    <div class="' +
+				dataclass +
+				'" role="document">\
+    <div class="modal-content">\
+    </div>\
+    </div>\
+    </div>';
+
+			var loading = '<div class="modal-body" style="display:none;"></div><div class="flex jc loading-mask absolute main-bg radius8"><div class="em2x opacity5"><i class="loading"></i></div></div>';
+
+			var _modal = $(_id);
+			if (_modal.length) {
+				if (_modal.hasClass('in')) modal_class += ' in';
+				_modal.removeClass().addClass(modal_class);
+				_modal.find('.modal-dialog').removeClass().addClass(dataclass);
+				_modal.find('.loading-mask').fadeIn(200);
+				_modal
+					.find('.modal-content')
+					.css({
+						overflow: 'hidden',
+					})
+					.animate({
+						height: height,
+					});
+			} else {
+				_win.bd.append(modal_html);
+				_modal = $(_id);
+				if (is_new) {
+					_modal.on('hidden.bs.modal', function () {
+						$(this).remove();
+					});
+				}
+				_modal.find('.modal-content').html(loading).css({
+					height: height,
+					overflow: 'hidden',
+				});
+				if (_wid < 769) {
+					_modal.minitouch({
+						direction: 'bottom',
+						selector: '.modal-dialog',
+						start_selector: '.modal-colorful-header,.touch-close,.touch',
+						onEnd: function () {
+							_modal.modal('hide');
+						},
+						stop: function () {
+							return !_modal.hasClass('bottom');
+						},
+					});
+				}
+			}
+
+			_modal.find('.touch-close').remove();
+			var touch_close = '<div class="touch-close"></div>';
+			if (mobile_bottom && !_this.attr('no-touch')) {
+				_modal.find('.modal-dialog').append(touch_close);
+			}
+
+			_modal.modal('show');
+
+			$.get(remote, null, function (data) {
+				_modal
+					.find('.modal-body')
+					.html(data)
+					.slideDown(200, function () {
+						_modal.trigger('loaded.bs.modal').find('.loading-mask').fadeOut(200);
+						var b_height = $(this).outerHeight();
+						_modal.find('.modal-content').animate(
+							{
+								height: b_height,
+							},
+							200,
+							'swing',
+							function () {
+								_modal.find('.modal-content').css({
+									height: '',
+									overflow: '',
+									transition: '',
+								});
+							}
+						);
+					});
+			});
+
+			return false;
+		});
+	}
 });

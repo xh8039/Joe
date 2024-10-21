@@ -823,8 +823,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const randomIndex = Math.floor(Math.random() * mottoArray.length);
 			motto = mottoArray[randomIndex];
 		}
-		var pattern = /^\/\//;
-		if (pattern.test(motto)) {
+		if (motto.startsWith("https://") || motto.startsWith("http://") || motto.startsWith("//")) {
 			$.ajax({
 				url: motto,
 				dataType: "text",

@@ -74,6 +74,15 @@ $JPost_Ad = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JPost_Ad->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Ad);
 
+$JPost_Record_Detection = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JPost_Record_Detection',
+	['on' => '开启（默认）', 'off' => '关闭'],
+	'on',
+	'是否开启文章收录检测'
+);
+$JPost_Record_Detection->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JPost_Record_Detection);
+
 $JBaiduToken = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JBaiduToken',
 	NULL,

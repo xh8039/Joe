@@ -16,8 +16,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 			<div class="item">
 				<span class="text"><?php $this->date('Y-m-d'); ?> 发布</span>
-				<span class="line">/</span>
-				<span class="text" id="Joe_Baidu_Record">正在检测是否收录...</span>
+				<?= $this->options->JPost_Record_Detection == 'on' ? '<span class="line">/</span><span class="text" id="Joe_Baidu_Record">正在检测是否收录...</span>' : null ?>
 			</div>
 		</div>
 	</div>

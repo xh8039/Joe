@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 获取本篇文章百度收录情况 */
 	{
+		if (!document.getElementById('Joe_Baidu_Record')) return;
 		$.ajax({
 			url: Joe.BASE_API,
 			type: 'POST',
@@ -400,7 +401,7 @@ function submit_baidu(msg = '推送中...') {
 		}
 	});
 	// 	顺便推送URL到必应
-	if (!Joe.BAIDU_PUSH) return;
+	if (!Joe.BING_PUSH) return;
 	$.ajax({
 		url: Joe.BASE_API,
 		type: 'POST',

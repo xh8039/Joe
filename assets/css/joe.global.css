@@ -1004,7 +1004,7 @@
 .joe_aside__item.author .list .item .link {
 	position: relative;
 	color: var(--routine);
-	max-width: 85%;
+	max-width: 90%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap

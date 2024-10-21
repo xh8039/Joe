@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const getTags = (category, tags) => {
 			let tagsHtml = '';
 			var color = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
-			category.forEach(element, index => {
+			category.forEach((element, index) => {
 				tagsHtml += `<a target="${element.target}" class="but ${color[index]}" title="查看更多分类文章" href="${element.permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${element.name}</a>`;
 			});
 			tags.forEach(tag => {

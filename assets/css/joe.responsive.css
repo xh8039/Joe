@@ -135,10 +135,6 @@
 		height: 125px
 	}
 
-	html .joe_index__ad-link .image {
-		height: 180px
-	}
-
 	html .joe_index__hot-list {
 		-webkit-column-gap: 10px;
 		column-gap: 10px
@@ -318,10 +314,6 @@
 	html .joe_index__hot-list {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 10px
-	}
-
-	html .joe_index__ad-link .image {
-		height: 120px
 	}
 
 	html .joe_index__title {

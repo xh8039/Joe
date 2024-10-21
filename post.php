@@ -103,27 +103,23 @@
 					<?php endif; ?>
 
 					<?php
-					$post_ad_text = $this->options->JPost_Ad;
-					if ($post_ad_text) {
-						$post_ad_arr = explode("\r\n", $post_ad_text);
-						foreach ($post_ad_arr as $key => $value) {
-							$post_ad_arr_arr[] = [
-								'url' => trim(explode("||", $post_ad_arr[$key])[1] ?? ''),
-								'image' => trim(explode("||", $post_ad_arr[$key])[0] ?? '')
-							];
-						}
-					}
-					if (!empty($post_ad_arr_arr[0]['image'])) {
-						foreach ($post_ad_arr_arr as $key => $value) {
-					?>
-							<div class="joe_post__ad">
-								<a class="joe_post__ad-link" href="<?php echo $post_ad_arr_arr[$key]['url'] ?>" target="_blank" rel="noopener noreferrer nofollow">
-									<img width="100%" style="height:auto;max-height:200px" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?php echo $post_ad_arr_arr[$key]['image'] ?>" alt="<?php echo $post_ad_arr_arr[$key]['url'] ?>" />
-									<span class="icon">广告</span>
+					$post_ad = joe\optionMulti($this->options->JPost_Ad);
+					if (!empty($post_ad)) {
+						?>
+						<style>
+							.joe_detail__article {
+								padding-top: 5px;
+							}
+						</style>
+						<div class="joe_post__ad">
+							<?php foreach ($post_ad as $advert) : ?>
+								<a class="joe_post__ad-link" <?= empty($advert[1]) ? '' : 'href="' . $advert[1] . '" target="_blank"' ?> rel="nofollow">
+									<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" class="image lazyload" src="<?php joe\getLazyload() ?>" data-src="<?= $advert[0] ?>" alt="" />
+									<?= empty($advert[2]) ? '' : '<span class="icon">' . $advert[2] . '</span>' ?>
 								</a>
-							</div>
+							<?php endforeach; ?>
+						</div>
 					<?php
-						}
 					}
 					$this->need('module/article.php'); // 文章内容
 					$this->need('module/handle.php'); // 标签分类
@@ -165,7 +161,8 @@
 				<?php
 				}
 				?>
-				<?php require_once JOE_ROOT . 'module/related.php'; // 相关推荐 ?>
+				<?php require_once JOE_ROOT . 'module/related.php'; // 相关推荐 
+				?>
 				<?php $this->need('module/comment.php'); ?>
 			</div>
 			<?php $this->need('module/aside.php'); ?>

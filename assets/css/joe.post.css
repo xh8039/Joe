@@ -24,21 +24,19 @@
 }
 
 .joe_post__ad {
-	margin-top: 10px
+	padding-top: 25px;
 }
 
 .joe_post__ad-link {
 	display: block;
-	position: relative
+	position: relative;
+	margin-bottom: 10px;
 }
 
 .joe_post__ad-link .image {
 	width: 100%;
-	height: 200px;
-	-o-object-fit: cover;
-	object-fit: cover;
 	border-radius: var(--radius-inner);
-	transition: opacity 0.35s
+	transition: 0.3s
 }
 
 .joe_post__ad-link .image:hover {

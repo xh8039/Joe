@@ -72,9 +72,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		padding: 0 15px;
 		height: 36px;
 		border: none;
-		background: var(--back-line-right);
+		background: var(--theme);
 		color: #fff;
-		border-radius: 3px;
+		border-radius: var(--main-radius);
 	}
 
 	.friend_submit>.button>.submit:hover {
@@ -84,6 +84,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	.friend_submit>.button>.submit {
 		margin-left: 36px;
 		margin-right: 2vw;
+		box-shadow: 1px 1px 3px -1px var(--theme);
 	}
 
 	.friend_submit>.button>.reset {

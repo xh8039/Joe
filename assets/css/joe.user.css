@@ -93,12 +93,12 @@ textarea {
 	display: block;
 	padding: .45rem 1.2rem;
 	line-height: 1.5;
-	border-radius: .15rem;
+	border-radius: var(--main-radius);
 	color: #fff;
-	background: var(--back-line-right);
+	background: var(--theme);
 	border-color: var(--classB);
 	margin: auto;
-	box-shadow: var(--box-shadow);
+	box-shadow: 1px 1px 3px -1px var(--theme);
 	border: none;
 }
 

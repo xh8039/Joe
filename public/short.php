@@ -84,9 +84,8 @@ function _parseContent($post, $login)
 		$db = Typecho_Db::get();
 		$hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
 		if ($hasComment || $login) {
-			// $content = strtr($content, array("{hide}\r\n" => NULL, "\r\n{/hide}" => NULL));
-			// $content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-			$content = trim(preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '$1', $content));
+			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 		} else {
 			$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
 		}

@@ -295,9 +295,9 @@ function url_builder($url, array $param)
 }
 
 /** 过滤Markdown语法代码 */
-function markdown_filter(string $content): string
+function markdown_filter($content): string
 {
-
+	if (!is_string($content)) return '';
 	// 任务
 	$content = str_replace('{ }', ' ', $content);
 	$content = str_replace('{x}', ' ', $content);

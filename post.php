@@ -108,7 +108,7 @@
 						?>
 						<style>
 							.joe_detail__article {
-								padding-top: 5px;
+								padding-top: 0px;
 							}
 						</style>
 						<div class="joe_post__ad">

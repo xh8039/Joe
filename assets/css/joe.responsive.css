@@ -285,9 +285,9 @@
 		box-shadow: 0 4px 10px var(--main-shadow);
 	}
 
-	html #HeaderCounter {
+	/* html #HeaderCounter {
 		bottom: -4px;
-	}
+	} */
 
 	html .joe_header__above .joe_container {
 		justify-content: space-between;

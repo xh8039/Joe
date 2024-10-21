@@ -165,10 +165,6 @@
 	color: var(--theme);
 }
 
-.joe_index__hot-list .item>.item-body>.item-tags {
-	min-height: 23px;
-}
-
 .joe_index__hot-list .item>.item-body>.item-tags>a {
 	font-size: 11px;
 	padding: 2px 5px;

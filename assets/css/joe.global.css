@@ -73,16 +73,16 @@
 	top: 0;
 	z-index: 1000;
 	background: var(--background);
-	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
 	transition: top 0.35s
 }
 
-.joe_header:target {
+.joe_header:target,
+.joe_header.active {
 	top: -60px;
 }
 
-.joe_header.active {
-	top: -60px
+.body-scroll .joe_header {
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .joe_header.active .joe_header__below {
@@ -364,13 +364,44 @@
 	margin-left: 5px
 }
 
+.joe_header__above-slideicon::after,
+.joe_header__above-slideicon::before,
+.joe_header__above-slideicon>i {
+	content: '';
+	position: absolute;
+	width: 1em;
+	height: 2px;
+	background: var(--main-color);
+	left: 0;
+	right: 0;
+	transition: .4s;
+	border-radius: 2px;
+	bottom: .45em
+}
+
+.joe_header__above-slideicon>i {
+	right: .1em;
+	width: .9em
+}
+
+.joe_header__above-slideicon::before {
+	bottom: .8em;
+	right: .2em;
+	width: .8em;
+}
+
+.joe_header__above-slideicon::after {
+	bottom: .1em
+}
+
 .joe_header__above-searchicon,
 .joe_header__above-slideicon {
 	display: none;
-	width: 20px;
-	height: 20px;
-	fill: var(--routine);
-	cursor: pointer
+	/* width: 20px; */
+	/* height: 20px; */
+	/* fill: var(--routine); */
+	cursor: pointer;
+	color: var(--main-color);
 }
 
 .joe_header__above-searchicon {
@@ -525,7 +556,7 @@
 
 .joe_header__searchout {
 	position: absolute;
-	top: 50px;
+	top: 52px;
 	left: 0;
 	right: 0;
 	z-index: 890;

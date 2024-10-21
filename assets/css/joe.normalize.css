@@ -665,6 +665,14 @@ a[href] {
 	opacity: .6;
 }
 
+.css-icon {
+	width: 1em;
+	height: 1em;
+	vertical-align: -.15em;
+	display: inline-block;
+	position: relative;
+}
+
 @media (min-width: 576px) {
 	/* .joe_container {
 		max-width: 540px

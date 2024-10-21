@@ -12,9 +12,7 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 
 	<div class="joe_header__above">
 		<div class="joe_container">
-			<svg class="joe_header__above-slideicon" viewBox="0 0 1152 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-				<path d="M76.032 872a59.968 59.968 0 1 0 0 120h999.936a59.968 59.968 0 1 0 0-120H76.032zm16-420.032a59.968 59.968 0 1 0 0 120h599.936a59.968 59.968 0 1 0 0-119.936H92.032zM76.032 32a59.968 59.968 0 1 0 0 120h999.936a60.032 60.032 0 0 0 0-120H76.032z" />
-			</svg>
+			<i class="joe_header__above-slideicon em12 css-icon"><i></i></i>
 			<a title="<?php $this->options->title(); ?>" class="joe_header__above-logo" href="<?php $this->options->siteUrl(); ?>">
 				<img data-src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="<?php $this->options->title(); ?>" class="lazyload light" />
 				<?php
@@ -173,8 +171,8 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 					<?php endwhile; ?>
 				</nav>
 			</form>
-			<svg class="joe_header__above-searchicon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-				<path d="M1008.19 932.031L771.72 695.56a431.153 431.153 0 1 0-76.158 76.158l236.408 236.472a53.758 53.758 0 0 0 76.158 0 53.758 53.758 0 0 0 0-76.158zM107.807 431.185a323.637 323.637 0 0 1 323.316-323.381 323.7 323.7 0 0 1 323.381 323.38 323.637 323.637 0 0 1-323.38 323.317 323.637 323.637 0 0 1-323.317-323.316z" />
+			<svg class="icon svg joe_header__above-searchicon" aria-hidden="true">
+				<use xlink:href="#icon-search"></use>
 			</svg>
 		</div>
 	</div>
@@ -259,6 +257,8 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 		<!-- 顶部浏览进度条开始 -->
 		<style>
 			#HeaderCounter {
+				position: absolute;
+				bottom: -3px;
 				width: 0;
 				height: 3px;
 				z-index: 10;
@@ -269,14 +269,14 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 		</style>
 		<div id="HeaderCounter"></div>
 		<script>
-			$(window).scroll(function() {
+			$(window).scroll(throttle(() => {
 				let a = $(window).scrollTop(),
 					c = $(document).height(),
 					b = $(window).height();
 				scrollPercent = a / (c - b) * 100;
 				scrollPercent = scrollPercent.toFixed(1);
 				document.getElementById('HeaderCounter').style.width = scrollPercent + '%';
-			}).trigger("scroll");
+			}, 300));
 		</script>
 		<!-- 顶部浏览进度条结束 -->
 	<?php

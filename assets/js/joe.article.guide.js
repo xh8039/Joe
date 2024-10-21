@@ -100,25 +100,6 @@ if (articleTitleList.length > 0) {
 
 		var isCatalogClicking = false;
 
-		/**
-		 * 函数节流，时间戳方案
-		 * @param {*} fn 
-		 * @param {*} wait 
-		 * @returns 
-		 */
-		function throttle(fn, wait) {
-			var pre = Date.now();
-			return function () {
-				var context = this;
-				var args = arguments;
-				var now = Date.now();
-				if (now - pre >= wait) {
-					fn.apply(context, args);
-					pre = Date.now();
-				}
-			}
-		}
-
 		window.addEventListener('scroll', throttle(() => {
 			if (!isCatalogClicking) {
 				catalogTrack();
@@ -129,7 +110,7 @@ if (articleTitleList.length > 0) {
 			let lastScrollTime = 0;
 			const scrollThreshold = 200; // 滚动完成后等待的时间阈值
 
-			window.addEventListener('scroll', () => {
+			window.addEventListener('scroll', throttle(() => {
 				lastScrollTime = Date.now();
 				setTimeout(() => {
 					if (Date.now() - lastScrollTime > scrollThreshold) {
@@ -138,7 +119,7 @@ if (articleTitleList.length > 0) {
 						fn();
 					}
 				}, scrollThreshold);
-			});
+			}, 200));
 		}
 
 		// 监听文章目录a标签点击

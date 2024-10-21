@@ -156,15 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 激活全局返回顶部功能 */
 	{
-		let _debounce = null;
-		const handleScroll = () => ((document.documentElement.scrollTop || document.body.scrollTop) > 300 ? $(
-			".joe_action_item.scroll").addClass("active") : $(".joe_action_item.scroll").removeClass(
-				"active"));
-		handleScroll();
-		$(document).on("scroll", () => {
-			clearTimeout(_debounce);
-			_debounce = setTimeout(handleScroll, 80);
-		});
 		$(".joe_action_item.scroll").on("click", () => window.scrollTo({
 			top: 0,
 			behavior: "smooth"
@@ -836,38 +827,69 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	/* 头部滚动 */
+	/** 页面滚动监听函数 */
 	{
 		if (!window.Joe.IS_MOBILE) {
-			let flag = true;
-			const handleHeader = (diffY) => {
+			var flag = true;
+			function handleHeader(diffY) {
 				if (window.pageYOffset >= $(".joe_header").height() && diffY <= 0) {
 					if (flag) return;
 					$(".joe_header").addClass("active");
 					$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() - 60 +
 						23);
-					// $('.outline-outside-modal-opened').css('padding-top', '45px');
 					flag = true;
 				} else {
 					if (!flag) return;
 					$(".joe_header").removeClass("active");
 					$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() + 15);
-					// $('.outline-outside-modal-opened').css('padding-top', '105px');
 					flag = false;
 				}
 			};
-			let Y = window.pageYOffset;
+			var Y = window.pageYOffset;
 			handleHeader(Y);
-			let _last = Date.now();
-			document.addEventListener("scroll", () => {
-				let _now = Date.now();
-				if (_now - _last > 15) {
-					handleHeader(Y - window.pageYOffset);
-					Y = window.pageYOffset;
-				}
-				_last = _now;
-			});
 		}
+		$(window).scroll(throttle(() => {
+			// 激活全局返回顶部功能
+			var h = document.documentElement.scrollTop + document.body.scrollTop,
+				ontop = $(
+					".joe_action_item.scroll");
+			h > 100 ? $('body').addClass('body-scroll') : $('body').removeClass('body-scroll');
+			h > 400 ? ontop.addClass('active') : ontop.removeClass('active');
+
+			// 头部滚动
+			if (!window.Joe.IS_MOBILE) {
+				handleHeader(Y - window.pageYOffset);
+				Y = window.pageYOffset;
+			}
+		}, 100))//.trigger("scroll");
+	}
+
+	/* 头部滚动 */
+	{
+		// if (!window.Joe.IS_MOBILE) {
+		// 	let flag = true;
+		// 	const handleHeader = (diffY) => {
+		// 		if (window.pageYOffset >= $(".joe_header").height() && diffY <= 0) {
+		// 			if (flag) return;
+		// 			$(".joe_header").addClass("active");
+		// 			$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() - 60 +
+		// 				23);
+		// 			flag = true;
+		// 		} else {
+		// 			if (!flag) return;
+		// 			$(".joe_header").removeClass("active");
+		// 			$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() + 15);
+		// 			flag = false;
+		// 		}
+		// 	};
+		// 	let Y = window.pageYOffset;
+		// 	handleHeader(Y);
+		// 	// let _last = Date.now();
+		// 	document.addEventListener("scroll", throttle(() => {
+		// 		handleHeader(Y - window.pageYOffset);
+		// 		Y = window.pageYOffset;
+		// 	}, 100));
+		// }
 	}
 
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
@@ -959,13 +981,13 @@ document.addEventListener("DOMContentLoaded", () => {
 				'" id="' +
 				id +
 				'" tabindex="-1" role="dialog" aria-hidden="false">\
-    <div class="' +
+	<div class="' +
 				dataclass +
 				'" role="document">\
-    <div class="modal-content">\
-    </div>\
-    </div>\
-    </div>';
+	<div class="modal-content">\
+	</div>\
+	</div>\
+	</div>';
 
 			var loading = '<div class="modal-body" style="display:none;"></div><div class="flex jc loading-mask absolute main-bg radius8"><div class="em2x opacity5"><i class="loading"></i></div></div>';
 
@@ -1046,3 +1068,64 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
+
+/**
+ * 防抖函数
+ * @param {*} fn 
+ * @param {*} delay 
+ * @returns 
+ */
+function throttle(fn, delay = 100) {
+	let valid = true;
+	return function (...args) {
+		if (!valid) {
+			//休息时间 暂不接客
+			return false;
+		}
+		// 工作时间，执行函数并且在间隔期内把状态位设为无效
+		valid = false;
+		setTimeout(function () {
+			fn.apply(this, args);
+			valid = true;
+		}, delay);
+	};
+}
+
+/**
+ * @description: 节流函数
+ * @param {*} callback 函数
+ * @param {*} delay 时间
+ * @param {*} immediate  是否立即执行 为true则计时开始就就执行
+ * @return {*}
+ */
+// 定义一个debounce函数，用于函数防抖
+function debounce(callback, delay, immediate) {
+	// 定义一个变量，用于存放定时器
+	var timeout;
+	// 返回一个函数
+	return function () {
+		// 定义一个变量，用于存放this
+		var context = this,
+			// 定义一个变量，用于存放参数
+			args = arguments;
+		// 定义一个函数，用于清除定时器
+		var later = function () {
+			// 将定时器置为null
+			timeout = null;
+			// 如果不是立即执行，则执行回调函数
+			if (!immediate) {
+				callback.apply(context, args);
+			}
+		};
+		// 如果是立即执行，且定时器不存在，则立即执行回调函数
+		var callNow = immediate && !timeout;
+		// 清除定时器
+		clearTimeout(timeout);
+		// 重新设置定时器
+		timeout = setTimeout(later, delay);
+		// 如果是立即执行，则立即执行回调函数
+		if (callNow) {
+			callback.apply(context, args);
+		}
+	};
+}

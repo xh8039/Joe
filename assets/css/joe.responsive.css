@@ -276,13 +276,23 @@
 		height: 225px
 	}
 
-	html .joe_header {
+	html .joe_header.active,
+	html .joe_header:target {
+		top: 0;
+	}
+
+	html .body-scroll .joe_header {
 		box-shadow: 0 4px 10px var(--main-shadow);
+	}
+
+	html #HeaderCounter {
+		bottom: -4px;
 	}
 
 	html .joe_header__above .joe_container {
 		justify-content: space-between;
-		padding: 0 15px;
+		padding: 0 18px;
+		border: 1px solid transparent;
 	}
 
 	html .joe_header__above-nav {

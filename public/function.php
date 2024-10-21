@@ -273,7 +273,7 @@ function checkSensitiveWords($words_str, $str)
 	return false;
 }
 
-function theme_url($path)
+function theme_url($path, $param = ['version' => JOE_VERSION])
 {
 	$themeUrl = \Helper::options()->themeUrl;
 	$theme_url_parse = parse_url($themeUrl);
@@ -284,13 +284,15 @@ function theme_url($path)
 	$themeUrl = preg_replace("/^https?:\/\//", '//', $themeUrl);
 	$url_root = empty(\Helper::options()->JStaticAssetsUrl) ? $themeUrl : \Helper::options()->JStaticAssetsUrl;
 	$url = $url_root . '/' . $path;
-	return url_builder($url, ['version' => JOE_VERSION]);
+	return url_builder($url, $param);
 }
 
-function url_builder($url, array $param)
+function url_builder($url, $param = null)
 {
-	$param = http_build_query($param);
-	$url = strstr($url, '?') ? trim($url, '&') . '&' . $param : $url . '?' . $param;
+	if (is_array($param) && !empty($param)) {
+		$param = http_build_query($param);
+		$url = strstr($url, '?') ? (trim($url, '&') . '&' . $param) : ($url . '?' . $param);
+	}
 	return $url;
 }
 
@@ -547,7 +549,7 @@ function send_email($title, $subtitle, $content, $email = '')
  */
 function cdn($path)
 {
-	$cdnpublic = empty(\Helper::options()->JCdnUrl) ? (preg_replace("/^https?:\/\//", '//', \Helper::options()->themeUrl) . '/assets/plugin/') : \Helper::options()->JCdnUrl;
+	$cdnpublic = empty(\Helper::options()->JCdnUrl) ? theme_url('assets/plugin/', false) : \Helper::options()->JCdnUrl;
 	$lastChar = substr($cdnpublic, -1);
 	if ($lastChar != '/') $cdnpublic = $cdnpublic . '/';
 	if (strstrs($cdnpublic, ['||', '//cdn.jsdelivr.net/npm/', '//jsd.onmicrosoft.cn/npm/'])) {

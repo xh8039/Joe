@@ -43,7 +43,7 @@ if ($verify_result) { //验证成功
 			echo "<script>window.location.href = '$verify_result'</script>";
 		} else {
 			// 更新订单状态
-			$sql = $db->update('table.contents')->rows([
+			$sql = $db->update('table.joe_pay')->rows([
 				'pay_type' => $_GET['type'],
 				'pay_price' =>  $_GET['money'],
 				'api_trade_no' =>  $_GET['trade_no'],

@@ -258,7 +258,7 @@ function themeFields($layout)
 			grandParent.style.display = "none";
 			document.querySelector(\'select[name="fields[hide_type]"]\').addEventListener("change", () => {
 				if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
-					grandParent.style.display = "block";
+					grandParent.style.display = "table-row";
 				} else {
 					grandParent.style.display = "none";
 				}

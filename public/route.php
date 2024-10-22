@@ -911,8 +911,8 @@ function _initiatePay($self)
 	//构造要请求的参数数组，无需改动
 	$parameter = array(
 		"type" => $self->request->payment_method,
-		"notify_url" => theme_url('library/pay/notify.php', false),
-		"return_url" => theme_url('library/pay/return.php?redirect_url=' . urlencode(trim($self->request->return_url ?? '')), false),
+		"notify_url" => Helper::options()->themeUrl . '/library/pay/notify.php',
+		"return_url" => Helper::options()->themeUrl . '/library/pay/return.php?redirect_url=' . urlencode(trim($self->request->return_url ?? '')),
 		"out_trade_no" => $out_trade_no,
 		"name" =>  Helper::options()->title . ' - 付费阅读',
 		"money"	=> $pay_price,

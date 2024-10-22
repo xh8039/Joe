@@ -57,7 +57,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 			<p>商品类型：' . explode('-', $row['name'])[0] . '</p>
 			<p>商品：' . $row['content_title'] . '</p>
 			<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
-			<p>付款时间：' . (isset($row['update_time']) ? $row['update_time'] : date('Y-m-d H:i:s')) . '</p>
+			<p>付款时间：' . (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time']) . '</p>
 			');
 			if ($admin_email == 'success') {
 				// 更新订单状态
@@ -72,7 +72,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 				<p>商品：' . $row['content_title'] . '</p>
 				<p>订单号：' . $_GET['out_trade_no'] . '</p>
 				<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
-				<p>付款时间：' . (isset($row['update_time']) ? $row['update_time'] : date('Y-m-d H:i:s')) . '</p>
+				<p>付款时间：' . (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time']) . '</p>
 				', $authoInfo['mail']);
 				if ($user_email == 'success') {
 					$db->query($db->update('table.joe_pay')->rows(['user_email' => 1,])->where('trade_no = ?', $_GET['out_trade_no']));

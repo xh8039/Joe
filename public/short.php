@@ -81,14 +81,29 @@ function _parseContent($post, $login)
 		$content = preg_replace('/{progress([^}]*)\/}/SU', '<joe-progress $1></joe-progress>', $content);
 	}
 	if (strpos($content, '{hide') !== false) {
+		if ($post->fields->hide_type == 'pay') {
+			$db = Typecho_Db::get();
+			$pay = $db->fetchAll($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->limit(1));
+			if ($pay) {
+				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+			}
+		}
+		if ($post->fields->hide_type == 'login') {
+			if ($login) {
+				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+			}
+		}
+		// if ($post->fields->hide_type == 'comment') {
+		// }
 		$db = Typecho_Db::get();
 		$hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
-		if ($hasComment || $login) {
+		if ($hasComment) {
 			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-		} else {
-			$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
 		}
+		$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
 	}
 	if (strpos($content, '{card-default') !== false) {
 		$content = preg_replace('/{card-default([^}]*)}([\s\S]*?){\/card-default}/', '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>', $content);

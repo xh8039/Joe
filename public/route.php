@@ -871,7 +871,7 @@ function _payCashierModal($self)
 	$self->response->throwContent('');
 }
 
-function _initiatePay()
+function _initiatePay($self)
 {
 	if (!is_numeric($self->request->cid)) {
 		$self->response->setStatus(404);

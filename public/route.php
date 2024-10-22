@@ -796,6 +796,7 @@ function _payCashierModal($self)
 				<i class="fa fa-cart-plus"></i>
 			</div>
 			<div class="mt10 em12 padding-w10">确认购买</div>
+			<?php if (!is_numeric(USER_ID)) echo '<div class="mt3">您当前未登录！建议登陆后付费，可永久保存订单</div>' ?>
 		</div>
 	</div>
 	<div class="mb10 order-type-1">
@@ -856,7 +857,9 @@ function _payCashierModal($self)
 				</div> -->
 			</div>
 			<input type="hidden" name="payment_method" value="">
-			<script>document.querySelector('.payment-method-radio').click()</script>
+			<script>
+				document.querySelector('.payment-method-radio').click()
+			</script>
 			<button class="mt6 but jb-red initiate-pay btn-block radius">
 				立即支付
 				<span class="pay-price-text">

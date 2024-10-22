@@ -1075,9 +1075,11 @@ document.addEventListener("DOMContentLoaded", () => {
 					jsonData = JSON.parse(data);
 					if (jsonData) {
 						Qmsg.error(jsonData.message);
+						_modal.modal('hide');
 						return;
 					}
 				} catch (e) {
+					console.log(data);
 					_modal
 						.find('.modal-body')
 						.html(data)

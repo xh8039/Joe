@@ -55,7 +55,9 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 				'pay_type' => $_GET['type'],
 				'pay_price' =>  $_GET['money'],
 				'api_trade_no' =>  $_GET['trade_no'],
-			])->where('cid = ?', $cid);
+				'update_time' => date('Y-m-d H:i:s'),
+				'status' => '1',
+			])->where('trade_no = ?', $_GET['out_trade_no']);
 			if ($db->query($sql)) {
 				/**返回不在发送异步通知 */
 				echo 'success';

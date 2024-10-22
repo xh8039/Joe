@@ -36,6 +36,8 @@ function themeConfig($form)
 						user_id TEXT NOT NULL,
 						create_time TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						update_time TEXT,
+						pay_type TEXT,
+						pay_price TEXT,
 						status INTEGER DEFAULT '0'");
 		}
 		if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter) {
@@ -52,6 +54,8 @@ function themeConfig($form)
 						`user_id` varchar(32) NOT NULL,
 						`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						`update_time` DATETIME DEFAULT NULL,
+						`pay_type` varchar(10) DEFAULT NULL,
+						`pay_price` varchar(32) DEFAULT NULL,
 						`status` varchar(32) DEFAULT '0',
 						PRIMARY KEY  (`id`)
 					) DEFAULT CHARSET=utf8mb4;");

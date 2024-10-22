@@ -39,7 +39,9 @@ function themeConfig($form)
 						update_time TEXT,
 						pay_type TEXT,
 						pay_price TEXT,
-						status INTEGER DEFAULT '0'");
+						admin_email INTEGER DEFAULT 0
+						user_email INTEGER DEFAULT 0
+						status INTEGER DEFAULT 0");
 		}
 		if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter) {
 			$_db->query("CREATE TABLE IF NOT EXISTS `$joe_pay` (
@@ -57,7 +59,9 @@ function themeConfig($form)
 						`update_time` DATETIME DEFAULT NULL,
 						`pay_type` varchar(10) DEFAULT NULL,
 						`pay_price` varchar(32) DEFAULT NULL,
-						`status` varchar(32) DEFAULT '0',
+						`admin_email` BOOLEAN NOT NULL DEFAULT FALSE,
+						`user_email` BOOLEAN NOT NULL DEFAULT FALSE,
+						`status` BOOLEAN NOT NULL DEFAULT FALSE,
 						PRIMARY KEY  (`id`)
 					) DEFAULT CHARSET=utf8mb4;");
 		}

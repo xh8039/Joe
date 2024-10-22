@@ -913,7 +913,7 @@ function _initiatePay($self)
 		'pid' => $epay_config['partner'],
 		"type" => $self->request->payment_method,
 		"notify_url" => Helper::options()->themeUrl . '/library/pay/notify.php',
-		"return_url" => Helper::options()->themeUrl . '/library/pay/return.php?redirect_url=' . urlencode(trim($self->request->return_url ?? '')),
+		"return_url" => Helper::options()->themeUrl . '/library/pay/return.php?redirect_url=' . urlencode($self->request->return_url),
 		"out_trade_no" => $out_trade_no,
 		"name" =>  Helper::options()->title . ' - 付费阅读',
 		"money"	=> $pay_price,

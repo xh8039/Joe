@@ -775,31 +775,7 @@ function _payCashierModal($self)
 	$cid = trim($self->request->cid);
 
 	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
-	if ($item->next()) {
-		// $result[] = array(
-		// 	"cid" => $item->cid,
-		// 	"mode" => $item->fields->mode ? $item->fields->mode : 'default',
-		// 	"image" => joe\getThumbnails($item),
-		// 	"time" => date('Y-m-d', $item->created),
-		// 	'date_time' => date('Y-m-d H:i:s', $item->created),
-		// 	"created" => date('Y年m月d日', $item->created),
-		// 	'dateWord' => joe\dateWord($item->dateWord),
-		// 	"title" => $item->title,
-		// 	"abstract" => joe\getAbstract($item, false),
-		// 	"category" => $item->categories,
-		// 	"views" => joe\getViews($item, false),
-		// 	"commentsNum" => number_format($item->commentsNum),
-		// 	"agree" => joe\getAgree($item, false),
-		// 	"permalink" => $item->permalink,
-		// 	"lazyload" => joe\getLazyload(false),
-		// 	"type" => "sticky",
-		// 	'target' => Helper::options()->Jessay_target,
-		// 	'author_screenName' => $item->author->screenName,
-		// 	'author_permalink' => $item->author->permalink,
-		// 	'author_avatar' => joe\getAvatarByMail($item->author->mail, false),
-		// 	'tags' => $item->tags
-		// );
-	}
+	$item->next();
 
 	$pay_price = $item->fields->pay_price;
 

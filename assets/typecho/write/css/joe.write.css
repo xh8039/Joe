@@ -1028,7 +1028,7 @@ body.fullscreen {
 .joe_hide {
     display: block;
     background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);
-    padding: 15px 0;
+    padding: 15px;
     text-align: center;
     position: relative;
     -webkit-user-select: none;

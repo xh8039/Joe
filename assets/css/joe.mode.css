@@ -38,6 +38,8 @@ html {
 	--muted-2-color: #999;
 	--muted-3-color: #b1b1b1;
 	--muted-color: #777;
+	--focus-color: var(--theme);
+	--muted-border-color: rgba(0, 0, 0, 0.03);
 }
 
 /* 黑夜模式的配色方案 */

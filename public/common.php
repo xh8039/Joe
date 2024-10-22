@@ -21,6 +21,19 @@ if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 
 
 session_start();
 
+
+Typecho_Widget::widget('Widget_User')->to($user);
+if ($user->hasLogin()) {
+	define('USER_ID', $this->user->uid);
+} else {
+	$cookiesid = $_COOKIE['userid'];
+	if ((!$cookiesid) || (!preg_match('/^[0-9a-z]{32}$/i', $cookiesid))) {
+		$cookiesid = md5(uniqid(mt_rand(), 1) . time());
+		setcookie('userid', $cookiesid, time() + 94672800); // 游客用户ID存储三年
+	}
+	define('USER_ID', $cookiesid);
+}
+
 /* 继承方法函数 */
 require_once(JOE_ROOT . 'public/widget.php');
 
@@ -52,7 +65,7 @@ function themeInit($self)
 	Helper::options()->commentsMaxNestingLevels = 999;
 
 	/* 主题开放API 路由规则 */
-	if ($self->request->getPathInfo() == "/joe/api") {
+	if (strpos($self->request->getPathInfo(), "/joe/api") === 0) {
 		switch ($self->request->routeType) {
 			case 'publish_list':
 				_getPost($self);
@@ -102,6 +115,12 @@ function themeInit($self)
 				break;
 			case 'meting':
 				_Meting($self);
+				break;
+			case 'pay_cashier_modal':
+				_payCashierModal($self);
+				break;
+			case 'initiate_pay':
+				_initiatePay($self);
 				break;
 		};
 	}

@@ -7,6 +7,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 use Metowolf\Meting;
 
+use function joe\theme_url;
+
 /* 获取文章列表 已测试 √  */
 
 function _getPost($self)
@@ -741,5 +743,199 @@ function _Meting($self)
 		$data['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];
 		$self->response->setStatus(200);
 		$self->response->throwJson([$data]);
+	}
+}
+
+function _payCashierModal($self)
+{
+	if (!is_numeric($self->request->cid)) {
+		$self->response->setStatus(404);
+		return;
+	}
+	$self->response->setStatus(200);
+
+	if (empty(Helper::options()->JYiPayApi)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
+		return;
+	}
+	if (empty(Helper::options()->JYiPayID)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
+		return;
+	}
+	if (empty(Helper::options()->JYiPayKey)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
+		return;
+	}
+
+	$cid = trim($self->request->cid);
+
+	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
+	if ($item->next()) {
+		// $result[] = array(
+		// 	"cid" => $item->cid,
+		// 	"mode" => $item->fields->mode ? $item->fields->mode : 'default',
+		// 	"image" => joe\getThumbnails($item),
+		// 	"time" => date('Y-m-d', $item->created),
+		// 	'date_time' => date('Y-m-d H:i:s', $item->created),
+		// 	"created" => date('Y年m月d日', $item->created),
+		// 	'dateWord' => joe\dateWord($item->dateWord),
+		// 	"title" => $item->title,
+		// 	"abstract" => joe\getAbstract($item, false),
+		// 	"category" => $item->categories,
+		// 	"views" => joe\getViews($item, false),
+		// 	"commentsNum" => number_format($item->commentsNum),
+		// 	"agree" => joe\getAgree($item, false),
+		// 	"permalink" => $item->permalink,
+		// 	"lazyload" => joe\getLazyload(false),
+		// 	"type" => "sticky",
+		// 	'target' => Helper::options()->Jessay_target,
+		// 	'author_screenName' => $item->author->screenName,
+		// 	'author_permalink' => $item->author->permalink,
+		// 	'author_avatar' => joe\getAvatarByMail($item->author->mail, false),
+		// 	'tags' => $item->tags
+		// );
+	}
+
+	$pay_price = $item->fields->pay_price;
+
+	if (!is_numeric($pay_price) || round($pay_price, 2) <= 0) {
+		$self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
+		return;
+	}
+?>
+	<div class="modal-colorful-header colorful-bg jb-blue">
+		<button class="close" data-dismiss="modal">
+			<svg class="ic-close svg" aria-hidden="true">
+				<use xlink:href="#icon-close"></use>
+			</svg>
+		</button>
+		<div class="colorful-make"></div>
+		<div class="text-center">
+			<div class="em2x">
+				<i class="fa fa-cart-plus"></i>
+			</div>
+			<div class="mt10 em12 padding-w10">确认购买</div>
+		</div>
+	</div>
+	<div class="mb10 order-type-1">
+		<span class="pay-tag badg badg-sm mr6">
+			<i class="fa fa-book mr3"></i>
+			付费阅读
+		</span>
+		<span><?= $item->title ?></span>
+	</div>
+	<div class="mb10 muted-box padding-h6 line-16">
+		<div class="flex jsb ab">
+			<span class="muted-2-color">价格</span>
+			<div>
+				<span>
+					<span class="pay-mark px12">￥</span>
+					<span><?= $pay_price ?></span>
+					<!-- <span class="em14">0.01</span> -->
+				</span>
+			</div>
+		</div>
+	</div>
+	<form>
+		<input type="hidden" name="post_id" value="<?= $item->cid ?>">
+		<input type="hidden" name="order_type" value="1">
+		<input type="hidden" name="order_name" value="<?= Helper::options()->title ?> - 付费阅读">
+		<div class="dependency-box">
+			<div class="muted-2-color em09 mb6">请选择支付方式</div>
+			<div class="flex mb10">
+				<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer active" data-for="payment_method" data-value="wechat">
+					<img src="<?= theme_url('assets/images/pay/pay-wechat-logo.svg', false) ?>" alt="wechat-logo">
+					<div>微信</div>
+				</div>
+				<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="alipay">
+					<img src="<?= theme_url('assets/images/pay/pay-alipay-logo.svg', false) ?>" alt="alipay-logo">
+					<div>支付宝</div>
+				</div>
+				<!-- <div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="balance">
+					<img src="<?= theme_url('assets/images/pay/pay-balance-logo.svg', false) ?>" alt="balance-logo">
+					<div>余额</div>
+				</div> -->
+			</div>
+			<input type="hidden" name="payment_method" value="wechat">
+			<button class="mt6 but jb-red initiate-pay btn-block radius">
+				立即支付
+				<span class="pay-price-text">
+					<span class="px12 ml10">￥</span>
+					<span class="actual-price-number" data-price="<?= $pay_price ?>"><?= $pay_price ?></span>
+				</span>
+			</button>
+		</div>
+	</form>
+	<script src="<?= joe\theme_url('assets/js/joe.pay.js'); ?>"></script>
+<?php
+	$self->response->throwContent('');
+}
+
+function _initiatePay()
+{
+	if (!is_numeric($self->request->cid)) {
+		$self->response->setStatus(404);
+		return;
+	}
+
+	$cid = trim($self->request->cid);
+
+	$self->response->setStatus(200);
+
+	$epay_config = [];
+
+	if (empty(Helper::options()->JYiPayApi)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
+		return;
+	}
+	$epay_config['apiurl'] = trim(Helper::options()->JYiPayApi);
+
+	if (empty(Helper::options()->JYiPayID)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
+		return;
+	}
+	$epay_config['partner'] = trim(Helper::options()->JYiPayID);
+
+	if (empty(Helper::options()->JYiPayKey)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
+		return;
+	}
+	$epay_config['key'] = trim(Helper::options()->JYiPayKey);
+
+	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
+	$item->next();
+	$pay_price = $item->fields->pay_price;
+	if (!is_numeric($pay_price) || round($pay_price, 2) <= 0) {
+		$self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
+		return;
+	}
+	$out_trade_no = date("YmdHis") . mt_rand(100, 999);
+	//构造要请求的参数数组，无需改动
+	$parameter = array(
+		"type" => $self->request->payment_method,
+		"notify_url" => theme_url('library/pay/notify.php', false),
+		"return_url" => theme_url('library/pay/return.php?redirect_url=' . urlencode(trim($self->request->return_url ?? '')), false),
+		"out_trade_no" => $out_trade_no,
+		"name" =>  Helper::options()->title . ' - 付费阅读',
+		"money"	=> $pay_price,
+	);
+	//建立请求
+	require_once JOE_ROOT . 'library/pay/EpayCore.php';
+	$epay = new \Joe\library\pay\EpayCore($epay_config);
+	$html_text = $epay->pagePay($parameter);
+
+	$db = Typecho_Db::get();
+	$sql = $db->insert('table.joe_pay')->rows([
+		'trade_no' => $out_trade_no,
+		"name" =>  Helper::options()->title . ' - 付费阅读',
+		'content_title' => $item->title,
+		'content_cid' => $cid,
+		'type' => $self->request->payment_method,
+		'money' => $pay_price,
+	]);
+	if ($db->query($sql)) {
+		$self->response->throwContent($html_text);
+	} else {
+		$self->response->throwContent('订单创建失败！');
 	}
 }

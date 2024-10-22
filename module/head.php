@@ -17,6 +17,7 @@
 	<?php $this->header(); ?>
 <?php endif; ?>
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
@@ -33,6 +34,7 @@
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
 <?php $this->need('module/config.php');?>
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js'); ?>"></script>
 <!-- <script src="<?= joe\theme_url('assets/js/joe.scroll.js'); ?>"></script> -->
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>"></script>
 <script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>

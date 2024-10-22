@@ -7,7 +7,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <script>
 	window.Joe = {
 		TITLE: `<?php $this->options->title() ?>`,
-		THEME_URL: `<?php $this->options->themeUrl() ?>`,
+		THEME_URL: `<?= Joe\theme_url('', false) ?>`,
 		LIVE2D: `<?php \joe\theme_url('assets/plugin/live2d/model/') . $this->options->JLive2d ?>`,
 		BASE_API: `<?= $this->options->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api' ?>`,
 		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
@@ -27,12 +27,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			QQ: `<?php $this->options->JQQRewardImg() ?>`
 		},
 		CONTENT: {
-			id: <?= $this->cid ?>,
+			cid: <?= $this->cid ?>,
 			fields: {
 				hide_type: `<?= $this->fields->hide_type ?>`,
 				pay_price: `<?= $this->fields->pay_price ?>`,
 			}
 		},
+		VERSION: `<?= JOE_VERSION ?>`,
 		CDN: (path) => {
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		},

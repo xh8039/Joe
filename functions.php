@@ -20,6 +20,42 @@ function themeConfig($form)
 	$_db = Typecho_Db::get();
 	$_prefix = $_db->getPrefix();
 	try {
+		$adapter = $db->getAdapterName();
+		$joe_pay = $_prefix . "joe_pay";
+		if ("Pdo_SQLite" === $adapter || "SQLite" === $adapter) {
+			$db->query(" CREATE TABLE IF NOT EXISTS $joe_pay (
+						id INTEGER PRIMARY KEY,
+						trade_no TEXT NOT NULL,
+						api_trade_no TEXT,
+						name TEXT NOT NULL,
+						content_title TEXT,
+						content_cid INTEGER NOT NULL,
+						type TEXT NOT NULL,
+						money TEXT NOT NULL,
+						ip TEXT,
+						user_id TEXT NOT NULL,
+						create_time TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+						update_time TEXT,
+						status INTEGER DEFAULT '0'");
+		}
+		if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter) {
+			$db->query("CREATE TABLE IF NOT EXISTS $joe_pay (
+						`id` INT NOT NULL AUTO_INCREMENT,
+						`trade_no` varchar(64) NOT NULL unique,
+						`api_trade_no` varchar(64) DEFAULT NULL,
+						`name` varchar(64) NOT NULL,
+						`content_title` varchar(150) DEFAULT NULL,
+						`content_cid` INT NOT NULL,
+						`type` varchar(10) NOT NULL,
+						`money` varchar(32) NOT NULL,
+						`ip` varchar(32) DEFAULT NULL,
+						`user_id` varchar(32) NOT NULL,
+						`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+						`update_time` DATETIME DEFAULT NULL,
+						`status` varchar(32) DEFAULT '0',
+						PRIMARY KEY  (`id`)
+					) DEFAULT CHARSET=utf8mb4;");
+		}
 		$table_contents = $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1));
 		$table_contents = empty($table_contents) ? [] : $table_contents;
 		if (!array_key_exists('views', $table_contents)) {

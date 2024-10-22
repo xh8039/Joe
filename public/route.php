@@ -828,7 +828,7 @@ function _payCashierModal($self)
 				<?php
 				if (Helper::options()->JWeChatPay == 'no') {
 				?>
-					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="wechat">
+					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="wxpay">
 						<img src="<?= theme_url('assets/images/pay/pay-wechat-logo.svg', false) ?>" alt="wechat-logo">
 						<div>微信</div>
 					</div>
@@ -844,7 +844,7 @@ function _payCashierModal($self)
 				}
 				if (Helper::options()->JQQPay == 'no') {
 				?>
-					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="wechat">
+					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="qqpay">
 						<img src="<?= theme_url('assets/images/pay/pay-qq-logo.svg', false) ?>" alt="wechat-logo">
 						<div>QQ</div>
 					</div>

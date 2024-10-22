@@ -20,10 +20,10 @@ function themeConfig($form)
 	$_db = Typecho_Db::get();
 	$_prefix = $_db->getPrefix();
 	try {
-		$adapter = $db->getAdapterName();
+		$adapter = $_db->getAdapterName();
 		$joe_pay = $_prefix . "joe_pay";
 		if ("Pdo_SQLite" === $adapter || "SQLite" === $adapter) {
-			$db->query(" CREATE TABLE IF NOT EXISTS $joe_pay (
+			$_db->query(" CREATE TABLE IF NOT EXISTS $joe_pay (
 						id INTEGER PRIMARY KEY,
 						trade_no TEXT NOT NULL,
 						api_trade_no TEXT,
@@ -39,7 +39,7 @@ function themeConfig($form)
 						status INTEGER DEFAULT '0'");
 		}
 		if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter) {
-			$db->query("CREATE TABLE IF NOT EXISTS $joe_pay (
+			$_db->query("CREATE TABLE IF NOT EXISTS $joe_pay (
 						`id` INT NOT NULL AUTO_INCREMENT,
 						`trade_no` varchar(64) NOT NULL unique,
 						`api_trade_no` varchar(64) DEFAULT NULL,

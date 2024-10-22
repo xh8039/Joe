@@ -256,7 +256,7 @@
         var form = _this.parents('form');
         pay_inputs = form.serializeObject();
         pay_inputs.routeType = 'initiate_pay';
-        pay_inputs.return_url || (pay_inputs.return_url = window.location.href);
+        pay_inputs.return_url = pay_inputs.return_url ? pay_inputs.return_url : window.location.href;
         ajax_send(pay_inputs, _this);
         return false;
     }

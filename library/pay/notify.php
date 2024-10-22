@@ -52,12 +52,12 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 		require_once $public_root . 'smtp.php';
 		if (Helper::options()->JPaymentOrderToAdminEmail == 'on' && !$row['admin_email']) {
 			$type = ['alipay' => '支付宝', 'wxpay' => '微信', 'qqpay' => 'QQ'];
-			$admin_email = joe\send_email('您的网站有新的订单已支付！', '您的网站 [' . Helper::options()->title . '] 有新的订单已支付！', '
+			$admin_email = joe\send_email('有新的订单已支付', '您的网站 [' . Helper::options()->title . '] 有新的订单已支付！', '
 			<p>订单号：' . $_GET['out_trade_no'] . '</p>
 			<p>商品类型：' . explode('-', $row['name'])[0] . '</p>
 			<p>商品：' . $row['content_title'] . '</p>
 			<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
-			<p>付款时间：' . $row['type'] . '</p>
+			<p>付款时间：' . (isset($row['update_time']) ? $row['update_time'] : date('Y-m-d H:i:s')) . '</p>
 			');
 			if ($admin_email == 'success') {
 				// 更新订单状态
@@ -72,7 +72,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 				<p>商品：' . $row['content_title'] . '</p>
 				<p>订单号：' . $_GET['out_trade_no'] . '</p>
 				<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
-				<p>付款时间：' . $row['type'] . '</p>
+				<p>付款时间：' . (isset($row['update_time']) ? $row['update_time'] : date('Y-m-d H:i:s')) . '</p>
 				', $authoInfo['mail']);
 				if ($user_email == 'success') {
 					$db->query($db->update('table.joe_pay')->rows(['user_email' => 1,])->where('trade_no = ?', $_GET['out_trade_no']));

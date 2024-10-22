@@ -1,4 +1,30 @@
 <?php
+
+header('Content-type:text/html; Charset=utf-8');
+
+ob_start();
+require_once dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'config.inc.php';
+ob_end_clean();
+
+/** 初始化组件 */
+\Widget\Init::alloc();
+
+$epay_config = [];
+if (empty(Helper::options()->JYiPayApi)) {
+	exit('未配置易支付接口！');
+}
+$epay_config['apiurl'] = trim(Helper::options()->JYiPayApi);
+
+if (empty(Helper::options()->JYiPayID)) {
+	exit('未配置易支付商户号！');
+}
+$epay_config['partner'] = trim(Helper::options()->JYiPayID);
+
+if (empty(Helper::options()->JYiPayKey)) {
+	exit('未配置易支付商户密钥！');
+}
+$epay_config['key'] = trim(Helper::options()->JYiPayKey);
+
 //计算得出通知验证结果
 require_once __DIR__ . '/EpayCore.php';
 $epay = new Joe\library\pay\EpayCore($epay_config);

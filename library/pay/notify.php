@@ -21,13 +21,24 @@ if (empty($_REQUEST["sign"])) {
 	exit();
 }
 
-$config = zibpay_get_payconfig('epay');
-if (empty(Helper::options()->JYiPayApi) || empty(Helper::options()->JYiPayID) || empty(Helper::options()->JYiPayKey)) {
-	exit('fail');
+$epay_config = [];
+if (empty(Helper::options()->JYiPayApi)) {
+	exit('未配置易支付接口！');
 }
+$epay_config['apiurl'] = trim(Helper::options()->JYiPayApi);
+
+if (empty(Helper::options()->JYiPayID)) {
+	exit('未配置易支付商户号！');
+}
+$epay_config['partner'] = trim(Helper::options()->JYiPayID);
+
+if (empty(Helper::options()->JYiPayKey)) {
+	exit('未配置易支付商户密钥！');
+}
+$epay_config['key'] = trim(Helper::options()->JYiPayKey);
 
 require_once __DIR__ . '/EpayCore.php';
-$EpayCore      = new Joe\library\pay\EpayCore($config);
+$EpayCore      = new Joe\library\pay\EpayCore($epay_config);
 $verify_result = $EpayCore->verifyNotify();  //签名验证
 
 if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {

@@ -2806,7 +2806,7 @@
 	font-family: consolas
 } */
 
-.joe_main .joe_detail .relative {
+.joe_main>.joe_detail>.relative {
 	margin-top: 20px;
 	position: relative;
 	-webkit-backdrop-filter: unset !important;

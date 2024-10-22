@@ -83,10 +83,87 @@ function _parseContent($post, $login)
 	if (strpos($content, '{hide') !== false) {
 		if ($post->fields->hide_type == 'pay') {
 			$db = Typecho_Db::get();
-			$pay = $db->fetchAll($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
-			if ($pay) {
+			$pay = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
+			$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.joe_pay')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
+			// '<a rel="nofollow" target="_blank" href="https://bri6.cn/user/order" class="">' . $pay['trade_no'] . '</a>';
+			if (!empty($pay)) {
 				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+
+				$content = '
+				   <div class="pay-box zib-widget paid-box order-type-1" id="posts-pay">
+							<div class="flex ac jb-green padding-10 em09">
+								<div class="text-center flex-auto">
+									<div class="mb6">
+										<i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
+									</div>
+									<b class="em12">已购买</b>
+								</div>
+								<div class="em09 paid-info flex-auto">
+									<div class="flex jsb">
+										<span>订单号</span>
+										<span>' . $pay['trade_no'] . '</span>
+									</div>
+									<div class="flex jsb">
+										<span>支付时间</span>
+										<span>' . $pay['update_time'] . '</span>
+									</div>
+									<div class="flex jsb">
+										<span>支付金额</span>
+										<span>
+											<span class="pay-mark">￥</span>' . $pay['pay_price'] . '
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="box-body relative">
+								<badge class="img-badge hot jb-blue px12">已售 ' . $count . '</badge>
+								<div style="padding-right: 48px;">
+									<span class="badg c-red hollow badg-sm mr6">
+										<i class="fa fa-book mr3"></i>
+										付费阅读
+									</span>
+									<b>' . $post->title . '</b>
+								</div>
+							</div>
+						</div>
+				' . $content;
+			} else {
+				$content = '
+				  <div class="zib-widget pay-box  order-type-1" id="posts-pay">
+							<div class="flex pay-flexbox">
+								<div class="flex0 relative mr20 hide-sm pay-thumb">
+									<div class="graphic">
+										<img src="' . joe\getLazyload(false) . '" data-src="' . joe\getThumbnails($post)[0] . '" alt="' . $post->title . ' - ' . Helper::options()->title . '" class="lazyload fit-cover" fancybox="false">
+										<div class="abs-center text-center left-bottom"></div>
+									</div>
+								</div>
+								<div class="flex-auto-h flex xx jsb">
+									<dt class="text-ellipsis pay-title" style="padding-right: 48px;">' . $post->title . '</dt>
+									<div class="mt6 em09 muted-2-color">此内容为付费阅读，请付费后查看</div>
+									<div class="price-box">
+										<div class="price-box">
+											<div class="c-red">
+												<b class="em3x">
+													<span class="pay-mark">￥</span>
+													0.01
+												</b>
+											</div>
+										</div>
+									</div>
+									<div class="text-right mt10">
+										<a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . JOE_BASE_API . '?routeType=pay_cashier_modal&cid=' . $post->cid . '" class="cashier-link but jb-red" href="javascript:;" data-toggle="RefreshModal">立即购买</a>
+										<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！建议登陆后购买，可保存购买订单</div>
+									</div>
+								</div>
+							</div>
+							<div class="pay-tag abs-center">
+								<i class="fa fa-book mr3"></i>
+								付费阅读
+							</div>
+							<badge class="img-badge hot jb-blue px12">已售 ' . $count . '</badge>
+						</div>
+				' . $content;
 			}
 		}
 		if ($post->fields->hide_type == 'login') {

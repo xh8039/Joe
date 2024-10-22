@@ -251,13 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.render();
 			}
 			render() {
-				let pay_price = window.Joe.CONTENT.fields.pay_price;
-				if (pay_price && pay_price > 0) {
+				
+				if (window.Joe.CONTENT.fields.hide_type == 'pay') {
+					let pay_price = window.Joe.CONTENT.fields.pay_price;
 					this.innerHTML = `<span class="joe_hide">此处内容作者设置了 <i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${pay_price} 元</i> 可见</span>`;
-					// this.$button = this.querySelector('.joe_hide__button');
-					// this.$button.addEventListener('click', () => {
-					// 	console.log('支付流程');
-					// });
 				} else {
 					this.innerHTML = '<span class="joe_hide">此处内容作者设置了 <i class="joe_hide__button">回复</i> 可见</span>';
 					this.$button = this.querySelector('.joe_hide__button');

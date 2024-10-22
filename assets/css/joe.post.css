@@ -137,3 +137,321 @@
 		box-shadow: 0 0 0 0 var(--theme)
 	}
 }
+
+.pay-box.pay-widget .vip-price {
+	padding-top: 8px;
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+	border-top: 1px solid rgba(255, 255, 255, .1);
+	color: inherit
+}
+
+.vip-price:hover {
+	color: inherit;
+	background: rgba(0, 0, 0, .05)
+}
+
+.vip-price-text {
+	display: inline-block
+}
+
+.pay-widget .vip-price+.vip-price {
+	border-left: 1px solid rgba(255, 255, 255, .1)
+}
+
+.pay-widget .cashier-link,
+.pay-widget .initiate-pay,
+.pay-widget .pay-button .dropup,
+.pay-widget .signin-loader,
+.pay-widget .vip-price,
+.pay-widget .vip-price-buts {
+	width: 100%
+}
+
+.pay-widget .but-group>.but,
+.pay-widget .but-group>.vip-price {
+	width: 50%
+}
+
+.pay-widget .cashier-link,
+.pay-widget .initiate-pay {
+	padding: .5em
+}
+
+.pay-widget .vip-price>.em12 {
+	font-size: 2em;
+	display: block
+}
+
+.pay-widget .price-box>.c-yellow {
+	text-align: center;
+	--this-color: #fff
+}
+
+.pay-gallery {
+	width: 45%;
+	background: var(--main-border-color)
+}
+
+.pay-box .paid-info {
+	border-left: 1px dashed rgba(255, 255, 255, .51);
+	padding-left: 20px
+}
+
+.pay-thumb {
+	width: 40%
+}
+
+.pay-widget .paid-info {
+	border: unset;
+	padding: unset;
+	border-top: 1px dashed rgba(255, 255, 255, .51);
+	padding-top: 10px
+}
+
+.paid-box {
+	border-radius: var(--main-radius)
+}
+
+.paid-box {
+	padding: 0 !important
+}
+
+.paid-info-box.flex {
+	display: flex
+}
+
+.paid-info a {
+	color: inherit
+}
+
+.paid-gallery {
+	background: var(--main-border-color);
+	padding: 60px
+}
+
+.paid-down-group>.btn-block {
+	display: inline-block;
+	width: 50%
+}
+
+.pay-box {
+	font-size: 14px;
+	position: relative;
+	overflow: hidden;
+	line-height: 1.4
+}
+
+.pay-box .pay-tag,
+.vip-product .vip-tag {
+	font-size: 13px;
+	padding: 3px 10px;
+	right: auto;
+	width: auto;
+	top: 10px;
+	background: var(--this-bg);
+	color: var(--this-color);
+	border-radius: var(--main-radius) 0 var(--main-radius) 0;
+	line-height: 1.4;
+	z-index: 1
+}
+
+.pay-box ul.list-inline {
+	margin: 0 !important;
+	padding: 0 !important
+}
+
+.pay-box ul.list-inline li {
+	width: 90px;
+	margin: 0
+}
+
+.pay-box ul.list-inline li+li {
+	width: calc(100% - 95px)
+}
+
+.cashier-link {
+	padding: .5em 3em
+}
+
+.but.initiate-pay {
+	padding: .6em 1em
+}
+
+.paid-info-box,
+.pay-attr,
+.pay-box .pay-details,
+.pay-box .pay-extra-hide {
+	font-size: 13px;
+	background: var(--muted-border-color);
+	display: block;
+	padding: 6px 10px;
+	line-height: 1.4;
+	color: var(--muted-color);
+	border-radius: 4px
+}
+
+.pay-attr {
+	line-height: 1.6
+}
+
+.pay-box .pay-mark {
+	font-size: 12px;
+	margin-right: 3px
+}
+
+.pay-box .pay-cuont {
+	margin-left: 10px;
+	font-size: 12px;
+	padding: 1px 10px;
+	vertical-align: top
+}
+
+.pay-box .pay-details {
+	margin-top: 10px;
+	padding: 10px
+}
+
+.pay-details ul {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important
+}
+
+.pay-box .pay-thumbnail {
+	width: 80px;
+	height: 80px
+}
+
+.pay-box .pay-thumbnail img {
+	height: 100%
+}
+
+.pay-box .pay-box-price {
+	color: #fb403f;
+	margin: 4px 0;
+	font-size: 16px
+}
+
+.pay-box .vip-price {
+	border: none;
+	font-size: 12px;
+	padding: 4px 12px;
+	flex: content
+}
+
+.original-price {
+	opacity: .7;
+	position: relative;
+	padding: 0 3px 0 2px;
+	font-size: 14px;
+	display: inline-block
+}
+
+.original-price::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	background: #ff343b;
+	top: .6em;
+	left: 0;
+	transform: rotate(5deg)
+}
+
+.pay-box .but-download {
+	padding: 10px 10px 5px 10px;
+	min-width: 50%
+}
+
+.pay-box .but-download .but {
+	min-width: 130px
+}
+
+.pay-box .but-download .but+.but {
+	min-width: auto
+}
+
+.pay-box .but-download .but svg.icon,
+.pay-box .but-download .but>.fa {
+	margin-right: 1em
+}
+
+.pay-box .but.baidu {
+	background: #1578f8
+}
+
+.pay-box .but.lanzou {
+	background: #f37526
+}
+
+.pay-box .but.alipan {
+	background: #66f
+}
+
+.pay-box .but.weiyun {
+	background: #33b0fa
+}
+
+.pay-box .but.onedrive {
+	background: #1254c6
+}
+
+.pay-box .but.tianyi {
+	background: #fe9c0a
+}
+
+.pay-box .but.ctfile {
+	background: #08be9f
+}
+
+@media (max-width: 640px) {
+	.pay-box {
+		padding: 10px
+	}
+
+	.pay-title {
+		margin-top: 18px
+	}
+
+	.pay-box .price-box {
+		text-align: center
+	}
+
+	.pay-flexbox {
+		flex-wrap: wrap
+	}
+
+	.pay-box .but-group>.but {
+		width: 50%
+	}
+
+	.pay-box .pay-button .signin-loader,
+	.pay-box .vip-price-buts {
+		width: 100%
+	}
+
+	.pay-gallery {
+		width: 100%;
+		margin: 0
+	}
+
+	.paid-gallery {
+		padding: 30px
+	}
+
+	.cashier-link,
+	.initiate-pay {
+		width: 100%
+	}
+
+	.user-pay .pay-box {
+		padding: 10px 15px
+	}
+}
+
+@media (max-width: 480px) {
+	.pay-box .but-download {
+		width: auto
+	}
+}

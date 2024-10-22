@@ -33,7 +33,7 @@ $form->addInput($JCustomPlayer);
 $JYiPayApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JYiPayApi',
 	NULL,
-	NULL,
+	'http://ypay.bri6.cn/',
 	'易支付API接口网址',
 	'介绍：用于文章付费阅读功能 <br />
 	例如：http://ypay.bri6.cn/'

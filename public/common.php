@@ -271,8 +271,18 @@ function themeFields($layout)
 		'pay_price',
 		NULL,
 		'0.00',
-		'隐藏内容付费金额',
-		'<script>
+		'隐藏内容付费金额'
+	);
+	$pay_price->setAttribute('style', 'display:none');
+	$layout->addItem($pay_price);
+
+	$pay_box_position = new \Typecho\Widget\Helper\Form\Element\Select(
+		'pay_box_position',
+		array('top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'),
+		'top',
+		'付费阅读模块显示位置',
+		'在文章页面中购买模块的显示位置
+		<script>
 			const payPriceInput = document.querySelector(\'input[name="fields[pay_price]"]\').parentElement.parentElement.parentElement;
 			const pay_box_position = document.querySelector(\'select[name="fields[pay_box_position]"]\').parentElement.parentElement.parentElement;
 			if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
@@ -291,17 +301,8 @@ function themeFields($layout)
 					payPriceInput.style.display = "none";
 				}
 			});
-		</script>'
-	);
-	$pay_price->setAttribute('style', 'display:none');
-	$layout->addItem($pay_price);
-
-	$pay_box_position = new \Typecho\Widget\Helper\Form\Element\Select(
-		'pay_box_position',
-		array('top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'),
-		'top',
-		'付费阅读模块显示位置',
-		'在文章页面中购买模块的显示位置'
+		</script>
+		'
 	);
 	$layout->addItem($pay_box_position);
 }

@@ -1089,7 +1089,8 @@
 
 .joe_aside__item.timelife .item .progress {
 	display: flex;
-	align-items: center
+	align-items: center;
+	position: unset;
 }
 
 .joe_aside__item.timelife .item .progress-bar {

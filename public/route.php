@@ -880,8 +880,6 @@ function _initiatePay($self)
 
 	$cid = trim($self->request->cid);
 
-	$self->response->setStatus(200);
-
 	$epay_config = [];
 
 	if (empty(Helper::options()->JYiPayApi)) {
@@ -934,9 +932,11 @@ function _initiatePay($self)
 		'money' => $pay_price,
 		'user_id' => USER_ID
 	]);
+
+	$self->response->setStatus(200);
 	if ($db->query($sql)) {
-		$self->response->throwContent($html_text);
+		$self->response->throwJson(['code' => 200, 'form_html' => $html_text]);
 	} else {
-		$self->response->throwContent('订单创建失败！');
+		$self->response->throwJson(['code' => 500, 'msg' => '订单创建失败！']);
 	}
 }

@@ -767,6 +767,11 @@ function _payCashierModal($self)
 		return;
 	}
 
+	if (Helper::options()->JWeChatPay != 'no' && Helper::options()->JAlipayPay != 'no' && Helper::options()->JQQPay != 'no') {
+		$self->response->throwJson(['code' => 503, 'message' => '暂无可用的支付方式!']);
+		return;
+	}
+
 	$cid = trim($self->request->cid);
 
 	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
@@ -844,14 +849,6 @@ function _payCashierModal($self)
 			<div class="muted-2-color em09 mb6">请选择支付方式</div>
 			<div class="flex mb10">
 				<?php
-				if (Helper::options()->JQQPay == 'no') {
-				?>
-					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer active" data-for="payment_method" data-value="wechat">
-						<img src="<?= theme_url('assets/images/pay/pay-qq-logo.svg', false) ?>" alt="wechat-logo">
-						<div>微信</div>
-					</div>
-				<?php
-				}
 				if (Helper::options()->JWeChatPay == 'no') {
 				?>
 					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer active" data-for="payment_method" data-value="wechat">
@@ -865,6 +862,14 @@ function _payCashierModal($self)
 					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="alipay">
 						<img src="<?= theme_url('assets/images/pay/pay-alipay-logo.svg', false) ?>" alt="alipay-logo">
 						<div>支付宝</div>
+					</div>
+				<?php
+				}
+				if (Helper::options()->JQQPay == 'no') {
+				?>
+					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer active" data-for="payment_method" data-value="wechat">
+						<img src="<?= theme_url('assets/images/pay/pay-qq-logo.svg', false) ?>" alt="wechat-logo">
+						<div>QQ</div>
 					</div>
 				<?php
 				}

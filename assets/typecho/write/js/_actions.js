@@ -509,7 +509,7 @@ export default class JoeAction {
 		cm.focus();
 	}
 	handleHide(cm) {
-		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{hide}\n需要隐藏的内容\n{/hide}\n\n`;
+		const str = `${this._getLineCh(cm) ? '\n' : ''}{hide}\n需要隐藏的内容\n{/hide}`;
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}

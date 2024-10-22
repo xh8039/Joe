@@ -17344,7 +17344,7 @@
 			this._replaceSelection(e, t), e.focus()
 		}
 		handleHide(e) {
-			const t = (this._getLineCh(e) ? "\n\n" : "\n") + "{hide}\n需要隐藏的内容\n{/hide}\n\n";
+			const t = (this._getLineCh(e) ? "\n" : "") + "{hide}\n需要隐藏的内容\n{/hide}\n";
 			this._replaceSelection(e, t), e.focus()
 		}
 		handleAbtn(e) {

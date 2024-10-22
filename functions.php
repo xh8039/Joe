@@ -8,6 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 define('JOE_VERSION', '1.327');
 define('JOE_ROOT', dirname(__FILE__) . '/');
 define('THEME_NAME', basename(__DIR__));
+define('JOE_BASE_API', $this->options->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api');
 
 /* Joe核心文件 */
 require_once(__DIR__ . '/public/common.php');

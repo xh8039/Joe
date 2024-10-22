@@ -810,17 +810,6 @@ a[href] {
 }
 
 .avatar,
-.fit-cover,
-.radius-cover {
-    width: 100%;
-    height: 100%;
-    transition: all .2s;
-    overflow: hidden;
-    -o-object-fit: cover;
-    object-fit: cover;
-}
-
-.avatar,
 .radius-cover {
     border-radius: 100px;
     display: inline-block;

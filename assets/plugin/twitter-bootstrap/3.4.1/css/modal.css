@@ -1,4 +1,14 @@
 /* bootstrap */
+
+.fade {
+	opacity: 0;
+	transition: opacity .15s linear
+}
+
+.fade.in {
+	opacity: 1
+}
+
 .btn-block {
 	display: block;
 	width: 100%
@@ -398,7 +408,7 @@ button.close {
 }
 
 .modal-body .private-window .visible-xs-block {
-    display: none!important
+	display: none !important
 }
 
 @media (min-width: 992px) {

@@ -24,8 +24,8 @@
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
 
 <!-- Sweetalert弹窗CSS -->
-<link rel="stylesheet" href="<?= joe\cdn('limonte-sweetalert2/11.4.4/sweetalert2.min.css') ?>" />
-<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/limonte-sweetalert2/11.4.4/sweetalert2-optimize.css') ?>">
+<!-- <link rel="stylesheet" href="<?= joe\cdn('limonte-sweetalert2/11.4.4/sweetalert2.min.css') ?>" /> -->
+<!-- <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/limonte-sweetalert2/11.4.4/sweetalert2-optimize.css') ?>"> -->
 
 <link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />
@@ -34,6 +34,7 @@
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
 <?php $this->need('module/config.php');?>
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js'); ?>"></script>
 <!-- <script src="<?= joe\theme_url('assets/js/joe.scroll.js'); ?>"></script> -->
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>"></script>
@@ -54,7 +55,7 @@
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 <!-- Sweetalert弹窗 -->
-<script src="<?= Joe\cdn('limonte-sweetalert2/11.4.4/sweetalert2.min.js') ?>"></script>
+<!-- <script src="<?= Joe\cdn('limonte-sweetalert2/11.4.4/sweetalert2.min.js') ?>"></script> -->
 
 <!-- 自定义头部HTML代码 -->
 

@@ -291,60 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 	$(document).on('click', () => $('.joe_detail__operate-share').removeClass('active'));
 		// }
 	}
-
-	/** 激活文章赞赏模块 */
-	{
-		if ($('a.action-rewards').length > 0) {
-			$('a.action-rewards').click(() => {
-				Swal.fire({
-					html: `
-					<div class="rewards-modal-header colorful-bg jb-blue">
-						<div class="colorful-make"></div>
-						<div class="text-center">
-							<div class="em2x">
-								<svg class="svg" aria-hidden="true"><use xlink:href="#icon-money"></use></svg>
-								</div>
-							<div class="mt10 padding-w10">${Joe.REWARD.TITLE ? Joe.REWARD.TITLE : '文章很赞！支持一下吧'}</div>
-						</div>
-					</div>
-					<div class="rewards buttons-container">${Joe.REWARD.WeChat ? '<button class="wechat-button">微信赞赏</button>' : ''}${Joe.REWARD.Alipay ? '<button class="alipay-button">支付宝赞赏</button>' : ''}${Joe.REWARD.QQ ? '<button class="qq-button">QQ赞赏</button></div>' : ''}`,
-					showConfirmButton: false, // 隐藏默认的确认按钮
-					showCancelButton: false, // 隐藏默认的取消按钮
-					showCloseButton: true
-				});
-				setTimeout(() => {
-					const createQrCodeAlert = (imageUrl) => {
-						Swal.fire({
-							title: '请扫码进行赞赏',
-							imageUrl: imageUrl,
-							imageWidth: '300px',
-							width: '300px', // 设置弹出框宽度
-							showConfirmButton: false,
-							showCancelButton: false,
-							showCloseButton: true,
-						});
-					};
-					// 支付宝赞赏按钮点击事件
-					const AlipayButton = document.querySelector('.rewards.buttons-container>.alipay-button');
-					if (AlipayButton) AlipayButton.addEventListener('click', () => {
-						createQrCodeAlert(Joe.REWARD.Alipay); // 打开支付宝赞赏页面
-					});
-
-					// 微信赞赏按钮点击事件
-					const WeChatButton = document.querySelector('.rewards.buttons-container>.wechat-button');
-					if (WeChatButton) WeChatButton.addEventListener('click', () => {
-						createQrCodeAlert(Joe.REWARD.WeChat); // 打开微信赞赏页面
-					});
-
-					// QQ赞赏按钮点击事件
-					const QQBUtton = document.querySelector('.rewards.buttons-container>.qq-button');
-					if (QQBUtton) QQBUtton.addEventListener('click', () => {
-						createQrCodeAlert(Joe.REWARD.QQ); // 打开 QQ 赞赏页面
-					});
-				}, 200);
-			});
-		}
-	}
 });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */

@@ -945,3 +945,70 @@ function _initiatePay($self)
 		$self->response->throwJson(['code' => 500, 'msg' => '订单创建失败！']);
 	}
 }
+
+function _userRewardsModal($self)
+{
+	$self->response->setStatus(200);
+?>
+	<style>
+		.rewards-img {
+			height: 140px;
+			width: 140px;
+			border-radius: var(--main-radius);
+			overflow: hidden;
+			margin: auto;
+		}
+	</style>
+	<div class="modal-colorful-header colorful-bg jb-blue">
+		<button class="close" data-dismiss="modal">
+			<svg class="ic-close svg" aria-hidden="true">
+				<use xlink:href="#icon-close"></use>
+			</svg>
+		</button>
+		<div class="colorful-make"></div>
+		<div class="text-center">
+			<div class="em2x">
+				<svg class="em12 svg" aria-hidden="true">
+					<use xlink:href="#icon-money"></use>
+				</svg>
+			</div>
+			<div class="mt10 em12 padding-w10"><?= Helper::options()->JRewardTitle ?></div>
+		</div>
+	</div>
+	<ul class="flex jse mb10 text-center rewards-box">
+		<?php
+		if (!empty(Helper::options()->JWeChatRewardImg)) {
+		?>
+			<li>
+				<p class="muted-2-color" style="margin-bottom: 10px;">微信扫一扫</p>
+				<div class="rewards-img">
+					<img class="fit-cover" src="<?= Helper::options()->JWeChatRewardImg ?>">
+				</div>
+			</li>
+		<?php
+		}
+		if (!empty(Helper::options()->JAlipayRewardImg)) {
+		?>
+			<li>
+				<p class="muted-2-color" style="margin-bottom: 10px;">支付宝扫一扫</p>
+				<div class="rewards-img">
+					<img class="fit-cover" src="<?= Helper::options()->JAlipayRewardImg ?>">
+				</div>
+			</li>
+		<?php
+		}
+		if (!empty(Helper::options()->JQQRewardImg)) {
+		?>
+			<li>
+				<p class="muted-2-color" style="margin-bottom: 10px;">QQ扫一扫</p>
+				<div class="rewards-img">
+					<img class="fit-cover" src="<?= Helper::options()->JQQRewardImg ?>">
+				</div>
+			</li>
+		<?php
+		}
+		?>
+	</ul>
+<?php
+	$self->response->throwContent('');
+}

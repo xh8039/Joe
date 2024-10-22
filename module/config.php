@@ -9,7 +9,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		TITLE: `<?php $this->options->title() ?>`,
 		THEME_URL: `<?= Joe\theme_url('', false) ?>`,
 		LIVE2D: `<?php \joe\theme_url('assets/plugin/live2d/model/') . $this->options->JLive2d ?>`,
-		BASE_API: `<?= $this->options->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api' ?>`,
+		BASE_API: `<?= JOE_BASE_API ?>`,
 		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
 		BAIDU_PUSH: <?= $this->options->JBaiduToken ? 'true' : 'false' ?>,
@@ -20,12 +20,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		MOTTO: `<?php \joe\getAsideAuthorMotto() ?>`,
 		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`,
 		THEME_MODE: `<?php $this->options->JThemeMode() ?>`,
-		REWARD: {
-			TITLE: `<?php $this->options->JRewardTitle() ?>`,
-			WeChat: `<?php $this->options->JWeChatRewardImg() ?>`,
-			Alipay: `<?php $this->options->JAlipayRewardImg() ?>`,
-			QQ: `<?php $this->options->JQQRewardImg() ?>`
-		},
 		CONTENT: {
 			cid: <?= $this->cid ?>,
 			fields: {

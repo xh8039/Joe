@@ -4140,7 +4140,7 @@
 
 .joe_comment__respond-type .item {
 	background: var(--body-bg-color);
-	padding: 0 15px;
+	padding: 0 10px;
 	height: 32px;
 	color: var(--main);
 	border: none;

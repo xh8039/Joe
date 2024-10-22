@@ -26,6 +26,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			Alipay: `<?php $this->options->JAlipayRewardImg() ?>`,
 			QQ: `<?php $this->options->JQQRewardImg() ?>`
 		},
+		CONTENT: {
+			id: <?= $this->cid ?>,
+			fields: {
+				hide_type: `<?= $this->fields->hide_type ?>`,
+				pay_price: `<?= $this->fields->pay_price ?>`,
+			}
+		},
 		CDN: (path) => {
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		},

@@ -76,8 +76,8 @@ $form->addInput($JPost_Ad);
 
 $JPost_Record_Detection = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPost_Record_Detection',
-	['on' => '开启（默认）', 'off' => '关闭'],
-	'on',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
 	'是否开启文章收录检测'
 );
 $JPost_Record_Detection->setAttribute('class', 'joe_content joe_post');

@@ -226,14 +226,45 @@ function themeFields($layout)
 	);
 	$layout->addItem($video);
 
-	$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(
-		'baidu_push',
-		array(
-			'no' => '未推送',
-			'yes' => '已推送',
-		),
-		'default',
-		'百度收录推送状态',
+	if (Helper::options()->JPost_Record_Detection == 'on') {
+		$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(
+			'baidu_push',
+			array(
+				'no' => '未推送',
+				'yes' => '已推送',
+			),
+			'no',
+			'百度收录推送状态',
+		);
+		$layout->addItem($baidu_push);
+	}
+
+	$hide_type = new \Typecho\Widget\Helper\Form\Element\Select(
+		'hide_type',
+		['comment' => '评论可见', 'pay' => '付费可见'],
+		'comment',
+		'隐藏内容模式',
 	);
-	$layout->addItem($baidu_push);
+	$layout->addItem($hide_type);
+
+	$pay_price = new \Typecho\Widget\Helper\Form\Element\Text(
+		'pay_price',
+		NULL,
+		'0.00',
+		'隐藏内容付费金额
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				document.querySelector(\'select[name="hide_type"]\').addEventListener("change", () => {
+					if (document.querySelector(\'select[name="hide_type"]\').value === "pay") {
+						document.querySelector(\'input[name="pay_price"]\').style.display = "block";
+					} else {
+						document.querySelector(\'input[name="pay_price"]\').style.display = "none";
+					}
+				});
+			});
+		</script>
+		',
+	);
+	$pay_price->setAttribute('style', 'display:none');
+	$layout->addItem($pay_price);
 }

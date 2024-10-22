@@ -251,9 +251,10 @@ function themeFields($layout)
 		'pay_price',
 		NULL,
 		'0.00',
-		'隐藏内容付费金额
-		<script>
-			document.addEventListener("DOMContentLoaded", () => {
+		'隐藏内容付费金额',
+		'<script>
+			document.querySelector(\'input[name="pay_price"]\').style.display = "none";
+			// document.addEventListener("DOMContentLoaded", () => {
 				document.querySelector(\'select[name="hide_type"]\').addEventListener("change", () => {
 					if (document.querySelector(\'select[name="hide_type"]\').value === "pay") {
 						document.querySelector(\'input[name="pay_price"]\').style.display = "block";
@@ -261,9 +262,8 @@ function themeFields($layout)
 						document.querySelector(\'input[name="pay_price"]\').style.display = "none";
 					}
 				});
-			});
-		</script>
-		',
+			// });
+		</script>'
 	);
 	$pay_price->setAttribute('style', 'display:none');
 	$layout->addItem($pay_price);

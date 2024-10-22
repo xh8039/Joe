@@ -851,7 +851,7 @@ function _payCashierModal($self)
 				<?php
 				if (Helper::options()->JWeChatPay == 'no') {
 				?>
-					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer active" data-for="payment_method" data-value="wechat">
+					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="wechat">
 						<img src="<?= theme_url('assets/images/pay/pay-wechat-logo.svg', false) ?>" alt="wechat-logo">
 						<div>微信</div>
 					</div>
@@ -867,7 +867,7 @@ function _payCashierModal($self)
 				}
 				if (Helper::options()->JQQPay == 'no') {
 				?>
-					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer active" data-for="payment_method" data-value="wechat">
+					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="wechat">
 						<img src="<?= theme_url('assets/images/pay/pay-qq-logo.svg', false) ?>" alt="wechat-logo">
 						<div>QQ</div>
 					</div>
@@ -879,7 +879,8 @@ function _payCashierModal($self)
 					<div>余额</div>
 				</div> -->
 			</div>
-			<input type="hidden" name="payment_method" value="wechat">
+			<input type="hidden" name="payment_method" value="">
+			<script>document.querySelector('.payment-method-radio').click()</script>
 			<button class="mt6 but jb-red initiate-pay btn-block radius">
 				立即支付
 				<span class="pay-price-text">

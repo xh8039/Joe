@@ -1079,7 +1079,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						return;
 					}
 				} catch (e) {
-					console.log(data);
+					// console.log(data);
 					_modal
 						.find('.modal-body')
 						.html(data)

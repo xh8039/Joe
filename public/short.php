@@ -145,8 +145,7 @@ function _parseContent($post, $login)
 										<div class="price-box">
 											<div class="c-red">
 												<b class="em3x">
-													<span class="pay-mark">￥</span>
-													0.01
+													<span class="pay-mark">￥</span>' . round($post->fields->pay_price, 2) . '
 												</b>
 											</div>
 										</div>

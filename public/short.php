@@ -129,7 +129,7 @@ function _parseContent($post, $login)
 						</div>
 				' . $content;
 			} else {
-				$content = '
+				$pay_box_position = '
 				  <div class="zib-widget pay-box  order-type-1" id="posts-pay">
 							<div class="flex pay-flexbox">
 								<div class="flex0 relative mr20 hide-sm pay-thumb">
@@ -162,7 +162,13 @@ function _parseContent($post, $login)
 							</div>
 							<badge class="img-badge hot jb-blue px12">已售 ' . $count . '</badge>
 						</div>
-				' . $content;
+				';
+				if ($post->fields->pay_box_position == 'top') {
+					$content = $pay_box_position . $content;
+				}
+				if ($post->fields->pay_box_position == 'bottom') {
+					$content = $content . $pay_box_position;
+				}
 			}
 		}
 		if ($post->fields->hide_type == 'login') {

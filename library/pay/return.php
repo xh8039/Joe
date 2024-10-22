@@ -40,7 +40,7 @@ if ($verify_result) { //验证成功
 	$row = $db->fetchRow($db->select()->from('table.joe_pay')->where('trade_no = ?', $_GET['out_trade_no'])->limit(1));
 	if (sizeof($row) > 0) {
 		if ($row['status'] != 0) {
-			echo "<script>window.location.href = '$verify_result'</script>";
+			echo "<script>window.location.href = '$redirect_url'</script>";
 		} else {
 			// 更新订单状态
 			$sql = $db->update('table.joe_pay')->rows([
@@ -51,7 +51,7 @@ if ($verify_result) { //验证成功
 				'status' => '1',
 			])->where('trade_no = ?', $_GET['out_trade_no']);
 			if ($db->query($sql)) {
-				echo "<script>window.location.href = '$verify_result'</script>";
+				echo "<script>window.location.href = '$redirect_url'</script>";
 			} else {
 				echo '<h3>订单数据更新失败！</h3>';
 			}

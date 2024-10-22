@@ -83,7 +83,7 @@ function _parseContent($post, $login)
 	if (strpos($content, '{hide') !== false) {
 		if ($post->fields->hide_type == 'pay') {
 			$db = Typecho_Db::get();
-			$pay = $db->fetchAll($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->limit(1));
+			$pay = $db->fetchAll($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
 			if ($pay) {
 				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));

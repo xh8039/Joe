@@ -25,6 +25,9 @@ if (empty(Helper::options()->JYiPayKey)) {
 }
 $epay_config['key'] = trim(Helper::options()->JYiPayKey);
 
+$redirect_url = $_GET['redirect_url'];
+unset($_GET['redirect_url']);
+
 //计算得出通知验证结果
 require_once __DIR__ . '/EpayCore.php';
 $epay = new Joe\library\pay\EpayCore($epay_config);
@@ -34,22 +37,22 @@ if ($verify_result) { //验证成功
 	// 验证成功
 	// 本地订单处理
 	$db = Typecho_Db::get();
-	$row = $db->fetchRow($db->select('trade_no')->from('table.joe_pay')->where('trade_no = ?', $_GET['out_trade_no']));
+	$row = $db->fetchRow($db->select()->from('table.joe_pay')->where('trade_no = ?', $_GET['out_trade_no'])->limit(1));
 	if (sizeof($row) > 0) {
-		// 更新订单状态
-		$sql = $db->update('table.contents')->rows([
-			'pay_type' => $_GET['type'],
-			'pay_price' =>  $_GET['money'],
-			'api_trade_no' =>  $_GET['trade_no'],
-		])->where('cid = ?', $cid);
-		if ($db->query($sql)) {
-			?>
-			<script>
-				window.location.href = '<?= $_GET['redirect_url'] ?>'
-			</script>
-			<?php
+		if ($row['status'] != 0) {
+			echo "<script>window.location.href = '$verify_result'</script>";
 		} else {
-			echo '<h3>订单数据更新失败！</h3>';
+			// 更新订单状态
+			$sql = $db->update('table.contents')->rows([
+				'pay_type' => $_GET['type'],
+				'pay_price' =>  $_GET['money'],
+				'api_trade_no' =>  $_GET['trade_no'],
+			])->where('cid = ?', $cid);
+			if ($db->query($sql)) {
+				echo "<script>window.location.href = '$verify_result'</script>";
+			} else {
+				echo '<h3>订单数据更新失败！</h3>';
+			}
 		}
 	} else {
 		echo '<h3>订单不存在！</h3>';

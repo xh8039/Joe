@@ -45,19 +45,23 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 	// 验证成功
 	// 本地订单处理
 	$db = Typecho_Db::get();
-	$row = $db->fetchRow($db->select('trade_no')->from('table.joe_pay')->where('trade_no = ?', $_GET['out_trade_no']));
+	$row = $db->fetchRow($db->select()->from('table.joe_pay')->where('trade_no = ?', $_GET['out_trade_no'])->limit(1));
 	if (sizeof($row) > 0) {
-		// 更新订单状态
-		$sql = $db->update('table.contents')->rows([
-			'pay_type' => $_GET['type'],
-			'pay_price' =>  $_GET['money'],
-			'api_trade_no' =>  $_GET['trade_no'],
-		])->where('cid = ?', $cid);
-		if ($db->query($sql)) {
-			/**返回不在发送异步通知 */
+		if ($row['status'] != 0) {
 			echo 'success';
 		} else {
-			echo '订单数据更新失败！';
+			// 更新订单状态
+			$sql = $db->update('table.contents')->rows([
+				'pay_type' => $_GET['type'],
+				'pay_price' =>  $_GET['money'],
+				'api_trade_no' =>  $_GET['trade_no'],
+			])->where('cid = ?', $cid);
+			if ($db->query($sql)) {
+				/**返回不在发送异步通知 */
+				echo 'success';
+			} else {
+				echo '订单数据更新失败！';
+			}
 		}
 	} else {
 		echo '订单不存在！';

@@ -63,12 +63,42 @@ $JYiPayKey = new \Typecho\Widget\Helper\Form\Element\Text(
 $JYiPayKey->setAttribute('class', 'joe_content joe_other');
 $form->addInput($JYiPayKey);
 
-$JYiPayMapi = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JYiPayMapi',
-	['off' => '关闭', 'no' => '开启'],
+// $JYiPayMapi = new \Typecho\Widget\Helper\Form\Element\Select(
+// 	'JYiPayMapi',
+// 	['off' => '关闭', 'no' => '开启'],
+// 	'off',
+// 	'易支付MAPI模式',
+// 	'介绍：免跳转直接扫码支付（需要接口以及接入方式支持，开启后如果出现请求失败，请关闭）'
+// );
+// $JYiPayMapi->setAttribute('class', 'joe_content joe_other');
+// $form->addInput($JYiPayMapi);
+
+$JQQPay = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JQQPay',
+	['off' => '关闭（默认）', 'no' => '开启'],
 	'off',
-	'易支付MAPI模式',
-	'介绍：免跳转直接扫码支付（需要接口以及接入方式支持，开启后如果出现请求失败，请关闭）'
+	'QQ支付功能',
+	'介绍：用于文章付费阅读功能'
 );
-$JYiPayMapi->setAttribute('class', 'joe_content joe_other');
-$form->addInput($JYiPayMapi);
+$JQQPay->setAttribute('class', 'joe_content joe_other');
+$form->addInput($JQQPay);
+
+$JWeChatPay = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JWeChatPay',
+	['off' => '关闭（默认）', 'no' => '开启'],
+	'off',
+	'微信支付功能',
+	'介绍：用于文章付费阅读功能'
+);
+$JWeChatPay->setAttribute('class', 'joe_content joe_other');
+$form->addInput($JWeChatPay);
+
+$JAlipayPay = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JAlipayPay',
+	['off' => '关闭（默认）', 'no' => '开启'],
+	'off',
+	'支付宝支付功能',
+	'介绍：用于文章付费阅读功能'
+);
+$JAlipayPay->setAttribute('class', 'joe_content joe_other');
+$form->addInput($JAlipayPay);

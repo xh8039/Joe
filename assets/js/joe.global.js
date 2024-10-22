@@ -1070,6 +1070,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			_modal.modal('show');
 
 			$.get(remote, null, function (data) {
+				_modal.trigger('loaded.bs.modal').find('.loading-mask').fadeOut(200);
 				try {
 					jsonData = JSON.parse(data);
 					if (jsonData) {
@@ -1081,7 +1082,6 @@ document.addEventListener("DOMContentLoaded", () => {
 						.find('.modal-body')
 						.html(data)
 						.slideDown(200, function () {
-							_modal.trigger('loaded.bs.modal').find('.loading-mask').fadeOut(200);
 							var b_height = $(this).outerHeight();
 							_modal.find('.modal-content').animate(
 								{

@@ -796,7 +796,7 @@ function _payCashierModal($self)
 				<i class="fa fa-cart-plus"></i>
 			</div>
 			<div class="mt10 em12 padding-w10">确认购买</div>
-			<?php if (!is_numeric(USER_ID)) echo '<div class="mt3">您当前未登录！建议登陆后付费，可永久保存订单</div>' ?>
+			<?php if (!is_numeric(USER_ID)) echo '<div class="mt3">您当前未登录！建议登陆后购买，可永久保存订单</div>' ?>
 		</div>
 	</div>
 	<div class="mb10 order-type-1">

@@ -392,3 +392,51 @@ button.close {
 	font-size: 18px;
 	z-index: 9
 }
+
+.modal-open .drop-fixed-sm.open .dropdown-menu {
+	opacity: 0
+}
+
+.modal-body .private-window .visible-xs-block {
+    display: none!important
+}
+
+@media (min-width: 992px) {
+
+	.modal-open .float-btn,
+	.modal-open .header {
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important
+	}
+}
+
+@media (max-width: 767px) {
+	.modal .modal-dialog {
+		width: 600px;
+		margin-left: auto;
+		margin-right: auto
+	}
+}
+
+@media (max-width: 640px) {
+	.modal .modal-dialog {
+		width: 100%;
+		max-width: calc(100% - 20px)
+	}
+
+	.modal .modal-dialog.full-sm {
+		max-width: 100%;
+		width: 100%;
+		margin: 0
+	}
+
+	.modal.bottom .modal-dialog.full-sm {
+		margin-bottom: -1px
+	}
+
+	.modal.bottom .modal-dialog.full-sm .modal-content {
+		border-radius: var(--main-radius) var(--main-radius) 0 0;
+		padding-bottom: constant(safe-area-inset-bottom);
+		padding-bottom: env(safe-area-inset-bottom)
+	}
+}

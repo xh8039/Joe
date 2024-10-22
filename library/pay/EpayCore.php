@@ -35,7 +35,7 @@ class EpayCore
 	{
 		$param = $this->buildRequestParam($param_tmp);
 
-		$html = '<form id="dopay" action="' . $this->submit_url . '" method="post">';
+		$html = '<form id="dopay" action="' . $this->submit_url . '" method="post" style="display:none">';
 		foreach ($param as $k => $v) {
 			$html .= '<input type="hidden" name="' . $k . '" value="' . $v . '"/>';
 		}

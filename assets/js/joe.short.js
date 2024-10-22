@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.render();
 			}
 			render() {
-				let pay_price = window.Joe.fields.pay_price;
+				let pay_price = window.Joe.CONTENT.fields.pay_price;
 				if (pay_price && pay_price > 0) {
 					this.innerHTML = `<span class="joe_hide">此处内容作者设置了 <i class="joe_hide__button">付费 ${pay_price} 元</i> 可见</span>`;
 					this.$button = this.querySelector('.joe_hide__button');

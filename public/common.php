@@ -241,7 +241,7 @@ function themeFields($layout)
 
 	$hide_type = new \Typecho\Widget\Helper\Form\Element\Select(
 		'hide_type',
-		['comment' => '评论可见', 'pay' => '付费可见'],
+		['comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
 		'comment',
 		'隐藏内容模式',
 	);

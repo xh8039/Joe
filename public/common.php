@@ -273,7 +273,11 @@ function themeFields($layout)
 		'<script>
 			const payPriceInput = document.querySelector(\'input[name="fields[pay_price]"]\');
 			const grandParent = payPriceInput.parentElement.parentElement.parentElement;
-			grandParent.style.display = "none";
+			if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
+				grandParent.style.display = "table-row";
+			} else {
+				grandParent.style.display = "none";
+			}
 			document.querySelector(\'select[name="fields[hide_type]"]\').addEventListener("change", () => {
 				if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
 					grandParent.style.display = "table-row";

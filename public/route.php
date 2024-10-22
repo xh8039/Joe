@@ -932,6 +932,7 @@ function _initiatePay()
 		'content_cid' => $cid,
 		'type' => $self->request->payment_method,
 		'money' => $pay_price,
+		'user_id' => USER_ID
 	]);
 	if ($db->query($sql)) {
 		$self->response->throwContent($html_text);

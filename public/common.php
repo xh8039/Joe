@@ -21,10 +21,9 @@ if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 
 
 session_start();
 
-
 Typecho_Widget::widget('Widget_User')->to($user);
 if ($user->hasLogin()) {
-	define('USER_ID', $this->user->uid);
+	define('USER_ID', $user->uid);
 } else {
 	$cookiesid = $_COOKIE['userid'];
 	if ((!$cookiesid) || (!preg_match('/^[0-9a-z]{32}$/i', $cookiesid))) {

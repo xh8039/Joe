@@ -837,7 +837,7 @@ function _payCashierModal($self)
 		</div>
 	</div>
 	<form>
-		<input type="hidden" name="post_id" value="<?= $item->cid ?>">
+		<input type="hidden" name="cid" value="<?= $item->cid ?>">
 		<input type="hidden" name="order_type" value="1">
 		<input type="hidden" name="order_name" value="<?= Helper::options()->title ?> - 付费阅读">
 		<div class="dependency-box">

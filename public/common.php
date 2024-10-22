@@ -253,13 +253,13 @@ function themeFields($layout)
 		'0.00',
 		'隐藏内容付费金额',
 		'<script>
-			document.querySelector(\'input[name="pay_price"]\').style.display = "none";
+			document.querySelector(\'input[name="fields[pay_price]"]\').style.display = "none";
 			// document.addEventListener("DOMContentLoaded", () => {
-				document.querySelector(\'select[name="hide_type"]\').addEventListener("change", () => {
-					if (document.querySelector(\'select[name="hide_type"]\').value === "pay") {
-						document.querySelector(\'input[name="pay_price"]\').style.display = "block";
+				document.querySelector(\'select[name="fields[hide_type]"]\').addEventListener("change", () => {
+					if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
+						document.querySelector(\'input[name="fields[pay_price]"]\').style.display = "block";
 					} else {
-						document.querySelector(\'input[name="pay_price"]\').style.display = "none";
+						document.querySelector(\'input[name="fields[pay_price]"]\').style.display = "none";
 					}
 				});
 			// });

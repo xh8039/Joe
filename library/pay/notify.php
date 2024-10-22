@@ -67,7 +67,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 		if (Helper::options()->JPaymentOrderEmail == 'on' && is_numeric($row['user_id']) && !$row['user_email']) {
 			$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', $row['user_id']));
 			if (sizeof($authoInfo) > 0) {
-				$user_email = joe\send_email('订单支付成功！', '您好！' . $authoInfo['screenName'] . '您在 [' . Helper::options()->title . '] 购买的商品已支付成功', '
+				$user_email = joe\send_email('订单支付成功！', '您好！' . $authoInfo['screenName'] . '，您在 [' . Helper::options()->title . '] 购买的商品已支付成功', '
 				<p>类型：' . explode('-', $row['name'])[0] . '</p>
 				<p>商品：' . $row['content_title'] . '</p>
 				<p>订单号：' . $_GET['out_trade_no'] . '</p>

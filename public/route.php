@@ -910,12 +910,14 @@ function _initiatePay($self)
 	$out_trade_no = date("YmdHis") . mt_rand(100, 999);
 	//构造要请求的参数数组，无需改动
 	$parameter = array(
+		'pid' => $epay_config['partner'],
 		"type" => $self->request->payment_method,
 		"notify_url" => Helper::options()->themeUrl . '/library/pay/notify.php',
 		"return_url" => Helper::options()->themeUrl . '/library/pay/return.php?redirect_url=' . urlencode(trim($self->request->return_url ?? '')),
 		"out_trade_no" => $out_trade_no,
 		"name" =>  Helper::options()->title . ' - 付费阅读',
 		"money"	=> $pay_price,
+		'sitename' => Helper::options()->title,
 	);
 	//建立请求
 	require_once JOE_ROOT . 'library/pay/EpayCore.php';

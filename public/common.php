@@ -192,6 +192,53 @@ function themeFields($layout)
 	);
 	$layout->addItem($mode);
 
+	$hide_type = new \Typecho\Widget\Helper\Form\Element\Select(
+		'hide_type',
+		['comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
+		'comment',
+		'隐藏内容模式',
+	);
+	$layout->addItem($hide_type);
+
+	$pay_price = new \Typecho\Widget\Helper\Form\Element\Text(
+		'pay_price',
+		NULL,
+		'0.00',
+		'隐藏内容付费金额'
+	);
+	$pay_price->setAttribute('style', 'display:none');
+	$layout->addItem($pay_price);
+
+	$pay_box_position = new \Typecho\Widget\Helper\Form\Element\Select(
+		'pay_box_position',
+		array('top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'),
+		'top',
+		'付费阅读模块显示位置',
+		'在文章页面中购买模块的显示位置
+		<script>
+			const payPriceInput = document.querySelector(\'input[name="fields[pay_price]"]\').parentElement.parentElement.parentElement;
+			const pay_box_position = document.querySelector(\'select[name="fields[pay_box_position]"]\').parentElement.parentElement.parentElement;
+			if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
+				pay_box_position.style.display = "table-row";
+				payPriceInput.style.display = "table-row";
+			} else {
+			 	pay_box_position.style.display = "none";
+				payPriceInput.style.display = "none";
+			}
+			document.querySelector(\'select[name="fields[hide_type]"]\').addEventListener("change", () => {
+				if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
+					pay_box_position.style.display = "table-row";
+					payPriceInput.style.display = "table-row";
+				} else {
+				 	pay_box_position.style.display = "none";
+					payPriceInput.style.display = "none";
+				}
+			});
+		</script>
+		'
+	);
+	$layout->addItem($pay_box_position);
+
 	$keywords = new \Typecho\Widget\Helper\Form\Element\Text(
 		'keywords',
 		NULL,
@@ -264,51 +311,4 @@ function themeFields($layout)
 		);
 		$layout->addItem($baidu_push);
 	}
-
-	$hide_type = new \Typecho\Widget\Helper\Form\Element\Select(
-		'hide_type',
-		['comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
-		'comment',
-		'隐藏内容模式',
-	);
-	$layout->addItem($hide_type);
-
-	$pay_price = new \Typecho\Widget\Helper\Form\Element\Text(
-		'pay_price',
-		NULL,
-		'0.00',
-		'隐藏内容付费金额'
-	);
-	$pay_price->setAttribute('style', 'display:none');
-	$layout->addItem($pay_price);
-
-	$pay_box_position = new \Typecho\Widget\Helper\Form\Element\Select(
-		'pay_box_position',
-		array('top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'),
-		'top',
-		'付费阅读模块显示位置',
-		'在文章页面中购买模块的显示位置
-		<script>
-			const payPriceInput = document.querySelector(\'input[name="fields[pay_price]"]\').parentElement.parentElement.parentElement;
-			const pay_box_position = document.querySelector(\'select[name="fields[pay_box_position]"]\').parentElement.parentElement.parentElement;
-			if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
-				pay_box_position.style.display = "table-row";
-				payPriceInput.style.display = "table-row";
-			} else {
-			 	pay_box_position.style.display = "none";
-				payPriceInput.style.display = "none";
-			}
-			document.querySelector(\'select[name="fields[hide_type]"]\').addEventListener("change", () => {
-				if (document.querySelector(\'select[name="fields[hide_type]"]\').value === "pay") {
-					pay_box_position.style.display = "table-row";
-					payPriceInput.style.display = "table-row";
-				} else {
-				 	pay_box_position.style.display = "none";
-					payPriceInput.style.display = "none";
-				}
-			});
-		</script>
-		'
-	);
-	$layout->addItem($pay_box_position);
 }

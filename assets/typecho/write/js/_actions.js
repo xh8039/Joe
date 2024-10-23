@@ -841,6 +841,7 @@ export default class JoeAction {
 						<option value="ty">天翼网盘</option>
 						<option value="ct">城通网盘</option>
 						<option value="wy">微云网盘</option>
+						<option value="quark">夸克网盘</option>
 						<option value="github">Github仓库</option>
 						<option value="lz">蓝奏云网盘</option>
 					</select>

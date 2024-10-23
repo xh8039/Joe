@@ -223,9 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
 					ty: '天翼网盘',
 					ct: '城通网盘',
 					wy: '微云网盘',
+					quark: '夸克网盘',
 					github: 'Github仓库',
 					gitee: 'Gitee仓库',
-					lz: '蓝奏云网盘'
+					lz: '蓝奏云网盘',
 				};
 				this.innerHTML = `
 					<span class="joe_cloud">

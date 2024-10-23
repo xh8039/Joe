@@ -912,7 +912,7 @@ function _initiatePay($self)
 		$self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
 		return;
 	}
-	$pay_price = round($pay_price);
+	$pay_price = round($pay_price, 2);
 	$out_trade_no = date("YmdHis") . mt_rand(100, 999);
 	//构造要请求的参数数组，无需改动
 	$parameter = array(

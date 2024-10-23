@@ -177,10 +177,6 @@ botton {
 	background: var(--main-bg-color)
 }
 
-.text-center {
-	text-align: center;
-}
-
 .svg:not(:root) {
 	overflow: hidden;
 }

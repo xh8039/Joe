@@ -60,7 +60,7 @@ $options = Typecho_Widget::widget('Widget_Options');
 										class="i-caret-down"></i></button>
 								<ul class="dropdown-menu">
 									<li><a lang="<?php _e('你确认要删除这些订单吗?'); ?>"
-											href="<?php $security->index('/action/joe-pay-edit?do=delete'); ?>"><?php _e('删除'); ?></a>
+											href="<?php $security->index('/joe/api?routeType=pay_delete'); ?>"><?php _e('删除'); ?></a>
 									</li>
 								</ul>
 							</div>

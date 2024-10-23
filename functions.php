@@ -29,11 +29,11 @@ function themeConfig($form)
 	}
 
 	// 注册订单删除接口
-	$actionTable = unserialize(Helper::options()->actionTable);
-	$actionTable = empty($actionTable) ? [] : $actionTable;
-	if (!isset($actionTable['joe-pay-edit']) || $actionTable['joe-pay-edit'] != 'JoeOrders_Widget') {
-		Helper::addAction('joe-pay-edit', 'JoeOrders_Widget');
-	}
+	// $actionTable = unserialize(Helper::options()->actionTable);
+	// $actionTable = empty($actionTable) ? [] : $actionTable;
+	// if (!isset($actionTable['joe-pay-edit']) || $actionTable['joe-pay-edit'] != 'JoeOrders_Widget') {
+	// 	Helper::addAction('joe-pay-edit', 'JoeOrders_Widget');
+	// }
 
 	$_db = Typecho_Db::get();
 	$_prefix = $_db->getPrefix();

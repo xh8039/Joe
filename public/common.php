@@ -22,6 +22,7 @@ if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 
 session_start();
 
 Typecho_Widget::widget('Widget_User')->to($user);
+$GLOBALS['JOE_USER'] = $user;
 if ($user->hasLogin()) {
 	define('USER_ID', $user->uid);
 } else {
@@ -124,6 +125,9 @@ function themeInit($self)
 				_userRewardsModal($self);
 			case 'check_pay':
 				_checkPay($self);
+				break;
+			case 'pay_delete':
+				_payDelete($self);
 				break;
 		};
 	}

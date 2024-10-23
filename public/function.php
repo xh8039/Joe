@@ -449,7 +449,7 @@ function user_url($action, $from = true)
 		$relate_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $php_self . (isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : $path_info);
 		$url = '?from=' . urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
 	} else if (is_string($from)) {
-		$url = '?from=' . $from;
+		$url = '?from=' . urlencode($from);
 	} else {
 		$url = '';
 	}

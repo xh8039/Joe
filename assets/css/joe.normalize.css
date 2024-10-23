@@ -1508,9 +1508,9 @@ badge.p2-10 {
 }
 
 @media (min-width: 768px) {
-	.joe_container {
+	/* .joe_container {
 		max-width: 720px
-	}
+	} */
 }
 
 @media (min-width: 992px) {

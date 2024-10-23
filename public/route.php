@@ -935,68 +935,118 @@ function _initiatePay($self)
 
 	$self->response->setStatus(200);
 
-	if (Helper::options()->JYiPayMapi == 'on') {
-		$parameter['clientip'] = $clientip;
-		$data = $epay->apiPay($parameter);
-		if ($data['code'] == 1) {
-			if ($self->request->payment_method == 'wxpay') {
-				$payment_method = 'wechat';
+	$db = Typecho_Db::get();
+	$sql = $db->insert('table.joe_pay')->rows([
+		'trade_no' => $out_trade_no,
+		"name" =>  Helper::options()->title . ' - 付费阅读',
+		'content_title' => $item->title,
+		'content_cid' => $cid,
+		'type' => $self->request->payment_method,
+		'money' => $pay_price,
+		'ip' => $clientip,
+		'user_id' => USER_ID
+	]);
+
+	if ($db->query($sql)) {
+		if (Helper::options()->JYiPayMapi == 'on') {
+			$parameter['clientip'] = $clientip;
+			$data = $epay->apiPay($parameter);
+			if ($data['code'] == 1) {
+				if (empty($data['trade_no'])) {
+					$self->response->throwJson(['code' => 500, 'msg' => '获取支付接口订单号失败！']);
+				} else {
+					// 更新订单状态
+					$order_update_sql = $db->update('table.joe_pay')->rows([
+						'api_trade_no' =>  $data['trade_no'],
+					])->where('trade_no = ?', $out_trade_no);
+					if ($db->query($order_update_sql)) {
+						$result = [
+							'check_sdk' => 'epay',
+							'code' => 1,
+							'ip_address' => $clientip,
+							'msg' => '创建订单成功',
+							'order_name' => Helper::options()->title . ' - 付费阅读',
+							'trade_no' => $out_trade_no,
+							'order_price' => $data['price'],
+							'payment_method' => $self->request->payment_method,
+							'price' => $pay_price,
+							'return_url' => Helper::options()->themeUrl . '/library/pay/callback.php',
+							'api_trade_no' => $data['trade_no'],
+							'user_id' => USER_ID,
+						];
+						if (!empty($data['qrcode'])) {
+							$result['qrcode'] = $data['qrcode'];
+							$result['url_qrcode'] = Helper::options()->themeUrl . '/library/qrcode.php?text=' . urlencode($data['qrcode']);
+						}
+						if (!empty($data['payurl'])) {
+							$result['open_url'] = true;
+							$result['url'] = $data['payurl'];
+						}
+						$self->response->throwJson($result);
+					} else {
+						$self->response->throwJson(['code' => 500, 'msg' => '更新支付接口订单号失败！']);
+					}
+				}
 			} else {
-				$payment_method = $self->request->payment_method;
+				$self->response->throwJson(['code' => 500, 'msg' => $data['msg']]);
 			}
-			$result = [
-				'check_sdk' => 'epay',
-				'code' => 1,
-				'ip_address' => $clientip,
-				'msg' => '创建订单成功',
-				'order_name' => Helper::options()->title . ' - 付费阅读',
-				'order_num' => $out_trade_no,
-				'order_price' => $data['price'],
-				'payment_method' => $payment_method,
-				'price' => $pay_price,
-				'return_url' => Helper::options()->themeUrl . '/library/pay/callback.php',
-				'trade_no' => $data['trade_no'],
-				'user_id' => USER_ID,
-			];
-			if (!empty($data['qrcode'])) {
-				$result['qrcode'] = $data['qrcode'];
-				$result['url_qrcode'] = Helper::options()->themeUrl . '/library/qrcode.php';
-			}
-			if (!empty($data['payurl'])) {
-				$result['open_url'] = true;
-				$result['url'] = $data['payurl'];
-			}
-			$self->response->throwJson($result);
 		} else {
-			$self->response->throwJson(['code' => 500, 'msg' => $data['msg']]);
+			$html_text = $epay->pagePay($parameter);
+			$self->response->throwJson(['code' => 200, 'form_html' => $html_text]);
 		}
 	} else {
-		$html_text = $epay->pagePay($parameter);
-
-		$db = Typecho_Db::get();
-		$sql = $db->insert('table.joe_pay')->rows([
-			'trade_no' => $out_trade_no,
-			"name" =>  Helper::options()->title . ' - 付费阅读',
-			'content_title' => $item->title,
-			'content_cid' => $cid,
-			'type' => $self->request->payment_method,
-			'money' => $pay_price,
-			'ip' => $clientip,
-			'user_id' => USER_ID
-		]);
-
-
-		if ($db->query($sql)) {
-			$self->response->throwJson(['code' => 200, 'form_html' => $html_text]);
-		} else {
-			$self->response->throwJson(['code' => 500, 'msg' => '订单创建失败！']);
-		}
+		$self->response->throwJson(['code' => 500, 'msg' => '订单创建失败！']);
 	}
 }
 
 function _checkPay($self)
 {
-	//
+	if (!is_numeric($self->request->trade_no)) {
+		$self->response->setStatus(404);
+		return;
+	}
+
+	$self->response->setStatus(200);
+
+	$trade_no = trim($self->request->trade_no);
+
+	$epay_config = [];
+
+	if (empty(Helper::options()->JYiPayApi)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
+		return;
+	}
+	$epay_config['apiurl'] = trim(Helper::options()->JYiPayApi);
+
+	if (empty(Helper::options()->JYiPayID)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
+		return;
+	}
+	$epay_config['partner'] = trim(Helper::options()->JYiPayID);
+
+	if (empty(Helper::options()->JYiPayKey)) {
+		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
+		return;
+	}
+	$epay_config['key'] = trim(Helper::options()->JYiPayKey);
+
+	if (!empty(Helper::options()->JYiPayMapiUrl)) {
+		$epay_config['mapi_url'] = trim(Helper::options()->JYiPayMapiUrl);
+	}
+
+	$db = Typecho_Db::get();
+	$row = $db->fetchRow($db->select()->from('table.joe_pay')->where('trade_no = ?', $trade_no)->limit(1));
+	if (sizeof($row) > 0) {
+		//建立请求
+		require_once JOE_ROOT . 'library/pay/EpayCore.php';
+		$epay = new \Joe\library\pay\EpayCore($epay_config);
+		$data = $epay->queryOrder($trade_no, $row['api_trade_no']);
+		$status = isset($data['status']) ? $data['status'] : 0;
+		$msg = empty($data['msg']) ? '支付失败，订单失效！' : $data['msg'];
+		$self->response->throwJson(['status' => $status, 'msg' => $msg]);
+	} else {
+		$self->response->throwJson(['code' => 500, 'msg' => '订单不存在！']);
+	}
 }
 
 function _userRewardsModal($self)

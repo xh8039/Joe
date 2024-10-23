@@ -1,11 +1,15 @@
 /*----支付弹窗------*/
 
-.pay-payment.wechat .pay-logo {
+.pay-payment.wxpay .pay-logo {
 	background-image: url(../images/pay/pay-wechat-logo.svg);
 }
 
 .pay-payment.alipay .pay-logo {
 	background-image: url(../images/pay/pay-alipay-logo.svg);
+}
+
+.pay-payment.qqpay .pay-logo {
+	background-image: url(../images/pay/pay-qq-logo.svg);
 }
 
 .modal-pay-body .row-5 {
@@ -42,9 +46,32 @@
 	margin: 5px 0;
 }
 
-.pay-payment.alipay .t-alipay,
-.pay-payment.wechat .t-wechat {
+.pay-qrcon .pay-logo-name {
+	vertical-align: middle;
+	margin-left: 10px;
+	display: inline-block;
+}
+
+.pay-payment .t-alipay,
+.pay-payment .t-wxpay,
+.pay-payment .t-qqpay {
 	display: none;
+}
+
+.pay-payment.alipay .t-alipay,
+.pay-payment.wxpay .t-wxpay,
+.pay-payment.qqpay .t-qqpay {
+	display: inline-block;
+}
+
+.pay-payment.qqpay>.modal-body>.hide-sm {
+	display: none;
+}
+
+.pay-payment.qqpay>.modal-pay-body>.row-5+.row-5 {
+	margin: auto;
+	width: 240px;
+	display: block;
 }
 
 .pay-qrcon .pay-logo {
@@ -57,13 +84,6 @@
 	background-size: contain;
 	background-position: center;
 }
-
-.pay-qrcon .pay-logo-name {
-	vertical-align: middle;
-	margin-left: 10px;
-	display: inline-block;
-}
-
 
 .pay-qrcon .pay-qrcode {
 	width: 140px;

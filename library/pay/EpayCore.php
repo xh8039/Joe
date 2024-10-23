@@ -98,9 +98,9 @@ class EpayCore
 	}
 
 	// 查询订单支付状态
-	public function orderStatus($trade_no)
+	public function orderStatus($trade_no, $api_trade_no)
 	{
-		$result = $this->queryOrder($trade_no);
+		$result = $this->queryOrder($trade_no, $api_trade_no);
 		if (isset($result['status']) && $result['status'] == 1) {
 			return true;
 		} else {
@@ -109,9 +109,9 @@ class EpayCore
 	}
 
 	// 查询订单
-	public function queryOrder($out_trade_no)
+	public function queryOrder($out_trade_no, $api_trade_no)
 	{
-		$url      = $this->api_url . '?act=order&pid=' . $this->pid . '&key=' . $this->key . '&out_trade_no=' . $out_trade_no;
+		$url      = $this->api_url . '?act=order&pid=' . $this->pid . '&key=' . $this->key . '&out_trade_no=' . $out_trade_no . '&trade_no=' . $api_trade_no;
 		$response = $this->getHttpResponse($url);
 		$arr      = json_decode($response, true);
 		return $arr;

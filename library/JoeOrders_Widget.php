@@ -187,9 +187,9 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		$value['typeName'] = array_key_exists($value['type'], $this->bots) ? $this->bots[$value['type']] : $value['type'];
 		$value['user_id'] = is_numeric($value['user_id']) ? $value['user_id'] : '游客';
 		$value['pay_price'] = isset($value['pay_price']) ? '<font color="green">' . $value['pay_price'] . '</font>' : '未支付';
-		$value['admin_email'] = $value['admin_email'] ? '已通知' : '未通知';
-		$value['user_email'] = $value['user_email'] ? '已通知' : '未通知';
-		$value['status'] = $value['status'] ? '已支付' : '未支付';
+		$value['admin_email'] = $value['admin_email'] ? '<font color="green">已通知</font>' : '未通知';
+		$value['user_email'] = $value['user_email'] ? '<font color="green">已通知</font>' : '未通知';
+		$value['status'] = $value['status'] ? '<font color="green">已支付</font>' : '未支付';
 		// $value['theId'] = 'robots-log-' . $value['lid'];
 		return $value;
 	}

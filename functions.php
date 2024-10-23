@@ -15,8 +15,25 @@ require_once(__DIR__ . '/public/common.php');
 
 function themeConfig($form)
 {
-	// 注册后台页面
-	// Typecho_Plugin::factory('admin/friend.php')->register('FriendLinks', 'mytheme_page', 'My Custom Page');
+	// 注册后台订单页面
+	$addPanel = true;
+	$panelTable = unserialize(Helper::options()->panelTable);
+	$panelTable['file'] = empty($panelTable['file']) ? [] : $panelTable['file'];
+	foreach ($panelTable['file'] as $value) {
+		if ($value == urlencode('../themes/' . THEME_NAME . '/admin/orders.php')) {
+			$addPanel = false;
+		}
+	}
+	if ($addPanel) {
+		Helper::addPanel(3, '../themes/' . THEME_NAME . '/admin/orders.php', '订单', '订单管理', 'administrator');
+	}
+
+	// 注册订单删除接口
+	$actionTable = unserialize(Helper::options()->actionTable);
+	$actionTable = empty($actionTable) ? [] : $actionTable;
+	if (!isset($actionTable['joe-pay-edit']) || $actionTable['joe-pay-edit'] != 'JoeOrders_Widget') {
+		Helper::addAction('joe-pay-edit', 'JoeOrders_Widget');
+	}
 
 	$_db = Typecho_Db::get();
 	$_prefix = $_db->getPrefix();

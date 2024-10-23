@@ -23,8 +23,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
 			fields: {
-				hide_type: `<?= $this->fields->hide_type ?>`,
-				pay_price: `<?= round($this->fields->pay_price, 2) ?>`,
+				hide_type: `<?= isset($this->cid) ? $this->fields->hide_type : null ?>`,
+				pay_price: `<?= isset($this->cid) ?round($this->fields->pay_price, 2) : null ?>`,
 			}
 		},
 		VERSION: `<?= JOE_VERSION ?>`,

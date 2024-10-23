@@ -24,7 +24,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
 			fields: {
 				hide_type: `<?= $this->fields->hide_type ?>`,
-				pay_price: `<?= round($this->fields->pay_price, 2) ?>`,
+				pay_price: `<?= round($this->fields->pay_price ?? 0, 2) ?>`,
 			}
 		},
 		VERSION: `<?= JOE_VERSION ?>`,

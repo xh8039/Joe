@@ -1029,7 +1029,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	line-height: 30px
+	height: 30px;
 }
 
 .joe_aside__item.author .list .item .link {

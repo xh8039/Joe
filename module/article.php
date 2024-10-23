@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 文章模块
  */
@@ -29,7 +30,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<script>
 			window.onload = () => {
 				let iframe = document.querySelector('.joe_detail__article>.joe_detail__article-video>.play>.box>iframe').contentWindow
-				iframe.videoPlayer.video.onended = () => {
+				const next = () => {
 					let item = $('.joe_detail__article .episodes .box .item');
 					if (item) {
 						for (var i in item) {
@@ -48,6 +49,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							}
 						}
 					}
+				}
+				iframe.videoPlayer.video.onended = next
+				iframe.videoPlayer.video.onerror = () => {
+					setTimeout(() => {
+						next();
+					}, 2000)
 				}
 			}
 		</script>

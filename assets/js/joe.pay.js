@@ -245,7 +245,7 @@
 								location.href = delQueStr('openid', delQueStr('zippay'));
 								location.reload;
 							}
-						}, 300);
+						}, 2000);
 					} else if (n.status == 2) {
 						qrcode_notice(n.msg, 'warning');
 						setTimeout(() => {

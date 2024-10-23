@@ -28,7 +28,7 @@ if ($user->hasLogin()) {
 	$cookiesid = isset($_COOKIE['userid']) ? $_COOKIE['userid'] : null;
 	if ((!$cookiesid) || (!preg_match('/^[0-9a-z]{32}$/i', $cookiesid))) {
 		$cookiesid = md5(uniqid(mt_rand(), 1) . time());
-		setcookie('userid', $cookiesid, time() + 94672800); // 游客用户ID存储三年
+		setcookie('userid', $cookiesid, time() + 94672800, '/'); // 游客用户ID存储三年
 	}
 	define('USER_ID', $cookiesid);
 }

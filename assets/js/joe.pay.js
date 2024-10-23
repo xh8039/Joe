@@ -224,7 +224,7 @@
                 type: 'POST',
                 url: pay_ajax_url,
                 data: {
-                    action: 'check_pay',
+                    routeType: 'check_pay',
                     order_num: order_result.order_num,
                     check_sdk: order_result.check_sdk,
                 },

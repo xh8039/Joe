@@ -63,19 +63,30 @@ $JYiPayKey = new \Typecho\Widget\Helper\Form\Element\Text(
 $JYiPayKey->setAttribute('class', 'joe_content joe_other');
 $form->addInput($JYiPayKey);
 
-// $JYiPayMapi = new \Typecho\Widget\Helper\Form\Element\Select(
-// 	'JYiPayMapi',
-// 	['off' => '关闭', 'no' => '开启'],
-// 	'off',
-// 	'易支付MAPI模式',
-// 	'介绍：免跳转直接扫码支付（需要接口以及接入方式支持，开启后如果出现请求失败，请关闭）'
-// );
-// $JYiPayMapi->setAttribute('class', 'joe_content joe_other');
-// $form->addInput($JYiPayMapi);
+$JYiPayMapi = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JYiPayMapi',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
+	'易支付MAPI模式',
+	'介绍：免跳转直接扫码支付（需要接口以及接入方式支持，开启后如果出现请求失败，请关闭）'
+);
+$JYiPayMapi->setAttribute('class', 'joe_content joe_other');
+$form->addInput($JYiPayMapi);
+
+$JYiPayMapiUrl = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JYiPayMapiUrl',
+	NULL,
+	NULL,
+	'自定义MAPI接口支付URL（非必填）',
+	'介绍：如果您的易支付接口的API接口地址不是/mapi.php结尾，则请在此处填写完整的API接口支付地址<br />
+	例如：https://pay.xxxxxxx.cn/qrcode.php、https://pay.xxxxxxx.cn/pay/apisubmit'
+);
+$JYiPayMapiUrl->setAttribute('class', 'joe_content joe_other');
+$form->addInput($JYiPayMapiUrl);
 
 $JWeChatPay = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JWeChatPay',
-	['off' => '关闭（默认）', 'no' => '开启'],
+	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
 	'微信支付功能',
 	'介绍：用于文章付费阅读功能'
@@ -85,7 +96,7 @@ $form->addInput($JWeChatPay);
 
 $JAlipayPay = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAlipayPay',
-	['off' => '关闭（默认）', 'no' => '开启'],
+	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
 	'支付宝支付功能',
 	'介绍：用于文章付费阅读功能'
@@ -95,7 +106,7 @@ $form->addInput($JAlipayPay);
 
 $JQQPay = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JQQPay',
-	['off' => '关闭（默认）', 'no' => '开启'],
+	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
 	'QQ支付功能',
 	'介绍：用于文章付费阅读功能'

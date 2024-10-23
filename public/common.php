@@ -122,6 +122,8 @@ function themeInit($self)
 				_initiatePay($self);
 			case 'user_rewards_modal':
 				_userRewardsModal($self);
+			case 'check_pay':
+				_checkPay($self);
 				break;
 		};
 	}

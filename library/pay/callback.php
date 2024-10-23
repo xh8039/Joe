@@ -1,9 +1,9 @@
 <?php
 /*
- * @Author: Qinver
- * @Url: zibll.com
- * @Date: 2021-04-12 00:20:44
- * @LastEditTime: 2024-04-22 18:10:21
+ * @Author: 易航
+ * @Url: blog.bri6.cn
+ * @Date: 2024-10-22 00:00:00
+ * @LastEditTime: 2024-10-23 00:00:00
  */
 
 header('Content-type:text/html; Charset=utf-8');
@@ -38,6 +38,14 @@ if (empty(Helper::options()->JYiPayKey)) {
 }
 $epay_config['key'] = trim(Helper::options()->JYiPayKey);
 
+$redirect_url = null;
+if (isset($_GET['redirect_url'])) {
+	$redirect_url = empty($_GET['redirect_url']) ? null : $_GET['redirect_url'];
+	// 移出多余参数，避免验证失败
+	unset($_GET['redirect_url']);
+}
+
+// 计算得出通知验证结果
 require_once __DIR__ . '/EpayCore.php';
 $EpayCore      = new Joe\library\pay\EpayCore($epay_config);
 $verify_result = $EpayCore->verifyNotify();  //签名验证
@@ -80,7 +88,11 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 			}
 		}
 		if ($row['status']) {
-			echo 'success';
+			if ($redirect_url) {
+				echo "<script>window.location.href='$redirect_url'</script>";
+			} else {
+				echo 'success';
+			}
 		} else {
 			// 更新订单状态
 			$sql = $db->update('table.joe_pay')->rows([
@@ -91,8 +103,12 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 				'status' => '1',
 			])->where('trade_no = ?', $_GET['out_trade_no']);
 			if ($db->query($sql)) {
-				/**返回不在发送异步通知 */
-				echo 'success';
+				if ($redirect_url) {
+					echo "<script>window.location.href='$redirect_url'</script>";
+				} else {
+					// 返回不在发送异步通知
+					echo 'success';
+				}
 			} else {
 				echo '订单数据更新失败！';
 			}
@@ -100,6 +116,8 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 	} else {
 		echo '订单不存在！';
 	}
+} else {
+	echo '验证失败！';
 }
 
-exit();
+exit;

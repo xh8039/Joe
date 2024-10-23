@@ -7,8 +7,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 use Metowolf\Meting;
 
-use function joe\theme_url;
-
 /* 获取文章列表 已测试 √  */
 
 function _getPost($self)
@@ -767,7 +765,7 @@ function _payCashierModal($self)
 		return;
 	}
 
-	if (Helper::options()->JWeChatPay != 'no' && Helper::options()->JAlipayPay != 'no' && Helper::options()->JQQPay != 'no') {
+	if (Helper::options()->JWeChatPay != 'on' && Helper::options()->JAlipayPay != 'on' && Helper::options()->JQQPay != 'on') {
 		$self->response->throwJson(['code' => 503, 'message' => '暂无可用的支付方式!']);
 		return;
 	}
@@ -828,33 +826,33 @@ function _payCashierModal($self)
 			<div class="muted-2-color em09 mb6">请选择支付方式</div>
 			<div class="flex mb10">
 				<?php
-				if (Helper::options()->JWeChatPay == 'no') {
+				if (Helper::options()->JWeChatPay == 'on') {
 				?>
 					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="wxpay">
-						<img src="<?= theme_url('assets/images/pay/pay-wechat-logo.svg', false) ?>" alt="wechat-logo">
+						<img src="<?= joe\theme_url('assets/images/pay/pay-wechat-logo.svg', false) ?>" alt="wechat-logo">
 						<div>微信</div>
 					</div>
 				<?php
 				}
-				if (Helper::options()->JAlipayPay == 'no') {
+				if (Helper::options()->JAlipayPay == 'on') {
 				?>
 					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="alipay">
-						<img src="<?= theme_url('assets/images/pay/pay-alipay-logo.svg', false) ?>" alt="alipay-logo">
+						<img src="<?= joe\theme_url('assets/images/pay/pay-alipay-logo.svg', false) ?>" alt="alipay-logo">
 						<div>支付宝</div>
 					</div>
 				<?php
 				}
-				if (Helper::options()->JQQPay == 'no') {
+				if (Helper::options()->JQQPay == 'on') {
 				?>
 					<div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="qqpay">
-						<img src="<?= theme_url('assets/images/pay/pay-qq-logo.svg', false) ?>" alt="wechat-logo">
+						<img src="<?= joe\theme_url('assets/images/pay/pay-qq-logo.svg', false) ?>" alt="wechat-logo">
 						<div>QQ</div>
 					</div>
 				<?php
 				}
 				?>
 				<!-- <div class="flex jc hh payment-method-radio hollow-radio flex-auto pointer" data-for="payment_method" data-value="balance">
-					<img src="<?= theme_url('assets/images/pay/pay-balance-logo.svg', false) ?>" alt="balance-logo">
+					<img src="<?= joe\theme_url('assets/images/pay/pay-balance-logo.svg', false) ?>" alt="balance-logo">
 					<div>余额</div>
 				</div> -->
 			</div>
@@ -905,6 +903,10 @@ function _initiatePay($self)
 	}
 	$epay_config['key'] = trim(Helper::options()->JYiPayKey);
 
+	if (!empty(Helper::options()->JYiPayMapiUrl)) {
+		$epay_config['mapi_url'] = trim(Helper::options()->JYiPayMapiUrl);
+	}
+
 	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 	$item->next();
 	$pay_price = $item->fields->pay_price;
@@ -918,35 +920,84 @@ function _initiatePay($self)
 	$parameter = array(
 		'pid' => $epay_config['partner'],
 		"type" => $self->request->payment_method,
-		"notify_url" => Helper::options()->themeUrl . '/library/pay/notify.php',
-		"return_url" => Helper::options()->themeUrl . '/library/pay/return.php?redirect_url=' . urlencode($self->request->return_url),
+		"notify_url" => Helper::options()->themeUrl . '/library/pay/callback.php',
+		"return_url" => Helper::options()->themeUrl . '/library/pay/callback.php?redirect_url=' . urlencode($self->request->return_url),
 		"out_trade_no" => $out_trade_no,
 		"name" =>  Helper::options()->title . ' - 付费阅读',
 		"money"	=> $pay_price,
 		'sitename' => Helper::options()->title,
 	);
+
 	//建立请求
 	require_once JOE_ROOT . 'library/pay/EpayCore.php';
 	$epay = new \Joe\library\pay\EpayCore($epay_config);
-	$html_text = $epay->pagePay($parameter);
-
-	$db = Typecho_Db::get();
-	$sql = $db->insert('table.joe_pay')->rows([
-		'trade_no' => $out_trade_no,
-		"name" =>  Helper::options()->title . ' - 付费阅读',
-		'content_title' => $item->title,
-		'content_cid' => $cid,
-		'type' => $self->request->payment_method,
-		'money' => $pay_price,
-		'user_id' => USER_ID
-	]);
+	$clientip = $self->request->getIp();
 
 	$self->response->setStatus(200);
-	if ($db->query($sql)) {
-		$self->response->throwJson(['code' => 200, 'form_html' => $html_text]);
+
+	if (Helper::options()->JYiPayMapi == 'on') {
+		$parameter['clientip'] = $clientip;
+		$data = $epay->apiPay($parameter);
+		if ($data['code'] == 1) {
+			if ($self->request->payment_method == 'wxpay') {
+				$payment_method = 'wechat';
+			} else {
+				$payment_method = $self->request->payment_method;
+			}
+			$result = [
+				'check_sdk' => 'epay',
+				'code' => 1,
+				'ip_address' => $clientip,
+				'msg' => '创建订单成功',
+				'order_name' => Helper::options()->title . ' - 付费阅读',
+				'order_num' => $out_trade_no,
+				'order_price' => $data['price'],
+				'payment_method' => $payment_method,
+				'price' => $pay_price,
+				'return_url' => Helper::options()->themeUrl . '/library/pay/callback.php',
+				'trade_no' => $data['trade_no'],
+				'user_id' => USER_ID,
+			];
+			if (!empty($data['qrcode'])) {
+				$result['qrcode'] = $data['qrcode'];
+				require_once JOE_ROOT . 'library/qrcode.php';
+				$result['url_qrcode'] = 'data:image/png;base64,' . Joe\library\QRcode::text($data['qrcode']);
+			}
+			if (!empty($data['payurl'])) {
+				$result['open_url'] = true;
+				$result['url'] = $data['payurl'];
+			}
+			$self->response->throwJson($result);
+		} else {
+			$self->response->throwJson(['code' => 500, 'msg' => $data['msg']]);
+		}
 	} else {
-		$self->response->throwJson(['code' => 500, 'msg' => '订单创建失败！']);
+		$html_text = $epay->pagePay($parameter);
+
+		$db = Typecho_Db::get();
+		$sql = $db->insert('table.joe_pay')->rows([
+			'trade_no' => $out_trade_no,
+			"name" =>  Helper::options()->title . ' - 付费阅读',
+			'content_title' => $item->title,
+			'content_cid' => $cid,
+			'type' => $self->request->payment_method,
+			'money' => $pay_price,
+			'ip' => $clientip,
+			'user_id' => USER_ID
+		]);
+
+
+		if ($db->query($sql)) {
+			$self->response->throwJson(['code' => 200, 'form_html' => $html_text]);
+		} else {
+			$self->response->throwJson(['code' => 500, 'msg' => '订单创建失败！']);
+		}
 	}
+}
+
+function _checkPay($self)
+{
+	//
 }
 
 function _userRewardsModal($self)

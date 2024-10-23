@@ -127,6 +127,9 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		if (!empty($this->request->type)) {
 			$select->where('table.joe_pay.type = ?', $this->request->type);
 		}
+		if (isset($this->request->status) && is_numeric($this->request->status)) {
+			$select->where('table.joe_pay.status = ?', $this->request->status);
+		}
 		// if (!empty($this->parameter->api_trade_no)) {
 		// 	$select->where('table.joe_pay.api_trade_no = ?', $this->parameter->api_trade_no);
 		// }
@@ -183,7 +186,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	{
 		$value['typeName'] = array_key_exists($value['type'], $this->bots) ? $this->bots[$value['type']] : $value['type'];
 		$value['user_id'] = is_numeric($value['user_id']) ? $value['user_id'] : '游客';
-		$value['pay_price'] = isset($value['pay_price']) ? $value['pay_price'] : '未支付';
+		$value['pay_price'] = isset($value['pay_price']) ? '<font color="green">' . $value['pay_price'] . '</font>' : '未支付';
 		$value['admin_email'] = $value['admin_email'] ? '已通知' : '未通知';
 		$value['user_email'] = $value['user_email'] ? '已通知' : '未通知';
 		$value['status'] = $value['status'] ? '已支付' : '未支付';
@@ -239,7 +242,6 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	{
 		$logs = $this->request->filter('int')->getArray('id');
 		$deleteCount = 0;
-		var_dump($logs);exit;
 		foreach ($logs as $log) {
 			// 删除插件接口
 			$this->pluginHandle()->deleteLogs($log, $this);
@@ -257,7 +259,6 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 
 	public function action()
 	{
-		var_dump(1111);
 		$this->security->protect();
 		$this->on($this->request->is('do=delete'))->deleteLogs();
 		$this->response->goBack();

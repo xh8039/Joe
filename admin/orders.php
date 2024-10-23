@@ -72,9 +72,15 @@ $options = Typecho_Widget::widget('Widget_Options');
 							<input type="text" class="text-s" placeholder="<?php _e('请输入关键字'); ?>"
 								value="<?php echo $request->filter('html')->keywords; ?>" name="keywords" />
 							<select class="search-type" name="type">
-								<option value=""><?php _e('所有'); ?></option>
+								<option value=""><?php _e('支付方式'); ?></option>
 								<?php foreach (['wxpay' => '微信', 'alipay' => '支付宝', 'qqpay' => 'QQ'] as $id => $name) : ?>
 									<option value="<?php echo $id; ?>" <?php if ($request->get('type') == $id) : ?> selected="true" <?php endif; ?>><?php echo $name; ?></option>
+								<?php endforeach; ?>
+							</select>
+							<select class="search-status" name="status">
+								<option value=""><?php _e('支付状态'); ?></option>
+								<?php foreach (['1' => '已支付', '0' => '未支付'] as $id => $name) : ?>
+									<option value="<?php echo $id; ?>" <?php if ($request->get('status') == $id) : ?> selected="true" <?php endif; ?>><?php echo $name; ?></option>
 								<?php endforeach; ?>
 							</select>
 							<button type="submit" class="search-btn btn btn-s"><?php _e('筛选'); ?></button>

@@ -17,7 +17,7 @@ $this->need('user/header.php');
 		<div>
 			<div class="card-body">
 				<div class="title">
-					<h4>密码登录</h4>
+					<h4>用户登录</h4>
 					<p>请输入帐号密码进行登录</p>
 				</div>
 				<div class="form-group">

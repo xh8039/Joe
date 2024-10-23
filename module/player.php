@@ -1,8 +1,8 @@
 <?php
-if (empty($_GET['cid'])) exit('未指定文章！');
-$cid = $_GET['cid'];
+// if (empty($_GET['cid'])) exit('未指定文章！');
+// $cid = $_GET['cid'];
 /* sql注入校验 */
-if (!preg_match('/^\d+$/',  $cid)) exit('非法请求！已屏蔽！');
+// if (!preg_match('/^\d+$/',  $cid)) exit('非法请求！已屏蔽！');
 require_once dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'config.inc.php';
 /** 初始化组件 */
 \Widget\Init::alloc();

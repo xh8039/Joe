@@ -17344,7 +17344,7 @@
 			this._replaceSelection(e, t), e.focus()
 		}
 		handleHide(e) {
-			const t = (this._getLineCh(e) ? "\n" : "") + "{hide}\n需要隐藏的内容\n{/hide}\n";
+			const t = (this._getLineCh(e) ? "\n" : "") + "{hide}\n需要隐藏的内容\n{/hide}";
 			this._replaceSelection(e, t), e.focus()
 		}
 		handleAbtn(e) {
@@ -17648,7 +17648,7 @@
 				confirm: () => {
 					const t = $(".cm-modal select[name='type']").val(),
 						n =
-							`\n{cloud title="${$(".cm-modal input[name='title']").val()}" type="${t}" url="${$(".cm-modal input[name='url']").val()}" password="${$(".cm-modal input[name='password']").val()}"/}\n\n`;
+							`{cloud title="${$(".cm-modal input[name='title']").val()}" type="${t}" url="${$(".cm-modal input[name='url']").val()}" password="${$(".cm-modal input[name='password']").val()}"/}`;
 					this._getLineCh(e) ? this._replaceSelection(e, "\n" + n) : this._replaceSelection(e,
 						n), e.focus()
 				}

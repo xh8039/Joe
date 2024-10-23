@@ -509,7 +509,7 @@ export default class JoeAction {
 		cm.focus();
 	}
 	handleHide(cm) {
-		const str = `${this._getLineCh(cm) ? '\n' : ''}{hide}\n需要隐藏的内容\n{/hide}`;
+		const str = `${this._getLineCh(cm) ? '' : ''}{hide}\n需要隐藏的内容\n{/hide}`;
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
@@ -863,7 +863,7 @@ export default class JoeAction {
 				const title = $(".cm-modal input[name='title']").val();
 				const url = $(".cm-modal input[name='url']").val();
 				const password = $(".cm-modal input[name='password']").val();
-				const str = `\n{cloud title="${title}" type="${type}" url="${url}" password="${password}"/}\n\n`;
+				const str = `{cloud title="${title}" type="${type}" url="${url}" password="${password}"/}`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();

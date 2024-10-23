@@ -97,12 +97,16 @@
 	font-size: 13px;
 }
 
-.pay-payment.wechat .pay-notice .notice {
+.pay-payment.wxpay .pay-notice .notice {
 	background: #0fb90d;
 }
 
 .pay-payment.alipay .pay-notice .notice {
-	background: #15acff;
+	background: #1678ff;
+}
+
+.pay-payment.qqpay .pay-notice .notice {
+	background: #12b7f5;
 }
 
 .pay-qrcon .pay-notice .notice {

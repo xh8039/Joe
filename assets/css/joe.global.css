@@ -2602,6 +2602,10 @@
 	background-image: url("../images/cloud/thin-cloud.png")
 }
 
+.joe_cloud__logo._quark {
+    background-image: url("../images/cloud/quark.png")
+}
+
 .joe_cloud__logo._github {
 	background-image: url("../images/cloud/github.svg")
 }

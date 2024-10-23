@@ -21,7 +21,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`,
 		THEME_MODE: `<?php $this->options->JThemeMode() ?>`,
 		CONTENT: {
-			cid: <?= isset($this->cid) ? $this->cid : null ?>,
+			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
 			fields: {
 				hide_type: `<?= isset($this->fields->hide_type) ? $this->fields->hide_type : null ?>`,
 				pay_price: `<?= isset($this->fields->pay_price) ? round($this->fields->pay_price, 2) : null ?>`,

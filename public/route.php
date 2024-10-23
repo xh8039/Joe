@@ -960,8 +960,7 @@ function _initiatePay($self)
 			];
 			if (!empty($data['qrcode'])) {
 				$result['qrcode'] = $data['qrcode'];
-				require_once JOE_ROOT . 'library/qrcode.php';
-				$result['url_qrcode'] = 'data:image/png;base64,' . Joe\library\QRcode::text($data['qrcode']);
+				$result['url_qrcode'] = Helper::options()->themeUrl . '/library/qrcode.php';
 			}
 			if (!empty($data['payurl'])) {
 				$result['open_url'] = true;

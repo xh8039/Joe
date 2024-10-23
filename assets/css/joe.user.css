@@ -27,43 +27,43 @@ textarea {
 	margin-bottom: 1rem;
 }
 
-.title {
+.container .card-body>.title {
 	text-align: center;
 	margin-bottom: 2.25rem;
 }
 
-.title>h4 {
+.container .title>h4 {
 	font-weight: 700;
 	margin-bottom: 10px;
 	font-size: 1.125rem;
 	color: var(--routine);
 }
 
-.title>p {
+.container .title>p {
 	color: var(--seat);
 }
 
-.form-group {
+.container .form-group {
 	margin-bottom: 1.5rem;
 }
 
-.input-group {
+.container .input-group {
 	display: flex;
 }
 
-.form-group>label {
+.container .form-group>label {
 	color: var(--routine);
 	font-weight: 600;
 	display: inline-block;
 	margin-bottom: .5rem;
 }
 
-.form-group>a {
+.container .form-group>a {
 	float: right;
 	color: var(--minor);
 }
 
-.form-control {
+.container .form-control {
 	display: block;
 	width: 100%;
 	padding: .45rem .9rem;
@@ -76,11 +76,11 @@ textarea {
 	transition: 0.3s;
 }
 
-.form-control:focus {
+.container .form-control:focus {
 	border-color: var(--theme);
 }
 
-.btn {
+.container .btn {
 	text-align: center;
 	font-weight: 400;
 	white-space: nowrap;
@@ -89,7 +89,7 @@ textarea {
 	transition: 0.3s;
 }
 
-.btn-light {
+.container .btn-light {
 	display: block;
 	padding: .45rem 1.2rem;
 	line-height: 1.5;
@@ -102,19 +102,19 @@ textarea {
 	border: none;
 }
 
-.btn-light:hover {
+.container .btn-light:hover {
 	transform: scale(0.9);
 }
 
-.btn-light:active {
+.container .btn-light:active {
 	transform: scale(0.75);
 }
 
-.input-group>.form-control {
+.container .input-group>.form-control {
 	border-right: none;
 }
 
-.input-group>.btn {
+.container .input-group>.btn {
 	border: 2px solid var(--classA);
 	border-left: none;
 	padding: .45rem .9rem;
@@ -122,27 +122,27 @@ textarea {
 	color: var(--main);
 }
 
-.input-group>.btn:hover {
+.container .input-group>.btn:hover {
 	border-color: var(--seat);
 	background: var(--classA);
 }
 
-.input-group>.btn:focus {
+.container .input-group>.btn:focus {
 	background: var(--seat);
 }
 
-.text-muted {
+.container .text-muted {
 	color: var(--minor);
 	text-align: center
 }
 
-.text-muted>a {
+.container .text-muted>a {
 	margin-left: .375rem;
 	color: var(--main);
 }
 
 @media (max-width: 768px) {
-	.container {
+	html .container {
 		margin-top: 3vh;
 	}
 }

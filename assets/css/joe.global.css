@@ -556,12 +556,12 @@
 
 .joe_header__searchout {
 	position: absolute;
-	top: 52px;
+	top: 51px;
 	left: 0;
 	right: 0;
 	z-index: 890;
 	background: var(--background);
-	border-top: 1px solid var(--classC);
+	border-top: 2px solid var(--classC);
 	-webkit-transform: translate3d(0, -100%, 0);
 	transform: translate3d(0, -100%, 0);
 	transition: visibility 0.35s, -webkit-transform 0.35s;

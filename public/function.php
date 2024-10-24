@@ -673,12 +673,12 @@ function optionMulti($string, string $line = "\r\n", $separator = '||'): array
 
 function panel_exists($path): bool
 {
-	$addPanel = true;
+	$addPanel = false;
 	$panelTable = is_array(\Helper::options()->panelTable) ? \Helper::options()->panelTable : unserialize(\Helper::options()->panelTable);
 	$panelTable['file'] = empty($panelTable['file']) ? [] : $panelTable['file'];
 	foreach ($panelTable['file'] as $value) {
 		if ($value == urlencode($path)) {
-			$addPanel = false;
+			$addPanel = true;
 		}
 	}
 	return $addPanel;

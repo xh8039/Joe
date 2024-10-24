@@ -9,7 +9,7 @@ $JFriends = new \Typecho\Widget\Helper\Form\Element\Hidden(
 	'JFriends',
 	NULL,
 	NULL,
-	'友情链接（非必填）',
+	'友情链接',
 	'<b>主题设置处友情链接已停止使用，请转到 控制台->管理->友链 处管理您的友情链接<br />
 	注意：您需要先增加友链链接页面（新增独立页面-右侧模板选择友链），该项才会生效<b>'
 );

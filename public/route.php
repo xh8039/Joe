@@ -651,14 +651,16 @@ function _friendSubmit($self)
 		)
 	);
 	if ($db->query($sql)) {
-		$EmailTitle = '友链申请';
-		$subtitle = $title . '向您提交了友链申请：';
-		$content = "<p>友链标题：$title</p>
-		<p>站点链接：$link</p>
-		<p>站点LOGO：$logo</p>
-		<p>站点描述：$description</p>
-		<p>对方QQ号：$qq</p>";
-		$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
+		if (Helper::options()->JFriendEmail == 'on') {
+			$EmailTitle = '友链申请';
+			$subtitle = $title . '向您提交了友链申请：';
+			$content = "<p>友链标题：$title</p>
+			<p>站点链接：$link</p>
+			<p>站点LOGO：$logo</p>
+			<p>站点描述：$description</p>
+			<p>对方QQ号：$qq</p>";
+			$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
+		}
 		$self->response->throwJson([
 			'code' => 200,
 			'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待'

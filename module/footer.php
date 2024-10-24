@@ -134,11 +134,11 @@ if ($this->options->JFooter_Fish == 'on') {
 	</div>
 	<?php if ($this->user->uid == $this->authorId) : ?>
 		<?php if ($this->is('post')) : ?>
-			<div class="joe_action_item" title="编辑文章">
+			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" data-original-title="编辑文章">
 				<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
 			</div>
 		<?php elseif ($this->is('page')) : ?>
-			<div class="joe_action_item" title="编辑页面">
+			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" data-original-title="编辑页面">
 				<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
 			</div>
 		<?php endif; ?>

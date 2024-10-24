@@ -758,15 +758,20 @@
 		width: 180px;
 	}
 
-	.hidden-xs {
+	html .footer {
+		padding: 10px 0;
+		padding-bottom: 25px;
+	}
+
+	html .hidden-xs {
 		display: none !important;
 	}
 
-	.footer .list-inline>li+li+li {
+	html .footer .list-inline>li+li+li {
 		float: unset;
 	}
 
-	.footer .container-footer {
+	html .footer .container-footer {
 		text-align: center;
 	}
 }

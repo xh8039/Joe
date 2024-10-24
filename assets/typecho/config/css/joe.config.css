@@ -60,6 +60,7 @@
 	-ms-user-select: none;
 	user-select: none;
 	text-decoration: none;
+	font-weight: bold;
 }
 
 .joe_config__aside .tabs .item:hover {
@@ -87,7 +88,8 @@
 	border-radius: 20px;
 	transition: opacity 0.35s;
 	border: none;
-	cursor: pointer
+	cursor: pointer;
+	font-weight: bold;
 }
 
 .joe_config__aside .backup input:hover {
@@ -106,9 +108,7 @@
 	background: #d9534f
 }
 
-.joe_config__aside .backup input:last-child {
-	
-}
+.joe_config__aside .backup input:last-child {}
 
 .joe_config>form {
 	position: relative;
@@ -139,7 +139,8 @@
 	width: 170px;
 	height: 40px;
 	background-color: #409eff;
-	border-radius: 20px
+	border-radius: 20px;
+	font-weight: bold;
 }
 
 .joe_config>form .typecho-option button:hover {
@@ -170,7 +171,8 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	border-radius: 0 4px 4px 0
+	border-radius: 0 4px 4px 0;
+	font-weight: bold;
 }
 
 .joe_config>form .joe_content li select {
@@ -213,7 +215,8 @@
 	margin-top: 15px;
 	line-height: 26px;
 	border-radius: 4px;
-	word-break: break-all
+	word-break: break-all;
+	font-weight: bold;
 }
 
 .joe_config__notice {

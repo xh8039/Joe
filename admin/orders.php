@@ -164,9 +164,9 @@ $options = Typecho_Widget::widget('Widget_Options');
 					</div><!-- end .typecho-table-wrap -->
 				</form><!-- end .operate-form -->
 
-				<!-- <div class="typecho-list-operate clearfix">
+				<div class="typecho-list-operate clearfix">
 					<form method="get">
-						<div class="operate">
+						<!-- <div class="operate">
 							<label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox"
 									class="typecho-table-select-all" /></label>
 							<div class="btn-group btn-drop">
@@ -179,14 +179,14 @@ $options = Typecho_Widget::widget('Widget_Options');
 									</li>
 								</ul>
 							</div>
-						</div>
+						</div> -->
 						<?php if ($orders->have()): ?>
 							<ul class="typecho-pager">
 								<?php $orders->pageNav(); ?>
 							</ul>
 						<?php endif; ?>
 					</form>
-				</div> -->
+				</div>
 				<!-- end .typecho-list-operate -->
 			</div><!-- end .typecho-list -->
 		</div><!-- end .typecho-page-main -->

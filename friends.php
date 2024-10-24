@@ -75,26 +75,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						'#e8583d',
 						'#f68e5f',
 					];
-					$friends_text = $this->options->JFriends;
-					if ($friends_text) {
-						$friends_arr = explode("\r\n", $friends_text);
-						if (count($friends_arr) > 0) {
-							for ($i = 0; $i < count($friends_arr); $i++) {
-								$name = explode("||", $friends_arr[$i])[0] ?? '';
-								$url = explode("||", $friends_arr[$i])[1] ?? '';
-								$avatar = explode("||", $friends_arr[$i])[2] ?? '';
-								$desc = explode("||", $friends_arr[$i])[3] ?? '';
-								$rel = explode("||", $friends_arr[$i])[4] ?? 'friend';
-								$friends[] = array(
-									"name" => trim($name),
-									"url" => trim($url),
-									"avatar" => trim($avatar),
-									"desc" => trim($desc),
-									'rel' => trim($rel)
-								);
-							};
-						}
-					}
+					$db = Typecho_Db::get();
+					$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->order('order', Typecho_Db::SORT_DESC));
 					?>
 					<?php if (sizeof($friends) > 0) : ?>
 						<ul class="joe_detail__friends">
@@ -105,10 +87,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							foreach ($friends as $item) : ?>
 								<li class="joe_detail__friends-item">
 									<a class="contain" href="<?php echo $item['url']; ?>" target="_blank" rel="<?= $item['rel'] ?>" style="background: <?php echo $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
-										<span class="title"><?php echo $item['name']; ?></span>
+										<span class="title"><?php echo $item['title']; ?></span>
 										<div class="content">
-											<div class="desc"><?php echo $item['desc']; ?></div>
-											<img width="40" height="40" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php echo $item['avatar']; ?>" alt="<?php echo $item['name']; ?>" />
+											<div class="desc"><?php echo $item['description']; ?></div>
+											<img width="40" height="40" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php echo $item['logo']; ?>" alt="<?php echo $item['title']; ?>" />
 										</div>
 									</a>
 								</li>
@@ -116,7 +98,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</ul>
 					<?php endif; ?>
 					<?php
-					if ($this->options->JFriends_Submit == 'on' && joe\email_config()) {
+					if ($this->options->JFriends_Submit == 'on') {
 						$this->need('module/FriendsSubmit.php');
 					}
 					?>

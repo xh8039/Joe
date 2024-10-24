@@ -109,7 +109,7 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 	{
 		/** 初始化分页变量 */
 		// $pageSize = RobotsPlusPlus_Util::getConfig()->pageSize;
-		$pageSize = 20;
+		$pageSize = 10;
 
 		$select = $this->select();
 
@@ -183,7 +183,7 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 		// $value['pay_price'] = isset($value['pay_price']) ? '<font color="green">' . $value['pay_price'] . '</font>' : '未支付';
 		// $value['admin_email'] = $value['admin_email'] ? '<font color="green">已通知</font>' : '未通知';
 		// $value['user_email'] = $value['user_email'] ? '<font color="green">已通知</font>' : '未通知';
-		// $value['status'] = $value['status'] ? '<font color="green">已支付</font>' : '未支付';
+		$value['status'] = $value['status'] ? '正常' : '<font color="red">禁用</font>';
 		// $value['theId'] = 'robots-log-' . $value['lid'];
 		return $value;
 	}

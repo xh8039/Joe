@@ -640,27 +640,38 @@ function _friendSubmit($self)
 	if (empty($logo)) {
 		$logo = 'http://q4.qlogo.cn/headimg_dl?dst_uin=' . $qq . '&spec=640';
 	}
-	$EmailTitle = '友链申请';
-	$subtitle = $title . '向您提交了友链申请：';
-	$content = "$title || $link || $logo || $description<br><br>对方QQ号：$qq";
-	$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
-	if ($SendEmail == 'success') {
+
+	$db = Typecho_Db::get();
+	$sql = $db->insert('table.friends')->rows(
+		array(
+			'title' => $title,
+			'url' =>  $link,
+			'logo' =>  $logo,
+			'description' =>  $description
+		)
+	);
+	if ($db->query($sql)) {
+		$EmailTitle = '友链申请';
+		$subtitle = $title . '向您提交了友链申请：';
+		$content = "<p>友链标题：$title</p>
+		<p>站点链接：$link</p>
+		<p>站点LOGO：$logo</p>
+		<p>站点描述：$description</p>
+		<p>对方QQ号：$qq</p>";
+		$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
 		$self->response->throwJson([
 			'code' => 200,
 			'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待'
 		]);
-	}
-	if (!empty($SendEmail)) {
-		$self->response->throwJson([
-			'code' => 0,
-			'msg' => '提交失败，错误原因：' . $SendEmail
-		]);
-	}
-	if ($SendEmail == false) {
+	} else {
 		$self->response->throwJson([
 			'code' => 0,
 			'msg' => '提交失败，请联系本站点管理员进行处理'
 		]);
+		// $self->response->throwJson([
+		// 	'code' => 0,
+		// 	'msg' => '提交失败，错误原因：' . $SendEmail
+		// ]);
 	}
 }
 

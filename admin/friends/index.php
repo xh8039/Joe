@@ -79,7 +79,7 @@ $orders = Typecho_Widget::widget('JoeFriends_Widget');
 										<tr id="<?php $orders->id() ?>">
 											<td><input type="checkbox" value="<?php $orders->id() ?>" name="id[]" /></td>
 											<td><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=edit&id=') . $orders->id() ?>"><?php $orders->title() ?></a></td>
-											<td><?php $orders->url(); ?></td>
+											<td><a target="_blank" href="<?php $orders->url() ?>"><?php $orders->url() ?></a></td>
 											<td><?php $orders->description() ?></td>
 											<td><img referrerpolicy="no-referrer" rel="noreferrer" width="50px" height="50px" src="<?php $orders->logo() ?>"></td>
 											<td><?php $orders->rel(); ?></td>

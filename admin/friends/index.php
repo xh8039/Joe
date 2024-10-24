@@ -18,6 +18,12 @@ $orders = Typecho_Widget::widget('JoeFriends_Widget');
 		</div>
 		<div class="row typecho-page-main" role="main">
 			<div class="col-mb-12 typecho-list">
+				<div class="clearfix">
+					<ul class="typecho-option-tabs">
+						<li class="current"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=delete&status=1') ?>">已通过</a></li>
+						<li><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=delete&status=0') ?>">待审核 </a></li>
+					</ul>
+				</div>
 				<div class="typecho-list-operate clearfix">
 					<form method="get" action="<?php $options->adminUrl('extending.php'); ?>">
 						<input type="hidden" name="panel" value="<?= '../themes/' . THEME_NAME . '/admin/friends.php' ?>" />
@@ -99,12 +105,6 @@ $orders = Typecho_Widget::widget('JoeFriends_Widget');
 						</table><!-- end .typecho-list-table -->
 					</div><!-- end .typecho-table-wrap -->
 				</form><!-- end .operate-form -->
-				<div class="clearfix">
-					<ul class="typecho-option-tabs">
-						<li class="current"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=delete&status=1') ?>">已通过</a></li>
-						<li><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=delete&status=0') ?>">待审核 </a></li>
-					</ul>
-				</div>
 				<div class="typecho-list-operate clearfix">
 					<form method="get">
 						<!-- <div class="operate">

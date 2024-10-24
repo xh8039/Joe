@@ -2,7 +2,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
-class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
+class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 {
 	/**
 	 * 全局选项
@@ -93,11 +93,11 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		$this->user = $this->widget('Widget_User');
 		$this->security = $this->widget('Widget_Security');
 
-		$this->bots = ['wxpay' => '微信', 'alipay' => '支付宝', 'qqpay' => 'QQ'];
+		// $this->bots = ['wxpay' => '微信', 'alipay' => '支付宝', 'qqpay' => 'QQ'];
 	}
 	public function select()
 	{
-		return $this->db->select()->from('table.joe_pay');
+		return $this->db->select()->from('table.friends');
 	}
 	/**
 	 * 执行函数
@@ -124,23 +124,17 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		/** 构建基础查询 */
 		$select = $this->select();
 
-		if (!empty($this->request->type)) {
-			$select->where('table.joe_pay.type = ?', $this->request->type);
-		}
+		// if (!empty($this->request->type)) {
+		// 	$select->where('table.friends.type = ?', $this->request->type);
+		// }
 		if (isset($this->request->status) && is_numeric($this->request->status)) {
-			$select->where('table.joe_pay.status = ?', $this->request->status);
+			$select->where('status = ?', $this->request->status);
 		}
-		// if (!empty($this->parameter->api_trade_no)) {
-		// 	$select->where('table.joe_pay.api_trade_no = ?', $this->parameter->api_trade_no);
-		// }
-		// if (!empty($this->parameter->content_title)) {
-		// 	$select->where('table.joe_pay.content_title = ?', $this->parameter->content_title);
-		// }
 
 		/** 过滤标题 */
 		if (null != ($keywords = $this->request->keywords)) {
 			$select->where(
-				'trade_no LIKE ? OR api_trade_no LIKE ? OR content_title LIKE ?',
+				'title LIKE ? OR url LIKE ? OR description LIKE ?',
 				'%' . $keywords . '%',
 				'%' . $keywords . '%',
 				'%' . $keywords . '%',
@@ -156,7 +150,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		$this->_countSql = clone $select;
 
 		/** 提交查询 */
-		$select->order('table.joe_pay.create_time', Typecho_Db::SORT_DESC)
+		$select->order('create_time', Typecho_Db::SORT_DESC)
 			->page($this->_currentPage, $this->parameter->pageSize);
 
 		$this->db->fetchAll($select, array($this, 'push'));
@@ -184,12 +178,12 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	 */
 	public function filter(array $value)
 	{
-		$value['typeName'] = array_key_exists($value['type'], $this->bots) ? $this->bots[$value['type']] : $value['type'];
-		$value['user_id'] = is_numeric($value['user_id']) ? $value['user_id'] : '游客';
-		$value['pay_price'] = isset($value['pay_price']) ? '<font color="green">' . $value['pay_price'] . '</font>' : '未支付';
-		$value['admin_email'] = $value['admin_email'] ? '<font color="green">已通知</font>' : '未通知';
-		$value['user_email'] = $value['user_email'] ? '<font color="green">已通知</font>' : '未通知';
-		$value['status'] = $value['status'] ? '<font color="green">已支付</font>' : '未支付';
+		// $value['typeName'] = array_key_exists($value['type'], $this->bots) ? $this->bots[$value['type']] : $value['type'];
+		// $value['user_id'] = is_numeric($value['user_id']) ? $value['user_id'] : '游客';
+		// $value['pay_price'] = isset($value['pay_price']) ? '<font color="green">' . $value['pay_price'] . '</font>' : '未支付';
+		// $value['admin_email'] = $value['admin_email'] ? '<font color="green">已通知</font>' : '未通知';
+		// $value['user_email'] = $value['user_email'] ? '<font color="green">已通知</font>' : '未通知';
+		// $value['status'] = $value['status'] ? '<font color="green">已支付</font>' : '未支付';
 		// $value['theId'] = 'robots-log-' . $value['lid'];
 		return $value;
 	}
@@ -233,8 +227,8 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	public function size(Typecho_Db_Query $condition)
 	{
 		return $this->db->fetchObject($condition
-			->select(array('COUNT(DISTINCT table.joe_pay.id)' => 'num'))
-			->from('table.joe_pay')
+			->select(array('COUNT(DISTINCT table.friends.id)' => 'num'))
+			->from('table.friends')
 			->cleanAttribute('group'))->num;
 	}
 
@@ -246,7 +240,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 			// 删除插件接口
 			$this->pluginHandle()->deleteLogs($log, $this);
 
-			$result = $this->db->query($this->db->delete('table.joe_pay')->where('table.joe_pay.id = ?', $log));
+			$result = $this->db->query($this->db->delete('table.friends')->where('table.friends.id = ?', $log));
 			if ($result) $deleteCount++;
 		}
 		/** 设置提示信息 */

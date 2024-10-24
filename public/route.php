@@ -109,14 +109,12 @@ function _getPost($self)
 // 百度统计展示
 function _getstatistics($self)
 {
+	$self->response->setStatus(200);
 	$statistics_config = joe\baidu_statistic_config();
-	if (is_array($statistics_config)) {
-	} else {
-		$self->response->setStatus(200);
+	if (!is_array($statistics_config)) {
 		$self->response->throwJson(array('access_token' => 'off'));
 	}
 	if (empty($statistics_config['access_token'])) {
-		$self->response->setStatus(200);
 		$self->response->throwJson(array('access_token' => 'off'));
 	}
 	// 获取站点列表
@@ -124,7 +122,6 @@ function _getstatistics($self)
 		$url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . trim($statistics_config['access_token']);
 		$data = json_decode(file_get_contents($url), true);
 		if (isset($data['error_code'])) {
-			$self->response->setStatus(404);
 			if ($data['error_code'] == 111) {
 				$self->response->throwJson(['msg' => '请更新您的access_token']);
 			}
@@ -157,18 +154,17 @@ function _getstatistics($self)
 		$data = array(
 			'msg' => '没有当前站点'
 		);
-		$self->response->setStatus(404);
 		$self->response->throwJson($data);
 	}
 	$today = $web_metrics($list, date('Ymd'), date('Ymd'));
 	$yesterday = $web_metrics($list, date('Ymd', strtotime("-1 days")), date('Ymd', strtotime("-1 days")));
 	$moon = $web_metrics($list, date('Ym') . '01', date('Ymd'));
 	$data = array(
+		'code' => 200,
 		'today' => $today,
 		'yesterday' => $yesterday,
 		'month' => $moon
 	);
-	$self->response->setStatus(200);
 	$self->response->throwJson($data);
 }
 

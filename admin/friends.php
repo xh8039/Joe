@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Joe再续前缘订单管理
+ * Joe再续前缘友链管理
  *
  * @package Joe再续前缘
  * @author  易航
  * @version 1.0
- * @update: 2024.10.23
+ * @update: 2024.10.24
  * @link http://blog.bri6.cn
  */
 
@@ -18,8 +18,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 define('JOE_ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('THEME_NAME', basename(JOE_ROOT));
-require_once JOE_ROOT . 'library/widget/Orders.php';
-$orders = Typecho_Widget::widget('JoeOrders_Widget');
+require_once JOE_ROOT . 'library/widget/Friends.php';
+$orders = Typecho_Widget::widget('JoeFriends_Widget');
 $options = Typecho_Widget::widget('Widget_Options');
 ?>
 <style>
@@ -50,7 +50,7 @@ $options = Typecho_Widget::widget('Widget_Options');
 			<div class="col-mb-12 typecho-list">
 				<div class="typecho-list-operate clearfix">
 					<form method="get" action="<?php $options->adminUrl('extending.php'); ?>">
-						<input type="hidden" name="panel" value="<?= '../themes/' . THEME_NAME . '/admin/orders.php' ?>" />
+						<input type="hidden" name="panel" value="<?= '../themes/' . THEME_NAME . '/admin/friends.php' ?>" />
 						<div class="operate">
 							<label><i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox"
 									class="typecho-table-select-all" /></label>
@@ -59,30 +59,18 @@ $options = Typecho_Widget::widget('Widget_Options');
 										class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i
 										class="i-caret-down"></i></button>
 								<ul class="dropdown-menu">
-									<li><a lang="<?php _e('你确认要删除这些订单吗?'); ?>"
-											href="<?php $security->index('/joe/api?routeType=pay_delete'); ?>"><?php _e('删除'); ?></a>
-									</li>
+									<li><a lang="<?php _e('你确认要删除这些友链吗?'); ?>" href="<?php $security->index('/joe/api?routeType=friends&action=delete'); ?>"><?php _e('删除'); ?></a></li>
+									<li><a lang="<?php _e('你确认要启用这些友链吗?'); ?>" href="<?php $security->index('/joe/api?routeType=friends&action=open'); ?>"><?php _e('启用'); ?></a></li>
+									<li><a lang="<?php _e('你确认要禁用这些友链吗?'); ?>" href="<?php $security->index('/joe/api?routeType=friends&action=disable'); ?>"><?php _e('禁用'); ?></a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="search" role="search">
 							<?php if ('' != $request->keywords): ?>
-								<a href="<?php $options->adminUrl('extending.php'); ?>?panel=<?= urlencode('../themes/' . THEME_NAME . '/admin/orders.php') ?>"><?php _e('&laquo; 取消筛选'); ?></a>
+								<a href="<?php $options->adminUrl('extending.php'); ?>?panel=<?= urlencode('../themes/' . THEME_NAME . '/admin/friends.php') ?>"><?php _e('&laquo; 取消筛选'); ?></a>
 							<?php endif; ?>
 							<input type="text" class="text-s" placeholder="<?php _e('请输入关键字'); ?>"
 								value="<?php echo $request->filter('html')->keywords; ?>" name="keywords" />
-							<select class="search-type" name="type">
-								<option value=""><?php _e('支付方式'); ?></option>
-								<?php foreach (['wxpay' => '微信', 'alipay' => '支付宝', 'qqpay' => 'QQ'] as $id => $name) : ?>
-									<option value="<?php echo $id; ?>" <?php if ($request->get('type') == $id) : ?> selected="true" <?php endif; ?>><?php echo $name; ?></option>
-								<?php endforeach; ?>
-							</select>
-							<select class="search-status" name="status">
-								<option value=""><?php _e('支付状态'); ?></option>
-								<?php foreach (['1' => '已支付', '0' => '未支付'] as $id => $name) : ?>
-									<option value="<?php echo $id; ?>" <?php if ($request->get('status') == $id) : ?> selected="true" <?php endif; ?>><?php echo $name; ?></option>
-								<?php endforeach; ?>
-							</select>
 							<button type="submit" class="search-btn btn btn-s"><?php _e('筛选'); ?></button>
 						</div>
 					</form>
@@ -92,41 +80,25 @@ $options = Typecho_Widget::widget('Widget_Options');
 					<div class="typecho-table-wrap">
 						<table class="typecho-list-table">
 							<colgroup>
-								<col width="25px" />
-								<col width="130px" />
-								<col width="150px" />
-								<col width="200px" />
-								<!-- <col width="50px" /> -->
-								<col width="60px" />
-								<col width="60px" />
-								<col width="100px" />
-								<col width="50px" />
-								<col width="60px" />
-								<col width="60px" />
-								<col width="60px" />
-								<!-- <col width="60px" /> -->
-								<col width="130px" />
-								<!-- <col width="130px" /> -->
-								<!-- <col width="100px" /> -->
+								<col width="35px" />
+								<col width="80px" />
+								<col width="80px" />
+								<col width="80px" />
+								<col width="80px" />
+								<col width="80px" />
+								<col width="80px" />
+								<col width="80px" />
 							</colgroup>
 							<thead>
 								<tr>
 									<th></th>
-									<th>订单号</th>
-									<th>接口订单号</th>
-									<!-- <th >订单名称</th> -->
-									<th>文章标题</th>
-									<!-- <th>文章ID</th> -->
-									<th>支付方式</th>
-									<th>订单金额</th>
-									<th>用户IP</th>
-									<th>用户ID</th>
-									<th>实付金额</th>
-									<th>通知管理</th>
-									<th>通知用户</th>
-									<!-- <th>订单状态</th> -->
+									<th>站点标题</th>
+									<th>站点链接</th>
+									<th>站点简介</th>
+									<th>站点LOGO</th>
+									<th>rel属性</th>
+									<th>友链排序</th>
 									<th>创建时间</th>
-									<!-- <th>完成时间</th> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -134,28 +106,20 @@ $options = Typecho_Widget::widget('Widget_Options');
 									<?php while ($orders->next()) : ?>
 										<tr id="<?php $orders->id(); ?>">
 											<td><input type="checkbox" value="<?php $orders->id(); ?>" name="id[]" /></td>
-											<td><?php $orders->trade_no(); ?></td>
-											<td><?php $orders->api_trade_no(); ?></td>
-											<!-- <td ><?php $orders->name() ?></td> -->
-											<td><?php $orders->content_title(); ?></td>
-											<!-- <td><?php $orders->content_cid(); ?></td> -->
-											<td><?php $orders->typeName(); ?></td>
-											<td><?php $orders->money(); ?></td>
-											<td><?php $orders->ip(); ?></td>
-											<td><?php $orders->user_id(); ?></td>
-											<!-- <td ><?php $orders->pay_type(); ?></td> -->
-											<td><?php $orders->pay_price(); ?></td>
-											<td><?php $orders->admin_email(); ?></td>
-											<td><?php $orders->user_email(); ?></td>
-											<!-- <td><?php $orders->status(); ?></td> -->
+											<td><?php $orders->title(); ?></td>
+											<td><?php $orders->url(); ?></td>
+											<td><?php $orders->description() ?></td>
+											<td><img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" src="<?php $orders->logo() ?>"></td>
+											<td><?php $orders->rel(); ?></td>
+											<td><?php $orders->order(); ?></td>
+											<td><?php $orders->status(); ?></td>
 											<td><?php $orders->create_time(); ?></td>
-											<!-- <td><?php $orders->update_time(); ?></td> -->
 										</tr>
 									<?php endwhile; ?>
 								<?php else : ?>
 									<tr class="even">
 										<td colspan="8">
-											<h6 class="typecho-list-table-title"><?php _e('当前无订单'); ?></h6>
+											<h6 class="typecho-list-table-title"><?php _e('当前无友链'); ?></h6>
 										</td>
 									</tr>
 								<?php endif; ?>
@@ -174,7 +138,7 @@ $options = Typecho_Widget::widget('Widget_Options');
 										class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i
 										class="i-caret-down"></i></button>
 								<ul class="dropdown-menu">
-									<li><a lang="<?php _e('你确认要删除这些用户吗?'); ?>"
+									<li><a lang="<?php _e('你确认要删除这些友链吗?'); ?>"
 											href="<?php $security->index('/action/users-edit?do=delete'); ?>"><?php _e('删除'); ?></a>
 									</li>
 								</ul>

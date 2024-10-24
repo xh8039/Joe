@@ -2,6 +2,9 @@
 
 namespace joe;
 
+use \Helper;
+use \Typecho_Db;
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
@@ -666,4 +669,145 @@ function optionMulti($string, string $line = "\r\n", $separator = '||'): array
 		$custom[] = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
 	}
 	return $custom;
+}
+
+function panel_exists($path): bool
+{
+	$addPanel = true;
+	$panelTable = is_array(\Helper::options()->panelTable) ? \Helper::options()->panelTable : unserialize(\Helper::options()->panelTable);
+	$panelTable['file'] = empty($panelTable['file']) ? [] : $panelTable['file'];
+	foreach ($panelTable['file'] as $value) {
+		if ($value == urlencode($path)) {
+			$addPanel = false;
+		}
+	}
+	return $addPanel;
+}
+
+function install()
+{
+	$lock_file = JOE_ROOT . 'public/install.lock';
+
+	if (file_exists($lock_file)) return;
+
+	// 注册后台订单页面
+	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
+	if (!panel_exists($orders_url)) {
+		Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
+	}
+
+	// 注册后台友链页面
+	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
+	if (!panel_exists($friends_url)) {
+		Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
+	}
+
+	// 注册订单删除接口
+	// $actionTable = unserialize(Helper::options()->actionTable);
+	// $actionTable = empty($actionTable) ? [] : $actionTable;
+	// if (!isset($actionTable['joe-pay-edit']) || $actionTable['joe-pay-edit'] != 'JoeOrders_Widget') {
+	// 	Helper::addAction('joe-pay-edit', 'JoeOrders_Widget');
+	// }
+
+	$_db = Typecho_Db::get();
+	$_prefix = $_db->getPrefix();
+	try {
+		$adapter = $_db->getAdapterName();
+		$joe_pay = $_prefix . "joe_pay";
+		$friends = $_prefix . 'friends';
+		if ("Pdo_SQLite" === $adapter || "SQLite" === $adapter) {
+			$_db->query("CREATE TABLE IF NOT EXISTS `$joe_pay` (
+				`id` INTEGER PRIMARY KEY AUTOINCREMENT,
+				`trade_no` TEXT NOT NULL UNIQUE,
+				`api_trade_no` TEXT,
+				`name` TEXT NOT NULL,
+				`content_title` TEXT,
+				`content_cid` INTEGER NOT NULL,
+				`type` TEXT NOT NULL,
+				`money` TEXT NOT NULL,
+				`ip` TEXT,
+				`user_id` TEXT NOT NULL,
+				`create_time` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				`update_time` TEXT,
+				`pay_type` TEXT,
+				`pay_price` TEXT,
+				`admin_email` INTEGER NOT NULL DEFAULT 0,
+				`user_email` INTEGER NOT NULL DEFAULT 0,
+				`status` INTEGER NOT NULL DEFAULT 0
+			);");
+			$_db->query("CREATE TABLE IF NOT EXISTS `$friends` (
+				`id` INTEGER PRIMARY KEY AUTOINCREMENT,
+				`title` TEXT NOT NULL,
+				`url` TEXT NOT NULL,
+				`description` TEXT,
+				`logo` TEXT,
+				`rel` TEXT,
+				`order` INTEGER NOT NULL DEFAULT 0,
+				`status` INTEGER NOT NULL DEFAULT 0,
+				`create_time` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+			);");
+		}
+		if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter) {
+			$_db->query("CREATE TABLE IF NOT EXISTS `$joe_pay` (
+				`id` INT NOT NULL AUTO_INCREMENT,
+				`trade_no` varchar(64) NOT NULL unique,
+				`api_trade_no` varchar(64) DEFAULT NULL,
+				`name` varchar(64) NOT NULL,
+				`content_title` varchar(150) DEFAULT NULL,
+				`content_cid` INT NOT NULL,
+				`type` varchar(10) NOT NULL,
+				`money` varchar(32) NOT NULL,
+				`ip` varchar(32) DEFAULT NULL,
+				`user_id` varchar(32) NOT NULL,
+				`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				`update_time` DATETIME DEFAULT NULL,
+				`pay_type` varchar(10) DEFAULT NULL,
+				`pay_price` varchar(32) DEFAULT NULL,
+				`admin_email` BOOLEAN NOT NULL DEFAULT FALSE,
+				`user_email` BOOLEAN NOT NULL DEFAULT FALSE,
+				`status` BOOLEAN NOT NULL DEFAULT FALSE,
+				PRIMARY KEY  (`id`)
+			) DEFAULT CHARSET=utf8mb4;");
+			$_db->query("CREATE TABLE IF NOT EXISTS `$friends` (
+				`id` INT NOT NULL AUTO_INCREMENT,
+				`title` varchar(128) NOT NULL,
+				`url` varchar(255) NOT NULL,
+				`description` TEXT DEFAULT NULL,
+				`logo` TEXT DEFAULT NULL,
+				`rel` varchar(128) DEFAULT NULL,
+				`order` INT NOT NULL DEFAULT 0,
+				`status` BOOLEAN NOT NULL DEFAULT FALSE,
+				`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+				PRIMARY KEY  (`id`)
+			) DEFAULT CHARSET=utf8mb4;");
+		}
+
+		$JFriends = optionMulti(Helper::options()->JFriends);
+		$JFriends[] = ['易航博客', 'http://blog.bri6.cn', 'http://blog.bri6.cn/favicon.ico', '一名编程爱好者的博客，记录与分享编程、学习中的知识点', 'friend'];
+
+		foreach ($JFriends as $value) {
+			$_db->query($_db->insert('table.friends')->rows(
+				array(
+					'title' => ($value[0] ?? ''),
+					'url' => ($value[1] ?? ''),
+					'logo' => ($value[2] ?? ''),
+					'description' => ($value[3] ?? ''),
+					'rel' => ($value[4] ?? ''),
+					'order' => ($value[5] ?? '0'),
+					'status' => '1'
+				)
+			));
+		}
+
+		$table_contents = $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1));
+		$table_contents = empty($table_contents) ? [] : $table_contents;
+		if (!array_key_exists('views', $table_contents)) {
+			$_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `views` INT DEFAULT 0;');
+		}
+		if (!array_key_exists('agree', $table_contents)) {
+			$_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `agree` INT DEFAULT 0;');
+		}
+		file_put_contents($lock_file, 'Joe再续前缘安装锁');
+	} catch (\Exception $e) {
+	}
 }

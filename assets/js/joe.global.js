@@ -64,8 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
 					routeType: 'statistics'
 				},
 				success(data) {
-					if (data.access_token == 'off') {
+					if (data.access_token == 'off' || data.code != 200) {
 						$("#statistics").remove();
+						if (data.msg) {
+							Qmsg.error('百度统计：'.data.msg);
+						}
 						return;
 					}
 					let statistics = $('#statistics span strong');
@@ -913,6 +916,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				Y = window.pageYOffset;
 			}
 		}, 100))//.trigger("scroll");
+
+		// 页面滚动隐藏 tooltip 提示
+		$(window).scroll(debounce(() => {
+			$("[data-toggle='tooltip']").tooltip('hide');
+		}, 500, true));
 	}
 
 	/* 头部滚动 */

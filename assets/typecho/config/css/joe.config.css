@@ -69,7 +69,7 @@
 
 .joe_config__aside .tabs .item.active {
 	color: #409eff;
-	font-weight: 500
+	/* font-weight: 500 */
 }
 
 .joe_config__aside .backup {

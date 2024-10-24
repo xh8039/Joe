@@ -23,10 +23,12 @@ if ($this->options->JMusic == 'on') {
 <!-- <footer class="joe_footer">
 	<div class="joe_container">
 		<div class="item">
-			<?php // $this->options->JFooter_Left() ?>
+			<?php // $this->options->JFooter_Left() 
+			?>
 		</div>
 		<div class="item">
-			<?php // $this->options->JFooter_Right() ?>
+			<?php // $this->options->JFooter_Right() 
+			?>
 		</div>
 	</div>
 </footer> -->
@@ -107,12 +109,16 @@ if ($this->options->JMusic == 'on') {
 		if (!empty($this->options->JFcodeCustomizeCode)) {
 			echo '<p class="footer-conter">' . $this->options->JFcodeCustomizeCode . '</p>';
 		}
-		if ($this->options->JFooter_Fish == 'on') {
-			echo '<div id="footer_fish"></div><script src="' . joe\theme_url('assets/plugin/FooterFish.js') . '"></script>';
-		}
 		?>
 	</div>
+
 </footer>
+
+<?php
+if ($this->options->JFooter_Fish == 'on') {
+	echo '<div id="footer_fish" style="background: var(--main-bg-color);"></div><script src="' . joe\theme_url('assets/plugin/FooterFish.js') . '"></script>';
+}
+?>
 
 <div class="joe_action">
 	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" data-original-title="返回顶部">
@@ -120,7 +126,7 @@ if ($this->options->JMusic == 'on') {
 	</div>
 	<div class="joe_action_item mode" data-toggle="tooltip" data-placement="left" data-original-title="夜间模式">
 		<i class="icon-1 fa fa-sun-o"></i>
-		<i class="icon-2 fa fa-moon-o" ></i>
+		<i class="icon-2 fa fa-moon-o"></i>
 	</div>
 	<div class="joe_action_item full_screen" data-toggle="tooltip" data-placement="left" data-original-title="全屏模式">
 		<i class="icon-1 fa fa-expand"></i>

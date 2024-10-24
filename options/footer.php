@@ -67,6 +67,7 @@ $JFooterLeftText = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFooterLeftText',
 	NULL,
 	'易航博客，一名编程爱好者的博客，博客主要用来记录与分享编程、学习中的知识点。',
+	'底部栏左侧内容'
 );
 $JFooterLeftText->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterLeftText);

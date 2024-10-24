@@ -57,7 +57,7 @@ if ($this->options->JMusic == 'on') {
 							color: var(--theme)
 						}
 					</style>
-					<div class="footer-muted" id="statistics">
+					<div class="footer-muted em09" id="statistics">
 						<span>今日浏览量&nbsp;<strong>...</strong>丨</span><span>昨日访客&nbsp;<strong>...</strong>丨</span><span>本月访问量&nbsp;<strong>...</strong></span>
 					</div>
 				<?php endif; ?>

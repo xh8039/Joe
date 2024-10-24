@@ -342,7 +342,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</div>
 				</div>
 				<div class="joe_load_box">
-					<a href="javascript:;" class="joe_load"><i class="fa fa-angle-right"></i>查看更多</a>
+					<a href="javascript:;" class="joe_load"><i class="fa fa-angle-right"></i>加载更多</a>
 				</div>
 			</div>
 			<?php $this->need('module/aside.php'); ?>

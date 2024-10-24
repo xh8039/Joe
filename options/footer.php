@@ -58,7 +58,7 @@ $JFooterCenter2 = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	<br>
 	技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
 	'底部栏中间第二行（建议为版权提醒，备案号等）',
-	'示例：<br>' . str_replace('||', '<br>', htmlentities('<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>||<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 10px">MAP</a>||<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>||Copyright © 2022 - 2024 · <a href="http://blog.bri6.cn">易航博客</a>||技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>'))
+	'示例：<br>' . str_replace('||', '<br>', htmlentities('<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>||<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 10px">MAP</a>||<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>||<br>||Copyright © 2022 - 2024 · <a href="http://blog.bri6.cn">易航博客</a>||<br>||技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>'))
 );
 $JFooterCenter2->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterCenter2);

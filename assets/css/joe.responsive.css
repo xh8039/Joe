@@ -757,11 +757,17 @@
 	html .relates-thumb .swiper-slide {
 		width: 180px;
 	}
-}
 
-@media (max-width: 767px) {
 	.hidden-xs {
 		display: none !important;
+	}
+
+	.footer .list-inline>li+li+li {
+		float: unset;
+	}
+
+	.footer .container-footer {
+		text-align: center;
 	}
 }
 

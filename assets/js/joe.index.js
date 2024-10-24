@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							$('.joe_load').removeAttr('loading');
 							$('.joe_index__list .joe_list__loading').hide(500);
 							$('.joe_load').hide();
-							$('.joe_load').html('<i class="fa fa-angle-right"></i>查看更多');
+							$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
 							return Qmsg.warning('没有更多内容了');
 						}
 						res.data.forEach(data => $('.joe_index__list .joe_list').append(getListMode(data)));
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						// a标签点击后的离开Loading动画
 						window.offLoading();
 						$('.joe_load').removeAttr('loading');
-						$('.joe_load').html('<i class="fa fa-angle-right"></i>查看更多');
+						$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
 						$('.joe_index__list .joe_list__loading').hide();
 						reslove(res.data.length > 0 ? res.data.length - 1 : 0);
 					},

@@ -6061,6 +6061,10 @@ html .aplayer {
 	color: var(--footer-color);
 }
 
+.footer a:not(.but):not(.focus-color):hover {
+	color: var(--theme);
+}
+
 .ajax-option .option-items>a+a:before,
 .fcode-links>a+a:before,
 .icon-spot:before {

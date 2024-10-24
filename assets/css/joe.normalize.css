@@ -863,10 +863,6 @@ a[href] {
 	display: inline-block;
 }
 
-.ml6 {
-	margin-left: 6px;
-}
-
 .document-nav>.panel-group>.cat-load::before,
 .icon-circle::before,
 .mobile-menus>li>a::before {
@@ -1619,6 +1615,14 @@ badge.p2-10 {
 @media (min-width: 1400px) {
 	.joe_container {
 		max-width: 1200px
+	}
+
+	.joe_header__above>.joe_container {
+		max-width: 1380px
+	}
+
+	.joe_header__below>.joe_container {
+		max-width: 1380px
 	}
 }
 

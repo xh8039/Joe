@@ -593,20 +593,20 @@
 		height: 185px
 	}
 
-	html .joe_footer .joe_container {
+	/* html .joe_footer .joe_container {
 		flex-direction: column;
 		justify-content: center;
 		padding-top: 10px;
 		padding-bottom: 10px
-	}
+	} */
 
-	html .joe_footer .joe_container>.item {
+	/* html .joe_footer .joe_container>.item {
 		padding: 5px 0
-	}
+	} */
 
-	html .joe_footer .joe_container .run {
+	/* html .joe_footer .joe_container .run {
 		margin: 0
-	}
+	} */
 
 	html .joe_owo__contain .box .scroll .item {
 		width: calc(100% / 6)

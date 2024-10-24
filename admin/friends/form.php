@@ -33,6 +33,10 @@
 				$rel = new Typecho_Widget_Helper_Form_Element_Text('rel', null, "friend", _t('友链rel属性'));
 				$form->addInput($rel);
 
+				/** 友链QQ号 */
+				$qq = new Typecho_Widget_Helper_Form_Element_Text('qq', null, "friend", _t('友链QQ号'));
+				$form->addInput($qq);
+
 				/** 友链排序 */
 				$order = new Typecho_Widget_Helper_Form_Element_Text('order', null, "0", _t('友链排序'));
 				$form->addInput($order);
@@ -72,6 +76,7 @@
 					$logo->value($link['logo']);
 					$description->value($link['description']);
 					$rel->value($link['rel']);
+					$qq->value($link['qq']);
 					$order->value($link['order']);
 					// $user->value($link['user']);
 					$status->value($link['status']);

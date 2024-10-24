@@ -647,7 +647,8 @@ function _friendSubmit($self)
 			'title' => $title,
 			'url' =>  $link,
 			'logo' =>  $logo,
-			'description' =>  $description
+			'description' =>  $description,
+			'qq' => $qq,
 		)
 	);
 	if ($db->query($sql)) {

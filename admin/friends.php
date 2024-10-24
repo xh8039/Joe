@@ -54,6 +54,7 @@ if ($action == 'insert') {
 			'logo' =>  $_POST['logo'],
 			'description' =>  $_POST['description'],
 			'rel' =>  $_POST['rel'],
+			'qq' => $_POST['qq'],
 			'order' =>  $_POST['order'],
 			'status' =>  $_POST['status']
 		)
@@ -74,6 +75,7 @@ if ($action == 'update') {
 				'logo' =>  $_POST['logo'],
 				'description' =>  $_POST['description'],
 				'rel' =>  $_POST['rel'],
+				'qq' => $_POST['qq'],
 				'order' =>  $_POST['order'],
 				'status' =>  $_POST['status']
 			)

@@ -40,9 +40,9 @@ $form->addInput($JFooterTabbar->multiMode());
 $JFooterCenter1 = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFooterCenter1',
 	NULL,
-	NULL,
+	'<a href="/friend.html">友链申请</a>||<a href="/">免责声明</a>||<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes">广告合作</a>||<a href="/about.html">关于我们</a>',
 	'底部栏中间第一行（建议为友情链接，或者站内链接）',
-	'示例：<br>' . str_replace('||', '<br>', htmlentities('<a href="/friend">友链申请</a>||<a href="/">免责声明</a>||<a href="/">广告合作</a>||<a href="/">关于我们</a>'))
+	'示例：<br>' . str_replace('||', '<br>', htmlentities('<a href="/friend.html">友链申请</a>||<a href="/">免责声明</a>||<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes">广告合作</a>||<a href="/about.html">关于我们</a>'))
 );
 $JFooterCenter1->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterCenter1);
@@ -50,8 +50,7 @@ $form->addInput($JFooterCenter1);
 $JFooterCenter2 = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFooterCenter2',
 	NULL,
-	'
-	<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>
+	'<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>
 	<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 10px">MAP</a>
 	<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>
 	<br>

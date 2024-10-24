@@ -2603,7 +2603,7 @@
 }
 
 .joe_cloud__logo._quark {
-    background-image: url("../images/cloud/quark.png")
+	background-image: url("../images/cloud/quark.png")
 }
 
 .joe_cloud__logo._github {
@@ -5992,4 +5992,116 @@ html .aplayer {
 .joe_action_item.read_book svg.active {
 	transform: scale(1);
 	opacity: 1
+}
+
+.toggle-radius {
+	background: var(--this-bg);
+	width: 29px;
+	height: 29px;
+	display: inline-block;
+	text-align: center;
+	border-radius: 100%;
+	position: relative;
+	vertical-align: text-top;
+	--this-bg: var(--main-border-color);
+}
+
+.footer {
+	color: var(--footer-color);
+	background: var(--footer-bg);
+	padding: 30px;
+	font-size: 13px;
+}
+
+.container-fluid {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.container-footer,
+.container-header {
+	max-width: 1380px;
+	max-width: calc(var(--mian-max-width) + 180px);
+}
+
+@media (min-width: 992px) {
+
+	.container-footer,
+	.container-header {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+.list-inline {
+	margin-left: 0;
+}
+
+.list-inline>li {
+	display: inline-block;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.list-inline>li {
+	vertical-align: middle;
+}
+
+.footer .list-inline>li {
+	margin: 5px 15px;
+}
+
+.footer .list-inline>li+li+li {
+	float: right;
+}
+
+.footer a:not(.but):not(.focus-color) {
+	color: var(--footer-color);
+}
+
+.ajax-option .option-items>a+a:before,
+.fcode-links>a+a:before,
+.icon-spot:before {
+	content: '';
+	width: 4px;
+	height: 4px;
+	margin: 0 .5em;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: middle;
+	background: var(--main-color);
+	opacity: .3;
+	vertical-align: .2em;
+}
+
+.footer-miniimg {
+	width: 90px;
+	margin: 0 10px;
+	text-align: center;
+	vertical-align: text-top;
+	display: inline-block;
+}
+
+.footer .footer-logo>.dark {
+	display: none;
+}
+
+.footer-contact>a {
+	font-size: 20px;
+	margin: 5px;
+	width: 35px;
+	height: 35px;
+}
+
+.footer-contact>a>.icon {
+	right: 8px;
+}
+
+.footer-wechat-img {
+	width: 140px;
+	bottom: 90%;
+	left: -55px;
+	padding-bottom: 20px;
 }

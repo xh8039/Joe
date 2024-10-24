@@ -759,6 +759,12 @@
 	}
 }
 
+@media (max-width: 767px) {
+	.hidden-xs {
+		display: none !important;
+	}
+}
+
 @media (max-width: 500px) {
 	html .joe_detail__related-content .item {
 		height: 120px;

@@ -45,6 +45,7 @@ body {
 	overflow-x: hidden;
 	line-height: 1.42857143;
 	color: var(--main-color);
+	--mian-max-width: 1200px;
 }
 
 body::before {
@@ -104,7 +105,9 @@ h6 {
 
 img {
 	border: 0;
-	vertical-align: middle
+	vertical-align: middle;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 img[src=''],
@@ -128,6 +131,10 @@ button {
 table {
 	border-collapse: collapse;
 	border-spacing: 0
+}
+
+p {
+	margin-bottom: 10px;
 }
 
 .text-left {
@@ -983,6 +990,39 @@ badge.p2-10 {
 
 .fixed {
 	position: fixed
+}
+
+.hover-show .hover-show-con,
+.navbar-top .sub-menu,
+.theme-popover {
+	opacity: 0;
+	transform: translateY(6px);
+	transition: .4s
+}
+
+.hover-show:hover .hover-show-con,
+.hover-show:hover~.hover-show-con,
+.hover-show:hover~.sub-menu,
+.navbar-top li:hover>.sub-menu {
+	opacity: 1;
+	transform: translateY(0)
+}
+
+.hover-show {
+	position: relative;
+	cursor: pointer;
+	z-index: 10
+}
+
+.hover-show .hover-show-con {
+	position: absolute;
+	visibility: hidden
+}
+
+.hover-show:hover .hover-show-con,
+.hover-show:hover~.hover-show-con,
+.hover-show:hover~.sub-menu {
+	visibility: unset
 }
 
 .ic-close,

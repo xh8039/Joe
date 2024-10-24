@@ -1,5 +1,7 @@
 <?php
 
+use function joe\theme_url;
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
@@ -18,39 +20,98 @@ if ($this->options->JMusic == 'on') {
 }
 ?>
 
-<footer class="joe_footer">
+<!-- <footer class="joe_footer">
 	<div class="joe_container">
 		<div class="item">
-			<?php $this->options->JFooter_Left() ?>
+			<?php // $this->options->JFooter_Left() ?>
 		</div>
-		<?php if ($this->options->JBirthDay) : ?>
-			<div class="item">
-				<span>已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒</span>
-			</div>
-		<?php endif; ?>
 		<div class="item">
-			<?php $this->options->JFooter_Right() ?>
+			<?php // $this->options->JFooter_Right() ?>
 		</div>
-		<?php
-		if (!empty($this->options->baidu_statistics)) {
-		?>
-			<style>
-				#statistics>span>strong {
-					color: var(--theme)
+	</div>
+</footer> -->
+
+<footer class="footer">
+	<div class="container-fluid container-footer">
+		<ul class="list-inline">
+			<li class="hidden-xs" style="max-width: 300px;">
+				<p>
+					<a class="footer-logo" href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>">
+						<img src="<?= theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $this->options->JLogo ?>" alt="<?php $this->options->title() ?>" class="lazyload light" style="height: 40px;">
+						<img src="<?= theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?php $this->options->JDarkLogo(); ?>" alt="<?php $this->options->title() ?>" class="lazyload dark" style="height: 40px;">
+					</a>
+				</p>
+				<div class="footer-muted em09"><?= $this->options->JFooterLeftText ?></div>
+			</li>
+			<li style="max-width: 550px;">
+				<p class="fcode-links"><?= $this->options->JFooterCenter1 ?></p>
+				<div class="footer-muted em09"><?= $this->options->JFooterCenter2 ?></div>
+				<?php if ($this->options->JBirthDay) : ?>
+					<div class="footer-muted em09">
+						<span>已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒</span>
+					</div>
+				<?php endif; ?>
+				<?php if (!empty($this->options->baidu_statistics)) : ?>
+					<style>
+						#statistics>span>strong {
+							color: var(--theme)
+						}
+					</style>
+					<div class="footer-muted" id="statistics">
+						<span>今日浏览量&nbsp;<strong>...</strong>丨</span><span>昨日访客&nbsp;<strong>...</strong>丨</span><span>本月访问量&nbsp;<strong>...</strong></span>
+					</div>
+				<?php endif; ?>
+				<div class="footer-contact mt10">
+					<a class="toggle-radius hover-show nowave" href="javascript:;">
+						<svg class="icon svg" aria-hidden="true">
+							<use xlink:href="#icon-d-wechat"></use>
+						</svg>
+						<div class="hover-show-con footer-wechat-img">
+							<img style="box-shadow: 0 5px 10px rgba(0,0,0,.2); border-radius:4px;" height="100" class="lazyload" src="<?= theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $this->options->JFooterContactWechatImg ?>" alt="扫一扫加微信 - <?= $this->options->title ?>">
+						</div>
+					</a>
+					<a class="toggle-radius" data-toggle="tooltip" target="_blank" title="QQ联系" href="https://wpa.qq.com/msgrd?v=3&uin=<?= $this->options->JFooterContactQQ ?>&site=qq&menu=yes">
+						<svg class="icon svg" aria-hidden="true" data-viewBox="-50 0 1100 1100" viewBox="-50 0 1100 1100">
+							<use xlink:href="#icon-d-qq"></use>
+						</svg>
+					</a>
+					<a class="toggle-radius" data-toggle="tooltip" title="微博" href="<?= $this->options->JFooterContactWeiBo ?>">
+						<svg class="icon svg" aria-hidden="true">
+							<use xlink:href="#icon-d-weibo"></use>
+						</svg>
+					</a>
+					<a class="toggle-radius" data-toggle="tooltip" title="发邮件" href="mailto:<?= $this->options->JFooterContactEmail ?>">
+						<svg class="icon svg" aria-hidden="true" data-viewBox="-20 80 1024 1024" viewBox="-20 80 1024 1024">
+							<use xlink:href="#icon-d-email"></use>
+						</svg>
+					</a>
+				</div>
+			</li>
+			<li>
+				<?php
+				$JFooterMiniImg = joe\optionMulti($this->options->JFooterMiniImg);
+				foreach ($JFooterMiniImg as $key => $value) {
+				?>
+					<div class="footer-miniimg" data-toggle="tooltip" title="<?= $value[0] ?? '' ?>">
+						<p>
+							<img class="lazyload" src="<?= theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $value[1] ?? '' ?>" alt="<?= $value[0] ?? '' ?> - <?= $this->options->title ?>">
+						</p>
+						<span class="opacity8 em09"><?= $value[0] ?? '' ?></span>
+					</div>
+				<?php
 				}
-			</style>
-			<div class="item" id="statistics">
-				<span>今日浏览量&nbsp;<strong>...</strong>丨</span><span>昨日访客&nbsp;<strong>...</strong>丨</span><span>本月访问量&nbsp;<strong>...</strong></span>
-			</div>
+				?>
+			</li>
+		</ul>
 		<?php
+		if (!empty($this->options->JFcodeCustomizeCode)) {
+			echo '<p class="footer-conter">' . $this->options->JFcodeCustomizeCode . '</p>';
+		}
+		if ($this->options->JFooter_Fish == 'on') {
+			echo '<div id="footer_fish"></div><script src="' . joe\theme_url('assets/plugin/FooterFish.js') . '"></script>';
 		}
 		?>
 	</div>
-	<?php
-	if ($this->options->JFooter_Fish == 'on') {
-		echo '<div id="footer_fish"></div><script src="' . joe\theme_url('assets/plugin/FooterFish.js') . '"></script>';
-	}
-	?>
 </footer>
 
 <div class="joe_action">

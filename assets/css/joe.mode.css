@@ -40,6 +40,10 @@ html {
 	--muted-color: #777;
 	--focus-color: var(--theme);
 	--muted-border-color: rgba(0, 0, 0, 0.03);
+	--header-bg: var(--blur-bg);
+	--header-color: var(--main-color);
+	--footer-bg: var(--main-bg-color);
+	--footer-color: var(--muted-2-color);
 }
 
 /* 黑夜模式的配色方案 */
@@ -79,10 +83,6 @@ html[data-night='night'] body {
 	--muted-border-color: rgba(184, 184, 184, 0.02);
 	--blur-bg: rgba(50, 51, 53, 0.8);
 	--float-btn-bg: rgba(70, 70, 70, 0.4);
-	--header-bg: var(--blur-bg);
-	--header-color: var(--main-color);
-	--footer-bg: var(--main-bg-color);
-	--footer-color: var(--muted-2-color);
 }
 
 /* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */
@@ -128,4 +128,12 @@ html[data-night='night'] .joe_detail__overdue-wrapper {
 
 html[data-night='night'] .joe_list>li {
 	background: var(--background);
+}
+
+html[data-night='night'] .footer .footer-logo>.light {
+	display: none;
+}
+
+html[data-night='night'] .footer .footer-logo>.dark {
+	display: block;
 }

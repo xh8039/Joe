@@ -55,16 +55,6 @@ $JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 $JCdnUrl->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCdnUrl);
 
-$JFooterTabbar = new \Typecho\Widget\Helper\Form\Element\Textarea(
-	'JFooterTabbar',
-	NULL,
-	NULL,
-	'移动端底部Tab导航',
-	'介绍：在移动端固定显示在最底部的tab导航按钮，支持排序和添加删除，注意开启后按钮不宜过多 | <a target="_blank" href="http://blog.bri6.cn/archives/232.html">查看官网教程</a>'
-);
-$JFooterTabbar->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JFooterTabbar->multiMode());
-
 $JNavMaxNum = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JNavMaxNum',
 	array(
@@ -96,40 +86,6 @@ $JCustomNavs = new \Typecho\Widget\Helper\Form\Element\Textarea(
 );
 $JCustomNavs->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomNavs);
-
-$JFooter_Left = new \Typecho\Widget\Helper\Form\Element\Textarea(
-	'JFooter_Left',
-	NULL,
-	'2021 - ' . date('Y') . ' © <a href="http://blog.bri6.cn">易航博客</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
-	'自定义底部栏左侧内容（非必填）',
-	'介绍：用于修改全站底部左侧内容（wap端上方） <br>
-		 例如：<style style="display:inline">2021 - ' . date('Y') . ' © <a href="{站点链接}">{站点标题}</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a></style>'
-);
-$JFooter_Left->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JFooter_Left);
-
-$JFooter_Right = new \Typecho\Widget\Helper\Form\Element\Textarea(
-	'JFooter_Right',
-	NULL,
-	'<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>' . PHP_EOL . '<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>' . PHP_EOL . '<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>',
-	'自定义底部栏右侧内容（非必填）',
-	'介绍：用于修改全站底部右侧内容（wap端下方） <br>
-	例如：' . htmlentities('<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>') . '<br>' . htmlentities('<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>') . '<br>' . htmlentities('<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>')
-);
-$JFooter_Right->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JFooter_Right);
-
-$JBirthDay = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JBirthDay',
-	NULL,
-	date('Y/n/j H:i:s'),
-	'网站成立日期（非必填）',
-	'介绍：用于显示当前站点已经运行了多少时间。<br>
-		 注意：填写时务必保证填写正确！例如：2021/1/1 00:00:00 <br>
-		 其他：不填写则不显示，若填写错误，则不会显示计时'
-);
-$JBirthDay->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JBirthDay);
 
 $JCustomFont = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCustomFont',

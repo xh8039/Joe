@@ -1171,6 +1171,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			_f.find('input[name=s]').focus();
 		});
 	}
+
+	{
+		// tooltip
+		$("[data-toggle='tooltip']").tooltip({
+			container: "body"
+		})
+	}
 });
 
 /**

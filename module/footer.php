@@ -115,16 +115,16 @@ if ($this->options->JMusic == 'on') {
 </footer>
 
 <div class="joe_action">
-	<div class="joe_action_item scroll" title="回到顶部">
+	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" data-original-title="返回顶部">
 		<i class="fa fa-angle-up em12"></i>
 	</div>
-	<div class="joe_action_item mode">
-		<i class="icon-1 fa fa-sun-o" title="日间模式"></i>
-		<i class="icon-2 fa fa-moon-o" title="夜间模式"></i>
+	<div class="joe_action_item mode" data-toggle="tooltip" data-placement="left" data-original-title="夜间模式">
+		<i class="icon-1 fa fa-sun-o"></i>
+		<i class="icon-2 fa fa-moon-o" ></i>
 	</div>
-	<div class="joe_action_item full_screen">
-		<i class="icon-1 fa fa-expand" title="全屏模式"></i>
-		<i class="icon-2 fa fa-compress" title="关闭全屏" style="display: none;"></i>
+	<div class="joe_action_item full_screen" data-toggle="tooltip" data-placement="left" data-original-title="全屏模式">
+		<i class="icon-1 fa fa-expand"></i>
+		<i class="icon-2 fa fa-compress" style="display: none;"></i>
 	</div>
 	<?php if ($this->user->uid == $this->authorId) : ?>
 		<?php if ($this->is('post')) : ?>

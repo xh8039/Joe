@@ -106,9 +106,17 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		$(".joe_action_item.full_screen").on("click", () => {
 			if ($(".joe_action_item.full_screen .icon-2").css('display') == 'none') {
-				launchFullscreen(document.documentElement)
+				launchFullscreen(document.documentElement);
+				$(".joe_action_item.full_screen").attr('data-original-title', '关闭全屏');
+				$(".joe_action_item.full_screen").tooltip({
+					container: "body"
+				});
 			} else {
-				exitFullscreen()
+				exitFullscreen();
+				$(".joe_action_item.full_screen").attr('data-original-title', '全屏模式');
+				$(".joe_action_item.full_screen").tooltip({
+					container: "body"
+				});
 			}
 			$(".joe_action_item.full_screen .icon-2").toggle('slow')
 			$(".joe_action_item.full_screen .icon-1").toggle('slow')
@@ -120,10 +128,18 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
 			$(".joe_action_item.mode .icon-1").addClass("active");
 			$(".joe_action_item.mode .icon-2").removeClass("active");
+			$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+			$(".joe_action_item.mode").tooltip({
+				container: "body"
+			});
 		} else {
 			$("html").removeAttr("data-night");
 			$(".joe_action_item.mode .icon-1").removeClass("active");
 			$(".joe_action_item.mode .icon-2").addClass("active");
+			$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+			$(".joe_action_item.mode").tooltip({
+				container: "body"
+			});
 		}
 		$(".joe_action_item.mode").on("click", () => {
 			if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
@@ -131,11 +147,19 @@ document.addEventListener("DOMContentLoaded", () => {
 				$(".joe_action_item.mode .icon-2").addClass("active");
 				$("html").removeAttr("data-night");
 				localStorage.removeItem("data-night");
+				$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+				$(".joe_action_item.mode").tooltip({
+					container: "body"
+				});
 			} else {
 				$(".joe_action_item.mode .icon-1").addClass("active");
 				$(".joe_action_item.mode .icon-2").removeClass("active");
 				$("html").attr("data-night", "night");
 				localStorage.setItem("data-night", "night");
+				$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+				$(".joe_action_item.mode").tooltip({
+					container: "body"
+				});
 			}
 		});
 	}
@@ -1176,7 +1200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		// tooltip
 		$("[data-toggle='tooltip']").tooltip({
 			container: "body"
-		})
+		});
 	}
 });
 

@@ -6007,8 +6007,8 @@ html .aplayer {
 }
 
 .footer {
-	color: var(--footer-color);
-	background: var(--footer-bg);
+	color: var(--muted-2-color);
+	background: var(--main-bg-color);
 	padding: 30px;
 	font-size: 13px;
 }
@@ -6061,8 +6061,8 @@ html .aplayer {
 	color: var(--footer-color);
 }
 
-.footer a:not(.but):not(.focus-color):hover {
-	color: var(--theme);
+.footer a.toggle-radius:hover {
+	color: var(--footer-color);
 }
 
 .ajax-option .option-items>a+a:before,

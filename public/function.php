@@ -686,7 +686,7 @@ function panel_exists($path): bool
 
 function install()
 {
-	$lock_file = JOE_ROOT . 'public/install.lock';
+	$lock_file = JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'install.lock';
 
 	if (file_exists($lock_file)) return;
 

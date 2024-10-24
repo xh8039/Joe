@@ -6099,6 +6099,10 @@ html .aplayer {
 	height: 35px;
 }
 
+.footer-contact>a:hover {
+	color: var(--footer-color);
+}
+
 .footer-contact>a>.icon {
 	right: 8px;
 }

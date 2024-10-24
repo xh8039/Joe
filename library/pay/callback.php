@@ -62,7 +62,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 			$type = ['alipay' => '支付宝', 'wxpay' => '微信', 'qqpay' => 'QQ'];
 			$admin_email = joe\send_email('有新的订单已支付', '您的网站 [' . Helper::options()->title . '] 有新的订单已支付！', '
 			<p>订单号：' . $_GET['out_trade_no'] . '</p>
-			<p>商品类型：' . end(explode('-', $row['name'])) . '</p>
+			<p>商品类型：' . trim(end(explode('-', $row['name']))) . '</p>
 			<p>商品：' . $row['content_title'] . '</p>
 			<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
 			<p>付款时间：' . (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time']) . '</p>
@@ -76,7 +76,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 			$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', $row['user_id']));
 			if (sizeof($authoInfo) > 0) {
 				$user_email = joe\send_email('订单支付成功！', '您好！' . $authoInfo['screenName'] . '，您在 [' . Helper::options()->title . '] 购买的商品已支付成功', '
-				<p>类型：' . end(explode('-', $row['name'])) . '</p>
+				<p>类型：' . trim(end(explode('-', $row['name']))) . '</p>
 				<p>商品：' . $row['content_title'] . '</p>
 				<p>订单号：' . $_GET['out_trade_no'] . '</p>
 				<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>

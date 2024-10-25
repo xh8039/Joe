@@ -823,3 +823,51 @@ function install()
 	} catch (\Exception $e) {
 	}
 }
+
+
+/**
+ * 检测各大平台蜘蛛函数
+ * 
+ * @return string 返回检测到的平台名称，如：百度，谷歌，必应等，否则返回空字符串
+ */
+function detectSpider()
+{
+	static $spider = false;
+	if ($spider === false) {
+		$spiders = [
+			// 搜索引擎
+			'Baidu' => ['Baiduspider', 'baidu.com/search', 'Baiduspider-image', 'Baiduspider-video'],
+			'Google' => ['Googlebot', 'google.com/bot', 'Googlebot-Image', 'Googlebot-Mobile', 'Googlebot-News'],
+			'Bing' => ['Bingbot', 'bing.com/bot', 'BingPreview', 'msnbot', 'bing.com'],
+			'Yahoo' => ['Yahoo! Slurp', 'yahoo.com/slurp'],
+			'Yandex' => ['YandexBot', 'yandex.com/bot'],
+			'DuckDuckGo' => ['DuckDuckBot', 'duckduckgo.com/bot'],
+
+			// 爬虫
+			'Ahrefs' => ['AhrefsBot', 'ahrefs.com'],
+			'Semrush' => ['SemrushBot', 'semrush.com'],
+			'Moz' => ['MozBot', 'moz.com'],
+			'SEOZoom' => ['SEOZoomBot', 'seozoom.com'],
+
+			// 其他
+			'Facebook' => ['facebookexternalhit', 'facebook.com'],
+			'Twitter' => ['Twitterbot', 'twitter.com'],
+			'LinkedIn' => ['LinkedInBot', 'linkedin.com'],
+		];
+
+		// 遍历所有平台
+		foreach ($spiders as $name => $patterns) {
+			// 遍历每个平台的匹配模式
+			foreach ($patterns as $pattern) {
+				// 如果用户代理字符串匹配模式
+				if (stripos($_SERVER['HTTP_USER_AGENT'], $pattern) !== false) {
+					$spider = $name;
+				}
+			}
+		}
+
+		// 未匹配到任何平台
+		$spider =  null;
+	}
+	return $spider;
+}

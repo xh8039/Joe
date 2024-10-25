@@ -273,7 +273,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php endif; ?>
 					<?php
 					$index_ad = joe\optionMulti($this->options->JIndex_Ad);
-					if (!empty($index_ad)) {
+					if (!empty($index_ad) && !joe\detectSpider()) {
 					?>
 						<div class="title-theme" style="margin-bottom: 10px;"><?= empty($this->options->JIndex_Ad_Title) ? '推广宣传' : $this->options->JIndex_Ad_Title ?></div>
 						<div class="joe_index__ad">

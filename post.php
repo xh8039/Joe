@@ -104,7 +104,7 @@
 
 					<?php
 					$post_ad = joe\optionMulti($this->options->JPost_Ad);
-					if (!empty($post_ad)) {
+					if (!empty($post_ad) && !joe\detectSpider()) {
 						?>
 						<style>
 							.joe_detail__article {

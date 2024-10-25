@@ -78,7 +78,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					$db = Typecho_Db::get();
 					$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->order('order', Typecho_Db::SORT_DESC));
 					?>
-					<?php if (sizeof($friends) > 0) : ?>
+					<?php if (sizeof($friends) > 0 && ($this->options->JFriendsSpiderHide == 'on' && !joe\detectSpider())) : ?>
 						<ul class="joe_detail__friends">
 							<?php
 							if ($this->options->JFriends_shuffle == 'on') {

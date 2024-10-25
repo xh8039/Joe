@@ -17,8 +17,7 @@ if ($this->options->JMusic == 'on') {
 	<?php
 }
 
-if ($this->options->JIndexFriends == 'on' && $this->is('index')) {
-
+if ($this->options->JIndexFriends == 'on' && $this->is('index') && ($this->options->JFriendsSpiderHide == 'on' && !joe\detectSpider())) {
 	$db = Typecho_Db::get();
 	$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->order('order', Typecho_Db::SORT_DESC));
 	if (sizeof($friends) > 0) : ?>

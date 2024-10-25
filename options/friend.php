@@ -25,6 +25,15 @@ $JIndexFriends = new \Typecho\Widget\Helper\Form\Element\Select(
 $JIndexFriends->setAttribute('class', 'joe_content joe_friend');
 $form->addInput($JIndexFriends->multiMode());
 
+$JFriendsSpiderHide = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JFriendsSpiderHide',
+	array('off' => '关闭（默认）', 'on' => '开启'),
+	'off',
+	'是否对蜘蛛引擎隐藏友情链接'
+);
+$JFriendsSpiderHide->setAttribute('class', 'joe_content joe_friend');
+$form->addInput($JFriendsSpiderHide->multiMode());
+
 $JFriends_Submit = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JFriends_Submit',
 	array('off' => '关闭（默认）', 'on' => '开启'),

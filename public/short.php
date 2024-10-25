@@ -163,10 +163,10 @@ function _parseContent($post, $login)
 							<badge class="img-badge hot jb-blue px12">已售 ' . $count . '</badge>
 						</div>
 				';
-				if ($post->fields->pay_box_position == 'top') {
+				if ($post->fields->pay_box_position == 'top' && !joe\detectSpider()) {
 					$content = $pay_box_position . $content;
 				}
-				if ($post->fields->pay_box_position == 'bottom') {
+				if ($post->fields->pay_box_position == 'bottom' && !joe\detectSpider()) {
 					$content = $content . $pay_box_position;
 				}
 			}

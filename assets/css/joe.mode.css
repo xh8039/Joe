@@ -56,7 +56,8 @@ html[data-night='night'] body {
 	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
 	--back-trn-85: rgba(35, 35, 35, 0.85);
 	--back-trn-6: rgba(35, 35, 35, 0.6);
-	--main: #999;
+	/* --main: #999; */
+	--main: #b4b6bb;
 	--routine: #888;
 	--minor: #777;
 	--seat: #666;

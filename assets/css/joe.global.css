@@ -4446,8 +4446,8 @@
 .joe_comment .comment-list__item-contain .term .content .substance {
 	width: 100%;
 	background: var(--body-bg-color);
-	padding: 12px 15px;
-	border-radius: 0 var(--radius-inner) var(--radius-inner) 10px;
+	padding: 10px;
+	border-radius: var(--radius-inner);
 	color: var(--main-color);
 	margin-bottom: 8px;
 	word-break: break-word;

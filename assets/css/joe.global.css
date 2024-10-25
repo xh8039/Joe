@@ -2389,7 +2389,7 @@
 	height: 40px;
 	color: var(--minor);
 	cursor: pointer;
-	transition: color 0.5s;
+	transition: 0.1s;
 	white-space: nowrap;
 	font-size: 14px
 }

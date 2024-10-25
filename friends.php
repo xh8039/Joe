@@ -29,7 +29,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php $this->need('module/header.php'); ?>
 		<div class="joe_container">
 			<div class="joe_main">
-				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
+				<div class="joe_detail" data-cid="<?= $this->cid ?>">
 					<?php $this->need('module/batten.php'); ?>
 					<?php $this->need('module/article.php'); ?>
 
@@ -86,11 +86,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							}
 							foreach ($friends as $item) : ?>
 								<li class="joe_detail__friends-item">
-									<a class="contain" href="<?php echo $item['url']; ?>" target="_blank" rel="<?= $item['rel'] ?>" style="background: <?php echo $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
-										<span class="title"><?php echo $item['title']; ?></span>
+									<a class="contain" href="<?= $item['url'] . '?' . $_SERVER['HTTP_HOST'] ?>" target="_blank" rel="<?= $item['rel'] ?>" style="background: <?= $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
+										<span class="title"><?= $item['title'] ?></span>
 										<div class="content">
-											<div class="desc"><?php echo $item['description']; ?></div>
-											<img width="40" height="40" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php echo $item['logo']; ?>" alt="<?php echo $item['title']; ?>" />
+											<div class="desc"><?= $item['description'] ?></div>
+											<img width="40" height="40" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?= $item['logo'] ?>" alt="<?= $item['title'] ?>" />
 										</div>
 									</a>
 								</li>

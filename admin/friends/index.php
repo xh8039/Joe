@@ -1,6 +1,14 @@
 <?php
 require_once JOE_ROOT . 'library/widget/Friends.php';
 $orders = Typecho_Widget::widget('JoeFriends_Widget');
+function waiting_count()
+{
+	global $db;
+	return $db->fetchRow(
+		$db->select('COUNT(*) AS count')->from('table.friends')->where('status = ?', 0)
+	)['count'];
+}
+$waiting_count = waiting_count();
 ?>
 <style>
 	.typecho-list-table td {
@@ -20,8 +28,9 @@ $orders = Typecho_Widget::widget('JoeFriends_Widget');
 			<div class="col-mb-12 typecho-list">
 				<div class="clearfix">
 					<ul class="typecho-option-tabs">
+						<li class="<?= !isset($_GET['status']) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php') ?>">全部</a></li>
 						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 1) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&status=1') ?>">已通过</a></li>
-						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 0) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&status=0') ?>">待审核 </a></li>
+						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 0) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&status=0') ?>">待审核<?= $waiting_count ? ' <span class="balloon">' . $waiting_count . '</span>' : null ?></a></li>
 					</ul>
 				</div>
 				<div class="typecho-list-operate clearfix">

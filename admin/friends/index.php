@@ -1,4 +1,6 @@
 <?php
+require_once TYPECHO_ADMIN_ROOT . 'header.php';
+require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 require_once JOE_ROOT . 'library/widget/Friends.php';
 $orders = Typecho_Widget::widget('JoeFriends_Widget');
 function waiting_count()

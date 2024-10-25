@@ -3972,7 +3972,7 @@
 	max-height: 24px
 }
 
-/* .joe_footer {
+.joe_footer {
 	border-top: 1px solid var(--classB);
 	color: var(--minor)
 }
@@ -3995,7 +3995,7 @@
 
 .joe_footer .joe_container a:hover {
 	color: var(--theme)
-} */
+}
 
 .joe_pagination {
 	display: flex;

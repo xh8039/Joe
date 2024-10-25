@@ -4,8 +4,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
-	$this->need('module/loading/' . $this->options->JLoading . '.php');
-	$this->need('module/loading/script.php');
+	$JLoadingFile = 'module/loading/' . $this->options->JLoading . '.php';
+	if (file_exists(JOE_ROOT . $JLoadingFile)) {
+		$this->need($JLoadingFile);
+		$this->need('module/loading/script.php');
+	}
 }
 ?>
 <header class="joe_header <?php echo $this->is('post') ? 'current' : '' ?>">

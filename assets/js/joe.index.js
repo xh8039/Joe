@@ -279,9 +279,9 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 						res.data.forEach(data => $('.joe_index__list .joe_list').append(getListMode(data)));
 						// 文章列表缩略图加载失败自动使用主题自带缩略图
-						window.thumbOnError();
+						if (window.thumbOnError) window.thumbOnError();
 						// a标签点击后的离开Loading动画
-						window.offLoading();
+						if (window.offLoading) window.offLoading();
 						$('.joe_load').removeAttr('loading');
 						$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
 						$('.joe_index__list .joe_list__loading').hide();

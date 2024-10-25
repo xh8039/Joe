@@ -980,23 +980,25 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			return true;
 		}
-		window.offLoading = () => {
-			// a标签加载动画
-			$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
-				if ($(this).attr('target') == '_blank') return true;
-				if ($(this).attr('ajax-replace')) return true;
-				let url = $(this).attr('href');
-				if (checkUrl(url)) window.loadingStart();
-				setTimeout(() => {
-					window.loadingEnd();
-				}, 5000);
-				window.addEventListener('unload', function (event) {
-					// 在这里执行你希望在用户离开前运行的代码
-					window.loadingEnd();
+		if (window.loadingEnd && window.loadingStart) {
+			window.offLoading = () => {
+				// a标签加载动画
+				$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
+					if ($(this).attr('target') == '_blank') return true;
+					if ($(this).attr('ajax-replace')) return true;
+					let url = $(this).attr('href');
+					if (checkUrl(url)) window.loadingStart();
+					setTimeout(() => {
+						window.loadingEnd();
+					}, 5000);
+					window.addEventListener('unload', function (event) {
+						// 在这里执行你希望在用户离开前运行的代码
+						window.loadingEnd();
+					});
 				});
-			});
+			}
+			offLoading();
 		}
-		offLoading();
 	}
 
 	/** 头像加载失败代替 */

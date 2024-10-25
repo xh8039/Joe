@@ -1,5 +1,8 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 $this->need('user/header.php');
 ?>
 <!DOCTYPE html>
@@ -21,8 +24,8 @@ $this->need('user/header.php');
 					<p>请输入帐号密码进行登录</p>
 				</div>
 				<div class="form-group">
-					<label>邮箱/用户名</label>
-					<input class="form-control" type="text" id="username" placeholder="输入手机/邮箱/用户名">
+					<label>用户名/邮箱</label>
+					<input class="form-control" type="text" id="username" placeholder="输入用户名/邮箱">
 				</div>
 
 				<div class="form-group">
@@ -54,8 +57,8 @@ $this->need('user/header.php');
 		! function(t) {
 			let from = '<?= addslashes(strip_tags($_GET['from'])) ?>';
 			let btn = function(obj, msg, code) {
-			    obj.html(msg);
-			    obj.attr("disabled", code);
+				obj.html(msg);
+				obj.attr("disabled", code);
 			}
 			$("#login").click(function() {
 				let username = $("#username").val();
@@ -73,10 +76,10 @@ $this->need('user/header.php');
 						password: password
 					},
 					beforeSend: function() {
-					    btn($("#login"), '登录中...', true);
+						btn($("#login"), '登录中...', true);
 					},
 					complete: function() {
-					    btn($("#login"),'登录', false);
+						btn($("#login"), '登录', false);
 					},
 					error: function() {
 						$("#login").text('登录', false);

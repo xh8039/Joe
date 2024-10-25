@@ -1,3 +1,7 @@
+<?php
+require_once TYPECHO_ADMIN_ROOT . 'header.php';
+require_once TYPECHO_ADMIN_ROOT . 'menu.php';
+?>
 <div class="main">
 	<div class="body container">
 		<div class="typecho-page-title">
@@ -34,7 +38,7 @@
 				$form->addInput($rel);
 
 				/** 友链QQ号 */
-				$qq = new Typecho_Widget_Helper_Form_Element_Text('qq', null, "friend", _t('友链QQ号'));
+				$qq = new Typecho_Widget_Helper_Form_Element_Text('qq', null, null, _t('友链QQ号'));
 				$form->addInput($qq);
 
 				/** 友链排序 */

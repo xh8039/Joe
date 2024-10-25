@@ -29,7 +29,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php endif; ?>
 	</section>
 
-	<?php if ($this->options->JAside_Notice) : ?>
+	<?php if (!empty($this->options->JAside_Notice) && !joe\detectSpider()) : ?>
 		<section class="joe_aside__item notice">
 			<div class="joe_aside__item-title">
 				<span class="text">站点公告</span>

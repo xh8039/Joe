@@ -867,7 +867,7 @@ function detectSpider()
 		}
 
 		// 未匹配到任何平台
-		$spider =  null;
+		$spider = is_string($spider) ? $spider : null;
 	}
 	return $spider;
 }

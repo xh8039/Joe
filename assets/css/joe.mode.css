@@ -69,9 +69,10 @@ html[data-night='night'] body {
 
 	--body-bg-color: #292a2d;
 	/* --key-color: #f8fafc; */
-	--key-color: var(--main-color);
 	/* --main-color: #e5eef7; */
-	--main-color: #b4b6bb;
+	/* --main-color: #b4b6bb; */
+	--main-color: var(--main);
+	--key-color: var(--main-color);
 	--main-shadow: rgba(24, 24, 24, 0.1);
 	--muted-color: #b4b6bb;
 	--muted-2-color: #888a8f;

@@ -1179,9 +1179,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	{
-		// tooltip
+		// tooltip.js
 		$("[data-toggle='tooltip']").tooltip({
 			container: "body"
+		});
+		// popover.js
+		$("[data-toggle='popover']").popover({
+			sanitize: false,
 		});
 	}
 });

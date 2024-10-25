@@ -14,11 +14,30 @@ if ($this->options->JMusic == 'on') {
 		window.meting_api = `<?= empty($this->options->JMusicApi) ? '${Joe.BASE_API}/meting?server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>`
 	</script>
 	<script src="<?= joe\theme_url('assets/plugin/Meting.js'); ?>"></script>
-<?php
+	<?php
+}
+
+if ($this->options->JIndexFriends == 'on') {
+
+	$db = Typecho_Db::get();
+	$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->order('order', Typecho_Db::SORT_DESC));
+	if (sizeof($friends) > 0) : ?>
+		<div class="container fluid-widget">
+			<div class="links-widget mb20">
+				<div class="links-box links-style-simple zib-widget">
+					<?php
+					if ($this->options->JFriends_shuffle == 'on') shuffle($friends);
+					foreach ($friends as $item) : ?>
+						<a target="_blank" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="<?= $item['description'] ?? '暂无简介' ?>" href="<?= $item['url'] ?>" data-original-title="<?= $item['title'] ?>"><?= $item['title'] ?></a>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	<?php endif;
 }
 
 if ($this->options->JFooterMode == 'commercial') {
-?>
+	?>
 	<footer class="footer">
 		<div class="container-fluid container-footer">
 			<ul class="list-inline">

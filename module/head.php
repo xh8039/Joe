@@ -16,21 +16,23 @@
 <?php else : ?>
 	<?php $this->header(); ?>
 <?php endif; ?>
+
+<!-- 昼夜模式配色表 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
+
+<!-- Bootstrap: modal.css v3.4.1 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css'); ?>">
 
 <!-- Bootstrap: tooltip.css v3.4.1 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css'); ?>">
 
+<!-- Bootstrap: popover.css v3.4.1 -->
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css'); ?>">
+
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
-
-<!-- Sweetalert弹窗CSS -->
-<!-- <link rel="stylesheet" href="<?= joe\cdn('limonte-sweetalert2/11.4.4/sweetalert2.min.css') ?>" /> -->
-<!-- <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/limonte-sweetalert2/11.4.4/sweetalert2-optimize.css') ?>"> -->
-
 <link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
@@ -38,11 +40,18 @@
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
 <?php $this->need('module/config.php');?>
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
+
+<!-- Bootstrap: transition.js v3.4.1 -->
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js'); ?>"></script>
+
+<!-- Bootstrap: modal.js v3.4.1 -->
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js'); ?>"></script>
 
 <!-- Bootstrap: tooltip.js v3.4.1 -->
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js'); ?>"></script>
+
+<!-- Bootstrap: popover.js v3.4.1 -->
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js'); ?>"></script>
 
 <!-- <script src="<?= joe\theme_url('assets/js/joe.scroll.js'); ?>"></script> -->
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>"></script>
@@ -62,8 +71,6 @@
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
-<!-- Sweetalert弹窗 -->
-<!-- <script src="<?= Joe\cdn('limonte-sweetalert2/11.4.4/sweetalert2.min.js') ?>"></script> -->
 
 <!-- 自定义头部HTML代码 -->
 

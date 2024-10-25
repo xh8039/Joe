@@ -6122,3 +6122,74 @@ html .aplayer {
 	left: -55px;
 	padding-bottom: 20px;
 }
+
+.popover {
+	background: var(--main-bg-color);
+	box-shadow: 0 0 10px 5px var(--main-shadow);
+	padding: 0
+}
+
+.popover-title {
+	background: var(--muted-border-color);
+	border: 0 !important
+}
+
+.popover.top>.arrow:after {
+	border-top-color: var(--main-bg-color) !important
+}
+
+.popover.right>.arrow::after {
+	border-right-color: var(--main-bg-color) !important
+}
+
+.popover.bottom>.arrow::after {
+	border-bottom-color: var(--main-bg-color) !important
+}
+
+.popover.left>.arrow::after {
+	border-left-color: var(--main-bg-color) !important
+}
+
+.links-widget>.links-box>a {
+	color: var(--main-color);
+}
+
+.links-widget>.links-box>a:hover {
+	color: var(--theme);
+}
+
+.container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.container {
+	position: relative;
+}
+
+@media (min-width: 768px) {
+	.container {
+		width: 750px;
+	}
+}
+
+@media (min-width: 992px) {
+	.container {
+		width: 970px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.container {
+		width: 1170px;
+	}
+}
+
+@media (min-width: 1240px) {
+	.container {
+		max-width: var(--mian-max-width);
+		width: auto;
+	}
+}

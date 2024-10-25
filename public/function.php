@@ -809,7 +809,11 @@ function install()
 		if (!array_key_exists('agree', $table_contents)) {
 			$_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `agree` INT DEFAULT 0;');
 		}
-		file_put_contents($lock_file, 'Joe再续前缘安装锁');
+		if (file_put_contents($lock_file, 'Joe再续前缘安装锁')) {
+			echo '<script>alert("主题首次启用安装成功！");</script>';
+		} else {
+			echo '<script>alert("主题首次启用安装失败！请务必手动创建安装锁文件 install.lock 到主题的public目录下！");</script>';
+		}
 	} catch (\Exception $e) {
 	}
 }

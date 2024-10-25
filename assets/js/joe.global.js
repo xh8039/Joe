@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					if (data.access_token == 'off' || data.code != 200) {
 						$("#statistics").remove();
 						if (data.msg) {
-							Qmsg.error('百度统计：'.data.msg);
+							Qmsg.error('百度统计：' + data.msg);
 						}
 						return;
 					}

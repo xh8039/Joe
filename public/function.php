@@ -690,14 +690,19 @@ function install()
 
 	if (file_exists($lock_file)) return;
 
-	// 注册后台订单页面
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
+	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
+
+	// 删除某些特殊情况下的重复注册沉淀
+	Helper::removePanel(3, $orders_url);
+	Helper::removePanel(3, $friends_url);
+
+	// 注册后台订单页面
 	if (!panel_exists($orders_url)) {
 		Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
 	}
 
 	// 注册后台友链页面
-	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
 	if (!panel_exists($friends_url)) {
 		Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
 	}

@@ -1,31 +1,3 @@
-
-
-//jQuery.cookie
-jQuery.cookie = function (e, o, t) {
-	if (void 0 === o) {
-		var i = null;
-		if (document.cookie && '' != document.cookie)
-			for (var r = document.cookie.split(';'), n = 0; n < r.length; n++) {
-				var c = jQuery.trim(r[n]);
-				if (c.substring(0, e.length + 1) == e + '=') {
-					i = decodeURIComponent(c.substring(e.length + 1));
-					break;
-				}
-			}
-		return i;
-	}
-	(t = t || {}), null === o && ((o = ''), (t.expires = -1));
-	var a = '';
-	if (t.expires && ('number' == typeof t.expires || t.expires.toUTCString)) {
-		var l;
-		'number' == typeof t.expires ? ((l = new Date()), l.setTime(l.getTime() + 24 * t.expires * 60 * 60 * 1e3)) : (l = t.expires), (a = '; expires=' + l.toUTCString());
-	}
-	var u = t.path ? '; path=' + t.path : '',
-		s = t.domain ? '; domain=' + t.domain : '',
-		m = t.secure ? '; secure' : '';
-	document.cookie = [e, '=', encodeURIComponent(o), a, u, s, m].join('');
-};
-
 document.addEventListener("DOMContentLoaded", () => {
 
 	/* 检测IE */
@@ -1378,61 +1350,7 @@ function debounce(callback, delay, immediate) {
 	};
 }
 
-//性能检测，通过浏览器帧率
-function fps_yh() {
-	var lastTime = 0;
-	var frames = 0;
-	var fps = 0;
-	var fps_average = 0;
-	var currentTime;
-	var stop = 0;
-
-	function updateFPS() {
-		currentTime = performance.now();
-		frames++;
-		if (currentTime - lastTime >= 300) {
-			fps = Math.round((frames * 1000) / (currentTime - lastTime));
-			frames = 0;
-			lastTime = currentTime;
-
-			if (fps > 5 && lastTime > 1600) {
-				fps_average = fps_average || fps;
-				fps_average = (fps_average + fps) / 2;
-
-				if (fps_average < 20) {
-					stop++;
-				}
-
-				if (stop > 5) {
-					//执行函数
-					$('body').addClass('fps-accelerat');
-				}
-			}
-		}
-
-		if (stop <= 5 && lastTime < 15000) {
-			requestAnimationFrame(updateFPS);
-		} else {
-			setCookie();
-		}
-	}
-
-	function setCookie() {
-		$.cookie('fps_accelerat', ~~fps_average, {
-			path: '/',
-			expires: 604800,
-		});
-	}
-
-	requestAnimationFrame(updateFPS);
-}
-
-//fps性能优化
-if (!$.cookie('fps_accelerat') && !$('body').hasClass('fps-accelerat')) {
-	fps_yh();
-}
-
-//滑动手势minitouch
+// 滑动手势minitouch
 $.fn.minitouch = function (options) {
 	var is_on = 'minitouch-isload';
 	var _e = $(this);

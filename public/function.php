@@ -671,17 +671,18 @@ function optionMulti($string, string $line = "\r\n", $separator = '||'): array
 	return $custom;
 }
 
-function panel_exists($path): bool
+/**
+ * 检测面板是否存在
+ *
+ * @param string $fileName 文件名称
+ * @return bool
+ */
+function panel_exists(string $fileName): bool
 {
-	$addPanel = false;
 	$panelTable = is_array(\Helper::options()->panelTable) ? \Helper::options()->panelTable : unserialize(\Helper::options()->panelTable);
 	$panelTable['file'] = empty($panelTable['file']) ? [] : $panelTable['file'];
-	foreach ($panelTable['file'] as $value) {
-		if ($value == urlencode($path)) {
-			$addPanel = true;
-		}
-	}
-	return $addPanel;
+	$fileName = urlencode(trim($fileName, '/'));
+	return in_array($fileName, $panelTable['file']);
 }
 
 function install()

@@ -3,6 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
+$fields = $this->fields->toArray();
 ?>
 <script>
 	window.Joe = {
@@ -23,8 +24,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
 			fields: {
-				hide_type: `<?= isset($this->fields->hide_type) ? $this->fields->hide_type : null ?>`,
-				pay_price: `<?= isset($this->fields->pay_price) ? round($this->fields->pay_price, 2) : null ?>`,
+				hide_type: `<?= isset($fields['hide_type']) ? $fields['hide_type'] : null ?>`,
+				pay_price: `<?= isset($fields['pay_price']) ? round($fields['pay_price'], 2) : null ?>`,
 			}
 		},
 		VERSION: `<?= JOE_VERSION ?>`,

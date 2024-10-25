@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-define('JOE_VERSION', '1.3276');
+define('JOE_VERSION', '1.328');
 define('JOE_ROOT', dirname(__FILE__) . '/');
 define('THEME_NAME', basename(__DIR__));
 define('JOE_BASE_API', Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api');

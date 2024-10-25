@@ -36,7 +36,8 @@
 
 .joe_census__basic-item.list .list .count p {
 	font-size: 28px;
-	font-weight: 700
+	font-weight: 700;
+	margin-bottom: 0;
 }
 
 .joe_census__basic-item.list .list .icon {

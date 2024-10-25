@@ -309,7 +309,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							if (count($index_notice_arr) === 2) $index_notice = array("text" => trim($index_notice_arr[0]), "url" => trim($index_notice_arr[1]));
 						}
 						?>
-						<?php if ($index_notice) : ?>
+						<?php if ($index_notice && !joe\detectSpider()) : ?>
 							<div class="joe_index__title-notice">
 								<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
 									<path d="M656.261 347.208a188.652 188.652 0 1 0 0 324.05v-324.05z" fill="#F4CA1C" />

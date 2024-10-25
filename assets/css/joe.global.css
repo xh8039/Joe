@@ -2394,7 +2394,7 @@
 	font-size: 14px
 }
 
-.joe_tabs__head-item::after {
+/* .joe_tabs__head-item::after {
 	content: '';
 	position: absolute;
 	background: var(--theme);
@@ -2409,17 +2409,18 @@
 	transition: opacity 0.25s, -webkit-transform 0.25s;
 	transition: opacity 0.25s, transform 0.25s;
 	transition: opacity 0.25s, transform 0.25s, -webkit-transform 0.25s
-}
+} */
 
 .joe_tabs__head-item.active {
-	color: var(--theme)
+	color: #fff;
+	background: var(--theme);
 }
 
-.joe_tabs__head-item.active::after {
+/* .joe_tabs__head-item.active::after {
 	opacity: 1;
 	-webkit-transform: scaleX(1);
 	transform: scaleX(1)
-}
+} */
 
 .joe_tabs__body-item {
 	padding: 15px

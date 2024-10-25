@@ -4454,6 +4454,10 @@
 	line-height: 24px
 }
 
+.joe_comment .comment-list__item-contain .term .content .substance>p {
+	margin-bottom: 0;
+}
+
 .joe_comment .comment-list__item-contain .term .content .substance .parent {
 	color: #388bff;
 	margin-bottom: 5px;

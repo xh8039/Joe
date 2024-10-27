@@ -183,7 +183,7 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 		// $value['pay_price'] = isset($value['pay_price']) ? '<font color="green">' . $value['pay_price'] . '</font>' : '未支付';
 		// $value['admin_email'] = $value['admin_email'] ? '<font color="green">已通知</font>' : '未通知';
 		// $value['user_email'] = $value['user_email'] ? '<font color="green">已通知</font>' : '未通知';
-		$value['status'] = $value['status'] ? '正常' : '<font color="red">禁用</font>';
+		$value['status'] = $value['status'] ? '已通过' : '<font color="red">待审核</font>';
 		// $value['theId'] = 'robots-log-' . $value['lid'];
 		return $value;
 	}

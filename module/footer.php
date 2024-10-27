@@ -94,21 +94,23 @@ if ($this->options->JFooterMode == 'commercial') {
 						</a>
 					</div>
 				</li>
-				<li>
-					<?php
-					$JFooterMiniImg = joe\optionMulti($this->options->JFooterMiniImg);
+				<?php
+				$JFooterMiniImg = joe\optionMulti($this->options->JFooterMiniImg);
+				if (!empty($JFooterMiniImg)) {
+					echo '<li>';
 					foreach ($JFooterMiniImg as $key => $value) {
-					?>
+						?>
 						<div class="footer-miniimg" data-toggle="tooltip" title="<?= $value[0] ?? '' ?>">
 							<p>
 								<img class="lazyload" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $value[1] ?? '' ?>" alt="<?= $value[0] ?? '' ?> - <?= $this->options->title ?>">
 							</p>
 							<span class="opacity8 em09"><?= $value[0] ?? '' ?></span>
 						</div>
-					<?php
+						<?php
 					}
-					?>
-				</li>
+					echo '</li>';
+				}
+				?>
 			</ul>
 			<?php
 			if (!empty($this->options->JFcodeCustomizeCode)) {

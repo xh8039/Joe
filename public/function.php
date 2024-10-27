@@ -693,6 +693,8 @@ function install()
 		return;
 	}
 
+	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
+	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
 	$lock_file = JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'install.lock';
 
 	if (file_exists($lock_file)) {
@@ -701,12 +703,9 @@ function install()
 			// 删除更改主题目录名后的重复注册面板沉淀
 			Helper::removePanel(3, '../themes/' . $lock_file_content . '/admin/orders.php');
 			Helper::removePanel(3, '../themes/' . $lock_file_content . '/admin/friends.php');
+
 			// 重新注册新的面板
-			$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
-			$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
-			// 注册后台订单页面
 			if (!panel_exists($orders_url)) Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
-			// 注册后台友链页面
 			if (!panel_exists($friends_url)) Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
 			if (file_put_contents($lock_file, THEME_NAME)) {
 				echo '<script>alert("主题目录更换为 [' . THEME_NAME . '] 成功！");</script>';
@@ -716,9 +715,6 @@ function install()
 		}
 		return;
 	}
-
-	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
-	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
 
 	// 删除某些特殊情况下的重复注册沉淀
 	Helper::removePanel(3, $orders_url);

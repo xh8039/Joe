@@ -1124,25 +1124,3 @@ function _userRewardsModal($self)
 <?php
 	$self->response->throwContent('');
 }
-
-function _payDelete($self)
-{
-	if (!$GLOBALS['JOE_USER']->hasLogin() || $GLOBALS['JOE_USER']->group != 'administrator') {
-		$self->response->setStatus(404);
-		return;
-	}
-	$self->response->setStatus(200);
-	$db = Typecho_Db::get();
-	$id = isset($_POST['id']) ? $_POST['id'] : [];
-	if (!is_array($id)) $id = [];
-	$sql = $db->delete('table.joe_pay')->where('id in?', $id);
-	if ($db->query($sql)) {
-		if (isset($_SERVER['HTTP_REFERER'])) {
-			header('Location: ' . $_SERVER['HTTP_REFERER'], true, 302);
-			exit;
-		} else {
-			header('Location: /admin/extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Forders.php', true, 302);
-			exit;
-		}
-	}
-}

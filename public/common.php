@@ -126,9 +126,6 @@ function themeInit($self)
 			case 'check_pay':
 				_checkPay($self);
 				break;
-			case 'pay_delete':
-				_payDelete($self);
-				break;
 		};
 	}
 

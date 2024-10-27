@@ -24,15 +24,15 @@ $waiting_count = waiting_count();
 <div class="main">
 	<div class="body container">
 		<div class="typecho-page-title">
-			<h2>友情链接<a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=create'); ?>">新增</a></h2>
+			<h2>友情链接<a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=create'); ?>">新增</a></h2>
 		</div>
 		<div class="row typecho-page-main" role="main">
 			<div class="col-mb-12 typecho-list">
 				<div class="clearfix">
 					<ul class="typecho-option-tabs">
-						<li class="<?= !isset($_GET['status']) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php') ?>">全部</a></li>
-						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 1) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&status=1') ?>">已通过</a></li>
-						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 0) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&status=0') ?>">待审核<?= $waiting_count ? ' <span class="balloon">' . $waiting_count . '</span>' : null ?></a></li>
+						<li class="<?= !isset($_GET['status']) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php') ?>">全部</a></li>
+						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 1) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&status=1') ?>">已通过</a></li>
+						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 0) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&status=0') ?>">待审核<?= $waiting_count ? ' <span class="balloon">' . $waiting_count . '</span>' : null ?></a></li>
 					</ul>
 				</div>
 				<div class="typecho-list-operate clearfix">
@@ -46,9 +46,9 @@ $waiting_count = waiting_count();
 										class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i
 										class="i-caret-down"></i></button>
 								<ul class="dropdown-menu">
-									<li><a lang="<?php _e('你确认要删除这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=delete') ?>"><?php _e('删除'); ?></a></li>
-									<li><a lang="<?php _e('你确认要启用这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=open') ?>"><?php _e('启用'); ?></a></li>
-									<li><a lang="<?php _e('你确认要禁用这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=disable') ?>"><?php _e('禁用'); ?></a></li>
+									<li><a lang="<?php _e('你确认要删除这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=delete') ?>"><?php _e('删除'); ?></a></li>
+									<li><a lang="<?php _e('你确认要启用这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=open') ?>"><?php _e('启用'); ?></a></li>
+									<li><a lang="<?php _e('你确认要禁用这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=disable') ?>"><?php _e('禁用'); ?></a></li>
 								</ul>
 							</div>
 						</div>
@@ -95,7 +95,7 @@ $waiting_count = waiting_count();
 									<?php while ($orders->next()) : ?>
 										<tr id="<?php $orders->id() ?>">
 											<td><input type="checkbox" value="<?php $orders->id() ?>" name="id[]" /></td>
-											<td><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php&action=edit&id=') . $orders->id() ?>"><?php $orders->title() ?></a></td>
+											<td><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=edit&id=') . $orders->id() ?>"><?php $orders->title() ?></a></td>
 											<td><a target="_blank" href="<?php $orders->url() ?>"><?php $orders->url() ?></a></td>
 											<td><?php $orders->description() ?></td>
 											<td><img referrerpolicy="no-referrer" rel="noreferrer" width="50px" height="50px" src="<?php $orders->logo() ?>"></td>

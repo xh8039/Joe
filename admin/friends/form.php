@@ -12,7 +12,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 				<?php
 				/** 构建表格 */
 				$form = new Typecho_Widget_Helper_Form(
-					Helper::security()->getAdminUrl('extending.php?panel=..%2Fthemes%2FJoe%2Fadmin%2Ffriends.php'),
+					Helper::security()->getAdminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php'),
 					Typecho_Widget_Helper_Form::POST_METHOD
 				);
 

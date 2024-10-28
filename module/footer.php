@@ -251,6 +251,10 @@ if (!empty($footer_tabbar)) {
 			// document.querySelector('.joe_action').style.bottom = (document.getElementById('cc-myssl-seal').clientHeight + height + 20) + 'px';
 		}
 
+		if (document.querySelector('.joe_header__slideout')) {
+			document.querySelector('.joe_header__slideout').style.paddingBottom = (height + 10) + 'px';
+		}
+
 		var aplayerStyle = document.createElement('style');
 		aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${height + 10}px}`;
 		$('head').append(aplayerStyle);

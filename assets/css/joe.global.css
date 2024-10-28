@@ -4151,7 +4151,7 @@
 
 .joe_comment__respond-type .item {
 	background: var(--body-bg-color);
-	padding: 0 10px;
+	padding: 0 15px;
 	height: 32px;
 	color: var(--main);
 	border: none;
@@ -4190,7 +4190,7 @@
 	width: 100%;
 	border: none;
 	background: transparent;
-	padding: 0 10px;
+	padding: 0 15px;
 	height: 40px;
 	color: var(--routine)
 }
@@ -4220,7 +4220,7 @@
 }
 
 .joe_comment__respond-form .body {
-	padding: 10px;
+	padding: 15px;
 }
 
 .joe_comment__respond-form .body .text {

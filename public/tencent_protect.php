@@ -11,7 +11,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	}
 
 	// 定义要检查的爬虫和 Referer
-	$spiders = ['Baiduspider', '360Spider', 'YisouSpider', 'Sogou web spider', 'Sogou inst spider', 'Googlebot', 'bingbot', 'bing', 'Bytespider'];
+	$spiders = ['Baiduspider', '360Spider', 'YisouSpider', 'Sogou web spider', 'Sogou inst spider', 'Googlebot', 'bingbot', 'Bytespider'];
 
 	$referers = ['.tr.com', '.wsd.com', '.oa.com', '.cm.com', '/membercomprehensive/', 'www.internalrequests.org'];
 

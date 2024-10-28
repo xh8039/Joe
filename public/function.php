@@ -688,7 +688,7 @@ function panel_exists(string $fileName): bool
 function install()
 {
 	// 检查目录本身的权限
-	if (!is_writeable(__FILE__) && !chmod(__FILE__, 0755)) {
+	if ((!is_writeable(__FILE__) || !is_readable(__FILE__)) && !chmod(__FILE__, 0755)) {
 		echo '<script>alert("请设置主题目录及其子目录的权限为755后再设置本主题！");</script>';
 		exit;
 		return;

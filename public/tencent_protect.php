@@ -15,6 +15,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 	$referers = ['.tr.com', '.wsd.com', '.oa.com', '.cm.com', '/membercomprehensive/', 'www.internalrequests.org'];
 
+	if (!isset($_SERVER['HTTP_USER_AGENT'])) $_SERVER['HTTP_USER_AGENT'] = '';
+	if (!isset($_SERVER['HTTP_REFERER'])) $_SERVER['HTTP_REFERER'] = '';
+
 	// 检查 User-Agent
 	foreach ($spiders as $spider) {
 		if (stripos($_SERVER['HTTP_USER_AGENT'], $spider) !== false) {

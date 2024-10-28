@@ -89,11 +89,9 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 		$this->db = Typecho_Db::get();
 
 		/** 初始化常用组件 */
-		$this->options = $this->widget('Widget_Options');
-		$this->user = $this->widget('Widget_User');
-		$this->security = $this->widget('Widget_Security');
-
-		// $this->bots = ['wxpay' => '微信', 'alipay' => '支付宝', 'qqpay' => 'QQ'];
+		// $this->options = $this->widget('Widget_Options');
+		// $this->user = $this->widget('Widget_User');
+		// $this->security = $this->widget('Widget_Security');
 	}
 	public function select()
 	{
@@ -124,9 +122,6 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 		/** 构建基础查询 */
 		$select = $this->select();
 
-		// if (!empty($this->request->type)) {
-		// 	$select->where('table.friends.type = ?', $this->request->type);
-		// }
 		if (isset($this->request->status) && is_numeric($this->request->status)) {
 			$select->where('status = ?', $this->request->status);
 		}
@@ -150,8 +145,10 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 		$this->_countSql = clone $select;
 
 		/** 提交查询 */
-		$select->order('create_time', Typecho_Db::SORT_DESC)
+		$select->order('id', Typecho_Db::SORT_DESC)
 			->page($this->_currentPage, $this->parameter->pageSize);
+
+		// var_dump($select);
 
 		$this->db->fetchAll($select, array($this, 'push'));
 	}
@@ -178,13 +175,7 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 	 */
 	public function filter(array $value)
 	{
-		// $value['typeName'] = array_key_exists($value['type'], $this->bots) ? $this->bots[$value['type']] : $value['type'];
-		// $value['user_id'] = is_numeric($value['user_id']) ? $value['user_id'] : '游客';
-		// $value['pay_price'] = isset($value['pay_price']) ? '<font color="green">' . $value['pay_price'] . '</font>' : '未支付';
-		// $value['admin_email'] = $value['admin_email'] ? '<font color="green">已通知</font>' : '未通知';
-		// $value['user_email'] = $value['user_email'] ? '<font color="green">已通知</font>' : '未通知';
 		$value['status'] = $value['status'] ? '已通过' : '<font color="red">待审核</font>';
-		// $value['theId'] = 'robots-log-' . $value['lid'];
 		return $value;
 	}
 
@@ -227,34 +218,11 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 	public function size(Typecho_Db_Query $condition)
 	{
 		return $this->db->fetchObject($condition
-			->select(array('COUNT(DISTINCT table.friends.id)' => 'num'))
+			->select(array('COUNT(DISTINCT id)' => 'num'))
 			->from('table.friends')
 			->cleanAttribute('group'))->num;
 	}
 
-	public function deleteLogs()
-	{
-		$logs = $this->request->filter('int')->getArray('id');
-		$deleteCount = 0;
-		foreach ($logs as $log) {
-			// 删除插件接口
-			$this->pluginHandle()->deleteLogs($log, $this);
 
-			$result = $this->db->query($this->db->delete('table.friends')->where('table.friends.id = ?', $log));
-			if ($result) $deleteCount++;
-		}
-		/** 设置提示信息 */
-		$this->widget('Widget_Notice')->set(
-			$deleteCount > 0 ? _t('订单已经被删除') : _t('没有订单被删除'),
-			$deleteCount > 0 ? 'success' : 'notice'
-		);
-	}
-
-
-	public function action()
-	{
-		$this->security->protect();
-		$this->on($this->request->is('do=delete'))->deleteLogs();
-		$this->response->goBack();
-	}
+	public function action() {}
 }

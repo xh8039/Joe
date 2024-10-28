@@ -61,7 +61,7 @@ $orders = Typecho_Widget::widget('JoeOrders_Widget');
 							<select class="search-status" name="status">
 								<option value=""><?php _e('支付状态'); ?></option>
 								<?php foreach (['1' => '已支付', '0' => '未支付'] as $id => $name) : ?>
-									<option value="<?php echo $id; ?>" <?php if ($request->get('status') == $id) : ?> selected="true" <?php endif; ?>><?php echo $name; ?></option>
+									<option value="<?php echo $id; ?>" <?= $request->get('status', 2) == $id ? 'selected="true"' : null ?>><?php echo $name; ?></option>
 								<?php endforeach; ?>
 							</select>
 							<button type="submit" class="search-btn btn btn-s"><?php _e('筛选'); ?></button>

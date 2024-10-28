@@ -73,10 +73,10 @@ $form->addInput($JIndex_Carousel);
 $JIndex_Carousel_Target = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JIndex_Carousel_Target',
 	array(
-		'_self' => '_self（默认，同窗口）',
-		'_blank' => '_blank（新窗口）',
-		'_parent' => '_parent（当前窗口）',
-		'_top' => '_top（顶端打开窗口）',
+		'_self' => '_self（默认，在与点击相同的框架中打开链接的文档）',
+		'_blank' => '_blank（在新窗口或选项卡中打开链接文档）',
+		'_parent' => '_parent（在父框架中打开链接文档）',
+		'_top' => '_top（在窗口的整个主体中打开链接的文档）',
 	),
 	'_self',
 	'首页轮播图打开窗口方式',
@@ -87,10 +87,10 @@ $form->addInput($JIndex_Carousel_Target->multiMode());
 $Jessay_target = new \Typecho\Widget\Helper\Form\Element\Select(
 	'Jessay_target',
 	array(
-		'_self' => '_self（默认，同窗口）',
-		'_blank' => '_blank（新窗口）',
-		'_parent' => '_parent（当前窗口）',
-		'_top' => '_top（顶端打开窗口）',
+		'_self' => '_self（默认，在与点击相同的框架中打开链接的文档）',
+		'_blank' => '_blank（在新窗口或选项卡中打开链接文档）',
+		'_parent' => '_parent（在父框架中打开链接文档）',
+		'_top' => '_top（在窗口的整个主体中打开链接的文档）',
 	),
 	'_self',
 	'首页文章列表打开方式',

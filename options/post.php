@@ -108,10 +108,10 @@ $form->addInput($JBingToken);
 $Jsearch_target = new \Typecho\Widget\Helper\Form\Element\Select(
 	'Jsearch_target',
 	array(
-		'_blank' => '_blank（默认，新窗口）',
-		'_parent' => '_parent（当前窗口）',
-		'_self' => '_self（同窗口）',
-		'_top' => '_top（顶端打开窗口）',
+		'_self' => '_self（默认，在与点击相同的框架中打开链接的文档）',
+		'_blank' => '_blank（在新窗口或选项卡中打开链接文档）',
+		'_parent' => '_parent（在父框架中打开链接文档）',
+		'_top' => '_top（在窗口的整个主体中打开链接的文档）',
 	),
 	'_blank',
 	'其他页面文章列表打开方式',

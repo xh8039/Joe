@@ -849,6 +849,8 @@ function install()
 			echo '<script>alert("主题首次启用安装失败！请务必手动创建安装锁文件 install.lock 到主题的public目录下！");</script>';
 		}
 	} catch (\Exception $e) {
+		echo $e;
+		exit;
 	}
 }
 

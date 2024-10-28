@@ -362,7 +362,7 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 			<img width="50" height="50" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主昵称" />
 			<div class="info">
 				<a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>
-				<p class="motto joe_motto"></p>
+				<p class="motto joe_motto mb0"></p>
 			</div>
 		</div>
 		<ul class="joe_header__slideout-count">

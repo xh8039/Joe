@@ -11,7 +11,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<div class="user">
 			<img width="75" height="75" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主头像" />
 			<a class="link" target="_blank" href="<?php $this->options->JAside_Author_Link() ?>" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>
-			<p class="motto joe_motto"></p>
+			<p class="motto joe_motto mb0"></p>
 		</div>
 		<?php Typecho_Widget::widget('Widget_Stat')->to($item); ?>
 		<div class="count">

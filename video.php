@@ -27,7 +27,7 @@
 					<div class="joe_video__detail joe_video__contain">
 						<div class="joe_video__contain-title">影片简介</div>
 						<div class="joe_video__detail-info">
-							<p class="error">正在拼命加载中...</p>
+							<p class="mb0 error">正在拼命加载中...</p>
 						</div>
 					</div>
 					<div class="joe_video__player joe_video__contain">

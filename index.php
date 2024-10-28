@@ -330,8 +330,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 									<div class="information">
 										<div class="title"></div>
 										<div class="abstract">
-											<p></p>
-											<p></p>
+											<p class="mb0"></p>
+											<p class="mb0"></p>
 										</div>
 									</div>
 								</li>

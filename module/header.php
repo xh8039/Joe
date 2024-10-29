@@ -506,9 +506,9 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 					</a>
 					<ul class="slides panel-body">
 						<li>
-							<a class="link" href="<?= joe\user_url('login'); ?>" rel="noopener noreferrer nofollow">登录</a>
+							<a class="link header-login" href="<?= joe\user_url('login'); ?>" rel="noopener noreferrer nofollow">登录</a>
 							<?php if ($this->options->allowRegister) : ?>
-								<a class="link" href="<?= joe\user_url('register'); ?>" rel="noopener noreferrer nofollow">注册</a>
+								<a class="link header-register" href="<?= joe\user_url('register'); ?>" rel="noopener noreferrer nofollow">注册</a>
 							<?php endif; ?>
 						</li>
 					</ul>

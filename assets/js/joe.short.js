@@ -252,10 +252,17 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.render();
 			}
 			render() {
-				
 				if (window.Joe.CONTENT.fields.hide == 'pay') {
 					let price = window.Joe.CONTENT.fields.price;
 					this.innerHTML = `<span class="joe_hide">此处内容作者设置了 <i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${price} 元</i> 可见</span>`;
+				} else if (window.Joe.CONTENT.fields.hide == 'login') {
+					this.innerHTML = '<span class="joe_hide">此处内容作者设置了 <i class="joe_hide__button">登录</i> 可见</span>';
+					this.$button = this.querySelector('.joe_hide__button');
+					const $login = document.querySelector('.header-login');
+					if (!$login) return;
+					this.$button.addEventListener('click', () => {
+						$login.click();
+					});
 				} else {
 					this.innerHTML = '<span class="joe_hide">此处内容作者设置了 <i class="joe_hide__button">回复</i> 可见</span>';
 					this.$button = this.querySelector('.joe_hide__button');

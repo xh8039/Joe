@@ -1556,6 +1556,7 @@
 }
 
 .joe_list__item .information .title .badge {
+	display: inline-block;
 	height: 20px;
 	line-height: 20px;
 	background-image: -webkit-linear-gradient(0deg, #3ca5f6 0%, #a86af9 100%);

@@ -130,7 +130,7 @@ function _parseContent($post, $login)
 				' . $content;
 			} else {
 				$pay_box_position = '
-				  <div class="zib-widget pay-box  order-type-1" id="posts-pay">
+				  <div class="zib-widget pay-box order-type-1" id="posts-pay">
 							<div class="flex pay-flexbox">
 								<div class="flex0 relative mr20 hide-sm pay-thumb">
 									<div class="graphic">

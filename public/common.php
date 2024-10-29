@@ -211,30 +211,42 @@ function themeFields($layout)
 		array('top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'),
 		'top',
 		'付费阅读模块显示位置',
-		'在文章页面中购买模块的显示位置
-		<script>
+		'在文章页面中购买模块的显示位置'
+	);
+	$layout->addItem($pay_box_position);
+
+	$pay_tag_background = new \Typecho\Widget\Helper\Form\Element\Select(
+		'pay_tag_background',
+		['yellow' => '渐变黄', 'blue' => '渐变蓝', 'cyan' => '渐变青', 'green' => '渐变绿', 'purple' => '渐变紫', 'red' => '渐变红', 'pink' => '渐变粉', 'vip1' => '豪华VIP', 'vip2' => '轻奢VIP', 'none' => '不显示'],
+		'yellow',
+		'付费阅读标签背景颜色',
+		'<script>
 			const payPriceInput = document.querySelector(\'input[name="fields[price]"]\').parentElement.parentElement.parentElement;
 			const pay_box_position = document.querySelector(\'select[name="fields[pay_box_position]"]\').parentElement.parentElement.parentElement;
+			const pay_tag_background = document.querySelector(\'select[name="fields[pay_tag_background]"]\').parentElement.parentElement.parentElement;
 			if (document.querySelector(\'select[name="fields[hide]"]\').value === "pay") {
 				pay_box_position.style.display = "table-row";
+				pay_tag_background.style.display = "table-row";
 				payPriceInput.style.display = "table-row";
 			} else {
 			 	pay_box_position.style.display = "none";
+				pay_tag_background.style.display = "none";
 				payPriceInput.style.display = "none";
 			}
 			document.querySelector(\'select[name="fields[hide]"]\').addEventListener("change", () => {
 				if (document.querySelector(\'select[name="fields[hide]"]\').value === "pay") {
 					pay_box_position.style.display = "table-row";
+					pay_tag_background.style.display = "table-row";
 					payPriceInput.style.display = "table-row";
 				} else {
 				 	pay_box_position.style.display = "none";
+					pay_tag_background.style.display = "none";
 					payPriceInput.style.display = "none";
 				}
 			});
-		</script>
-		'
+		</script>'
 	);
-	$layout->addItem($pay_box_position);
+	$layout->addItem($pay_tag_background);
 
 	$keywords = new \Typecho\Widget\Helper\Form\Element\Text(
 		'keywords',

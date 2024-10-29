@@ -55,17 +55,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 											</a>
 											<a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
 											<div class="meta">
-												<div class="item-tags scroll-x no-scrollbar mb6">
-													<?php
-													$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
-													foreach ($this->categories as $key => $value) {
-														echo '<a class="but ' . $color_array[$key] . '" title="查看更多分类文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
-													}
-													foreach ($this->tags as $key => $value) {
-														echo '<a href="' . $value['permalink'] . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
-													}
-													?>
-												</div>
+												<div class="item-tags scroll-x no-scrollbar mb6"><?= joe\get_archive_tags($this) ?></div>
 												<div class="item-meta muted-2-color flex jsb ac">
 													<item class="meta-author flex ac">
 														<a href="<?= $this->author->permalink ?>">
@@ -107,17 +97,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 												<?php $this->title() ?>
 											</a>
 											<div class="meta">
-												<div class="item-tags scroll-x no-scrollbar mb6">
-													<?php
-													$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
-													foreach ($this->categories as $key => $value) {
-														echo '<a class="but ' . $color_array[$key] . '" title="查看更多分类文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
-													}
-													foreach ($this->tags as $key => $value) {
-														echo '<a href="' . $value['permalink'] . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
-													}
-													?>
-												</div>
+												<div class="item-tags scroll-x no-scrollbar mb6"><?= joe\get_archive_tags($this) ?></div>
 												<div class="item-meta muted-2-color flex jsb ac">
 													<item class="meta-author flex ac">
 														<a href="<?= $this->author->permalink ?>">
@@ -179,17 +159,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 											<?php endfor; ?>
 										</a>
 										<div class="meta">
-											<div class="item-tags scroll-x no-scrollbar mb6">
-												<?php
-												$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
-												foreach ($this->categories as $key => $value) {
-													echo '<a class="but ' . $color_array[$key] . '" title="查看更多分类文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
-												}
-												foreach ($this->tags as $key => $value) {
-													echo '<a href="' . $value['permalink'] . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
-												}
-												?>
-											</div>
+											<div class="item-tags scroll-x no-scrollbar mb6"><?= joe\get_archive_tags($this) ?></div>
 											<div class="item-meta muted-2-color flex jsb ac">
 												<item class="meta-author flex ac">
 													<a href="<?= $this->author->permalink ?>">
@@ -232,17 +202,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 											</a>
 											<a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
 											<div class="meta">
-												<div class="item-tags scroll-x no-scrollbar mb6">
-													<?php
-													$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
-													foreach ($this->categories as $key => $value) {
-														echo '<a class="but ' . $color_array[$key] . '" title="查看更多分类文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
-													}
-													foreach ($this->tags as $key => $value) {
-														echo '<a href="' . $value['permalink'] . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
-													}
-													?>
-												</div>
+												<div class="item-tags scroll-x no-scrollbar mb6"><?= joe\get_archive_tags($this) ?></div>
 												<div class="item-meta muted-2-color flex jsb ac">
 													<item class="meta-author flex ac">
 														<a href="<?= $this->author->permalink ?>">

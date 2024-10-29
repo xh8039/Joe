@@ -61,7 +61,8 @@ function _getPost($self)
 					'author_screenName' => $item->author->screenName,
 					'author_permalink' => $item->author->permalink,
 					'author_avatar' => joe\getAvatarByMail($item->author->mail, false),
-					'tags' => $item->tags
+					'tags' => $item->tags,
+					'fields' => $item->fields->toArray()
 				);
 			}
 		}
@@ -93,12 +94,13 @@ function _getPost($self)
 				"agree" => number_format($item->agree),
 				"permalink" => $item->permalink,
 				"lazyload" => joe\getLazyload(false),
-				"type" => $item->fields->hide == 'pay' ? '付费' : 'normal',
+				"type" => 'normal',
 				'target' => Helper::options()->Jessay_target,
 				'author_screenName' => $item->author->screenName,
 				'author_permalink' => $item->author->permalink,
 				'author_avatar' => joe\getAvatarByMail($item->author->mail, false),
-				'tags' => $item->tags
+				'tags' => $item->tags,
+				'fields' => $item->fields->toArray()
 			);
 		}
 	};

@@ -49,7 +49,7 @@ function themeConfig($form)
 					<li class="item" data-current="joe_statistic">统计设置</li>
 					<li class="item" data-current="joe_message">消息推送</li>
 					<li class="item" data-current="joe_footer">底栏设置</li>
-					<li class="item" data-current="joe_pay">支付设置</li>
+					<li class="item" data-current="joe_pay">付费设置</li>
 					<a class="item" data-current="joe_code" href="<?= Helper::options()->rootUrl . __TYPECHO_ADMIN_DIR__ ?>options-theme.php?joe_code=true">插入代码</a>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
@@ -101,7 +101,7 @@ function themeConfig($form)
 	// 底栏设置
 	require_once('options/footer.php');
 
-	// 支付设置
+	// 付费设置
 	require_once('options/pay.php');
 
 	// 自定义代码

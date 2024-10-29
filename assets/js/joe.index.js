@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						</a>
 						<div class="information">
 							<a href="${_.permalink}" class="title" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
-								<span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
+								${!_.type || _.type == 'normal' ? '' : '<span class="badge">' + _.type + '</span>'}${_.title}
 							</a>
 							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
 							<div class="meta">
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="line"></div>
 						<div class="information">
 							<a href="${_.permalink}" class="title" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
-								<span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
+								${!_.type || _.type == 'normal' ? '' : '<span class="badge">' + _.type + '</span>'}${_.title}
 							</a>
 							<div class="meta">
 								<div class="item-tags scroll-x no-scrollbar mb6">
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="line"></div>
 						<div class="information">
 							<a href="${_.permalink}" class="title" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
-								<span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
+								${!_.type || _.type == 'normal' ? '' : '<span class="badge">' + _.type + '</span>'}${_.title}
 							</a>
 							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
 						</div>
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="line"></div>
 						<div class="information">
 							<a href="${_.permalink}" class="title" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
-								<span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
+								${!_.type || _.type == 'normal' ? '' : '<span class="badge">' + _.type + '</span>'}${_.title}
 							</a>
 							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
 							<div class="meta">

@@ -81,7 +81,7 @@ function _parseContent($post, $login)
 		$content = preg_replace('/{progress([^}]*)\/}/SU', '<joe-progress $1></joe-progress>', $content);
 	}
 	if (strpos($content, '{hide') !== false) {
-		if ($post->fields->hide_type == 'pay') {
+		if ($post->fields->hide == 'pay') {
 			$db = Typecho_Db::get();
 			$pay = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
 			$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.joe_pay')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
@@ -111,7 +111,7 @@ function _parseContent($post, $login)
 									<div class="flex jsb">
 										<span>支付金额</span>
 										<span>
-											<span class="pay-mark">￥</span>' . $pay['pay_price'] . '
+											<span class="pay-mark">￥</span>' . $pay['price'] . '
 										</span>
 									</div>
 								</div>
@@ -145,7 +145,7 @@ function _parseContent($post, $login)
 										<div class="price-box">
 											<div class="c-red">
 												<b class="em3x">
-													<span class="pay-mark">￥</span>' . round($post->fields->pay_price, 2) . '
+													<span class="pay-mark">￥</span>' . round($post->fields->price, 2) . '
 												</b>
 											</div>
 										</div>
@@ -171,13 +171,13 @@ function _parseContent($post, $login)
 				}
 			}
 		}
-		if ($post->fields->hide_type == 'login') {
+		if ($post->fields->hide == 'login') {
 			if ($login) {
 				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 			}
 		}
-		// if ($post->fields->hide_type == 'comment') {
+		// if ($post->fields->hide == 'comment') {
 		// }
 		$db = Typecho_Db::get();
 		$hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));

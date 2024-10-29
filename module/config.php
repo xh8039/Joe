@@ -24,8 +24,8 @@ $fields = $this->fields->toArray();
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
 			fields: {
-				hide_type: `<?= isset($fields['hide_type']) ? $fields['hide_type'] : null ?>`,
-				pay_price: `<?= isset($fields['pay_price']) ? round($fields['pay_price'], 2) : null ?>`,
+				hide: `<?= isset($fields['hide']) ? $fields['hide'] : null ?>`,
+				price: `<?= isset($fields['price']) ? round($fields['price'], 2) : null ?>`,
 			}
 		},
 		VERSION: `<?= JOE_VERSION ?>`,

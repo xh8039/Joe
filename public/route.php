@@ -56,7 +56,7 @@ function _getPost($self)
 					"agree" => joe\getAgree($item, false),
 					"permalink" => $item->permalink,
 					"lazyload" => joe\getLazyload(false),
-					"type" => "sticky",
+					"type" => '置顶',
 					'target' => Helper::options()->Jessay_target,
 					'author_screenName' => $item->author->screenName,
 					'author_permalink' => $item->author->permalink,
@@ -93,7 +93,7 @@ function _getPost($self)
 				"agree" => number_format($item->agree),
 				"permalink" => $item->permalink,
 				"lazyload" => joe\getLazyload(false),
-				"type" => "normal",
+				"type" => $item->fields->hide == 'pay' ? '付费' : 'normal',
 				'target' => Helper::options()->Jessay_target,
 				'author_screenName' => $item->author->screenName,
 				'author_permalink' => $item->author->permalink,
@@ -785,14 +785,14 @@ function _payCashierModal($self)
 	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 	$item->next();
 
-	$pay_price = $item->fields->pay_price;
+	$price = $item->fields->price;
 
-	if (!is_numeric($pay_price) || round($pay_price, 2) <= 0) {
+	if (!is_numeric($price) || round($price, 2) <= 0) {
 		$self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
 		return;
 	}
 
-	$pay_price = round($pay_price, 2);
+	$price = round($price, 2);
 ?>
 	<div class="modal-colorful-header colorful-bg jb-blue">
 		<button class="close" data-dismiss="modal">
@@ -821,7 +821,7 @@ function _payCashierModal($self)
 			<div>
 				<span>
 					<span class="pay-mark px12">￥</span>
-					<span><?= $pay_price ?></span>
+					<span><?= $price ?></span>
 					<!-- <span class="em14">0.01</span> -->
 				</span>
 			</div>
@@ -873,7 +873,7 @@ function _payCashierModal($self)
 				立即支付
 				<span class="pay-price-text">
 					<span class="px12 ml10">￥</span>
-					<span class="actual-price-number" data-price="<?= $pay_price ?>"><?= $pay_price ?></span>
+					<span class="actual-price-number" data-price="<?= $price ?>"><?= $price ?></span>
 				</span>
 			</button>
 		</div>
@@ -918,12 +918,12 @@ function _initiatePay($self)
 
 	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 	$item->next();
-	$pay_price = $item->fields->pay_price;
-	if (!is_numeric($pay_price) || round($pay_price, 2) <= 0) {
+	$price = $item->fields->price;
+	if (!is_numeric($price) || round($price, 2) <= 0) {
 		$self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
 		return;
 	}
-	$pay_price = round($pay_price, 2);
+	$price = round($price, 2);
 	$out_trade_no = date("YmdHis") . mt_rand(100, 999);
 	//构造要请求的参数数组，无需改动
 	$parameter = array(
@@ -933,7 +933,7 @@ function _initiatePay($self)
 		"return_url" => Helper::options()->themeUrl . '/library/pay/callback.php?redirect_url=' . urlencode($self->request->return_url),
 		"out_trade_no" => $out_trade_no,
 		"name" =>  Helper::options()->title . ' - 付费阅读',
-		"money"	=> $pay_price,
+		"money"	=> $price,
 		'sitename' => Helper::options()->title,
 	);
 
@@ -951,7 +951,7 @@ function _initiatePay($self)
 		'content_title' => $item->title,
 		'content_cid' => $cid,
 		'type' => $self->request->payment_method,
-		'money' => $pay_price,
+		'money' => $price,
 		'ip' => $clientip,
 		'user_id' => USER_ID
 	]);
@@ -978,7 +978,7 @@ function _initiatePay($self)
 							'trade_no' => $out_trade_no,
 							'order_price' => $data['price'],
 							'payment_method' => $self->request->payment_method,
-							'price' => $pay_price,
+							'price' => $price,
 							'return_url' => Helper::options()->themeUrl . '/library/pay/callback.php',
 							'api_trade_no' => $data['trade_no'],
 							'user_id' => USER_ID,

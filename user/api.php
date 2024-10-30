@@ -70,7 +70,7 @@ switch ($action) {
 		$nickname = $_POST['nickname'];
 		$username = $_POST['username'];
 		$email = $_POST['email'];
-		$code = $_POST['code'];
+		$code = isset($_POST['code']) ? $_POST['code'] : null;
 		$password = $_POST['password'];
 		$cpassword = $_POST['cpassword'];
 		if (!isset($nickname)) $this->response->throwJson([

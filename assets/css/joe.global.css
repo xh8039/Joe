@@ -1583,7 +1583,7 @@
 	/* opacity: 0.85 */
 }
 
-.joe_list__item .line {
+.joe_list__item.default .line {
 	position: absolute;
 	z-index: 1;
 	top: 16px;
@@ -1630,7 +1630,7 @@
 	color: inherit;
 }
 
-.joe_list__item:hover .line {
+.joe_list__item.default:hover .line {
 	-webkit-transform: scaleY(1);
 	transform: scaleY(1)
 }

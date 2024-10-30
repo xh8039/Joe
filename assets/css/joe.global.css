@@ -1536,6 +1536,11 @@
 	transition: color 0.35s
 }
 
+.joe_list__item.single .information .title {
+	padding-bottom: 0px;
+	margin-bottom: 6px;
+}
+
 .joe_list__item .information .title::after {
 	content: '';
 	position: absolute;
@@ -1714,7 +1719,7 @@
 }
 
 .joe_list__item.single .information {
-	margin-bottom: 15px
+	margin-bottom: 10px
 }
 
 .joe_list__item.single .thumbnail {
@@ -1723,7 +1728,7 @@
 	width: 100%;
 	height: 280px;
 	overflow: hidden;
-	margin-bottom: 15px
+	margin-bottom: 10px
 }
 
 .joe_list__item.single .thumbnail img {

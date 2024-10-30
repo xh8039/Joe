@@ -101,11 +101,11 @@ $MSE = empty($MSE) ? null : ('<script src="' . $MSE . '"></script>' . PHP_EOL);
 
 				// 比较 URL 是否相同
 				if (parentUrl !== currentUrl) {
-					document.getElementById('dplayer').innerText('禁止不同源的 iframe 访问！');
+					document.getElementById('dplayer').innerHTML = '禁止不同源的 iframe 访问！';
 					return false; // 被父页面包括但不同源
 				}
 			} else {
-				document.getElementById('dplayer').innerText('禁止直接访问！');
+				document.getElementById('dplayer').innerHTML = '禁止直接访问！';
 				return false; // 没有被父页面包括
 			}
 			window.videoPlayer = new DPlayer({

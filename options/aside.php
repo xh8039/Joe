@@ -61,10 +61,10 @@ $form->addInput($JAside_Wap_Image);
 $JAside_Wap_Image_Height = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Wap_Image_Height',
 	NULL,
-	'100%',
+	'100vh',
 	'博主栏背景壁纸高度 - WAP',
 	'介绍：用于修改移动端博主栏的背景壁纸高度 <br>
-	例如：100%（全屏）丨auto（自动按照图片高度）丨150px（指定高度）'
+	例如：100vh（全屏）丨auto（自动按照图片高度）丨150px（指定高度）'
 );
 $JAside_Wap_Image_Height->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Wap_Image_Height);

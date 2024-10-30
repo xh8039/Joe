@@ -1537,8 +1537,8 @@
 }
 
 .joe_list__item.single .information .title {
-	padding-bottom: 0px;
-	margin-bottom: 6px;
+	padding-bottom: 2px;
+	margin-bottom: 10px;
 }
 
 .joe_list__item .information .title::after {

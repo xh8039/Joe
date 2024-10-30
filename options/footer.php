@@ -50,7 +50,7 @@ $form->addInput($JFooter_Right);
 $JFooterCenter1 = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFooterCenter1',
 	NULL,
-	'<a href="/friend.html">友链申请</a>||<a href="/">免责声明</a>||<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes">广告合作</a>||<a href="/about.html">关于我们</a>',
+	str_replace('||', "\r\n", '<a href="/friend.html">友链申请</a>||<a href="/">免责声明</a>||<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes">广告合作</a>||<a href="/about.html">关于我们</a>'),
 	'底部栏中间第一行（建议为友情链接，或者站内链接）',
 	'示例：<br>' . str_replace('||', '<br>', htmlentities('<a href="/friend.html">友链申请</a>||<a href="/">免责声明</a>||<a target="_blank" href="https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes">广告合作</a>||<a href="/about.html">关于我们</a>'))
 );
@@ -61,12 +61,12 @@ $JFooterCenter2 = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFooterCenter2',
 	NULL,
 	'<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>
-	<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left:5px;margin-right: 5px;">MAP</a>
-	<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>
-	<br>
-	Copyright © 2022 - ' . date('Y') . ' · <a href="http://blog.bri6.cn">易航博客</a>
-	<br>
-	技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
+<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left:5px;margin-right: 5px;">MAP</a>
+<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>
+<br>
+Copyright © 2022 - ' . date('Y') . ' · <a href="http://blog.bri6.cn">易航博客</a>
+<br>
+技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
 	'底部栏中间第二行（建议为版权提醒，备案号等）',
 	'示例：<br>' . str_replace('||', '<br>', htmlentities('<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>||<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left:5px;margin-right: 5px;">MAP</a>||<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>||<br>||Copyright © 2022 - ' . date('Y') . ' · <a href="http://blog.bri6.cn">易航博客</a>||<br>||技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>'))
 );

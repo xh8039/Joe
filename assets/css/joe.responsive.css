@@ -747,7 +747,7 @@
 		padding: 10px;
 	}
 
-	html .joe_list__item .line {
+	html .joe_list__item.default .line {
 		top: 11px;
 		left: 4px;
 		width: 3px;

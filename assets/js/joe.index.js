@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				direction, // '水平' |'垂直'
 				loop: true,
 				autoplay: true,
-				mousewheel: true, // 允许使用鼠标滚轮在幻灯片中导航
+				mousewheel: false, // 允许使用鼠标滚轮在幻灯片中导航
 				pagination: { el: '.swiper-pagination' }, // 具有分页参数的对象或布尔值，以使用默认设置启用。
 				// 具有导航参数的对象或布尔值，以使用默认设置启用。
 				navigation: {

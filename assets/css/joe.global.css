@@ -3285,10 +3285,10 @@
 }
 
 .joe_detail__article-video {
-	margin-bottom: 18px
+	margin-bottom: 15px
 }
 
-.joe_detail__article-video .play,
+/* .joe_detail__article-video .play,
 .joe_detail__article-video .episodes {
 	background: var(--classD);
 	padding: 15px 15px 15px
@@ -3378,7 +3378,7 @@
 	-webkit-transform: translateY(-2px);
 	transform: translateY(-2px);
 	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1)
-}
+} */
 
 .joe_detail__article-protected {
 	display: flex;

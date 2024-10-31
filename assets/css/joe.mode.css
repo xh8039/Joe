@@ -100,10 +100,10 @@ html[data-night='night'] .joe_header__above-logo>.light {
 html[data-night='night'] .joe_header__above-logo>.dark {
 	display: block;
 }
-
+/* 
 html[data-night='night'] .joe_detail__article-video .episodes .box .item:not(.active) {
 	background: var(--classC)
-}
+} */
 
 html[data-night='night'] .joe_detail__article blockquote {
 	background: var(--classD);

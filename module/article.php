@@ -11,13 +11,75 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <article class="joe_detail__article">
 	<?php if (!$this->hidden && $this->fields->video) : ?>
 		<div class="joe_detail__article-video">
-			<div class="play">
+			<style>
+				.featured-video-episode {
+					margin-bottom: 0;
+					line-height: 1.4;
+					font-size: 14px;
+				}
+
+				.featured-video-episode .switch-video {
+					line-height: 1.6;
+					border-radius: 4px;
+					padding: 6px 20px;
+					text-align: center;
+					background: rgba(136, 136, 136, .1);
+					--main-color: var(--muted-color);
+					display: inline-block;
+					margin: 4px 4px 0;
+					min-width: calc(20% - 8px);
+					color: var(--main-color);
+				}
+
+				.featured-video-episode .switch-video:hover {
+					color: var(--theme);
+				}
+
+				.switch-video.active {
+					color: var(--focus-color);
+				}
+
+				.featured-video-episode .badg.badg-sm {
+					min-width: 19px;
+				}
+
+				.switch-video.active .badg {
+					background: var(--focus-color);
+					color: #fff;
+				}
+
+				.switch-video .episode-active-icon {
+					display: inline-block;
+					width: 0;
+					height: 1.2em;
+					vertical-align: middle;
+					margin-right: 0;
+					transition: .6s;
+				}
+
+				.switch-video.active .episode-active-icon {
+					background-image: url(<?= joe\theme_url('assets/images/playing.svg', false) ?>);
+					width: 1em;
+					margin-right: 6px;
+				}
+
+				@media (max-width: 640px) {
+					.featured-video-episode .switch-video {
+						width: calc(50% - 4px);
+						padding: 6px 10px;
+						margin: 2px 2px 0;
+					}
+				}
+			</style>
+			<h2 class="title">播放预览</h2>
+			<iframe allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" data-player="<?php $this->options->JCustomPlayer ? $this->options->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>"></iframe>
+			<!-- <div class="play">
 				<div class="title">播放预览</div>
 				<div class="box">
-					<iframe allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" data-player="<?php $this->options->JCustomPlayer ? $this->options->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>"></iframe>
+
 				</div>
-			</div>
-			<div class="episodes">
+			</div> -->
+			<!-- <div class="episodes">
 				<div class="title">剧集列表</div>
 				<?php $video_arr = explode("\r\n", $this->fields->video); ?>
 				<div class="box">
@@ -25,38 +87,60 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<div class="item" data-src="<?= urlencode(explode("$", $item)[1]) ?>" alt="<?= explode("$", $item)[2] ?>"><?= explode("$", $item)[0] ?></div>
 					<?php endforeach; ?>
 				</div>
+			</div> -->
+
+			<div class="featured-video-episode mt10 dplayer-featured">
+				<?php $video_arr = joe\optionMulti($this->fields->video, "\r\n", '$') ?>
+				<?php foreach ($video_arr as $key => $item) : ?>
+					<a data-toggle="tooltip" class="switch-video text-ellipsis" data-index="<?= $key + 1 ?>" video-url="<?= $item[1] ?? '' ?>" data-original-title="<?= $item[2] ?? '' ?>" href="javascript:;"><span class="mr6 badg badg-sm"><?= $key + 1 ?></span><i class="episode-active-icon"></i><?= $item[0] ?? '' ?></a>
+				<?php endforeach; ?>
 			</div>
 		</div>
 		<script>
 			window.onload = () => {
-				let iframe = document.querySelector('.joe_detail__article>.joe_detail__article-video>.play>.box>iframe').contentWindow
-				const next = () => {
-					let item = $('.joe_detail__article .episodes .box .item');
-					if (item) {
-						for (var i in item) {
-							if (item[i].className == 'item active') {
-								var next_item = item[Number(i) + 1]
-								if (next_item) {
-									let url = decodeURIComponent(next_item.dataset.src);
-									iframe.videoPlayer.switchVideo({
-										'url': url
-									})
-									iframe.videoPlayer.play()
-									item[i].classList.remove('active')
-									next_item.classList.add('active')
-								}
-								break;
-							}
-						}
+				let iframe = document.querySelector('.joe_detail__article-video>iframe').contentWindow;
+				let video = iframe.videoPlayer;
+				if (video) {
+					const next = () => {
+						let item = document.querySelector('.featured-video-episode>.switch-video.active');
+						if (item.nextSibling) item.nextSibling.click()
 					}
-				}
-				iframe.videoPlayer.video.onended = next
-				iframe.videoPlayer.video.onerror = () => {
-					setTimeout(() => {
+					video.addEventListener('ended', next, false);
+					video.addEventListener('error', setTimeout(() => {
 						next();
-					}, 2000)
+					}, 2000), false);
 				}
 			}
+
+			// window.onload = () => {
+			// 	let iframe = document.querySelector('.joe_detail__article>.joe_detail__article-video>.play>.box>iframe').contentWindow
+			// 	const next = () => {
+			// 		let item = $('.joe_detail__article .episodes .box .item');
+			// 		if (item) {
+			// 			for (var i in item) {
+			// 				if (item[i].className == 'item active') {
+			// 					var next_item = item[Number(i) + 1]
+			// 					if (next_item) {
+			// 						let url = decodeURIComponent(next_item.dataset.src);
+			// 						iframe.videoPlayer.switchVideo({
+			// 							'url': url
+			// 						})
+			// 						iframe.videoPlayer.play()
+			// 						item[i].classList.remove('active')
+			// 						next_item.classList.add('active')
+			// 					}
+			// 					break;
+			// 				}
+			// 			}
+			// 		}
+			// 	}
+			// 	iframe.videoPlayer.video.onended = next
+			// 	iframe.videoPlayer.video.onerror = () => {
+			// 		setTimeout(() => {
+			// 			next();
+			// 		}, 2000)
+			// 	}
+			// }
 		</script>
 	<?php endif ?>
 

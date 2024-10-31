@@ -321,4 +321,12 @@ function themeFields($layout)
 		);
 		$layout->addItem($baidu_push);
 	}
+
+	$global_advert = new \Typecho\Widget\Helper\Form\Element\Select(
+		'global_advert',
+		['display' => '显示', 'hide' => '隐藏'],
+		'display',
+		'是否显示全局广告',
+	);
+	$layout->addItem($global_advert);
 }

@@ -260,17 +260,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 激活文章视频模块 */
 	{
 		if ($('.joe_detail__article-video').length > 0) {
-			const player = $('.joe_detail__article-video .play iframe').attr('data-player');
-			$('.joe_detail__article-video .episodes .item').on('click', function () {
+			const player = $('.joe_detail__article-video>iframe').attr('data-player');
+			$('.featured-video-episode>.switch-video').on('click', function () {
 				$(this).addClass('active').siblings().removeClass('active');
-				const url = $(this).attr('data-src');
-				let alt = $(this).attr('alt');
-				$('.joe_detail__article-video .play iframe').attr({
-					src: player + url + '&autoplay=1&screenshot=1&theme=' + encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--theme').trim())
+				const url = $(this).attr('video-url');
+				let title = $(this).attr('data-original-title');
+				$('.joe_detail__article-video>iframe').attr({
+					src: player + url + `&pic=${Joe.CONTENT.cover}&autoplay=1&screenshot=1&theme=` + encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--theme').trim())
 				});
-				alt ? $('.joe_detail__article-video .play .title').html(alt) : null;
+				title ? $('.joe_detail__article-video>.title').html(title) : null;
 			});
-			$('.joe_detail__article-video .episodes .item').first().click();
+			$('.featured-video-episode>.switch-video').first().click();
 		}
 	}
 

@@ -104,8 +104,8 @@
 
 					<?php
 					$post_ad = joe\optionMulti($this->options->JPost_Ad);
-					if (!empty($post_ad) && !joe\detectSpider()) {
-						?>
+					if (!empty($post_ad) && !joe\detectSpider() && $this->fields->global_advert != 'hide') {
+					?>
 						<style>
 							.joe_detail__article {
 								padding-top: 5px;

@@ -38,7 +38,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					--main-color: var(--muted-color);
 					display: inline-block;
 					margin: 4px 4px 0;
-					min-width: calc(20% - 28px);
+					min-width: calc(20% - 12px);
 					color: var(--main-color);
 				}
 

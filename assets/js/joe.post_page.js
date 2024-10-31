@@ -262,8 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		if ($('.joe_detail__article-video').length > 0) {
 			window.videoPlayer = new DPlayer({
 				container: document.querySelector('.joe_detail__article-video>.dplayer-video'), // 播放器容器元素
-				autoplay: 1, // 视频自动播放
-				theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
+				autoplay: true, // 视频自动播放
+				// theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
 				lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
 				preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 				loop: false, // 视频循环播放
@@ -275,29 +275,27 @@ document.addEventListener('DOMContentLoaded', () => {
 					pic: Joe.CONTENT.cover
 				}
 			});
-			// const player = $('.joe_detail__article-video>iframe').attr('data-player');
 			$('.featured-video-episode>.switch-video').on('click', function () {
 				$(this).addClass('active').siblings().removeClass('active');
 				const url = $(this).attr('video-url');
 				let title = $(this).attr('data-original-title');
-				videoPlayer.switchVideo({
-					url: url,
-				});
-				// document.querySelector('.joe_detail__article-video>.dplayer-video').src = url;
+				videoPlayer.switchVideo({ url: url });
+				videoPlayer.play();
 				if (title) $('.joe_detail__article-video>.title').html(title);
 			});
 			$('.featured-video-episode>.switch-video').first().click();
-			if (videoPlayer) {
-				const next = () => {
-					let item = document.querySelector('.featured-video-episode>.switch-video.active');
-					// console.log(item.nextSibling);
-					if (item.nextSibling) item.nextSibling.nextElementSibling.click();
-				}
-				videoPlayer.on('ended', next);
-				// videoPlayer.on('error', setTimeout(() => {
-				// 	next();
-				// }, 2000));
+			const next = () => {
+				let item = document.querySelector('.featured-video-episode>.switch-video.active');
+				// console.log(item.nextSibling);
+				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 			}
+			videoPlayer.on('ended', next);
+			videoPlayer.video.addEventListener('error', () => {
+				setTimeout(() => {
+					console.log('视频加载错误')
+					next();
+				}, 2000);
+			})
 		}
 	}
 

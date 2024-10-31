@@ -11,9 +11,20 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <article class="joe_detail__article">
 	<?php if (!$this->hidden && $this->fields->video) : ?>
 		<meta name="referrer" content="no-referrer">
-		<script src="<?= joe\cdn('dplayer/1.27.0/DPlayer.min.js') ?>"></script>
 		<div class="joe_detail__article-video">
 			<style>
+				.dplayer {
+					border-radius: var(--main-radius);
+				}
+
+				.joe_detail__article-video>video {
+					width: auto;
+					height: auto;
+					max-width: 100%;
+					max-height: 100%;
+					border-radius: var(--main-radius);
+				}
+
 				.featured-video-episode {
 					margin-bottom: 0;
 					line-height: 1.4;
@@ -29,7 +40,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					--main-color: var(--muted-color);
 					display: inline-block;
 					margin: 4px 4px 0;
-					min-width: calc(20% - 8px);
+					min-width: calc(20% - 28px);
 					color: var(--main-color);
 				}
 
@@ -67,14 +78,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 				@media (max-width: 640px) {
 					.featured-video-episode .switch-video {
-						width: calc(50% - 4px);
+						width: calc(50% - 14px);
 						padding: 6px 10px;
 						margin: 2px 2px 0;
 					}
 				}
 			</style>
 			<h2 class="title">播放预览</h2>
-			<video style="max-width: 100%;max-height: 100%;" referrerPolicy="no-referrer" class="dplayer-video dplayer-video-current" webkit-playsinline="" playsinline=""></video>
+			<div class="dplayer-video" webkit-playsinline="" playsinline=""></div>
+			<h2>剧集列表</h2>
 			<div class="featured-video-episode mt10 dplayer-featured">
 				<?php $video_arr = joe\optionMulti($this->fields->video, "\r\n", '$') ?>
 				<?php foreach ($video_arr as $key => $item) : ?>
@@ -82,6 +94,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php endforeach; ?>
 			</div>
 		</div>
+		<script src="<?= joe\cdn('dplayer/1.27.0/DPlayer.min.js') ?>"></script>
 	<?php endif ?>
 
 	<?php if ($this->is('post')) : ?>

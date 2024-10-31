@@ -10,6 +10,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 ?>
 <article class="joe_detail__article">
 	<?php if (!$this->hidden && $this->fields->video) : ?>
+		<meta name="referrer" content="no-referrer">
+		<script src="<?= joe\cdn('dplayer/1.27.0/DPlayer.min.js') ?>"></script>
 		<div class="joe_detail__article-video">
 			<style>
 				.featured-video-episode {
@@ -72,23 +74,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				}
 			</style>
 			<h2 class="title">播放预览</h2>
-			<iframe allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" data-player="<?php $this->options->JCustomPlayer ? $this->options->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>"></iframe>
-			<!-- <div class="play">
-				<div class="title">播放预览</div>
-				<div class="box">
-
-				</div>
-			</div> -->
-			<!-- <div class="episodes">
-				<div class="title">剧集列表</div>
-				<?php $video_arr = explode("\r\n", $this->fields->video); ?>
-				<div class="box">
-					<?php foreach ($video_arr as $item) : ?>
-						<div class="item" data-src="<?= urlencode(explode("$", $item)[1]) ?>" alt="<?= explode("$", $item)[2] ?>"><?= explode("$", $item)[0] ?></div>
-					<?php endforeach; ?>
-				</div>
-			</div> -->
-
+			<video style="max-width: 100%;max-height: 100%;" referrerPolicy="no-referrer" class="dplayer-video dplayer-video-current" webkit-playsinline="" playsinline=""></video>
 			<div class="featured-video-episode mt10 dplayer-featured">
 				<?php $video_arr = joe\optionMulti($this->fields->video, "\r\n", '$') ?>
 				<?php foreach ($video_arr as $key => $item) : ?>
@@ -96,52 +82,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php endforeach; ?>
 			</div>
 		</div>
-		<script>
-			window.onload = () => {
-				let iframe = document.querySelector('.joe_detail__article-video>iframe').contentWindow;
-				let video = iframe.videoPlayer;
-				if (video) {
-					const next = () => {
-						let item = document.querySelector('.featured-video-episode>.switch-video.active');
-						if (item.nextSibling) item.nextSibling.click()
-					}
-					video.addEventListener('ended', next, false);
-					video.addEventListener('error', setTimeout(() => {
-						next();
-					}, 2000), false);
-				}
-			}
-
-			// window.onload = () => {
-			// 	let iframe = document.querySelector('.joe_detail__article>.joe_detail__article-video>.play>.box>iframe').contentWindow
-			// 	const next = () => {
-			// 		let item = $('.joe_detail__article .episodes .box .item');
-			// 		if (item) {
-			// 			for (var i in item) {
-			// 				if (item[i].className == 'item active') {
-			// 					var next_item = item[Number(i) + 1]
-			// 					if (next_item) {
-			// 						let url = decodeURIComponent(next_item.dataset.src);
-			// 						iframe.videoPlayer.switchVideo({
-			// 							'url': url
-			// 						})
-			// 						iframe.videoPlayer.play()
-			// 						item[i].classList.remove('active')
-			// 						next_item.classList.add('active')
-			// 					}
-			// 					break;
-			// 				}
-			// 			}
-			// 		}
-			// 	}
-			// 	iframe.videoPlayer.video.onended = next
-			// 	iframe.videoPlayer.video.onerror = () => {
-			// 		setTimeout(() => {
-			// 			next();
-			// 		}, 2000)
-			// 	}
-			// }
-		</script>
 	<?php endif ?>
 
 	<?php if ($this->is('post')) : ?>

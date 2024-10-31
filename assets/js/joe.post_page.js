@@ -260,17 +260,44 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 激活文章视频模块 */
 	{
 		if ($('.joe_detail__article-video').length > 0) {
-			const player = $('.joe_detail__article-video>iframe').attr('data-player');
+			window.videoPlayer = new DPlayer({
+				container: document.querySelector('.joe_detail__article-video>.dplayer-video'), // 播放器容器元素
+				autoplay: 1, // 视频自动播放
+				theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
+				lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
+				preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
+				loop: false, // 视频循环播放
+				screenshot: true, // 开启截图，如果开启，视频和视频封面需要允许跨域
+				airplay: true, // 在 Safari 中开启 AirPlay
+				volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+				playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
+				video: {
+					pic: Joe.CONTENT.cover
+				}
+			});
+			// const player = $('.joe_detail__article-video>iframe').attr('data-player');
 			$('.featured-video-episode>.switch-video').on('click', function () {
 				$(this).addClass('active').siblings().removeClass('active');
 				const url = $(this).attr('video-url');
 				let title = $(this).attr('data-original-title');
-				$('.joe_detail__article-video>iframe').attr({
-					src: player + url + `&pic=${Joe.CONTENT.cover}&autoplay=1&screenshot=1&theme=` + encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--theme').trim())
+				videoPlayer.switchVideo({
+					url: url,
 				});
-				title ? $('.joe_detail__article-video>.title').html(title) : null;
+				// document.querySelector('.joe_detail__article-video>.dplayer-video').src = url;
+				if (title) $('.joe_detail__article-video>.title').html(title);
 			});
 			$('.featured-video-episode>.switch-video').first().click();
+			if (videoPlayer) {
+				const next = () => {
+					let item = document.querySelector('.featured-video-episode>.switch-video.active');
+					// console.log(item.nextSibling);
+					if (item.nextSibling) item.nextSibling.nextElementSibling.click();
+				}
+				videoPlayer.on('ended', next);
+				// videoPlayer.on('error', setTimeout(() => {
+				// 	next();
+				// }, 2000));
+			}
 		}
 	}
 

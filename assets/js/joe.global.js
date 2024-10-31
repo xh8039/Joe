@@ -1183,6 +1183,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		$("[data-toggle='tooltip']").tooltip({
 			container: "body"
 		});
+		// 添加点击事件监听器到整个文档
+		document.addEventListener('click', function (event) {
+			$("[data-toggle='tooltip']").tooltip('hide');
+		});
 		// popover.js
 		$("[data-toggle='popover']").popover({
 			sanitize: false,

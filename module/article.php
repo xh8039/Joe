@@ -76,7 +76,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 				@media (max-width: 640px) {
 					.featured-video-episode .switch-video {
-						width: calc(50% - 6px);
+						width: calc(50% - 6.5px);
 						padding: 6px 10px;
 						margin: 2px 2px 0;
 					}

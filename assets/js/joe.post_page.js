@@ -279,20 +279,23 @@ document.addEventListener('DOMContentLoaded', () => {
 				$(this).addClass('active').siblings().removeClass('active');
 				const url = $(this).attr('video-url');
 				let title = $(this).attr('data-original-title');
-				videoPlayer.switchVideo({ url: url });
-				videoPlayer.play();
+				if (Joe.CONTENT.cover) {
+					videoPlayer.switchVideo({ url: url, pic: Joe.CONTENT.cover });
+				} else {
+					videoPlayer.switchVideo({ url: url });
+				}
 				if (title) $('.joe_detail__article-video>.title').html(title);
+				videoPlayer.play();
 			});
 			$('.featured-video-episode>.switch-video').first().click();
 			const next = () => {
 				let item = document.querySelector('.featured-video-episode>.switch-video.active');
-				// console.log(item.nextSibling);
 				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 			}
 			videoPlayer.on('ended', next);
 			videoPlayer.video.addEventListener('error', () => {
 				setTimeout(() => {
-					console.log('视频加载错误')
+					console.log('视频加载错误：' + videoPlayer.video.src);
 					next();
 				}, 2000);
 			})

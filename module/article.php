@@ -17,11 +17,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					border-radius: var(--main-radius);
 				}
 
-				.joe_detail__article-video>video {
-					width: auto;
-					height: auto;
+				.joe_detail__article-video video {
 					max-width: 100%;
-					max-height: 100%;
+					max-height: 60vh;
 					border-radius: var(--main-radius);
 				}
 

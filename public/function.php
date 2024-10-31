@@ -744,7 +744,7 @@ function install()
 		$adapter = $_db->getAdapterName();
 		$joe_pay = $_prefix . "joe_pay";
 		$friends = $_prefix . 'friends';
-		if ("Pdo_SQLite" == $adapter || "SQLite" == $adapter) {
+		if ($adapter == 'Pdo_SQLite' || $adapter == 'SQLite') {
 			$_db->query("CREATE TABLE IF NOT EXISTS `$joe_pay` (
 				`id` INTEGER PRIMARY KEY AUTOINCREMENT,
 				`trade_no` TEXT NOT NULL UNIQUE,
@@ -810,8 +810,40 @@ function install()
 				`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				PRIMARY KEY  (`id`)
 			) DEFAULT CHARSET=utf8mb4;");
+		} else if ($adapter == 'Pdo_Pgsql' || $adapter == 'Pgsql') {
+			$_db->query('CREATE TABLE IF NOT EXISTS ' . $joe_pay . ' (
+				id SERIAL PRIMARY KEY,
+				trade_no VARCHAR(64) UNIQUE NOT NULL,
+				api_trade_no VARCHAR(64),
+				name VARCHAR(64) NOT NULL,
+				content_title VARCHAR(150),
+				content_cid INT NOT NULL,
+				"type" VARCHAR(10) NOT NULL,
+				money VARCHAR(32) NOT NULL,
+				ip VARCHAR(32),
+				user_id VARCHAR(32) NOT NULL,
+				create_time TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
+				update_time TIMESTAMP WITHOUT TIME ZONE,
+				pay_type VARCHAR(10),
+				pay_price VARCHAR(32),
+				admin_email BOOLEAN NOT NULL DEFAULT FALSE,
+				user_email BOOLEAN NOT NULL DEFAULT FALSE,
+				"status" BOOLEAN NOT NULL DEFAULT FALSE
+			);');
+			$_db->query('CREATE TABLE IF NOT EXISTS ' . $friends . ' (
+				id SERIAL PRIMARY KEY,
+				title VARCHAR(128) NOT NULL,
+				url VARCHAR(255) NOT NULL,
+				description TEXT,
+				logo TEXT,
+				rel VARCHAR(128),
+				qq VARCHAR(32),
+				"order" INT NOT NULL DEFAULT 0,
+				"status" BOOLEAN NOT NULL DEFAULT FALSE,
+				create_time TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
+			);');
 		} else {
-			echo '暂不兼容 [' . $adapter . '] 数据库！';
+			echo '暂不兼容 [' . $adapter . '] 数据库适配器！';
 			exit;
 		}
 

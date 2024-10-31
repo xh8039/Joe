@@ -269,7 +269,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				let item = document.querySelector('.featured-video-episode>.switch-video.active');
 				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 			}
-			videoPlayer.on('ended', next);
+			videoPlayer.on('ended', () => {
+				next();
+			});
 			videoPlayer.on('loadeddata', () => {
 				if (videoPlayer.video.paused) {
 					videoPlayer.play();
@@ -278,13 +280,13 @@ document.addEventListener('DOMContentLoaded', () => {
 					console.log(videoPlayer.video.paused);
 					videoPlayer.video.play();
 				}
-				videoPlayer.video.addEventListener('error', () => {
-					setTimeout(() => {
-						console.log('视频加载错误：' + videoPlayer.video.src);
-						next();
-					}, 2000);
-				})
 			});
+			videoPlayer.on('error', () => {
+				setTimeout(() => {
+					console.log('视频加载错误：' + videoPlayer.video.src);
+					next();
+				}, 2000);
+			})
 		}
 	}
 

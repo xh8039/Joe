@@ -82,7 +82,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					}
 				}
 			</style>
-			<h2 class="title">播放预览</h2>
+			<h2 class="title" style="margin-top: 0px;">播放预览</h2>
 			<div class="dplayer-video" webkit-playsinline="" playsinline=""></div>
 			<h2>剧集列表</h2>
 			<div class="featured-video-episode mt10 dplayer-featured">

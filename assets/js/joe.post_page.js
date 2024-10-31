@@ -281,12 +281,15 @@ document.addEventListener('DOMContentLoaded', () => {
 					videoPlayer.video.play();
 				}
 			});
+			// video download error: an error occurs
 			videoPlayer.on('error', () => {
-				setTimeout(() => {
-					console.log('视频加载错误：' + videoPlayer.video.src);
-					next();
-				}, 2000);
-			})
+				if (!videoPlayer.video.error) {
+					// Not a video load error, may be poster load failed, see #307
+					return;
+				}
+				console.log('视频加载失败：' + videoPlayer.video.src);
+				next();
+			});
 		}
 	}
 

@@ -286,7 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 				if (title) $('.joe_detail__article-video>.title').html(title);
 				videoPlayer.play();
-				videoPlayer.video.play();
+				videoPlayer.on('loadedmetadata', () => {
+					videoPlayer.video.play();
+				})
 			});
 			$('.featured-video-episode>.switch-video').first().click();
 			const next = () => {

@@ -285,10 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					videoPlayer.switchVideo({ url: url });
 				}
 				if (title) $('.joe_detail__article-video>.title').html(title);
-				videoPlayer.play();
-				videoPlayer.on('loadedmetadata', () => {
-					videoPlayer.video.play();
-				})
 			});
 			$('.featured-video-episode>.switch-video').first().click();
 			const next = () => {
@@ -296,6 +292,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 			}
 			videoPlayer.on('ended', next);
+			videoPlayer.on('loadeddata', () => {
+				if (videoPlayer.video.paused) {
+					videoPlayer.play();
+				}
+				if (videoPlayer.video.paused) {
+					console.log(videoPlayer.video.paused);
+					videoPlayer.video.play();
+				}
+			});
 			videoPlayer.video.addEventListener('error', () => {
 				setTimeout(() => {
 					console.log('视频加载错误：' + videoPlayer.video.src);

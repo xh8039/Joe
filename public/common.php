@@ -194,6 +194,7 @@ function themeFields($layout)
 		['comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
 		'comment',
 		'隐藏内容模式',
+		'可将隐藏内容设置为评论可见、付费可见、登录可见'
 	);
 	$layout->addItem($hide);
 

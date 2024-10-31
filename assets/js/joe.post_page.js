@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				autoplay: true, // 视频自动播放
 				theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
 				lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
-				preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
+				preload: 'auto', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 				loop: false, // 视频循环播放
 				screenshot: true, // 开启截图，如果开启，视频和视频封面需要允许跨域
 				airplay: true, // 在 Safari 中开启 AirPlay

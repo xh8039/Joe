@@ -738,18 +738,13 @@ function install()
 	// 	Helper::addAction('joe-pay-edit', 'JoeOrders_Widget');
 	// }
 
-	$typecho_admin_root = __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__;
-	if (file_exists($typecho_admin_root . 'themes.php')) {
-		file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyOm5vdCgjdGhlbWUtSm9lKT50ZD5wPmEuYWN0aXZhdGUnKS5hdHRyKCdocmVmJywgJ2phdmFzY3JpcHQ6YWxlcnQoIuWQr+eUqOWksei0pe+8gVR5cGVjaG/lt7Lnu4/mt7Hmt7HlnLDniLHkuIpKb2Xlho3nu63liY3nvJjkuoblk6YiKScpOwoJfSwgMTAwKSk7Cjwvc2NyaXB0Pg=="); ?>', FILE_APPEND | LOCK_EX);
-	}
-
-	$_db = Typecho_Db::get();
-	$_prefix = $_db->getPrefix();
 	try {
+		$_db = Typecho_Db::get();
+		$_prefix = $_db->getPrefix();
 		$adapter = $_db->getAdapterName();
 		$joe_pay = $_prefix . "joe_pay";
 		$friends = $_prefix . 'friends';
-		if ("Pdo_SQLite" === $adapter || "SQLite" === $adapter) {
+		if ("Pdo_SQLite" == $adapter || "SQLite" == $adapter) {
 			$_db->query("CREATE TABLE IF NOT EXISTS `$joe_pay` (
 				`id` INTEGER PRIMARY KEY AUTOINCREMENT,
 				`trade_no` TEXT NOT NULL UNIQUE,
@@ -781,8 +776,7 @@ function install()
 				`status` INTEGER NOT NULL DEFAULT 0,
 				`create_time` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 			);");
-		}
-		if ("Pdo_Mysql" === $adapter || "Mysql" === $adapter) {
+		} else if ($adapter == 'Pdo_Mysql' || $adapter == 'Mysql' || $adapter == 'Mysqli') {
 			$_db->query("CREATE TABLE IF NOT EXISTS `$joe_pay` (
 				`id` INT NOT NULL AUTO_INCREMENT,
 				`trade_no` varchar(64) NOT NULL unique,
@@ -816,6 +810,9 @@ function install()
 				`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 				PRIMARY KEY  (`id`)
 			) DEFAULT CHARSET=utf8mb4;");
+		} else {
+			echo '暂不兼容 [' . $adapter . '] 数据库！';
+			exit;
 		}
 
 		$JFriends = optionMulti(Helper::options()->JFriends);
@@ -843,6 +840,12 @@ function install()
 		if (!array_key_exists('agree', $table_contents)) {
 			$_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `agree` INT DEFAULT 0;');
 		}
+
+		$typecho_admin_root = __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__;
+		if (file_exists($typecho_admin_root . 'themes.php')) {
+			file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyOm5vdCgjdGhlbWUtSm9lKT50ZD5wPmEuYWN0aXZhdGUnKS5hdHRyKCdocmVmJywgJ2phdmFzY3JpcHQ6YWxlcnQoIuWQr+eUqOWksei0pe+8gVR5cGVjaG/lt7Lnu4/mt7Hmt7HlnLDniLHkuIpKb2Xlho3nu63liY3nvJjkuoblk6YiKScpOwoJfSwgMTAwKSk7Cjwvc2NyaXB0Pg=="); ?>', FILE_APPEND | LOCK_EX);
+		}
+
 		if (file_put_contents($lock_file, THEME_NAME)) {
 			echo '<script>alert("主题首次启用安装成功！");</script>';
 		} else {

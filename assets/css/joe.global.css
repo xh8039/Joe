@@ -2446,6 +2446,11 @@
 	border-radius: var(--main-radius);
 }
 
+.dplayer-video-wrap,
+.dplayer-controller-mask {
+	border-radius: var(--main-radius);
+}
+
 .joe_vplayer {
 	width: 100%;
 	height: 500px;

@@ -560,46 +560,65 @@ document.addEventListener('DOMContentLoaded', () => {
 			constructor() {
 				super();
 				this.options = {
-					cid: this.getAttribute('cid'),
 					src: this.getAttribute('src'),
 					pic: this.getAttribute('pic'),
 					theme: encodeURIComponent(this.getAttribute('theme') ? this.getAttribute('theme') : (getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') ? getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') : getComputedStyle(document.documentElement).getPropertyValue('--theme')).trim()),
-					autoplay: this.getAttribute('autoplay') ? this.getAttribute('autoplay') : 0,
-					loop: this.getAttribute('loop') ? this.getAttribute('loop') : 0,
-					screenshot: this.getAttribute('screenshot') ? this.getAttribute('screenshot') : 0,
+					autoplay: this.getAttribute('autoplay') ? this.getAttribute('autoplay') : false,
+					loop: this.getAttribute('loop') ? this.getAttribute('loop') : false,
+					screenshot: this.getAttribute('screenshot') ? this.getAttribute('screenshot') : false,
 					player: this.getAttribute('player')
 				};
 				this.render();
 			}
 			render() {
 				if (this.options.src) {
-					if (this.options.pic == decodeURIComponent(this.options.pic)) {
-						this.options.pic = encodeURIComponent(this.options.pic);
-					}
-					// 如果url等于已经解码的url，说明url未编码
-					if (this.options.src == decodeURIComponent(this.options.src)) {
-						this.options.src = encodeURIComponent(this.options.src); // 对url进行编码
-					}
-					let options = {
-						cid: this.options.cid,
-						pic: this.options.pic,
-						theme: this.options.theme,
-						autoplay: this.options.autoplay,
-						loop: this.options.loop,
-						screenshot: this.options.screenshot
-					}
-					let fnParams2Url = function (obj) {
-						let array_url = [];
-						let fnAdd = function (key, value) {
-							return key + '=' + value;
+					if (this.options.player == 'false') {
+						loadJS(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
+							new DPlayer({
+								container: this, // 播放器容器元素
+								autoplay: this.options.autoplay, // 视频自动播放
+								// theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
+								lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
+								preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
+								loop: this.options.loop, // 视频循环播放
+								screenshot: this.options.screenshot, // 开启截图，如果开启，视频和视频封面需要允许跨域
+								airplay: true, // 在 Safari 中开启 AirPlay
+								volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+								playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
+								video: {
+									pic: this.options.pic,
+									url: this.options.src
+								}
+							});
+						});
+					} else {
+						if (this.options.pic == decodeURIComponent(this.options.pic)) {
+							this.options.pic = encodeURIComponent(this.options.pic);
 						}
-						for (var k in obj) {
-							array_url.push(fnAdd(k, obj[k]));
+						// 如果url等于已经解码的url，说明url未编码
+						if (this.options.src == decodeURIComponent(this.options.src)) {
+							this.options.src = encodeURIComponent(this.options.src); // 对url进行编码
 						}
-						return (array_url.join('&'));
+						let options = {
+							pic: this.options.pic,
+							theme: this.options.theme,
+							autoplay: this.options.autoplay,
+							loop: this.options.loop,
+							screenshot: this.options.screenshot
+						}
+						let fnParams2Url = function (obj) {
+							let array_url = [];
+							let fnAdd = function (key, value) {
+								return key + '=' + value;
+							}
+							for (var k in obj) {
+								array_url.push(fnAdd(k, obj[k]));
+							}
+							return (array_url.join('&'));
+						}
+						let url = this.options.player + this.options.src + '&' + fnParams2Url(options);
+						this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${url}"></iframe>`;
 					}
-					let url = this.options.player + this.options.src + '&' + fnParams2Url(options);
-					this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${url}"></iframe>`;
 				} else {
 					this.innerHTML = '播放地址未填写！';
 				}

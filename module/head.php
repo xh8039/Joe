@@ -69,6 +69,7 @@
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
 	<script src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>" async></script>
 <?php endif; ?>
+<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 

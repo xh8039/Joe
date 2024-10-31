@@ -6,24 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const cid = $('.joe_detail').attr('data-cid');
 	window.cid = cid;
 
-	function loadJS(url, callback = function () { }) {
-		window.loadJSList = window.loadJSList ? window.loadJSList : {};
-		if (!loadJSList[url]) {
-			var script = document.createElement('script');
-			script.type = 'text/javascript';
-			script.addEventListener('load', callback);
-			script.src = url;
-			document.getElementsByTagName('head')[0].appendChild(script);
-			loadJSList[url] = script;
-		} else {
-			var script = loadJSList[url];
-			script.addEventListener('load', callback);
-		}
-		// 检查元素是否存在，如果存在，则删除，浏览器不会重复载入
-		// const existingScript = document.querySelector(`script[src="${url}"]`);
-		// if (existingScript) existingScript.remove();
-	}
-
 	function PrismInit(item, language) {
 		let text = item.textContent.replace(/    /g, '	');
 		// console.log(language)

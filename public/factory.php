@@ -207,6 +207,7 @@ class Editor
 		<script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/index.bundle.min.js') ?>"></script>
+		<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
 		<script>
 			// 编辑器内容自动本地存储

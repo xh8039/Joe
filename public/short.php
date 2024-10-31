@@ -45,8 +45,8 @@ function _parseContent($post, $login)
 
 	// 视频
 	if (strpos($content, '{dplayer') !== false) {
-		$player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : Helper::options()->themeUrl . '/module/player.php?url=';
-		$content = preg_replace('/{dplayer([^}]*)\/}/SU', '<joe-dplayer cid="' . $post->cid . '" player="' . $player . '" $1></joe-dplayer>', $content);
+		$player = empty(Helper::options()->JCustomPlayer) ? 'false' : Helper::options()->JCustomPlayer;
+		$content = preg_replace('/{dplayer([^}]*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
 	}
 
 	// 居中标题标签

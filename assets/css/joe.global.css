@@ -1518,6 +1518,26 @@
 	border-bottom: none
 }
 
+/* .joe_list__item.default>.joe_list_banner {
+	opacity: .2;
+	position: absolute;
+	height: 100%;
+	width: 50%;
+	right: 0;
+	top: 0;
+	z-index: 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	background-position: center center;
+	transition: opacity 0.3s;
+	-webkit-mask-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+	border-radius: var(--main-radius);
+	background: linear-gradient(to left, var(--theme), var(--background));
+	visibility: visible;
+} */
+
 .joe_list__item .information .title {
 	padding-bottom: 2px;
 	margin-bottom: 3px;

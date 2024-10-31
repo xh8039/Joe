@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
 							</a>
 							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
 							<div class="meta">
-
 								<div class="item-tags scroll-x no-scrollbar mb6">
 									${getTags(_)}
 								</div>

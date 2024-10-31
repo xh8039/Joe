@@ -281,10 +281,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					videoPlayer.video.play();
 				}
 			});
-			// video download error: an error occurs
 			videoPlayer.on('error', () => {
 				if (!videoPlayer.video.error) {
-					// Not a video load error, may be poster load failed, see #307
+					// 不是视频加载错误，可能是海报加载失败，请参阅 #307
 					return;
 				}
 				console.log('视频加载失败：' + videoPlayer.video.src);

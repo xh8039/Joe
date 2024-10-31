@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			window.videoPlayer = new DPlayer({
 				container: document.querySelector('.joe_detail__article-video>.dplayer-video'), // 播放器容器元素
 				autoplay: true, // 视频自动播放
-				// theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
+				theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
 				lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
 				preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 				loop: false, // 视频循环播放

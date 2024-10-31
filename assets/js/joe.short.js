@@ -562,10 +562,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.options = {
 					src: this.getAttribute('src'),
 					pic: this.getAttribute('pic'),
-					theme: encodeURIComponent(this.getAttribute('theme') ? this.getAttribute('theme') : (getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') ? getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') : getComputedStyle(document.documentElement).getPropertyValue('--theme')).trim()),
-					autoplay: this.getAttribute('autoplay') ? this.getAttribute('autoplay') : false,
-					loop: this.getAttribute('loop') ? this.getAttribute('loop') : false,
-					screenshot: this.getAttribute('screenshot') ? this.getAttribute('screenshot') : false,
+					theme: this.getAttribute('theme') ? this.getAttribute('theme') : (getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') ? getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') : getComputedStyle(document.documentElement).getPropertyValue('--theme')).trim(),
+					autoplay: this.getAttribute('autoplay') == '1' ? this.getAttribute('autoplay') : 0,
+					loop: this.getAttribute('loop') == '1' ? this.getAttribute('autoplay') : 0,
+					screenshot: this.getAttribute('screenshot') == '1' ? this.getAttribute('autoplay') : 0,
 					player: this.getAttribute('player')
 				};
 				this.render();
@@ -577,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							new DPlayer({
 								container: this, // 播放器容器元素
 								autoplay: this.options.autoplay, // 视频自动播放
-								// theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
+								theme: this.options.theme, // 主题色
 								lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
 								preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 								loop: this.options.loop, // 视频循环播放
@@ -601,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 						let options = {
 							pic: this.options.pic,
-							theme: this.options.theme,
+							theme: encodeURIComponent(this.options.theme),
 							autoplay: this.options.autoplay,
 							loop: this.options.loop,
 							screenshot: this.options.screenshot

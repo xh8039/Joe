@@ -13,16 +13,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<meta name="referrer" content="no-referrer">
 		<div class="joe_detail__article-video">
 			<style>
-				.dplayer {
-					border-radius: var(--main-radius);
-				}
-
-				.joe_detail__article-video video {
-					max-width: 100%;
-					max-height: 60vh;
-					border-radius: var(--main-radius);
-				}
-
 				.featured-video-episode {
 					margin-bottom: 0;
 					line-height: 1.4;

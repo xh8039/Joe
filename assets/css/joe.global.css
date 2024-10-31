@@ -2457,15 +2457,12 @@
 }
 
 .dplayer {
-	border-radius: var(--main-radius);
-}
-
-.dplayer video {
 	max-width: 100%;
 	max-height: 60vh;
 	border-radius: var(--main-radius);
 }
 
+.dplayer video,
 .dplayer-video-wrap,
 .dplayer-controller-mask {
 	border-radius: var(--main-radius);

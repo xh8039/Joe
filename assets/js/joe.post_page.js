@@ -261,11 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$(this).addClass('active').siblings().removeClass('active');
 				const url = $(this).attr('video-url');
 				let title = $(this).attr('data-original-title');
-				if (Joe.CONTENT.cover) {
-					videoPlayer.switchVideo({ url: url, pic: Joe.CONTENT.cover });
-				} else {
-					videoPlayer.switchVideo({ url: url });
-				}
+				videoPlayer.switchVideo({ url: url });
 				if (title) $('.joe_detail__article-video>.title').html(title);
 			});
 			$('.featured-video-episode>.switch-video').first().click();

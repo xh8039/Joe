@@ -1180,13 +1180,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	{
 		// tooltip.js
-		$("[data-toggle='tooltip']").tooltip({
-			container: "body"
-		});
-		// 添加点击事件监听器到整个文档
-		document.addEventListener('click', function (event) {
-			$("[data-toggle='tooltip']").tooltip('hide');
-		});
+		if (Joe.IS_MOBILE) {
+			// 遍历所有的元素
+			$('[data-original-title]').each(function () {
+				// 获取当前元素的data-original-title属性
+				var originalTitle = $(this).attr('data-original-title');
+				// 设置title属性为data-original-title的值
+				$(this).attr('title', originalTitle);
+			});
+		} else {
+			$("[data-toggle='tooltip']").tooltip({
+				container: "body"
+			});
+			$("[data-toggle='tooltip']").on('click', function (event) {
+				$(this).tooltip('hide');
+			});
+		}
 		// popover.js
 		$("[data-toggle='popover']").popover({
 			sanitize: false,

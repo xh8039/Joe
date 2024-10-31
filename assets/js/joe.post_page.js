@@ -278,13 +278,13 @@ document.addEventListener('DOMContentLoaded', () => {
 					console.log(videoPlayer.video.paused);
 					videoPlayer.video.play();
 				}
+				videoPlayer.video.addEventListener('error', () => {
+					setTimeout(() => {
+						console.log('视频加载错误：' + videoPlayer.video.src);
+						next();
+					}, 2000);
+				})
 			});
-			videoPlayer.video.addEventListener('error', () => {
-				setTimeout(() => {
-					console.log('视频加载错误：' + videoPlayer.video.src);
-					next();
-				}, 2000);
-			})
 		}
 	}
 

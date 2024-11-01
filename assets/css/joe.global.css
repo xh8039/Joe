@@ -688,7 +688,6 @@
 .joe_header__slideout-author {
 	display: flex;
 	margin-bottom: 15px;
-	background: var(--back-trn-85);
 	border-radius: var(--radius-wrap);
 	padding: 15px;
 	box-shadow: var(--box-shadow)
@@ -726,7 +725,6 @@
 }
 
 .joe_header__slideout-count {
-	background: var(--back-trn-85);
 	border-radius: var(--radius-wrap);
 	padding: 10px 15px;
 	box-shadow: var(--box-shadow);
@@ -753,7 +751,6 @@
 }
 
 .joe_header__slideout-menu {
-	background: var(--back-trn-85);
 	padding: 10px 15px;
 	border-radius: var(--radius-wrap);
 	overflow: hidden;
@@ -817,6 +814,10 @@
 	color: var(--theme);
 	font-weight: 500;
 	font-size: 15px
+}
+
+.joe_header__slideout-author,.joe_header__slideout-count,.joe_header__slideout-menu {
+	background: var(--back-trn-75);
 }
 
 .joe_header__mask {

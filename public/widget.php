@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 class Widget_Contents_Hot extends Widget_Abstract_Contents
 {
@@ -13,7 +16,7 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 		$select->cleanAttribute('fields');
 		$this->db->fetchAll(
 			$select->from('table.contents')
-				->where('table.contents.cid NOT IN?', $recommend)
+				->where('table.contents.cid NOT' . "\r\n" . 'IN?', $recommend)
 				->where("table.contents.password IS NULL OR table.contents.password = ''")
 				->where('table.contents.status = ?', 'publish')
 				->where('table.contents.created <= ?', time())

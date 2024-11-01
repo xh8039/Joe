@@ -57,8 +57,8 @@ $form->addInput($JGrey_Model->multiMode());
 
 $JHeader_Counter = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JHeader_Counter',
-	array('on' => '开启（默认）', 'off' => '关闭'),
-	'on',
+	array('off' => '关闭（默认）', 'on' => '开启'),
+	'off',
 	'是否开启顶部浏览进度条',
 	'介绍：开启后页面顶部位置将会展示屏幕浏览进度条'
 );

@@ -11,6 +11,7 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 	{
 		$recommend_text = Joe\isMobile() ? Helper::options()->JIndex_Mobile_Recommend : Helper::options()->JIndex_Recommend;
 		$recommend = joe\optionMulti($recommend_text, '||', false);
+		if (empty($recommend)) $recommend = ['empty'];
 		$this->parameter->setDefault(array('pageSize' => 10));
 		$select = $this->select();
 		$select->cleanAttribute('fields');

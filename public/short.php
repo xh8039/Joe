@@ -168,11 +168,9 @@ function _parseContent($post, $login)
 				}
 			}
 		}
-		if ($post->fields->hide == 'login') {
-			if ($login) {
-				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-			}
+		if ($post->fields->hide == 'login' && $login) {
+			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 		}
 		// if ($post->fields->hide == 'comment') {
 		// }

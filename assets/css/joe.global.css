@@ -99,7 +99,7 @@
 
 .joe_header__above {
 	position: relative;
-	z-index: 999;
+	z-index: 1030;
 	background: var(--background);
 }
 
@@ -649,7 +649,7 @@
 
 .joe_header__slideout {
 	position: fixed;
-	top: 0;
+	top: 52px;
 	bottom: 0;
 	left: 0;
 	width: 80%;
@@ -840,7 +840,7 @@
 }
 
 .joe_header__mask.slideout {
-	z-index: 1010
+	/* z-index: 1010 */
 }
 
 .joe_aside {

@@ -202,7 +202,8 @@ function themeFields($layout)
 		'price',
 		NULL,
 		'0.00',
-		'隐藏内容付费金额'
+		'隐藏内容付费金额',
+		'付费可见功能需要在主题设置->付费设置处配置好您的支付平台信息后可用'
 	);
 	$price->setAttribute('style', 'display:none');
 	$layout->addItem($price);

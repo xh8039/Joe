@@ -167,23 +167,21 @@ function _parseContent($post, $login)
 					$content = $content . $pay_box_position;
 				}
 			}
-		}
-		if ($post->fields->hide == 'login' && $login) {
+		} else if ($post->fields->hide == 'login' && $login) {
 			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-		}
-		// if ($post->fields->hide == 'comment') {
-		// }
-		$db = Typecho_Db::get();
-		if ($login) {
-			$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
 		} else {
-			$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
-		}
-		$hasComment = $db->fetchAll($comment_sql);
-		if ($hasComment) {
-			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+			$db = Typecho_Db::get();
+			if ($login) {
+				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
+			} else {
+				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
+			}
+			$hasComment = $db->fetchAll($comment_sql);
+			if (!empty($hasComment)) {
+				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+			}
 		}
 		$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
 	}

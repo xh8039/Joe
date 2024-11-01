@@ -23,7 +23,10 @@ $JYiPayID = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'易支付/码支付商户号',
 	'介绍：用于文章付费阅读功能 <br />
-	例如：1001丨<a href="http://mpay.bri6.cn" target="_blank">点我注册商户号</a>'
+	例如：1001 <br />
+	<a href="http://ypay.bri6.cn" target="_blank">注册易支付商户号</a> <br />
+	<a href="http://mpay.bri6.cn" target="_blank">注册码支付商户号</a>
+	'
 );
 $JYiPayID->setAttribute('class', 'joe_content joe_pay');
 $form->addInput($JYiPayID);
@@ -34,7 +37,10 @@ $JYiPayKey = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'易支付/码支付商户秘钥',
 	'介绍：用于文章付费阅读功能 <br />
-	例如：VxyC70n46yBQAxhJHu0HTDP6sFh2NJYj丨<a href="http://mpay.bri6.cn" target="_blank">点我注册商户密钥</a>'
+	例如：VxyC70n46yBQAxhJHu0HTDP6sFh2NJYj <br />
+	<a href="http://mpay.bri6.cn" target="_blank">注册码支付商户密钥</a> <br />
+	<a href="http://mpay.bri6.cn" target="_blank">注册易支付商户密钥</a>
+	'
 );
 $JYiPayKey->setAttribute('class', 'joe_content joe_pay');
 $form->addInput($JYiPayKey);

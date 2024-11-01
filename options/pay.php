@@ -12,7 +12,7 @@ $JYiPayApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	'易支付/码支付API接口网址',
 	'介绍：用于文章付费阅读功能 <br />
 	例如：http://mpay.bri6.cn/ <br />
-	易航易支付：<a href="http://ypay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">http://ypay.bri6.cn</a>
+	易航易支付：<a href="http://ypay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">http://ypay.bri6.cn</a> <br />
 	易航码支付：<a href="http://mpay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">http://mpay.bri6.cn</a>'
 );
 $JYiPayApi->setAttribute('class', 'joe_content joe_pay');

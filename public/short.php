@@ -177,7 +177,14 @@ function _parseContent($post, $login)
 		// if ($post->fields->hide == 'comment') {
 		// }
 		$db = Typecho_Db::get();
-		$hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
+		$hasComment = $db->fetchAll(
+			$db->select()
+				->from('table.comments')
+				->where('cid = ?', $post->cid)
+				->where('mail = ?', $post->remember('mail', true))
+				->orWhere('mail = ?', $GLOBALS['JOE_USER']->mail)
+				->limit(1)
+		);
 		if ($hasComment) {
 			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));

@@ -6,11 +6,14 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 {
 	public function execute()
 	{
+		$recommend_text = Joe\isMobile() ? Helper::options()->JIndex_Mobile_Recommend : Helper::options()->JIndex_Recommend;
+		$recommend = joe\optionMulti($recommend_text, '||', false);
 		$this->parameter->setDefault(array('pageSize' => 10));
 		$select = $this->select();
 		$select->cleanAttribute('fields');
 		$this->db->fetchAll(
 			$select->from('table.contents')
+				->where('cid not in?', $recommend)
 				->where("table.contents.password IS NULL OR table.contents.password = ''")
 				->where('table.contents.status = ?', 'publish')
 				->where('table.contents.created <= ?', time())

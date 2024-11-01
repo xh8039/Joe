@@ -218,7 +218,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<ul class="joe_index__hot-list">
 								<?php while ($item->next()) : ?>
 									<?php
-									if (in_array($item->cid, $recommend)) continue;
+									// if (in_array($item->cid, $recommend)) continue;
 									?>
 									<li class="item">
 										<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">

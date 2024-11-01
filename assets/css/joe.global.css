@@ -802,7 +802,7 @@
 
 .joe_header__slideout-menu .slides {
 	display: none;
-	border-left: 1px solid var(--classC);
+	/* border-left: 1px solid var(--classC); */
 	padding-left: 15px
 }
 

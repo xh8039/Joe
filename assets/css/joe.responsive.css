@@ -233,9 +233,9 @@
 		padding-right: 0
 	}
 
-	html .joe_header__above-logo::after {
+	/* html .joe_header__above-logo::after {
 		display: none
-	}
+	} */
 
 	html .joe_header__above-search {
 		display: none

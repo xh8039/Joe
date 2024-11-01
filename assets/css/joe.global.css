@@ -127,7 +127,7 @@
 	display: none
 }
 
-.joe_header__above-logo::after {
+/* .joe_header__above-logo::after {
 	content: '';
 	position: absolute;
 	top: 50%;
@@ -137,7 +137,7 @@
 	background: var(--classC);
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%)
-}
+} */
 
 .joe_header__above-nav {
 	display: flex;

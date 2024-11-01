@@ -1697,7 +1697,7 @@
 	z-index: 1;
 	top: 5px;
 	right: 5px;
-	background: var(--back-line-right);
+	background: var(--theme);
 	height: 20px;
 	line-height: 20px;
 	padding: 0 8px;
@@ -4464,7 +4464,7 @@
 
 .joe_comment .comment-list__item-contain .term .content .user .owner {
 	flex-shrink: 0;
-	background: var(--back-line-right);
+	background: var(--theme);
 	color: #fff;
 	padding: 0 5px;
 	border-radius: 2px;

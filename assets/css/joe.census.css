@@ -276,14 +276,15 @@
 
 .joe_census__filing .content .item.load .head {
 	top: 25px;
-	background: var(--back-line-right);
+	background: var(--theme);
 }
 
 .joe_census__filing .content .item.load .button {
 	position: relative;
 	margin-left: 30px;
 	border: none;
-	background: var(--back-line-right);
+	background: var(--theme);
+	box-shadow: 1px 1px 3px -1px var(--theme);
 	color: #fff;
 	border-radius: 4px;
 	padding: 0 12px;

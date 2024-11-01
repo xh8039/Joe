@@ -339,7 +339,8 @@
 	}
 
 	html .joe_list__item .information .title {
-		font-size: 16px
+		font-size: 16px;
+		line-height: unset;
 	}
 
 	html .joe_list__item .information .title::after {
@@ -362,7 +363,7 @@
 	}
 
 	html .joe_list__item.default .information .title {
-		font-size: 15px
+		font-size: 15px;
 	}
 
 	html .joe_list__item.default .thumbnail,

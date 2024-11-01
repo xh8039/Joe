@@ -254,7 +254,7 @@ if (!empty($footer_tabbar)) {
 		document.querySelector('.joe_header__slideout').style.paddingBottom = (height + 10) + 'px';
 
 		if (document.querySelector('.joe_header__slideout-image').style.height == '100vh') {
-			document.querySelector('.joe_header__slideout-image').style.height = 'calc(100vh - ' + height + 'px)';
+			document.querySelector('.joe_header__slideout-image').style.height = 'calc(100vh - ' + (height + 52) + 'px)';
 		}
 
 		var aplayerStyle = document.createElement('style');

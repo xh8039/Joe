@@ -573,24 +573,40 @@ document.addEventListener('DOMContentLoaded', () => {
 			render() {
 				if (this.options.src) {
 					if (this.options.player == 'false') {
-						loadJS(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
-							new DPlayer({
-								container: this, // 播放器容器元素
-								autoplay: this.options.autoplay, // 视频自动播放
-								theme: this.options.theme, // 主题色
-								lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
-								preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
-								loop: this.options.loop, // 视频循环播放
-								screenshot: this.options.screenshot, // 开启截图，如果开启，视频和视频封面需要允许跨域
-								airplay: true, // 在 Safari 中开启 AirPlay
-								volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
-								playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
-								video: {
-									pic: this.options.pic,
-									url: this.options.src
-								}
+						function isM3U8(url) {
+							try {
+								// 检查路径是否以 .m3u8 结尾
+								return (new URL(url)).pathname.trim().toLowerCase().endsWith('.m3u8');;
+							} catch (e) {
+								// 如果创建 URL 失败，返回 false
+								return false;
+							}
+						}
+						const videoPlayer = () => {
+							loadJS(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
+								new DPlayer({
+									container: this, // 播放器容器元素
+									autoplay: this.options.autoplay, // 视频自动播放
+									theme: this.options.theme, // 主题色
+									lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
+									preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
+									loop: this.options.loop, // 视频循环播放
+									screenshot: this.options.screenshot, // 开启截图，如果开启，视频和视频封面需要允许跨域
+									airplay: true, // 在 Safari 中开启 AirPlay
+									volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+									playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
+									video: {
+										pic: this.options.pic,
+										url: this.options.src
+									}
+								});
 							});
-						});
+						}
+						if (isM3U8(this.options.src)) {
+							loadJS(window.Joe.CDN('hls.js/1.5.13/hls.min.js'), videoPlayer);
+						} else {
+							videoPlayer();
+						}
 					} else {
 						if (this.options.pic == decodeURIComponent(this.options.pic)) {
 							this.options.pic = encodeURIComponent(this.options.pic);

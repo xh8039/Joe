@@ -1039,7 +1039,8 @@
 	max-width: 90%;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap
+	white-space: nowrap;
+	line-height: 22px;
 }
 
 .joe_aside__item.author .list .item .link::after {

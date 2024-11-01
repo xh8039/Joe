@@ -99,7 +99,7 @@
 
 .joe_header__above {
 	position: relative;
-	z-index: 1030;
+	z-index: 999;
 	background: var(--background);
 }
 
@@ -649,7 +649,7 @@
 
 .joe_header__slideout {
 	position: fixed;
-	top: 51.5px;
+	top: 0;
 	bottom: 0;
 	left: 0;
 	width: 80%;
@@ -662,7 +662,7 @@
 	transition: transform 0.35s, visibility 0.35s;
 	transition: transform 0.35s, visibility 0.35s, -webkit-transform 0.35s;
 	overflow-y: auto;
-	padding: 50px 15px 15px
+	padding: 10vh 15px 15px;
 }
 
 .joe_header__slideout::-webkit-scrollbar {
@@ -840,7 +840,7 @@
 }
 
 .joe_header__mask.slideout {
-	/* z-index: 1010 */
+	z-index: 1010
 }
 
 .joe_aside {

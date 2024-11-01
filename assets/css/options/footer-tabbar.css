@@ -1,3 +1,16 @@
+html .joe_header__above {
+	z-index: 1030;
+}
+
+html .joe_header__slideout {
+	top: 51.5px;
+	padding: 50px 15px 15px
+}
+
+html .joe_header__mask.slideout {
+	z-index: unset;
+}
+
 .footer-tabbar {
 	display: none;
 	position: fixed;

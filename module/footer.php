@@ -172,10 +172,6 @@ if ($this->options->JFooterMode == 'commercial') {
 		<i class="icon-1 fa fa-sun-o"></i>
 		<i class="icon-2 fa fa-moon-o"></i>
 	</div>
-	<div class="joe_action_item full_screen" data-toggle="tooltip" data-placement="left" data-original-title="全屏模式">
-		<i class="icon-1 fa fa-expand"></i>
-		<i class="icon-2 fa fa-compress" style="display: none;"></i>
-	</div>
 	<?php if ($this->user->uid == $this->authorId) : ?>
 		<?php if ($this->is('post')) : ?>
 			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" data-original-title="编辑文章">

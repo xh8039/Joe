@@ -13,7 +13,7 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 		$select->cleanAttribute('fields');
 		$this->db->fetchAll(
 			$select->from('table.contents')
-				->where('cid not in?', $recommend)
+				->where('table.contents.cid not in?', $recommend)
 				->where("table.contents.password IS NULL OR table.contents.password = ''")
 				->where('table.contents.status = ?', 'publish')
 				->where('table.contents.created <= ?', time())

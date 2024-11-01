@@ -12,7 +12,8 @@ $JYiPayApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	'易支付/码支付API接口网址',
 	'介绍：用于文章付费阅读功能 <br />
 	例如：http://mpay.bri6.cn/ <br />
-	易航码支付：<a href="http://mpay.bri6.cn" target="_blank">http://mpay.bri6.cn/</a>'
+	易航易支付：<a href="http://ypay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">http://ypay.bri6.cn</a>
+	易航码支付：<a href="http://mpay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">http://mpay.bri6.cn</a>'
 );
 $JYiPayApi->setAttribute('class', 'joe_content joe_pay');
 $form->addInput($JYiPayApi);
@@ -24,8 +25,7 @@ $JYiPayID = new \Typecho\Widget\Helper\Form\Element\Text(
 	'易支付/码支付商户号',
 	'介绍：用于文章付费阅读功能 <br />
 	例如：1001 <br />
-	<a href="http://ypay.bri6.cn" target="_blank">注册易支付商户号</a> <br />
-	<a href="http://mpay.bri6.cn" target="_blank">注册码支付商户号</a>
+	<a href="http://ypay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">注册易支付商户号</a>丨<a href="http://mpay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">注册码支付商户号</a>
 	'
 );
 $JYiPayID->setAttribute('class', 'joe_content joe_pay');
@@ -38,8 +38,7 @@ $JYiPayKey = new \Typecho\Widget\Helper\Form\Element\Text(
 	'易支付/码支付商户秘钥',
 	'介绍：用于文章付费阅读功能 <br />
 	例如：VxyC70n46yBQAxhJHu0HTDP6sFh2NJYj <br />
-	<a href="http://ypay.bri6.cn" target="_blank">注册易支付商户密钥</a> <br />
-	<a href="http://mpay.bri6.cn" target="_blank">注册码支付商户密钥</a>
+	<a href="http://ypay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">注册易支付商户密钥</a>丨<a href="http://mpay.bri6.cn?key=RbgwH8wQ4Vkx" target="_blank">注册码支付商户密钥</a>
 	'
 );
 $JYiPayKey->setAttribute('class', 'joe_content joe_pay');

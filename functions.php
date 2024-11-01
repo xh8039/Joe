@@ -11,7 +11,7 @@ define('THEME_NAME', basename(__DIR__));
 define('JOE_BASE_API', Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api');
 
 /* Joe核心文件 */
-require_once(__DIR__ . '/public/common.php');
+require_once JOE_ROOT . 'public/common.php';
 
 function themeConfig($form)
 {
@@ -53,62 +53,62 @@ function themeConfig($form)
 					<a class="item" data-current="joe_code" href="<?= Helper::options()->rootUrl . __TYPECHO_ADMIN_DIR__ ?>options-theme.php?joe_code=true">插入代码</a>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
-				<?php require_once('public/backup.php'); ?>
+				<?php require_once JOE_ROOT . 'public/backup.php'; ?>
 			</div>
 		</div>
 		<div class="joe_config__notice">请求数据中...</div>
 	<?php
 
 	// 全局设置
-	require_once('options/global.php');
+	require_once JOE_ROOT . 'options/global.php';
 
 	// 安全设置
-	require_once('options/safe.php');
+	require_once JOE_ROOT . 'options/safe.php';
 
 	// 图片设置
-	require_once('options/image.php');
+	require_once JOE_ROOT . 'options/image.php';
 
 	// 文章设置
-	require_once('options/post.php');
+	require_once JOE_ROOT . 'options/post.php';
 
 	// 侧栏设置
-	require_once('options/aside.php');
+	require_once JOE_ROOT . 'options/aside.php';
 
 	// 首页设置
-	require_once('options/index.php');
+	require_once JOE_ROOT . 'options/index.php';
 
 	// 特效设置
-	require_once('options/decoration.php');
+	require_once JOE_ROOT . 'options/decoration.php';
 
 	// 登录设置
-	require_once('options/user.php');
+	require_once JOE_ROOT . 'options/user.php';
 
 	// 音乐设置
-	require_once('options/music.php');
+	require_once JOE_ROOT . 'options/music.php';
 
 	// 友链设置
-	require_once('options/friend.php');
+	require_once JOE_ROOT . 'options/friend.php';
 
 	// 评论设置
-	require_once('options/comment.php');
+	require_once JOE_ROOT . 'options/comment.php';
 
 	// 统计设置
-	require_once('options/statistic.php');
+	require_once JOE_ROOT . 'options/statistic.php';
 
 	// 消息推送
-	require_once('options/message.php');
+	require_once JOE_ROOT . 'options/message.php';
 
 	// 底栏设置
-	require_once('options/footer.php');
+	require_once JOE_ROOT . 'options/footer.php';
 
 	// 付费设置
-	require_once('options/pay.php');
+	require_once JOE_ROOT . 'options/pay.php';
 
 	// 自定义代码
-	require_once('options/code.php');
+	require_once JOE_ROOT . 'options/code.php';
 
 	// 其他设置
-	require_once('options/other.php');
+	require_once JOE_ROOT . 'options/other.php';
 }
 
 header('Generator: YiHang');

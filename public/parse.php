@@ -1,6 +1,6 @@
 <?php
 
-require_once('short.php');
+require_once JOE_ROOT . 'public/short.php';
 
 /* 过滤短代码 */
 function _checkXSS($text)

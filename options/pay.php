@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 $JYiPayApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JYiPayApi',
 	NULL,
-	'http://mpay.bri6.cn/',
+	'http://ypay.bri6.cn/',
 	'易支付/码支付API接口网址',
 	'介绍：用于文章付费阅读功能 <br />
 	例如：http://mpay.bri6.cn/ <br />

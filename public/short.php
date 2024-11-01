@@ -108,7 +108,7 @@ function _parseContent($post, $login)
 									<div class="flex jsb">
 										<span>支付金额</span>
 										<span>
-											<span class="pay-mark">￥</span>' . $pay['price'] . '
+											<span class="pay-mark">￥</span>' . $pay['pay_price'] . '
 										</span>
 									</div>
 								</div>

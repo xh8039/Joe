@@ -116,7 +116,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					$recommend = [];
 					$recommend_text = Joe\isMobile() ? $this->options->JIndex_Mobile_Recommend : $this->options->JIndex_Recommend;
 					if ($recommend_text) {
-						$recommend = explode("||", $recommend_text);
+						$recommend = joe\optionMulti($recommend_text, '||', false);
 					}
 					if (!empty($recommend)) {
 						if ($this->options->JIndex_Recommend_Style == 'simple') {
@@ -211,14 +211,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					?>
 
 					<?php if (Joe\isMobile()) $this->options->JIndex_Hot = $this->options->JIndex_Mobile_Hot; ?>
-					<?php if ((is_numeric($this->options->JIndex_Hot)) &&  ($this->options->JIndex_Hot >= 1)) : ?>
+					<?php if ((is_numeric($this->options->JIndex_Hot)) && ($this->options->JIndex_Hot >= 1)) : ?>
 						<?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=' . $this->options->JIndex_Hot)->to($item); ?>
 						<div class="title-theme" style="margin-bottom: 10px;">热门文章</div>
 						<div class="joe_index__hot">
 							<ul class="joe_index__hot-list">
 								<?php while ($item->next()) : ?>
 									<?php
-									// var_dump($item);
+									if (in_array($item->cid, $recommend)) continue;
 									?>
 									<li class="item">
 										<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">

@@ -2417,7 +2417,7 @@
 	position: relative;
 	padding: 0 10px;
 	line-height: 35px;
-	height: 30px;
+	height: 35px;
 	color: var(--minor);
 	cursor: pointer;
 	transition: 0.1s;

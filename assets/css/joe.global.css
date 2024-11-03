@@ -3130,7 +3130,7 @@
 	background: #ecf5ff;
 	color: #409eff;
 	padding: 2px 4px;
-	vertical-align: top;
+	/* vertical-align: top; */
 	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 	word-break: break-word;
 	font-weight: normal;

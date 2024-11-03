@@ -148,8 +148,11 @@
 	border-radius: var(--radius-wrap);
 	box-shadow: 0 0 10px 8px var(--main-shadow);
 	overflow: auto;
-	max-height: 50vh;
 	max-width: 70vw;
 	background: var(--background);
 	margin-bottom: 0px;
+}
+
+.posts-nav-switcher>.zib-widget>.posts-nav-lists {
+	max-height: 50vh;
 }

@@ -552,12 +552,23 @@ botton {
 	overflow-y: auto;
 }
 
-.enlighter,
-.mini-scrollbar,
-.no-scrollbar {
+.enlighter {
 	-ms-overflow-style: none;
 	overflow: -moz-scrollbars-none;
 	scrollbar-width: thin;
+}
+
+.mini-scrollbar::-webkit-scrollbar {
+	width: 3px;
+}
+
+.mini-scrollbar::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background: var(--seat)
+}
+
+.mini-scrollbar::-webkit-scrollbar-track {
+	background: transparent
 }
 
 .no-scrollbar {

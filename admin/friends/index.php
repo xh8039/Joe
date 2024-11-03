@@ -46,8 +46,8 @@ $waiting_count = waiting_count();
 										class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i
 										class="i-caret-down"></i></button>
 								<ul class="dropdown-menu">
-									<li><a lang="<?php _e('你确认要启用这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=open') ?>"><?php _e('通过'); ?></a></li>
-									<li><a lang="<?php _e('你确认要禁用这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=disable') ?>"><?php _e('待审核'); ?></a></li>
+									<li><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=open') ?>"><?php _e('通过'); ?></a></li>
+									<li><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=disable') ?>"><?php _e('待审核'); ?></a></li>
 									<li><a lang="<?php _e('你确认要删除这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=delete') ?>"><?php _e('删除'); ?></a></li>
 								</ul>
 							</div>

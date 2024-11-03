@@ -97,7 +97,7 @@
 			<div class="joe_main joe_post">
 				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
 					<?php $this->need('module/batten.php'); ?>
-					<?php if ($this->options->JOverdue && $this->options->JOverdue !== 'off' && floor((time() - ($this->modified)) / 86400) > $this->options->JOverdue) : ?>
+					<?php if ($this->options->JOverdue && $this->options->JOverdue != 'off' && floor((time() - ($this->modified)) / 86400) > $this->options->JOverdue) : ?>
 						<div class="joe_detail__overdue">
 							<div class="joe_detail__overdue-wrapper">
 								<div class="title">

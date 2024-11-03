@@ -183,14 +183,20 @@ class Editor
 	{
 ?>
 		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
+
+		<!-- Prism.css -->
 		<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . Helper::options()->JPrismTheme) ?>">
+		<link href="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.css') ?>" rel="stylesheet">
+
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css') ?>">
+
 		<!-- 自定义CSS样式 -->
 		<style>
 			<?php Helper::options()->JCustomCSS(); ?>
 		</style>
 		<!-- 自定义CSS样式 -->
+
 		<script>
 			window.JoeConfig = {
 				uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
@@ -204,7 +210,15 @@ class Editor
 			}
 		</script>
 		<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
+
+		<!-- Prism.js -->
 		<script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script>
+		<script src="<?= joe\cdn('prism/1.9.0/plugins/autoloader/prism-autoloader.min.js') ?>"></script>
+		<script>
+			Prism.plugins.autoloader.languages_path = '<?php Helper::options()->themeUrl('assets/plugin/prism/1.9.0/components/') ?>';
+		</script>
+		<script src="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js') ?>"></script>
+
 		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/index.bundle.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>

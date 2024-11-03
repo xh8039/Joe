@@ -13,10 +13,23 @@
 		<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
 	<?php endif ?>
 	<?php $this->need('module/head.php'); ?>
+
+	<!-- Prism.css -->
 	<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . $this->options->JPrismTheme) ?>">
+	<link href="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.css') ?>" rel="stylesheet">
+
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
+
 	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
+
+	<!-- Prism.js -->
 	<script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script>
+	<script src="<?= joe\cdn('prism/1.9.0/plugins/autoloader/prism-autoloader.min.js') ?>"></script>
+	<script>
+		Prism.plugins.autoloader.languages_path = Joe.CDN(`prism/1.9.0/components/`);
+	</script>
+	<script src="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js') ?>"></script>
+
 	<script src="<?= joe\theme_url('assets/js/joe.post_page.js'); ?>"></script>
 </head>
 

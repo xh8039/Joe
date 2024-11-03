@@ -6,22 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const cid = $('.joe_detail').attr('data-cid');
 	window.cid = cid;
 
-	function PrismInit(item, language) {
-		let text = item.textContent.replace(/    /g, '	');
-		// console.log(language)
-		let highlightedCode = Prism.highlight(text, Prism.languages[language], language);
-		item.innerHTML = highlightedCode;
-		// console.log(text);
-		let span = $(`<span class="copy"><i class="fa fa-clone"></i></span>`);
-		$(item).append(span);
-		new ClipboardJS(span[0], {
-			text: () => text
-		}).on('success', () => {
-			window.code_copy = true;
-			Qmsg.success(`复制成功 内容版权属于 ${Joe.TITLE} 转载请标明出处！`, { 'showClose': true, 'autoClose': false });
-		});
-	}
-
 	/* 获取本篇文章百度收录情况 */
 	{
 		if (document.getElementById('Joe_Baidu_Record')) {
@@ -73,18 +57,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活代码高亮 */
 	{
-		// Prism.highlightAll();
-		$("code[class*='language-']").each(function (index, item) {
-			var language = item.classList[0].replace("language-", "");
-			// console.log(language);
-			if (language == 'shell') language = 'powershell';
-			if (Prism.languages[language]) {
-				PrismInit(item, language);
-			} else {
-				loadJS(Joe.CDN(`prism/1.9.0/components/prism-${language}.min.js`), () => {
-					PrismInit(item, language)
+		Prism.highlightAll();
+		$("pre[class*='language-']").each(function (index, item) {
+			let text = $(item).find("code[class*='language-']").text().replace(/    /g, '	');
+			let span = $(`<span data-toggle="tooltip" data-placement="top" title="点击复制" class="copy"><i class="fa fa-clone"></i></span>`);
+			if (!Joe.IS_MOBILE) {
+				span.tooltip({
+					container: "body"
+				});
+				span.on('click', function (event) {
+					$(this).tooltip('hide');
 				});
 			}
+			new ClipboardJS(span[0], {
+				text: () => text
+			}).on('success', () => {
+				window.code_copy = true;
+				Qmsg.success(`复制成功 内容版权属于 ${Joe.TITLE} 转载请标明出处！`, { 'showClose': true, 'autoClose': false });
+			});
+			$(item).append(span);
 		});
 	}
 

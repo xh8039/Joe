@@ -226,5 +226,14 @@ function _parseContent($post, $login)
 		$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
 	}
 
+	// 代码显示行号
+	if (strpos($content, '<pre>') !== false) {
+		$content = str_replace('<pre>', '<pre class="line-numbers">', $content);
+	}
+	// shell 已经更名为 powershell
+	if (strpos($content, '<code class="lang-shell">') !== false) {
+		$content = str_replace('<code class="lang-shell">', '<code class="lang-powershell">', $content);
+	}
+
 	echo $content;
 }

@@ -214,7 +214,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	padding: 0 15px
+	padding: 0 15px;
 }
 
 .joe_header__above-nav .joe_dropdown__menu a:hover,
@@ -3162,6 +3162,7 @@
 	overflow: auto;
 	padding: 0 15px 12px;
 	tab-size: 4 !important;
+	padding-left: 4em;
 }
 
 .joe_detail__article pre[class*='language-']::before {
@@ -3179,8 +3180,9 @@
 
 .joe_detail__article pre[class*='language-'] .copy {
 	position: absolute;
-	top: 9px;
-	right: 15px;
+	line-height: normal;
+	top: 7.25px;
+	right: 7.25px;
 	z-index: 5;
 	color: #909399;
 	transition: color 0.35s;
@@ -3193,6 +3195,10 @@
 
 .joe_detail__article pre[class*='language-'] .copy:hover {
 	color: #c0c4cc
+}
+
+html .line-numbers .line-numbers-rows {
+	left: 0;
 }
 
 .joe_detail__article img:not([class]) {

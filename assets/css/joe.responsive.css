@@ -787,6 +787,12 @@
 	html .joe_list__item .item-meta .meta-comm {
 		display: none;
 	}
+
+	.joe_container,
+	.container {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
 }
 
 @media (max-width: 450px) {

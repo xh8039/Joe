@@ -10,12 +10,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<a href="<?php $this->author->permalink(); ?>">
 			<img width="38" height="38" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author(); ?>" />
 		</a>
-		<div class="meta">
+		<div class="meta ml10">
 			<div class="author">
 				<a class="link" href="<?php $this->author->permalink(); ?>" title="<?php $this->author(); ?>"><?php $this->author(); ?></a>
 			</div>
 			<div class="item">
-				<span class="text"><?php $this->date('Y-m-d'); ?> 发布</span>
+				<span data-toggle="tooltip" data-placement="bottom" title="<?php $this->date('Y年m月d日 H:i') ?> 发布" class="text"><?= joe\dateWord($this->dateWord) ?>发布</span>
 				<?= $this->options->JPost_Record_Detection == 'on' ? '<span class="line">/</span><span class="text" id="Joe_Baidu_Record">正在检测是否收录...</span>' : null ?>
 			</div>
 		</div>

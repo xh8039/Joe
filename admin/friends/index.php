@@ -95,7 +95,7 @@ $waiting_count = waiting_count();
 									<?php while ($orders->next()) : ?>
 										<tr id="<?php $orders->id() ?>">
 											<td><input type="checkbox" value="<?php $orders->id() ?>" name="id[]" /></td>
-											<td><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=edit&id=') . $orders->id() ?>"><?php $orders->title() ?></a></td>
+											<td><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=edit&id=') . $orders->id() ?>"><?php $orders->title() ?></a> <i class="i-edit"></i></td>
 											<td><a target="_blank" href="<?php $orders->url() ?>"><?php $orders->url() ?></a></td>
 											<td><?php $orders->description() ?></td>
 											<td><img referrerpolicy="no-referrer" rel="noreferrer" width="50px" height="50px" src="<?php $orders->logo() ?>"></td>

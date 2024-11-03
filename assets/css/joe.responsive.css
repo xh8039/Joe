@@ -466,7 +466,8 @@
 	}
 
 	html .joe_detail__article {
-		font-size: 14px
+		/* font-size: 14px */
+		font-size: 15px
 	}
 
 	html .joe_detail__article pre[class*='language-'] {

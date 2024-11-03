@@ -6,7 +6,7 @@ function section_navs(selector) {
 	var _body = $('body');
 	var nav_class = 'posts-nav-lists';
 	var nav_selector = '.' + nav_class;
-	var selector_s = selector + ' h1,' + selector + ' h2,' + selector + ' h3,' + selector + ' h4';
+	var selector_s = selector + ' h1,' + selector + ' h2,' + selector + ' h3,' + selector + ' h4,' + selector + ' h5,' + selector + ' h6';
 
 	var index = 0;
 

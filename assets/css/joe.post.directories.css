@@ -67,6 +67,16 @@
 	font-size: 12px
 }
 
+.posts-nav-lists li.n-H5 a {
+	padding-left: 47px;
+	font-size: 11px
+}
+
+.posts-nav-lists li.n-H6 a {
+	padding-left: 52px;
+	font-size: 10px
+}
+
 .posts-nav-lists .bl::after,
 .posts-nav-lists .bl::before,
 .posts-nav-lists li::before {

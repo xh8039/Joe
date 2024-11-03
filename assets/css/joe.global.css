@@ -215,6 +215,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	padding: 0 15px;
+	margin: 0;
 }
 
 .joe_header__above-nav .joe_dropdown__menu a:hover,

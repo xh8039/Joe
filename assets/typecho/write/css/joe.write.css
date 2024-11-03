@@ -535,7 +535,7 @@ body.fullscreen {
 
 .cm-preview-content br {
 	content: "";
-	padding-bottom: 5px;
+	padding-bottom: 6px;
 	display: block;
 }
 

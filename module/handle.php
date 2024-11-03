@@ -6,11 +6,12 @@
 	<div class="separator">THE END</div>
 <?php endif; ?>
 <div class="article-tags">
-	<?php if (sizeof($this->categories) > 0) : ?>
-		<?php foreach (array_slice($this->categories, 0, 5) as $key => $item) : ?>
-			<a style="color: var(--theme);background :rgba(41, 151, 247, 0.1);" href="<?php echo $item['permalink']; ?>" class="item item-<?php echo $key ?>" title="查看此分类更多文章"><i class="fa fa-folder-open-o" aria-hidden="true"></i> <?php echo $item['name']; ?></a>
-		<?php endforeach; ?>
-	<?php endif; ?>
+	<?php if (sizeof($this->categories) > 0) :
+		$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
+		foreach (array_slice($this->categories, 0, 5) as $key => $item) : ?>
+			<a href="<?php echo $item['permalink']; ?>" class="but ml6 radius <?= $color_array[$key] ? $color_array[$key] : 'c-blue' ?>" title="查看此分类更多文章"><i class="fa fa-folder-open-o" aria-hidden="true"></i> <?php echo $item['name']; ?></a>
+	<?php endforeach;
+	endif; ?>
 	<br>
 	<?php
 	if (count($this->tags) > 0) {

@@ -3352,29 +3352,6 @@ html .line-numbers .line-numbers-rows {
 .joe_detail .article-tags a {
 	font-size: 12px;
 	margin: 3px;
-	border-radius: 50px;
-	padding: .3em 1em;
-	transition: color .2s, background .3s, opacity .3s, box-shadow .3s, transform .3s;
-
-	display: inline-block;
-	transition: .15s;
-	border: 1px solid var(--this-border);
-	vertical-align: middle;
-	text-align: center;
-	font-weight: 400;
-	box-shadow: var(--this-shadow);
-	background: var(--this-bg);
-	color: var(--this-color);
-	--main-color: var(--this-color);
-	--this-bg: rgba(136, 136, 136, 0.1);
-	--this-border: transparent;
-	--this-shadow: none;
-	--this-color: #888;
-	text-shadow: 0 0 0;
-}
-
-.joe_detail .article-tags a:hover {
-	opacity: .8;
 }
 
 .joe_detail .post-actions {

@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				loop: true,
 				autoplay: true,
 				mousewheel: false, // 允许使用鼠标滚轮在幻灯片中导航
+				speed: 1000, // 控制过渡时间为1000毫秒，即1秒
+				autoplay: {
+					delay: 1500, // 控制自动播放之间的延迟为1.5秒
+				},
 				pagination: { el: '.swiper-pagination' }, // 具有分页参数的对象或布尔值，以使用默认设置启用。
 				// 具有导航参数的对象或布尔值，以使用默认设置启用。
 				navigation: {

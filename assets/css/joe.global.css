@@ -2984,7 +2984,8 @@
 	font-size: 18px;
 	line-height: 24px;
 	/* margin-bottom: 10px; */
-	margin-bottom: 20px;
+	/* margin-bottom: 20px; */
+	margin-bottom: 8px;
 	position: relative;
 	font-family: inherit;
 	line-height: 1.1;
@@ -3023,7 +3024,8 @@
 .joe_detail__article h5:not(:first-child),
 .joe_detail__article h6:not(:first-child) {
 	/* margin-top: 15px; */
-	margin-top: 20px;
+	/* margin-top: 20px; */
+	margin-top: 24px;
 }
 
 .joe_detail__article h1 {
@@ -3077,7 +3079,7 @@
 
 .joe_detail__article p {
 	/* line-height: 2; */
-	margin-bottom: 20px;
+	margin-bottom: 16px;
 	line-height: 26px;
 }
 

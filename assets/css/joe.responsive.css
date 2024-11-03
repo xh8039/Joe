@@ -777,6 +777,15 @@
 	}
 }
 
+@media (max-width: 640px) {
+	html .hide-sm {
+		display: none !important;
+	}
+	html .joe_detail__article {
+		font-size: 15px;
+	}
+}
+
 @media (max-width: 500px) {
 	html .joe_detail__related-content .item {
 		height: 120px;

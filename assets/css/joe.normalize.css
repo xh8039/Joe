@@ -1654,9 +1654,3 @@ badge.p2-10 {
 		max-width: 1380px
 	}
 }
-
-@media (max-width: 640px) {
-	.hide-sm {
-		display: none !important;
-	}
-}

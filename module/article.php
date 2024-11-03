@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 ?>
-<article class="joe_detail__article">
+<article class="joe_detail__article" data-nav="posts">
 	<?php if (!$this->hidden && $this->fields->video) : ?>
 		<meta name="referrer" content="no-referrer">
 		<div class="joe_detail__article-video">

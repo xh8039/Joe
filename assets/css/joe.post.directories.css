@@ -1,0 +1,145 @@
+.posts-nav-lists {
+	max-height: 400px;
+	padding-left: 10px;
+}
+
+.posts-nav-lists *:after,
+.posts-nav-lists *:before {
+	box-sizing: border-box;
+}
+
+.posts-nav-lists .bl {
+	border-left: 1px solid var(--main-border-color);
+	padding: 20px 10px 20px 0
+}
+
+.posts-nav-lists li.yc:not(.active) {
+	display: none
+}
+
+.posts-nav-lists li {
+	position: relative;
+	display: block;
+}
+
+.posts-nav-lists li a {
+	margin: 0 10px;
+	display: block;
+	border-radius: 4px;
+	margin-right: 25px;
+	padding: 8px
+}
+
+.posts-nav-lists .fa-angle-right {
+	position: absolute;
+	cursor: pointer;
+	right: 0;
+	top: 0;
+	padding: 8px 15px;
+	color: var(--muted-2-color);
+	margin-right: -15px;
+	transition: all .2s;
+	font-size: 20px
+}
+
+.dosc-nav li a:focus,
+.dosc-nav li a:hover,
+.nav .active a,
+.nav>li>a:focus,
+.nav>li>a:hover,
+.posts-nav-lists li a:hover,
+.posts-nav-lists li.active a {
+	background: var(--main-shadow);
+	color: var(--focus-color)
+}
+
+.posts-nav-lists li.n-H1 a,
+.posts-nav-lists li.n-H2 a {
+	font-weight: 700
+}
+
+.posts-nav-lists li.n-H3 a {
+	padding-left: 25px
+}
+
+.posts-nav-lists li.n-H4 a {
+	padding-left: 42px;
+	font-size: 12px
+}
+
+.posts-nav-lists .bl::after,
+.posts-nav-lists .bl::before,
+.posts-nav-lists li::before {
+	position: absolute;
+	bottom: 0;
+	left: -6px;
+	width: 11px;
+	height: 11px;
+	border: 2px solid var(--focus-color);
+	background: var(--main-bg-color);
+	border-radius: 15px;
+	content: '';
+	transition: .15s
+}
+
+.posts-nav-lists .bl::before {
+	bottom: auto;
+	top: 0
+}
+
+.posts-nav-lists li::before {
+	top: 50%;
+	transform: translateY(-50%);
+	border: 3px solid var(--main-bg-color);
+	background: var(--muted-3-color);
+	opacity: 0
+}
+
+.posts-nav-lists li.n-H1::before,
+.posts-nav-lists li.n-H2::before {
+	border-width: 2px;
+	opacity: 1
+}
+
+.posts-nav-lists li.n-H2::before {
+	border-width: 3px
+}
+
+.posts-nav-lists li.n-H3::before {
+	border-width: 4px;
+	opacity: .6
+}
+
+.posts-nav-lists li.active::before,
+.posts-nav-lists li:hover::before {
+	opacity: 1;
+	border-width: 2px;
+	background: var(--focus-color)
+}
+
+.joe_action_item.posts-nav-switcher {
+	position: relative;
+}
+
+.joe_action_item.posts-nav-switcher:hover {
+	opacity: 1;
+}
+
+.posts-nav-switcher>.box-body {
+	display: none;
+
+}
+
+.posts-nav-switcher>.zib-widget {
+	position: absolute;
+	display: none;
+	right: 50px;
+	bottom: 0px;
+	border-radius: var(--radius-wrap);
+	box-shadow: 0 0 10px 8px var(--main-shadow);
+	overflow: auto;
+	max-height: 50vh;
+	max-width: 70vw;
+	background: var(--background);
+	margin-bottom: 0px;
+}

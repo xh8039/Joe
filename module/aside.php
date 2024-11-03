@@ -29,10 +29,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php endif; ?>
 	</section>
 
+	<?= ($this->is('post') && !joe\isMobile() && $this->options->JArticle_Guide == 'on') ? '<section data-affix="true" class="posts-nav-box joe_aside__item" data-title="文章目录"></section>' : null ?>
+
 	<?php if (!empty($this->options->JAside_Notice) && !joe\detectSpider()) : ?>
 		<section class="joe_aside__item notice">
 			<div class="joe_aside__item-title">
-				<span class="text">站点公告</span>
+				<div class="text">站点公告</div>
 			</div>
 			<div class="joe_aside__item-contain" style="color: var(--main-color);">
 				<?php $this->options->JAside_Notice() ?>
@@ -42,7 +44,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php if ($this->options->JAside_Timelife_Status === 'on') : ?>
 		<section class="joe_aside__item timelife">
 			<div class="joe_aside__item-title">
-				<span class="text">人生倒计时</span>
+				<div class="text">人生倒计时</div>
 			</div>
 			<div class="joe_aside__item-contain"></div>
 		</section>
@@ -79,7 +81,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php if (count($historyTodaylist) > 0) : ?>
 			<section class="joe_aside__item today">
 				<div class="joe_aside__item-title">
-					<span class="text">那年今日</span>
+					<div class="text">那年今日</div>
 				</div>
 				<ul class="joe_aside__item-contain">
 					<?php foreach ($historyTodaylist as $item) : ?>
@@ -102,7 +104,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php if ($this->options->JAside_Hot_Num && $this->options->JAside_Hot_Num !== 'off') : ?>
 		<section class="joe_aside__item hot">
 			<div class="joe_aside__item-title">
-				<span class="text">热门文章</span>
+				<div class="text">热门文章</div>
 			</div>
 			<?php $this->widget('Widget_Contents_Hot@Aside', 'pageSize=' . $this->options->JAside_Hot_Num)->to($item); ?>
 			<ol class="joe_aside__item-contain">
@@ -130,7 +132,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php if ($this->options->JAside_Newreply_Status === 'on' && $this->options->JCommentStatus !== 'off') : ?>
 		<section class="joe_aside__item newreply">
 			<div class="joe_aside__item-title">
-				<span class="text">最新回复</span>
+				<div class="text">最新回复</div>
 			</div>
 			<?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true&pageSize=3')->to($item); ?>
 			<ul class="joe_aside__item-contain">
@@ -160,7 +162,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php if ($this->options->JAside_Weather_Key) : ?>
 		<section class="joe_aside__item weather" data-key="<?php $this->options->JAside_Weather_Key() ?>" data-style="<?php $this->options->JAside_Weather_Style() ?>">
 			<div class="joe_aside__item-title">
-				<span class="text">今日天气</span>
+				<div class="text">今日天气</div>
 			</div>
 			<div class="joe_aside__item-contain">
 				<div id="he-plugin-standard"></div>
@@ -170,7 +172,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php if ($this->options->JAside_3DTag === 'on') : ?>
 		<section class="joe_aside__item tags">
 			<div class="joe_aside__item-title">
-				<span class="text">标签云</span>
+				<div class="text">标签云</div>
 			</div>
 			<?php $this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 50))->to($tags); ?>
 			<div class="joe_aside__item-contain">
@@ -196,7 +198,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php if ($this->options->JAside_Flatterer === 'on') : ?>
 		<section class="joe_aside__item flatterer">
 			<div class="joe_aside__item-title">
-				<span class="text">舔狗日记</span>
+				<div class="text">舔狗日记</div>
 			</div>
 			<div class="joe_aside__item-contain">
 				<div class="content"></div>
@@ -209,5 +211,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</section>
 	<?php endif; ?>
+
+	<?= ($this->is('post') && !joe\isMobile() && $this->options->JArticle_Guide == 'on') ? '<section data-affix="true" class="posts-nav-box joe_aside__item" data-title="文章目录"></section>' : null ?>
 
 </aside>

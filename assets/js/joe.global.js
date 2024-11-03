@@ -900,7 +900,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		function checkUrl(string) {
 			try {
-				console.log(string);
+				// console.log(string);
 				if (string.startsWith('/')) return true;
 				let url = new URL(string);
 				if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;

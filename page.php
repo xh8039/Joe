@@ -32,10 +32,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		</div>
 		<?php $this->need('module/footer.php'); ?>
 	</div>
-	<?php if ($this->options->JArticle_Guide == 'on') : ?>
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.article.guide.css'); ?>">
-		<script src="<?= joe\theme_url('assets/js/joe.article.guide.js'); ?>"></script>
-	<?php endif; ?>
 </body>
 
 </html>

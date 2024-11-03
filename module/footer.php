@@ -172,6 +172,13 @@ if ($this->options->JFooterMode == 'commercial') {
 		<i class="icon-1 fa fa-sun-o"></i>
 		<i class="icon-2 fa fa-moon-o"></i>
 	</div>
+	<?php
+	if ($this->is('post') && joe\isMobile() && $this->options->JArticle_Guide == 'on') {
+	?>
+		<div data-affix="true" class="joe_action_item posts-nav-box posts-nav-switcher" data-title="文章目录"><i class="fa fa-list-ul"></i></div>
+	<?php
+	}
+	?>
 	<?php if ($this->user->uid == $this->authorId) : ?>
 		<?php if ($this->is('post')) : ?>
 			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" data-original-title="编辑文章">

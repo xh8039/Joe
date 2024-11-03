@@ -91,6 +91,10 @@ li {
 a {
 	text-decoration: none;
 	transition: 0.25s;
+	color: var(--main-color);
+}
+
+a:hover {
 	color: var(--theme);
 }
 
@@ -527,11 +531,25 @@ botton {
 	margin-bottom: 6px;
 }
 
+.list-unstyled {
+	padding-left: 0;
+	list-style: none;
+}
+
 .scroll-x,
 .scroll-y {
 	-webkit-overflow-scrolling: touch;
 	overflow: hidden;
 	overflow-x: auto;
+}
+
+.scroll-x {
+	white-space: nowrap;
+}
+
+.scroll-y {
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .enlighter,
@@ -553,10 +571,6 @@ botton {
 .no-scrollbar::-webkit-scrollbar {
 	/* Chrome Safari */
 	display: none;
-}
-
-.scroll-x {
-	white-space: nowrap;
 }
 
 .more-posts a>span,

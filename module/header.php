@@ -12,11 +12,10 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 }
 ?>
 <header class="joe_header <?php echo $this->is('post') ? 'current' : '' ?>">
-
 	<div class="joe_header__above">
 		<div class="joe_container">
 			<i class="joe_header__above-slideicon em12 css-icon"><i></i></i>
-			<a title="<?php $this->options->title(); ?>" class="joe_header__above-logo" href="<?php $this->options->siteUrl(); ?>">
+			<a title="<?php $this->options->title(); ?>" class="joe_header__above-logo <?= $this->options->JLogo_Light_Effect == 'on' ? 'joe_scan_light' : null ?>" href="<?php $this->options->siteUrl(); ?>">
 				<img data-src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="<?php $this->options->title(); ?>" class="lazyload light" />
 				<?php
 				if (empty($this->options->JDarkLogo)) {

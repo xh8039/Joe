@@ -95,10 +95,6 @@ $fields = $this->fields->toArray();
 if ($this->options->JIndex_Link_Active == 'on') {
 	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/JIndex_Link_Active.css') . '">';
 }
-// LOGO扫光效果
-if ($this->options->JLogo_Light_Effect == 'on') {
-	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/JLogo_Light_Effect.css') . '">';
-}
 // 首页文章双栏
 if (($this->is('index') || $this->is('archive')) && $this->options->JIndex_Article_Double_Column == 'on') {
 	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/JIndex_Article_Double_Column.css') . '">';

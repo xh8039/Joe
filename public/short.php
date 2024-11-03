@@ -88,7 +88,7 @@ function _parseContent($post, $login)
 				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 
 				$content = '
-				   <div class="pay-box zib-widget paid-box order-type-1" id="posts-pay">
+				   <div class="zib-widget pay-box paid-box" id="posts-pay">
 							<div class="flex ac jb-green padding-10 em09">
 								<div class="text-center flex-auto">
 									<div class="mb6">
@@ -127,7 +127,7 @@ function _parseContent($post, $login)
 				' . $content;
 			} else {
 				$pay_box_position = '
-				  <div class="zib-widget pay-box order-type-1" id="posts-pay">
+				  <div class="zib-widget pay-box joe_scan_light" id="posts-pay">
 							<div class="flex pay-flexbox">
 								<div class="flex0 relative mr20 hide-sm pay-thumb">
 									<div class="graphic">

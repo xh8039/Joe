@@ -436,9 +436,7 @@ body.fullscreen {
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 24px;
-    margin: 0;
-	/* margin-bottom: 10px; */
-	margin-bottom: 20px;
+	margin-bottom: 8px;
 	position: relative;
 	font-family: inherit;
 	line-height: 1.1;
@@ -476,8 +474,7 @@ body.fullscreen {
 .cm-preview-content h4:not(:first-child),
 .cm-preview-content h5:not(:first-child),
 .cm-preview-content h6:not(:first-child) {
-	/* margin-top: 15px; */
-	margin-top: 20px;
+	margin-top: 24px;
 }
 
 .cm-preview-content h1 {
@@ -523,17 +520,21 @@ body.fullscreen {
 }
 
 .cm-preview-content hr {
-    margin: 0;
     border: none;
     height: 1px;
-    background-color: #e4e7ed;
-    margin-bottom: 15px
+    background-color: var(--classB);
+    margin-bottom: 18px
 }
 
 .cm-preview-content p {
+    margin-bottom: 16px;
     line-height: 26px;
-    margin: 0;
-    margin-bottom: 15px
+}
+
+.cm-preview-content br {
+    content: "";
+    padding-bottom: 5px;
+    display: block;
 }
 
 .cm-preview-content blockquote {
@@ -1473,27 +1474,27 @@ body.fullscreen {
 }
 
 .joe_cloud__logo._default {
-	background-image: url("../../../../assets/images/cloud/default.svg");
+    background-image: url("../../../../assets/images/cloud/default.svg");
 }
 
 .joe_cloud__logo._360 {
-	background-image: url("../../../../assets/images/cloud/360.svg");
+    background-image: url("../../../../assets/images/cloud/360.svg");
 }
 
 .joe_cloud__logo._bd {
-	background-image: url("../../../../assets/images/cloud/baidu.svg");
+    background-image: url("../../../../assets/images/cloud/baidu.svg");
 }
 
 .joe_cloud__logo._ty {
-	background-image: url("../../../../assets/images/cloud/tianyi.svg");
+    background-image: url("../../../../assets/images/cloud/tianyi.svg");
 }
 
 .joe_cloud__logo._ct {
-	background-image: url("../../../../assets/images/cloud/chengtong.svg")
+    background-image: url("../../../../assets/images/cloud/chengtong.svg")
 }
 
 .joe_cloud__logo._wy {
-	background-image: url("../../../../assets/images/cloud/thin-cloud.png")
+    background-image: url("../../../../assets/images/cloud/thin-cloud.png")
 }
 
 .joe_cloud__logo._quark {
@@ -1501,15 +1502,15 @@ body.fullscreen {
 }
 
 .joe_cloud__logo._github {
-	background-image: url("../../../../assets/images/cloud/github.svg")
+    background-image: url("../../../../assets/images/cloud/github.svg")
 }
 
 .joe_cloud__logo._gitee {
-	background-image: url("../../../../assets/images/cloud/gitee.svg")
+    background-image: url("../../../../assets/images/cloud/gitee.svg")
 }
 
 .joe_cloud__logo._lz {
-	background-image: url("../../../../assets/images/cloud/lanzou.png")
+    background-image: url("../../../../assets/images/cloud/lanzou.png")
 }
 
 .joe_cloud__describe {

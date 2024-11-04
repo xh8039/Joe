@@ -6081,6 +6081,7 @@ html .aplayer {
 
 .joe_scan_light {
 	overflow: hidden;
+	position: relative;
 }
 
 .joe_scan_light::before {

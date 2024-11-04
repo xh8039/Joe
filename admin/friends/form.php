@@ -47,7 +47,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 
 				/** 友链状态 */
 				$list = array('0' => '禁用', '1' => '启用');
-				$status = new Typecho_Widget_Helper_Form_Element_Radio('status', $list, '1', '友链状态');
+				$status = new Typecho_Widget_Helper_Form_Element_Radio('status', $list, '1', '友链状态', '注意：此处编辑友链状态不会邮箱通知对方');
 				$form->addInput($status);
 
 				/** 友链动作 */

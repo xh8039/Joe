@@ -526,6 +526,10 @@ function send_email($title, $subtitle, $content, $email = '')
 			$email = $authoInfo['mail'];
 		}
 	}
+	if (!class_exists('\PHPMailer', false)) {
+		require_once JOE_ROOT . 'public/phpmailer.php';
+		require_once JOE_ROOT . 'public/smtp.php';
+	}
 	$mail = new \PHPMailer();
 	$mail->isSMTP();
 	$mail->SMTPAuth = true;

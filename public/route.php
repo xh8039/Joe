@@ -279,7 +279,7 @@ function _pushRecord($self)
 
 	$token = trim(Helper::options()->JBaiduToken);
 	$domain = $self->request->domain;
-	$url =  explode('?', $self->request->url, 2);
+	$url = explode('?', $self->request->url, 2)[0];
 	$urls = explode(",", $url);
 	$api = "http://data.zz.baidu.com/urls?site={$domain}&token={$token}";
 	$ch = curl_init();
@@ -349,7 +349,7 @@ function _pushBing($self)
 		exit;
 	}
 	$domain = $self->request->domain;  //网站域名
-	$url =  explode('?', $self->request->url, 2);
+	$url = explode('?', $self->request->url, 2)[0];
 	$urls = explode(",", $url);  //要推送的url
 	$api = "https://www.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=$token";
 	$data = array(

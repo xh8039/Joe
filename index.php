@@ -18,7 +18,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <html lang="zh-CN">
 
 <head>
-	<!-- <meta name="referrer" content="no-referrer" /> -->
 	<?php
 	if (!empty($this->options->JIndex_Carousel)) : ?>
 		<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
@@ -48,9 +47,27 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					$this->need('module/index/list.php');
 					?>
 				</div>
-				<div class="joe_load_box">
-					<a href="javascript:;" class="joe_load"><i class="fa fa-angle-right"></i>加载更多</a>
-				</div>
+				<?php
+				if ($this->options->JIndex_Ajax_List == 'on') {
+					echo '<div class="joe_load_box"><a href="javascript:;" class="joe_load"><i class="fa fa-angle-right"></i>加载更多</a></div>';
+				} else if ($this->have()) {
+					$this->pageNav(
+						'<i class="fa fa-angle-left em12"></i><span class="hide-sm ml6">上一页</span>',
+						'<span class="hide-sm mr6">下一页</span><i class="fa fa-angle-right em12"></i>',
+						1,
+						'...',
+						array(
+							'wrapTag' => 'ul',
+							'wrapClass' => 'joe_pagination',
+							'itemTag' => 'li',
+							'textTag' => 'a',
+							'currentClass' => 'active',
+							'prevClass' => 'prev',
+							'nextClass' => 'next'
+						)
+					);
+				}
+				?>
 			</div>
 			<?php $this->need('module/aside.php'); ?>
 		</div>

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	/* 初始化首页列表功能 */
-	{
+	if (Joe.INDEX_AJAX) {
 		const getTags = (data) => {
 			let tagsHtml = '';
 			if (data.fields.hide == 'pay' && data.fields.pay_tag_background != 'none') {

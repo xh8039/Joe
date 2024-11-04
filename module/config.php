@@ -13,14 +13,16 @@ $fields = $this->fields->toArray();
 		BASE_API: `<?= JOE_BASE_API ?>`,
 		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
-		BAIDU_PUSH: <?= $this->options->JBaiduToken ? 'true' : 'false' ?>,
-		BING_PUSH: <?= $this->options->JBingToken ? 'true' : 'false' ?>,
+		BAIDU_PUSH: <?= empty($this->options->JBaiduToken) ? 'false' : 'true' ?>,
+		BING_PUSH: <?= empty($this->options->JBingToken) ? 'false' : 'true' ?>,
 		DOCUMENT_TITLE: `<?php $this->options->JDocumentTitle() ?>`,
 		LAZY_LOAD: `<?php \joe\getLazyload() ?>`,
 		BIRTHDAY: `<?php $this->options->JBirthDay() ?>`,
 		MOTTO: `<?php \joe\getAsideAuthorMotto() ?>`,
 		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`,
 		THEME_MODE: `<?php $this->options->JThemeMode() ?>`,
+		INDEX_AJAX: <?= $this->options->JIndex_Ajax_List == 'on' ? 'true' : 'false' ?>,
+		VERSION: `<?= JOE_VERSION ?>`,
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
 			cover: `<?= $this->is('single') ? joe\getThumbnails($this)[0] : null ?>`,
@@ -29,7 +31,6 @@ $fields = $this->fields->toArray();
 				price: `<?= isset($fields['price']) ? round($fields['price'], 2) : null ?>`,
 			}
 		},
-		VERSION: `<?= JOE_VERSION ?>`,
 		CDN: (path) => {
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		},

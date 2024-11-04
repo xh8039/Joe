@@ -10,7 +10,7 @@
 	align-items: center;
 	height: 45px;
 	line-height: 45px;
-	color: var(--main);
+	color: var(--main-color);
 	border-bottom: 1px solid var(--classC)
 }
 

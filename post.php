@@ -83,12 +83,10 @@
 				<li class="item">
 					<a href="<?php $this->options->siteUrl(); ?>" class="link" title="首页"><i class="fa fa-map-marker"></i> 首页</a>
 				</li>
-				<!-- <li class="line">/</li> -->
 				<?php if (sizeof($this->categories) > 0) : ?>
 					<li class="item">
 						<a class="link" href="<?php echo $this->categories[0]['permalink']; ?>" title="<?php echo $this->categories[0]['name']; ?>"><?php echo $this->categories[0]['name']; ?></a>
 					</li>
-					<!-- <li class="line">/</li> -->
 				<?php endif; ?>
 				<li class="item"> 正文</li>
 			</ul>
@@ -96,8 +94,8 @@
 		<div class="joe_container">
 			<div class="joe_main joe_post">
 				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
-					<?php $this->need('module/single/batten.php'); ?>
-					<?php if ($this->options->JOverdue && $this->options->JOverdue != 'off' && floor((time() - ($this->modified)) / 86400) > $this->options->JOverdue) : ?>
+					<?php $this->need('module/single/batten.php');
+					if (!empty($this->options->JOverdue) && floor((time() - ($this->modified)) / 86400) >= $this->options->JOverdue) : ?>
 						<div class="joe_detail__overdue">
 							<div class="joe_detail__overdue-wrapper">
 								<div class="title">
@@ -109,13 +107,11 @@
 									<span class="text">温馨提示：</span>
 								</div>
 								<div class="content">
-									本文最后更新于<?php echo date('Y年m月d日', $this->modified); ?>，已超过<?php echo floor((time() - ($this->modified)) / 86400); ?>天没有更新，若内容或图片失效，请留言反馈。
+									本文最后更新于<?php echo date('Y年m月d日', $this->modified); ?>，已超过<?= floor((time() - ($this->modified)) / 86400); ?>天没有更新，若内容或图片失效，请留言反馈。
 								</div>
 							</div>
 						</div>
-					<?php endif; ?>
-
-					<?php
+					<?php endif;
 					$post_ad = joe\optionMulti($this->options->JPost_Ad);
 					if (!empty($post_ad) && !joe\detectSpider() && $this->fields->global_advert != 'hide') {
 					?>

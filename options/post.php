@@ -132,22 +132,13 @@ $JArticle_Guide = new \Typecho\Widget\Helper\Form\Element\Select(
 $JArticle_Guide->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JArticle_Guide->multiMode());
 
-$JOverdue = new \Typecho\Widget\Helper\Form\Element\Select(
+$JOverdue = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JOverdue',
-	array(
-		'off' => '关闭（默认）',
-		'3' => '大于3天',
-		'7' => '大于7天',
-		'15' => '大于15天',
-		'30' => '大于30天',
-		'60' => '大于60天',
-		'90' => '大于90天',
-		'120' => '大于120天',
-		'180' => '大于180天'
-	),
-	'off',
+	NULL,
+	'0',
 	'是否开启文章更新时间大于多少天提示（仅针对文章有效）',
-	'介绍：开启后如果文章在多少天内无任何修改，则进行提示'
+	'介绍：开启后如果文章在多少天内无任何修改，则进行提示 <br>
+	填写示例：365'
 );
 $JOverdue->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JOverdue->multiMode());

@@ -174,7 +174,7 @@ $JCustomFunctionsCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	NULL,
 	'主题functions.php文件添加代码（非必填）',
-	'自定义添加主题 functions.php 文件里面的PHP代码，代码前需要加上 <?php 声明，不懂请勿乱填'
+	'自定义添加主题 functions.php 文件里面的PHP代码，代码前需要加上 <\?php 声明，不懂请勿乱填'
 );
 $JCustomFunctionsCode->setAttribute('class', 'joe_content joe_code');
 $JCustomFunctionsCode->setAttribute('data-language', 'php');

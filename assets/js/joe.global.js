@@ -60,18 +60,22 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
 			$(".joe_action_item.mode .icon-1").addClass("active");
 			$(".joe_action_item.mode .icon-2").removeClass("active");
-			$(".joe_action_item.mode").attr('data-original-title', '日间模式');
-			$(".joe_action_item.mode").tooltip({
-				container: "body"
-			});
+			if (!Joe.IS_MOBILE) {
+				$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+				$(".joe_action_item.mode").tooltip({
+					container: "body"
+				});
+			}
 		} else {
 			$("html").removeAttr("data-night");
 			$(".joe_action_item.mode .icon-1").removeClass("active");
 			$(".joe_action_item.mode .icon-2").addClass("active");
-			$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
-			$(".joe_action_item.mode").tooltip({
-				container: "body"
-			});
+			if (!Joe.IS_MOBILE) {
+				$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+				$(".joe_action_item.mode").tooltip({
+					container: "body"
+				});
+			}
 		}
 		$(".joe_action_item.mode").on("click", () => {
 			if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
@@ -79,19 +83,23 @@ document.addEventListener("DOMContentLoaded", () => {
 				$(".joe_action_item.mode .icon-2").addClass("active");
 				$("html").removeAttr("data-night");
 				localStorage.removeItem("data-night");
-				$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
-				$(".joe_action_item.mode").tooltip({
-					container: "body"
-				});
+				if (!Joe.IS_MOBILE) {
+					$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+					$(".joe_action_item.mode").tooltip({
+						container: "body"
+					});
+				}
 			} else {
 				$(".joe_action_item.mode .icon-1").addClass("active");
 				$(".joe_action_item.mode .icon-2").removeClass("active");
 				$("html").attr("data-night", "night");
 				localStorage.setItem("data-night", "night");
-				$(".joe_action_item.mode").attr('data-original-title', '日间模式');
-				$(".joe_action_item.mode").tooltip({
-					container: "body"
-				});
+				if (!Joe.IS_MOBILE) {
+					$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+					$(".joe_action_item.mode").tooltip({
+						container: "body"
+					});
+				}
 			}
 		});
 	}
@@ -848,7 +856,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		// 页面滚动隐藏 tooltip 提示
 		$(window).scroll(debounce(() => {
-			$("[data-toggle='tooltip']").tooltip('hide');
+			if (!Joe.IS_MOBILE) $("[data-toggle='tooltip']").tooltip('hide');
 		}, 500, true));
 	}
 
@@ -1139,11 +1147,14 @@ document.addEventListener("DOMContentLoaded", () => {
 		// tooltip.js
 		if (Joe.IS_MOBILE) {
 			// 遍历所有的元素
-			$('[data-original-title]').each(function () {
+			$('[data-toggle="tooltip"]').each(function () {
 				// 获取当前元素的data-original-title属性
-				var originalTitle = $(this).attr('data-original-title');
+				var title = $(this).attr('data-original-title') || $(this).attr('title');
 				// 设置title属性为data-original-title的值
-				$(this).attr('title', originalTitle);
+				$(this).attr('title', title);
+				['data-toggle', 'data-placement', 'data-original-title'].forEach(value => {
+					$(this).removeAttr(value);
+				});
 			});
 		} else {
 			$("[data-toggle='tooltip']").tooltip({

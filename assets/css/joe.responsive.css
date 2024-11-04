@@ -475,7 +475,7 @@
 	}
 
 	html .joe_detail__article img:not([class]) {
-		max-height: 500px;
+		max-height: unset;
 	}
 
 	/* html .joe_detail__article-video .play .box iframe {

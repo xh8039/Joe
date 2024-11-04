@@ -3205,7 +3205,7 @@ html .line-numbers .line-numbers-rows {
 .joe_detail__article img:not([class]) {
 	display: block;
 	max-width: 100%;
-	max-height: 450px;
+	max-height: 30vh;
 	border-radius: var(--radius-inner);
 	transition: box-shadow 0.35s, -webkit-transform 0.35s;
 	transition: transform 0.35s, box-shadow 0.35s;

@@ -27,7 +27,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<div class="joe_container">
 			<div class="joe_main">
 				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
-					<?php $this->need('module/batten.php'); ?>
+					<?php $this->need('module/single/batten.php'); ?>
 					<div class="joe_detail__leaving">
 						<?php $this->comments()->to($comments); ?>
 						<?php if ($comments->have()) : ?>
@@ -50,7 +50,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<?php endif; ?>
 					</div>
 				</div>
-				<?php $this->need('module/comment.php'); ?>
+				<?php $this->need('module/single/comment.php'); ?>
 			</div>
 		</div>
 		<?php $this->need('module/footer.php'); ?>

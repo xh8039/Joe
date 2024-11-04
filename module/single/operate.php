@@ -1,3 +1,9 @@
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+?>
 <div style="padding: 15px;font-size: .9em;color: var(--muted-3-color);text-align: center;">喜欢就支持一下吧</div>
 <div class="post-actions">
 	<a href="javascript:;" data-action="like" class="action action-like">

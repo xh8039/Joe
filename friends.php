@@ -42,8 +42,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<div class="joe_container">
 			<div class="joe_main">
 				<div class="joe_detail" data-cid="<?= $this->cid ?>">
-					<?php $this->need('module/batten.php'); ?>
-					<?php $this->need('module/article.php'); ?>
+					<?php $this->need('module/single/batten.php'); ?>
+					<?php $this->need('module/single/article.php'); ?>
 
 					<?php
 					$friends = [];
@@ -110,14 +110,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</ul>
 					<?php endif; ?>
 					<?php
-					if ($this->options->JFriends_Submit == 'on') {
-						$this->need('module/FriendsSubmit.php');
-					}
+					if ($this->options->JFriends_Submit == 'on') $this->need('module/friends/submit.php');
 					?>
-					<?php $this->need('module/handle.php'); ?>
-					<?php $this->need('module/copyright.php'); ?>
+					<?php $this->need('module/single/handle.php'); ?>
+					<?php $this->need('module/single/copyright.php'); ?>
 				</div>
-				<?php $this->need('module/comment.php'); ?>
+				<?php $this->need('module/single/comment.php'); ?>
 			</div>
 			<?php $this->need('module/aside.php'); ?>
 		</div>

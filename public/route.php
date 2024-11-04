@@ -639,17 +639,22 @@ function _friendSubmit($self)
 			'msg' => '必填项不能为空'
 		]);
 	}
+	if (!preg_match('/[1-9][0-9]{4,}/', $qq)) {
+		$self->response->throwJson([
+			'code' => 0,
+			'msg' => 'QQ号错误！'
+		]);
+	}
 	if (empty($logo)) {
 		$logo = 'http://q4.qlogo.cn/headimg_dl?dst_uin=' . $qq . '&spec=640';
 	}
-
 	$db = Typecho_Db::get();
 	$sql = $db->insert('table.friends')->rows(
 		array(
 			'title' => $title,
 			'url' =>  $link,
 			'logo' =>  $logo,
-			'description' =>  $description,
+			'description' => $description,
 			'qq' => $qq,
 		)
 	);

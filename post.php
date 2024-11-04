@@ -96,7 +96,7 @@
 		<div class="joe_container">
 			<div class="joe_main joe_post">
 				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
-					<?php $this->need('module/batten.php'); ?>
+					<?php $this->need('module/single/batten.php'); ?>
 					<?php if ($this->options->JOverdue && $this->options->JOverdue != 'off' && floor((time() - ($this->modified)) / 86400) > $this->options->JOverdue) : ?>
 						<div class="joe_detail__overdue">
 							<div class="joe_detail__overdue-wrapper">
@@ -134,11 +134,10 @@
 						</div>
 					<?php
 					}
-					$this->need('module/article.php'); // 文章内容
-					$this->need('module/handle.php'); // 标签分类
-					$this->need('module/operate.php'); // 点赞分享
-					$this->need('module/copyright.php'); // 版权声明
-
+					$this->need('module/single/article.php'); // 文章内容
+					$this->need('module/single/handle.php'); // 标签分类
+					$this->need('module/single/operate.php'); // 点赞分享
+					$this->need('module/single/copyright.php'); // 版权声明
 					?>
 				</div>
 				<div class="yiyan-box">
@@ -174,9 +173,9 @@
 				<?php
 				}
 				?>
-				<?php require_once JOE_ROOT . 'module/related.php'; // 相关推荐 
+				<?php require_once JOE_ROOT . 'module/single/related.php'; // 相关推荐 
 				?>
-				<?php $this->need('module/comment.php'); ?>
+				<?php $this->need('module/single/comment.php'); ?>
 			</div>
 			<?php $this->need('module/aside.php'); ?>
 		</div>

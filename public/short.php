@@ -127,7 +127,7 @@ function _parseContent($post, $login)
 				' . $content;
 			} else {
 				$pay_box_position = '
-				  <div class="zib-widget pay-box joe_scan_light" id="posts-pay">
+				  <div class="zib-widget pay-box" id="posts-pay">
 							<div class="flex pay-flexbox">
 								<div class="flex0 relative mr20 hide-sm pay-thumb">
 									<div class="graphic">
@@ -148,7 +148,7 @@ function _parseContent($post, $login)
 										</div>
 									</div>
 									<div class="text-right mt10">
-										<a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . JOE_BASE_API . '?routeType=pay_cashier_modal&cid=' . $post->cid . '" class="cashier-link but jb-red" href="javascript:;" data-toggle="RefreshModal">立即购买</a>
+										<a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . JOE_BASE_API . '?routeType=pay_cashier_modal&cid=' . $post->cid . '" class="cashier-link but jb-red joe_scan_light" href="javascript:;" data-toggle="RefreshModal">立即购买</a>
 										' . (is_numeric(USER_ID) ? '' : '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！建议登陆后购买，可保存购买订单</div>') . '
 									</div>
 								</div>

@@ -11,13 +11,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	}
 
 	.friend_submit>h2 {
-		margin-bottom: 20px;
+		margin-bottom: 8px;
 		position: relative;
 		padding-bottom: 8px;
 		font-size: 20px;
 		font-weight: 700;
 		color: var(--main-color);
-		line-height: 24px;
+		font-family: inherit;
+		line-height: 1.1;
 	}
 
 	.friend_submit>h2::before {

@@ -1152,7 +1152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				var title = $(this).attr('data-original-title') || $(this).attr('title');
 				// 设置title属性为data-original-title的值
 				$(this).attr('title', title);
-				['data-toggle', 'data-placement', 'data-original-title'].forEach(value => {
+				['data-toggle', 'data-placement'].forEach(value => {
 					$(this).removeAttr(value);
 				});
 			});

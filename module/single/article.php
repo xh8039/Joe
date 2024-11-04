@@ -3,6 +3,7 @@
 /**
  * 文章模块
  */
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
@@ -12,66 +13,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php if (!$this->hidden && $this->fields->video) : ?>
 		<meta name="referrer" content="no-referrer">
 		<div class="joe_detail__article-video">
-			<style>
-				.featured-video-episode {
-					margin-bottom: 0;
-					line-height: 1.4;
-					font-size: 14px;
-				}
-
-				.featured-video-episode .switch-video {
-					line-height: 1.6;
-					border-radius: 4px;
-					padding: 6px 20px;
-					text-align: center;
-					background: rgba(136, 136, 136, .1);
-					--main-color: var(--muted-color);
-					display: inline-block;
-					margin: 4px 4px 0;
-					min-width: calc(20% - 12px);
-					color: var(--main-color);
-				}
-
-				.featured-video-episode .switch-video:hover {
-					color: var(--theme);
-				}
-
-				.switch-video.active {
-					color: var(--focus-color);
-				}
-
-				.featured-video-episode .badg.badg-sm {
-					min-width: 19px;
-				}
-
-				.switch-video.active .badg {
-					background: var(--focus-color);
-					color: #fff;
-				}
-
-				.switch-video .episode-active-icon {
-					display: inline-block;
-					width: 0;
-					height: 1.2em;
-					vertical-align: middle;
-					margin-right: 0;
-					transition: .6s;
-				}
-
-				.switch-video.active .episode-active-icon {
-					background-image: url(<?= joe\theme_url('assets/images/playing.svg', false) ?>);
-					width: 1em;
-					margin-right: 6px;
-				}
-
-				@media (max-width: 640px) {
-					.featured-video-episode .switch-video {
-						width: calc(50% - 6.5px);
-						padding: 6px 10px;
-						margin: 2px 2px 0;
-					}
-				}
-			</style>
 			<h2 class="title" style="margin-top: 0px;">播放预览</h2>
 			<div class="dplayer-video" webkit-playsinline="" playsinline=""></div>
 			<h2>剧集列表</h2>

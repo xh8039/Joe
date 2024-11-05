@@ -161,6 +161,7 @@ function _parseContent($post, $login)
 						  </div>
 				  ';
 				} else {
+					$login_comment = (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on') ? true : false;
 					$pay_box_position = '
 				  <div class="zib-widget pay-box" id="posts-pay">
 							<div class="flex pay-flexbox">
@@ -183,8 +184,8 @@ function _parseContent($post, $login)
 										</div>
 									</div>
 									<div class="text-right mt10">
-										<div class=""><a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="but padding-lg btn-block jb-blue"><i class="fa fa-sign-in"></i> 评论查看</a></div>
-										' . (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on' ? '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！请登陆后再进行评论</div>' : '') . '
+										<div class=""><a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="but padding-lg btn-block jb-blue">' . $login_comment ? '<i class="fa fa-sign-in"></i> 登录评论' : '<i class="fa fa-comment"></i> 评论查看' . '</a></div>
+										' . ($login_comment ? '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！请登陆后再进行评论</div>' : '') . '
 									</div>
 								</div>
 							</div>

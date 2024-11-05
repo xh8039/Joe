@@ -208,7 +208,7 @@ function themeFields($layout)
 		NULL,
 		'0.00',
 		'隐藏内容付费金额',
-		'设置为 0 则是免费资源，付费可见功能需要在主题设置=>付费设置处配置好您的支付平台信息后可用'
+		'设置为 0 则是免费资源，付费可见功能需要在 [主题设置=>付费设置] 处配置好您的支付平台信息后可用'
 	);
 	$price->setAttribute('style', 'display:none');
 	$layout->addItem($price);

@@ -153,6 +153,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 <?php
 function threadedComments($comments, $options)
 {
+	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 ?>
 	<li class="comment-list__item">
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
@@ -175,9 +176,13 @@ function threadedComments($comments, $options)
 					</div>
 					<div class="handle">
 						<time class="date" datetime="<?php $comments->date('Y-m-d'); ?>"><?php $comments->date('Y-m-d'); ?></time>
-						<span class="reply joe_comment__reply" data-id="<?php $comments->theId(); ?>" data-coid="<?php $comments->coid(); ?>">
-							<i class="icon fa fa-pencil" aria-hidden="true"></i>回复
-						</span>
+						<?php
+						if (!$login_comment) {
+						?>
+							<span class="reply joe_comment__reply" data-id="<?php $comments->theId(); ?>" data-coid="<?php $comments->coid(); ?>"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>
+						<?php
+						}
+						?>
 					</div>
 				</div>
 			</div>

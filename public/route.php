@@ -139,9 +139,9 @@ function _getstatistics($self)
 						$statistics_config['client_id'] . "\r\n" . // API Key
 						$statistics_config['client_secret']; // Secret Key
 					$db = Typecho_Db::get();
-					$options_update = $db->update('table.options')->rows(['value' => serialize($theme_options)]);
+					$options_update = $db->update('table.options')->rows(['value' => serialize($theme_options)])->where('name = ?', 'theme:' . THEME_NAME);
 					if ($db->query($options_update)) {
-						$self->response->throwJson(['msg' => 'access_token 已更新']);
+						$self->response->throwJson(['code' => 200, 'msg' => 'access_token 已更新']);
 					} else {
 						$self->response->throwJson(['msg' => 'access_token 更新失败！']);
 					}

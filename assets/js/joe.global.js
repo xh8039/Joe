@@ -36,11 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
 					routeType: 'statistics'
 				},
 				success(data) {
-					if (data.access_token == 'off' || data.code != 200) {
+					if (data.access_token == 'off') {
 						$("#statistics").remove();
-						if (data.msg) {
-							Qmsg.error('百度统计：' + data.msg);
-						}
+						return;
+					}
+					if (data.msg) {
+						$("#statistics").remove();
+						data.code == 200 ? Qmsg.info('百度统计：' + data.msg) : Qmsg.error('百度统计：' + data.msg);
 						return;
 					}
 					let statistics = $('#statistics span strong');

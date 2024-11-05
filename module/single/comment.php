@@ -81,7 +81,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 				</div>
 				<div class="body">
 					<?php
-					if ($this->options->JcommentDraw == 'on') {
+					if ($this->options->JcommentDraw == 'on' && !$login_comment) {
 					?>
 						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="说点什么吧，点击右上方切换成画图试试？"></textarea>
 						<div class="draw" style="display: none;">

@@ -5,10 +5,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-define('JOE_VERSION', '1.3291');
+define('JOE_VERSION', '1.3292');
 define('JOE_ROOT', dirname(__FILE__) . '/');
-define('THEME_NAME', basename(__DIR__));
-define('JOE_BASE_API', Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api');
 
 /* Joe核心文件 */
 require_once JOE_ROOT . 'public/common.php';
@@ -110,9 +108,6 @@ function themeConfig($form)
 	// 其他设置
 	require_once JOE_ROOT . 'options/other.php';
 }
-
-header('Generator: YiHang');
-header('Author: YiHang');
 
 if (!empty(Helper::options()->JCustomFunctionsCode)) {
 	file_put_contents(JOE_ROOT . 'JCustomFunctionsCode.txt', Helper::options()->JCustomFunctionsCode);

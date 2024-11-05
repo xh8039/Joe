@@ -9,6 +9,11 @@ if (PHP_VERSION < base64_decode('Ny40')) {
 	throw new Typecho_Exception(base64_decode('5oKo55qEUEhQ54mI5pys6L+H5L2O77yM6K+35L2/55SoVjcuNOWPiuS7peS4iueJiOacrOi/kOihjCA8YSBocmVmPSJodHRwOi8vYmxvZy5icmk2LmNuL2FyY2hpdmVzLzE4Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5Kb2Xlho3nu63liY3nvJjkuLvpopg8L2E+'));
 }
 
+define('THEME_NAME', basename(JOE_ROOT));
+define('JOE_BASE_API', Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api');
+header('Generator: YiHang');
+header('Author: YiHang');
+
 if (Helper::options()->JShieldScan != 'off') {
 	require_once JOE_ROOT . 'public/tencent_protect.php';
 }

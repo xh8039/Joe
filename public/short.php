@@ -83,118 +83,39 @@ function _parseContent($post, $login)
 		if ($post->fields->hide == 'pay') {
 			$db = Typecho_Db::get();
 			$pay = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
-			$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.joe_pay')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
 			// '<a rel="nofollow" target="_blank" href="https://bri6.cn/user/order" class="">' . $pay['trade_no'] . '</a>';
 			if (!empty($pay)) {
 				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-
-				$content = '
-				   <div class="zib-widget pay-box paid-box" id="posts-pay">
-							<div class="flex ac jb-green padding-10 em09">
-								<div class="text-center flex-auto">
-									<div class="mb6">
-										<i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
-									</div>
-									<b class="em12">已购买</b>
-								</div>
-								<div class="em09 paid-info flex-auto">
-									<div class="flex jsb">
-										<span>订单号</span>
-										<span>' . $pay['trade_no'] . '</span>
-									</div>
-									<div class="flex jsb">
-										<span>支付时间</span>
-										<span>' . $pay['update_time'] . '</span>
-									</div>
-									<div class="flex jsb">
-										<span>支付金额</span>
-										<span>
-											<span class="pay-mark">￥</span>' . $pay['pay_price'] . '
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="box-body relative">
-								<badge class="img-badge hot jb-blue px12">已售 ' . $count . '</badge>
-								<div style="padding-right: 48px;">
-									<span class="badg c-red hollow badg-sm mr6">
-										<i class="fa fa-book mr3"></i>
-										付费阅读
-									</span>
-									<b>' . $post->title . '</b>
-								</div>
-							</div>
-						</div>
-				' . $content;
+				$content = _payPurchased($post, $pay) . $content;
 			} else {
 				if ($post->fields->price > 0) {
-					$pay_box_position = '
-					<div class="zib-widget pay-box" id="posts-pay">
-							  <div class="flex pay-flexbox">
-								  <div class="flex0 relative mr20 hide-sm pay-thumb">
-									  <div class="graphic">
-										  <img src="' . joe\getLazyload(false) . '" data-src="' . joe\getThumbnails($post)[0] . '" alt="' . $post->title . ' - ' . Helper::options()->title . '" class="lazyload fit-cover" fancybox="false">
-										  <div class="abs-center text-center left-bottom"></div>
-									  </div>
-								  </div>
-								  <div class="flex-auto-h flex xx jsb">
-									  <dt class="text-ellipsis pay-title" style="padding-right: 48px;">' . $post->title . '</dt>
-									  <div class="mt6 em09 muted-2-color">此内容为付费阅读，请付费后查看</div>
-									  <div class="price-box">
-										  <div class="price-box">
-											  <div class="c-red">
-												  <b class="em3x">
-													  <span class="pay-mark">￥</span>' . round($post->fields->price, 2) . '
-												  </b>
-											  </div>
-										  </div>
-									  </div>
-									  <div class="text-right mt10">
-										  <a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . JOE_BASE_API . '?routeType=pay_cashier_modal&cid=' . $post->cid . '" class="cashier-link but jb-red joe_scan_light" href="javascript:;" data-toggle="RefreshModal">立即购买</a>
-										  ' . (is_numeric(USER_ID) ? '' : '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！建议登陆后购买，可保存购买订单</div>') . '
-									  </div>
-								  </div>
-							  </div>
-							  <div class="pay-tag abs-center"><i class="fa fa-book mr3"></i>付费阅读</div>
-							  <badge class="img-badge hot jb-blue px12">已售 ' . $count . '</badge>
-						  </div>
-				  ';
+					$pay_box_position = _payBox($post);
 				} else {
-					$login_comment = (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on') ? true : false;
-					$pay_box_position = '
-				  <div class="zib-widget pay-box" id="posts-pay">
-							<div class="flex pay-flexbox">
-								<div class="flex0 relative mr20 hide-sm pay-thumb">
-									<div class="graphic">
-										<img src="' . joe\getLazyload(false) . '" data-src="' . joe\getThumbnails($post)[0] . '" alt="' . $post->title . ' - ' . Helper::options()->title . '" class="lazyload fit-cover" fancybox="false">
-										<div class="abs-center text-center left-bottom"></div>
-									</div>
+					if ($login) {
+						$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
+					} else {
+						$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
+					}
+					$hasComment = $db->fetchRow($comment_sql);
+					if (!empty($hasComment)) {
+						$pay_box_position = '
+						<div class="pay-box zib-widget" id="posts-pay">
+							<div class="box-body relative">
+								<div>
+									<span class="badg c-red hollow badg-sm mr6"><i class="fa fa-download mr3"></i>免费资源</span>
+									<b>' . $post->title . '</b>
 								</div>
-								<div class="flex-auto-h flex xx jsb">
-									<dt class="text-ellipsis pay-title" style="padding-right: 48px;">' . $post->title . '</dt>
-									<div class="mt6 em09 muted-2-color">此内容为免费资源，请评论后查看</div>
-									<div class="price-box">
-										<div class="price-box">
-											<div class="c-red">
-												<b class="em3x">
-													<span class="pay-mark">￥</span>' . round($post->fields->price, 2) . '
-												</b>
-											</div>
-										</div>
-									</div>
-									<div class="text-right mt10">
-										<div class="">
-											' . ($login_comment ? '<a href="javascript:document.querySelector(\'.header-login\').click();" class="but padding-lg btn-block jb-blue"><i class="fa fa-sign-in"></i> 登录评论</a>' : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="but padding-lg btn-block jb-blue"><i class="fa fa-comment"></i> 评论查看</a>') . '
-										</div>
-										' . ($login_comment ? '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！请登陆后再进行评论</div>' : '') . '
-									</div>
+								<div class="but-group paid-down-group mt10">
+									<a target="_blank" href="window.Joe.scrollTo(\'joe-cloud\')" class="but jb-blue padding-lg btn-block" style="overflow: hidden; position: relative;"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
 								</div>
 							</div>
-							<div class="pay-tag abs-center"><i class="fa fa-download mr3"></i>免费资源</div>
-							<badge class="img-badge hot jb-blue px12">已评论 ' . $post->commentsNum . '</badge>
-						</div>
-				';
+						</div>';
+						$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+						$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+					} else {
+						$pay_box_position = _payFreeResources($post);
+					}
 				}
 				if ($post->fields->pay_box_position == 'top' && !joe\detectSpider()) {
 					$content = $pay_box_position . $content;
@@ -213,7 +134,7 @@ function _parseContent($post, $login)
 			} else {
 				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
 			}
-			$hasComment = $db->fetchAll($comment_sql);
+			$hasComment = $db->fetchRow($comment_sql);
 			if (!empty($hasComment)) {
 				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));

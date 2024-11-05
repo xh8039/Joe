@@ -1460,6 +1460,31 @@ badge.p2-10 {
 	line-height: 1.8
 }
 
+.badg.badg-lg,
+.but.padding-lg,
+.padding-lg {
+	padding: .5em 2em
+}
+
+.toggle-radius {
+	background: var(--this-bg);
+	width: 29px;
+	height: 29px;
+	display: inline-block;
+	text-align: center;
+	border-radius: 100%;
+	position: relative;
+	vertical-align: text-top;
+	--this-bg: var(--main-border-color)
+}
+
+.toggle-radius .fa,
+.toggle-radius .icon {
+	right: 0 !important;
+	left: 0 !important;
+	margin: auto
+}
+
 /* 通用类 */
 
 .loading,

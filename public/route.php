@@ -132,13 +132,26 @@ function _getstatistics($self)
 					'client_secret' => $statistics_config['client_secret']
 				])->toArray();
 				if (is_array($refresh_token)) {
-					$theme_options = unserialize(Helper::options()->__get('theme:' . THEME_NAME));
+					$theme_options = Helper::options()->__get('theme:' . THEME_NAME);
+
+					if (empty($theme_options)) {
+						$self->response->throwJson(['msg' => '请更新您的 access_token']);
+						return;
+					}
+					$db = Typecho_Db::get();
+					if ($db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . THEME_NAME . '_backup'))) {
+						$db->query($db->update('table.options')->rows(array('value' => $theme_options))->where('name = ?', 'theme:' . THEME_NAME . '_backup'));
+					} else {
+						$db->query($db->insert('table.options')->rows(array('name' => 'theme:' . THEME_NAME . '_backup', 'user' => '0', 'value' => $theme_options)));
+					}
+
+					$theme_options = unserialize($theme_options);
 					$theme_options['baidu_statistics'] =
 						trim($refresh_token['access_token']) . "\r\n" .
 						trim($refresh_token['refresh_token']) . "\r\n" .
 						$statistics_config['client_id'] . "\r\n" . // API Key
 						$statistics_config['client_secret']; // Secret Key
-					$db = Typecho_Db::get();
+
 					$options_update = $db->update('table.options')->rows(['value' => serialize($theme_options)])->where('name = ?', 'theme:' . THEME_NAME);
 					if ($db->query($options_update)) {
 						$self->response->throwJson(['code' => 200, 'msg' => 'access_token 已更新']);

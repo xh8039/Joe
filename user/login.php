@@ -24,8 +24,8 @@ $this->need('user/header.php');
 					<p>请输入帐号密码进行登录</p>
 				</div>
 				<div class="form-group">
-					<label>用户名/邮箱</label>
-					<input class="form-control" type="text" id="username" placeholder="输入用户名/邮箱">
+					<label>账号/邮箱</label>
+					<input class="form-control" type="text" id="username" placeholder="请输入您的账号/邮箱">
 				</div>
 
 				<div class="form-group">
@@ -39,7 +39,7 @@ $this->need('user/header.php');
 					<?php
 					}
 					?>
-					<input class="form-control" type="password" id="password" placeholder="输入密码">
+					<input class="form-control" type="password" id="password" placeholder="请输入您的密码">
 				</div>
 				<button class="btn btn-light" id="login">登 录</button>
 			</div>

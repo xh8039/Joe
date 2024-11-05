@@ -21,13 +21,13 @@ $this->need('user/header.php');
 					<p>创建您的帐号，只需不到一分钟</p>
 				</div>
 				<div class="form-group mb-3">
-					<label>昵称(用于显示)</label>
+					<label>昵称（用于显示）</label>
 					<input class="form-control" type="text" id="nickname" placeholder="输入昵称">
 				</div>
 
 				<div class="form-group mb-3">
-					<label>用户名(用于登录)</label>
-					<input class="form-control" type="text" id="username" placeholder="输入用户名">
+					<label>账号（用于登录）</label>
+					<input class="form-control" type="text" id="username" placeholder="输入账号">
 				</div>
 
 				<div class="form-group mb-3">

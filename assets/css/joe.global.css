@@ -4263,6 +4263,12 @@ html .line-numbers .line-numbers-rows {
 	box-shadow: 1px 1px 3px -1px var(--theme);
 }
 
+.joe_comment__respond-form .foot .submit a {
+	display: block;
+	line-height: 32px;
+	font-family: unset;
+}
+
 .joe_comment__respond-form .foot .submit button:hover {
 	-webkit-animation: 5s ease-in-out 0s infinite normal none running shaked;
 	animation: 5s ease-in-out 0s infinite normal none running shaked

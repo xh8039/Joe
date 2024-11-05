@@ -38,9 +38,9 @@ $this->need('user/header.php');
 				if (joe\email_config()) {
 				?>
 					<div class="form-group">
-						<label>验证码</label>
+						<label>邮箱验证码</label>
 						<div class="input-group">
-							<input type="text" class="form-control" id="code" placeholder="输入验证码">
+							<input type="text" class="form-control" id="code" placeholder="请输入邮箱验证码">
 							<button id="send" class="btn" type="button">获取验证码</button>
 						</div>
 					</div>

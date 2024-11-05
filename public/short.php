@@ -126,7 +126,40 @@ function _parseContent($post, $login)
 						</div>
 				' . $content;
 			} else {
-				$pay_box_position = '
+				if ($post->fields->price > 0) {
+					$pay_box_position = '
+					<div class="zib-widget pay-box" id="posts-pay">
+							  <div class="flex pay-flexbox">
+								  <div class="flex0 relative mr20 hide-sm pay-thumb">
+									  <div class="graphic">
+										  <img src="' . joe\getLazyload(false) . '" data-src="' . joe\getThumbnails($post)[0] . '" alt="' . $post->title . ' - ' . Helper::options()->title . '" class="lazyload fit-cover" fancybox="false">
+										  <div class="abs-center text-center left-bottom"></div>
+									  </div>
+								  </div>
+								  <div class="flex-auto-h flex xx jsb">
+									  <dt class="text-ellipsis pay-title" style="padding-right: 48px;">' . $post->title . '</dt>
+									  <div class="mt6 em09 muted-2-color">此内容为付费阅读，请付费后查看</div>
+									  <div class="price-box">
+										  <div class="price-box">
+											  <div class="c-red">
+												  <b class="em3x">
+													  <span class="pay-mark">￥</span>' . round($post->fields->price, 2) . '
+												  </b>
+											  </div>
+										  </div>
+									  </div>
+									  <div class="text-right mt10">
+										  <a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . JOE_BASE_API . '?routeType=pay_cashier_modal&cid=' . $post->cid . '" class="cashier-link but jb-red joe_scan_light" href="javascript:;" data-toggle="RefreshModal">立即购买</a>
+										  ' . (is_numeric(USER_ID) ? '' : '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！建议登陆后购买，可保存购买订单</div>') . '
+									  </div>
+								  </div>
+							  </div>
+							  <div class="pay-tag abs-center"><i class="fa fa-book mr3"></i>付费阅读</div>
+							  <badge class="img-badge hot jb-blue px12">已售 ' . $count . '</badge>
+						  </div>
+				  ';
+				} else {
+					$pay_box_position = '
 				  <div class="zib-widget pay-box" id="posts-pay">
 							<div class="flex pay-flexbox">
 								<div class="flex0 relative mr20 hide-sm pay-thumb">
@@ -137,7 +170,7 @@ function _parseContent($post, $login)
 								</div>
 								<div class="flex-auto-h flex xx jsb">
 									<dt class="text-ellipsis pay-title" style="padding-right: 48px;">' . $post->title . '</dt>
-									<div class="mt6 em09 muted-2-color">' . ($post->fields->price > 0 ? '此内容为付费阅读，请付费后查看' : '此内容为免费资源，请评论后查看') . '</div>
+									<div class="mt6 em09 muted-2-color">此内容为免费资源，请评论后查看</div>
 									<div class="price-box">
 										<div class="price-box">
 											<div class="c-red">
@@ -148,17 +181,16 @@ function _parseContent($post, $login)
 										</div>
 									</div>
 									<div class="text-right mt10">
-										<a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . JOE_BASE_API . '?routeType=pay_cashier_modal&cid=' . $post->cid . '" class="cashier-link but jb-red joe_scan_light" href="javascript:;" data-toggle="RefreshModal">' . ($post->fields->price > 0 ? '立即购买' : '评论查看') . '</a>
-										' . (is_numeric(USER_ID) ? '' : '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！建议登陆后购买，可保存购买订单</div>') . '
+										<a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . JOE_BASE_API . '?routeType=pay_cashier_modal&cid=' . $post->cid . '" class="cashier-link but jb-red joe_scan_light" href="javascript:;" data-toggle="RefreshModal">评论查看</a>
+										' . (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on' ? '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！请登陆后评论</div>' : '') . '
 									</div>
 								</div>
 							</div>
-							<div class="pay-tag abs-center">
-								<i class="fa fa-book mr3"></i>' . ($post->fields->price > 0 ? '付费阅读' : '免费资源') . '
-							</div>
-							<badge class="img-badge hot jb-blue px12">已售 ' . $count . '</badge>
+							<div class="pay-tag abs-center"><i class="fa fa-book mr3"></i>免费资源</div>
+							<badge class="img-badge hot jb-blue px12">已评论 ' . $post->commentsNum . '</badge>
 						</div>
 				';
+				}
 				if ($post->fields->pay_box_position == 'top' && !joe\detectSpider()) {
 					$content = $pay_box_position . $content;
 				}

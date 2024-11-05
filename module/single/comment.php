@@ -42,7 +42,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 		<div id="<?php $this->respondId(); ?>" class="joe_comment__respond">
 			<div class="joe_comment__respond-type">
 				<?php
-				if ($this->options->JcommentDraw == 'on') {
+				if ($this->options->JcommentDraw == 'on' && !$login_comment) {
 				?>
 					<button class="item" data-type="draw">画图模式</button>
 					<button class="item active" data-type="text">文本模式</button>

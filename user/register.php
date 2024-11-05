@@ -31,7 +31,7 @@ $this->need('user/header.php');
 				</div>
 
 				<div class="form-group mb-3">
-					<label>邮箱（用于登录/找回密码）</label>
+					<label>邮箱（用于找回密码）</label>
 					<input class="form-control" type="text" id="email" placeholder="邮箱">
 				</div>
 				<?php

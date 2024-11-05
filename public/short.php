@@ -74,9 +74,16 @@ function _parseContent($post, $login)
 	if (strpos($content, '{message') !== false) {
 		$content = preg_replace('/{message([^}]*)\/}/SU', '<joe-message $1></joe-message>', $content);
 	}
+
 	if (strpos($content, '{progress') !== false) {
 		$content = preg_replace('/{progress([^}]*)\/}/SU', '<joe-progress $1></joe-progress>', $content);
 	}
+
+	// 告诉搜索引擎不将这个链接的权重传递给目标页面
+	if (strpos($content, '<a href="') !== false) {
+		$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
+	}
+
 	if (strpos($content, '{hide') !== false) {
 		if ($post->fields->hide == 'pay') {
 			$db = Typecho_Db::get();
@@ -181,7 +188,7 @@ function _parseContent($post, $login)
 										</div>
 									</div>
 									<div class="text-right mt10">
-										<div class=""><a href="javascript:Joe.scrollTo(\'.joe_comment\');" class="but padding-lg btn-block jb-blue"><i class="fa fa-sign-in"></i> 评论查看</a></div>
+										<div class=""><a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="but padding-lg btn-block jb-blue"><i class="fa fa-sign-in"></i> 评论查看</a></div>
 										' . (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on' ? '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！请登陆后再进行评论</div>' : '') . '
 									</div>
 								</div>
@@ -250,11 +257,6 @@ function _parseContent($post, $login)
 	// img图片引入时不携带referrer信息
 	if (strpos($content, '<img src="') !== false) {
 		$content = str_replace('<img src="', '<img referrerPolicy="no-referrer" rel="noreferrer" src="', $content);
-	}
-
-	// 告诉搜索引擎不将这个链接的权重传递给目标页面
-	if (strpos($content, '<a href="') !== false) {
-		$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
 	}
 
 	// 代码显示行号

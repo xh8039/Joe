@@ -255,12 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (window.Joe.CONTENT.fields.hide == 'pay') {
 					let price = window.Joe.CONTENT.fields.price;
 					let pay = `<i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${price} 元</i>`;
-					this.innerHTML = `<span class="joe_hide">此处内容作者设置了 ${price > 0 ? pay : '<i class="joe_hide__button">评论</i>'} 可见</span>`;
-					if (price <= 0) {
-						this.querySelector('.joe_hide__button').addEventListener('click', () => {
-							window.Joe.scrollTo('.joe_comment');
-						});
-					}
+					this.innerHTML = `<span class="joe_hide">此处内容作者设置了 ${price > 0 ? pay : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">评论</a>'} 可见</span>`;
 				} else if (window.Joe.CONTENT.fields.hide == 'login') {
 					this.innerHTML = '<span class="joe_hide">此处内容作者设置了 <i class="joe_hide__button">登录</i> 可见</span>';
 					this.$button = this.querySelector('.joe_hide__button');
@@ -270,10 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						$login.click();
 					});
 				} else {
-					this.innerHTML = '<span class="joe_hide">此处内容作者设置了 <i class="joe_hide__button">回复</i> 可见</span>';
-					this.querySelector('.joe_hide__button').addEventListener('click', () => {
-						window.Joe.scrollTo('.joe_comment');
-					});
+					this.innerHTML = '<span class="joe_hide">此处内容作者设置了 <a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">回复</a> 可见</span>';
 				}
 			}
 		}

@@ -946,7 +946,7 @@ function get_archive_tags($item)
 	$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 	$tags = '';
 	if ($item->fields->hide == 'pay' && $item->fields->pay_tag_background != 'none') {
-		$tags .= '<a rel="nofollow" href="' . $item->permalink . '?scroll=pay-box" class="meta-pay but jb-' . $item->fields->pay_tag_background . '">付费阅读<span class="em09 ml3">￥</span>' . $item->fields->price . '</a>';
+		$tags .= '<a rel="nofollow" href="' . $item->permalink . '?scroll=pay-box" class="meta-pay but jb-' . $item->fields->pay_tag_background . '">' . ($item->fields->price > 0 ? '付费阅读<span class="em09 ml3">￥</span>' . $item->fields->price : '免费资源') . '</a>';
 	}
 	foreach ($item->categories as $key => $value) {
 		$tags .= '<a class="but ' . $color_array[$key] . '" title="查看此分类更多文章" href="' . $value['permalink'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';

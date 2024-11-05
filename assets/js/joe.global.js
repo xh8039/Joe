@@ -860,32 +860,49 @@ document.addEventListener("DOMContentLoaded", () => {
 		}, 500, true));
 	}
 
-	/* 头部滚动 */
+	/* 监听移动端键盘弹出 */
 	{
-		// if (!window.Joe.IS_MOBILE) {
-		// 	let flag = true;
-		// 	const handleHeader = (diffY) => {
-		// 		if (window.pageYOffset >= $(".joe_header").height() && diffY <= 0) {
-		// 			if (flag) return;
-		// 			$(".joe_header").addClass("active");
-		// 			$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() - 60 +
-		// 				23);
-		// 			flag = true;
-		// 		} else {
-		// 			if (!flag) return;
-		// 			$(".joe_header").removeClass("active");
-		// 			$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() + 15);
-		// 			flag = false;
-		// 		}
-		// 	};
-		// 	let Y = window.pageYOffset;
-		// 	handleHeader(Y);
-		// 	// let _last = Date.now();
-		// 	document.addEventListener("scroll", throttle(() => {
-		// 		handleHeader(Y - window.pageYOffset);
-		// 		Y = window.pageYOffset;
-		// 	}, 100));
-		// }
+		var footerTabbar = document.querySelector('.footer-tabbar');
+		if (footerTabbar) {
+			const ua = typeof window === 'object' ? window.navigator.userAgent : '';
+			let _isIOS = -1;
+			let _isAndroid = -1;
+			function isIOS() {
+				if (_isIOS === -1) {
+					_isIOS = /iPhone|iPod|iPad/i.test(ua) ? 1 : 0;
+				}
+				return _isIOS === 1;
+			}
+			function isAndroid() {
+				if (_isAndroid === -1) {
+					_isAndroid = /Android/i.test(ua) ? 1 : 0;
+				}
+				return _isAndroid === 1;
+			}
+			if (isAndroid()) {
+				const innerHeight = window.innerHeight;
+				window.addEventListener('resize', () => {
+					const newInnerHeight = window.innerHeight;
+					if (innerHeight > newInnerHeight) {
+						// 键盘弹出事件处理
+						footerTabbar.style.display = 'none';
+					} else {
+						footerTabbar.style.display = 'flex';
+						// 键盘收起事件处理
+						alert("android 键盘收起事件处理")
+					}
+				});
+			} else if (isIOS()) {
+				window.addEventListener('focusin', () => {
+					// 键盘弹出事件处理
+					footerTabbar.style.display = 'none';
+				});
+				window.addEventListener('focusout', () => {
+					// 键盘收起事件处理
+					footerTabbar.style.display = 'flex';
+				});
+			}
+		}
 	}
 
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */

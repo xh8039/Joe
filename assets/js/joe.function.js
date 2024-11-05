@@ -1,12 +1,9 @@
 window.Joe.scrollTo = (selector) => {
-	let $button = document.querySelector('.joe_hide__button');
 	const $comment = document.querySelector(selector);
 	const $header = document.querySelector('.joe_header');
 	if (!$comment || !$header) return;
-	$button.addEventListener('click', () => {
-		const top = $comment.offsetTop - $header.offsetHeight - 15;
-		window.scrollTo({ top, behavior: 'smooth' });
-	});
+	const top = $comment.offsetTop - $header.offsetHeight - 15;
+	window.scrollTo({ top, behavior: 'smooth' });
 }
 
 function loadJS(url, callback = function () { }) {

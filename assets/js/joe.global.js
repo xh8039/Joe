@@ -863,21 +863,30 @@ document.addEventListener("DOMContentLoaded", () => {
 	/* 监听移动端键盘弹出 */
 	{
 		var footerTabbar = document.querySelector('.footer-tabbar');
-		if (footerTabbar) {
+		var joeAction = document.querySelector('.joe_action');
+		if (footerTabbar || joeAction) {
 			const ua = typeof window === 'object' ? window.navigator.userAgent : '';
 			let _isIOS = -1;
 			let _isAndroid = -1;
-			function isIOS() {
+			const isIOS = () => {
 				if (_isIOS === -1) {
 					_isIOS = /iPhone|iPod|iPad/i.test(ua) ? 1 : 0;
 				}
 				return _isIOS === 1;
 			}
-			function isAndroid() {
+			const isAndroid = () => {
 				if (_isAndroid === -1) {
 					_isAndroid = /Android/i.test(ua) ? 1 : 0;
 				}
 				return _isAndroid === 1;
+			}
+			const popUp = () => {
+				if (footerTabbar) footerTabbar.style.display = 'none';
+				if (joeAction) joeAction.style.display = 'none';
+			}
+			const retract = () => {
+				if (footerTabbar) footerTabbar.style.display = 'flex';
+				if (joeAction) joeAction.style.display = 'block';
 			}
 			if (isAndroid()) {
 				const innerHeight = window.innerHeight;
@@ -885,20 +894,20 @@ document.addEventListener("DOMContentLoaded", () => {
 					const newInnerHeight = window.innerHeight;
 					if (innerHeight > newInnerHeight) {
 						// 键盘弹出事件处理
-						footerTabbar.style.display = 'none';
+						popUp();
 					} else {
 						// 键盘收起事件处理
-						footerTabbar.style.display = 'flex';
+						retract();
 					}
 				});
 			} else if (isIOS()) {
 				window.addEventListener('focusin', () => {
 					// 键盘弹出事件处理
-					footerTabbar.style.display = 'none';
+					popUp();
 				});
 				window.addEventListener('focusout', () => {
 					// 键盘收起事件处理
-					footerTabbar.style.display = 'flex';
+					retract();
 				});
 			}
 		}

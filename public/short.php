@@ -106,8 +106,8 @@ function _parseContent($post, $login)
 									<span class="badg c-red hollow badg-sm mr6"><i class="fa fa-download mr3"></i>免费资源</span>
 									<b>' . $post->title . '</b>
 								</div>
-								<div class="but-group paid-down-group mt10">
-									<a target="_blank" href="window.Joe.scrollTo(\'joe-cloud\')" class="but jb-blue padding-lg btn-block" style="overflow: hidden; position: relative;"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
+								<div class="mt10">
+									<a href="window.Joe.scrollTo(\'joe-cloud\')" class="but jb-blue padding-lg btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
 								</div>
 							</div>
 						</div>';

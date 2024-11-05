@@ -179,7 +179,7 @@ function _getstatistics($self)
 		}
 		return $data;
 	};
-	$domain = $_SERVER['HTTP_HOST'];
+	$domain = parse_url(Helper::options()->siteUrl, PHP_URL_HOST);
 	$list = $baidu_list();
 	for ($i = 0; $i < count($list); $i++) {
 		if ($list[$i]['domain'] == $domain) {

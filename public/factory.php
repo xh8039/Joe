@@ -14,6 +14,10 @@ class Intercept
 {
 	public static function message($comment)
 	{
+		if (Helper::options()->JCommentStatus == 'off') {
+			throw new Typecho_Widget_Exception(_t('叼毛 不要想着强制评论！'));
+			return false;
+		}
 		if (Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID)) {
 			throw new Typecho_Widget_Exception(_t('叼毛 老老实实登录评论！'));
 			return false;

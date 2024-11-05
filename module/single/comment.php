@@ -54,13 +54,13 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 				<div class="head">
 					<?php
 					if ($this->user->hasLogin()) {
-						?>
+					?>
 						<input type="hidden" name="author" value="<?= $this->user->screenName() ?>">
 						<input type="hidden" name="mail" value="<?= $this->user->mail() ?>">
 						<input type="hidden" name="url" value="<?= $this->user->url() ?>">
-						<?php
+					<?php
 					} else {
-						?>
+					?>
 						<div class="list">
 							<input type="text" value="<?php $this->remember('author') ?>" autocomplete="off" name="author" maxlength="16" placeholder="请输入昵称..." />
 						</div>
@@ -70,7 +70,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 						<div class="list">
 							<input type="text" value="<?php $this->remember('url') ?>" autocomplete="off" name="url" placeholder="请输入网址（非必填）..." />
 						</div>
-						<?php
+					<?php
 					}
 					?>
 				</div>
@@ -103,7 +103,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 					<?php
 					} else {
 					?>
-						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="来都来啦，说点什么吧" <?= $login_comment ? 'disabled' : null ?>></textarea>
+						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="<?= $login_comment ? '请登录后再进行评论' : '来都来啦，说点什么吧' ?>" <?= $login_comment ? 'disabled' : null ?>></textarea>
 					<?php
 					}
 					?>

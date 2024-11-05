@@ -41,7 +41,6 @@ function section_navs(selector) {
 
 	function getHiddenElementHeight($element) {
 		let innerHeight = $element.innerHeight();
-		console.log(innerHeight);
 		if (innerHeight > 0) {
 			return innerHeight;
 		} else {
@@ -131,7 +130,6 @@ function section_navs(selector) {
 		$(nav_selector + ' .bl').each(function () {
 			var _this = $(this);
 			let height = getHiddenElementHeight(_this);
-			console.log(height);
 			if (height > 380) {
 				_this.find(find_selector).each(function () {
 					var _this = $(this);

@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 $JCommentStatus = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JCommentStatus',
@@ -17,18 +20,25 @@ $JCommentStatus = new \Typecho\Widget\Helper\Form\Element\Select(
 $JCommentStatus->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JCommentStatus->multiMode());
 
-$Jcomment_draw = new \Typecho\Widget\Helper\Form\Element\Select(
-	'Jcomment_draw',
-	array(
-		'on' => '开启（默认）',
-		'off' => '关闭',
-	),
+$JcommentLogin = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JcommentLogin',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
+	'是否启用登录评论',
+	'介绍：开启后，游客将无法进行评论，必须登录账号后才能评论'
+);
+$JcommentLogin->setAttribute('class', 'joe_content joe_comment');
+$form->addInput($JcommentLogin->multiMode());
+
+$JcommentDraw = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JcommentDraw',
+	['on' => '开启（默认）', 'off' => '关闭'],
 	'on',
 	'是否启用评论画图模式',
 	'介绍：开启后，可以进行画图评论'
 );
-$Jcomment_draw->setAttribute('class', 'joe_content joe_comment');
-$form->addInput($Jcomment_draw->multiMode());
+$JcommentDraw->setAttribute('class', 'joe_content joe_comment');
+$form->addInput($JcommentDraw->multiMode());
 
 $JSensitiveWords = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JSensitiveWords',

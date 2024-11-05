@@ -101,7 +101,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 						<span class="cancle joe_comment__cancle">取消</span>
 						<?php
 						if ($this->options->JcommentLogin == 'on' && !is_numeric(USER_ID)) {
-							echo '<a style="color: var(--theme);" href="' . joe\user_url('login') . '" rel="nofollow">登录评论</a>';
+							echo '<a href="' . joe\user_url('login') . '" rel="nofollow">登录评论</a>';
 						} else {
 							echo '<button type="submit">发送评论</button>';
 						}

@@ -4251,7 +4251,8 @@ html .line-numbers .line-numbers-rows {
 	color: var(--theme)
 }
 
-.joe_comment__respond-form .foot .submit button {
+.joe_comment__respond-form .foot .submit button,
+.joe_comment__respond-form .foot .submit a {
 	border-radius: var(--main-radius);
 	height: 32px;
 	padding: 0 15px;
@@ -4265,6 +4266,10 @@ html .line-numbers .line-numbers-rows {
 .joe_comment__respond-form .foot .submit button:hover {
 	-webkit-animation: 5s ease-in-out 0s infinite normal none running shaked;
 	animation: 5s ease-in-out 0s infinite normal none running shaked
+}
+
+.joe_comment__respond-form .foot .submit a:hover {
+	opacity: 0.8;
 }
 
 .joe_comment .comment-list {

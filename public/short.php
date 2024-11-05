@@ -107,7 +107,7 @@ function _parseContent($post, $login)
 									<b>' . $post->title . '</b>
 								</div>
 								<div class="mt10">
-									<a href="window.Joe.scrollTo(\'joe-cloud\')" class="but jb-blue padding-lg btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
+									<a href="javascript:window.Joe.scrollTo(\'joe-cloud\');" class="but jb-blue padding-lg btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
 								</div>
 							</div>
 						</div>';

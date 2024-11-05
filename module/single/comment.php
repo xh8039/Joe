@@ -55,6 +55,11 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 					<?php
 					if ($this->user->hasLogin() || $login_comment) {
 					?>
+						<style>
+							.joe_comment__respond-form .head {
+								border-bottom: none;
+							}
+						</style>
 						<input type="hidden" name="author" value="<?= $this->user->screenName() ?>">
 						<input type="hidden" name="mail" value="<?= $this->user->mail() ?>">
 						<input type="hidden" name="url" value="<?= $this->user->url() ?>">
@@ -103,7 +108,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 					<?php
 					} else {
 					?>
-						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="<?= $login_comment ? '请登录后再进行评论' : '来都来啦，说点什么吧' ?>" <?= $login_comment ? 'disabled' : null ?>></textarea>
+						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="<?= $login_comment ? '请登录后再进行评论' : '来都来啦，说点什么吧' ?>" <?= $login_comment ? 'disabled="true"' : null ?>></textarea>
 					<?php
 					}
 					?>

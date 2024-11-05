@@ -710,7 +710,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 初始化表情功能 */
 	{
-		if ($(".joe_owo__contain").length && $(".joe_owo__target").length) {
+		if ($(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
 			$.ajax({
 				url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
 				dataType: "json",

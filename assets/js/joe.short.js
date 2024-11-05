@@ -254,7 +254,18 @@ document.addEventListener('DOMContentLoaded', () => {
 			render() {
 				if (window.Joe.CONTENT.fields.hide == 'pay') {
 					let price = window.Joe.CONTENT.fields.price;
-					this.innerHTML = `<span class="joe_hide">此处内容作者设置了 <i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${price} 元</i> 可见</span>`;
+					let pay = `<i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${price} 元</i>`;
+					this.innerHTML = `<span class="joe_hide">此处内容作者设置了 ${price > 0 ? pay : '<i class="joe_hide__button">评论</i>'} 可见</span>`;
+					if (price <= 0) {
+						this.$button = this.querySelector('.joe_hide__button');
+						const $comment = document.querySelector('.joe_comment');
+						const $header = document.querySelector('.joe_header');
+						if (!$comment || !$header) return;
+						this.$button.addEventListener('click', () => {
+							const top = $comment.offsetTop - $header.offsetHeight - 15;
+							window.scrollTo({ top, behavior: 'smooth' });
+						});
+					}
 				} else if (window.Joe.CONTENT.fields.hide == 'login') {
 					this.innerHTML = '<span class="joe_hide">此处内容作者设置了 <i class="joe_hide__button">登录</i> 可见</span>';
 					this.$button = this.querySelector('.joe_hide__button');

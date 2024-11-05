@@ -887,9 +887,8 @@ document.addEventListener("DOMContentLoaded", () => {
 						// 键盘弹出事件处理
 						footerTabbar.style.display = 'none';
 					} else {
-						footerTabbar.style.display = 'flex';
 						// 键盘收起事件处理
-						alert("android 键盘收起事件处理")
+						footerTabbar.style.display = 'flex';
 					}
 				});
 			} else if (isIOS()) {

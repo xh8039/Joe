@@ -4,8 +4,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 $this->comments()->to($comments);
+$is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off" && ($this->options->JcommentLogin != 'on' || !is_numeric(USER_ID))) ? true : false;
 ?>
-<div class="joe_comment__title title-theme">评论 <small><?= ($this->allow('comment') && $this->options->JCommentStatus != "off") ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
+<div class="joe_comment__title title-theme">评论 <small><?= $is_comment ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
 <div class="joe_comment" id="comment_module">
 	<?php
 	if ($this->hidden) {

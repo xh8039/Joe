@@ -4221,7 +4221,9 @@ html .line-numbers .line-numbers-rows {
 
 .joe_comment__respond-form .foot .owo {
 	min-height: 32px;
-	padding-top: 3px
+	padding-top: 3px;
+	margin-right: 15px;
+	overflow: auto;
 }
 
 .joe_comment__respond-form .foot .owo .seat {
@@ -4497,7 +4499,8 @@ html .line-numbers .line-numbers-rows {
 .joe_owo__contain .box .bar {
 	display: flex;
 	align-items: center;
-	border-top: 1px solid var(--classC)
+	border-top: 1px solid var(--classC);
+	overflow: auto;
 }
 
 .joe_owo__contain .box .bar .item {
@@ -4505,12 +4508,13 @@ html .line-numbers .line-numbers-rows {
 	padding: 0 10px;
 	cursor: pointer;
 	color: var(--routine);
-	transition: background 0.25s, color 0.25s
+	transition: 0.15s;
+	white-space: nowrap;
 }
 
 .joe_owo__contain .box .bar .item.active {
 	color: #fff;
-	background: var(--back-line-right)
+	background: var(--theme)
 }
 
 .profile-color-modes-illu-frame {

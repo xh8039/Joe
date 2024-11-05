@@ -729,7 +729,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						<div class="seat">OωO</div>
 						<div class="box">
 							${scrollStr}
-							<div class="bar">${barStr}</div>
+							<div class="bar no-scrollbar">${barStr}</div>
 						</div>
 					`);
 					$(document).on("click", function () {

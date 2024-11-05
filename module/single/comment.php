@@ -53,7 +53,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 			<form method="post" class="joe_comment__respond-form" action="<?php $this->commentUrl() ?>" data-type="text">
 				<div class="head">
 					<?php
-					if ($this->user->hasLogin()) {
+					if ($this->user->hasLogin() || $login_comment) {
 					?>
 						<input type="hidden" name="author" value="<?= $this->user->screenName() ?>">
 						<input type="hidden" name="mail" value="<?= $this->user->mail() ?>">

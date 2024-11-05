@@ -37,6 +37,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 		</div>
 	<?php
 	} else {
+		$login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 	?>
 		<div id="<?php $this->respondId(); ?>" class="joe_comment__respond">
 			<div class="joe_comment__respond-type">
@@ -51,15 +52,27 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 			</div>
 			<form method="post" class="joe_comment__respond-form" action="<?php $this->commentUrl() ?>" data-type="text">
 				<div class="head">
-					<div class="list">
-						<input type="text" value="<?php $this->user->hasLogin() ? $this->user->screenName() : $this->remember('author') ?>" autocomplete="off" name="author" maxlength="16" placeholder="请输入昵称..." />
-					</div>
-					<div class="list">
-						<input type="text" value="<?php $this->user->hasLogin() ? $this->user->mail() : $this->remember('mail') ?>" autocomplete="off" name="mail" placeholder="请输入真实邮箱，用于接收回信..." />
-					</div>
-					<div class="list">
-						<input type="text" value="<?php $this->user->hasLogin() ? $this->user->url() : $this->remember('url') ?>" autocomplete="off" name="url" placeholder="请输入网址（非必填）..." />
-					</div>
+					<?php
+					if ($this->user->hasLogin()) {
+						?>
+						<input type="hidden" name="author" value="<?= $this->user->screenName() ?>">
+						<input type="hidden" name="mail" value="<?= $this->user->mail() ?>">
+						<input type="hidden" name="url" value="<?= $this->user->url() ?>">
+						<?php
+					} else {
+						?>
+						<div class="list">
+							<input type="text" value="<?php $this->remember('author') ?>" autocomplete="off" name="author" maxlength="16" placeholder="请输入昵称..." />
+						</div>
+						<div class="list">
+							<input type="text" value="<?php $this->remember('mail') ?>" autocomplete="off" name="mail" placeholder="请输入真实邮箱，用于接收回信..." />
+						</div>
+						<div class="list">
+							<input type="text" value="<?php $this->remember('url') ?>" autocomplete="off" name="url" placeholder="请输入网址（非必填）..." />
+						</div>
+						<?php
+					}
+					?>
 				</div>
 				<div class="body">
 					<?php
@@ -90,7 +103,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 					<?php
 					} else {
 					?>
-						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="来都来啦，说点什么吧"></textarea>
+						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="来都来啦，说点什么吧" <?= $login_comment ? 'disabled' : null ?>></textarea>
 					<?php
 					}
 					?>
@@ -100,7 +113,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 					<div class="submit">
 						<span class="cancle joe_comment__cancle">取消</span>
 						<?php
-						if ($this->options->JcommentLogin == 'on' && !is_numeric(USER_ID)) {
+						if ($login_comment) {
 							echo '<a href="' . joe\user_url('login') . '" rel="nofollow">登录评论</a>';
 						} else {
 							echo '<button type="submit">发送评论</button>';

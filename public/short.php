@@ -79,11 +79,6 @@ function _parseContent($post, $login)
 		$content = preg_replace('/{progress([^}]*)\/}/SU', '<joe-progress $1></joe-progress>', $content);
 	}
 
-	// 告诉搜索引擎不将这个链接的权重传递给目标页面
-	if (strpos($content, '<a href="') !== false) {
-		$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
-	}
-
 	if (strpos($content, '{hide') !== false) {
 		if ($post->fields->hide == 'pay') {
 			$db = Typecho_Db::get();
@@ -257,6 +252,11 @@ function _parseContent($post, $login)
 	// img图片引入时不携带referrer信息
 	if (strpos($content, '<img src="') !== false) {
 		$content = str_replace('<img src="', '<img referrerPolicy="no-referrer" rel="noreferrer" src="', $content);
+	}
+
+	// 告诉搜索引擎不将这个链接的权重传递给目标页面
+	if (strpos($content, '<a href="') !== false && strpos($content, '<a href="javascript:') === false) {
+		$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
 	}
 
 	// 代码显示行号

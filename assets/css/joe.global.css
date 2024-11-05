@@ -2673,6 +2673,11 @@
 	text-align: center
 }
 
+.joe_cloud__btn:hover {
+	color: #fff;
+	opacity: 0.8;
+}
+
 .joe_detail {
 	background: var(--background);
 	border-radius: var(--main-radius);

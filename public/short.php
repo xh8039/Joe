@@ -100,7 +100,7 @@ function _parseContent($post, $login)
 					$hasComment = $db->fetchRow($comment_sql);
 					if (!empty($hasComment)) {
 						$pay_box_position = '
-						<div class="pay-box zib-widget" id="posts-pay">
+						<div class="pay-box zib-widget paid-box" id="posts-pay">
 							<div class="box-body relative">
 								<div>
 									<span class="badg c-red hollow badg-sm mr6"><i class="fa fa-download mr3"></i>免费资源</span>

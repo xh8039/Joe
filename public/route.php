@@ -121,11 +121,33 @@ function _getstatistics($self)
 	}
 	// 获取站点列表
 	$baidu_list = function () use ($statistics_config, $self) {
-		$url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . trim($statistics_config['access_token']);
+		$url = 'https://openapi.baidu.com/rest/2.0/tongji/config/getSiteList?access_token=' . $statistics_config['access_token'];
 		$data = json_decode(file_get_contents($url), true);
 		if (isset($data['error_code'])) {
 			if ($data['error_code'] == 111) {
-				$self->response->throwJson(['msg' => '请更新您的access_token']);
+				$refresh_token = \network\http\get('http://openapi.baidu.com/oauth/2.0/token', [
+					'grant_type' => 'refresh_token',
+					'refresh_token' => $statistics_config['refresh_token'],
+					'client_id' => $statistics_config['client_id'],
+					'client_secret' => $statistics_config['client_secret']
+				])->toArray();
+				if (is_array($refresh_token)) {
+					$theme_options = unserialize(Helper::options()->__get('theme:' . THEME_NAME));
+					$theme_options['baidu_statistics'] =
+						trim($refresh_token['access_token']) . "\r\n" .
+						trim($refresh_token['refresh_token']) . "\r\n" .
+						$statistics_config['client_id'] . "\r\n" . // API Key
+						$statistics_config['client_secret']; // Secret Key
+					$db = Typecho_Db::get();
+					$options_update = $db->update('table.options')->rows(['value' => serialize($theme_options)]);
+					if ($db->query($options_update)) {
+						$self->response->throwJson(['msg' => 'access_token 已更新']);
+					} else {
+						$self->response->throwJson(['msg' => 'access_token 更新失败！']);
+					}
+				} else {
+					$self->response->throwJson(['msg' => '请更新您的 access_token']);
+				}
 			}
 			$self->response->throwJson($data);
 		}
@@ -133,7 +155,7 @@ function _getstatistics($self)
 	};
 	// 获取站点详情
 	$web_metrics = function ($list, $start_date, $end_date) use ($statistics_config) {
-		$access_token = trim($statistics_config['access_token']);
+		$access_token = $statistics_config['access_token'];
 		$site_id = $list['site_id'];
 		$url = "https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=$access_token&site_id=$site_id&method=trend/time/a&start_date=$start_date&end_date=$end_date&metrics=pv_count,ip_count&gran=day";
 		$data = \network\http\post($url)->toArray();

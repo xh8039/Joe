@@ -36,7 +36,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 			<span>所有页面的评论已关闭</span>
 		</div>
 	<?php
-	} else if (!$this->allow('comment') || !$comments->have()) {
+	} else if (!$this->allow('comment')) {
 	?>
 		<div class="joe_comment__close">
 			<svg class="joe_comment__close-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="18" height="18">

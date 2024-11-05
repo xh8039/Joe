@@ -182,7 +182,6 @@ function _parseContent($post, $login)
 									</div>
 									<div class="text-right mt10">
 										<div class=""><a href="#comment_module" class="but padding-lg btn-block jb-blue"><i class="fa fa-sign-in"></i> 评论查看</a></div>
-										<a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . JOE_BASE_API . '?routeType=pay_cashier_modal&cid=' . $post->cid . '" class="cashier-link but jb-red joe_scan_light" href="javascript:;" data-toggle="RefreshModal">评论查看</a>
 										' . (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on' ? '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！请登陆后再进行评论</div>' : '') . '
 									</div>
 								</div>

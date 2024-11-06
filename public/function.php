@@ -870,11 +870,15 @@ function install()
 
 		$table_contents = $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1));
 		$table_contents = empty($table_contents) ? [] : $table_contents;
-		if (!array_key_exists('views', $table_contents)) {
-			$_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `views` INT DEFAULT 0;');
+
+		$views = $_db->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'views';");
+		$agree = $_db->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'views';");
+
+		if (!array_key_exists('views', $table_contents) && !$views) {
+			$_db->query("ALTER TABLE `{$_prefix}contents` ADD 'views' INT DEFAULT 0;");
 		}
-		if (!array_key_exists('agree', $table_contents)) {
-			$_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `agree` INT DEFAULT 0;');
+		if (!array_key_exists('agree', $table_contents) && !$agree) {
+			$_db->query("ALTER TABLE `{$_prefix}contents` ADD 'agree' INT DEFAULT 0;");
 		}
 
 		$typecho_admin_root = __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__;

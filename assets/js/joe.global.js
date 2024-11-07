@@ -921,15 +921,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/** 动态监听实际VH高度 */
 	{
-		function resetVhAndPx() {
-			let vh = window.innerHeight * 0.01
-			document.documentElement.style.setProperty('--vh', `${vh}px`)
-			document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
-			console.log('重新计算VH高度')
+		if (window.Joe.IS_MOBILE) {
+			function resetVhAndPx() {
+				let vh = window.innerHeight * 0.01
+				document.documentElement.style.setProperty('--vh', `${vh}px`)
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
+				console.log('重新计算VH高度')
+			}
+			resetVhAndPx();
+			// 监听resize事件 视图大小发生变化就重新计算1vh的值
+			window.addEventListener('resize', resetVhAndPx);
 		}
-		resetVhAndPx();
-		// 监听resize事件 视图大小发生变化就重新计算1vh的值
-		window.addEventListener('resize', resetVhAndPx)
 	}
 
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */

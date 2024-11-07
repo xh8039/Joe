@@ -630,10 +630,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				$("body").css("overflow", "");
 				$(".joe_header__mask").removeClass("active slideout");
 				$(".joe_header__slideout").removeClass("active");
+				$('.joe_header__above').css('box-shadow', '');
 			} else {
 				$("body").css("overflow", "hidden");
 				$(".joe_header__mask").addClass("active slideout");
 				$(".joe_header__slideout").addClass("active");
+				$('.joe_header__above').css('box-shadow', '0 4px 10px var(--main-shadow)');
 			}
 		});
 	}
@@ -643,6 +645,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		$(".joe_header__above-searchicon").on("click", function () {
 			/* 关闭侧边栏 */
 			$(".joe_header__slideout").removeClass("active");
+			$('.joe_header__above').css('box-shadow', '');
 			/* 处理开启关闭状态 */
 			if ($(".joe_header__searchout").hasClass("active")) {
 				$("body").css("overflow", "");
@@ -663,6 +666,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			$(".joe_header__mask").removeClass("active slideout");
 			$(".joe_header__searchout").removeClass("active");
 			$(".joe_header__slideout").removeClass("active");
+			$('.joe_header__above').css('box-shadow', '');
 		});
 	}
 

@@ -635,7 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				$("body").css("overflow", "hidden");
 				$(".joe_header__mask").addClass("active slideout");
 				$(".joe_header__slideout").addClass("active");
-				$('.joe_header__above').css('box-shadow', '0 4px 10px var(--main-shadow)');
+				$('.joe_header__above').css('box-shadow', '0 10px 10px var(--main-shadow)');
 			}
 		});
 	}

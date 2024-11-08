@@ -168,10 +168,16 @@ if ($this->options->JFooterMode == 'commercial') {
 	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" data-original-title="返回顶部">
 		<i class="fa fa-angle-up em12"></i>
 	</div>
-	<div class="joe_action_item mode" data-toggle="tooltip" data-placement="left" data-original-title="夜间模式">
-		<i class="icon-1 fa fa-sun-o"></i>
-		<i class="icon-2 fa fa-moon-o"></i>
-	</div>
+	<?php
+	if ($this->options->JThemeModeSwitch == 'on') {
+	?>
+		<div class="joe_action_item mode" data-toggle="tooltip" data-placement="left" data-original-title="夜间模式">
+			<i class="icon-1 fa fa-sun-o"></i>
+			<i class="icon-2 fa fa-moon-o"></i>
+		</div>
+	<?php
+	}
+	?>
 	<?php
 	if ($this->is('post') && joe\isMobile() && $this->options->JArticle_Guide == 'on') {
 	?>

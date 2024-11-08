@@ -60,50 +60,55 @@ document.addEventListener("DOMContentLoaded", () => {
 	/* 初始化昼夜模式 */
 	{
 		if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
-			$(".joe_action_item.mode .icon-1").addClass("active");
-			$(".joe_action_item.mode .icon-2").removeClass("active");
-			if (!Joe.IS_MOBILE) {
-				$(".joe_action_item.mode").attr('data-original-title', '日间模式');
-				$(".joe_action_item.mode").tooltip({
-					container: "body"
-				});
-			}
 		} else {
 			$("html").removeAttr("data-night");
-			$(".joe_action_item.mode .icon-1").removeClass("active");
-			$(".joe_action_item.mode .icon-2").addClass("active");
-			if (!Joe.IS_MOBILE) {
-				$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
-				$(".joe_action_item.mode").tooltip({
-					container: "body"
-				});
-			}
 		}
-		$(".joe_action_item.mode").on("click", () => {
+		if (document.querySelector('.joe_action_item.mode')) {
 			if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
-				$(".joe_action_item.mode .icon-1").removeClass("active");
-				$(".joe_action_item.mode .icon-2").addClass("active");
-				$("html").removeAttr("data-night");
-				localStorage.removeItem("data-night");
-				if (!Joe.IS_MOBILE) {
-					$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
-					$(".joe_action_item.mode").tooltip({
-						container: "body"
-					});
-				}
-			} else {
 				$(".joe_action_item.mode .icon-1").addClass("active");
 				$(".joe_action_item.mode .icon-2").removeClass("active");
-				$("html").attr("data-night", "night");
-				localStorage.setItem("data-night", "night");
 				if (!Joe.IS_MOBILE) {
 					$(".joe_action_item.mode").attr('data-original-title', '日间模式');
 					$(".joe_action_item.mode").tooltip({
 						container: "body"
 					});
 				}
+			} else {
+				$(".joe_action_item.mode .icon-1").removeClass("active");
+				$(".joe_action_item.mode .icon-2").addClass("active");
+				if (!Joe.IS_MOBILE) {
+					$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+					$(".joe_action_item.mode").tooltip({
+						container: "body"
+					});
+				}
 			}
-		});
+			$(".joe_action_item.mode").on("click", () => {
+				if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
+					$(".joe_action_item.mode .icon-1").removeClass("active");
+					$(".joe_action_item.mode .icon-2").addClass("active");
+					$("html").removeAttr("data-night");
+					localStorage.removeItem("data-night");
+					if (!Joe.IS_MOBILE) {
+						$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+						$(".joe_action_item.mode").tooltip({
+							container: "body"
+						});
+					}
+				} else {
+					$(".joe_action_item.mode .icon-1").addClass("active");
+					$(".joe_action_item.mode .icon-2").removeClass("active");
+					$("html").attr("data-night", "night");
+					localStorage.setItem("data-night", "night");
+					if (!Joe.IS_MOBILE) {
+						$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+						$(".joe_action_item.mode").tooltip({
+							container: "body"
+						});
+					}
+				}
+			});
+		}
 	}
 
 	/* 动态背景 */

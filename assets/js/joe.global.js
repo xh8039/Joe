@@ -930,7 +930,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			function resetVhAndPx() {
 				let vh = window.innerHeight * 0.01
 				document.documentElement.style.setProperty('--vh', `${vh}px`)
-				document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
+				// document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
 				console.log('重新计算VH高度')
 			}
 			resetVhAndPx();

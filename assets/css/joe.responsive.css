@@ -615,7 +615,7 @@
 	}
 
 	html .joe_owo__contain .box .scroll:nth-child(3) .item {
-		width: calc(100% / 2)
+		/* width: calc(100% / 2) */
 	}
 
 	html .joe_owo__contain .box .scroll:nth-child(4) .item {
@@ -782,6 +782,7 @@
 	html .hide-sm {
 		display: none !important;
 	}
+
 	html .joe_detail__article {
 		font-size: 15px;
 	}
@@ -816,6 +817,10 @@
 
 	html .joe_index__hot-list .item>.item-body>.item-meta>.meta-right>.meta-like {
 		display: none;
+	}
+
+	html .joe_owo__contain .box .scroll .item {
+		width: calc(100% / 5);
 	}
 
 	html .joe_owo__contain .box .scroll:nth-child(4) .item {

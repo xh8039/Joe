@@ -1894,6 +1894,7 @@
 .joe_load:hover {
 	background: var(--main-border-color);
 	opacity: 1;
+	color: var(--muted-color);
 }
 
 .joe_load>.fa {

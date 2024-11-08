@@ -11,6 +11,7 @@ if (PHP_VERSION < base64_decode('Ny40')) {
 
 define('THEME_NAME', basename(JOE_ROOT));
 define('JOE_BASE_API', Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api');
+define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
 header('Generator: YiHang');
 header('Author: YiHang');
 
@@ -132,6 +133,24 @@ function themeInit($self)
 				_checkPay($self);
 				break;
 		};
+	}
+
+	if (strpos($self->request->getPathInfo(), '/goto') === 0 && Helper::options()->JPostLinkRedirect == 'on') {
+		(function () use ($self) {
+			$self->response->setStatus(200);
+			$location = Helper::options()->siteUrl;
+			$link = base64_decode($self->request->url);
+			$cid = $self->request->cid;
+			if (is_numeric($cid)) {
+				$db = Typecho_Db::get();
+				$post = $db->fetchRow($db->select('text')->from('table.contents')->where('cid = ?', $cid));
+				if (!empty($post['text']) && strpos($post['text'], $link) !== false) {
+					$location = $link;
+				}
+			}
+			require_once JOE_ROOT . '/module/goto.php';
+			$self->response->throwContent('');
+		})();
 	}
 
 	if (Helper::options()->JUser_Switch == 'on') {

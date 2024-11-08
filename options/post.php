@@ -5,6 +5,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$JPostLinkRedirect = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JPostLinkRedirect',
+	['on' => '开启（默认）', 'off' => '关闭'],
+	'on',
+	'是否开启文章外链重定向',
+	'介绍：开启此功能后，非本站的链接将会重定向至内部链接，点击后延迟跳转，有利于SEO。如果对正常链接造成了影响，请关闭此功能'
+);
+$JPostLinkRedirect->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JPostLinkRedirect);
+
 $JPost_Title_Bold = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPost_Title_Bold',
 	['off' => '关闭（默认）', 'on' => '开启'],

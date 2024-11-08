@@ -179,15 +179,14 @@ function _getstatistics($self)
 		}
 		return $data;
 	};
-	$domain = parse_url(Helper::options()->siteUrl, PHP_URL_HOST);
 	$list = $baidu_list();
 	for ($i = 0; $i < count($list); $i++) {
-		if ($list[$i]['domain'] == $domain) {
+		if ($list[$i]['domain'] == JOE_DOMAIN) {
 			$list = $list[$i];
 			break;
 		}
 	}
-	if (!isset($list['domain']) || $list['domain'] != $domain) {
+	if (!isset($list['domain']) || $list['domain'] != JOE_DOMAIN) {
 		$data = array(
 			'msg' => '没有当前站点'
 		);

@@ -4,6 +4,7 @@ function _parseContent($post, $login)
 {
 	$content = $post->content;
 	$content = _parseReply($content);
+	$post_cid = $post->cid;
 
 	// 跑马灯
 	if (strpos($content, '{lamp/}') !== false) {
@@ -82,7 +83,7 @@ function _parseContent($post, $login)
 	if (strpos($content, '{hide') !== false) {
 		if ($post->fields->hide == 'pay') {
 			$db = Typecho_Db::get();
-			$pay = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
+			$pay = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post_cid)->limit(1));
 			// '<a rel="nofollow" target="_blank" href="https://bri6.cn/user/order" class="">' . $pay['trade_no'] . '</a>';
 			if (!empty($pay)) {
 				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
@@ -93,9 +94,9 @@ function _parseContent($post, $login)
 					$pay_box_position = _payBox($post);
 				} else {
 					if ($login) {
-						$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
+						$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post_cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
 					} else {
-						$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
+						$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post_cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
 					}
 					$hasComment = $db->fetchRow($comment_sql);
 					if (!empty($hasComment)) {
@@ -130,9 +131,9 @@ function _parseContent($post, $login)
 		} else {
 			$db = Typecho_Db::get();
 			if ($login) {
-				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
+				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post_cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
 			} else {
-				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
+				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post_cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
 			}
 			$hasComment = $db->fetchRow($comment_sql);
 			if (!empty($hasComment)) {
@@ -178,9 +179,34 @@ function _parseContent($post, $login)
 		$content = str_replace('<img src="', '<img referrerPolicy="no-referrer" rel="noreferrer" src="', $content);
 	}
 
-	// 告诉搜索引擎不将这个链接的权重传递给目标页面
 	if (strpos($content, '<a href="') !== false && strpos($content, '<a href="javascript:') === false) {
-		$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
+		if (Helper::options()->JPostLinkRedirect == 'on') {
+			// 使用正则表达式匹配链接并直接进行替换
+			$content = preg_replace_callback(
+				'/<a href\="([\s\S]*?)"/',
+				function ($matches) use ($post_cid) {
+					$link_host = parse_url($matches[1], PHP_URL_HOST);
+					if ($link_host == JOE_DOMAIN) return $matches[0]; // 不进行替换
+					$redirect_link = Helper::options()->siteUrl . 'goto?url=' . base64_encode($matches[1]) . '&cid=' . $post_cid;
+					return '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';
+				},
+				$content
+			);
+			// $redirect_link_search = [];
+			// $redirect_link_replace = [];
+			// preg_match_all('/<a href\="([\s\S]*?)"/', $content, $link_matches);
+			// foreach ($link_matches[1] as $link) {
+			// 	$link_host = parse_url($link, PHP_URL_HOST);
+			// 	if ($link_host == JOE_DOMAIN) continue;
+			// 	$redirect_link = Helper::options()->siteUrl . '/goto?url=' . base64_encode($link) . '&cid=' . $post_cid;
+			// 	$redirect_link_search[] = '<a href="' . $link . '"';
+			// 	$redirect_link_replace[] = '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';
+			// }
+			// if (!empty($redirect_link_search)) $content = str_replace($redirect_link_search, $redirect_link_replace, $content);
+		} else {
+			// 告诉搜索引擎不将这个链接的权重传递给目标页面
+			$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
+		}
 	}
 
 	// 代码显示行号

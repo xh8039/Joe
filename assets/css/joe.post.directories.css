@@ -45,7 +45,7 @@
 .dosc-nav li a:focus,
 .dosc-nav li a:hover,
 .nav .active a,
-.nav>li>a:focus,
+/* .nav>li>a:focus, */
 .nav>li>a:hover,
 .posts-nav-lists li a:hover,
 .posts-nav-lists li.active a {

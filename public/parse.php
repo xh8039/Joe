@@ -197,7 +197,7 @@ function _payFreeResources($post)
 				</div>
 				<div class="text-right mt10">
 					<div class="">
-						' . ($login_comment ? '<a href="javascript:document.querySelector(\'.header-login\').click();" class="but padding-lg btn-block jb-blue joe_scan_light"><i class="fa fa-sign-in"></i> 登录评论</a>' : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="but padding-lg btn-block jb-blue"><i class="fa fa-comment"></i> 评论查看</a>') . '
+						' . ($login_comment ? '<a href="javascript:document.querySelector(\'.header-login\').click();" class="but padding-lg btn-block jb-blue joe_scan_light"><i class="fa fa-sign-in"></i> 登录评论</a>' : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="but padding-lg btn-block jb-blue joe_scan_light"><i class="fa fa-comment"></i> 评论查看</a>') . '
 					</div>
 					' . ($login_comment ? '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！请登陆后再进行评论</div>' : '') . '
 				</div>

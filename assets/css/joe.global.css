@@ -1609,12 +1609,12 @@
 	word-break: break-word;
 	line-height: 22px;
 	max-height: 44px;
-	margin-bottom: 6px;
 }
 
 .joe_list__item.default .information .abstract {
 	-webkit-line-clamp: 1;
 	max-height: 22px;
+	margin-bottom: 6px;
 }
 
 .joe_list__item.default .line {

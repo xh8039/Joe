@@ -1681,8 +1681,8 @@
 .joe_list__item.default .thumbnail {
 	flex-shrink: 0;
 	position: relative;
-    width: 190px;
-    height: 133px;
+	width: 190px;
+	height: 133px;
 	margin-right: 20px;
 	overflow: hidden
 }
@@ -4372,7 +4372,8 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_comment .comment-list__item-contain .term .content .substance .owo_image {
-	height: 22px
+	height: 22px;
+	vertical-align: -6px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .substance .draw_image {

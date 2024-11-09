@@ -72,7 +72,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php
 	if ($this->options->JWeChatRewardImg || $this->options->JAlipayRewardImg || $this->options->JQQRewardImg) {
 	?>
-		<a href="javascript:;" data-toggle="RefreshModal" data-target="#rewards-modal-<?= $this->cid ?>" data-remote="<?= $this->options->index('joe/api') ?>?cid=<?= $this->cid ?>&routeType=user_rewards_modal" class="rewards action action-rewards">
+		<a href="javascript:;" data-toggle="RefreshModal" data-target="#rewards-modal-<?= $this->cid ?>" data-remote="<?php $this->options->index('joe/api') ?>?cid=<?= $this->cid ?>&routeType=user_rewards_modal" class="rewards action action-rewards">
 			<svg class="icon" aria-hidden="true">
 				<use xlink:href="#icon-money"></use>
 			</svg>

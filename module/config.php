@@ -10,7 +10,7 @@ $fields = $this->fields->toArray();
 		TITLE: `<?php $this->options->title() ?>`,
 		THEME_URL: `<?= Joe\theme_url('', false) ?>`,
 		LIVE2D: `<?php \joe\theme_url('assets/plugin/live2d/model/') . $this->options->JLive2d ?>`,
-		BASE_API: `<?= $this->options->index('joe/api') ?>`,
+		BASE_API: `<?php $this->options->index('joe/api') ?>`,
 		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
 		BAIDU_PUSH: <?= empty($this->options->JBaiduToken) ? 'false' : 'true' ?>,

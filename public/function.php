@@ -702,6 +702,13 @@ function install()
 		return;
 	}
 
+	$_db = Typecho_Db::get();
+	if ((float) $_db->getVersion() < 5.6) {
+		echo '<script>alert("请使用 MySql 5.6 及以上版本！");</script>';
+		exit;
+		return;
+	}
+
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
 	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
 	$lock_file = JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'install.lock';
@@ -747,7 +754,6 @@ function install()
 	// }
 
 	try {
-		$_db = Typecho_Db::get();
 		$_prefix = $_db->getPrefix();
 		$adapter = $_db->getAdapterName();
 		$joe_pay = $_prefix . "joe_pay";

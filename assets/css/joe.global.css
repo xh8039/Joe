@@ -1600,7 +1600,7 @@
 
 .joe_list__item .information .abstract {
 	display: -webkit-box;
-	-webkit-line-clamp: 1;
+	-webkit-line-clamp: 2;
 	/*! autoprefixer: off */
 	-webkit-box-orient: vertical;
 	overflow: hidden;
@@ -1608,8 +1608,13 @@
 	color: var(--muted-color);
 	word-break: break-word;
 	line-height: 22px;
-	max-height: 22px;
+	max-height: 44px;
 	margin-bottom: 6px;
+}
+
+.joe_list__item.default .information .abstract {
+	-webkit-line-clamp: 1;
+	max-height: 22px;
 }
 
 .joe_list__item.default .line {

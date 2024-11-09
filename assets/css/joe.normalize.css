@@ -1596,6 +1596,60 @@ badge.p2-10 {
 	padding: 15px
 }
 
+.blur * {
+	border-radius: 0
+}
+
+badge {
+	font-size: .8em;
+	line-height: 1.2;
+	padding: .1em .4em;
+	min-width: .8em;
+	min-height: .8em;
+	display: inline-block;
+	vertical-align: .1em;
+	border-radius: 50px;
+	background: var(--this-bg);
+	color: var(--this-color);
+	top: 5px;
+	--this-color: #fff;
+	text-align: center;
+	--this-bg: #fe3459;
+	z-index: 1
+}
+
+badge.badge-bw {
+	min-width: 1.5em
+}
+
+badge.b-black {
+	--this-bg: rgba(0, 0, 0, 0.2)
+}
+
+badge.radius4 {
+	border-radius: 4px
+}
+
+badge.abs-tr {
+	position: absolute;
+	left: auto;
+	top: -5px;
+	right: -5px
+}
+
+badge.spot.abs-tr {
+	top: 2px;
+	right: 1px
+}
+
+badge.badge-essence,
+badge.badge-topping {
+	width: 1.4em;
+	padding: 0;
+	line-height: 1.4em;
+	border-radius: .45em 2px
+}
+
 .img-badge {
 	position: absolute;
 	top: .6em;

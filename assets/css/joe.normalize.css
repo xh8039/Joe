@@ -1657,7 +1657,7 @@ badge.badge-topping {
 	border-radius: 50px 0 0 50px;
 	text-shadow: none;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
-	z-index: 1;
+	z-index: 2;
 	padding: .2em .6em
 }
 

@@ -1617,6 +1617,10 @@
 	margin-bottom: 6px;
 }
 
+.joe_list__item.none .information .abstract {
+	margin-bottom: 6px;
+}
+
 .joe_list__item.default .line {
 	position: absolute;
 	z-index: 1;

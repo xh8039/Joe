@@ -16,8 +16,8 @@ function themeConfig($form)
 	joe\install();
 ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/config/css/joe.config.css') ?>">
-	<script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
-	<script src="<?= joe\cdn('layer/3.5.1/layer.min.js') ?>"></script>
+	<script src="<?= joe\theme_url('assets/plugin/jquery/3.6.0/jquery.min.js') ?>"></script>
+	<script src="<?= joe\theme_url('assets/plugin/layer/3.5.1/layer.min.js') ?>"></script>
 	<script>
 		window.Joe = {
 			title: `<?= trim(Helper::options()->title ?? '') ?>`,

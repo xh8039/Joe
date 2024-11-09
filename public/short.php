@@ -187,7 +187,7 @@ function _parseContent($post, $login)
 				function ($matches) use ($post_cid) {
 					$link_host = parse_url($matches[1], PHP_URL_HOST);
 					if ($link_host == JOE_DOMAIN) return $matches[0]; // 不进行替换
-					$redirect_link = Helper::options()->index('goto') . '?url=' . base64_encode($matches[1]) . '&cid=' . $post_cid;
+					$redirect_link = Helper::options()->index . '/goto?url=' . base64_encode($matches[1]) . '&cid=' . $post_cid;
 					return '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';
 				},
 				$content

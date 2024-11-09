@@ -26,7 +26,7 @@ if (!empty($recommend)) {
 			?>
 				<figure class="item">
 					<a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
-						<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
+						<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="lazyload error-thumbnail" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
 					</a>
 					<span class="type">推荐</span>
 					<figcaption class="information">
@@ -53,7 +53,7 @@ if (!empty($recommend)) {
 						<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
 							<figure class="inner">
 								<span class="type">推荐</span>
-								<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
+								<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload error-thumbnail" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
 							</figure>
 						</a>
 						<div class="item-body">

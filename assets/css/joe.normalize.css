@@ -1642,24 +1642,6 @@ badge.p2-10 {
 	margin-bottom: 20px
 }
 
-@media (max-width: 767px) {
-	.joe_container {
-		width: 100%;
-	}
-}
-
-@media (max-width: 1200px) {
-	.joe_container {
-		max-width: 95%;
-	}
-}
-
-@media (min-width: 1200px) {
-	.joe_container {
-		max-width: 1170px
-	}
-}
-
 @media (min-width: 1400px) {
 	.joe_container {
 		max-width: 1200px
@@ -1671,5 +1653,23 @@ badge.p2-10 {
 
 	.joe_header__below>.joe_container {
 		max-width: 1380px
+	}
+}
+
+@media (min-width: 1200px) {
+	.joe_container {
+		max-width: 1170px
+	}
+}
+
+@media (max-width: 767px) {
+	.joe_container {
+		max-width: 100%;
+	}
+}
+
+@media (max-width: 1200px) {
+	.joe_container {
+		max-width: 95%;
 	}
 }

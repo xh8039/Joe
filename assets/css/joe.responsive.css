@@ -369,8 +369,8 @@
 	html .joe_list__item.default .thumbnail,
 	html .joe_list__loading .item .thumbnail {
 		width: 138px;
-		height: 101px;
-		margin-right: 10px;
+		height: 97px;
+		margin-right: 15px;
 	}
 
 	html .joe_list__item.default .thumbnail time,
@@ -747,6 +747,7 @@
 
 	html .joe_list__item {
 		padding: 10px;
+		margin-bottom: 10px;
 	}
 
 	html .joe_list__item.default .line {

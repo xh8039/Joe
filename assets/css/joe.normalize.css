@@ -1642,27 +1642,21 @@ badge.p2-10 {
 	margin-bottom: 20px
 }
 
-@media (min-width: 576px) {
-	/* .joe_container {
-		max-width: 540px
-	} */
-}
-
-@media (min-width: 768px) {
-	/* .joe_container {
-		max-width: 720px
-	} */
-}
-
-@media (min-width: 992px) {
+@media (max-width: 767px) {
 	.joe_container {
-		max-width: 960px
+		width: 100%;
+	}
+}
+
+@media (max-width: 1200px) {
+	.joe_container {
+		max-width: 95%;
 	}
 }
 
 @media (min-width: 1200px) {
 	.joe_container {
-		max-width: 1140px
+		max-width: 1170px
 	}
 }
 

@@ -1662,14 +1662,14 @@ badge.p2-10 {
 	}
 }
 
-@media (max-width: 767px) {
-	.joe_container {
-		max-width: 100%;
-	}
-}
-
 @media (max-width: 1200px) {
 	.joe_container {
 		max-width: 95%;
+	}
+}
+
+@media (max-width: 767px) {
+	.joe_container {
+		max-width: 100%;
 	}
 }

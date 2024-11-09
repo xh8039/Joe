@@ -10,7 +10,6 @@ if (PHP_VERSION < base64_decode('Ny40')) {
 }
 
 define('THEME_NAME', basename(JOE_ROOT));
-define('JOE_BASE_API', Helper::options()->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api');
 define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
 header('Generator: YiHang');
 header('Author: YiHang');

@@ -174,6 +174,17 @@ function _parseContent($post, $login)
 		$content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
 	}
 
+	$images_count = 0;
+	$content = preg_replace_callback(
+		'/<img src\="([\s\S]*?)" alt\="" title\="">/',
+		function ($matches) use ($post, $images_count) {
+			$images_count++;
+			$alt = '图片[' . $images_count . '] - ' . $post->title . ' - ' . Helper::options()->title;
+			return '<img src="' . $matches[1] . '" alt="' . $alt . '" title="' . $alt . '">';
+		},
+		$content
+	);
+
 	// img图片引入时不携带referrer信息
 	if (strpos($content, '<img src="') !== false) {
 		$content = str_replace('<img src="', '<img referrerPolicy="no-referrer" rel="noreferrer" src="', $content);

@@ -1615,8 +1615,8 @@
 .joe_list__item.default .line {
 	position: absolute;
 	z-index: 1;
-	top: 16px;
-	left: 6px;
+	top: 20px;
+	left: 8px;
 	width: 4px;
 	height: 30px;
 	border-radius: 2px;

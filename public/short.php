@@ -174,12 +174,16 @@ function _parseContent($post, $login)
 		$content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
 	}
 
-	$images_count = 0;
+	function images_count()
+	{
+		static $count = 0;
+		$count++;
+		return $count;
+	}
 	$content = preg_replace_callback(
 		'/<img src\="([\s\S]*?)" alt\="" title\="">/',
-		function ($matches) use ($post, $images_count) {
-			$images_count++;
-			$alt = '图片[' . $images_count . '] - ' . $post->title . ' - ' . Helper::options()->title;
+		function ($matches) use ($post) {
+			$alt = '图片[' . images_count() . '] - ' . $post->title . ' - ' . Helper::options()->title;
 			return '<img src="' . $matches[1] . '" alt="' . $alt . '" title="' . $alt . '">';
 		},
 		$content
@@ -203,17 +207,6 @@ function _parseContent($post, $login)
 				},
 				$content
 			);
-			// $redirect_link_search = [];
-			// $redirect_link_replace = [];
-			// preg_match_all('/<a href\="([\s\S]*?)"/', $content, $link_matches);
-			// foreach ($link_matches[1] as $link) {
-			// 	$link_host = parse_url($link, PHP_URL_HOST);
-			// 	if ($link_host == JOE_DOMAIN) continue;
-			// 	$redirect_link = Helper::options()->siteUrl . '/goto?url=' . base64_encode($link) . '&cid=' . $post_cid;
-			// 	$redirect_link_search[] = '<a href="' . $link . '"';
-			// 	$redirect_link_replace[] = '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';
-			// }
-			// if (!empty($redirect_link_search)) $content = str_replace($redirect_link_search, $redirect_link_replace, $content);
 		} else {
 			// 告诉搜索引擎不将这个链接的权重传递给目标页面
 			$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);

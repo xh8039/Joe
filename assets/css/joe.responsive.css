@@ -129,11 +129,13 @@
 		grid-template-rows: 125px
 	}
 
+	/*
 	html .joe_list__item.default .thumbnail,
 	html .joe_list__loading .item .thumbnail {
 		width: 185px;
 		height: 125px
 	}
+	*/
 
 	html .joe_index__hot-list {
 		-webkit-column-gap: 10px;

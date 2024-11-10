@@ -970,3 +970,14 @@ function get_archive_tags($item)
 	}
 	return $tags;
 }
+
+/**
+ * 输出解析地址
+ *
+ * @param string|null $path 子路径
+ */
+function index($path, $prefix = false)
+{
+	$index = \Typecho\Common::url($path, \Helper::options()->index);
+	return is_string($prefix) ? str_ireplace(['http://', 'https://'], $prefix, $index) : $index;
+}

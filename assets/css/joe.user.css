@@ -7,7 +7,7 @@ textarea {
 }
 
 .container {
-	margin-top: 4vh;
+	margin-top: 30px;
 	display: flex;
 	justify-content: center;
 	width: 100%;
@@ -24,7 +24,7 @@ textarea {
 }
 
 .container>div>.text-muted {
-	margin-bottom: 1rem;
+	margin-bottom: 30px;
 }
 
 .container .card-body>.title {
@@ -134,15 +134,4 @@ textarea {
 .container .text-muted {
 	color: var(--minor);
 	text-align: center
-}
-
-.container .text-muted>a {
-	margin-left: .375rem;
-	color: var(--main);
-}
-
-@media (max-width: 768px) {
-	html .container {
-		margin-top: 3vh;
-	}
 }

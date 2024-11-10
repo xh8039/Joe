@@ -28,7 +28,7 @@ if ($this->options->JIndexFriends == 'on' && $this->is('index') && ($this->optio
 					if ($this->options->JFriends_shuffle == 'on') shuffle($friends);
 					$friends = array_values($friends);
 					foreach ($friends as $key => $item) : ?>
-						<a rel="<?= $item['rel'] ?? '' ?>" target="_blank" class="<?= $key ? 'icon-spot' : null ?>" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="<?= $item['description'] ?? '暂无简介' ?>" href="<?= $item['url'] . '?' . $_SERVER['HTTP_HOST'] ?>" data-original-title="<?= $item['title'] ?>"><?= $item['title'] ?></a>
+						<a rel="<?= $item['rel'] ?? '' ?>" target="_blank" class="<?= $key ? 'icon-spot' : null ?>" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="<?= $item['description'] ?? '暂无简介' ?>" href="<?= $item['url'] ?>" data-original-title="<?= $item['title'] ?>"><?= $item['title'] ?></a>
 					<?php endforeach; ?>
 				</div>
 			</div>

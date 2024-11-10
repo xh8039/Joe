@@ -91,7 +91,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							}
 							foreach ($friends as $item) : ?>
 								<li class="joe_detail__friends-item">
-									<a class="contain" href="<?= $item['url'] . '?' . $_SERVER['HTTP_HOST'] ?>" target="_blank" rel="<?= $item['rel'] ?>" style="background: <?= $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
+									<a class="contain" href="<?= $item['url'] ?>" target="_blank" rel="<?= $item['rel'] ?>" style="background: <?= $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
 										<span class="title"><?= $item['title'] ?></span>
 										<div class="content">
 											<div class="desc"><?= $item['description'] ?></div>

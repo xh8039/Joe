@@ -771,7 +771,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 座右铭 */
 	{
-		let motto = Joe.MOTTO;
 		const mottoArray = [
 			'风急天高猿啸哀，渚清沙白鸟飞回',
 			'无边落木萧萧下，不尽长江滚滚来',
@@ -814,18 +813,20 @@ document.addEventListener("DOMContentLoaded", () => {
 			'人生自古谁无死，留取丹心照汗青',
 			'黑云压城城欲摧，甲光向日金鳞开'
 		];
-		const randomIndex = Math.floor(Math.random() * mottoArray.length);
-		motto = mottoArray[randomIndex];
-		if (motto.startsWith("https://") || motto.startsWith("http://") || motto.startsWith("//")) {
-			$.ajax({
-				url: motto,
-				dataType: "text",
-				success: (res) => {
-					$(".joe_motto").html(res);
-				}
-			});
-		} else {
-			$(".joe_motto").html(motto);
+		let motto = mottoArray[Math.floor(Math.random() * mottoArray.length)];
+		$(".joe_motto").html(motto);
+		if (Joe.MOTTO) {
+			if (Joe.MOTTO.startsWith("https://") || Joe.MOTTO.startsWith("http://") || Joe.MOTTO.startsWith("//")) {
+				$.ajax({
+					url: Joe.MOTTO,
+					dataType: "text",
+					success: (res) => {
+						$(".joe_motto").html(res);
+					}
+				});
+			} else {
+				$(".joe_motto").html(Joe.MOTTO);
+			}
 		}
 	}
 

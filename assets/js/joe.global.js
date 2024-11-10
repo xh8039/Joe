@@ -733,7 +733,9 @@ document.addEventListener("DOMContentLoaded", () => {
 						barStr += `<div class="item" data-type="${key}">${key}</div>`;
 						scrollStr += `
 							<ul class="scroll" data-type="${key}">
-								${item.map((_) => `<li class="item" data-text="${_.data}">${key === "颜文字" ? `${_.icon}` : `<img src="${window.Joe.THEME_URL + _.icon}" title="${/.*?\((.*?)\)/.exec(_.data)[1]}"	alt="${/.*?\((.*?)\)/.exec(_.data)[1]}"/>`}</li>`).join("")}
+								${item.map(
+									(_) => `<li class="item" data-text="${_.data}">${key === "颜文字" ? `${_.icon}` : `<img class="lazyload" src="${window.Joe.LAZY_LOAD}" data-src="${window.Joe.THEME_URL + _.icon}" title="${/.*?\((.*?)\)/.exec(_.data)[1]}"	alt="${/.*?\((.*?)\)/.exec(_.data)[1]}"/>`}</li>`
+								).join("")}
 							</ul>`;
 					}
 					$(".joe_owo__contain").html(`

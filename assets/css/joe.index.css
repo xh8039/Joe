@@ -330,6 +330,13 @@
 	transition: opacity 0.35s
 }
 
+.joe_index__ad-link .image.lazyload,
+.joe_index__ad-link .image.lazyloading {
+	max-height: 80px;
+	object-fit: unset;
+	-o-object-fit: unset;
+}
+
 .joe_index__ad-link .image:hover {
 	opacity: 0.85
 }

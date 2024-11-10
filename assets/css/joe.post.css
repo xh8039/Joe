@@ -39,6 +39,11 @@
 	transition: 0.3s
 }
 
+.joe_post__ad-link .image.lazyload,
+.joe_post__ad-link .image.lazyloading {
+	max-height: 80px;
+}
+
 .joe_post__ad-link .image:hover {
 	opacity: 0.85
 }

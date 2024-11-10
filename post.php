@@ -36,7 +36,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php
 					$this->need('module/single/batten.php');
 					$this->need('module/post/overdue.php'); //过期声明
-					$this->need('module/post/advertd.php'); //文章广告
+					$this->need('module/post/adverts.php'); //文章广告
 					$this->need('module/single/article.php'); //文章内容
 					$this->need('module/single/handle.php'); //标签分类
 					$this->need('module/single/operate.php'); //点赞分享

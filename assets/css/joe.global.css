@@ -3098,6 +3098,10 @@
 	line-height: 26px;
 }
 
+.joe_detail__article ul>li>p {
+	margin-bottom: 5px;
+}
+
 .joe_detail__article br {
 	content: "";
 	padding-bottom: 6px;

@@ -1031,11 +1031,14 @@ function author_post_field_sum($id, $field)
  */
 function number_word($number)
 {
-	if ($number >= 10000) {
-		return number_format(floor($number / 10000)) . 'W+';
-	} elseif ($number >= 1000) {
-		return number_format(floor($number / 1000)) . 'K+';
-	} else {
-		return $number;
+	if (is_numeric($number)) {
+		if ($number >= 10000) {
+			return number_format(floor($number / 10000)) . 'W+';
+		} elseif ($number >= 1000) {
+			return number_format(floor($number / 1000)) . 'K+';
+		} else {
+			return $number;
+		}
 	}
+	return 0;
 }

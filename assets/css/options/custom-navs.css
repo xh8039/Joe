@@ -9,10 +9,6 @@
 	transition: .3s
 }
 
-.body-scroll .header {
-	box-shadow: 0 4px 10px var(--main-shadow)
-}
-
 .header a:not(.but),
 .header svg {
 	color: var(--main-color)

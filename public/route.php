@@ -300,13 +300,14 @@ function baidu_index($url)
 		'cl' => 3,
 		'f' => 9
 	]);
+	$cookie = empty($cookie) ? '' : trim(Helper::options()->Baidu_Index_Cookie);
 	$client->header([
 		'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 		'accept-encoding' => 'gzip, deflate, br, zstd',
 		'Accept-Language' => 'zh-CN,zh;q=0.9',
 		'cache-control' => 'max-age=0',
 		'Connection' => 'keep-alive',
-		'cookie' => trim(Helper::options()->Baidu_Index_Cookie),
+		'cookie' => $cookie,
 		'Host' => 'www.baidu.com',
 		'sec-ch-ua' => '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
 		'sec-ch-ua-mobile' => '?0',

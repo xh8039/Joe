@@ -115,7 +115,9 @@ function getLazyload($type = true)
 	else return $JLazyload;
 }
 
-/* 获取头像懒加载图 */
+/**
+ * 获取头像懒加载图
+ */
 function getAvatarLazyload($type = true)
 {
 	$str = theme_url('assets/images/avatar-default.png');
@@ -154,6 +156,7 @@ function getAvatarByMail($mail, $type = true)
 	$md5MailLower = md5($mailLower);
 	$qqMail = str_replace('@qq.com', '', $mailLower);
 	if (strstr($mailLower, "qq.com") && is_numeric($qqMail) && strlen($qqMail) < 11 && strlen($qqMail) > 4) {
+		'https://q4.qlogo.cn/headimg_dl?dst_uin=2136118039&spec=640';
 		$result =  'https://thirdqq.qlogo.cn/g?b=qq&nk=' . $qqMail . '&s=640';
 	} else {
 		$result = $gravatarsUrl . $md5MailLower . '?d=mm';
@@ -667,12 +670,12 @@ function dateWord($original_date)
 function optionMulti($string, string $line = "\r\n", $separator = '||'): array
 {
 	if (empty($string) || !is_string($string)) return [];
-	$custom = [];
+	$optionMulti = [];
 	$customArr = explode($line, $string);
 	foreach ($customArr as $value) {
-		$custom[] = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
+		$optionMulti[] = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
 	}
-	return $custom;
+	return $optionMulti;
 }
 
 /**
@@ -980,4 +983,59 @@ function index($path, $prefix = false)
 {
 	$index = \Typecho\Common::url($path, \Helper::options()->index);
 	return is_string($prefix) ? str_ireplace(['http://', 'https://'], $prefix, $index) : $index;
+}
+
+/**
+ * 获取自定义导航栏
+ */
+function custom_navs()
+{
+	static $custom_navs = null;
+	if (is_null($custom_navs)) {
+		$custom_navs_text = Helper::options()->JCustomNavs;
+		$custom_navs_block = optionMulti($custom_navs_text, "\r\n\r\n", false);
+		$custom_navs = [];
+		foreach ($custom_navs_block as $key => $value) {
+			$custom_navs_explode = optionMulti($value);
+			$custom_navs[$key] = [
+				'title' => $custom_navs_explode[0][0] ?? '菜单标题',
+				'url' => $custom_navs_explode[0][1] ?? 'javascript:;',
+				'target' => $custom_navs_explode[0][2] ?? '_self'
+			];
+			unset($custom_navs_explode[0]);
+			foreach ($custom_navs_explode as $value) {
+				$custom_navs[$key]['list'][] = [
+					'title' => $value[0] ?? '二级标题',
+					'url' => $value[1] ?? 'javascript:;',
+					'target' => $value[2] ?? '_self'
+				];
+			}
+		}
+	}
+	return $custom_navs;
+}
+
+
+/**
+ * 输出作者指定字段总数，可以指定
+ */
+function author_post_field_sum($id, $field)
+{
+	$db = Typecho_Db::get();
+	$postnum = $db->fetchRow($db->select(array('SUM(' . $field . ')' => 'field'))->from('table.contents')->where('table.contents.authorId=?', $id)->where('table.contents.type=?', 'post'));
+	return $postnum['field'];
+}
+
+/**
+ * 语义化数字
+ */
+function number_word($number)
+{
+	if ($number >= 10000) {
+		return number_format(floor($number / 10000)) . 'W+';
+	} elseif ($number >= 1000) {
+		return number_format(floor($number / 1000)) . 'K+';
+	} else {
+		return $number;
+	}
 }

@@ -313,7 +313,11 @@
 	}
 
 	html .joe_header__above-slideicon {
-		display: block
+		display: block;
+		position: relative;
+		background-color: transparent;
+		background-image: none;
+		border: 1px solid transparent;
 	}
 
 	html .joe_header__below {

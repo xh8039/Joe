@@ -63,10 +63,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		} else {
 			$("html").removeAttr("data-night");
 		}
+		if (document.querySelector('.toggle-theme')) {
+			$(".toggle-theme").on("click", () => {
+				$(".joe_action_item.mode").click();
+			});
+		}
 		if (document.querySelector('.joe_action_item.mode')) {
 			if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
 				$(".joe_action_item.mode .icon-1").addClass("active");
 				$(".joe_action_item.mode .icon-2").removeClass("active");
+				$('body').addClass('dark-theme');
+				let switchSrc = $('.navbar-logo>img').attr('switch-src');
+				let src = $('.navbar-logo>img').attr('src');
+				$('.navbar-logo>img').attr('src', switchSrc);
+				$('.navbar-logo>img').attr('switch-src', src);
 				if (!Joe.IS_MOBILE) {
 					$(".joe_action_item.mode").attr('data-original-title', '日间模式');
 					$(".joe_action_item.mode").tooltip({
@@ -76,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			} else {
 				$(".joe_action_item.mode .icon-1").removeClass("active");
 				$(".joe_action_item.mode .icon-2").addClass("active");
+				$('body').removeClass('dark-theme');
 				if (!Joe.IS_MOBILE) {
 					$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
 					$(".joe_action_item.mode").tooltip({
@@ -84,9 +95,14 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			}
 			$(".joe_action_item.mode").on("click", () => {
+				let switchSrc = $('.navbar-logo>img').attr('switch-src');
+				let src = $('.navbar-logo>img').attr('src');
+				$('.navbar-logo>img').attr('src', switchSrc);
+				$('.navbar-logo>img').attr('switch-src', src);
 				if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
 					$(".joe_action_item.mode .icon-1").removeClass("active");
 					$(".joe_action_item.mode .icon-2").addClass("active");
+					$('body').removeClass('dark-theme');
 					$("html").removeAttr("data-night");
 					localStorage.removeItem("data-night");
 					if (!Joe.IS_MOBILE) {
@@ -98,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				} else {
 					$(".joe_action_item.mode .icon-1").addClass("active");
 					$(".joe_action_item.mode .icon-2").removeClass("active");
+					$('body').addClass('dark-theme');
 					$("html").attr("data-night", "night");
 					localStorage.setItem("data-night", "night");
 					if (!Joe.IS_MOBILE) {
@@ -625,6 +642,14 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	{
+		$('body').on('click', '[data-toggle-class]', function () {
+			var c = $(this).attr('data-toggle-class') || 'show';
+			var e = $(this).attr('data-target') || this;
+			return $(e).toggleClass(c).trigger('toggleClass'), !1;
+		});
+	}
+
 	/* 小屏幕伸缩侧边栏 */
 	{
 		$(".joe_header__above-slideicon").on("click", function () {
@@ -633,11 +658,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			/* 处理开启关闭状态 */
 			if ($(".joe_header__slideout").hasClass("active")) {
 				$("body").css("overflow", "");
+				$('body').removeClass('mobile-navbar-show');
 				$(".joe_header__mask").removeClass("active slideout");
 				$(".joe_header__slideout").removeClass("active");
 				$('.joe_header__above').css('box-shadow', '');
 			} else {
 				$("body").css("overflow", "hidden");
+				$('body').addClass('mobile-navbar-show');
 				$(".joe_header__mask").addClass("active slideout");
 				$(".joe_header__slideout").addClass("active");
 				$('.joe_header__above').css('box-shadow', '0 10px 10px var(--main-shadow)');
@@ -651,6 +678,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			/* 关闭侧边栏 */
 			$(".joe_header__slideout").removeClass("active");
 			$('.joe_header__above').css('box-shadow', '');
+			$('body').removeClass('mobile-navbar-show');
 			/* 处理开启关闭状态 */
 			if ($(".joe_header__searchout").hasClass("active")) {
 				$("body").css("overflow", "");
@@ -668,6 +696,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		$(".joe_header__mask").on("click", function () {
 			$("body").css("overflow", "");
+			$('body').removeClass('mobile-navbar-show');
 			$(".joe_header__mask").removeClass("active slideout");
 			$(".joe_header__searchout").removeClass("active");
 			$(".joe_header__slideout").removeClass("active");
@@ -832,7 +861,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/** 页面滚动监听函数 */
 	{
-		if (!window.Joe.IS_MOBILE) {
+		var scrollHeader = !window.Joe.IS_MOBILE && document.querySelector('.joe_header__above');
+		if (scrollHeader) {
 			var flag = true;
 			function handleHeader(diffY) {
 				if (window.pageYOffset >= $(".joe_header").height() && diffY <= 0) {
@@ -860,7 +890,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			h > 400 ? ontop.addClass('active') : ontop.removeClass('active');
 
 			// 头部滚动
-			if (!window.Joe.IS_MOBILE) {
+			if (scrollHeader) {
 				handleHeader(Y - window.pageYOffset);
 				Y = window.pageYOffset;
 			}

@@ -41,8 +41,7 @@ html {
 	--muted-color: #777;
 	--focus-color: var(--theme);
 	--muted-border-color: rgba(0, 0, 0, 0.03);
-	--header-bg: var(--blur-bg);
-	--header-color: var(--main-color);
+	--blur-bg: #ffffff;
 	--footer-bg: var(--main-bg-color);
 	--footer-color: var(--muted-2-color);
 }

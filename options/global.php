@@ -101,14 +101,8 @@ $JCustomNavs = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomNavs',
 	NULL,
 	NULL,
-	'导航栏自定义（非必填）',
-	'介绍：用于自定义导航栏链接 <br />
-		 格式：跳转文字 || 跳转链接（中间使用两个竖杠分隔）<br />
-		 其他：一行一个，一行代表一个超链接 <br />
-		 例如：<br />
-			百度一下 || https://baidu.com <br />
-			腾讯视频 || https://v.qq.com
-		 '
+	'全新自定义导航栏（非必填）',
+	'介绍：可随意设置导航链接和导航文字加图标的全新导航栏丨<a target="_blank" href="http://blog.bri6.cn/archives/286.html">查看官网教程</a>'
 );
 $JCustomNavs->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomNavs);

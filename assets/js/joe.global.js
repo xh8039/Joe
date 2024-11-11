@@ -658,13 +658,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			/* 处理开启关闭状态 */
 			if ($(".joe_header__slideout").hasClass("active")) {
 				$("body").css("overflow", "");
-				$('body').removeClass('mobile-navbar-show');
+				$('body').addClass('mobile-navbar-show');
 				$(".joe_header__mask").removeClass("active slideout");
 				$(".joe_header__slideout").removeClass("active");
 				$('.joe_header__above').css('box-shadow', '');
 			} else {
 				$("body").css("overflow", "hidden");
-				$('body').addClass('mobile-navbar-show');
+				$('body').removeClass('mobile-navbar-show');
 				$(".joe_header__mask").addClass("active slideout");
 				$(".joe_header__slideout").addClass("active");
 				$('.joe_header__above').css('box-shadow', '0 10px 10px var(--main-shadow)');

@@ -101,7 +101,7 @@ $custom_navs = joe\custom_navs();
 				</form>
 				<div class="navbar-form navbar-right hide show-nav-but" style="margin-right:-10px;"><a data-toggle-class="" data-target=".nav.navbar-nav" href="javascript:;" class="but" style="overflow: hidden; position: relative;"><svg class="svg" aria-hidden="true" data-viewbox="0 0 1024 1024" viewBox="0 0 1024 1024"><use xlink:href="#icon-menu_2"></use></svg></a></div>
 				<div class="navbar-form navbar-right navbar-but">
-					<a rel="nofollow" class="newadd-btns but nowave jb-blue radius btn-newadd" href="<?php $this->options->adminUrl('write-post.php') ?>"><i class="fa fa-fw fa-pencil"></i>发布</a>
+					<a rel="nofollow" class="newadd-btns but nowave jb-blue radius btn-newadd" href="<?= $this->user->hasLogin() ? $this->options->adminUrl . 'write-post.php' : joe\user_url('login') ?>"><i class="fa fa-fw fa-pencil"></i>发布</a>
 				</div>
 				<div class="navbar-form navbar-right">
 					<a href="javascript:;" class="toggle-theme toggle-radius"><i class="fa fa-toggle-theme"></i></a><?= $this->user->hasLogin() ? '<a rel="nofollow" href="' . $this->options->adminUrl . 'manage-comments.php" class="msg-news-icon ml10"><span class="toggle-radius msg-icon"><i class="fa fa-bell-o" aria-hidden="true"></i></span></a>' : null ?>

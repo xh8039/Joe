@@ -144,8 +144,8 @@ button {
 	cursor: pointer;
 	-webkit-appearance: none;
 	font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
+	font-size: inherit;
+	line-height: inherit;
 }
 
 table {
@@ -196,6 +196,10 @@ botton {
 	flex: 1;
 	padding: 15px 0;
 	padding-top: 20px;
+}
+
+.joe_post {
+	padding-top: 12px;
 }
 
 .joe_container {

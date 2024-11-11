@@ -8,10 +8,8 @@
 .joe_archive__title {
 	display: flex;
 	align-items: center;
-	height: 45px;
-	line-height: 45px;
 	color: var(--main-color);
-	border-bottom: 1px solid var(--classC)
+	margin-bottom: 20px;
 }
 
 .joe_archive__title-icon {

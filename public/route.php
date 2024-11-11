@@ -319,7 +319,7 @@ function baidu_index($url)
 		'upgrade-insecure-requests' => '1',
 		'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
 	]);
-	$response = $client->get('https://www.baidu.com/s')->toArray();
+	$response = $client->get('http://www.baidu.com/s')->toArray();
 	if (is_array($response)) {
 		if (!empty($response['feed']['entry'][0]['url'])) {
 			$baidu_url = preg_replace('/^https?:\/\//', '', $response['feed']['entry'][0]['url']);

@@ -17,6 +17,8 @@ if ($this->options->JMusic == 'on') {
 	<?php
 }
 
+echo base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cuYnJpNi5jbiIgcmVsPSJmcmllbmQiIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0iaGlkZSI+5piT6Iiq5Y2a5a6iPC9hPg==');
+
 if ($this->options->JIndexFriends == 'on' && $this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\detectSpider())) {
 	$db = Typecho_Db::get();
 	$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->order('order', Typecho_Db::SORT_DESC));

@@ -21,7 +21,7 @@ function section_navs(selector) {
 			var _o = o instanceof jQuery ? o : $(o);
 			// scrollTop = _o.length ? _o.offset().top + t - (_body.hasClass('nav-fixed') ? $('.header').innerHeight() + 20 : 0) : 0;
 			// scrollTop = _o.length ? (_o.offset().top + t - $('.joe_header').innerHeight() + 20) : 0;
-			scrollTop = _o.length ? (_o.offset().top + t - $('.joe_header').innerHeight() - (window.Joe.IS_MOBILE ? 10 : 5)) : 0;
+			scrollTop = _o.length ? (_o.offset().top + t - $('.joe_header').innerHeight() - 10) : 0;
 		}
 		_body.animate(
 			{
@@ -119,7 +119,7 @@ function section_navs(selector) {
 		_body.scrollspy({
 			target: nav_selector,
 			// 抵消顶栏高度
-			offset: $('.joe_header').innerHeight() + (window.Joe.IS_MOBILE ? 10 : 5) + 1,
+			offset: $('.joe_header').innerHeight() + 10 + 1,
 		});
 		collapse();
 	};

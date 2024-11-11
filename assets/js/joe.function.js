@@ -86,6 +86,49 @@ function debounce(callback, delay, immediate) {
 	};
 }
 
+window.Joe.submit_baidu = (msg = '推送中...') => {
+	$('#Joe_Baidu_Record').html(`<span style="color: #E6A23C">${msg}</span>`);
+	$.ajax({
+		url: Joe.BASE_API,
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			routeType: 'baidu_push',
+			domain: window.location.protocol + '//' + window.location.hostname,
+			url: encodeURI(window.location.href),
+			cid: window.cid
+		},
+		success(res) {
+			if (res.already) {
+				$('#Joe_Baidu_Record').css('color', 'var(--theme)');
+				$('#Joe_Baidu_Record').html('已推送');
+				return
+			}
+			if (res.data.error) {
+				if (res.data.message == 'over quota') res.data.message = '超过配额';
+				$('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，' + res.data.message + '</span>');
+			} else {
+				$('#Joe_Baidu_Record').html('<span style="color: var(--theme)">推送成功！今日剩余' + res.data.remain + '条</span>');
+			}
+		},
+		error(res) {
+			$('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，请检查！</span>');
+		}
+	});
+	// 	顺便推送URL到必应
+	if (!Joe.BING_PUSH) return;
+	$.ajax({
+		url: Joe.BASE_API,
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			routeType: 'bing_push',
+			domain: window.location.protocol + '//' + window.location.hostname,
+			url: encodeURI(window.location.href)
+		}
+	});
+}
+
 /**
  * @description: ajax请求封装
  * @param {*} _this 按钮的jquery对象

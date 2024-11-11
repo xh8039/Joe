@@ -155,7 +155,7 @@ function getAvatarByMail($mail, $type = true)
 	$mailLower = strtolower($mail);
 	$md5MailLower = md5($mailLower);
 	$qqMail = str_replace('@qq.com', '', $mailLower);
-	if (strstr($mailLower, "qq.com") && is_numeric($qqMail) && strlen($qqMail) < 11 && strlen($qqMail) > 4) {
+	if (strstr($mailLower, "qq.com") && is_numeric($qqMail) && strlen($qqMail) < 13 && strlen($qqMail) > 4) {
 		'https://q4.qlogo.cn/headimg_dl?dst_uin=2136118039&spec=640';
 		$result =  'https://thirdqq.qlogo.cn/g?b=qq&nk=' . $qqMail . '&s=640';
 	} else {

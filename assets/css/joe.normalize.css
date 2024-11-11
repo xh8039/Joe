@@ -194,7 +194,8 @@ botton {
 .joe_main {
 	min-width: 0;
 	flex: 1;
-	padding: 15px 0
+	padding: 15px 0;
+	padding-top: 20px;
 }
 
 .joe_container {

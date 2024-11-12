@@ -1077,6 +1077,7 @@ badge.p2-10 {
 	filter: blur(10px)
 }
 
+/*
 .lazyloaded {
 	transition: .3s;
 	--lazy-animation: lazy_blur
@@ -1098,6 +1099,7 @@ img.lazyloaded:not(.lazyloadafter) {
 		filter: blur(0)
 	}
 }
+*/
 
 .close {
 	transition: .2s;

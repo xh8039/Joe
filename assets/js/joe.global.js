@@ -989,40 +989,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		thumbOnError();
 	}
 
-	/** 全局Loading动画补全 */
-	{
-		function checkUrl(string) {
-			try {
-				// console.log(string);
-				if (string.startsWith('/')) return true;
-				let url = new URL(string);
-				if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
-			} catch (error) {
-				return false;
-			}
-			return true;
-		}
-		if (window.loadingEnd && window.loadingStart) {
-			window.offLoading = () => {
-				// a标签加载动画
-				$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
-					if ($(this).attr('target') == '_blank') return true;
-					if ($(this).attr('ajax-replace')) return true;
-					let url = $(this).attr('href');
-					if (checkUrl(url)) window.loadingStart();
-					setTimeout(() => {
-						window.loadingEnd();
-					}, 5000);
-					window.addEventListener('unload', function (event) {
-						// 在这里执行你希望在用户离开前运行的代码
-						window.loadingEnd();
-					});
-				});
-			}
-			offLoading();
-		}
-	}
-
 	/** 头像加载失败代替 */
 	{
 		window.avatarOnError = () => {
@@ -1259,5 +1225,40 @@ document.addEventListener("DOMContentLoaded", () => {
 		$("[data-toggle='popover']").popover({
 			sanitize: false,
 		});
+	}
+
+	/** 全局Loading动画补全 */
+	{
+		window.Joe.loadingEnd();
+		function checkUrl(string) {
+			try {
+				// console.log(string);
+				if (string.startsWith('/')) return true;
+				let url = new URL(string);
+				if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
+			} catch (error) {
+				return false;
+			}
+			return true;
+		}
+		if (window.Joe.loadingEnd && window.Joe.loadingStart) {
+			window.Joe.offLoading = () => {
+				// a标签加载动画
+				$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
+					if ($(this).attr('target') == '_blank') return true;
+					if ($(this).attr('ajax-replace')) return true;
+					let url = $(this).attr('href');
+					if (checkUrl(url)) window.Joe.loadingStart();
+					setTimeout(() => {
+						window.Joe.loadingEnd();
+					}, 5000);
+					window.addEventListener('unload', function (event) {
+						// 在这里执行你希望在用户离开前运行的代码
+						window.Joe.loadingEnd();
+					});
+				});
+			}
+			window.Joe.offLoading();
+		}
 	}
 });

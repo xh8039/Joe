@@ -285,6 +285,12 @@ if (!empty($footer_tabbar)) {
 		bottom: <?= $joe_action_bottom ?>px;
 	}
 </style>
+<?php if ($this->options->JAside_3DTag === 'on') : ?>
+	<script src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js'); ?>"></script>
+<?php endif; ?>
+<?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
+	<script src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>" async></script>
+<?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
 <script>
 	<?php

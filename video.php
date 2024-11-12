@@ -55,7 +55,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<ul class="joe_video__pagination"></ul>
 				<?php endif; ?>
 			</div>
-			<?php $this->need('module/aside.php'); ?>
+			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
 	</div>

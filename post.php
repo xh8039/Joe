@@ -10,11 +10,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
 	<?php
 	$this->related(6)->to($relatedPosts);
-	if ($relatedPosts->have()) : ?>
-		<link rel="stylesheet" href="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') ?>">
-		<script src="<?= joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') ?>"></script>
-	<?php endif ?>
-	<?php
+	if ($relatedPosts->have()) {
+		echo '<link rel="stylesheet" href="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') . '">';
+		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '"></script>';
+	}
 	$this->need('module/head.php');
 	$this->need('module/single/prism.php');
 	?>
@@ -52,15 +51,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				$this->need('module/single/comment.php');
 				?>
 			</div>
-			<?php $this->need('module/aside.php'); ?>
+			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
+			<?php if ($this->options->JArticle_Guide == 'on') : ?>
+				<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
+				<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>"></script>
+				<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
+			<?php endif; ?>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
 	</div>
-	<?php if ($this->options->JArticle_Guide == 'on') : ?>
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
-		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>"></script>
-		<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
-	<?php endif; ?>
 </body>
 
 </html>

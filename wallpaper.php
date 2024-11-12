@@ -36,7 +36,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<div class="joe_wallpaper__list"></div>
 				<ul class="joe_wallpaper__pagination"></ul>
 			</div>
-			<?php $this->need('module/aside.php'); ?>
+			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
 	</div>

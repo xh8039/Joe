@@ -29,7 +29,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				</div>
 				<?php $this->need('module/single/comment.php'); ?>
 			</div>
-			<?php $this->need('module/aside.php'); ?>
+			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
 	</div>

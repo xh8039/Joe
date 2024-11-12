@@ -9,11 +9,12 @@ $custom_navs = joe\custom_navs();
 				<div class="navbar-brand">
 					<a referrerpolicy="no-referrer" rel="noreferrer" class="navbar-logo" href="<?php $this->options->siteUrl() ?>"><img src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" switch-src="<?php $this->options->JDarkLogo(); ?>" alt="<?= $this->options->title ?>"></a>
 				</div>
-				<button type="button" data-toggle-class="mobile-navbar-show" data-target="body" class="navbar-toggle joe_header__above-slideicon">
-					<i class="em12 css-icon i-menu"><i></i></i>
-				</button>
+				<button type="button" data-toggle-class="mobile-navbar-show" data-target="body" class="navbar-toggle joe_header__above-slideicon"><i class="em12 css-icon i-menu"><i></i></i></button>
 				<a class="main-search-btn navbar-toggle joe_header__above-searchicon" href="javascript:;"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-search"></use></svg></a>
 			</div>
+			<?php
+			if (joe\isPc()) {
+				?>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<?php
@@ -219,6 +220,9 @@ $custom_navs = joe\custom_navs();
 				}
 				?>
 			</div>
+				<?php
+			}
+			?>
 		</div>
 	</nav>
 </div>

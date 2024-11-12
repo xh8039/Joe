@@ -4553,7 +4553,8 @@ html .line-numbers .line-numbers-rows {
 	white-space: nowrap;
 }
 
-.joe_owo__contain .box .bar .item.active {
+.joe_owo__contain .box .bar .item.active,
+.joe_owo__contain .box .bar .item:hover {
 	color: #fff;
 	background: var(--theme)
 }

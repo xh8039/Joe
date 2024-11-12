@@ -3,9 +3,11 @@
 		<button type="button" class="joe_header__above-slideicon"><i class="em12 css-icon i-menu"><i></i></i></button>
 		<a title="<?php $this->options->title(); ?>" class="joe_header__above-logo <?= $this->options->JLogo_Light_Effect == 'on' ? 'joe_scan_light' : null ?>" href="<?php $this->options->siteUrl(); ?>">
 			<img data-src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="<?php $this->options->title(); ?>" class="lazyload light" />
-
 			<img data-src="<?php $this->options->JDarkLogo(); ?>" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="<?php $this->options->title(); ?>" class="lazyload dark" />
 		</a>
+		<?php
+		if (joe\isPc()) {
+			?>
 		<nav class="joe_header__above-nav">
 			<a class="item <?php echo $this->is('index') ? 'active' : '' ?>" href="<?php $this->options->siteUrl(); ?>" title="首页">首页</a>
 			<?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
@@ -65,6 +67,9 @@
 				<?php endwhile; ?>
 			</nav>
 		</form>
+			<?php
+		}
+		?>
 		<svg class="icon svg joe_header__above-searchicon" aria-hidden="true">
 			<use xlink:href="#icon-search"></use>
 		</svg>

@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						// 文章列表缩略图加载失败自动使用主题自带缩略图
 						if (window.thumbOnError) window.thumbOnError();
 						// a标签点击后的离开Loading动画
-						if (window.offLoading) window.offLoading();
+						if (window.Joe.offLoading) window.Joe.offLoading();
 						$('.joe_load').removeAttr('loading');
 						$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
 						$('.joe_index__list .joe_list__loading').hide();

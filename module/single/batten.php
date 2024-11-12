@@ -45,7 +45,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</item>
 		</div>
 		<div class="clearfix ml6">
-
 			<?php if ($this->user->uid == $this->authorId) : ?>
 				<?php if ($this->is('post')) : ?>
 					<a target="_blank" rel="noopener noreferrer" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" title="编辑文章">
@@ -61,13 +60,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</a>
 				<?php endif; ?>
 			<?php endif; ?>
-
-
-			<!-- <a title="编辑文章" href="javascript:;" target="_blank" class="but cir post-drop-meta">
-				<svg class="icon" aria-hidden="true">
-					<use xlink:href="#icon-menu_2"></use>
-				</svg>
-			</a> -->
 		</div>
 	</div>
 </div>

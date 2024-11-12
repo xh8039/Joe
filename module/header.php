@@ -7,7 +7,6 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 	$JLoadingFile = 'module/loading/' . $this->options->JLoading . '.php';
 	if (file_exists(JOE_ROOT . $JLoadingFile)) {
 		$this->need($JLoadingFile);
-		$this->need('module/loading/script.php');
 	}
 }
 ?>
@@ -15,12 +14,16 @@ if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 	<?php
 	if (empty(joe\custom_navs())) {
 		$this->need('module/header/above.php');
-		$this->need('module/header/below.php');
+		if (joe\isPc()) $this->need('module/header/below.php');
 	} else {
 		$this->need('module/header/custom.php');
 	}
+
 	if ($this->options->JHeader_Counter == 'on') $this->need('module/header/counter.php');
-	$this->need('module/header/searchout.php');
-	$this->need('module/header/slideout.php');
+
+	if (joe\isMobile()) {
+		$this->need('module/header/searchout.php');
+		$this->need('module/header/slideout.php');
+	}
 	?>
 </header>

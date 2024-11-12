@@ -32,6 +32,11 @@ function isMobile()
 	return false;
 }
 
+function isPc()
+{
+	return !isMobile();
+}
+
 /* 根据评论agent获取浏览器类型 */
 function getAgentBrowser($agent)
 {
@@ -110,7 +115,7 @@ function getAgentOS($agent)
 /* 获取全局懒加载图 */
 function getLazyload($type = true)
 {
-	$JLazyload = empty(\Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.gif') : \Helper::options()->JLazyload;
+	$JLazyload = empty(\Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.gif', false) : \Helper::options()->JLazyload;
 	if ($type) echo $JLazyload;
 	else return $JLazyload;
 }
@@ -694,6 +699,12 @@ function panel_exists(string $fileName): bool
 
 function install()
 {
+	if (PHP_VERSION < 7.4) {
+		echo '<script>alert("请使用 PHP 7.4 及以上版本！");</script>';
+		exit;
+		return;
+	}
+
 	// 检查目录本身的权限
 	if (!is_writeable(__FILE__) || !is_readable(__FILE__)) {
 		if (chmod(__FILE__, 0755)) {

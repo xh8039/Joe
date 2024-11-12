@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						return;
 					}
 					if (res.message) {
-						Qmsg.warning(message);
+						Qmsg.warning(res.message);
 						return;
 					}
 					{

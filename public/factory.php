@@ -31,9 +31,9 @@ class Intercept
 			} else {
 				$comment_md5 = md5($matches[1]);
 				$save_comment_path = '/usr/uploads/draw-comment/' . $comment_md5 . '.webp';
-				$save_comment = joe\base64_image_file($matches[1], __TYPECHO_ROOT_DIR__ . $save_comment_path);
+				$save_comment = joe\draw_save($matches[1], __TYPECHO_ROOT_DIR__ . $save_comment_path);
 				if ($save_comment) {
-					$comment['text'] = '{!{'.$save_comment.'}!}';
+					$comment['text'] = '{!{' . $save_comment_path . '}!}';
 				} else {
 					throw new Typecho_Exception(_t('画图图片保存失败！'));
 					return false;

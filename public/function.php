@@ -1059,7 +1059,7 @@ function number_word($number)
 	return 0;
 }
 
-function base64_image_file($base64String, $outputFile)
+function draw_save($base64String, $outputFile)
 {
 	if (file_exists($outputFile)) return true;
 	// 检查字符串是否包含前缀

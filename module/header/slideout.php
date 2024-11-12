@@ -119,7 +119,7 @@
 					</svg>' ?>
 					</a>
 					<?php
-					if (!empty($nav)) {
+					if (!empty($nav['list'])) {
 						echo '<ul class="slides panel-body">';
 						foreach ($nav['list'] as $key => $value) {
 							echo '<li><a target="' . $nav['target'] . '" class="link" href="' . $value['url'] . '"><span>' . $value['title'] . '</span></a></li>';

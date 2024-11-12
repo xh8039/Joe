@@ -1011,7 +1011,8 @@ function custom_navs()
 			$custom_navs[$key] = [
 				'title' => $custom_navs_explode[0][0] ? custom_navs_title($custom_navs_explode[0][0]) : '菜单标题',
 				'url' => $custom_navs_explode[0][1] ?? 'javascript:;',
-				'target' => $custom_navs_explode[0][2] ?? '_self'
+				'target' => $custom_navs_explode[0][2] ?? '_self',
+				'list' => []
 			];
 			unset($custom_navs_explode[0]);
 			foreach ($custom_navs_explode as $value) {

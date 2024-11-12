@@ -52,13 +52,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				?>
 			</div>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
-			<?php if ($this->options->JArticle_Guide == 'on') : ?>
-				<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
-				<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>"></script>
-				<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
-			<?php endif; ?>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
+		<?php if ($this->options->JArticle_Guide == 'on') : ?>
+			<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
+			<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>"></script>
+			<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
+		<?php endif; ?>
 	</div>
 </body>
 

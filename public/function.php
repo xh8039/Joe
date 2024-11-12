@@ -1028,10 +1028,7 @@ function custom_navs()
 
 function custom_navs_title($title)
 {
-	if (strpos('||', $title)) {
-		$title_explode = explode('||', $title, 1);
-		$title = '<svg class="svg" aria-hidden="true"><use xlink:href="' . trim($title_explode[0]) . '"></use></svg> ' . trim($title_explode[1]);
-	}
+	$title = preg_replace('/\[(.+)\]/i', '<svg class="svg" aria-hidden="true"><use xlink:href="$1"></use></svg>', $title);
 	return $title;
 }
 

@@ -190,7 +190,7 @@
 	background: var(--background);
 	color: var(--main);
 	border-radius: 2px;
-	transition: background 0.35s, color 0.05s
+	transition: 0.15s
 }
 
 .joe_wallpaper__pagination-item:first-child {
@@ -211,7 +211,7 @@
 .joe_wallpaper__pagination-item.active,
 .joe_wallpaper__pagination-item:hover {
 	color: #fff;
-	background: var(--back-line-right)
+	background: var(--theme)
 }
 
 .joe_wallpaper__pagination-item.active svg,

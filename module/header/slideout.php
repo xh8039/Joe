@@ -1,5 +1,12 @@
 <div class="joe_header__slideout">
-	<img class="joe_header__slideout-image lazyload" style="height: <?= $this->options->JAside_Wap_Image_Height ? $this->options->JAside_Wap_Image_Height : '100vh' ?>;" src="<?= joe\theme_url('assets/images/wap_aside_image.jpg') ?>" data-src="<?= $this->options->JAside_Wap_Image ? $this->options->JAside_Wap_Image : joe\theme_url('assets/images/wap_aside_image.jpg') ?>" alt="侧边栏壁纸" />
+	<?php
+	$JAside_Wap_Image_Height = $this->options->JAside_Wap_Image ? $this->options->JAside_Wap_Image : joe\theme_url('assets/images/wap_aside_image.jpg');
+	if ($this->options->JAside_Wap_Image_Height == '100vh' || $this->options->JAside_Wap_Image_Height == '100%') {
+		echo "<style>.joe_header__slideout {background-image: url('$JAside_Wap_Image_Height');background-size: cover;}</style>";
+	} else {
+		echo '<img class="joe_header__slideout-image lazyload" style="height: ' . $this->options->JAside_Wap_Image_Height . ';" src="' . $JAside_Wap_Image_Height . '" alt="侧边栏壁纸" />';
+	}
+	?>
 	<div class="joe_header__slideout-author">
 		<img width="50" height="50" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主昵称" />
 		<div class="info">

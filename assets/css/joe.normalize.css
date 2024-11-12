@@ -13,7 +13,7 @@
 }
 
 ::-webkit-scrollbar {
-	width: 4px;
+	width: 6px;
 	height: 6px;
 }
 
@@ -23,7 +23,7 @@
 }
 
 ::-webkit-scrollbar-track {
-	background: transparent
+	background: var(--main-bg-color);
 }
 
 ::-moz-selection {

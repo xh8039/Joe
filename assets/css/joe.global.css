@@ -1,11 +1,3 @@
-/* svg {
-	width: 1em;
-	height: 1em;
-	vertical-align: -.15em;
-	fill: currentColor;
-	overflow: hidden;
-} */
-
 .joe_dropdown {
 	position: relative
 }
@@ -126,18 +118,6 @@
 .joe_header__above-logo>.dark {
 	display: none
 }
-
-/* .joe_header__above-logo::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	right: 0;
-	width: 1px;
-	height: 20px;
-	background: var(--classC);
-	-webkit-transform: translateY(-50%);
-	transform: translateY(-50%)
-} */
 
 .joe_header__above-nav {
 	display: flex;

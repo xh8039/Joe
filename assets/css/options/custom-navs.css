@@ -628,7 +628,7 @@ body:not(.nav-fixed) .header.show-slide {
 
 .navbar-text {
 	margin-top: 15px;
-	margin-bottom: 15px;
+	/* margin-bottom: 15px; */
 }
 
 .navbar-top .navbar-right {

@@ -585,19 +585,19 @@ function _getServerStatus($self)
 		/* 信息提示 */
 		"message" => $response['msg'] ?? '',
 		/* 上行流量KB */
-		"up" => $response["up"] ? $response["up"] : 0,
+		"up" => isset($response["up"]) ? $response["up"] : 0,
 		/* 下行流量KB */
-		"down" => $response["down"] ? $response["down"] : 0,
+		"down" => isset($response["down"]) ? $response["down"] : 0,
 		/* 总发送（字节数） */
-		"upTotal" => $response["upTotal"] ? $response["upTotal"] : 0,
+		"upTotal" => isset($response["upTotal"]) ? $response["upTotal"] : 0,
 		/* 总接收（字节数） */
-		"downTotal" => $response["downTotal"] ? $response["downTotal"] : 0,
+		"downTotal" => isset($response["downTotal"]) ? $response["downTotal"] : 0,
 		/* 内存占用 */
-		"memory" => $response["mem"] ? $response["mem"] : ["memBuffers" => 0, "memCached" => 0, "memFree" => 0, "memRealUsed" => 0, "memTotal" => 0],
+		"memory" => isset($response["mem"]) ? $response["mem"] : ["memBuffers" => 0, "memCached" => 0, "memFree" => 0, "memRealUsed" => 0, "memTotal" => 0],
 		/* CPU */
-		"cpu" => $response["cpu"] ? $response["cpu"] : [0, 0, [0], 0, 0, 0],
+		"cpu" => isset($response["cpu"]) ? $response["cpu"] : [0, 0, [0], 0, 0, 0],
 		/* 系统负载 */
-		"load" => $response["load"] ? $response["load"] : ["fifteen" => 0, "five" => 0, "limit" => 0, "max" => 0, "one" => 0, "safe" => 0],
+		"load" => isset($response["load"]) ? $response["load"] : ["fifteen" => 0, "five" => 0, "limit" => 0, "max" => 0, "one" => 0, "safe" => 0],
 	));
 }
 

@@ -1030,7 +1030,7 @@ function custom_navs_title($title)
 {
 	if (strpos('||', $title)) {
 		$title_explode = explode('||', $title, 1);
-		$title = '<svg class="svg" aria-hidden="true"><use xlink:href="#' . trim($title_explode[0]) . '"></use></svg> ' . trim($title_explode[1]);
+		$title = '<svg class="svg" aria-hidden="true"><use xlink:href="' . trim($title_explode[0]) . '"></use></svg> ' . trim($title_explode[1]);
 	}
 	return $title;
 }

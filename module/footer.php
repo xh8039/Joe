@@ -234,9 +234,10 @@ if (!empty($footer_tabbar)) {
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">
 	<div class="footer-tabbar">
 		<?php
+		$admin_dir_preg_quote = preg_quote(__TYPECHO_ADMIN_DIR__, '/');
 		foreach ($footer_tabbar as $value) {
 			$value[1] = $value[1] ?? '';
-			if (preg_match('/\/admin\/[a-z,-]+\.php/i', $value[1], $match) && !$this->user->hasLogin()) $value[1] = joe\user_url('login', $match[0]);
+			if (preg_match("/{$admin_dir_preg_quote}[a-z,-]+\.php/i", $value[1], $match) && !$this->user->hasLogin()) $value[1] = joe\user_url('login', $match[0]);
 		?>
 			<a class="tabbar-item" title="<?= $value[0] ?? '' ?>" href="<?= $value[1] ?>" target="<?= $value[2] ?? '' ?>">
 				<icon <?= empty($value[4]) ? '' : 'style="font-size:' . $value[4] . ';"' ?>>

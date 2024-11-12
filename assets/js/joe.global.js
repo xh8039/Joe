@@ -1228,7 +1228,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	/** 全局Loading动画补全 */
-	{
+	if (window.Joe.LoadingAnimation) {
 		window.Joe.loadingEnd();
 		function checkUrl(string) {
 			try {

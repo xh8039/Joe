@@ -23,6 +23,7 @@ $fields = $this->fields->toArray();
 		THEME_MODE: `<?php $this->options->JThemeMode() ?>`,
 		INDEX_AJAX: <?= $this->options->JIndex_Ajax_List == 'on' ? 'true' : 'false' ?>,
 		VERSION: `<?= JOE_VERSION ?>`,
+		LoadingAnimation: <?= $this->options->JLoading == 'off' ? 'false' : 'true' ?>,
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
 			cover: `<?= $this->is('single') ? joe\getThumbnails($this)[0] : null ?>`,

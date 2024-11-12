@@ -6,13 +6,15 @@ window.Joe.scrollTo = (selector) => {
 	window.scrollTo({ top, behavior: 'smooth' });
 }
 
-window.Joe.loadingStart = () => {
-	$("#loading-animation").fadeIn(150);
-}
-window.Joe.loadingEnd = () => {
-	setTimeout(() => {
-		$("#loading-animation").fadeOut(540);
-	}, 500);
+if (window.Joe.LoadingAnimation) {
+	window.Joe.loadingStart = () => {
+		$("#loading-animation").fadeIn(150);
+	}
+	window.Joe.loadingEnd = () => {
+		setTimeout(() => {
+			$("#loading-animation").fadeOut(540);
+		}, 500);
+	}
 }
 
 function loadJS(url, callback = function () { }) {

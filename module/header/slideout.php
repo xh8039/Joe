@@ -2,7 +2,7 @@
 	<?php
 	$JAside_Wap_Image_Height = $this->options->JAside_Wap_Image ? $this->options->JAside_Wap_Image : joe\theme_url('assets/images/wap_aside_image.jpg');
 	if ($this->options->JAside_Wap_Image_Height == '100vh' || $this->options->JAside_Wap_Image_Height == '100%') {
-		echo "<style>.joe_header__slideout {background-image: url('$JAside_Wap_Image_Height');background-size: cover;}</style>";
+		echo "<style>.joe_header__slideout {background-image: url('$JAside_Wap_Image_Height');background-size: cover;background-repeat: no-repeat;background-position: center;}</style>";
 	} else {
 		echo '<img class="joe_header__slideout-image lazyload" style="height: ' . $this->options->JAside_Wap_Image_Height . ';" src="' . $JAside_Wap_Image_Height . '" alt="侧边栏壁纸" />';
 	}

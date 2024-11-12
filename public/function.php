@@ -1009,14 +1009,14 @@ function custom_navs()
 		foreach ($custom_navs_block as $key => $value) {
 			$custom_navs_explode = optionMulti($value);
 			$custom_navs[$key] = [
-				'title' => $custom_navs_explode[0][0] ?? '菜单标题',
+				'title' => $custom_navs_explode[0][0] ? custom_navs_title($custom_navs_explode[0][0]) : '菜单标题',
 				'url' => $custom_navs_explode[0][1] ?? 'javascript:;',
 				'target' => $custom_navs_explode[0][2] ?? '_self'
 			];
 			unset($custom_navs_explode[0]);
 			foreach ($custom_navs_explode as $value) {
 				$custom_navs[$key]['list'][] = [
-					'title' => $value[0] ?? '二级标题',
+					'title' => $value[0] ? custom_navs_title($value[0]) : '二级标题',
 					'url' => $value[1] ?? 'javascript:;',
 					'target' => $value[2] ?? '_self'
 				];
@@ -1024,6 +1024,15 @@ function custom_navs()
 		}
 	}
 	return $custom_navs;
+}
+
+function custom_navs_title($title)
+{
+	if (strpos('||', $title)) {
+		$title_explode = explode('||', $title, 1);
+		$title = '<svg class="svg" aria-hidden="true"><use xlink:href="#' . trim($title_explode[0]) . '"></use></svg> ' . trim($title_explode[1]);
+	}
+	return $title;
 }
 
 

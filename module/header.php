@@ -6,7 +6,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
 	$JLoadingFile = 'module/loading/' . $this->options->JLoading . '.php';
 	if (file_exists(JOE_ROOT . $JLoadingFile)) {
+		echo '<!-- Loading开始 -->';
+		echo '<link rel="stylesheet" href="' . joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') . '">';
 		$this->need($JLoadingFile);
+		echo '<!-- Loading 结束 -->';
 	}
 }
 ?>

@@ -95,20 +95,20 @@ $fields = $this->fields->toArray();
 <?php
 // 文章列表选中动画
 if ($this->options->JIndex_Link_Active == 'on') {
-	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/JIndex_Link_Active.css') . '">';
+	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/post-list-active.css') . '">';
 }
 // 首页文章双栏
 if (($this->is('index') || $this->is('archive')) && $this->options->JIndex_Article_Double_Column == 'on') {
-	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/JIndex_Article_Double_Column.css') . '">';
+	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/index-article-double-column.css') . '">';
 }
 if (joe\isMobile()) {
 	// 部分背景壁纸适配优化
 	if ($this->options->JWallpaper_Background_Optimal == 'all' || $this->options->JWallpaper_Background_Optimal == 'wap') {
-		echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/JWallpaper_Background_Optimal.css') . '">';
+		echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/wallpaper-background-optimal.css') . '">';
 	}
 } else {
 	if ($this->options->JWallpaper_Background_Optimal == 'all' || $this->options->JWallpaper_Background_Optimal == 'pc') {
-		echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/JWallpaper_Background_Optimal.css') . '">';
+		echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/wallpaper-background-optimal.css') . '">';
 	}
 }
 ?>

@@ -15,12 +15,30 @@ $JLogo_Light_Effect = new \Typecho\Widget\Helper\Form\Element\Select(
 $JLogo_Light_Effect->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JLogo_Light_Effect->multiMode());
 
+$loading_list = [];
+$loading_scan = scandir(JOE_ROOT . 'module/loading');
+if (is_array($loading_scan)) {
+	foreach ($loading_scan as $value) {
+		$loading_file = JOE_ROOT . 'module/loading/' . $value;
+		if (!is_file($loading_file)) continue;
+		$loading_name = pathinfo($value, PATHINFO_FILENAME);
+		$loading_content = file_get_contents(JOE_ROOT . 'module/loading/' . $value);
+		if (preg_match('/\<\!\-\-(.+)\-\-\>/', $loading_content, $loading_value_match)) {
+			$loading_value = trim($loading_value_match[1]);
+		} else {
+			$loading_value = $loading_name;
+		}
+		$loading_list[$loading_name] = $loading_value;
+	}
+}
+$loading_list['off'] = '关闭';
+$default_loading = isset($loading_list['concise']) ? 'concise' : array_key_first($loading_list);
 $JLoading = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLoading',
-	['off' => '关闭', 'concise' => '简洁对圈（默认）', 'lollipop' => '七彩棒棒糖'],
-	'concise',
+	$loading_list,
+	$default_loading,
 	'全局加载动画',
-	'介绍：页面全局加载loading动画，开启后可防止使用谷歌内核的浏览器出现闪动问题'
+	'介绍：网站全局页面加载 Loading 动画，开启后可防止使用谷歌内核的浏览器出现闪动问题'
 );
 $JLoading->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JLoading->multiMode());

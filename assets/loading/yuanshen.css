@@ -1,0 +1,12 @@
+#loading-animation {
+	content: " ";
+	position: fixed;
+	inset: 0;
+	background-color: var(--background);
+	z-index: 999999999999999;
+	background-image: url(yuanshen.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60%;
+	pointer-events: none;
+}

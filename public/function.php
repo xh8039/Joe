@@ -1058,3 +1058,22 @@ function number_word($number)
 	}
 	return 0;
 }
+
+function base64_image_file($base64String, $outputFile)
+{
+	if (file_exists($outputFile)) return true;
+	// 检查字符串是否包含前缀
+	if (preg_match('/^data:image\/webp;base64,/', $base64String)) {
+		// 移除前缀
+		$base64String = preg_replace('/^data:image\/webp;base64,/', '', $base64String);
+		// 解码
+		$imageData = base64_decode($base64String);
+		if ($imageData === false) return false;
+		// 保存文件
+		$dir = dirname($outputFile);
+		if (!is_dir($dir)) mkdir($dir, 0755, true);
+		return file_put_contents($outputFile, $imageData);
+	} else {
+		return null;
+	}
+}

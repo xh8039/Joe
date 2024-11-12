@@ -28,6 +28,16 @@ class Intercept
 			// 如果判断是否有双引号，如果有双引号，则禁止评论
 			if (strpos($matches[1], '"') !== false || _checkXSS($matches[1])) {
 				$comment['status'] = 'waiting';
+			} else {
+				$comment_md5 = md5($matches[1]);
+				$save_comment_path = '/usr/uploads/draw-comment/' . $comment_md5 . '.webp';
+				$save_comment = joe\base64_image_file($matches[1], __TYPECHO_ROOT_DIR__ . $save_comment_path);
+				if ($save_comment) {
+					$comment['text'] = '<img class="draw_image ls-is-cached lazyloaded" src="' . $save_comment_path . '" alt="画图">';
+				} else {
+					throw new Typecho_Exception(_t('画图图片保存失败！'));
+					return false;
+				}
 			}
 		} else if (preg_match('/[a-zA-z]+:\/\/[^\s]*/i', $comment['text'])) {
 			// 判断用户输入是否包含网址URL

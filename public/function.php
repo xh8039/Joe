@@ -1028,10 +1028,9 @@ function custom_navs()
 
 function custom_navs_title($title)
 {
-	$title = preg_replace('/\[(.+)\]/i', '<svg class="svg" aria-hidden="true"><use xlink:href="$1"></use></svg>', $title);
+	$title = preg_replace('/\[(.+)\]/i', '<svg class="svg" aria-hidden="true"><use xlink:href="#$1"></use></svg>', $title);
 	return $title;
 }
-
 
 /**
  * 输出作者指定字段总数，可以指定

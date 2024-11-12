@@ -365,7 +365,7 @@ body:not(.nav-fixed) .header.show-slide {
 	text-align: center;
 }
 
-.form-control {
+.navbar-form .form-control {
 	display: block;
 	width: 100%;
 	height: 34px;
@@ -381,31 +381,31 @@ body:not(.nav-fixed) .header.show-slide {
 	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-.form-control:focus {
+.navbar-form .form-control:focus {
 	border-color: #66afe9;
 	outline: 0;
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
 }
 
-.form-control::-moz-placeholder {
+.navbar-form .form-control::-moz-placeholder {
 	color: #999;
 	opacity: 1
 }
 
-.form-control:-ms-input-placeholder {
+.navbar-form .form-control:-ms-input-placeholder {
 	color: #999
 }
 
-.form-control::-webkit-input-placeholder {
+.navbar-form .form-control::-webkit-input-placeholder {
 	color: #999
 }
 
-.form-control::-ms-expand {
+.navbar-form .form-control::-ms-expand {
 	background-color: transparent;
 	border: 0
 }
 
-.form-control {
+.navbar-form .form-control {
 	border-color: transparent;
 	background: var(--body-bg-color);
 	color: var(--main-color);
@@ -413,12 +413,12 @@ body:not(.nav-fixed) .header.show-slide {
 	transition: border-color ease-in-out .15s, background ease-in-out .15s, box-shadow ease-in-out .15s, opacity ease-in-out .3s;
 }
 
-.form-control:hover {
+.navbar-form .form-control:hover {
 	border-color: var(--focus-color);
 	opacity: .8;
 }
 
-.form-control:focus {
+.navbar-form .form-control:focus {
 	border-color: var(--focus-color);
 	box-shadow: 0 0 2px 3px rgba(64, 158, 255, .4);
 }

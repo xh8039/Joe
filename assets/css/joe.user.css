@@ -60,7 +60,7 @@ textarea {
 
 .container .form-group>a {
 	float: right;
-	color: var(--minor);
+	/* color: var(--minor); */
 }
 
 .container .form-control {
@@ -132,6 +132,6 @@ textarea {
 }
 
 .container .text-muted {
-	color: var(--minor);
+	/* color: var(--minor); */
 	text-align: center
 }

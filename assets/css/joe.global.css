@@ -2451,8 +2451,19 @@
 
 .dplayer {
 	max-width: 100%;
-	max-height: 60vh;
 	border-radius: var(--main-radius);
+}
+
+.dplayer video {
+	max-height: 60vh;
+}
+
+.dplayer:-webkit-full-screen video {
+	max-height: unset;
+}
+
+.dplayer:full-screen video {
+	max-height: unset;
 }
 
 .dplayer video,

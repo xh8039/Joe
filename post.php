@@ -5,8 +5,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 if (joe\detectSpider() && isset($_GET['scroll'])) {
 	$this->response->setStatus(301);
-	$this->response->setHeader('Location: ' . $this->request->getRequestUrl());
-	$this->response->respond();
+	$url = str_ireplace('scroll=' . $_GET['scroll'], '', $this->request->getRequestUrl());
+	$url = trim($url, '?');
+	$url = str_replace(['?&', '&&'], ['?', '&'], $url);
+	$this->response->redirect($url, true);
+	exit;
 }
 ?>
 <!DOCTYPE html>

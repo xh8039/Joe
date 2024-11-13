@@ -1,4 +1,8 @@
 <?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 $custom_navs = joe\custom_navs();
 ?>
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/custom-navs.css') ?>">

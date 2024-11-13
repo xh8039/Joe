@@ -1,3 +1,9 @@
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+?>
 <div class="joe_header__searchout">
 	<div class="joe_container">
 		<div class="joe_header__searchout-inner">

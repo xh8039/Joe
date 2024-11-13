@@ -1,3 +1,9 @@
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+?>
 <div class="joe_header__above">
 	<div class="joe_container">
 		<button type="button" class="joe_header__above-slideicon"><i class="em12 css-icon i-menu"><i></i></i></button>

@@ -1,4 +1,8 @@
 <?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 if ($this->is('index')) $index_hide_categorize_list = joe\optionMulti(Helper::options()->JIndex_Hide_Categorize, '||', false);
 while ($this->next()) :
 	if ($this->is('index')) {

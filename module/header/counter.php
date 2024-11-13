@@ -1,3 +1,9 @@
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+?>
 <!-- 顶部浏览进度条开始 -->
 <style>
     #HeaderCounter {

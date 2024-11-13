@@ -1,4 +1,8 @@
 <?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 $thePrev = Joe\thePrev($this);
 $theNext = Joe\theNext($this);
 if ($thePrev || $theNext) {

@@ -6,7 +6,7 @@ echo '<div>';
 if (!empty($this->options->JIndex_Icon_Card_Title)) {
 	echo '<div class="title-theme" style="margin-bottom: 15px;">' . $this->options->JIndex_Icon_Card_Title . '</div>';
 }
-echo '<div class="mb20"><div class="row gutters-5">';
+echo '<div class="mb25"><div class="row gutters-5">';
 
 foreach ($icon_crid_list as $value) {
 	$icon_crid = joe\icon_crid_info($value);

@@ -11,7 +11,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 if ($this->options->JIndex_Ajax_List == 'on') {
 ?>
-	<div class="title-theme" style="margin-bottom: 15px;">最新发布</div>
+	<div class="title-theme" style="margin-bottom: 10px;">最新发布</div>
 	<div class="joe_index__title">
 		<div class="joe_index__title-content">
 			<div class="splitters-this-r">排序</div>

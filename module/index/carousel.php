@@ -31,7 +31,7 @@ if ($carousel_text) {
 }
 ?>
 <?php if (count($carousel) > 0) : ?>
-	<div class="joe_index__banner">
+	<div class="joe_index__banner mb25">
 		<?php if (count($carousel) > 0) : ?>
 			<div class="swiper swiper-container">
 				<div class="swiper-wrapper">

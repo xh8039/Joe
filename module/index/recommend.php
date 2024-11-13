@@ -42,7 +42,7 @@ if (!empty($recommend)) {
 	if ($this->options->JIndex_Recommend_Style == 'full') {
 	?>
 		<div class="title-theme" style="margin-bottom: 15px;">推荐文章</div>
-		<div class="joe_index__hot">
+		<div class="joe_index__hot mb25">
 			<ul class="joe_index__hot-list">
 				<?php
 				foreach ($recommend as $cid) {

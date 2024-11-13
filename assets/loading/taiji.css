@@ -1,0 +1,137 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald|Roboto);
+
+#loading-animation {
+	background-color: #986fee;
+	height: 100vh;
+	overflow: hidden;
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+	position: fixed;
+    width: 100vw;
+}
+
+.table {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.table-cell {
+	position: absolute;
+	left: 0;
+	right: 0;
+    top: 50vh;
+    margin-top: -200px;
+	display: table-cell;
+	vertical-align: middle;
+	-moz-animation: rotate 5s infinite linear normal;
+	-webkit-animation: rotate 5s infinite linear normal;
+	animation: rotate 5s infinite linear normal;
+}
+
+#Path1,
+#Path2 {
+	-moz-animation: Path 10s infinite ease-in-out;
+	-webkit-animation: Path 10s infinite ease-in-out;
+	animation: Path 10s infinite ease-in-out;
+}
+
+#Oval-3 {
+	-moz-animation: rotate-oval-3 5s infinite linear normal;
+	-webkit-animation: rotate-oval-3 5s infinite linear normal;
+	animation: rotate-oval-3 5s infinite linear normal;
+}
+
+#Oval-4 {
+	-moz-animation: rotate-oval-4 5s infinite linear normal;
+	-webkit-animation: rotate-oval-4 5s infinite linear normal;
+	animation: rotate-oval-4 5s infinite linear normal;
+}
+
+#Oval-3-2 {
+	-moz-animation: rotate-oval-3-2 5s infinite linear normal;
+	-webkit-animation: rotate-oval-3-2 5s infinite linear normal;
+	animation: rotate-oval-3-2 5s infinite linear normal;
+}
+
+#Oval-4-2 {
+	-moz-animation: rotate-oval-4-2 5s infinite linear normal;
+	-webkit-animation: rotate-oval-4-2 5s infinite linear normal;
+	animation: rotate-oval-4-2 5s infinite linear normal;
+}
+
+@keyframes rotate {
+	0% {
+		-moz-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+
+	100% {
+		-moz-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rotate-oval-3 {
+	20% {
+		transform: translateX(-3%) translateY(-4%);
+	}
+
+	60% {
+		transform: translateX(-40%) translateY(-50%);
+	}
+}
+
+@keyframes rotate-oval-4 {
+	20% {
+		transform: translateX(3%) translateY(4%);
+	}
+
+	60% {
+		transform: translateX(40%) translateY(50%);
+	}
+}
+
+@keyframes rotate-oval-3-2 {
+	20% {
+		transform: translateX(-3%) translateY(-4%);
+	}
+
+	60% {
+		transform: translateX(130%) translateY(270%);
+	}
+}
+
+@keyframes rotate-oval-4-2 {
+	20% {
+		transform: translateX(3%) translateY(4%);
+	}
+
+	60% {
+		transform: translateX(-130%) translateY(-270%);
+	}
+}
+
+@keyframes Path {
+	20% {
+		transform: translateX(-9%) translateY(-4%);
+	}
+
+	80% {
+		transform: translateX(-19%) translateY(-5%);
+	}
+}
+
+.rabbit {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	z-index: 3;
+	fill: #fff;
+}

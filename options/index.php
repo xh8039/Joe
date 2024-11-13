@@ -10,7 +10,7 @@ $JIndex_Icon_Card_Title = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'板块分类',
 	'首页图标卡片模块标题',
-	'介绍：用于显示首页图标卡片模块标题'
+	'介绍：用于显示首页图标卡片模块标题，若不想显示标题则留空'
 );
 $JIndex_Icon_Card_Title->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Icon_Card_Title);

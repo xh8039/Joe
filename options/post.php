@@ -104,6 +104,17 @@ $Baidu_Index_Cookie = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $Baidu_Index_Cookie->setAttribute('class', 'joe_content joe_post');
 $form->addInput($Baidu_Index_Cookie);
 
+$Baidu_Index_User_Agent = new \Typecho\Widget\Helper\Form\Element\Text(
+	'Baidu_Index_User_Agent',
+	NULL,
+	NULL,
+	'百度收录检测请求 User-Agent 标头',
+	'介绍：检测百度是否收录指定文章时必须带有正确的 User-Agent，否则会检测失败<br>
+	获取方法：[<a href="https://www.baidu.com/s?wd=blog.bri6.cn&rn=1&tn=json&ie=utf-8&cl=3&f=9" target="_blank">进入此网址</a>] 后打开浏览器开发者工具，再次刷新该网址的窗口，查看调试界面网络栏中的原始请求标头中的 User-Agent 请求头的值，复制粘贴到这里即可'
+);
+$Baidu_Index_User_Agent->setAttribute('class', 'joe_content joe_post');
+$form->addInput($Baidu_Index_User_Agent);
+
 $JBaiduToken = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JBaiduToken',
 	NULL,

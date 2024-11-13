@@ -301,6 +301,7 @@ function baidu_index($url)
 		'f' => 9
 	]);
 	$cookie = empty(Helper::options()->Baidu_Index_Cookie) ? '' : trim(Helper::options()->Baidu_Index_Cookie);
+	$user_agent = empty(Helper::options()->Baidu_Index_User_Agent) ? '' : trim(Helper::options()->Baidu_Index_User_Agent);
 	$client->header([
 		'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 		'accept-encoding' => 'gzip, deflate, br, zstd',
@@ -317,7 +318,7 @@ function baidu_index($url)
 		'sec-fetch-site' => 'none',
 		'sec-fetch-user' => '?1',
 		'upgrade-insecure-requests' => '1',
-		'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
+		'User-Agent' => $user_agent,
 	]);
 	$response = $client->get('http://www.baidu.com/s')->toArray();
 	if (is_array($response)) {

@@ -9,7 +9,6 @@
 	display: flex;
 	background: var(--background);
 	border-radius: var(--radius-inner);
-	margin-bottom: 20px;
 }
 
 .joe_index__banner-recommend {
@@ -115,11 +114,6 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis
-}
-
-.joe_index__hot {
-	/* margin-top: 20px; */
-	margin-bottom: 20px;
 }
 
 .joe_index__hot-list {
@@ -310,10 +304,6 @@
 	position: absolute;
 	top: 5px;
 	left: 5px;
-}
-
-.joe_index__ad {
-	margin-bottom: 20px;
 }
 
 .joe_index__ad-link {

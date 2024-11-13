@@ -3,6 +3,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
+if (joe\detectSpider() && isset($_GET['scroll'])) {
+	$this->response->setStatus(301);
+	$this->response->setHeader('Location: ' . $this->request->getRequestUrl());
+	$this->response->respond();
+}
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">

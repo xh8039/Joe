@@ -46,11 +46,12 @@ $custom_navs = joe\custom_navs();
 						var path = search ? pathname + search : pathname;
 						$('.navbar-nav').find('a').each(function() {
 							temp_path = $(this).attr('href');
-							if (path == temp_path) {
-								$(this).parent('li').addClass('current-menu-item');
+							if (temp_path == path || temp_path == window.location.href) {
+								$(this).parent('li.menu-item').addClass('current-menu-item');
+								$(this).parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').addClass('current-menu-item');
 							}
 						});
-					}())
+					}());
 				</script>
 				<form method="get" class="navbar-form navbar-left hover-show" action="<?php $this->options->siteUrl(); ?>">
 					<div class="form-group relative dropdown">

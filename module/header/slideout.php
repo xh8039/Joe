@@ -197,5 +197,19 @@
 	<?php
 	}
 	?>
+	<script>
+		(function() {
+			var pathname = window.location.pathname;
+			var search = window.location.search;
+			var path = search ? pathname + search : pathname;
+			$('.joe_header__slideout-menu').find('a').each(function() {
+				temp_path = $(this).attr('href');
+				if (temp_path == path || temp_path == window.location.href) {
+					$(this).addClass('current in');
+					$(this).parent('li').parent('ul').prev('a.link').addClass('current');
+				}
+			});
+		}());
+	</script>
 </div>
 <div class="joe_header__mask"></div>

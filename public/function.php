@@ -1106,7 +1106,7 @@ function icon_crid_info($content)
 	if (isset($icon_explode[1])) {
 		$icon_class = trim($icon_explode[1], '()');
 	} else {
-		$icon_class = 'c-blue';
+		$icon_class = 'c-yellow';
 	}
 
 	return [

@@ -1091,6 +1091,7 @@ function icon_crid_info($content)
 	$description_explode = explode('--', $title, 2);
 	if (isset($description_explode[1])) {
 		$description = trim($description_explode[1]);
+		$title = trim($description[0]);
 	} else {
 		$title = str_replace('-/-', '--', $title);
 		$description = null;

@@ -132,7 +132,7 @@ export default class JoeAction {
 		const _Minutes = String(time.getMinutes()).padStart(2, 0);
 		const _Seconds = String(time.getSeconds()).padStart(2, 0);
 		const _Day = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][time.getDay()];
-		const _time = `${this._getLineCh(cm) ? '\n' : ''}${_Year}-${_Month}-${_Date} ${_Hours}:${_Minutes}:${_Seconds} ${_Day}\n`;
+		const _time = `${_Year}-${_Month}-${_Date} ${_Hours}:${_Minutes}:${_Seconds} ${_Day}`;
 		this._replaceSelection(cm, _time);
 		cm.focus();
 	}

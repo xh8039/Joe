@@ -16969,7 +16969,7 @@
 				o = String(t.getMinutes()).padStart(2, 0),
 				s = String(t.getSeconds()).padStart(2, 0),
 				O = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"][t.getDay()],
-				l = `${this._getLineCh(e) ? "\n" : ""}${n}-${r}-${i} ${a}:${o}:${s} ${O}\n`;
+				l = `${n}-${r}-${i} ${a}:${o}:${s} ${O}`;
 			this._replaceSelection(e, l), e.focus()
 		}
 		handleHr(e) {

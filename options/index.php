@@ -5,6 +5,26 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$JIndex_Icon_Card_Title = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JIndex_Icon_Card_Title',
+	NULL,
+	'板块分类',
+	'首页图标卡片模块标题',
+	'介绍：用于显示首页图标卡片模块标题'
+);
+$JIndex_Icon_Card_Title->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndex_Icon_Card_Title);
+
+$JIndex_Icon_Card = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	'JIndex_Icon_Card',
+	NULL,
+	NULL,
+	'首页图标卡片模块',
+	'介绍：用于显示首页轮播图下方的图标卡片，请务必填写正确的格式丨<a target="_blank" href="http://blog.bri6.cn/archives/295.html">查看官网教程</a>'
+);
+$JIndex_Icon_Card->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndex_Icon_Card);
+
 $JIndex_Ajax_List = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JIndex_Ajax_List',
 	['on' => '开启（默认）', 'off' => '关闭'],

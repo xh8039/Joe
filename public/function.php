@@ -1082,3 +1082,39 @@ function draw_save($base64String, $outputFile)
 		return null;
 	}
 }
+
+function icon_crid_info($content)
+{
+	$title_explode = explode('[', $content[0], 2);
+	$title = trim($title_explode[0]);
+
+	$description_explode = explode('--', $title, 2);
+	if (isset($description_explode[1])) {
+		$description = trim($description_explode[1]);
+	} else {
+		$title = str_replace('-/-', '--', $title);
+		$description = null;
+	}
+
+	if (isset($title_explode[1])) {
+		$icon_explode = explode(']', trim($title_explode[1], ']'), 2);
+		$icon = trim($icon_explode[0]);
+	} else {
+		$icon = null;
+	}
+
+	if (isset($icon_explode[1])) {
+		$icon_class = trim($icon_explode[1], '()');
+	} else {
+		$icon_class = 'c-bule';
+	}
+
+	return [
+		'title' => $title,
+		'description' => $description,
+		'icon' => $icon,
+		'icon_class' => $icon_class,
+		'url' => $content[1] ?? 'javascript:;',
+		'target' => $content[2] ?? '_self'
+	];
+}

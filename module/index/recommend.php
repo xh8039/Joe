@@ -17,7 +17,7 @@ if ($recommend_text) {
 if (!empty($recommend)) {
 	if ($this->options->JIndex_Recommend_Style == 'simple') {
 ?>
-		<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
+		<div class="title-theme" style="margin-bottom: 15px;">推荐文章</div>
 		<div class="joe_index__banner-recommend">
 			<?php
 			foreach ($recommend as $cid) {
@@ -41,7 +41,7 @@ if (!empty($recommend)) {
 	}
 	if ($this->options->JIndex_Recommend_Style == 'full') {
 	?>
-		<div class="title-theme" style="margin-bottom: 10px;">推荐文章</div>
+		<div class="title-theme" style="margin-bottom: 15px;">推荐文章</div>
 		<div class="joe_index__hot">
 			<ul class="joe_index__hot-list">
 				<?php

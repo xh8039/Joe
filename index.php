@@ -42,6 +42,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<div class="joe_index">
 					<?php
 					$this->need('module/index/carousel.php');
+					$this->need('module/index/iconcard.php');
 					$this->need('module/index/recommend.php');
 					$this->need('module/index/hot.php');
 					$this->need('module/index/adverts.php');

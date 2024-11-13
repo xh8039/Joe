@@ -12,7 +12,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 $index_ad = joe\optionMulti($this->options->JIndex_Ad);
 if (!empty($index_ad) && !joe\detectSpider()) {
 ?>
-	<div class="title-theme" style="margin-bottom: 10px;"><?= empty($this->options->JIndex_Ad_Title) ? '推广宣传' : $this->options->JIndex_Ad_Title ?></div>
+	<div class="title-theme" style="margin-bottom: 15px;"><?= empty($this->options->JIndex_Ad_Title) ? '推广宣传' : $this->options->JIndex_Ad_Title ?></div>
 	<div class="joe_index__ad">
 		<?php foreach ($index_ad as $advert) : ?>
 			<a class="joe_index__ad-link" <?= empty($advert[1]) ? '' : 'href="' . $advert[1] . '" target="_blank"' ?> rel="nofollow">

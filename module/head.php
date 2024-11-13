@@ -1,4 +1,9 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;} ?>
+<?php
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+?>
 <meta charset="utf-8" />
 <meta name="renderer" content="webkit" />
 <meta name="format-detection" content="email=no" />
@@ -8,7 +13,7 @@
 <meta itemprop="image" content="<?php $this->options->JShare_QQ_Image() ?>" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
 <link rel="shortcut icon" href="<?php $this->options->JFavicon() ?>" />
-<title><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - ');$this->options->title(); ?></title>
+<title><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php if ($this->_currentPage > 1) echo '第 ' . $this->_currentPage . ' 页 - '; ?><?php $this->options->title(); ?></title>
 <?php if ($this->is('single')) : ?>
 <meta name="keywords" content="<?= $this->fields->keywords ? $this->fields->keywords : $this->keywords; ?>" />
 <meta name="description" content="<?= $this->fields->description ? $this->fields->description : joe\post_description($this); ?>" />
@@ -38,7 +43,7 @@
 <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
 <link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
-<?php $this->need('module/config.php');?>
+<?php $this->need('module/config.php'); ?>
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
 
 <!-- Bootstrap: transition.js v3.4.1 -->
@@ -72,4 +77,3 @@
 <?php $this->options->JCustomHeadEnd() ?>
 
 <!-- 自定义头部HTML代码 -->
- 

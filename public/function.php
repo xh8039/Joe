@@ -586,9 +586,7 @@ function cdn($path)
 	if (substr($cdnpublic, -1) != '/') $cdnpublic = $cdnpublic . '/';
 	if (!empty($JCdnUrl_explode[1])) {
 		$backslash = trim($JCdnUrl_explode[1]); // 获取 || 之后的内容
-		$pos = strpos($path, '/');
-		$path = substr_replace($path, $backslash, $pos, 1);
-		// $path = str_replace('/', $backslash, $path, 1);
+		$path = preg_replace('/\//', $backslash, $path, 1);
 	}
 	$url = trim($cdnpublic) . trim($path);
 	return $url;

@@ -51,12 +51,12 @@ $JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	<span>字节跳动（距上次更新已两年多）：https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/</span><br>
 	<span>Zstatic（又拍云赞助）：https://s4.zstatic.net/ajax/libs/</span><br>
 	<span>7ED Services（www.7ed.net）：https://use.sevencdn.com/ajax/libs/</span><br>
-	<span>渺软公益CDN回源JsDelivr（cdn.onmicrosoft.cn）：https://jsd.onmicrosoft.cn/npm/</span><br>
+	<span>渺软公益CDN回源JsDelivr（cdn.onmicrosoft.cn）：https://jsd.onmicrosoft.cn/npm/ || @</span><br>
 	<span>渺软公益CDN回源UNPKG（cdn.onmicrosoft.cn）：https://npm.onmicrosoft.cn/</span><br>
 	<span>渺软公益CDN回源CDNJS（cdn.onmicrosoft.cn）：https://cdnjs.onmicrosoft.cn/ajax/libs/</span><br>
 	<span>南方科技大学：https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/</span><br>
 	<span>360（单纯放到这里）: https://cdn.baomitu.com</span><br>
-	<span>JsDelivr：https://cdn.jsdelivr.net/npm/</span><br>
+	<span>JsDelivr：https://cdn.jsdelivr.net/npm/ || @</span><br>
 	<span>Google Hosted Libraries（国内用不了）：https://ajax.googleapis.com/ajax/libs/</span><br>
 	<span>CDNJS（国内不稳定）：https://cdnjs.cloudflare.com/ajax/libs/</span><br>
 	<span>烧饼博客（CDNJS镜像）：https://cdnjs.loli.net/ajax/libs/</span><br>

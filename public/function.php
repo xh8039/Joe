@@ -580,23 +580,13 @@ function send_email($title, $subtitle, $content, $email = '')
  */
 function cdn($path)
 {
-	$cdnpublic = empty(\Helper::options()->JCdnUrl) ? theme_url('assets/plugin/', false) : \Helper::options()->JCdnUrl;
-	$lastChar = substr($cdnpublic, -1);
-	if ($lastChar != '/') $cdnpublic = $cdnpublic . '/';
-	if (strstrs($cdnpublic, ['||', '//cdn.jsdelivr.net/npm/', '//jsd.onmicrosoft.cn/npm/'])) {
-		$pos = strpos($cdnpublic, '||'); // 查找 || 的位置
-		if ($pos !== false) {
-			$cdnpublic_explode = explode('||', $cdnpublic, 2); // 通过 || 分割 $cdnpublic
-			$cdnpublic = trim($cdnpublic_explode[0]); // 获取 || 之前的内容
-			$backslash = trim($cdnpublic_explode[1]); // 获取 || 之后的内容
-			$backslash = empty($backslash) ? '@' : $backslash; // 检查 || 之后的内容是否为空
-		} else {
-			$backslash = '@';
-		}
-		$start_backslash = strpos($path, '/');
-		if ($start_backslash !== false) {
-			$path = substr_replace($path, $backslash, $start_backslash, 1);
-		}
+	$JCdnUrl = empty(\Helper::options()->JCdnUrl) ? theme_url('assets/plugin/', false) : \Helper::options()->JCdnUrl;
+	$JCdnUrl_explode = explode('||', $JCdnUrl, 2);
+	$cdnpublic = trim($JCdnUrl_explode[0]); // 获取 || 之前的内容
+	if (substr($cdnpublic, -1) != '/') $cdnpublic = $cdnpublic . '/';
+	if (!empty($JCdnUrl_explode[1])) {
+		$backslash = trim($JCdnUrl_explode[1]); // 获取 || 之后的内容
+		$path = str_replace('/', $backslash, $path, 1);
 	}
 	$url = trim($cdnpublic) . trim($path);
 	return $url;

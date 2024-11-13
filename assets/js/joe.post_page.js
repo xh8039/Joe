@@ -297,8 +297,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
 window.addEventListener('load', function () {
-	/* 判断地址栏是否有锚点链接，有则跳转到对应位置 */
-	{
+	// 检查 referer 是否包含 baidu.com
+	if (!document.referrer.includes('baidu.com')) {
+		/* 判断地址栏是否有锚点链接，有则跳转到对应位置 */
 		const scroll = new URLSearchParams(location.search).get('scroll');
 		if (scroll) {
 			let elementEL = null;

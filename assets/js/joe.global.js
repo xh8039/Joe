@@ -889,14 +889,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			handleHeader(Y);
 
 			var lastPostNav = $(".joe_aside .joe_aside__item.posts-nav-box:last");
-			var lastPostNavHeight = lastPostNav.height();
-			lastPostNav.hide();
-			var asideHeight = 0;
-			$('.joe_aside .joe_aside__item').each(function (index, element) {
-				// console.log($(element).outerHeight())
-				asideHeight += $(element).height();
-			});
-			asideHeight = (asideHeight - lastPostNavHeight) - $(".joe_header").height();
+			if (lastPostNav.length > 0) {
+				var lastPostNavHeight = lastPostNav.height();
+				lastPostNav.hide();
+				var asideHeight = 0;
+				$('.joe_aside .joe_aside__item').each(function (index, element) {
+					// console.log($(element).outerHeight())
+					asideHeight += $(element).height();
+				});
+				asideHeight = (asideHeight - lastPostNavHeight) - $(".joe_header").height();
+			}
 		}
 		$(window).scroll(throttle(() => {
 			// 激活全局返回顶部功能
@@ -907,11 +909,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			// 头部滚动
 			if (!window.Joe.IS_MOBILE) {
-				if (h > asideHeight && lastPostNav.is(":hidden")) {
-					lastPostNav.fadeIn('slow');
-				}
-				if (h < asideHeight && lastPostNav.is(":visible")) {
-					lastPostNav.fadeOut('slow');
+				if (lastPostNav.length > 0) {
+					if (h > asideHeight && lastPostNav.is(":hidden")) {
+						lastPostNav.fadeIn('slow');
+					}
+					if (h < asideHeight && lastPostNav.is(":visible")) {
+						lastPostNav.fadeOut('slow');
+					}
 				}
 				handleHeader(Y - window.pageYOffset);
 				Y = window.pageYOffset;

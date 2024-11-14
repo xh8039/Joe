@@ -32,6 +32,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<span>篇与</span>
 							<span class="muted ellipsis"><?php echo $this->keywords; ?></span>
 							<span>相关的结果</span>
+							<?php if ($this->_currentPage > 1) echo '<span>&nbsp;- 第 ' . $this->_currentPage . ' 页</span>'; ?>
 						</div>
 					</div>
 

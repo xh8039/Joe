@@ -861,36 +861,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/** 页面滚动监听函数 */
 	{
-		var scrollHeader = !window.Joe.IS_MOBILE && document.querySelector('.joe_header__above');
-		if (scrollHeader) {
+		const headerAbove = document.querySelector('.joe_header__above');
+		if (!window.Joe.IS_MOBILE) {
 			var flag = true;
 			function handleHeader(diffY) {
 				if (window.pageYOffset >= $(".joe_header").height() && diffY <= 0) {
 					if (flag) return;
-					$(".joe_header").addClass("active");
-					$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() - 60 +
-						23);
+					if (headerAbove) {
+						$(".joe_header").addClass("active");
+						$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() - 60 + 23);
+					} else {
+						$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() + 25);
+					}
 					flag = true;
 				} else {
 					if (!flag) return;
-					$(".joe_header").removeClass("active");
-					$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() + 15);
+					if (headerAbove) {
+						$(".joe_header").removeClass("active");
+						$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() + 23);
+					} else {
+						$(".joe_aside .joe_aside__item:last-child").css("top", $(".joe_header").height() + 25);
+					}
 					flag = false;
 				}
 			};
 			var Y = window.pageYOffset;
 			handleHeader(Y);
+
+			var lastPostNav = $(".joe_aside .joe_aside__item.posts-nav-box:last");
+			var lastPostNavHeight = lastPostNav.height();
+			lastPostNav.hide();
+			var asideHeight = 0;
+			$('.joe_aside .joe_aside__item').each(function (index, element) {
+				// console.log($(element).outerHeight())
+				asideHeight += $(element).height();
+			});
+			asideHeight = (asideHeight - lastPostNavHeight) - $(".joe_header").height();
 		}
 		$(window).scroll(throttle(() => {
 			// 激活全局返回顶部功能
-			var h = document.documentElement.scrollTop + document.body.scrollTop,
-				ontop = $(
-					".joe_action_item.scroll");
+			var h = document.documentElement.scrollTop + document.body.scrollTop;
+			var ontop = $(".joe_action_item.scroll");
 			h > 100 ? $('body').addClass('body-scroll') : $('body').removeClass('body-scroll');
 			h > 400 ? ontop.addClass('active') : ontop.removeClass('active');
 
 			// 头部滚动
-			if (scrollHeader) {
+			if (!window.Joe.IS_MOBILE) {
+				if (h > asideHeight && lastPostNav.is(":hidden")) {
+					lastPostNav.fadeIn('slow');
+				}
+				if (h < asideHeight && lastPostNav.is(":visible")) {
+					lastPostNav.fadeOut('slow');
+				}
 				handleHeader(Y - window.pageYOffset);
 				Y = window.pageYOffset;
 			}

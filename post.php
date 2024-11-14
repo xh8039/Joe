@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-if (joe\detectSpider() && isset($_GET['scroll'])) {
+if ((joe\detectSpider() || joe\spider_referer()) && isset($_GET['scroll'])) {
 	$this->response->setStatus(301);
 	$url = str_ireplace('scroll=' . $_GET['scroll'], '', $this->request->getRequestUrl());
 	$url = trim($url, '?');

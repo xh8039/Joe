@@ -592,6 +592,11 @@ function cdn($path)
 	return $url;
 }
 
+/**
+ * @param string $haystack 被搜索的字符串
+ * @param array $needles 要搜索的字符串
+ * @return bool
+ */
 function strstrs(string $haystack, array $needles): bool
 {
 	foreach ($needles as $value) {
@@ -961,6 +966,13 @@ function detectSpider()
 		$spider = is_string($spider) ? $spider : null;
 	}
 	return $spider;
+}
+
+function spider_referer()
+{
+	$spider_url = ['baidu.com'];
+	$referer = $_SERVER['HTTP_REFERER'] ?? '';
+	return strstrs($referer, $spider_url);
 }
 
 function get_archive_tags($item)

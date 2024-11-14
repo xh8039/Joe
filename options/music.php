@@ -34,7 +34,7 @@ $JMusicApi = new \Typecho\Widget\Helper\Form\Element\Text(
 $JMusicApi->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicApi);
 
-$JMusicCookie = new \Typecho\Widget\Helper\Form\Element\Text(
+$JMusicCookie = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JMusicCookie',
 	NULL,
 	NULL,

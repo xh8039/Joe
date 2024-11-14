@@ -118,8 +118,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<input type="url" placeholder="LOGO地址，不填写则使用您的QQ头像" id="logo">
 	</div>
 	<div class="input">
-		<label class="input-label">Q Q</label>
-		<input type="number" placeholder="你的QQ号" id="qq">
+		<label class="input-label">ＱＱ</label>
+		<input type="number" placeholder="你的ＱＱ号" id="qq">
 	</div>
 	<div class="input">
 		<label class="input-label">验证</label>

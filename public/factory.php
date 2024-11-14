@@ -294,7 +294,7 @@ class Editor
 					setTimeout(() => {
 						data.time = getCurrentTime();
 						data.text = window.CodeMirrorEditor.state.doc.toString();
-						console.log(data);
+						// console.log(data);
 						localStorage.setItem('form-data', JSON.stringify(data));
 					}, 500);
 				}

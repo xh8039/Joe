@@ -263,6 +263,9 @@
 
 	function initiate_pay() {
 		var _this = $(this);
+		_this.text('正在支付中...');
+		_this.css('pointer-events', 'none');
+		_this.css('opacity', '0.7');
 		var form = _this.parents('form');
 		pay_inputs = form.serializeObject();
 		pay_inputs.routeType = 'initiate_pay';

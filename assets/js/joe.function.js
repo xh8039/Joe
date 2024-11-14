@@ -1,3 +1,5 @@
+if (!window.Joe) window.Joe = {};
+
 window.Joe.scrollTo = (selector) => {
 	const $comment = document.querySelector(selector);
 	const $header = document.querySelector('.joe_header');

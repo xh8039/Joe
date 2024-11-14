@@ -6308,3 +6308,11 @@ html .aplayer {
 .hover-show:hover~.sub-menu {
 	visibility: unset;
 }
+
+.author-tag a .fa,
+.author-tag a .icon,
+.author-tag>span .fa,
+.author-tag>span .icon,
+.item-meta item .icon {
+	margin-right: 2px;
+}

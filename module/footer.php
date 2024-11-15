@@ -46,8 +46,8 @@ if ($this->options->JFooterMode == 'commercial') {
 				<li class="hidden-xs" style="max-width: 300px;">
 					<p>
 						<a class="footer-logo" href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>">
-							<img src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" alt="<?php $this->options->title() ?>" class="lazyload light" style="height: 40px;">
-							<img src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?php $this->options->JDarkLogo(); ?>" alt="<?php $this->options->title() ?>" class="lazyload dark" style="height: 40px;">
+							<img referrerpolicy="no-referrer" rel="noreferrer" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" alt="<?php $this->options->title() ?>" class="lazyload light" style="height: 40px;">
+							<img referrerpolicy="no-referrer" rel="noreferrer" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?php $this->options->JDarkLogo(); ?>" alt="<?php $this->options->title() ?>" class="lazyload dark" style="height: 40px;">
 						</a>
 					</p>
 					<div class="footer-muted em09"><?= $this->options->JFooterLeftText ?></div>
@@ -104,7 +104,7 @@ if ($this->options->JFooterMode == 'commercial') {
 				?>
 						<div class="footer-miniimg" data-toggle="tooltip" title="<?= $value[0] ?? '' ?>">
 							<p>
-								<img class="lazyload" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $value[1] ?? '' ?>" alt="<?= $value[0] ?? '' ?> - <?= $this->options->title ?>">
+								<img referrerpolicy="no-referrer" rel="noreferrer" class="lazyload" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $value[1] ?? '' ?>" alt="<?= $value[0] ?? '' ?> - <?= $this->options->title ?>">
 							</p>
 							<span class="opacity8 em09"><?= $value[0] ?? '' ?></span>
 						</div>

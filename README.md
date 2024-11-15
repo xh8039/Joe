@@ -29,14 +29,14 @@
 
 ## 安装教程
 
-1. 首先下载 [Typecho正式版程序包](https://blog.bri6.cn/goto?url=aHR0cHM6Ly90eXBlY2hvLm9yZy9kb3dubG9hZA==&cid=18)，解压压缩包到你新建的网站根目录中后访问你的网站网址进行安装
+1. 首先下载 [Typecho正式版程序包](https://typecho.org/download)，解压压缩包到你新建的网站根目录中后访问你的网站网址进行安装
 2. 安装完成后将Joe再续前缘主题压缩包放入Typecho程序目录下 `usr/themes` 目录中
 3. 然后进入Typecho后台，选择控制台>外观>启用Joe再续前缘主题
 4. 恭喜你大功告成，可以开始创作啦！
 
 ## 主题下载
 
-[点击下载发布版](https://blog.bri6.cn/goto?url=aHR0cHM6Ly93d2RkLmxhbnpvdWUuY29tL2IwMWt5bzduYQ==&cid=18)
+[点击下载发布版](https://wwdd.lanzoue.com/b01kyo7na)
 
 提取码：6666
 

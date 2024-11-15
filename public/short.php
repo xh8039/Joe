@@ -3,8 +3,8 @@
 function _parseContent($post, $login)
 {
 	$content = $post->content;
-	$content = _parseReply($content);
 	$post_cid = $post->cid;
+	if (strpos($content, '表情]::(') !== false) $content = _parseReply($content);
 
 	// 跑马灯
 	if (strpos($content, '{lamp/}') !== false) {

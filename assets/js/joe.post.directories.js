@@ -63,8 +63,12 @@ function section_navs(selector) {
 
 		$(navbox_selector).each(function () {
 			var _this = $(this);
-			var name = _this.attr('data-title') || '';
-			name = name && '<div class="joe_aside__item-title"><div class="title-theme">' + name + '</div></div>';
+			if (window.Joe.IS_MOBILE) {
+				var name = '';
+			} else {
+				var name = _this.attr('data-title') || '';
+				name = name && '<div class="joe_aside__item-title"><div class="title-theme">' + name + '</div></div>';
+			}
 			_this.append(name + '<div class="zib-widget"><div class="' + nav_class + ' scroll-y mini-scrollbar list-unstyled"></div></div>');
 		});
 		add_lists(navs_lists);

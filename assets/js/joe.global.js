@@ -763,7 +763,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						scrollStr += `
 							<ul class="scroll" data-type="${key}">
 								${item.map(
-							(_) => `<li class="item" data-text="${_.data}">${(key == '颜文字' || key == 'emoji 表情') ? `${_.icon}` : `<img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${/.*?\((.*?)\)/.exec(_.data)[1]}"	alt="${/.*?\((.*?)\)/.exec(_.data)[1]}"/>`}</li>`
+							(_) => `<li class="item" data-text="${_.text}">${(key == '颜文字' || key == 'emoji 表情') ? `${_.icon}` : `<img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${/.*?\((.*?)\)/.exec(_.text)[1]}"	alt="${/.*?\((.*?)\)/.exec(_.text)[1]}"/>`}</li>`
 						).join("")}
 							</ul>`;
 					}

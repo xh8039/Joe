@@ -1549,8 +1549,10 @@ body.fullscreen {
 	text-align: center
 }
 
+.joe_cloud__btn:focus,
 .joe_cloud__btn:hover {
-	color: #fff
+	color: #fff;
+	opacity: 0.8;
 }
 
 .joe_gird {

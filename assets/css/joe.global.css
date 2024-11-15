@@ -2694,7 +2694,7 @@
 	border-radius: 50%;
 	text-align: center
 }
-
+.joe_cloud__btn:focus,
 .joe_cloud__btn:hover {
 	color: #fff;
 	opacity: 0.8;

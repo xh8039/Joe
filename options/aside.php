@@ -39,7 +39,7 @@ $form->addInput($JAside_Author_Avatar);
 $JAside_Author_Image = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Author_Image',
 	NULL,
-	NULL,
+	'//api.bri6.cn/api/wallpaper/pc.php',
 	'博主栏背景壁纸 - PC',
 	'介绍：用于修改PC端博主栏的背景壁纸 <br/>
 		 格式：图片地址 或 Base64地址'

@@ -2,7 +2,7 @@
 
 > 一款基于Typecho博客的双栏极致优化主题
 
-- QQ交流群：[782778569](https://qm.qq.com/q/9qlyquSaXe)
+- 官方通知群：[782778569](https://qm.qq.com/q/9qlyquSaXe)
 - 再续前缘版博客：<http://blog.bri6.cn>
 - 主题宗旨：简洁、超强、开源、精华
 

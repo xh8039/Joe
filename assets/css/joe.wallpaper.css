@@ -3,45 +3,14 @@
 	background: var(--background);
 	border-radius: var(--radius-wrap);
 	box-shadow: var(--box-shadow);
-	padding: 60px 15px 15px;
+	padding: 0 15px 15px;
 	margin-bottom: 15px
-}
-
-.joe_wallpaper__type-title {
-	position: absolute;
-	top: 15px;
-	left: -10px;
-	background: var(--theme);
-	color: #fff;
-	font-weight: 500;
-	box-shadow: 2px 5px 10px rgba(49, 58, 70, 0.15);
-	height: 30px;
-	line-height: 30px;
-	padding: 0 12px;
-	border-radius: 2px 2px 2px 0;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none
-}
-
-.joe_wallpaper__type-title::before {
-	content: '';
-	position: absolute;
-	bottom: -10px;
-	left: -10px;
-	border-style: solid;
-	border-width: 10px;
-	border-color: var(--theme) transparent transparent;
-	-webkit-transform: rotate(90deg);
-	transform: rotate(90deg)
 }
 
 .joe_wallpaper__type-list {
 	display: grid;
 	gap: 15px;
 	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-	border-top: 1px solid var(--classC);
 	padding-top: 15px
 }
 

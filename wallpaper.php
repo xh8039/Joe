@@ -27,8 +27,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php $this->need('module/header.php'); ?>
 		<div class="joe_container">
 			<div class="joe_main">
+				<div class="title-theme" style="margin-bottom: 15px;">壁纸分类</div>
 				<div class="joe_wallpaper__type">
-					<div class="joe_wallpaper__type-title">壁纸分类</div>
 					<ul class="joe_wallpaper__type-list">
 						<li class="error">正在拼命加载中...</li>
 					</ul>

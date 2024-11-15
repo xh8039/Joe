@@ -703,18 +703,18 @@ function install()
 		exit;
 	}
 
+	$set_permissions = false;
 	$permissions_files = [
 		JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'common.php',
 		JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'function.php',
 		JOE_ROOT . 'function.php',
 	];
-	$set_permissions = false;
 	foreach ($permissions_files as $value) {
 		if (!is_writeable($value) || !is_readable($value)) {
-			if (chmod($value, 0755)) {
+			if (chmod($value, 0777)) {
 				$set_permissions = true;
 			} else {
-				throw new \Typecho_Exception('请设置主题目录及其子目录的权限为 755 或 777 后再使用本主题！');
+				throw new \Typecho_Exception('请设置主题目录及其子目录的权限为 777 后再使用本主题！');
 				exit;
 			}
 		}
@@ -1088,7 +1088,7 @@ function draw_save($base64String, $outputFile)
 		if ($imageData === false) return false;
 		// 保存文件
 		$dir = dirname($outputFile);
-		if (!is_dir($dir)) mkdir($dir, 0757, true);
+		if (!is_dir($dir)) mkdir($dir, 0777, true);
 		return file_put_contents($outputFile, $imageData);
 	} else {
 		return null;

@@ -16,7 +16,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			?>
 		<nav class="joe_header__above-nav">
 			<a class="item <?php echo $this->is('index') ? 'active' : '' ?>" href="<?php $this->options->siteUrl(); ?>" title="首页">首页</a>
-			<?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
+			<?php
+			$this->widget('Widget_Contents_Page_List')->to($pages);
+			$this->options->JNavMaxNum = isset($this->options->JNavMaxNum) ? $this->options->JNavMaxNum : 3;
+			?>
 			<?php if (count($pages->stack) <= $this->options->JNavMaxNum) : ?>
 				<?php foreach ($pages->stack as $item) : ?>
 					<a class="item <?php echo $this->is('page', $item['slug']) ? 'active' : '' ?>" href="<?php echo $item['permalink'] ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>

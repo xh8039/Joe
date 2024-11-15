@@ -459,8 +459,9 @@ export default class JoeAction {
 				let listsStr = '';
 				for (let key in res) {
 					const arr = res[key];
+					key = key.replace('表情', '');
 					tabbarStr += `<div class="tabbar-item ${key === '经典' ? 'active' : ''}" data-show="${key}">${key}</div>`;
-					listsStr += `<div class="lists ${key === '经典' ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item.data}" title="${item.data}">${key === '颜文字' ? item.icon : `<img src="${window.JoeConfig.themeURL + item.icon}">`}</div>`).join(' ')}</div>`;
+					listsStr += `<div class="lists ${key === '经典' ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item.text}" title="${item.text}">${(key == '颜文字' || key == 'emoji') ? item.icon : `<img src="${window.JoeConfig.themeURL + item.icon}">`}</div>`).join(' ')}</div>`;
 				}
 				this._openModal({
 					title: '普通表情',

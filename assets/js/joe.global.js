@@ -761,13 +761,13 @@ document.addEventListener("DOMContentLoaded", () => {
 						const item = res[key];
 						key = key.replace('表情', '');
 						barStr += `<div class="item" data-type="${key}">${key}</div>`;
-						let title = /.*?\((.*?)\)/.exec(_.text)[1];
 						scrollStr += `
-							<ul class="scroll" data-type="${key}">
-								${item.map(
-							(_) => `<li class="item" data-text="${_.text}">${(key == '颜文字' || key == 'emoji') ? `<span>${_.icon}</span title="${title}"	alt="${title}">` : `<img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${title}"	alt="${title}"/>`}</li>`
-						).join("")}
-							</ul>`;
+						<ul class="scroll" data-type="${key}">
+							${item.map((_) => {
+								let title = /.*?\((.*?)\)/.exec(_.text)[1];
+								return `<li class="item" data-text="${_.text}">${(key == '颜文字' || key == 'emoji') ? `<span>${_.icon}</span title="${title}"	alt="${title}">` : `<img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${title}"	alt="${title}"/>`}</li>`;
+							}).join("")}
+						</ul>`;
 					}
 					$(".joe_owo__contain").html(`
 						<div class="seat">OωO</div>

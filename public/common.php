@@ -14,22 +14,6 @@ define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
 header('Generator: YiHang');
 header('Author: YiHang');
 
-/* 公用函数 */
-require_once(JOE_ROOT . 'public/function.php');
-
-/** 首次启用安装主题 */
-joe\install();
-
-if (Helper::options()->JShieldScan != 'off') {
-	require_once JOE_ROOT . 'public/tencent_protect.php';
-}
-
-if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
-	// 我就不信这次腾讯会再给封了！！！
-	require JOE_ROOT . 'module/jump.php';
-	exit;
-}
-
 session_start();
 
 Typecho_Widget::widget('Widget_User')->to($user);
@@ -51,6 +35,9 @@ require_once(JOE_ROOT . 'public/widget.php');
 /* Composer自动加载 */
 require_once(JOE_ROOT . 'vendor/autoload.php');
 
+/* 公用函数 */
+require_once(JOE_ROOT . 'public/function.php');
+
 /* 过滤内容函数 */
 require_once(JOE_ROOT . 'public/parse.php');
 
@@ -71,6 +58,16 @@ function themeInit($self)
 	Helper::options()->commentsThreaded = true;
 	/* 强制回复楼层最高999层 */
 	Helper::options()->commentsMaxNestingLevels = 999;
+
+	if (Helper::options()->JShieldScan != 'off') {
+		require_once JOE_ROOT . 'public/tencent_protect.php';
+	}
+
+	if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
+		// 我就不信这次腾讯会再给封了！！！
+		require JOE_ROOT . 'module/jump.php';
+		exit;
+	}
 
 	/* 主题开放API 路由规则 */
 	if (strpos($self->request->getPathInfo(), "/joe/api") === 0) {

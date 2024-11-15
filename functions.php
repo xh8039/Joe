@@ -11,6 +11,9 @@ define('JOE_ROOT', dirname(__FILE__) . '/');
 /* Joe核心文件 */
 require_once JOE_ROOT . 'public/common.php';
 
+/** 首次启用安装主题 */
+joe\install();
+
 function themeConfig($form)
 {
 ?>

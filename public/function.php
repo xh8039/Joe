@@ -705,10 +705,10 @@ function install()
 
 	// 检查目录本身的权限
 	if (!is_writeable(__FILE__) || !is_readable(__FILE__)) {
-		if (chmod(__FILE__, 0755)) {
+		if (chmod(__FILE__, 0757)) {
 			throw new \Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
 		} else {
-			throw new \Typecho_Exception('请设置主题目录及其子目录的权限为755后再设置本主题！');
+			throw new \Typecho_Exception('请设置主题目录及其子目录的权限为 757 后再使用本主题！');
 		}
 		exit;
 	}
@@ -1077,7 +1077,7 @@ function draw_save($base64String, $outputFile)
 		if ($imageData === false) return false;
 		// 保存文件
 		$dir = dirname($outputFile);
-		if (!is_dir($dir)) mkdir($dir, 0755, true);
+		if (!is_dir($dir)) mkdir($dir, 0757, true);
 		return file_put_contents($outputFile, $imageData);
 	} else {
 		return null;

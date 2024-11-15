@@ -64,6 +64,7 @@ function _parseCommentReply($text)
 /* 过滤表情 */
 function _parseReply($text)
 {
+	if (strpos($text, '表情]::(') === false) return $text;
 	$emoticon = json_decode(file_get_contents(JOE_ROOT . 'assets/json/joe.owo.json'), true);
 	unset($emoticon['颜文字']);
 	unset($emoticon['emoji表情']);

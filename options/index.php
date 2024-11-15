@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 $JIndex_Icon_Card_Title = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Icon_Card_Title',
 	NULL,
-	'板块分类',
+	NULL,
 	'首页图标卡片模块标题',
 	'介绍：用于显示首页图标卡片模块标题，若不想显示标题则留空'
 );

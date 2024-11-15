@@ -4506,7 +4506,7 @@ html .line-numbers .line-numbers-rows {
 
 .joe_owo__contain .box .scroll .item {
 	text-align: center;
-	width: calc(100% / 18);
+	width: calc(100% / 12);
 	display: inline-block;
 	padding: 5px;
 	cursor: pointer;

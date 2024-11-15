@@ -40,10 +40,6 @@
 		height: 110px
 	}
 
-	html .joe_owo__contain .box .scroll .item {
-		width: calc(100% / 15)
-	}
-
 	html .joe_list__item.single .thumbnail {
 		height: 250px
 	}
@@ -106,7 +102,7 @@
 	}
 
 	html .joe_owo__contain .box .scroll .item {
-		width: calc(100% / 12)
+		width: calc(100% / 10)
 	}
 
 	html .joe_owo__contain .box .scroll:nth-child(4) .item {

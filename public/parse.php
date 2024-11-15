@@ -65,17 +65,24 @@ function _parseCommentReply($text)
 function _parseReply($text)
 {
 	if (strpos($text, '表情]::(') === false) return $text;
-	$emoticon = json_decode(file_get_contents(JOE_ROOT . 'assets/json/joe.owo.json'), true);
-	unset($emoticon['颜文字']);
-	unset($emoticon['emoji表情']);
-	$emoticon_text_list = [];
-	$emoticon_icon_list = [];
-	foreach ($emoticon as $emoticon_list) {
-		foreach ($emoticon_list as $value) {
-			$emoticon_text_list[] = $value['text'];
-			$emoticon_icon_list[] = '<img class="owo_image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
+
+	static $emoticon_text_list = null;
+	static $emoticon_icon_list = null;
+
+	if (is_null($emoticon_text_list) || is_null($emoticon_icon_list)) {
+		$emoticon = json_decode(file_get_contents(JOE_ROOT . 'assets/json/joe.owo.json'), true);
+		unset($emoticon['颜文字']);
+		unset($emoticon['emoji表情']);
+		$emoticon_text_list = [];
+		$emoticon_icon_list = [];
+		foreach ($emoticon as $emoticon_list) {
+			foreach ($emoticon_list as $value) {
+				$emoticon_text_list[] = $value['text'];
+				$emoticon_icon_list[] = '<img class="owo_image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
+			}
 		}
 	}
+
 	$text = str_replace($emoticon_text_list, $emoticon_icon_list, $text);
 	return $text;
 }

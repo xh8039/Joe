@@ -699,23 +699,23 @@ function panel_exists(string $fileName): bool
 function install()
 {
 	if (PHP_VERSION < 7.4) {
-		throw new Typecho_Exception('请使用 PHP 7.4 及以上版本！');
+		throw new \Typecho_Exception('请使用 PHP 7.4 及以上版本！');
 		exit;
 	}
 
 	// 检查目录本身的权限
 	if (!is_writeable(__FILE__) || !is_readable(__FILE__)) {
 		if (chmod(__FILE__, 0755)) {
-			throw new Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
+			throw new \Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
 		} else {
-			throw new Typecho_Exception('请设置主题目录及其子目录的权限为755后再设置本主题！');
+			throw new \Typecho_Exception('请设置主题目录及其子目录的权限为755后再设置本主题！');
 		}
 		exit;
 	}
 
 	$_db = Typecho_Db::get();
 	if ((float) $_db->getVersion() < 5.6) {
-		throw new Typecho_Exception('请使用 MySql 5.6 及以上版本！');
+		throw new \Typecho_Exception('请使用 MySql 5.6 及以上版本！');
 		exit;
 	}
 
@@ -736,7 +736,7 @@ function install()
 			if (file_put_contents($lock_file, THEME_NAME)) {
 				echo '<script>alert("主题目录更换为 [' . THEME_NAME . '] 成功！");</script>';
 			} else {
-				throw new Typecho_Exception('主题目录更换为 [' . THEME_NAME . '] 失败！请务必手动创建安装锁文件 [install.lock] 文件内容为 [' . THEME_NAME . '] 到主题的 public 目录下！');
+				throw new \Typecho_Exception('主题目录更换为 [' . THEME_NAME . '] 失败！请务必手动创建安装锁文件 [install.lock] 文件内容为 [' . THEME_NAME . '] 到主题的 public 目录下！');
 				exit;
 			}
 		}
@@ -868,7 +868,7 @@ function install()
 				create_time TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
 			);');
 		} else {
-			throw new Typecho_Exception('暂不兼容 [' . $adapter . '] 数据库适配器！');
+			throw new \Typecho_Exception('暂不兼容 [' . $adapter . '] 数据库适配器！');
 			exit;
 		}
 
@@ -910,11 +910,11 @@ function install()
 		if (file_put_contents($lock_file, THEME_NAME)) {
 			echo '<script>alert("主题首次启用安装成功！");</script>';
 		} else {
-			throw new Typecho_Exception('主题首次启用安装失败！请务必手动创建安装锁文件 install.lock 到主题的public目录下！');
+			throw new \Typecho_Exception('主题首次启用安装失败！请务必手动创建安装锁文件 install.lock 到主题的public目录下！');
 			exit;
 		}
 	} catch (\Exception $e) {
-		throw new Typecho_Exception($e);
+		throw new \Typecho_Exception($e);
 		exit;
 	}
 }

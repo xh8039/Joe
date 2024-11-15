@@ -703,25 +703,15 @@ function install()
 		exit;
 	}
 
-	$set_permissions = false;
-	$permissions_files = [
-		JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'common.php',
-		JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'function.php',
-		JOE_ROOT . 'function.php',
-	];
-	foreach ($permissions_files as $value) {
-		if (!is_writeable($value) || !is_readable($value)) {
-			if (chmod($value, 0777)) {
-				$set_permissions = true;
-			} else {
-				throw new \Typecho_Exception('请设置主题目录及其子目录的权限为 777 后再使用本主题！');
-				exit;
-			}
+	$lock_file = JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'install.lock';
+	if (!is_writeable($lock_file) || !is_readable($lock_file)) {
+		if (chmod($lock_file, 0777)) {
+			throw new \Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
+			exit;
+		} else {
+			throw new \Typecho_Exception('请设置主题目录及其子目录的权限为 777 后再使用本主题！');
+			exit;
 		}
-	}
-	if ($set_permissions) {
-		throw new \Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
-		exit;
 	}
 
 	$_db = Typecho_Db::get();
@@ -732,7 +722,6 @@ function install()
 
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
 	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
-	$lock_file = JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'install.lock';
 
 	if (file_exists($lock_file)) {
 		$lock_file_content = file_get_contents($lock_file);

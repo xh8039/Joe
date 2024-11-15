@@ -4524,12 +4524,12 @@ html .line-numbers .line-numbers-rows {
 	background: var(--classD)
 }
 
-.joe_owo__contain .box .scroll:nth-child(3) .item {
+.joe_owo__contain .box .scroll:nth-child(2) .item { 
 	font-size: 22px;
 	line-height: 1;
 }
 
-.joe_owo__contain .box .scroll:nth-child(7) .item {
+.joe_owo__contain .box .scroll:nth-child(5) .item {
 	color: var(--routine);
 	width: calc(100% / 4);
 	white-space: nowrap;

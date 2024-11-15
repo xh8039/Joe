@@ -1,1370 +1,1794 @@
 {
-	"小黄脸表情": [
-		{
-			"icon": "assets/images/owo/QQ/14.png",
-			"text": "[小黄脸表情] (微笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/1.png",
-			"text": "[小黄脸表情] (撇嘴)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/2.png",
-			"text": "[小黄脸表情] (色)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/3.png",
-			"text": "[小黄脸表情] (发呆)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/4.png",
-			"text": "[小黄脸表情] (得意)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/6.png",
-			"text": "[小黄脸表情] (害羞)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/7.png",
-			"text": "[小黄脸表情] (闭嘴)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/8.png",
-			"text": "[小黄脸表情] (睡)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/9.png",
-			"text": "[小黄脸表情] (大哭)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/10.png",
-			"text": "[小黄脸表情] (尴尬)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/11.png",
-			"text": "[小黄脸表情] (发怒)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/12.png",
-			"text": "[小黄脸表情] (调皮)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/13.png",
-			"text": "[小黄脸表情] (呲牙)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/0.png",
-			"text": "[小黄脸表情] (惊讶)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/15.png",
-			"text": "[小黄脸表情] (难过)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/16.png",
-			"text": "[小黄脸表情] (酷)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/96.png",
-			"text": "[小黄脸表情] (冷汗)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/18.png",
-			"text": "[小黄脸表情] (抓狂)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/19.png",
-			"text": "[小黄脸表情] (吐)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/20.png",
-			"text": "[小黄脸表情] (偷笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/21.png",
-			"text": "[小黄脸表情] (可爱)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/22.png",
-			"text": "[小黄脸表情] (白眼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/23.png",
-			"text": "[小黄脸表情] (傲慢)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/24.png",
-			"text": "[小黄脸表情] (饥饿)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/25.png",
-			"text": "[小黄脸表情] (困)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/26.png",
-			"text": "[小黄脸表情] (惊恐)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/27.png",
-			"text": "[小黄脸表情] (流汗)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/28.png",
-			"text": "[小黄脸表情] (憨笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/29.png",
-			"text": "[小黄脸表情] (悠闲)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/30.png",
-			"text": "[小黄脸表情] (奋斗)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/31.png",
-			"text": "[小黄脸表情] (咒骂)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/32.png",
-			"text": "[小黄脸表情] (疑问)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/33.png",
-			"text": "[小黄脸表情] (嘘)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/34.png",
-			"text": "[小黄脸表情] (晕)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/35.png",
-			"text": "[小黄脸表情] (折磨)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/36.png",
-			"text": "[小黄脸表情] (衰)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/37.png",
-			"text": "[小黄脸表情] (骷髅)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/38.png",
-			"text": "[小黄脸表情] (敲打)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/39.png",
-			"text": "[小黄脸表情] (再见)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/97.png",
-			"text": "[小黄脸表情] (擦汗)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/98.png",
-			"text": "[小黄脸表情] (抠鼻)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/99.png",
-			"text": "[小黄脸表情] (鼓掌)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/100.png",
-			"text": "[小黄脸表情] (糗大了)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/101.png",
-			"text": "[小黄脸表情] (坏笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/102.png",
-			"text": "[小黄脸表情] (左哼哼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/103.png",
-			"text": "[小黄脸表情] (右哼哼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/104.png",
-			"text": "[小黄脸表情] (哈欠)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/105.png",
-			"text": "[小黄脸表情] (鄙视)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/106.png",
-			"text": "[小黄脸表情] (委屈)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/107.png",
-			"text": "[小黄脸表情] (快哭了)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/108.png",
-			"text": "[小黄脸表情] (阴险)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/305.png",
-			"text": "[小黄脸表情] (右亲亲)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/109.png",
-			"text": "[小黄脸表情] (左亲亲)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/110.png",
-			"text": "[小黄脸表情] (吓)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/111.png",
-			"text": "[小黄脸表情] (可怜)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/172.png",
-			"text": "[小黄脸表情] (眨眼睛)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/182.png",
-			"text": "[小黄脸表情] (笑哭)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/179.png",
-			"text": "[小黄脸表情] (doge)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/173.png",
-			"text": "[小黄脸表情] (泪奔)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/174.png",
-			"text": "[小黄脸表情] (无奈)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/212.png",
-			"text": "[小黄脸表情] (托腮)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/175.png",
-			"text": "[小黄脸表情] (卖萌)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/178.png",
-			"text": "[小黄脸表情] (斜眼笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/177.png",
-			"text": "[小黄脸表情] (喷血)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/176.png",
-			"text": "[小黄脸表情] (小纠结)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/183.png",
-			"text": "[小黄脸表情] (我最美)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/262.png",
-			"text": "[小黄脸表情] (脑阔疼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/263.png",
-			"text": "[小黄脸表情] (沧桑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/264.png",
-			"text": "[小黄脸表情] (捂脸)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/265.png",
-			"text": "[小黄脸表情] (辣眼睛)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/266.png",
-			"text": "[小黄脸表情] (哦哟)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/267.png",
-			"text": "[小黄脸表情] (头秃)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/268.png",
-			"text": "[小黄脸表情] (问号脸)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/269.png",
-			"text": "[小黄脸表情] (暗中观察)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/270.png",
-			"text": "[小黄脸表情] (emm)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/271.png",
-			"text": "[小黄脸表情] (吃瓜)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/272.png",
-			"text": "[小黄脸表情] (呵呵哒)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/277.png",
-			"text": "[小黄脸表情] (汪汪)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/307.png",
-			"text": "[小黄脸表情] (喵喵)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/306.png",
-			"text": "[小黄脸表情] (牛气冲天)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/281.png",
-			"text": "[小黄脸表情] (无眼笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/282.png",
-			"text": "[小黄脸表情] (敬礼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/283.png",
-			"text": "[小黄脸表情] (狂笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/284.png",
-			"text": "[小黄脸表情] (面无表情)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/285.png",
-			"text": "[小黄脸表情] (摸鱼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/293.png",
-			"text": "[小黄脸表情] (摸锦鲤)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/286.png",
-			"text": "[小黄脸表情] (魔鬼笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/287.png",
-			"text": "[小黄脸表情] (哦)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/289.png",
-			"text": "[小黄脸表情] (睁眼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/294.png",
-			"text": "[小黄脸表情] (期待)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/297.png",
-			"text": "[小黄脸表情] (拜谢)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/298.png",
-			"text": "[小黄脸表情] (元宝)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/299.png",
-			"text": "[小黄脸表情] (牛啊)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/300.png",
-			"text": "[小黄脸表情] (胖三斤)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/323.png",
-			"text": "[小黄脸表情] (嫌弃)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/332.png",
-			"text": "[小黄脸表情] (举牌牌)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/336.png",
-			"text": "[小黄脸表情] (豹富)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/353.png",
-			"text": "[小黄脸表情] (拜托)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/355.png",
-			"text": "[小黄脸表情] (耶)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/356.png",
-			"text": "[小黄脸表情] (666)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/354.png",
-			"text": "[小黄脸表情] (尊嘟假嘟)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/352.png",
-			"text": "[小黄脸表情] (咦)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/357.png",
-			"text": "[小黄脸表情] (裂开)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/334.png",
-			"text": "[小黄脸表情] (虎虎生威)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/347.png",
-			"text": "[小黄脸表情] (大展宏兔)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/303.png",
-			"text": "[小黄脸表情] (右拜年)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/302.png",
-			"text": "[小黄脸表情] (左拜年)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/295.png",
-			"text": "[小黄脸表情] (拿到红包)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/49.png",
-			"text": "[小黄脸表情] (拥抱)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/66.png",
-			"text": "[小黄脸表情] (爱心)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/63.png",
-			"text": "[小黄脸表情] (玫瑰)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/64.png",
-			"text": "[小黄脸表情] (凋谢)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/187.png",
-			"text": "[小黄脸表情] (幽灵)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/146.png",
-			"text": "[小黄脸表情] (爆筋)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/116.png",
-			"text": "[小黄脸表情] (示爱)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/67.png",
-			"text": "[小黄脸表情] (心碎)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/60.png",
-			"text": "[小黄脸表情] (咖啡)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/185.png",
-			"text": "[小黄脸表情] (羊驼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/76.png",
-			"text": "[小黄脸表情] (赞)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/124.png",
-			"text": "[小黄脸表情] (OK)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/118.png",
-			"text": "[小黄脸表情] (抱拳)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/78.png",
-			"text": "[小黄脸表情] (握手)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/119.png",
-			"text": "[小黄脸表情] (勾引)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/79.png",
-			"text": "[小黄脸表情] (胜利)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/120.png",
-			"text": "[小黄脸表情] (拳头)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/121.png",
-			"text": "[小黄脸表情] (差劲)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/77.png",
-			"text": "[小黄脸表情] (踩)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/123.png",
-			"text": "[小黄脸表情] (NO)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/201.png",
-			"text": "[小黄脸表情] (点赞)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/273.png",
-			"text": "[小黄脸表情] (我酸了)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/46.png",
-			"text": "[小黄脸表情] (猪头)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/112.png",
-			"text": "[小黄脸表情] (菜刀)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/56.png",
-			"text": "[小黄脸表情] (刀)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/169.png",
-			"text": "[小黄脸表情] (手枪)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/171.png",
-			"text": "[小黄脸表情] (茶)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/59.png",
-			"text": "[小黄脸表情] (便便)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/144.png",
-			"text": "[小黄脸表情] (喝彩)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/147.png",
-			"text": "[小黄脸表情] (棒棒糖)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/89.png",
-			"text": "[小黄脸表情] (西瓜)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/41.png",
-			"text": "[小黄脸表情] (发抖)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/125.png",
-			"text": "[小黄脸表情] (转圈)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/42.png",
-			"text": "[小黄脸表情] (爱情)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/43.png",
-			"text": "[小黄脸表情] (跳跳)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/86.png",
-			"text": "[小黄脸表情] (怄火)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/129.png",
-			"text": "[小黄脸表情] (挥手)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/85.png",
-			"text": "[小黄脸表情] (飞吻)"
-		}
-	],
-	"超级表情": [
-		{
-			"icon": "assets/images/owo/QQ/5.png",
-			"text": "[超级表情] (流泪)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/311.png",
-			"text": "[超级表情] (打call)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/312.png",
-			"text": "[超级表情] (变形)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/314.png",
-			"text": "[超级表情] (仔细分析)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/317.png",
-			"text": "[超级表情] (菜汪)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/318.png",
-			"text": "[超级表情] (崇拜)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/319.png",
-			"text": "[超级表情] (比心)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/320.png",
-			"text": "[超级表情] (庆祝)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/324.png",
-			"text": "[超级表情] (吃糖)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/325.png",
-			"text": "[超级表情] (惊吓)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/337.png",
-			"text": "[超级表情] (花朵脸)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/338.png",
-			"text": "[超级表情] (我想开了)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/339.png",
-			"text": "[超级表情] (舔屏)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/341.png",
-			"text": "[超级表情] (打招呼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/342.png",
-			"text": "[超级表情] (酸Q)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/343.png",
-			"text": "[超级表情] (我方了)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/344.png",
-			"text": "[超级表情] (大怨种)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/345.png",
-			"text": "[超级表情] (红包多多)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/346.png",
-			"text": "[超级表情] (你真棒棒)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/181.png",
-			"text": "[超级表情] (戳一戳)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/74.png",
-			"text": "[超级表情] (太阳)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/75.png",
-			"text": "[超级表情] (月亮)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/351.png",
-			"text": "[超级表情] (敲敲)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/349.png",
-			"text": "[超级表情] (坚强)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/350.png",
-			"text": "[超级表情] (贴贴)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/395.png",
-			"text": "[超级表情] (略略略)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/114.png",
-			"text": "[超级表情] (篮球)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/326.png",
-			"text": "[超级表情] (生气)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/53.png",
-			"text": "[超级表情] (蛋糕)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/137.png",
-			"text": "[超级表情] (鞭炮)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/333.png",
-			"text": "[超级表情] (烟花)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/392.png",
-			"text": "[超级表情] (龙年快乐)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/393.png",
-			"text": "[超级表情] (新年中龙)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/394.png",
-			"text": "[超级表情] (新年大龙)"
-		}
-	],
-	"emoji 表情": [
-		{
-			"icon": "😊",
-			"text": "😊"
-		},
-		{
-			"icon": "😌",
-			"text": "😌"
-		},
-		{
-			"icon": "😚",
-			"text": "😚"
-		},
-		{
-			"icon": "😓",
-			"text": "😓"
-		},
-		{
-			"icon": "😰",
-			"text": "😰"
-		},
-		{
-			"icon": "😝",
-			"text": "😝"
-		},
-		{
-			"icon": "😁",
-			"text": "😁"
-		},
-		{
-			"icon": "😜",
-			"text": "😜"
-		},
-		{
-			"icon": "☺",
-			"text": "☺"
-		},
-		{
-			"icon": "😍",
-			"text": "😍"
-		},
-		{
-			"icon": "😔",
-			"text": "😔"
-		},
-		{
-			"icon": "😄",
-			"text": "😄"
-		},
-		{
-			"icon": "😏",
-			"text": "😏"
-		},
-		{
-			"icon": "😒",
-			"text": "😒"
-		},
-		{
-			"icon": "😳",
-			"text": "😳"
-		},
-		{
-			"icon": "😘",
-			"text": "😘"
-		},
-		{
-			"icon": "😭",
-			"text": "😭"
-		},
-		{
-			"icon": "😱",
-			"text": "😱"
-		},
-		{
-			"icon": "😂",
-			"text": "😂"
-		},
-		{
-			"icon": "💪",
-			"text": "💪"
-		},
-		{
-			"icon": "👊",
-			"text": "👊"
-		},
-		{
-			"icon": "👍",
-			"text": "👍"
-		},
-		{
-			"icon": "👏",
-			"text": "👏"
-		},
-		{
-			"icon": "👎",
-			"text": "👎"
-		},
-		{
-			"icon": "🙏",
-			"text": "🙏"
-		},
-		{
-			"icon": "👌",
-			"text": "👌"
-		},
-		{
-			"icon": "👆",
-			"text": "👆"
-		},
-		{
-			"icon": "👀",
-			"text": "👀"
-		},
-		{
-			"icon": "🍜",
-			"text": "🍜"
-		},
-		{
-			"icon": "🍧",
-			"text": "🍧"
-		},
-		{
-			"icon": "🍞",
-			"text": "🍞"
-		},
-		{
-			"icon": "🍺",
-			"text": "🍺"
-		},
-		{
-			"icon": "🍻",
-			"text": "🍻"
-		},
-		{
-			"icon": "☕",
-			"text": "☕"
-		},
-		{
-			"icon": "🍎",
-			"text": "🍎"
-		},
-		{
-			"icon": "🍓",
-			"text": "🍓"
-		},
-		{
-			"icon": "🍉",
-			"text": "🍉"
-		},
-		{
-			"icon": "🚬",
-			"text": "🚬"
-		},
-		{
-			"icon": "🌹",
-			"text": "🌹"
-		},
-		{
-			"icon": "🎉",
-			"text": "🎉"
-		},
-		{
-			"icon": "💝",
-			"text": "💝"
-		},
-		{
-			"icon": "💣",
-			"text": "💣"
-		},
-		{
-			"icon": "✨",
-			"text": "✨"
-		},
-		{
-			"icon": "💨",
-			"text": "💨"
-		},
-		{
-			"icon": "💦",
-			"text": "💦"
-		},
-		{
-			"icon": "🔥",
-			"text": "🔥"
-		},
-		{
-			"icon": "💤",
-			"text": "💤"
-		},
-		{
-			"icon": "💩",
-			"text": "💩"
-		},
-		{
-			"icon": "💉",
-			"text": "💉"
-		},
-		{
-			"icon": "📫",
-			"text": "📫"
-		},
-		{
-			"icon": "🐎",
-			"text": "🐎"
-		},
-		{
-			"icon": "👧",
-			"text": "👧"
-		},
-		{
-			"icon": "👦",
-			"text": "👦"
-		},
-		{
-			"icon": "🐵",
-			"text": "🐵"
-		},
-		{
-			"icon": "🐷",
-			"text": "🐷"
-		},
-		{
-			"icon": "🐮",
-			"text": "🐮"
-		},
-		{
-			"icon": "🐔",
-			"text": "🐔"
-		},
-		{
-			"icon": "🐸",
-			"text": "🐸"
-		},
-		{
-			"icon": "👻",
-			"text": "👻"
-		},
-		{
-			"icon": "🐛",
-			"text": "🐛"
-		},
-		{
-			"icon": "🐶",
-			"text": "🐶"
-		},
-		{
-			"icon": "🐳",
-			"text": "🐳"
-		},
-		{
-			"icon": "👢",
-			"text": "👢"
-		},
-		{
-			"icon": "☀",
-			"text": "☀"
-		},
-		{
-			"icon": "❔",
-			"text": "❔"
-		},
-		{
-			"icon": "🔫",
-			"text": "🔫"
-		},
-		{
-			"icon": "💓",
-			"text": "💓"
-		},
-		{
-			"icon": "🏪",
-			"text": "🏪"
-		}
-	],
 	"经典表情": [
 		{
-			"icon": "assets/images/owo/QQ/E788B1E4BDA0.gif",
-			"text": "[经典表情] (爱你)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E788B1E5BF83.gif",
-			"text": "[经典表情] (爱心)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E582B2E685A2.gif",
-			"text": "[经典表情] (傲慢)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E799BDE79CBC.gif",
-			"text": "[经典表情] (白眼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6A392E6A392E7B396.gif",
-			"text": "[经典表情] (棒棒糖)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E78886E7AD8B.gif",
-			"text": "[经典表情] (爆筋)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E68AB1E68BB3.gif",
-			"text": "[经典表情] (抱拳)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E98499E8A786.gif",
-			"text": "[经典表情] (鄙视)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E997ADE598B4.gif",
-			"text": "[经典表情] (闭嘴)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E693A6E6B197.gif",
-			"text": "[经典表情] (擦汗)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E88F9CE58880.gif",
-			"text": "[经典表情] (菜刀)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E59083.gif",
-			"text": "[经典表情] (吃)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E591B2E78999.gif",
-			"text": "[经典表情] (呲牙)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5A4A7E585B5.gif",
-			"text": "[经典表情] (大兵)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5A4A7E593AD.gif",
-			"text": "[经典表情] (大哭)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E89B8B.gif",
-			"text": "[经典表情] (蛋)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5BE97E6848F.gif",
-			"text": "[经典表情] (得意)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/doge.gif",
-			"text": "[经典表情] (doge)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E58F91E59186.gif",
-			"text": "[经典表情] (发呆)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E58F91E68092.gif",
-			"text": "[经典表情] (发怒)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5A58BE69697.gif",
-			"text": "[经典表情] (奋斗)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5B0B4E5B0AC.gif",
-			"text": "[经典表情] (尴尬)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E58BBEE5BC95.gif",
-			"text": "[经典表情] (勾引)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E9BC93E68E8C.gif",
-			"text": "[经典表情] (鼓掌)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5AEB3E7BE9E.gif",
-			"text": "[经典表情] (害羞)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E686A8E7AC91.gif",
-			"text": "[经典表情] (憨笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5A5BDE6A392.gif",
-			"text": "[经典表情] (好棒)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E59388E6ACA0.gif",
-			"text": "[经典表情] (哈欠)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5969DE5BDA9.gif",
-			"text": "[经典表情] (喝彩)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6B2B3E89FB9.gif",
-			"text": "[经典表情] (河蟹)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E59D8FE7AC91.gif",
-			"text": "[经典表情] (坏笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E9A5A5E9A5BF.gif",
-			"text": "[经典表情] (饥饿)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6838AE68190.gif",
-			"text": "[经典表情] (惊恐)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6838AE5969C.gif",
-			"text": "[经典表情] (惊喜)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6838AE8AEB6.gif",
+			"icon": "assets/images/owo/QQ/0.gif",
 			"text": "[经典表情] (惊讶)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E88F8AE88AB1.gif",
-			"text": "[经典表情] (菊花)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E58FAFE788B1.gif",
-			"text": "[经典表情] (可爱)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E58FAFE6809C.gif",
-			"text": "[经典表情] (可怜)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E68AA0E9BCBB.gif",
-			"text": "[经典表情] (抠鼻)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E985B7.gif",
-			"text": "[经典表情] (酷)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5BFABE593ADE4BA86.gif",
-			"text": "[经典表情] (快哭了)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E9AAB7E9AB85.gif",
-			"text": "[经典表情] (骷髅)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E59BB0.gif",
-			"text": "[经典表情] (困)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E7AFAEE79083.gif",
-			"text": "[经典表情] (篮球)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6B3AAE5A594.gif",
-			"text": "[经典表情] (泪奔)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E586B7E6B197.gif",
-			"text": "[经典表情] (冷汗)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6B581E6B197.gif",
-			"text": "[经典表情] (流汗)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6B581E6B3AA.gif",
-			"text": "[经典表情] (流泪)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E99ABEE8BF87.gif",
-			"text": "[经典表情] (难过)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/OK.gif",
-			"text": "[经典表情] (OK)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E596B7E8A180.gif",
-			"text": "[经典表情] (喷血)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E69287E598B4.gif",
+			"icon": "assets/images/owo/QQ/1.gif",
 			"text": "[经典表情] (撇嘴)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E595A4E98592.gif",
-			"text": "[经典表情] (啤酒)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5BCBA.gif",
-			"text": "[经典表情] (强)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E695B2E68993.gif",
-			"text": "[经典表情] (敲打)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E4BAB2E4BAB2.gif",
-			"text": "[经典表情] (亲亲)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E7B397E5A4A7E4BA86.gif",
-			"text": "[经典表情] (糗大了)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E68BB3E5A4B4.gif",
-			"text": "[经典表情] (拳头)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E9AA9AE689B0.gif",
-			"text": "[经典表情] (骚扰)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E889B2.gif",
+			"icon": "assets/images/owo/QQ/2.gif",
 			"text": "[经典表情] (色)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E8839CE588A9.gif",
-			"text": "[经典表情] (胜利)"
+			"icon": "assets/images/owo/QQ/3.gif",
+			"text": "[经典表情] (发呆)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E6898BE69EAA.gif",
-			"text": "[经典表情] (手枪)"
+			"icon": "assets/images/owo/QQ/4.gif",
+			"text": "[经典表情] (得意)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E8A1B0.gif",
-			"text": "[经典表情] (衰)"
+			"icon": "assets/images/owo/QQ/5.gif",
+			"text": "[经典表情] (流泪)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E79DA1.gif",
+			"icon": "assets/images/owo/QQ/6.gif",
+			"text": "[经典表情] (害羞)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/7.gif",
+			"text": "[经典表情] (闭嘴)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/8.gif",
 			"text": "[经典表情] (睡)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E8B083E79AAE.gif",
+			"icon": "assets/images/owo/QQ/9.gif",
+			"text": "[经典表情] (大哭)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/10.gif",
+			"text": "[经典表情] (尴尬)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/11.gif",
+			"text": "[经典表情] (发怒)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/12.gif",
 			"text": "[经典表情] (调皮)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E581B7E7AC91.gif",
-			"text": "[经典表情] (偷笑)"
+			"icon": "assets/images/owo/QQ/13.gif",
+			"text": "[经典表情] (呲牙)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E59090.gif",
-			"text": "[经典表情] (吐)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E68998E885AE.gif",
-			"text": "[经典表情] (托腮)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5A794E5B188.gif",
-			"text": "[经典表情] (委屈)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5BEAEE7AC91.gif",
+			"icon": "assets/images/owo/QQ/14.gif",
 			"text": "[经典表情] (微笑)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E68FA1E6898B.gif",
-			"text": "[经典表情] (握手)"
+			"icon": "assets/images/owo/QQ/15.png",
+			"text": "[经典表情] (难过)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E68891E69C80E7BE8E.gif",
-			"text": "[经典表情] (我最美)"
+			"icon": "assets/images/owo/QQ/16.gif",
+			"text": "[经典表情] (酷)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E697A0E5A588.gif",
-			"text": "[经典表情] (无奈)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E59093.gif",
-			"text": "[经典表情] (吓)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5B08FE7BAA0E7BB93.gif",
-			"text": "[经典表情] (小纠结)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E7AC91E593AD.gif",
-			"text": "[经典表情] (笑哭)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5B08FE6A0B7E584BF.gif",
-			"text": "[经典表情] (小样儿)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E6969CE79CBCE7AC91.gif",
-			"text": "[经典表情] (斜眼笑)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E8A5BFE7939C.gif",
-			"text": "[经典表情] (西瓜)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E59898.gif",
-			"text": "[经典表情] (嘘)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E7BE8AE9A9BC.gif",
-			"text": "[经典表情] (羊驼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E998B4E999A9.gif",
-			"text": "[经典表情] (阴险)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E79691E997AE.gif",
-			"text": "[经典表情] (疑问)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E58FB3E593BCE593BC.gif",
-			"text": "[经典表情] (右哼哼)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5B9BDE781B5.gif",
-			"text": "[经典表情] (幽灵)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E69995.gif",
-			"text": "[经典表情] (晕)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E5868DE8A781.gif",
-			"text": "[经典表情] (再见)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E79CA8E79CBCE79D9B.gif",
-			"text": "[经典表情] (眨眼睛)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E68A98E7A3A8.gif",
-			"text": "[经典表情] (折磨)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E59292E9AA82.gif",
-			"text": "[经典表情] (咒骂)"
-		},
-		{
-			"icon": "assets/images/owo/QQ/E68A93E78B82.gif",
+			"icon": "assets/images/owo/QQ/18.gif",
 			"text": "[经典表情] (抓狂)"
 		},
 		{
-			"icon": "assets/images/owo/QQ/E5B7A6E593BCE593BC.gif",
+			"icon": "assets/images/owo/QQ/19.gif",
+			"text": "[经典表情] (吐)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/20.gif",
+			"text": "[经典表情] (偷笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/21.gif",
+			"text": "[经典表情] (可爱)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/22.gif",
+			"text": "[经典表情] (白眼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/23.gif",
+			"text": "[经典表情] (傲慢)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/24.gif",
+			"text": "[经典表情] (饥饿)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/25.gif",
+			"text": "[经典表情] (困)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/26.gif",
+			"text": "[经典表情] (惊恐)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/27.gif",
+			"text": "[经典表情] (流汗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/28.gif",
+			"text": "[经典表情] (憨笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/29.gif",
+			"text": "[经典表情] (悠闲)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/30.gif",
+			"text": "[经典表情] (奋斗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/31.gif",
+			"text": "[经典表情] (咒骂)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/32.gif",
+			"text": "[经典表情] (疑问)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/33.gif",
+			"text": "[经典表情] (嘘)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/34.gif",
+			"text": "[经典表情] (晕)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/35.gif",
+			"text": "[经典表情] (折磨)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/36.png",
+			"text": "[经典表情] (衰)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/37.gif",
+			"text": "[经典表情] (骷髅)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/38.gif",
+			"text": "[经典表情] (敲打)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/39.gif",
+			"text": "[经典表情] (再见)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/41.png",
+			"text": "[经典表情] (发抖)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/42.gif",
+			"text": "[经典表情] (爱情)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/43.gif",
+			"text": "[经典表情] (跳跳)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/46.gif",
+			"text": "[经典表情] (猪头)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/49.gif",
+			"text": "[经典表情] (拥抱)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/53.gif",
+			"text": "[经典表情] (蛋糕)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/55.gif",
+			"text": "[经典表情] (炸弹)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/56.png",
+			"text": "[经典表情] (刀)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/59.gif",
+			"text": "[经典表情] (便便)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/60.gif",
+			"text": "[经典表情] (咖啡)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/63.gif",
+			"text": "[经典表情] (玫瑰)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/64.gif",
+			"text": "[经典表情] (凋谢)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/66.gif",
+			"text": "[经典表情] (爱心)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/67.gif",
+			"text": "[经典表情] (心碎)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/74.gif",
+			"text": "[经典表情] (太阳)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/75.gif",
+			"text": "[经典表情] (月亮)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/76.gif",
+			"text": "[经典表情] (赞)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/77.gif",
+			"text": "[经典表情] (踩)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/78.gif",
+			"text": "[经典表情] (握手)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/79.gif",
+			"text": "[经典表情] (胜利)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/85.png",
+			"text": "[经典表情] (飞吻)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/86.gif",
+			"text": "[经典表情] (怄火)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/89.gif",
+			"text": "[经典表情] (西瓜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/96.gif",
+			"text": "[经典表情] (冷汗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/97.gif",
+			"text": "[经典表情] (擦汗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/98.gif",
+			"text": "[经典表情] (抠鼻)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/99.gif",
+			"text": "[经典表情] (鼓掌)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/100.gif",
+			"text": "[经典表情] (糗大了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/101.gif",
+			"text": "[经典表情] (坏笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/102.gif",
 			"text": "[经典表情] (左哼哼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/103.gif",
+			"text": "[经典表情] (右哼哼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/104.gif",
+			"text": "[经典表情] (哈欠)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/105.gif",
+			"text": "[经典表情] (鄙视)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/106.gif",
+			"text": "[经典表情] (委屈)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/107.gif",
+			"text": "[经典表情] (快哭了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/108.gif",
+			"text": "[经典表情] (阴险)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/109.gif",
+			"text": "[经典表情] (左亲亲)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/110.gif",
+			"text": "[经典表情] (吓)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/111.gif",
+			"text": "[经典表情] (可怜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/112.png",
+			"text": "[经典表情] (菜刀)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/114.gif",
+			"text": "[经典表情] (篮球)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/116.gif",
+			"text": "[经典表情] (示爱)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/118.gif",
+			"text": "[经典表情] (抱拳)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/119.gif",
+			"text": "[经典表情] (勾引)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/120.gif",
+			"text": "[经典表情] (拳头)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/121.gif",
+			"text": "[经典表情] (差劲)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/122.gif",
+			"text": "[经典表情] (爱你)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/123.gif",
+			"text": "[经典表情] (NO)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/124.gif",
+			"text": "[经典表情] (OK)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/125.gif",
+			"text": "[经典表情] (转圈)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/129.gif",
+			"text": "[经典表情] (挥手)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/137.gif",
+			"text": "[经典表情] (鞭炮)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/144.gif",
+			"text": "[经典表情] (喝彩)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/146.gif",
+			"text": "[经典表情] (爆筋)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/147.gif",
+			"text": "[经典表情] (棒棒糖)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/148.gif",
+			"text": "[经典表情] (喝奶)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/169.gif",
+			"text": "[经典表情] (手枪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/171.gif",
+			"text": "[经典表情] (茶)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/172.gif",
+			"text": "[经典表情] (眨眼睛)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/173.gif",
+			"text": "[经典表情] (泪奔)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/174.gif",
+			"text": "[经典表情] (无奈)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/175.gif",
+			"text": "[经典表情] (卖萌)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/176.gif",
+			"text": "[经典表情] (小纠结)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/177.gif",
+			"text": "[经典表情] (喷血)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/178.gif",
+			"text": "[经典表情] (斜眼笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/179.gif",
+			"text": "[经典表情] (doge)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/180.gif",
+			"text": "[经典表情] (惊喜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/181.gif",
+			"text": "[经典表情] (戳一戳)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/182.gif",
+			"text": "[经典表情] (笑哭)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/183.gif",
+			"text": "[经典表情] (我最美)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/185.gif",
+			"text": "[经典表情] (羊驼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/187.gif",
+			"text": "[经典表情] (幽灵)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/193.png",
+			"text": "[经典表情] (大笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/194.gif",
+			"text": "[经典表情] (不开心)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/198.gif",
+			"text": "[经典表情] (呃)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/200.gif",
+			"text": "[经典表情] (求求)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/201.gif",
+			"text": "[经典表情] (点赞)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/202.gif",
+			"text": "[经典表情] (无聊)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/203.gif",
+			"text": "[经典表情] (托脸)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/204.gif",
+			"text": "[经典表情] (吃)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/206.gif",
+			"text": "[经典表情] (害怕)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/210.gif",
+			"text": "[经典表情] (飙泪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/211.gif",
+			"text": "[经典表情] (我不看)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/212.gif",
+			"text": "[经典表情] (托腮)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/214.gif",
+			"text": "[经典表情] (啵啵)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/215.gif",
+			"text": "[经典表情] (糊脸)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/216.gif",
+			"text": "[经典表情] (拍头)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/217.gif",
+			"text": "[经典表情] (扯一扯)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/218.gif",
+			"text": "[经典表情] (舔一舔)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/219.gif",
+			"text": "[经典表情] (蹭一蹭)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/221.gif",
+			"text": "[经典表情] (顶呱呱)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/222.gif",
+			"text": "[经典表情] (抱抱)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/223.gif",
+			"text": "[经典表情] (暴击)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/224.gif",
+			"text": "[经典表情] (开枪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/225.gif",
+			"text": "[经典表情] (撩一撩)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/226.gif",
+			"text": "[经典表情] (拍桌)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/227.gif",
+			"text": "[经典表情] (拍手)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/229.gif",
+			"text": "[经典表情] (干杯)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/230.gif",
+			"text": "[经典表情] (嘲讽)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/231.gif",
+			"text": "[经典表情] (哼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/232.gif",
+			"text": "[经典表情] (佛系)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/233.gif",
+			"text": "[经典表情] (掐一掐)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/235.gif",
+			"text": "[经典表情] (颤抖)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/237.gif",
+			"text": "[经典表情] (偷看)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/238.gif",
+			"text": "[经典表情] (扇脸)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/239.gif",
+			"text": "[经典表情] (原谅)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/240.gif",
+			"text": "[经典表情] (喷脸)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/241.gif",
+			"text": "[经典表情] (生日快乐)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/243.gif",
+			"text": "[经典表情] (甩头)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/244.gif",
+			"text": "[经典表情] (扔狗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/262.gif",
+			"text": "[经典表情] (脑阔疼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/263.gif",
+			"text": "[经典表情] (沧桑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/264.gif",
+			"text": "[经典表情] (捂脸)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/265.gif",
+			"text": "[经典表情] (辣眼睛)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/266.gif",
+			"text": "[经典表情] (哦哟)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/267.gif",
+			"text": "[经典表情] (头秃)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/268.gif",
+			"text": "[经典表情] (问号脸)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/269.gif",
+			"text": "[经典表情] (暗中观察)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/270.gif",
+			"text": "[经典表情] (emm)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/271.gif",
+			"text": "[经典表情] (吃瓜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/272.gif",
+			"text": "[经典表情] (呵呵哒)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/273.gif",
+			"text": "[经典表情] (我酸了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/277.gif",
+			"text": "[经典表情] (汪汪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/278.gif",
+			"text": "[经典表情] (汗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/281.gif",
+			"text": "[经典表情] (无眼笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/282.gif",
+			"text": "[经典表情] (敬礼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/283.gif",
+			"text": "[经典表情] (狂笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/284.gif",
+			"text": "[经典表情] (面无表情)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/285.gif",
+			"text": "[经典表情] (摸鱼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/286.gif",
+			"text": "[经典表情] (魔鬼笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/287.gif",
+			"text": "[经典表情] (哦)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/288.gif",
+			"text": "[经典表情] (请)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/289.gif",
+			"text": "[经典表情] (睁眼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/290.gif",
+			"text": "[经典表情] (敲开心)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/292.gif",
+			"text": "[经典表情] (让我康康)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/293.gif",
+			"text": "[经典表情] (摸锦鲤)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/294.gif",
+			"text": "[经典表情] (期待)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/295.gif",
+			"text": "[经典表情] (拿到红包)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/297.gif",
+			"text": "[经典表情] (拜谢)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/298.gif",
+			"text": "[经典表情] (元宝)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/299.gif",
+			"text": "[经典表情] (牛啊)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/300.gif",
+			"text": "[经典表情] (胖三斤)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/301.gif",
+			"text": "[经典表情] (好闪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/302.gif",
+			"text": "[经典表情] (左拜年)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/303.gif",
+			"text": "[经典表情] (右拜年)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/305.gif",
+			"text": "[经典表情] (右亲亲)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/306.gif",
+			"text": "[经典表情] (牛气冲天)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/307.gif",
+			"text": "[经典表情] (喵喵)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/311.gif",
+			"text": "[经典表情] (打call)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/312.gif",
+			"text": "[经典表情] (变形)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/314.gif",
+			"text": "[经典表情] (仔细分析)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/317.gif",
+			"text": "[经典表情] (菜汪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/318.gif",
+			"text": "[经典表情] (崇拜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/319.gif",
+			"text": "[经典表情] (比心)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/320.gif",
+			"text": "[经典表情] (庆祝)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/322.gif",
+			"text": "[经典表情] (拒绝)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/323.gif",
+			"text": "[经典表情] (嫌弃)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/324.gif",
+			"text": "[经典表情] (吃糖)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/325.gif",
+			"text": "[经典表情] (惊吓)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/326.gif",
+			"text": "[经典表情] (生气)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/332.gif",
+			"text": "[经典表情] (举牌牌)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/333.png",
+			"text": "[经典表情] (烟花)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/334.png",
+			"text": "[经典表情] (虎虎生威)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/336.png",
+			"text": "[经典表情] (豹富)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/337.gif",
+			"text": "[经典表情] (花朵脸)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/338.gif",
+			"text": "[经典表情] (我想开了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/339.gif",
+			"text": "[经典表情] (舔屏)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/341.gif",
+			"text": "[经典表情] (打招呼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/342.gif",
+			"text": "[经典表情] (酸Q)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/343.gif",
+			"text": "[经典表情] (我方了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/344.gif",
+			"text": "[经典表情] (大怨种)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/345.gif",
+			"text": "[经典表情] (红包多多)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/346.gif",
+			"text": "[经典表情] (你真棒棒)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/347.png",
+			"text": "[经典表情] (大展宏兔)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/348.png",
+			"text": "[经典表情] (福萝卜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/349.gif",
+			"text": "[经典表情] (坚强)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/350.gif",
+			"text": "[经典表情] (贴贴)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/351.gif",
+			"text": "[经典表情] (敲敲)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/352.gif",
+			"text": "[经典表情] (咦)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/353.gif",
+			"text": "[经典表情] (拜托)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/354.gif",
+			"text": "[经典表情] (尊嘟假嘟)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/355.gif",
+			"text": "[经典表情] (耶)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/356.gif",
+			"text": "[经典表情] (666)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/357.gif",
+			"text": "[经典表情] (裂开)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/358.png",
+			"text": "[经典表情] (骰子)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/359.png",
+			"text": "[经典表情] (包剪锤)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/360.png",
+			"text": "[经典表情] (亲亲)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/361.png",
+			"text": "[经典表情] (狗狗笑哭)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/362.png",
+			"text": "[经典表情] (好兄弟)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/363.png",
+			"text": "[经典表情] (狗狗可怜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/364.png",
+			"text": "[经典表情] (超级赞)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/365.png",
+			"text": "[经典表情] (狗狗生气)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/366.png",
+			"text": "[经典表情] (芒狗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/367.png",
+			"text": "[经典表情] (狗狗疑问)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/368.png",
+			"text": "[经典表情] (奥特笑哭)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/369.png",
+			"text": "[经典表情] (彩虹)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/370.png",
+			"text": "[经典表情] (祝贺)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/371.png",
+			"text": "[经典表情] (冒泡)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/372.png",
+			"text": "[经典表情] (气呼呼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/373.png",
+			"text": "[经典表情] (忙)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/374.png",
+			"text": "[经典表情] (波波流泪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/375.png",
+			"text": "[经典表情] (超级鼓掌)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/376.png",
+			"text": "[经典表情] (跺脚)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/377.png",
+			"text": "[经典表情] (嗨)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/378.png",
+			"text": "[经典表情] (企鹅笑哭)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/379.png",
+			"text": "[经典表情] (企鹅流泪)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/380.png",
+			"text": "[经典表情] (真棒)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/381.png",
+			"text": "[经典表情] (路过)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/382.png",
+			"text": "[经典表情] (emo)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/383.png",
+			"text": "[经典表情] (企鹅爱心)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/384.png",
+			"text": "[经典表情] (晚安)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/385.png",
+			"text": "[经典表情] (太气了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/386.png",
+			"text": "[经典表情] (呜呜呜)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/387.png",
+			"text": "[经典表情] (太好笑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/388.png",
+			"text": "[经典表情] (太头疼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/389.png",
+			"text": "[经典表情] (太赞了)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/390.png",
+			"text": "[经典表情] (太头秃)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/391.png",
+			"text": "[经典表情] (太沧桑)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/392.png",
+			"text": "[经典表情] (龙年快乐)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/393.png",
+			"text": "[经典表情] (新年中龙)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/394.png",
+			"text": "[经典表情] (新年大龙)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/395.png",
+			"text": "[经典表情] (略略略)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/396.png",
+			"text": "[经典表情] (狼狗)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/397.png",
+			"text": "[经典表情] (抛媚眼)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/398.png",
+			"text": "[经典表情] (超级ok)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/399.png",
+			"text": "[经典表情] (tui)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/400.png",
+			"text": "[经典表情] (快乐)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/401.png",
+			"text": "[经典表情] (超级转圈)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/402.png",
+			"text": "[经典表情] (别说话)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/403.png",
+			"text": "[经典表情] (出去玩)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/404.png",
+			"text": "[经典表情] (闪亮登场)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/405.png",
+			"text": "[经典表情] (好运来)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/406.png",
+			"text": "[经典表情] (姐是女王)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/407.png",
+			"text": "[经典表情] (我听听)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/408.png",
+			"text": "[经典表情] (臭美)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/409.png",
+			"text": "[经典表情] (送你花花)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/410.png",
+			"text": "[经典表情] (么么哒)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/411.png",
+			"text": "[经典表情] (一起嗨)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/412.png",
+			"text": "[经典表情] (开心)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/413.png",
+			"text": "[经典表情] (摇起来)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/415.png",
+			"text": "[经典表情] (划龙舟)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/416.png",
+			"text": "[经典表情] (中龙舟)"
+		},
+		{
+			"icon": "assets/images/owo/QQ/417.png",
+			"text": "[经典表情] (大龙舟)"
+		}
+	],
+	"emoji表情": [
+		{
+			"icon": "☀",
+			"text": "晴天"
+		},
+		{
+			"icon": "☁",
+			"text": "云朵"
+		},
+		{
+			"icon": "☎",
+			"text": "电话"
+		},
+		{
+			"icon": "☔",
+			"text": "雨天"
+		},
+		{
+			"icon": "☕",
+			"text": "咖啡"
+		},
+		{
+			"icon": "☝",
+			"text": "向上"
+		},
+		{
+			"icon": "☺",
+			"text": "可爱"
+		},
+		{
+			"icon": "♣",
+			"text": "扑克"
+		},
+		{
+			"icon": "♨",
+			"text": "热"
+		},
+		{
+			"icon": "⚡",
+			"text": "闪电"
+		},
+		{
+			"icon": "⛄",
+			"text": "雪人"
+		},
+		{
+			"icon": "⛪",
+			"text": "教堂"
+		},
+		{
+			"icon": "⛵",
+			"text": "船"
+		},
+		{
+			"icon": "✈",
+			"text": "飞机"
+		},
+		{
+			"icon": "✌",
+			"text": "胜利"
+		},
+		{
+			"icon": "✨",
+			"text": "闪光"
+		},
+		{
+			"icon": "❌",
+			"text": "错误"
+		},
+		{
+			"icon": "❔",
+			"text": "问号"
+		},
+		{
+			"icon": "❕",
+			"text": "叹号"
+		},
+		{
+			"icon": "⭐",
+			"text": "星星"
+		},
+		{
+			"icon": "⭕",
+			"text": "正确"
+		},
+		{
+			"icon": "〽",
+			"text": "股票"
+		},
+		{
+			"icon": "🀄",
+			"text": "麻将"
+		},
+		{
+			"icon": "🌂",
+			"text": "雨伞"
+		},
+		{
+			"icon": "🌙",
+			"text": "月亮"
+		},
+		{
+			"icon": "🌴",
+			"text": "椰子树"
+		},
+		{
+			"icon": "🌹",
+			"text": "玫瑰"
+		},
+		{
+			"icon": "🍉",
+			"text": "西瓜"
+		},
+		{
+			"icon": "🍊",
+			"text": "橙子"
+		},
+		{
+			"icon": "🍎",
+			"text": "苹果"
+		},
+		{
+			"icon": "🍓",
+			"text": "草莓"
+		},
+		{
+			"icon": "🍔",
+			"text": "汉堡"
+		},
+		{
+			"icon": "🍙",
+			"text": "饭团"
+		},
+		{
+			"icon": "🍚",
+			"text": "米饭"
+		},
+		{
+			"icon": "🍜",
+			"text": "拉面"
+		},
+		{
+			"icon": "🍝",
+			"text": "意面"
+		},
+		{
+			"icon": "🍞",
+			"text": "面包"
+		},
+		{
+			"icon": "🍟",
+			"text": "薯条"
+		},
+		{
+			"icon": "🍣",
+			"text": "寿司"
+		},
+		{
+			"icon": "🍧",
+			"text": "刨冰"
+		},
+		{
+			"icon": "🍳",
+			"text": "煎蛋"
+		},
+		{
+			"icon": "🍸",
+			"text": "高脚杯"
+		},
+		{
+			"icon": "🍺",
+			"text": "啤酒"
+		},
+		{
+			"icon": "🍻",
+			"text": "干杯"
+		},
+		{
+			"icon": "🎀",
+			"text": "蝴蝶结"
+		},
+		{
+			"icon": "🎂",
+			"text": "蛋糕"
+		},
+		{
+			"icon": "🎄",
+			"text": "圣诞树"
+		},
+		{
+			"icon": "🎈",
+			"text": "气球"
+		},
+		{
+			"icon": "🎉",
+			"text": "庆祝"
+		},
+		{
+			"icon": "🎤",
+			"text": "话筒"
+		},
+		{
+			"icon": "🎥",
+			"text": "摄影机"
+		},
+		{
+			"icon": "🎰",
+			"text": "老虎机"
+		},
+		{
+			"icon": "🎸",
+			"text": "吉他"
+		},
+		{
+			"icon": "🏆",
+			"text": "奖杯"
+		},
+		{
+			"icon": "🏠",
+			"text": "家"
+		},
+		{
+			"icon": "🏥",
+			"text": "医院"
+		},
+		{
+			"icon": "🏦",
+			"text": "银行"
+		},
+		{
+			"icon": "🏧",
+			"text": "取款机"
+		},
+		{
+			"icon": "🏨",
+			"text": "酒店"
+		},
+		{
+			"icon": "🏪",
+			"text": "便利店"
+		},
+		{
+			"icon": "🐎",
+			"text": "骑马"
+		},
+		{
+			"icon": "🐔",
+			"text": "公鸡"
+		},
+		{
+			"icon": "🐙",
+			"text": "章鱼"
+		},
+		{
+			"icon": "🐚",
+			"text": "海螺"
+		},
+		{
+			"icon": "🐛",
+			"text": "虫"
+		},
+		{
+			"icon": "🐠",
+			"text": "鱼"
+		},
+		{
+			"icon": "🐤",
+			"text": "小鸡"
+		},
+		{
+			"icon": "🐧",
+			"text": "企鹅"
+		},
+		{
+			"icon": "🐨",
+			"text": "树懒"
+		},
+		{
+			"icon": "🐭",
+			"text": "老鼠"
+		},
+		{
+			"icon": "🐮",
+			"text": "牛"
+		},
+		{
+			"icon": "🐯",
+			"text": "老虎"
+		},
+		{
+			"icon": "🐳",
+			"text": "鲸鱼"
+		},
+		{
+			"icon": "🐵",
+			"text": "猴"
+		},
+		{
+			"icon": "🐶",
+			"text": "狗"
+		},
+		{
+			"icon": "🐷",
+			"text": "猪"
+		},
+		{
+			"icon": "🐸",
+			"text": "青蛙"
+		},
+		{
+			"icon": "👀",
+			"text": "眼睛"
+		},
+		{
+			"icon": "👂",
+			"text": "耳朵"
+		},
+		{
+			"icon": "👃",
+			"text": "鼻子"
+		},
+		{
+			"icon": "👄",
+			"text": "嘴唇"
+		},
+		{
+			"icon": "👆",
+			"text": "向上"
+		},
+		{
+			"icon": "👇",
+			"text": "向下"
+		},
+		{
+			"icon": "👈",
+			"text": "向左"
+		},
+		{
+			"icon": "👉",
+			"text": "向右"
+		},
+		{
+			"icon": "👊",
+			"text": "拳头"
+		},
+		{
+			"icon": "👌",
+			"text": "好的"
+		},
+		{
+			"icon": "👍",
+			"text": "厉害"
+		},
+		{
+			"icon": "👎",
+			"text": "鄙视"
+		},
+		{
+			"icon": "👏",
+			"text": "鼓掌"
+		},
+		{
+			"icon": "👑",
+			"text": "皇冠"
+		},
+		{
+			"icon": "👒",
+			"text": "帽子"
+		},
+		{
+			"icon": "👕",
+			"text": "衣服"
+		},
+		{
+			"icon": "👗",
+			"text": "连衣裙"
+		},
+		{
+			"icon": "👙",
+			"text": "内衣"
+		},
+		{
+			"icon": "👜",
+			"text": "包"
+		},
+		{
+			"icon": "👟",
+			"text": "鞋子"
+		},
+		{
+			"icon": "👠",
+			"text": "高跟鞋"
+		},
+		{
+			"icon": "👢",
+			"text": "靴子"
+		},
+		{
+			"icon": "👣",
+			"text": "脚印"
+		},
+		{
+			"icon": "👦",
+			"text": "男孩"
+		},
+		{
+			"icon": "👧",
+			"text": "女孩"
+		},
+		{
+			"icon": "👨",
+			"text": "爸爸"
+		},
+		{
+			"icon": "👩",
+			"text": "妈妈"
+		},
+		{
+			"icon": "👻",
+			"text": "幽灵"
+		},
+		{
+			"icon": "👼",
+			"text": "天使"
+		},
+		{
+			"icon": "💀",
+			"text": "骷髅"
+		},
+		{
+			"icon": "💄",
+			"text": "口红"
+		},
+		{
+			"icon": "💈",
+			"text": "理发厅"
+		},
+		{
+			"icon": "💉",
+			"text": "打针"
+		},
+		{
+			"icon": "💊",
+			"text": "药丸"
+		},
+		{
+			"icon": "💍",
+			"text": "戒指"
+		},
+		{
+			"icon": "💓",
+			"text": "爱心"
+		},
+		{
+			"icon": "💝",
+			"text": "礼物"
+		},
+		{
+			"icon": "💣",
+			"text": "炸弹"
+		},
+		{
+			"icon": "💤",
+			"text": "睡觉"
+		},
+		{
+			"icon": "💦",
+			"text": "水"
+		},
+		{
+			"icon": "💨",
+			"text": "吹气"
+		},
+		{
+			"icon": "💩",
+			"text": "便便"
+		},
+		{
+			"icon": "💪",
+			"text": "肌肉"
+		},
+		{
+			"icon": "💰",
+			"text": "钱"
+		},
+		{
+			"icon": "💻",
+			"text": "电脑"
+		},
+		{
+			"icon": "💿",
+			"text": "光碟"
+		},
+		{
+			"icon": "📠",
+			"text": "传真"
+		},
+		{
+			"icon": "📫",
+			"text": "邮箱"
+		},
+		{
+			"icon": "📱",
+			"text": "手机"
+		},
+		{
+			"icon": "📷",
+			"text": "相机"
+		},
+		{
+			"icon": "🔑",
+			"text": "钥匙"
+		},
+		{
+			"icon": "🔒",
+			"text": "锁"
+		},
+		{
+			"icon": "🔔",
+			"text": "铃铛"
+		},
+		{
+			"icon": "🔥",
+			"text": "火"
+		},
+		{
+			"icon": "🔫",
+			"text": "手枪"
+		},
+		{
+			"icon": "😁",
+			"text": "呲牙"
+		},
+		{
+			"icon": "😂",
+			"text": "激动"
+		},
+		{
+			"icon": "😄",
+			"text": "高兴"
+		},
+		{
+			"icon": "😉",
+			"text": "媚眼"
+		},
+		{
+			"icon": "😊",
+			"text": "嘿嘿"
+		},
+		{
+			"icon": "😌",
+			"text": "羞涩"
+		},
+		{
+			"icon": "😍",
+			"text": "花痴"
+		},
+		{
+			"icon": "😏",
+			"text": "哼哼"
+		},
+		{
+			"icon": "😒",
+			"text": "不屑"
+		},
+		{
+			"icon": "😓",
+			"text": "汗"
+		},
+		{
+			"icon": "😔",
+			"text": "失落"
+		},
+		{
+			"icon": "😘",
+			"text": "飞吻"
+		},
+		{
+			"icon": "😚",
+			"text": "亲亲"
+		},
+		{
+			"icon": "😜",
+			"text": "淘气"
+		},
+		{
+			"icon": "😝",
+			"text": "吐舌"
+		},
+		{
+			"icon": "😭",
+			"text": "大哭"
+		},
+		{
+			"icon": "😰",
+			"text": "紧张"
+		},
+		{
+			"icon": "😱",
+			"text": "害怕"
+		},
+		{
+			"icon": "😳",
+			"text": "瞪眼"
+		},
+		{
+			"icon": "🙏",
+			"text": "合十"
+		},
+		{
+			"icon": "🚀",
+			"text": "火箭"
+		},
+		{
+			"icon": "🚄",
+			"text": "列车"
+		},
+		{
+			"icon": "🚌",
+			"text": "公交"
+		},
+		{
+			"icon": "🚗",
+			"text": "汽车"
+		},
+		{
+			"icon": "🚤",
+			"text": "快艇"
+		},
+		{
+			"icon": "🚥",
+			"text": "信号灯"
+		},
+		{
+			"icon": "🚧",
+			"text": "路障"
+		},
+		{
+			"icon": "🚬",
+			"text": "吸烟"
+		},
+		{
+			"icon": "🚲",
+			"text": "自行车"
+		},
+		{
+			"icon": "🚹",
+			"text": "男性"
+		},
+		{
+			"icon": "🚺",
+			"text": "女性"
+		},
+		{
+			"icon": "🚽",
+			"text": "马桶"
+		},
+		{
+			"icon": "🛀",
+			"text": "浴缸"
 		}
 	],
 	"泡泡表情": [

@@ -27,6 +27,19 @@
 12. 主题内置sitemap、百度推送、友链、隐藏内容回复、付费、登录可见等，无需依赖任何插件
 13. 主题内置Typecho后台独立友情链接管理面板，独立商品订单管理面板，无需依赖任何插件
 
+## 安装教程
+
+1. 首先下载 [Typecho正式版程序包](https://blog.bri6.cn/goto?url=aHR0cHM6Ly90eXBlY2hvLm9yZy9kb3dubG9hZA==&cid=18)，解压压缩包到你新建的网站根目录中后访问你的网站网址进行安装
+2. 安装完成后将Joe再续前缘主题压缩包放入Typecho程序目录下 usr/themes 目录中
+3. 然后进入Typecho后台，选择控制台>外观>启用Joe再续前缘主题
+4. 恭喜你大功告成，可以开始创作啦！
+
+## 主题下载
+
+[点击下载发布版](https://blog.bri6.cn/goto?url=aHR0cHM6Ly93d2RkLmxhbnpvdWUuY29tL2IwMWt5bzduYQ==&cid=18)
+
+提取码：6666
+
 ## Joe再续前缘更新日志
 
 ### 1.00

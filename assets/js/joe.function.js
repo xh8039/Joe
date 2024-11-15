@@ -8,6 +8,28 @@ window.Joe.scrollTo = (selector) => {
 	window.scrollTo({ top, behavior: 'smooth' });
 }
 
+window.Joe.tooltip = () => {
+	if (Joe.IS_MOBILE) {
+		// 遍历所有的元素
+		$('[data-toggle="tooltip"]').each(function () {
+			// 获取当前元素的data-original-title属性
+			var title = $(this).attr('data-original-title') || $(this).attr('title');
+			// 设置title属性为data-original-title的值
+			$(this).attr('title', title);
+			['data-toggle', 'data-placement'].forEach(value => {
+				$(this).removeAttr(value);
+			});
+		});
+	} else {
+		$("[data-toggle='tooltip']").tooltip({
+			container: "body"
+		});
+		$("[data-toggle='tooltip']").on('click', function (event) {
+			$(this).tooltip('hide');
+		});
+	}
+}
+
 if (window.Joe.LoadingAnimation) {
 	window.Joe.loadingStart = () => {
 		$("#loading-animation").fadeIn(150);

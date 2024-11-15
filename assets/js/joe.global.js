@@ -765,10 +765,10 @@ document.addEventListener("DOMContentLoaded", () => {
 						<ul class="scroll" data-type="${key}">
 							${item.map((_) => {
 								if (key == '颜文字' || key == 'emoji') {
-									return `<li class="item" data-text="${_.text}"><span title="${_.text}">${_.icon}</span></li>`;
+									return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.text}">${_.icon}</li>`;
 								} else {
 									let title = /.*?\((.*?)\)/.exec(_.text)[1];
-									return `<li class="item" data-text="${_.text}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${title}" alt="${title}"/></li>`;
+									return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${title}" alt="${title}"/></li>`;
 								}
 							}).join("")}
 						</ul>`;
@@ -780,6 +780,7 @@ document.addEventListener("DOMContentLoaded", () => {
 							<div class="bar no-scrollbar">${barStr}</div>
 						</div>
 					`);
+					window.Joe.tooltip();
 					$(document).on("click", function () {
 						$(".joe_owo__contain .box").stop().slideUp("fast");
 					});
@@ -1234,25 +1235,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	{
 		// tooltip.js
-		if (Joe.IS_MOBILE) {
-			// 遍历所有的元素
-			$('[data-toggle="tooltip"]').each(function () {
-				// 获取当前元素的data-original-title属性
-				var title = $(this).attr('data-original-title') || $(this).attr('title');
-				// 设置title属性为data-original-title的值
-				$(this).attr('title', title);
-				['data-toggle', 'data-placement'].forEach(value => {
-					$(this).removeAttr(value);
-				});
-			});
-		} else {
-			$("[data-toggle='tooltip']").tooltip({
-				container: "body"
-			});
-			$("[data-toggle='tooltip']").on('click', function (event) {
-				$(this).tooltip('hide');
-			});
-		}
+		window.Joe.tooltip();
 		// popover.js
 		$("[data-toggle='popover']").popover({
 			sanitize: false,

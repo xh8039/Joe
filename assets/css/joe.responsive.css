@@ -105,7 +105,7 @@
 		width: calc(100% / 10)
 	}
 
-	html .joe_owo__contain .box .scroll:nth-child(4) .item {
+	html .joe_owo__contain .box .scroll:nth-child(5) .item {
 		width: calc(100% / 3);
 	}
 
@@ -622,7 +622,7 @@
 		/* width: calc(100% / 2) */
 	}
 
-	html .joe_owo__contain .box .scroll:nth-child(4) .item {
+	html .joe_owo__contain .box .scroll:nth-child(5) .item {
 		width: calc(100% / 2);
 	}
 
@@ -828,7 +828,7 @@
 		width: calc(100% / 5);
 	}
 
-	html .joe_owo__contain .box .scroll:nth-child(4) .item {
+	html .joe_owo__contain .box .scroll:nth-child(5) .item {
 		width: calc(100% / 1);
 	}
 }

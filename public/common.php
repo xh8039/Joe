@@ -57,17 +57,19 @@ function themeInit($self)
 
 	session_start();
 
-	Typecho_Widget::widget('Widget_User')->to($user);
-	$GLOBALS['JOE_USER'] = $user;
-	if ($user->hasLogin()) {
-		define('USER_ID', $user->uid);
-	} else {
-		$cookiesid = isset($_COOKIE['userid']) ? $_COOKIE['userid'] : null;
-		if ((!$cookiesid) || (!preg_match('/^[0-9a-z]{32}$/i', $cookiesid))) {
-			$cookiesid = md5(uniqid(mt_rand(), 1) . time());
-			setcookie('userid', $cookiesid, time() + 94672800, '/'); // 游客用户ID存储三年
+	if (!isset($GLOBALS['JOE_USER'])) {
+		Typecho_Widget::widget('Widget_User')->to($user);
+		$GLOBALS['JOE_USER'] = $user;
+		if ($user->hasLogin()) {
+			if (!defined('USER_ID')) define('USER_ID', $user->uid);
+		} else {
+			$cookiesid = isset($_COOKIE['userid']) ? $_COOKIE['userid'] : null;
+			if ((!$cookiesid) || (!preg_match('/^[0-9a-z]{32}$/i', $cookiesid))) {
+				$cookiesid = md5(uniqid(mt_rand(), 1) . time());
+				setcookie('userid', $cookiesid, time() + 94672800, '/'); // 游客用户ID存储三年
+			}
+			if (!defined('USER_ID')) define('USER_ID', $cookiesid);
 		}
-		define('USER_ID', $cookiesid);
 	}
 
 	/* 主题开放API 路由规则 */

@@ -40,6 +40,46 @@
 
 提取码：6666
 
+## 编辑器说明图
+
+![Joe再续前缘编辑器说明图](http://storage.bri6.cn/media/202207252029421.jpg)
+
+## 主题目录介绍（非实时）
+
+├── admin 主题后台面板
+
+├── assets 主题静态资源
+
+├── module 一些共用的模块
+
+├── options 主题设置文件夹
+
+├── public 主题公共文件夹
+
+├── 404.php 404页面
+
+├── archive.php 搜索和分类页面
+
+├── friends.php 友情链接页面
+
+├── functions.php 主题的核心文件
+
+├── index.php 博客首页页面
+
+├── leaving.php 留言板页面
+
+├── live.php 虎牙直播页面
+
+├── page.php 独立页面
+
+├── post.php 文章页面
+
+├── screenshot.php 主题截图图片
+
+├── video.php 全网影视页面
+
+└── wallpaper.php 壁纸页面
+
 ## Joe再续前缘更新日志
 
 ### 1.00
@@ -271,39 +311,3 @@
 - 全新重构文章导读功能底层代码和UI，根据文章内容自动生成文章目录，支持点击目录跳转到对应章节、目录自动切换到当前阅读的章节、目录跟随文章内容滚动
 
 [查看更多日志](/UPDATE.md)
-
-## 主题目录介绍（非实时）
-
-├── assets 主题静态资源
-
-├── public 主题核心文件夹
-
-├── module 共用的一些模块文件
-
-├── options 主题设置文件夹
-
-├── 404.php 404页面
-
-├── archive.php 搜索页面
-
-├── friends.php 友情链接页面
-
-├── functions.php 主题的外观、功能设置
-
-├── index.php 博客首页页面
-
-├── leaving.php 留言板页面
-
-├── live.php 虎牙直播页面
-
-├── package.json 主题发布至NPM仓库使用（勿动）
-
-├── page.php 独立页面
-
-├── post.php 文章页面
-
-├── screenshot.php 主题截图图片
-
-├── video.php 全网影视页面
-
-└── wallpaper.php 壁纸页面

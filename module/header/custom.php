@@ -125,7 +125,7 @@ $custom_navs = joe\custom_navs();
 									<div class="padding-10">
 										<div class="sub-user-box">
 											<div class="user-info flex ac relative">
-												<a href="http://bri6.cn/author/1">
+												<a href="<?= $this->user->permalink ?>">
 													<span class="avatar-img">
 														<img alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="lazyload avatar avatar-id-1">
 													</span>

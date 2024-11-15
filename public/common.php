@@ -14,6 +14,8 @@ define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
 header('Generator: YiHang');
 header('Author: YiHang');
 
+joe\install();
+
 if (Helper::options()->JShieldScan != 'off') {
 	require_once JOE_ROOT . 'public/tencent_protect.php';
 }

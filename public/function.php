@@ -699,27 +699,24 @@ function panel_exists(string $fileName): bool
 function install()
 {
 	if (PHP_VERSION < 7.4) {
-		echo '<script>alert("请使用 PHP 7.4 及以上版本！");</script>';
+		throw new Typecho_Exception('请使用 PHP 7.4 及以上版本！');
 		exit;
-		return;
 	}
 
 	// 检查目录本身的权限
 	if (!is_writeable(__FILE__) || !is_readable(__FILE__)) {
 		if (chmod(__FILE__, 0755)) {
-			echo '<script>alert("请刷新本页面！");</script>';
+			throw new Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
 		} else {
-			echo '<script>alert("请设置主题目录及其子目录的权限为755后再设置本主题！");</script>';
+			throw new Typecho_Exception('请设置主题目录及其子目录的权限为755后再设置本主题！');
 		}
 		exit;
-		return;
 	}
 
 	$_db = Typecho_Db::get();
 	if ((float) $_db->getVersion() < 5.6) {
-		echo '<script>alert("请使用 MySql 5.6 及以上版本！");</script>';
+		throw new Typecho_Exception('请使用 MySql 5.6 及以上版本！');
 		exit;
-		return;
 	}
 
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
@@ -739,7 +736,8 @@ function install()
 			if (file_put_contents($lock_file, THEME_NAME)) {
 				echo '<script>alert("主题目录更换为 [' . THEME_NAME . '] 成功！");</script>';
 			} else {
-				echo '<script>alert("主题目录更换为 [' . THEME_NAME . '] 失败！请务必手动创建安装锁文件 [install.lock] 文件内容为 [' . THEME_NAME . '] 到主题的 public 目录下！");</script>';
+				throw new Typecho_Exception('主题目录更换为 [' . THEME_NAME . '] 失败！请务必手动创建安装锁文件 [install.lock] 文件内容为 [' . THEME_NAME . '] 到主题的 public 目录下！');
+				exit;
 			}
 		}
 		return;
@@ -870,7 +868,7 @@ function install()
 				create_time TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
 			);');
 		} else {
-			echo '暂不兼容 [' . $adapter . '] 数据库适配器！';
+			throw new Typecho_Exception('暂不兼容 [' . $adapter . '] 数据库适配器！');
 			exit;
 		}
 
@@ -912,10 +910,11 @@ function install()
 		if (file_put_contents($lock_file, THEME_NAME)) {
 			echo '<script>alert("主题首次启用安装成功！");</script>';
 		} else {
-			echo '<script>alert("主题首次启用安装失败！请务必手动创建安装锁文件 install.lock 到主题的public目录下！");</script>';
+			throw new Typecho_Exception('主题首次启用安装失败！请务必手动创建安装锁文件 install.lock 到主题的public目录下！');
+			exit;
 		}
 	} catch (\Exception $e) {
-		echo $e;
+		throw new Typecho_Exception($e);
 		exit;
 	}
 }

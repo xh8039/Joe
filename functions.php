@@ -13,7 +13,6 @@ require_once JOE_ROOT . 'public/common.php';
 
 function themeConfig($form)
 {
-	joe\install();
 ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/config/css/joe.config.css') ?>">
 	<script src="<?= joe\theme_url('assets/plugin/jquery/3.6.0/jquery.min.js', false) ?>"></script>

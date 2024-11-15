@@ -765,7 +765,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						<ul class="scroll" data-type="${key}">
 							${item.map((_) => {
 								if (key == '颜文字' || key == 'emoji') {
-									return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.text}">${_.icon}</li>`;
+									return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.icon}">${_.icon}</li>`;
 								} else {
 									let title = /.*?\((.*?)\)/.exec(_.text)[1];
 									return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${title}" alt="${title}"/></li>`;

@@ -2694,6 +2694,7 @@
 	border-radius: 50%;
 	text-align: center
 }
+
 .joe_cloud__btn:focus,
 .joe_cloud__btn:hover {
 	color: #fff;
@@ -4506,7 +4507,7 @@ html .line-numbers .line-numbers-rows {
 
 .joe_owo__contain .box .scroll .item {
 	text-align: center;
-	width: calc(100% / 12);
+	width: calc(100% / 15);
 	display: inline-block;
 	padding: 5px;
 	cursor: pointer;
@@ -4523,7 +4524,12 @@ html .line-numbers .line-numbers-rows {
 	background: var(--classD)
 }
 
-.joe_owo__contain .box .scroll:nth-child(4) .item {
+.joe_owo__contain .box .scroll:nth-child(3) .item {
+	font-size: 22px;
+	line-height: 1;
+}
+
+.joe_owo__contain .box .scroll:nth-child(7) .item {
 	color: var(--routine);
 	width: calc(100% / 4);
 	white-space: nowrap;

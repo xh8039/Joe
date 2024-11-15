@@ -1110,3 +1110,12 @@ function icon_crid_info($content)
 		'target' => $content[2] ?? '_self'
 	];
 }
+
+function ExternaToInternalLink(string $ExternaLink, int $post_cid)
+{
+	$link_host = parse_url($ExternaLink, PHP_URL_HOST);
+	if ($link_host == JOE_DOMAIN) {
+		return $ExternaLink;
+	}
+	return \Helper::options()->index . '/goto?url=' . base64_encode($ExternaLink) . '&cid=' . $post_cid;
+}

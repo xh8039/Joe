@@ -66,7 +66,7 @@ function _parseReply($text)
 {
 	$emoticon = json_decode(file_get_contents(JOE_ROOT . 'assets/json/joe.owo.json'), true);
 	unset($emoticon['颜文字']);
-	unset($emoticon['emoji 表情']);
+	unset($emoticon['emoji表情']);
 	$emoticon_text_list = [];
 	$emoticon_icon_list = [];
 	foreach ($emoticon as $emoticon_list) {

@@ -118,8 +118,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<input type="url" placeholder="LOGO地址，不填写则使用您的QQ头像" id="logo">
 	</div>
 	<div class="input">
-		<label class="input-label">ＱＱ</label>
-		<input type="number" placeholder="你的ＱＱ号" id="qq">
+		<!-- <label class="input-label">ＱＱ</label> -->
+		<label class="input-label">邮箱</label>
+		<input type="number" placeholder="你的邮箱号" id="email">
 	</div>
 	<div class="input">
 		<label class="input-label">验证</label>
@@ -137,9 +138,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		var description = $('#description').val();
 		var link = $('#link').val();
 		var logo = $('#logo').val();
-		var qq = $('#qq').val();
+		var email = $('#email').val();
 		var captcha = $('#captcha').val();
-		if (!(title && link && qq)) {
+		if (!(title && link && email)) {
 			Qmsg.warning('请填写必填项');
 			return
 		}
@@ -152,7 +153,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				description: description,
 				link: link,
 				logo: logo,
-				qq: qq,
+				email: email,
 				captcha: captcha
 			},
 			dataType: "json",

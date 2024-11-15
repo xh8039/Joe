@@ -789,7 +789,7 @@ function install()
 				`description` TEXT,
 				`logo` TEXT,
 				`rel` TEXT,
-				`qq` TEXT,
+				`email` TEXT,
 				`order` INTEGER NOT NULL DEFAULT 0,
 				`status` INTEGER NOT NULL DEFAULT 0,
 				`create_time` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -822,7 +822,7 @@ function install()
 				`description` TEXT DEFAULT NULL,
 				`logo` TEXT DEFAULT NULL,
 				`rel` varchar(128) DEFAULT NULL,
-				`qq` varchar(32) DEFAULT NULL,
+				`email` varchar(32) DEFAULT NULL,
 				`order` INT NOT NULL DEFAULT 0,
 				`status` BOOLEAN NOT NULL DEFAULT FALSE,
 				`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -855,7 +855,7 @@ function install()
 				description TEXT,
 				logo TEXT,
 				rel VARCHAR(128),
-				qq VARCHAR(32),
+				email VARCHAR(32),
 				"order" INT NOT NULL DEFAULT 0,
 				"status" BOOLEAN NOT NULL DEFAULT FALSE,
 				create_time TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()

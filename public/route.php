@@ -710,22 +710,22 @@ function _friendSubmit($self)
 	$description = $self->request->description;
 	$link = $self->request->link;
 	$logo = $self->request->logo;
-	$qq = $self->request->qq;
-	if (empty($title) || empty($link) || empty($qq)) {
+	$email = $self->request->email;
+	if (empty($title) || empty($link) || empty($email)) {
 		$self->response->throwJson([
 			'code' => 0,
 			'msg' => '必填项不能为空'
 		]);
 	}
-	if (!preg_match('/[1-9][0-9]{4,}/', $qq)) {
+	if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) {
 		$self->response->throwJson([
 			'code' => 0,
-			'msg' => 'QQ号错误！'
+			'msg' => '邮箱号错误！'
 		]);
 	}
-	if (empty($logo)) {
-		$logo = 'http://q4.qlogo.cn/headimg_dl?dst_uin=' . $qq . '&spec=640';
-	}
+
+	if (empty($logo)) $logo = joe\theme_url('assets/images/avatar-default.png', false);
+
 	$db = Typecho_Db::get();
 	$sql = $db->insert('table.friends')->rows(
 		array(
@@ -733,7 +733,7 @@ function _friendSubmit($self)
 			'url' =>  $link,
 			'logo' =>  $logo,
 			'description' => $description,
-			'qq' => $qq,
+			'email' => $email,
 		)
 	);
 	if ($db->query($sql)) {
@@ -744,7 +744,7 @@ function _friendSubmit($self)
 			<p>站点链接：$link</p>
 			<p>站点LOGO：$logo</p>
 			<p>站点描述：$description</p>
-			<p>对方QQ号：$qq</p>";
+			<p>对方邮箱：$email</p>";
 			$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
 		}
 		$self->response->throwJson([

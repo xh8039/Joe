@@ -37,9 +37,9 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 				$rel = new Typecho_Widget_Helper_Form_Element_Text('rel', null, "friend", _t('友链rel属性'));
 				$form->addInput($rel);
 
-				/** 友链QQ号 */
-				$qq = new Typecho_Widget_Helper_Form_Element_Text('qq', null, null, _t('友链QQ号'));
-				$form->addInput($qq);
+				/** 友链邮箱 */
+				$email = new Typecho_Widget_Helper_Form_Element_Text('email', null, null, _t('友链邮箱'));
+				$form->addInput($email);
 
 				/** 友链排序 */
 				$order = new Typecho_Widget_Helper_Form_Element_Text('order', null, "0", _t('友链排序'));
@@ -80,7 +80,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 					$logo->value($link['logo']);
 					$description->value($link['description']);
 					$rel->value($link['rel']);
-					$qq->value($link['qq']);
+					$email->value($link['email']);
 					$order->value($link['order']);
 					// $user->value($link['user']);
 					$status->value($link['status']);

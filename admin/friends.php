@@ -64,7 +64,7 @@ if ($action == 'insert') {
 			'logo' =>  $_POST['logo'],
 			'description' =>  $_POST['description'],
 			'rel' =>  $_POST['rel'],
-			'qq' => $_POST['qq'],
+			'email' => $_POST['email'],
 			'order' =>  $_POST['order'],
 			'status' =>  $_POST['status']
 		)
@@ -86,7 +86,7 @@ if ($action == 'update') {
 				'logo' =>  $_POST['logo'],
 				'description' =>  $_POST['description'],
 				'rel' =>  $_POST['rel'],
-				'qq' => $_POST['qq'],
+				'email' => $_POST['email'],
 				'order' =>  $_POST['order'],
 				'status' =>  $_POST['status']
 			)
@@ -112,8 +112,8 @@ if ($action == 'delete') {
 	if ($db->query($sql)) {
 		if (Helper::options()->JFriendsStatusEmail == 'on') {
 			foreach ($friends as $key => $value) {
-				if (!empty($value['qq']) && preg_match('/[1-9][0-9]{4,}/', $value['qq'])) {
-					joe\send_email('您的友情链接已被删除', '', '友情链接地址：' . $value['url'], $value['qq'] . '@qq.com');
+				if (!empty($value['email']) && preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $value['email'])) {
+					joe\send_email('您的友情链接已被删除', '', '友情链接地址：' . $value['url'], $value['email']);
 				}
 			}
 		}
@@ -131,8 +131,8 @@ if ($action == 'open') {
 		if (Helper::options()->JFriendsStatusEmail == 'on') {
 			$friends = getFriends($id);
 			foreach ($friends as $value) {
-				if (!empty($value['qq']) && preg_match('/[1-9][0-9]{4,}/', $value['qq'])) {
-					joe\send_email('您的友情链接已通过审核', '', '<p>友情链接网址：' . $value['url'] . '</p><p>本站网址：' . Helper::options()->siteUrl . '</p>', $value['qq'] . '@qq.com');
+				if (!empty($value['email']) && preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $value['email'])) {
+					joe\send_email('您的友情链接已通过审核', '', '<p>友情链接网址：' . $value['url'] . '</p><p>本站网址：' . Helper::options()->siteUrl . '</p>', $value['email']);
 				}
 			}
 		}
@@ -150,8 +150,8 @@ if ($action == 'disable') {
 		if (Helper::options()->JFriendsStatusEmail == 'on') {
 			$friends = getFriends($id);
 			foreach ($friends as $value) {
-				if (!empty($value['qq']) && preg_match('/[1-9][0-9]{4,}/', $value['qq'])) {
-					joe\send_email('您的友情链接已被禁用', '', '友情链接地址：' . $value['url'], $value['qq'] . '@qq.com');
+				if (!empty($value['email']) && preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $value['email'])) {
+					joe\send_email('您的友情链接已被禁用', '', '友情链接地址：' . $value['url'], $value['email']);
 				}
 			}
 		}

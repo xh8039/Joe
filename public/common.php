@@ -14,21 +14,6 @@ define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
 header('Generator: YiHang');
 header('Author: YiHang');
 
-session_start();
-
-Typecho_Widget::widget('Widget_User')->to($user);
-$GLOBALS['JOE_USER'] = $user;
-if ($user->hasLogin()) {
-	define('USER_ID', $user->uid);
-} else {
-	$cookiesid = isset($_COOKIE['userid']) ? $_COOKIE['userid'] : null;
-	if ((!$cookiesid) || (!preg_match('/^[0-9a-z]{32}$/i', $cookiesid))) {
-		$cookiesid = md5(uniqid(mt_rand(), 1) . time());
-		setcookie('userid', $cookiesid, time() + 94672800, '/'); // 游客用户ID存储三年
-	}
-	define('USER_ID', $cookiesid);
-}
-
 /* 继承方法函数 */
 require_once(JOE_ROOT . 'public/widget.php');
 
@@ -50,6 +35,8 @@ require_once(JOE_ROOT . 'public/factory.php');
 /* 主题初始化 */
 function themeInit($self)
 {
+	/** 首次启用安装主题 */
+	joe\install();
 	/* 强制用户要求填写邮箱 */
 	Helper::options()->commentsRequireMail = true;
 	/* 强制用户要求无需填写url */
@@ -59,14 +46,28 @@ function themeInit($self)
 	/* 强制回复楼层最高999层 */
 	Helper::options()->commentsMaxNestingLevels = 999;
 
-	if (Helper::options()->JShieldScan != 'off') {
-		require_once JOE_ROOT . 'public/tencent_protect.php';
-	}
+	/** 屏蔽垃圾机器人 */
+	if (Helper::options()->JShieldScan != 'off') require_once JOE_ROOT . 'public/tencent_protect.php';
 
 	if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
 		// 我就不信这次腾讯会再给封了！！！
 		require JOE_ROOT . 'module/jump.php';
 		exit;
+	}
+
+	session_start();
+
+	Typecho_Widget::widget('Widget_User')->to($user);
+	$GLOBALS['JOE_USER'] = $user;
+	if ($user->hasLogin()) {
+		define('USER_ID', $user->uid);
+	} else {
+		$cookiesid = isset($_COOKIE['userid']) ? $_COOKIE['userid'] : null;
+		if ((!$cookiesid) || (!preg_match('/^[0-9a-z]{32}$/i', $cookiesid))) {
+			$cookiesid = md5(uniqid(mt_rand(), 1) . time());
+			setcookie('userid', $cookiesid, time() + 94672800, '/'); // 游客用户ID存储三年
+		}
+		define('USER_ID', $cookiesid);
 	}
 
 	/* 主题开放API 路由规则 */

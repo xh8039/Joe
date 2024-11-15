@@ -11,11 +11,10 @@ define('JOE_ROOT', dirname(__FILE__) . '/');
 /* Joe核心文件 */
 require_once JOE_ROOT . 'public/common.php';
 
-/** 首次启用安装主题 */
-joe\install();
-
 function themeConfig($form)
 {
+	/** 首次启用安装主题 */
+	joe\install();
 ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/config/css/joe.config.css') ?>">
 	<script src="<?= joe\theme_url('assets/plugin/jquery/3.6.0/jquery.min.js', false) ?>"></script>

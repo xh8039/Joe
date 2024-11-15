@@ -20,7 +20,7 @@ $JFooterMode = new \Typecho\Widget\Helper\Form\Element\Select(
 	['commercial' => '详细（默认）', 'simple' => '简约'],
 	'commercial',
 	'底栏模式',
-	'介绍：个人简约模式下面两个设置可以设置，偏商业化的详细模式除了下面两个所有都可以设置'
+	'介绍：简约模式下面两个设置可以设置，详细模式除了下面两个所有都可以设置'
 );
 $JFooterMode->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterMode->multiMode());

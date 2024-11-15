@@ -14,6 +14,12 @@ define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
 header('Generator: YiHang');
 header('Author: YiHang');
 
+/* 公用函数 */
+require_once(JOE_ROOT . 'public/function.php');
+
+/** 首次启用安装主题 */
+joe\install();
+
 if (Helper::options()->JShieldScan != 'off') {
 	require_once JOE_ROOT . 'public/tencent_protect.php';
 }
@@ -45,9 +51,6 @@ require_once(JOE_ROOT . 'public/widget.php');
 /* Composer自动加载 */
 require_once(JOE_ROOT . 'vendor/autoload.php');
 
-/* 公用函数 */
-require_once(JOE_ROOT . 'public/function.php');
-
 /* 过滤内容函数 */
 require_once(JOE_ROOT . 'public/parse.php');
 
@@ -56,9 +59,6 @@ require_once(JOE_ROOT . 'public/route.php');
 
 /* 插件方法 */
 require_once(JOE_ROOT . 'public/factory.php');
-
-/** 首次启用安装主题 */
-joe\install();
 
 /* 主题初始化 */
 function themeInit($self)

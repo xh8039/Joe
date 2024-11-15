@@ -703,13 +703,24 @@ function install()
 		exit;
 	}
 
-	// 检查目录本身的权限
-	if (!is_writeable(__FILE__) || !is_readable(__FILE__)) {
-		if (chmod(__FILE__, 0757)) {
-			throw new \Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
-		} else {
-			throw new \Typecho_Exception('请设置主题目录及其子目录的权限为 757 后再使用本主题！');
+	$permissions_files = [
+		JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'common.php',
+		JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'function.php',
+		JOE_ROOT . 'function.php',
+	];
+	$set_permissions = false;
+	foreach ($permissions_files as $value) {
+		if (!is_writeable($value) || !is_readable($value)) {
+			if (chmod($value, 0755)) {
+				$set_permissions = true;
+			} else {
+				throw new \Typecho_Exception('请设置主题目录及其子目录的权限为 755 或 777 后再使用本主题！');
+				exit;
+			}
 		}
+	}
+	if ($set_permissions) {
+		throw new \Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
 		exit;
 	}
 

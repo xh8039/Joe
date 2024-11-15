@@ -764,8 +764,12 @@ document.addEventListener("DOMContentLoaded", () => {
 						scrollStr += `
 						<ul class="scroll" data-type="${key}">
 							${item.map((_) => {
-								let title = /.*?\((.*?)\)/.exec(_.text)[1];
-								return `<li class="item" data-text="${_.text}">${(key == '颜文字' || key == 'emoji') ? `<span>${_.icon}</span title="${title}"	alt="${title}">` : `<img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${title}"	alt="${title}"/>`}</li>`;
+								if (key == '颜文字' || key == 'emoji') {
+									return `<li class="item" data-text="${_.text}"><span title="${_.text}">${_.icon}</span></li>`;
+								} else {
+									let title = /.*?\((.*?)\)/.exec(_.text)[1];
+									return `<li class="item" data-text="${_.text}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${title}" alt="${title}"/></li>`;
+								}
 							}).join("")}
 						</ul>`;
 					}

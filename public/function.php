@@ -703,17 +703,6 @@ function install()
 		exit;
 	}
 
-	$lock_file = JOE_ROOT . 'public' . DIRECTORY_SEPARATOR . 'install.lock';
-	if (!is_writeable($lock_file) || !is_readable($lock_file)) {
-		if (chmod($lock_file, 0777)) {
-			throw new \Typecho_Exception('自动设置文件权限成功，请刷新本页面！');
-			exit;
-		} else {
-			throw new \Typecho_Exception('请设置主题目录及其子目录的权限为 777 后再使用本主题！');
-			exit;
-		}
-	}
-
 	$_db = Typecho_Db::get();
 	if ((float) $_db->getVersion() < 5.6) {
 		throw new \Typecho_Exception('请使用 MySql 5.6 及以上版本！');
@@ -723,20 +712,24 @@ function install()
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
 	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
 
-	if (file_exists($lock_file)) {
-		$lock_file_content = file_get_contents($lock_file);
-		if (is_string($lock_file_content) && $lock_file_content != THEME_NAME) {
+	$install_field = 'theme:JoeInstall';
+	$install = $_db->fetchRow($_db->select()->from('table.options')->where('name = ?', $install_field));
+	$install_value = isset($install['value']) ? $install['value'] : null;
+	if ($install_value) {
+		if (is_string($install_value) && $install_value != THEME_NAME) {
 			// 删除更改主题目录名后的重复注册面板沉淀
-			Helper::removePanel(3, '../themes/' . $lock_file_content . '/admin/orders.php');
-			Helper::removePanel(3, '../themes/' . $lock_file_content . '/admin/friends.php');
+			Helper::removePanel(3, '../themes/' . $install_value . '/admin/orders.php');
+			Helper::removePanel(3, '../themes/' . $install_value . '/admin/friends.php');
 
 			// 重新注册新的面板
 			if (!panel_exists($orders_url)) Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
 			if (!panel_exists($friends_url)) Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
-			if (file_put_contents($lock_file, THEME_NAME)) {
+
+			$theme_name_update = $_db->update('table.options')->rows(array('value' => THEME_NAME))->where('name = ?', $install_field);
+			if ($_db->query($theme_name_update)) {
 				echo '<script>alert("主题目录更换为 [' . THEME_NAME . '] 成功！");</script>';
 			} else {
-				throw new \Typecho_Exception('主题目录更换为 [' . THEME_NAME . '] 失败！请务必手动创建安装锁文件 [install.lock] 文件内容为 [' . THEME_NAME . '] 到主题的 public 目录下！');
+				throw new \Typecho_Exception('主题目录更换为 [' . THEME_NAME . '] 失败！');
 				exit;
 			}
 		}
@@ -907,12 +900,9 @@ function install()
 			file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyOm5vdCgjdGhlbWUtSm9lKT50ZD5wPmEuYWN0aXZhdGUnKS5hdHRyKCdocmVmJywgJ2phdmFzY3JpcHQ6YWxlcnQoIuWQr+eUqOWksei0pe+8gVR5cGVjaG/lt7Lnu4/mt7Hmt7HlnLDniLHkuIpKb2Xlho3nu63liY3nvJjkuoblk6YiKScpOwoJfSwgMTAwKSk7Cjwvc2NyaXB0Pg=="); ?>', FILE_APPEND | LOCK_EX);
 		}
 
-		if (file_put_contents($lock_file, THEME_NAME)) {
-			echo '<script>alert("主题首次启用安装成功！");</script>';
-		} else {
-			throw new \Typecho_Exception('主题首次启用安装失败！请务必手动创建安装锁文件 install.lock 到主题的public目录下！');
-			exit;
-		}
+		$theme_install = $_db->insert('table.options')->rows(array('name' => $install_field, 'user' => '0', 'value' => THEME_NAME));
+		$_db->query($theme_install);
+		echo '<script>alert("主题首次启用安装成功！");</script>';
 	} catch (\Exception $e) {
 		throw new \Typecho_Exception($e);
 		exit;

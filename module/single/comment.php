@@ -114,7 +114,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 					?>
 				</div>
 				<div class="foot">
-					<div class="owo joe_owo__contain" data-url="<?= trim($this->options->JOwOAssetsUrl ?? '', '/') ?>/"></div>
+					<div class="owo joe_owo__contain" data-url="<?= empty($this->options->JOwOAssetsUrl) ? '' : rtrim($this->options->JOwOAssetsUrl,' /') . '/' ?>"></div>
 					<div class="submit">
 						<span class="cancle joe_comment__cancle">取消</span>
 						<?php

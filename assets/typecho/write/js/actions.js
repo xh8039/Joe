@@ -552,6 +552,7 @@ export default class JoeAction {
 						});
 					}
 				});
+				window.Joe.tooltip();
 			}
 		});
 	}

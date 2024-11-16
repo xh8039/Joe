@@ -53,7 +53,7 @@ export default class JoeAction {
 	_insetAmboText(cm, str) {
 		const cursor = cm.state.selection.main.head;
 		const selection = this._getSelection(cm);
-		this._replaceSelection(cm, ` ${str + selection + str} `);
+		this._replaceSelection(cm, `${str + selection + str}`);
 		if (selection === '') this._setCursor(cm, cursor + str.length + 1);
 		cm.focus();
 	}
@@ -136,11 +136,12 @@ export default class JoeAction {
 		cm.focus();
 	}
 	handleHr(cm) {
-		const str = `${this._getLineCh(cm) ? '\n' : ''}\n------------\n\n`;
+		const str = `${this._getLineCh(cm) ? '\n' : ''}\n------------\n`;
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
 	handleClean(cm) {
+		if (!window.confirm('确定要清屏吗？')) return;
 		cm.dispatch({ changes: { from: 0, to: cm.state.doc.length, insert: '' } });
 		cm.focus();
 	}
@@ -231,19 +232,19 @@ export default class JoeAction {
 		this._openModal({
 			title: '插入链接',
 			innerHtml: `
-                <div class="fitem">
-                    <label>链接标题</label>
-                    <input autocomplete="off" name="title" placeholder="请输入链接标题"/>
-                </div>
-                <div class="fitem">
-                    <label>链接地址</label>
-                    <input autocomplete="off" name="url" placeholder="请输入链接地址"/>
-                </div>
-            `,
+				<div class="fitem">
+					<label>链接标题</label>
+					<input autocomplete="off" name="title" placeholder="请输入链接标题"/>
+				</div>
+				<div class="fitem">
+					<label>链接地址</label>
+					<input autocomplete="off" name="url" placeholder="请输入链接地址"/>
+				</div>
+			`,
 			confirm: () => {
 				const title = $(".cm-modal input[name='title']").val() || 'Test';
 				const url = $(".cm-modal input[name='url']").val() || 'http://';
-				this._replaceSelection(cm, ` [${title}](${url}) `);
+				this._replaceSelection(cm, `[${title}](${url})`);
 				cm.focus();
 			}
 		});
@@ -252,19 +253,19 @@ export default class JoeAction {
 		this._openModal({
 			title: '插入图片',
 			innerHtml: `
-                <div class="fitem">
-                    <label>图片名称</label>
-                    <input autocomplete="off" name="title" placeholder="请输入图片名称"/>
-                </div>
-                <div class="fitem">
-                    <label>图片地址</label>
-                    <input autocomplete="off" name="url" placeholder="请输入图片地址"/>
-                </div>
-            `,
+				<div class="fitem">
+					<label>图片名称</label>
+					<input autocomplete="off" name="title" placeholder="请输入图片名称"/>
+				</div>
+				<div class="fitem">
+					<label>图片地址</label>
+					<input autocomplete="off" name="url" placeholder="请输入图片地址"/>
+				</div>
+			`,
 			confirm: () => {
 				const title = $(".cm-modal input[name='title']").val() || 'Test';
 				const url = $(".cm-modal input[name='url']").val() || 'http://';
-				this._replaceSelection(cm, ` ![${title}](${url}) `);
+				this._replaceSelection(cm, `![${title}](${url})`);
 				cm.focus();
 			}
 		});
@@ -273,13 +274,15 @@ export default class JoeAction {
 		this._openModal({
 			title: '插入表格',
 			innerHtml: `
-                <div class="fitem">
-                    <label>表格行</label>
-                    <input style="width: 50px; flex: none; margin-right: 10px;" value="3" autocomplete="off" name="row"/>
-                    <label>表格列</label>
-                    <input style="width: 50px; flex: none;" value="3" autocomplete="off" name="column"/>
-                </div>
-            `,
+				<div class="fitem">
+					<label>表格行</label>
+					<input value="3" autocomplete="off" name="row"/>
+				</div>
+				<div class="fitem">
+					<label>表格列</label>
+					<input value="3" autocomplete="off" name="column"/>
+				</div>
+			`,
 			confirm: () => {
 				let row = $(".cm-modal input[name='row']").val();
 				let column = $(".cm-modal input[name='column']").val();
@@ -307,20 +310,20 @@ export default class JoeAction {
 		this._openModal({
 			title: '插入宫格',
 			innerHtml: `
-                <div class="fitem">
-                    <label>宫格列数</label>
-                    <input value="3" autocomplete="off" name="column" placeholder="请输入宫格列数"/>
-                </div>
-                <div class="fitem">
-                    <label>宫格间隔</label>
-                    <input value="15" autocomplete="off" name="gap" placeholder="请输入宫格间隔"/>
-                </div>
-            `,
+				<div class="fitem">
+					<label>宫格列数</label>
+					<input value="3" autocomplete="off" name="column" placeholder="请输入宫格列数"/>
+				</div>
+				<div class="fitem">
+					<label>宫格间隔</label>
+					<input value="15" autocomplete="off" name="gap" placeholder="请输入宫格间隔"/>
+				</div>
+			`,
 			confirm: () => {
 				const column = $(".cm-modal input[name='column']").val();
 				const gap = $(".cm-modal input[name='gap']").val();
 				let htmlStr = '';
-				for (let index = 0; index <= column; index++) {
+				for (let index = 1; index <= column; index++) {
 					htmlStr += `\n{gird-item}\n宫格内容${index}\n{/gird-item}`;
 				}
 				htmlStr = `{gird column="${column}" gap="${gap}"}${htmlStr}\n{/gird}`;
@@ -341,14 +344,14 @@ export default class JoeAction {
 		this._openModal({
 			title: '插入代码块',
 			innerHtml: `
-                <div class="fitem">
-                    <label>语言类型</label>
-                    <select name="type">
-                        <option value="">- 请选择语言类型 -</option>
-                        ${htmlStr}
-                    </select>
-                </div>
-            `,
+				<div class="fitem">
+					<label>语言类型</label>
+					<select name="type">
+						<option value="">- 请选择语言类型 -</option>
+						${htmlStr}
+					</select>
+				</div>
+			`,
 			confirm: () => {
 				const type = $(".cm-modal select[name='type']").val();
 				if (!type) return;
@@ -365,12 +368,12 @@ export default class JoeAction {
 			title: '关于',
 			hasFooter: false,
 			innerHtml: `
-                <ul style="list-style:none;padding: 0;">
-                    <li>短代码功能正在开发中...</li>
-                    <li>仅支持网络图片粘贴上传（截图等）</li>
-                    <li>本编辑器仅供Joe主题使用，未经允许不得移植至其他主题！</li>
-                </ul>
-            `
+				<ul style="list-style:none;padding: 0;">
+					<li>短代码功能正在开发中...</li>
+					<li>仅支持网络图片粘贴上传（截图等）</li>
+					<li>本编辑器仅供Joe主题使用，未经允许不得移植至其他主题！</li>
+				</ul>
+			`
 		});
 	}
 	handleTask(cm, type) {
@@ -398,28 +401,28 @@ export default class JoeAction {
 					</select>
 				</div>
 				<div class="fitem">
-				    <label>循环播放</label>
-				    <select name="loop">
-				        <option value="none" selected>不循环</option>
-				        <option value="one">循环一次</option>
-				        <option value="all">始终循环</option>
-				    </select>
+					<label>循环播放</label>
+					<select name="loop">
+						<option value="none" selected>不循环</option>
+						<option value="one">循环一次</option>
+						<option value="all">始终循环</option>
+					</select>
 				</div>
 				<div class="fitem">
-				    <label>播放顺序</label>
-				    <select name="order">
-				        <option value="list" selected>列表循环</option>
-				        <option value="random">随机循环</option>
-				    </select>
+					<label>播放顺序</label>
+					<select name="order">
+						<option value="list" selected>列表循环</option>
+						<option value="random">随机循环</option>
+					</select>
 				</div>
 				<div class="fitem">
-				    <label>自动主题色</label>
-				    <select name="autotheme">
-				        <option value="1" selected>是</option>
-				        <option value="0">否</option>
-				    </select>
+					<label>自动主题色</label>
+					<select name="autotheme">
+						<option value="1" selected>是</option>
+						<option value="0">否</option>
+					</select>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const id = $(".cm-modal input[name='id']").val();
 				const color = $(".cm-modal input[name='color']").val();
@@ -446,7 +449,7 @@ export default class JoeAction {
 					<label>视频选集</label>
 					<input autocomplete="off" name="page" placeholder="请输入视频选集"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const bvid = $(".cm-modal input[name='bvid']").val();
 				const page = $(".cm-modal input[name='page']").val();
@@ -462,39 +465,39 @@ export default class JoeAction {
 			title: 'M3U8/MP4视频',
 			innerHtml: `
 <div class="fitem">
-    <label>视频地址</label>
-    <input autocomplete="off" name="src" placeholder="请输入视频资源地址"/>
+	<label>视频地址</label>
+	<input autocomplete="off" name="src" placeholder="请输入视频资源地址"/>
 </div>
 <div class="fitem">
-    <label>视频封面</label>
-    <input autocomplete="off" name="pic" placeholder="请输入视频封面地址"/>
+	<label>视频封面</label>
+	<input autocomplete="off" name="pic" placeholder="请输入视频封面地址"/>
 </div>
 <div class="fitem">
-    <label>主题颜色</label>
-    <input autocomplete="off" name="theme" type="color"/>
+	<label>主题颜色</label>
+	<input autocomplete="off" name="theme" type="color"/>
 </div>
 <div class="fitem">
-    <label>自动播放</label>
-    <select name="autoplay">
-        <option value="1" selected>是</option>
-        <option value="0">否</option>
-    </select>
+	<label>自动播放</label>
+	<select name="autoplay">
+		<option value="1" selected>是</option>
+		<option value="0">否</option>
+	</select>
 </div>
 <div class="fitem">
-    <label>循环播放</label>
-    <select name="loop">
-        <option value="0" selected>否</option>
-        <option value="1">是</option>
-    </select>
+	<label>循环播放</label>
+	<select name="loop">
+		<option value="0" selected>否</option>
+		<option value="1">是</option>
+	</select>
 </div>
 <div class="fitem">
-    <label>视频截图</label>
-    <select name="screenshot">
-        <option value="1" selected>是</option>
-        <option value="0">否</option>
-    </select>
+	<label>视频截图</label>
+	<select name="screenshot">
+		<option value="1" selected>是</option>
+		<option value="0">否</option>
+	</select>
 </div>
-            `,
+			`,
 			confirm: () => {
 				let url = $(".cm-modal input[name='src']").val();
 				let pic = $(".cm-modal input[name='pic']").val();
@@ -534,7 +537,7 @@ export default class JoeAction {
 					}</div>`;
 				}
 				this._openModal({
-					title: '普通表情',
+					title: '表情图片',
 					hasFooter: false,
 					innerHtml: `<div class="tabbar">${tabbarStr}</div>${listsStr}`,
 					handler: () => {
@@ -547,7 +550,7 @@ export default class JoeAction {
 						const _this = this;
 						$('.cm-modal__wrapper-bodyer .lists-item').on('click', function () {
 							const text = $(this).attr('data-text');
-							_this._replaceSelection(cm, ` ${text} `);
+							_this._replaceSelection(cm, `${text}`);
 							$('.cm-modal').removeClass('active');
 							cm.focus();
 						});
@@ -565,10 +568,10 @@ export default class JoeAction {
 					<label>标题内容</label>
 					<input autocomplete="off" maxlength="10" name="text" placeholder="请输入标题内容（10字以内）"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const text = $(".cm-modal input[name='text']").val();
-				const str = `\n{mtitle title="${text}"/}\n\n`;
+				const str = `\n{mtitle title="${text}"/}\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
@@ -608,11 +611,11 @@ export default class JoeAction {
 				<div class="fitem">
 					<label>打开方式</label>
 					<select name="target">
-        				<option value="_self" selected>_self（默认，在当前页面打开链接）</option>
-        				<option value="_blank">_blank（在新窗口/标签页打开链接）</option>
-        				<option value="_parent">_parent（在父框架打开链接）</option>
+						<option value="_self" selected>_self（默认，在当前页面打开链接）</option>
+						<option value="_blank">_blank（在新窗口/标签页打开链接）</option>
+						<option value="_parent">_parent（在父框架打开链接）</option>
 						<option value="_top">_top（在整个窗口打开链接）</option>
-    				</select>
+					</select>
 				</div>
 				<div class="fitem">
 					<label>按钮圆角</label>
@@ -622,7 +625,7 @@ export default class JoeAction {
 					<label>按钮内容</label>
 					<input autocomplete="off" name="content" placeholder="请输入按钮内容"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const icon = $(".cm-modal input[name='icon']").val();
 				const color = $(".cm-modal input[name='color']").val();
@@ -655,11 +658,11 @@ export default class JoeAction {
 				<div class="fitem">
 					<label>打开方式</label>
 					<select name="target">
-        				<option value="_self" selected>_self（默认，在当前页面打开链接）</option>
-        				<option value="_blank">_blank（在新窗口/标签页打开链接）</option>
-        				<option value="_parent">_parent（在父框架打开链接）</option>
+						<option value="_self" selected>_self（默认，在当前页面打开链接）</option>
+						<option value="_blank">_blank（在新窗口/标签页打开链接）</option>
+						<option value="_parent">_parent（在父框架打开链接）</option>
 						<option value="_top">_top（在整个窗口打开链接）</option>
-    				</select>
+					</select>
 				</div>
 				<div class="fitem">
 					<label>按钮类型</label>
@@ -675,14 +678,14 @@ export default class JoeAction {
 					<label>按钮内容</label>
 					<input autocomplete="off" name="content" placeholder="请输入按钮内容"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const icon = $(".cm-modal input[name='icon']").val();
 				const href = $(".cm-modal input[name='href']").val();
 				const target = $(".cm-modal input[name='target']").val();
 				const type = $(".cm-modal select[name='type']").val();
 				const content = $(".cm-modal input[name='content']").val();
-				const str = ` {anote icon="${icon}" href="${href}" target="${target}" type="${type}" content="${content}"/} `;
+				const str = `{anote icon="${icon}" href="${href}" target="${target}" type="${type}" content="${content}"/}`;
 				this._replaceSelection(cm, str);
 				cm.focus();
 			}
@@ -700,11 +703,11 @@ export default class JoeAction {
 					<label>结束颜色</label>
 					<input autocomplete="off" value="#1989fa" name="endColor" type="color"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const startColor = $(".cm-modal input[name='startColor']").val();
 				const endColor = $(".cm-modal input[name='endColor']").val();
-				const str = `\n{dotted startColor="${startColor}" endColor="${endColor}"/}\n\n`;
+				const str = `\n{dotted startColor="${startColor}" endColor="${endColor}"/}\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
@@ -723,7 +726,7 @@ export default class JoeAction {
 					<label>卡片宽度</label>
 					<input autocomplete="off" name="width" placeholder="请输入卡片宽度，例如：100%"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const label = $(".cm-modal input[name='label']").val();
 				const width = $(".cm-modal input[name='width']").val();
@@ -741,17 +744,17 @@ export default class JoeAction {
 				<div class="fitem">
 					<label>消息类型</label>
 					<select name="type">
-						<option value="success" selected>success</option>
-						<option value="info">info</option>
-						<option value="warning">warning</option>
-						<option value="error">error</option>
+						<option value="success" selected>success（成功）</option>
+						<option value="info">info（信息）</option>
+						<option value="warning">warning（警告）</option>
+						<option value="error">error（错误）</option>
 					</select>
 				</div>
 				<div class="fitem" style="align-items: flex-start">
 					<label>消息内容</label>
 					<textarea autocomplete="off" name="content" placeholder="请输入消息内容"></textarea>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const type = $(".cm-modal select[name='type']").val();
 				const content = $(".cm-modal textarea[name='content']").val();
@@ -774,7 +777,7 @@ export default class JoeAction {
 					<label>自定义色</label>
 					<input autocomplete="off" value="#ff6c6c" name="color" type="color"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const percentage = $(".cm-modal input[name='percentage']").val();
 				const color = $(".cm-modal input[name='color']").val();
@@ -793,7 +796,7 @@ export default class JoeAction {
 					<label>边框颜色</label>
 					<input autocomplete="off" value="#f0ad4e" name="color" type="color"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const color = $(".cm-modal input[name='color']").val();
 				const str = `\n{callout color="${color}"}\n标注内容\n{/callout}\n\n`;
@@ -808,63 +811,63 @@ export default class JoeAction {
 			title: '插入音乐',
 			innerHtml: `
 <div class="fitem">
-    <label>音频名称</label>
-    <input autocomplete="off" name="name" placeholder="请输入音频名称"/>
+	<label>音频名称</label>
+	<input autocomplete="off" name="name" placeholder="请输入音频名称"/>
 </div>
 <div class="fitem">
-    <label>音频作者</label>
-    <input autocomplete="off" name="artist" placeholder="请输入音频作者"/>
+	<label>音频作者</label>
+	<input autocomplete="off" name="artist" placeholder="请输入音频作者"/>
 </div>
 <div class="fitem">
-    <label>音频地址</label>
-    <input autocomplete="off" name="url" placeholder="请输入音频地址"/>
+	<label>音频地址</label>
+	<input autocomplete="off" name="url" placeholder="请输入音频地址"/>
 </div>
 <div class="fitem">
-    <label>音频封面</label>
-    <input autocomplete="off" name="cover" placeholder="请输入图片地址"/>
+	<label>音频封面</label>
+	<input autocomplete="off" name="cover" placeholder="请输入图片地址"/>
 </div>
 <div class="fitem">
-    <label>主题颜色</label>
-    <input autocomplete="off" name="theme" type="color"/>
+	<label>主题颜色</label>
+	<input autocomplete="off" name="theme" type="color"/>
 </div>
 <div class="fitem">
-    <label>歌词内容</label>
-    <input autocomplete="off" name="lrc" placeholder="请输入歌词内容"/>
+	<label>歌词内容</label>
+	<input autocomplete="off" name="lrc" placeholder="请输入歌词内容"/>
 </div>
 <div class="fitem">
-    <label>歌词类型</label>
-    <select name="lrcType">
-        <option value="3" selected>LRC文件</option>
-        <option value="1">字符串</option>
-    </select>
+	<label>歌词类型</label>
+	<select name="lrcType">
+		<option value="3" selected>LRC文件</option>
+		<option value="1">字符串</option>
+	</select>
 </div>
 <div class="fitem">
-    <label>循环播放</label>
-    <select name="loop">
-        <option value="none" selected>不循环</option>
-        <option value="one">循环一次</option>
-        <option value="all">始终循环</option>
-    </select>
+	<label>循环播放</label>
+	<select name="loop">
+		<option value="none" selected>不循环</option>
+		<option value="one">循环一次</option>
+		<option value="all">始终循环</option>
+	</select>
 </div>
 <div class="fitem">
-    <label>自动播放</label>
-    <select name="autoplay">
-        <option value="1" selected>是</option>
-        <option value="0">否</option>
-    </select>
+	<label>自动播放</label>
+	<select name="autoplay">
+		<option value="1" selected>是</option>
+		<option value="0">否</option>
+	</select>
 </div>
 <div class="fitem">
-    <label>自动主题色</label>
-    <select name="autotheme">
-        <option value="1" selected>是</option>
-        <option value="0">否</option></select>
+	<label>自动主题色</label>
+	<select name="autotheme">
+		<option value="1" selected>是</option>
+		<option value="0">否</option></select>
 </div>
 <div class="fitem">
 为什么播放器设置自动播放后不生效？
 <br />
 因为大多数浏览器禁止了音频自动播放。
 </div>
-            `,
+			`,
 			confirm: () => {
 				const name = $(".cm-modal input[name='name']").val();
 				const artist = $(".cm-modal input[name='artist']").val();
@@ -889,12 +892,12 @@ export default class JoeAction {
 		cm.focus();
 	}
 	handleCardList(cm) {
-		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{card-list}\n{card-list-item}\n 列表一内容\n{/card-list-item}\n{card-list-item}\n 列表二内容\n{/card-list-item}\n{/card-list}\n\n`;
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{card-list}\n{card-list-item}\n列表一内容\n{/card-list-item}\n{card-list-item}\n列表二内容\n{/card-list-item}\n{/card-list}\n\n`;
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
 	handleTimeline(cm) {
-		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{timeline}\n{timeline-item color="#19be6b"}\n 正式上线\n{/timeline-item}\n{timeline-item color="#ed4014"}\n 删库跑路\n{/timeline-item}\n{/timeline}\n\n`;
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{timeline}\n{timeline-item color="#19be6b"}\n正式上线\n{/timeline-item}\n{timeline-item color="#ed4014"}\n删库跑路\n{/timeline-item}\n{/timeline}\n\n`;
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
@@ -915,7 +918,7 @@ export default class JoeAction {
 					<label>复制内容</label>
 					<textarea autocomplete="off" name="copyText" placeholder="请输入需要复制的内容"></textarea>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const showText = $(".cm-modal input[name='showText']").val();
 				const copyText = $(".cm-modal textarea[name='copyText']").val();
@@ -932,7 +935,7 @@ export default class JoeAction {
 		cm.focus();
 	}
 	handleCollapse(cm) {
-		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{collapse}\n{collapse-item label="折叠标题一" open}\n 折叠内容一\n{/collapse-item}\n{collapse-item label="折叠标题二"}\n 折叠内容二\n{/collapse-item}\n{/collapse}\n\n`;
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{collapse}\n{collapse-item label="折叠标题一" open}\n折叠内容一\n{/collapse-item}\n{collapse-item label="折叠标题二"}\n折叠内容二\n{/collapse-item}\n{/collapse}\n\n`;
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
@@ -949,7 +952,7 @@ export default class JoeAction {
 						<option value="error">error（错误）</option>
 					</select>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const type = $(".cm-modal select[name='type']").val();
 				const str = `\n{alert type="${type}"}\n警告提示\n{/alert}\n`;
@@ -990,7 +993,7 @@ export default class JoeAction {
 					<label>提取密码</label>
 					<input autocomplete="off" name="password" placeholder="请输入提取码（非必填）"/>
 				</div>
-            `,
+			`,
 			confirm: () => {
 				const type = $(".cm-modal select[name='type']").val();
 				const title = $(".cm-modal input[name='title']").val();

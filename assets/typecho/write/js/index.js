@@ -270,7 +270,7 @@ class Joe extends JoeAction {
 							super._createTableLists(this.cm, JoeConfig.characterAPI, '星星符号', '字符大全');
 							break;
 						case 'emoji':
-							super._createTableLists(this.cm, JoeConfig.emojiAPI, '表情', '符号表情（需数据库支持）');
+							super._createTableLists(this.cm, JoeConfig.emojiAPI, '表情', '表情符号（需数据库支持）');
 							break;
 						case 'task-no':
 							super.handleTask(this.cm, false);

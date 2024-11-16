@@ -2083,8 +2083,7 @@
 }
 
 .joe_anote:hover {
-	-webkit-transform: translateY(-3px);
-	transform: translateY(-3px)
+	opacity: 0.8;
 }
 
 .joe_anote__icon {

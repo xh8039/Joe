@@ -59,16 +59,19 @@ function _parseContent($post, $login)
 
 	// 云盘下载
 	if (strpos($content, '{cloud') !== false) {
-		// 使用正则表达式匹配链接并直接进行替换
-		$content = preg_replace_callback(
-			'/{cloud([^}]*)url\="([a-zA-z]+:\/\/[^\s]*)"([^}]*)\/}/',
-			function ($matches) use ($post_cid) {
-				$redirect_link = joe\ExternaToInternalLink($matches[2], $post_cid);
-				return '<joe-cloud' . $matches[1] . 'url="' . $redirect_link . '"' . $matches[3] . '></joe-cloud>';
-			},
-			$content
-		);
-		// $content = preg_replace('/{cloud([^}]*)\/}/SU', '<joe-cloud $1></joe-cloud>', $content);
+		if (Helper::options()->JPostLinkRedirect == 'on') {
+			// 使用正则表达式匹配链接并直接进行替换
+			$content = preg_replace_callback(
+				'/{cloud([^}]*)url\="([a-zA-z]+:\/\/[^\s]*)"([^}]*)\/}/',
+				function ($matches) use ($post_cid) {
+					$redirect_link = joe\ExternaToInternalLink($matches[2], $post_cid);
+					return '<joe-cloud' . $matches[1] . 'url="' . $redirect_link . '"' . $matches[3] . '></joe-cloud>';
+				},
+				$content
+			);
+		} else {
+			$content = preg_replace('/{cloud([^}]*)\/}/SU', '<joe-cloud $1></joe-cloud>', $content);
+		}
 	}
 
 	// 便条按钮

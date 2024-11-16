@@ -199,13 +199,14 @@ class Editor
 
 		<script>
 			window.JoeConfig = {
-				uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
-				emojiAPI: '<?= joe\theme_url('assets/typecho/write/json/emoji.json', false) ?>',
-				expressionAPI: '<?= joe\theme_url('assets/json/joe.owo.json', false) ?>',
-				characterAPI: '<?= joe\theme_url('assets/typecho/write/json/character.json', false) ?>',
-				playerAPI: '<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>',
+				uploadAPI: `<?php Helper::security()->index('/action/upload'); ?>`,
+				emojiAPI: `<?= joe\theme_url('assets/typecho/write/json/emoji.json', false) ?>`,
+				expressionAPI: `<?= joe\theme_url('assets/json/joe.owo.json', false) ?>`,
+				characterAPI: `<?= joe\theme_url('assets/typecho/write/json/character.json', false) ?>`,
+				playerAPI: `<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>`,
 				autoSave: <?php Helper::options()->autoSave(); ?>,
-				themeURL: '<?php Helper::options()->themeUrl(); ?>',
+				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
+				JOwOAssetsUrl: `<?php Helper::options()->JOwOAssetsUrl() ?>`,
 				canPreview: false
 			}
 		</script>

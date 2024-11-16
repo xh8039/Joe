@@ -753,7 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if ($(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
 			var OwOUrl = $('.joe_owo__contain').attr('data-url') || window.Joe.THEME_URL;
 			$.ajax({
-				url: OwOUrl + "assets/json/joe.owo.json",
+				url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
 				dataType: "json",
 				success(res) {
 					let barStr = "";

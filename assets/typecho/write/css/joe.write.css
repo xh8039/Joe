@@ -142,7 +142,7 @@ body.fullscreen {
 	flex-shrink: 0;
 	flex: 1;
 	min-width: 0;
-	font-size: 18px
+	font-size: 16px
 }
 
 .cm-container .cm-mainer .cm-editor .cm-scroller {

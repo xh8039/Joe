@@ -2659,7 +2659,7 @@
 
 .joe_cloud__logo._lanzou {
 	background-image: url("../images/cloud/lanzou.png")
-} 
+}
 
 .joe_cloud__describe {
 	line-height: normal;
@@ -4275,8 +4275,8 @@ html .line-numbers .line-numbers-rows {
 
 .joe_comment__respond-form .foot .submit {
 	position: absolute;
-    top: 0;
-    right: 15px;
+	top: 0;
+	right: 15px;
 	white-space: nowrap
 }
 
@@ -4530,7 +4530,7 @@ html .line-numbers .line-numbers-rows {
 	background: var(--classD)
 }
 
-.joe_owo__contain .box .scroll:nth-child(2) .item { 
+.joe_owo__contain .box .scroll:nth-child(2) .item {
 	font-size: 24px;
 	line-height: 1;
 }

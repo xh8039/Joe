@@ -1488,19 +1488,19 @@ body.fullscreen {
 	background-image: url("../../../../assets/images/cloud/360.svg");
 }
 
-.joe_cloud__logo._bd {
+.joe_cloud__logo._baidu {
 	background-image: url("../../../../assets/images/cloud/baidu.svg");
 }
 
-.joe_cloud__logo._ty {
+.joe_cloud__logo._tianyi {
 	background-image: url("../../../../assets/images/cloud/tianyi.svg");
 }
 
-.joe_cloud__logo._ct {
+.joe_cloud__logo._chengtong {
 	background-image: url("../../../../assets/images/cloud/chengtong.svg")
 }
 
-.joe_cloud__logo._wy {
+.joe_cloud__logo._weiyun {
 	background-image: url("../../../../assets/images/cloud/thin-cloud.png")
 }
 
@@ -1516,7 +1516,7 @@ body.fullscreen {
 	background-image: url("../../../../assets/images/cloud/gitee.svg")
 }
 
-.joe_cloud__logo._lz {
+.joe_cloud__logo._lanzou {
 	background-image: url("../../../../assets/images/cloud/lanzou.png")
 }
 

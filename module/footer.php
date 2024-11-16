@@ -333,7 +333,7 @@ if (!empty($footer_tabbar)) {
 		const loadTime = ((performance.now() - Joe.startTime) / 1000).toFixed(2);
 		console.log(`主题PHP脚本运行时间：<?= $execution_time ?> S`);
 		console.log(`主题PHP脚本内存消耗：<?= $memory_usage_kb ?> KB`);
-		console.log(`前端页面加载耗时：${loadTime} 秒`);
+		console.log(`前端页面加载耗时：${loadTime} S`);
 	});
 </script>
 

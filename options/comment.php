@@ -79,7 +79,7 @@ $JOwOAssetsUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	null,
 	'自定义表情包资源URL',
 	'介绍：将本主题所需要的CSS、JS等资源文件使用某个远程网址来提供，以便节省服务器宽带 提升小型服务器加载速度<br>
-	例如：//storage.bri6.cn/typecho/usr/themes/Joe/1.33'
+	例如：//storage.bri6.cn/typecho/usr/themes/Joe@1.33'
 );
 $JOwOAssetsUrl->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JOwOAssetsUrl);

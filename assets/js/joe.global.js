@@ -751,8 +751,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	/* 初始化表情功能 */
 	{
 		if ($(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
+			var OwOUrl = $('.joe_owo__contain').attr('data-url') || window.Joe.THEME_URL;
 			$.ajax({
-				url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
+				url: OwOUrl + "assets/json/joe.owo.json",
 				dataType: "json",
 				success(res) {
 					let barStr = "";
@@ -768,7 +769,7 @@ document.addEventListener("DOMContentLoaded", () => {
 									return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.icon}">${_.icon}</li>`;
 								} else {
 									let title = /.*?\((.*?)\)/.exec(_.text)[1];
-									return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${window.Joe.THEME_URL + _.icon}" title="${title}" alt="${title}"/></li>`;
+									return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${OwOUrl + _.icon}" title="${title}" alt="${title}"/></li>`;
 								}
 							}).join("")}
 						</ul>`;

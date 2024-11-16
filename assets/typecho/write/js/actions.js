@@ -365,7 +365,7 @@ export default class JoeAction {
 			title: '关于',
 			hasFooter: false,
 			innerHtml: `
-                <ul>
+                <ul style="list-style:none;padding: 0;">
                     <li>短代码功能正在开发中...</li>
                     <li>仅支持网络图片粘贴上传（截图等）</li>
                     <li>本编辑器仅供Joe主题使用，未经允许不得移植至其他主题！</li>
@@ -387,8 +387,8 @@ export default class JoeAction {
 					<input autocomplete="off" name="id" placeholder="请输入歌${type ? '单' : '曲'}ID"/>
 				</div>
 				<div class="fitem">
-					<label>主题色彩</label>
-					<input autocomplete="off" value="#1989fa" name="color" placeholder="请输入十六进制颜色代码"/>
+					<label>主题颜色</label>
+					<input autocomplete="off" name="color" type="color"/>
 				</div>
 				<div class="fitem">
 					<label>自动播放</label>
@@ -470,8 +470,8 @@ export default class JoeAction {
     <input autocomplete="off" name="pic" placeholder="请输入视频封面地址"/>
 </div>
 <div class="fitem">
-    <label>主题色彩</label>
-    <input autocomplete="off" name="theme" placeholder="请输入十六进制颜色代码，留空则使用全局主题色"/>
+    <label>主题颜色</label>
+    <input autocomplete="off" name="theme" type="color"/>
 </div>
 <div class="fitem">
     <label>自动播放</label>
@@ -599,11 +599,20 @@ export default class JoeAction {
 				</div>
 				<div class="fitem">
 					<label>按钮颜色</label>
-					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#ff6800" name="color" type="color"/>
+					<input autocomplete="off" value="#ff6800" name="color" type="color"/>
 				</div>
 				<div class="fitem">
 					<label>跳转链接</label>
 					<input autocomplete="off" name="href" placeholder="请输入跳转链接"/>
+				</div>
+				<div class="fitem">
+					<label>打开方式</label>
+					<select name="target">
+        				<option value="_self" selected>_self（默认，在当前页面打开链接）</option>
+        				<option value="_blank">_blank（在新窗口/标签页打开链接）</option>
+        				<option value="_parent">_parent（在父框架打开链接）</option>
+						<option value="_top">_top（在整个窗口打开链接）</option>
+    				</select>
 				</div>
 				<div class="fitem">
 					<label>按钮圆角</label>
@@ -618,9 +627,10 @@ export default class JoeAction {
 				const icon = $(".cm-modal input[name='icon']").val();
 				const color = $(".cm-modal input[name='color']").val();
 				const href = $(".cm-modal input[name='href']").val();
+				const target = $(".cm-modal input[name='target']").val();
 				const radius = $(".cm-modal input[name='radius']").val();
 				const content = $(".cm-modal input[name='content']").val();
-				const str = ` {abtn icon="${icon}" color="${color}" href="${href}" radius="${radius}" content="${content}"/} `;
+				const str = `{abtn icon="${icon}" color="${color}" href="${href}" target="${target}" radius="${radius}" content="${content}"/}`;
 				this._replaceSelection(cm, str);
 				cm.focus();
 			}
@@ -643,13 +653,22 @@ export default class JoeAction {
 					<input autocomplete="off" name="href" placeholder="请输入跳转链接"/>
 				</div>
 				<div class="fitem">
+					<label>打开方式</label>
+					<select name="target">
+        				<option value="_self" selected>_self（默认，在当前页面打开链接）</option>
+        				<option value="_blank">_blank（在新窗口/标签页打开链接）</option>
+        				<option value="_parent">_parent（在父框架打开链接）</option>
+						<option value="_top">_top（在整个窗口打开链接）</option>
+    				</select>
+				</div>
+				<div class="fitem">
 					<label>按钮类型</label>
 					<select name="type">
-						<option value="secondary" selected>secondary</option>
-						<option value="success">success</option>
-						<option value="warning">warning</option>
-						<option value="error">error</option>
-						<option value="info">info</option>
+						<option value="secondary" selected>secondary（次要的）</option>
+						<option value="success">success（成功）</option>
+						<option value="warning">warning（警告）</option>
+						<option value="error">error（错误）</option>
+						<option value="info">info（信息）</option>
 					</select>
 				</div>
 				<div class="fitem">
@@ -660,9 +679,10 @@ export default class JoeAction {
 			confirm: () => {
 				const icon = $(".cm-modal input[name='icon']").val();
 				const href = $(".cm-modal input[name='href']").val();
+				const target = $(".cm-modal input[name='target']").val();
 				const type = $(".cm-modal select[name='type']").val();
 				const content = $(".cm-modal input[name='content']").val();
-				const str = ` {anote icon="${icon}" href="${href}" type="${type}" content="${content}"/} `;
+				const str = ` {anote icon="${icon}" href="${href}" target="${target}" type="${type}" content="${content}"/} `;
 				this._replaceSelection(cm, str);
 				cm.focus();
 			}
@@ -674,11 +694,11 @@ export default class JoeAction {
 			innerHtml: `
 				<div class="fitem">
 					<label>开始颜色</label>
-					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#ff6c6c" name="startColor" type="color"/>
+					<input autocomplete="off" value="#ff6c6c" name="startColor" type="color"/>
 				</div>
 				<div class="fitem">
 					<label>结束颜色</label>
-					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#1989fa" name="endColor" type="color"/>
+					<input autocomplete="off" value="#1989fa" name="endColor" type="color"/>
 				</div>
             `,
 			confirm: () => {
@@ -752,7 +772,7 @@ export default class JoeAction {
 				</div>
 				<div class="fitem">
 					<label>自定义色</label>
-					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#ff6c6c" name="color" type="color"/>
+					<input autocomplete="off" value="#ff6c6c" name="color" type="color"/>
 				</div>
             `,
 			confirm: () => {
@@ -771,7 +791,7 @@ export default class JoeAction {
 			innerHtml: `
 				<div class="fitem">
 					<label>边框颜色</label>
-					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#f0ad4e" name="color" type="color"/>
+					<input autocomplete="off" value="#f0ad4e" name="color" type="color"/>
 				</div>
             `,
 			confirm: () => {
@@ -804,8 +824,8 @@ export default class JoeAction {
     <input autocomplete="off" name="cover" placeholder="请输入图片地址"/>
 </div>
 <div class="fitem">
-    <label>主题色彩</label>
-    <input autocomplete="off" value="#f0ad4e" name="theme" placeholder="请输入十六进制颜色代码"/>
+    <label>主题颜色</label>
+    <input autocomplete="off" name="theme" type="color"/>
 </div>
 <div class="fitem">
     <label>歌词内容</label>
@@ -923,16 +943,16 @@ export default class JoeAction {
 				<div class="fitem">
 					<label>提示类型</label>
 					<select name="type">
-						<option value="info" selected>info</option>
-						<option value="success">success</option>
-						<option value="warning">warning</option>
-						<option value="error">error</option>
+						<option value="info" selected>info（信息）</option>
+						<option value="success">success（成功）</option>
+						<option value="warning">warning（警告）</option>
+						<option value="error">error（错误）</option>
 					</select>
 				</div>
             `,
 			confirm: () => {
 				const type = $(".cm-modal select[name='type']").val();
-				const str = `\n{alert type="${type}"}\n警告提示\n{/alert}\n\n`;
+				const str = `\n{alert type="${type}"}\n警告提示\n{/alert}\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();

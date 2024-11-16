@@ -9,8 +9,18 @@ if (PHP_VERSION < base64_decode('Ny40')) {
 	throw new Typecho_Exception(base64_decode('5oKo55qEUEhQ54mI5pys6L+H5L2O77yM6K+35L2/55SoVjcuNOWPiuS7peS4iueJiOacrOi/kOihjCA8YSBocmVmPSJodHRwOi8vYmxvZy5icmk2LmNuL2FyY2hpdmVzLzE4Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5Kb2Xlho3nu63liY3nvJjkuLvpopg8L2E+'));
 }
 
+// 记录脚本开始执行的时间戳
+define('JOE_START_TIME', microtime(true));
+
+// 记录初始内存使用量
+define('JOE_START_MEMORY', memory_get_usage());
+
+// 主题文件夹名称
 define('THEME_NAME', basename(JOE_ROOT));
+
+// 通过 siteUrl 获取域名
 define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
+
 header('Generator: YiHang');
 header('Author: YiHang');
 

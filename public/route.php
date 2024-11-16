@@ -133,7 +133,6 @@ function _getstatistics($self)
 				])->toArray();
 				if (is_array($refresh_token)) {
 					$theme_options = Helper::options()->__get('theme:' . THEME_NAME);
-
 					if (empty($theme_options)) {
 						$self->response->throwJson(['msg' => '请更新您的 access_token']);
 						return;
@@ -1069,7 +1068,7 @@ function _initiatePay($self)
 						];
 						if (!empty($data['qrcode'])) {
 							$result['qrcode'] = $data['qrcode'];
-							$result['url_qrcode'] = Helper::options()->themeUrl . '/library/qrcode.php?text=' . urlencode($data['qrcode']);
+							$result['url_qrcode'] = Helper::options()->themeUrl . '/module/qrcode.php?text=' . urlencode($data['qrcode']);
 						}
 						if (!empty($data['payurl'])) {
 							$result['open_url'] = true;

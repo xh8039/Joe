@@ -702,7 +702,7 @@ body.fullscreen {
 }
 
 .cm-modal__wrapper-bodyer {
-	padding: 20px
+	padding: 0 20px
 }
 
 .cm-modal__wrapper-bodyer .fitem {
@@ -732,6 +732,12 @@ body.fullscreen {
 	padding: 0 10px;
 	border-radius: 3px;
 	color: #606266
+}
+
+.cm-modal__wrapper-bodyer .fitem input[type=color] {
+	width: 44px;
+	padding: 0 2px;
+	flex: none
 }
 
 .cm-modal__wrapper-bodyer .fitem textarea {

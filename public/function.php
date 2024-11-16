@@ -1119,3 +1119,23 @@ function ExternaToInternalLink(string $ExternaLink, int $post_cid)
 	}
 	return \Helper::options()->index . '/goto?url=' . base64_encode($ExternaLink) . '&cid=' . $post_cid;
 }
+
+function TagExternaToInternalLink(string $content, string $tag_name, string $html_name, string $attr_name, int $post_cid)
+{
+	if (strpos($content, '{' . $tag_name) !== false) {
+		if (\Helper::options()->JPostLinkRedirect == 'on') {
+			// 使用正则表达式匹配链接并直接进行替换
+			$content = preg_replace_callback(
+				'/{' . $tag_name . '([^}]*)' . $attr_name . '\="([a-zA-z]+:\/\/[^\s]*)"([^}]*)\/}/',
+				function ($matches) use ($post_cid, $html_name, $attr_name) {
+					$redirect_link = ExternaToInternalLink($matches[2], $post_cid);
+					return '<' . $html_name . $matches[1] . $attr_name . '="' . $redirect_link . '"' . $matches[3] . '></' . $html_name . '>';
+				},
+				$content
+			);
+		} else {
+			$content = preg_replace('/{cloud([^}]*)\/}/SU', '<' . $html_name . ' $1></' . $html_name . '>', $content);
+		}
+	}
+	return $content;
+}

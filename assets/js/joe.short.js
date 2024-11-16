@@ -148,20 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.options = {
 					icon: this.getAttribute('icon') || '',
 					color: this.getAttribute('color') || '#ff6800',
-					href: this.getAttribute('href') || '#',
+					href: this.getAttribute('href') || 'javascript:;',
+					target: this.getAttribute('target') || '_self',
 					radius: this.getAttribute('radius') || '17.5px',
 					content: this.getAttribute('content') || '多彩按钮'
 				};
 				this.innerHTML = `
-                    <a class="joe_abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
-                        <span class="joe_abtn__icon">
-                            <i class="${this.options.icon} fa"></i>
-                        </span>
-                        <span class="joe_abtn__content">
-                            ${this.options.content}
-                        </span>
-                    </a>
-                `;
+					<a class="joe_abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow">
+						<span class="joe_abtn__icon"><i class="${this.options.icon} fa"></i></span>
+						<span class="joe_abtn__content">${this.options.content}</span>
+					</a>
+				`;
 			}
 		}
 	);
@@ -173,18 +170,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				super();
 				this.options = {
 					icon: this.getAttribute('icon') || 'fa-download',
-					href: this.getAttribute('href') || '#',
+					href: this.getAttribute('href') || 'javascript:;',
+					target: this.getAttribute('target') || '_self',
 					type: /^secondary$|^success$|^warning$|^error$|^info$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'secondary',
 					content: this.getAttribute('content') || '标签按钮'
 				};
 				this.innerHTML = `
-					<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
-						<span class="joe_anote__icon">
-							<i class="fa ${this.options.icon}"></i>
-						</span>
-						<span class="joe_anote__content">
-							${this.options.content}
-						</span>
+					<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow">
+						<span class="joe_anote__icon"><i class="fa ${this.options.icon}"></i></span>
+						<span class="joe_anote__content">${this.options.content}</span>
 					</a>
 				`;
 			}
@@ -665,11 +659,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					contents += `<div style="display: none" class="joe_tabs__body-item" ${$1}>${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
 				});
 				let htmlStr = `
-                <div class="joe_tabs">
-                    <div class="joe_tabs__head">${navs}</div>
-                    <div class="joe_tabs__body">${contents}</div>
-                </div>
-            `;
+				<div class="joe_tabs">
+					<div class="joe_tabs__head">${navs}</div>
+					<div class="joe_tabs__body">${contents}</div>
+				</div>
+			`;
 				if (getChildren(this, '_content')) {
 					getChildren(this, '_content').innerHTML = htmlStr;
 				} else {

@@ -1,5 +1,7 @@
 <?php
 
+
+
 function _parseContent($post, $login)
 {
 	$content = $post->content;
@@ -53,28 +55,31 @@ function _parseContent($post, $login)
 	}
 
 	// 多彩按钮
-	if (strpos($content, '{abtn') !== false) {
-		$content = preg_replace('/{abtn([^}]*)\/}/SU', '<joe-abtn $1></joe-abtn>', $content);
-	}
+	$content = joe\TagExternaToInternalLink($content, 'abtn', 'joe-abtn', 'href', $post_cid);
+	// if (strpos($content, '{abtn') !== false) {
+	// 	$content = preg_replace('/{abtn([^}]*)\/}/SU', '<joe-abtn $1></joe-abtn>', $content);
+	// }
 
 	// 云盘下载
-	if (strpos($content, '{cloud') !== false) {
-		if (Helper::options()->JPostLinkRedirect == 'on') {
-			// 使用正则表达式匹配链接并直接进行替换
-			$content = preg_replace_callback(
-				'/{cloud([^}]*)url\="([a-zA-z]+:\/\/[^\s]*)"([^}]*)\/}/',
-				function ($matches) use ($post_cid) {
-					$redirect_link = joe\ExternaToInternalLink($matches[2], $post_cid);
-					return '<joe-cloud' . $matches[1] . 'url="' . $redirect_link . '"' . $matches[3] . '></joe-cloud>';
-				},
-				$content
-			);
-		} else {
-			$content = preg_replace('/{cloud([^}]*)\/}/SU', '<joe-cloud $1></joe-cloud>', $content);
-		}
-	}
+	$content = joe\TagExternaToInternalLink($content, 'cloud', 'joe-cloud', 'url', $post_cid);
+	// if (strpos($content, '{cloud') !== false) {
+	// 	if (Helper::options()->JPostLinkRedirect == 'on') {
+	// 		// 使用正则表达式匹配链接并直接进行替换
+	// 		$content = preg_replace_callback(
+	// 			'/{cloud([^}]*)url\="([a-zA-z]+:\/\/[^\s]*)"([^}]*)\/}/',
+	// 			function ($matches) use ($post_cid) {
+	// 				$redirect_link = joe\ExternaToInternalLink($matches[2], $post_cid);
+	// 				return '<joe-cloud' . $matches[1] . 'url="' . $redirect_link . '"' . $matches[3] . '></joe-cloud>';
+	// 			},
+	// 			$content
+	// 		);
+	// 	} else {
+	// 		$content = preg_replace('/{cloud([^}]*)\/}/SU', '<joe-cloud $1></joe-cloud>', $content);
+	// 	}
+	// }
 
 	// 便条按钮
+	$content = joe\TagExternaToInternalLink($content, 'anote', 'joe-anote', 'href', $post_cid);
 	if (strpos($content, '{anote') !== false) {
 		$content = preg_replace('/{anote([^}]*)\/}/SU', '<joe-anote $1></joe-anote>', $content);
 	}

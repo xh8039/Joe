@@ -1,20 +1,32 @@
-import tools from './tools.js';
-import JoeAction from './actions.js';
-import createPreviewHtml from './create.js';
+import { EditorView, keymap, drawSelection, highlightActiveLine } from '@codemirror/view';
+import { EditorState } from '@codemirror/state';
+import { bracketMatching } from '@codemirror/matchbrackets';
+import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
+import { defaultKeymap, indentLess, indentMore } from '@codemirror/commands';
+import { history, historyKeymap } from '@codemirror/history';
+import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
+import { languages } from '@codemirror/language-data';
+import { lineNumbers, highlightActiveLineGutter } from "@codemirror/gutter";
+import { highlightSelectionMatches } from "@codemirror/search";
+import { commentKeymap } from "@codemirror/comment";
+import { classHighlightStyle } from '@codemirror/highlight';
+import tools from './_tools';
+import JoeAction from './_actions';
+import createPreviewHtml from './_create';
 
 class Joe extends JoeAction {
 	constructor() {
 		super();
-		this.plugins = [CodeMirror.classHighlightStyle, CodeMirror.history(), CodeMirror.bracketMatching(), CodeMirror.closeBrackets(), CodeMirror.drawSelection(), CodeMirror.highlightActiveLine(), CodeMirror.lineNumbers(), CodeMirror.highlightActiveLineGutter(), CodeMirror.highlightSelectionMatches()];
+		this.plugins = [classHighlightStyle, history(), bracketMatching(), closeBrackets(), drawSelection(), highlightActiveLine(), lineNumbers(), highlightActiveLineGutter(), highlightSelectionMatches()];
 		this.keymaps = [
 			{
 				key: 'Tab',
 				run: ({ state, dispatch }) => {
-					if (state.selection.ranges.some(r => !r.empty)) return CodeMirror.indentMore({ state, dispatch });
+					if (state.selection.ranges.some(r => !r.empty)) return indentMore({ state, dispatch });
 					dispatch(state.update(state.replaceSelection('  ')));
 					return true;
 				},
-				shift: CodeMirror.indentLess
+				shift: indentLess
 			}
 		];
 		this._isPasting = false;
@@ -24,7 +36,6 @@ class Joe extends JoeAction {
 		this.init_Tools();
 		this.init_Insert();
 		this.init_AutoSave();
-		this.init_AutoStorage();
 	}
 
 	/* 已测 √ */
@@ -50,17 +61,17 @@ class Joe extends JoeAction {
 		createPreviewHtml(null);
 		let _temp = null;
 		let _debounce = null;
-		const cm = new CodeMirror.EditorView({
-			state: CodeMirror.EditorState.create({
+		const cm = new EditorView({
+			state: EditorState.create({
 				doc: $('#text').val(),
 				extensions: [
 					...this.plugins,
-					CodeMirror.markdown({
-						base: CodeMirror.markdownLanguage,
-						codeLanguages: CodeMirror.languages
+					markdown({
+						base: markdownLanguage,
+						codeLanguages: languages
 					}),
-					CodeMirror.keymap.of([...this.keymaps, ...CodeMirror.defaultKeymap, ...CodeMirror.commentKeymap, ...CodeMirror.historyKeymap, ...CodeMirror.closeBracketsKeymap,]),
-					CodeMirror.EditorView.updateListener.of(update => {
+					keymap.of([...this.keymaps, ...defaultKeymap, ...commentKeymap, ...historyKeymap, ...closeBracketsKeymap,]),
+					EditorView.updateListener.of(update => {
 						if (!update.docChanged) return;
 						if (_temp !== update.state.doc.toString()) {
 							_temp = update.state.doc.toString();
@@ -68,7 +79,7 @@ class Joe extends JoeAction {
 							_debounce = setTimeout(createPreviewHtml.bind(null, update.state.doc.toString()), 350);
 						}
 					}),
-					CodeMirror.EditorView.domEventHandlers({
+					EditorView.domEventHandlers({
 						paste: e => {
 							const clipboardData = e.clipboardData;
 							if (!clipboardData || !clipboardData.items) return;
@@ -140,7 +151,6 @@ class Joe extends JoeAction {
 				]
 			})
 		});
-		window.CodeMirrorEditor = cm;
 		$('.cm-mainer').prepend(cm.dom);
 		$('#text')[0].form && $('#text')[0].form.addEventListener('submit', () => $('#text').val(cm.state.doc.toString()));
 		this.cm = cm;
@@ -199,7 +209,7 @@ class Joe extends JoeAction {
 			if (item.type === 'title') {
 				super.handleTitle(this.cm, item);
 			} else {
-				const el = $(`<div class="cm-tools-item" data-toggle="tooltip" title="${item.title}">${item.innerHTML}</div>`);
+				const el = $(`<div class="cm-tools-item" title="${item.title}">${item.innerHTML}</div>`);
 				el.on('click', e => {
 					e.preventDefault();
 					switch (item.type) {
@@ -371,7 +381,6 @@ class Joe extends JoeAction {
 				$('.cm-tools').append(el);
 			}
 		});
-		window.Joe.tooltip();
 	}
 
 	/* 已测 √ */
@@ -421,95 +430,6 @@ class Joe extends JoeAction {
 			}
 		};
 		setInterval(saveFn, 5000);
-	}
-
-	init_AutoStorage() {
-		var form = document.querySelector('[name="write_post"]') || document.querySelector('[name="write_page"]');
-		if (!form) return;
-
-		function isEmptyString(string) {
-			return (!string || string.trim() == '' || string.length == 0);
-		}
-
-		// 从本地存储加载数据并填充到表单的函数
-		function loadFormData() {
-			var localStorageformData = localStorage.getItem('form-data');
-			if (localStorageformData) {
-				const data = JSON.parse(localStorageformData);
-				let formSlug = document.getElementById('slug').value;
-				if (data.slug != formSlug) return;
-				if (isEmptyString(data.text) && isEmptyString(data.title)) return;
-				if (!window.confirm('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 是否为您恢复？')) return;
-				// 遍历 data 对象并填充表单元素
-				for (const key in data) {
-					if (data.hasOwnProperty(key)) {
-						const escapedName = key.replace(/\[/g, "\[");
-						// console.log(escapedName);
-						const element = document.querySelector(`[name="${escapedName}"]`);
-						if (element) element.value = data[key];
-					}
-				}
-				// 特别处理 CodeMirror 内容
-				window.CodeMirrorEditor.dispatch({
-					changes: {
-						from: 0,
-						to: window.CodeMirrorEditor.state.doc.length,
-						insert: data.text
-					}
-				});
-			}
-		}
-		loadFormData();
-
-		function getCurrentTime() {
-			const now = new Date();
-			const year = now.getFullYear();
-			const month = ("0" + (now.getMonth() + 1)).slice(-2); // 月份从 0 开始，需要加 1
-			const day = ("0" + now.getDate()).slice(-2);
-			const hours = ("0" + now.getHours()).slice(-2);
-			const minutes = ("0" + now.getMinutes()).slice(-2);
-			const seconds = ("0" + now.getSeconds()).slice(-2);
-			return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-		}
-
-		// 保存表单数据的函数
-		function saveFormData() {
-			var formData = new FormData(form);
-			const data = {};
-			for (const [key, value] of formData.entries()) {
-				data[key] = value;
-			}
-			// 等编辑器内容同步
-			setTimeout(() => {
-				data.time = getCurrentTime();
-				data.text = window.CodeMirrorEditor.state.doc.toString();
-				// console.log(data);
-				localStorage.setItem('form-data', JSON.stringify(data));
-			}, 500);
-		}
-
-		// 获取文章内容的元素
-		const contentElement = form; // 假设文章内容的元素是 `textarea`，并且有 `name="text"` 属性
-
-		// 监听内容改变事件
-		contentElement.addEventListener('input', saveFormData);
-
-		// 监听input事件监听不到的按键操作
-		contentElement.addEventListener('keydown', (event) => {
-			// 监听 Ctrl + X, Ctrl + Z, Ctrl + Y, Ctrl + V
-			if (event.ctrlKey && ['x', 'z', 'y', 'v'].includes(event.key)) {
-				saveFormData();
-			}
-			// 监听 Backspace, Delete, Enter, Tab
-			if (['Backspace', 'Delete', 'Enter', 'Tab'].includes(event.key)) {
-				saveFormData();
-			}
-		});
-
-		form.onsubmit = function (event) {
-			// 删除自动保存的本地存储数据
-			localStorage.removeItem('form-data');
-		};
 	}
 }
 

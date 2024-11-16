@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 3d云标签 */
 	{
-		if ($(".joe_aside__item.tags").length) {
+		if ($(".joe_aside__item.tags").length && $(".joe_aside__item.tags").svg3DTagCloud) {
 			const entries = [];
 			const colors = [
 				"#F8D800",

@@ -179,6 +179,9 @@ class Editor
 	public static function Edit()
 	{
 ?>
+		<!-- Bootstrap: tooltip.css v3.4.1 -->
+		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
+
 		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 
 		<!-- Prism.css -->
@@ -216,104 +219,14 @@ class Editor
 		</script>
 		<script src="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js') ?>"></script>
 
-		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js') ?>"></script>
-		<script src="<?= joe\theme_url('assets/typecho/write/dist/index.bundle.min.js') ?>"></script>
+		<!-- Bootstrap: tooltip.js v3.4.1 -->
+		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
+
+		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js', false) ?>"></script>
+		<script src="<?= joe\theme_url('assets/typecho/write/dist/CodeMirror.js', false) ?>"></script>
+		<script type="module" src="<?= joe\theme_url('assets/typecho/write/js/index.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
-		<script>
-			// 编辑器内容自动本地存储
-			function EditorAutoStorage(form) {
-				if (!form) return;
-
-				function isEmptyString(string) {
-					return (!string || string.trim() == '' || string.length == 0);
-				}
-
-				// 从本地存储加载数据并填充到表单的函数
-				function loadFormData() {
-					var localStorageformData = localStorage.getItem('form-data');
-					if (localStorageformData) {
-						const data = JSON.parse(localStorageformData);
-						formSlug = document.getElementById('slug').value;
-						if (data.slug != formSlug) return;
-						if (isEmptyString(data.text) && isEmptyString(data.title)) return;
-						if (!window.confirm('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 是否为您恢复？')) return;
-						// 遍历 data 对象并填充表单元素
-						for (const key in data) {
-							if (data.hasOwnProperty(key)) {
-								const escapedName = key.replace(/\[/g, "\[");
-								// console.log(escapedName);
-								const element = document.querySelector(`[name="${escapedName}"]`);
-								if (element) element.value = data[key];
-							}
-						}
-						// 特别处理 CodeMirror 内容
-						window.CodeMirrorEditor.dispatch({
-							changes: {
-								from: 0,
-								to: window.CodeMirrorEditor.state.doc.length,
-								insert: data.text
-							}
-						});
-					}
-				}
-				loadFormData();
-
-				function getCurrentTime() {
-					const now = new Date();
-					const year = now.getFullYear();
-					const month = ("0" + (now.getMonth() + 1)).slice(-2); // 月份从 0 开始，需要加 1
-					const day = ("0" + now.getDate()).slice(-2);
-					const hours = ("0" + now.getHours()).slice(-2);
-					const minutes = ("0" + now.getMinutes()).slice(-2);
-					const seconds = ("0" + now.getSeconds()).slice(-2);
-					return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-				}
-
-				// 保存表单数据的函数
-				function saveFormData() {
-					var formData = new FormData(form);
-					const data = {};
-					for (const [key, value] of formData.entries()) {
-						data[key] = value;
-					}
-					// 等编辑器内容同步
-					setTimeout(() => {
-						data.time = getCurrentTime();
-						data.text = window.CodeMirrorEditor.state.doc.toString();
-						// console.log(data);
-						localStorage.setItem('form-data', JSON.stringify(data));
-					}, 500);
-				}
-
-				// 获取文章内容的元素
-				const contentElement = form; // 假设文章内容的元素是 `textarea`，并且有 `name="text"` 属性
-
-				// 监听内容改变事件
-				contentElement.addEventListener('input', saveFormData);
-
-				// 监听input事件监听不到的按键操作
-				contentElement.addEventListener('keydown', (event) => {
-					// 监听 Ctrl + X, Ctrl + Z, Ctrl + Y, Ctrl + V
-					if (event.ctrlKey && ['x', 'z', 'y', 'v'].includes(event.key)) {
-						saveFormData();
-					}
-					// 监听 Backspace, Delete, Enter, Tab
-					if (['Backspace', 'Delete', 'Enter', 'Tab'].includes(event.key)) {
-						saveFormData();
-					}
-				});
-
-				form.onsubmit = function(event) {
-					// 删除自动保存的本地存储数据
-					localStorage.removeItem('form-data');
-				};
-			}
-			window.addEventListener('load', () => {
-				EditorAutoStorage(document.querySelector('[name="write_post"]'));
-				EditorAutoStorage(document.querySelector('[name="write_page"]'));
-			});
-		</script>
 	<?php
 	}
 

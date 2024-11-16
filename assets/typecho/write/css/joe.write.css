@@ -691,8 +691,13 @@ body.fullscreen {
 	justify-content: space-between
 }
 
+.cm-modal__wrapper-header--text {
+	font-size: 16px;
+}
+
 .cm-modal__wrapper-header--close {
-	font-size: 20px;
+	font-size: 35px;
+	line-height: 0;
 	cursor: pointer
 }
 

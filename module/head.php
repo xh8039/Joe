@@ -26,13 +26,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
 
 <!-- Bootstrap: modal.css v3.4.1 -->
-<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css'); ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>">
 
 <!-- Bootstrap: tooltip.css v3.4.1 -->
-<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css'); ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
 
 <!-- Bootstrap: popover.css v3.4.1 -->
-<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css'); ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css', false); ?>">
 
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
@@ -47,16 +47,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
 
 <!-- Bootstrap: transition.js v3.4.1 -->
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js'); ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>"></script>
 
 <!-- Bootstrap: modal.js v3.4.1 -->
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js'); ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>"></script>
 
 <!-- Bootstrap: tooltip.js v3.4.1 -->
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js'); ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
 
 <!-- Bootstrap: popover.js v3.4.1 -->
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js'); ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>"></script>
 
 <!-- <script src="<?= joe\theme_url('assets/js/joe.scroll.js'); ?>"></script> -->
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>"></script>

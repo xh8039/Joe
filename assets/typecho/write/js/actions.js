@@ -526,9 +526,10 @@ export default class JoeAction {
 					listsStr += `<div class="lists ${key === '经典' ? 'active' : ''}" data-show="${key}">${
 						arr.map(item => {
 							if (key == '颜文字' || key == 'emoji') {
-								return `<div data-toggle="tooltip" class="lists-item" data-text="${item.icon}" title="${item.text}">${item.icon}</div>`;
+								return `<div data-toggle="tooltip" class="lists-item" data-text="${item.icon}" title="${item.text}">${item.icon}</div>`; 
 							}
-							return `<div data-toggle="tooltip" class="lists-item" data-text="${item.text}" title="${item.text}"><img src="${(window.JoeConfig.JOwOAssetsUrl || window.JoeConfig.themeURL) + item.icon}"></div>`;
+							let title = /.*?\((.*?)\)/.exec(_.text)[1];
+							return `<div data-toggle="tooltip" class="lists-item" data-text="${item.text}" title="${title}"><img src="${(window.JoeConfig.JOwOAssetsUrl || window.JoeConfig.themeURL) + item.icon}"></div>`;
 						}).join(' ')
 					}</div>`;
 				}

@@ -142,7 +142,7 @@
 .joe_wallpaper__pagination {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: center;
 	padding-top: 15px
 }
 
@@ -152,14 +152,16 @@
 	-ms-user-select: none;
 	user-select: none;
 	cursor: pointer;
-	margin-left: 5px;
-	height: 32px;
-	line-height: 32px;
-	padding: 0 15px;
-	background: var(--background);
-	color: var(--main);
-	border-radius: 2px;
-	transition: 0.15s
+	padding: 6px 9px 5px;
+	color: var(--muted-color);
+	display: inline-block;
+	border-radius: 3px;
+	background-color: var(--main-border-color);
+	margin: 3px;
+	min-width: 31px;
+	text-align: center;
+	white-space: nowrap;
+	transition: color .2s, background .3s, opacity .3s, box-shadow .3s, transform .3s;
 }
 
 .joe_wallpaper__pagination-item:first-child {
@@ -177,10 +179,15 @@
 	transform: rotate(180deg)
 }
 
-.joe_wallpaper__pagination-item.active,
-.joe_wallpaper__pagination-item:hover {
+.joe_wallpaper__pagination-item.active {
 	color: #fff;
-	background: var(--theme)
+	background: var(--theme);
+	user-select: none;
+    pointer-events: none;
+}
+
+.joe_wallpaper__pagination-item:hover {
+	opacity: .7;
 }
 
 .joe_wallpaper__pagination-item.active svg,

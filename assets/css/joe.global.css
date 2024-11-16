@@ -3924,11 +3924,15 @@ html .line-numbers .line-numbers-rows {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 20px
+	padding: 20px 0;
 }
 
 .joe_pagination li {
 	margin-left: 5px
+}
+
+.joe_pagination li:first-child {
+	margin-left: 0px;
 }
 
 .joe_pagination li a {
@@ -4255,7 +4259,6 @@ html .line-numbers .line-numbers-rows {
 .joe_comment__respond-form .foot .owo {
 	min-height: 32px;
 	padding-top: 3px;
-	margin-right: 15px;
 	overflow: auto;
 }
 
@@ -4271,6 +4274,9 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_comment__respond-form .foot .submit {
+	position: absolute;
+    top: 0;
+    right: 15px;
 	white-space: nowrap
 }
 
@@ -4507,7 +4513,7 @@ html .line-numbers .line-numbers-rows {
 
 .joe_owo__contain .box .scroll .item {
 	text-align: center;
-	width: calc(100% / 15);
+	width: calc(100% / 16);
 	display: inline-block;
 	padding: 5px;
 	cursor: pointer;

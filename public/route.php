@@ -479,20 +479,19 @@ function _getWallpaperList($self)
 	$cid = $self->request->cid;
 	$start = $self->request->start;
 	$count = $self->request->count;
-	$json = \network\http\get("http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome");
-	$res = json_decode($json, TRUE);
-	if ($res['errno'] == 0) {
+	$res = \network\http\get("http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome")->toArray();
+	if (is_array($res) && $res['errno'] == 0) {
 		$self->response->throwJson([
 			"code" => 1,
 			"data" => $res['data'],
 			"total" => $res['total']
 		]);
-	} else {
-		$self->response->throwJson([
-			"code" => 0,
-			"data" => null
-		]);
 	}
+	$self->response->throwJson([
+		"code" => 0,
+		"data" => null,
+		'res' => $res
+	]);
 }
 
 /* 抓取苹果CMS视频分类 已测试 √ */

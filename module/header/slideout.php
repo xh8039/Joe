@@ -115,7 +115,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<ul class="slides panel-body">
 						<?php foreach ($JMoreNavs as $item) : ?>
 							<li>
-								<a class="link" href="<?= $item[0] ?>" target="_blank" rel="noopener noreferrer nofollow"><?= $item[1] ?></a>
+								<a class="link" href="<?= $item[1] ?>" target="_blank" rel="noopener noreferrer nofollow"><?= $item[0] ?></a>
 							</li>
 						<?php endforeach; ?>
 					</ul>

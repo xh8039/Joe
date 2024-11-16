@@ -120,7 +120,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div class="input">
 		<!-- <label class="input-label">ＱＱ</label> -->
 		<label class="input-label">邮箱</label>
-		<input type="number" placeholder="你的邮箱号" id="email">
+		<input type="email" placeholder="你的邮箱号" id="email">
 	</div>
 	<div class="input">
 		<label class="input-label">验证</label>

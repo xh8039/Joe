@@ -1147,14 +1147,17 @@ function TagExternaToInternalLink(string $content, string $tag_name, string $htm
 function commentsAntiSpam($respondId)
 {
 	if (!\Helper::options()->commentsAntiSpam) return '';
+	$url = \Typecho_Request::getInstance()->getRequestUrl();
+	$url = explode('/comment-page', $url, 2)[0];
 	return "
 	<script type=\"text/javascript\">
 	(function() {
 		var r = document.getElementById('{$respondId}'),
 			input = document.createElement('input');
+			url = `{$url}`;
 		input.type = 'hidden';
 		input.name = '_';
-		input.value = " . \Typecho\Common::shuffleScriptVar(\Helper::security()->getToken(\Typecho_Request::getInstance()->getRequestUrl())) . "
+		input.value = " . \Typecho\Common::shuffleScriptVar(\Helper::security()->getToken()) . "
 		if (null != r) {
 			var forms = r.getElementsByTagName('form');
 			if (forms.length > 0) {

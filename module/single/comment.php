@@ -150,18 +150,20 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 			echo joe\commentsAntiSpam($this->respondId);
 			Typecho_Cookie::delete('__typecho_notice');
 			Typecho_Cookie::delete('__typecho_notice_type');
-			?>
-			<script>
-				if ($('joe-hide>.joe_hide>.joe_hide__button').length > 0) {
-					$.pjax.reload('joe-hide', {
-						timeout: 99999999,
-						push: false,
-						replace: false,
-						fragment: ".joe-hide-show",
-					});
-				}
-			</script>
-			<?php
+			if (!isset($_GET['_pjax'])) {
+				?>
+				<script>
+					if ($('joe-hide>.joe_hide>.joe_hide__button').length > 0) {
+						$.pjax.reload('joe-hide', {
+							timeout: 99999999,
+							push: false,
+							replace: false,
+							fragment: ".joe-hide-show",
+						});
+					}
+				</script>
+				<?php
+			}
 		}
 	}
 	?>

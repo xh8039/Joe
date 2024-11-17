@@ -1128,7 +1128,7 @@ function TagExternaToInternalLink(string $content, string $tag_name, string $htm
 			$content = preg_replace_callback(
 				'/{' . $tag_name . '([^}]*)' . $attr_name . '\="(.*?)"([^}]*)\/}/',
 				function ($matches) use ($post_cid, $html_name, $attr_name) {
-					if (preg_match('/^[a-zA-z]+:\/\/[^\s]*)"([^}]*/', trim($matches[2]))) {
+					if (preg_match('/^https?:\/\/[^\s]*/', trim($matches[2]))) {
 						$redirect_link = ExternaToInternalLink(trim($matches[2]), $post_cid);
 					} else {
 						$redirect_link = $matches[2];

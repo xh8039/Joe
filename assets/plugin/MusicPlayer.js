@@ -67,7 +67,7 @@ class MusicPlayer {
 			console.log(this.PLAYER.list.audios[this.PLAYER.list.index])
 			this.PLAYER.skipForward()
 			this.PLAYER.seek(0)
-		}, 3000));
+		}, 5000));
 	}
 
 	/**

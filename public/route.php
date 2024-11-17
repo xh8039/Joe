@@ -794,6 +794,7 @@ function _Meting($self)
 		$self->response->throwJson($data);
 	}
 	if ($type == 'url') {
+		$self->response->setStatus(200);
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->url($_REQUEST['id']), true);
 		$url = $data['url'];
 		$self->response->setStatus(302);
@@ -801,6 +802,7 @@ function _Meting($self)
 		exit;
 	}
 	if ($type == 'pic') {
+		$self->response->setStatus(200);
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->pic($_REQUEST['id'], ($_REQUEST['size'] ?? 300)), true);
 		$url = $data['url'];
 		$self->response->setStatus(302);

@@ -26,6 +26,8 @@ class Meting
     public $format = false;
     public $header;
 
+    public $temp;
+
     public function __construct($value = 'netease')
     {
         $this->site($value);

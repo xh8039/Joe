@@ -56,15 +56,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	}
 
 	// 检查 Accept-Language
-	if (
-		(stripos($_SERVER['HTTP_USER_AGENT'], 'Coolpad Y82-520') !== false && $_SERVER['HTTP_ACCEPT'] == '*/*') ||
-		(stripos($_SERVER['HTTP_USER_AGENT'], 'Mac OS X 10_12_4') !== false && $_SERVER['HTTP_ACCEPT'] == '*/*') ||
-		(stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone OS') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'baiduboxapp/') === false && $_SERVER['HTTP_ACCEPT'] == '*/*') ||
-		(stripos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false && $_SERVER['HTTP_ACCEPT'] == '*/*') ||
-		(stripos($_SERVER['HTTP_ACCEPT_LANGUAGE'], 'en') !== false && stripos($_SERVER['HTTP_ACCEPT_LANGUAGE'], 'zh') === false) ||
-		(stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'en-') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'zh') === false) ||
-		(stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone OS 9_1') !== false && $_SERVER['HTTP_CONNECTION'] == 'close')
-	) {
-		exit('您当前浏览器不支持或操作系统语言设置非中文，无法访问本站！');
-	}
+	// if (
+	// 	(stripos($_SERVER['HTTP_USER_AGENT'], 'Coolpad Y82-520') !== false && $_SERVER['HTTP_ACCEPT'] == '*/*') ||
+	// 	(stripos($_SERVER['HTTP_USER_AGENT'], 'Mac OS X 10_12_4') !== false && $_SERVER['HTTP_ACCEPT'] == '*/*') ||
+	// 	(stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone OS') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'baiduboxapp/') === false && $_SERVER['HTTP_ACCEPT'] == '*/*') ||
+	// 	(stripos($_SERVER['HTTP_USER_AGENT'], 'Android') !== false && $_SERVER['HTTP_ACCEPT'] == '*/*') ||
+	// 	(stripos($_SERVER['HTTP_ACCEPT_LANGUAGE'], 'en') !== false && stripos($_SERVER['HTTP_ACCEPT_LANGUAGE'], 'zh') === false) ||
+	// 	(stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'en-') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'zh') === false) ||
+	// 	(stripos($_SERVER['HTTP_USER_AGENT'], 'iPhone OS 9_1') !== false && $_SERVER['HTTP_CONNECTION'] == 'close')
+	// ) {
+	// 	exit('您当前浏览器不支持或操作系统语言设置非中文，无法访问本站！');
+	// }
 })();

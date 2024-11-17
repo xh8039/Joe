@@ -766,7 +766,7 @@ function _Meting($self)
 	$extension = ['bcmath', 'curl', 'openssl'];
 	foreach ($extension as  $value) {
 		if (!extension_loaded($value)) {
-			$self->response->setStatus(404);
+			$self->response->setStatus(200);
 			$self->response->throwJson([
 				'code' => 0,
 				'msg' => '请开启PHP的' . $value . '扩展！'
@@ -796,6 +796,12 @@ function _Meting($self)
 	if ($type == 'url') {
 		$self->response->setStatus(200);
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->url($_REQUEST['id']), true);
+		if (empty($data['url'])) {
+			$self->response->throwJson([
+				'code' => 0,
+				'msg' => '音频URL获取失败！'
+			]);
+		}
 		$url = $data['url'];
 		$self->response->setStatus(302);
 		header("Location: $url");
@@ -805,6 +811,12 @@ function _Meting($self)
 		$self->response->setStatus(200);
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->pic($_REQUEST['id'], ($_REQUEST['size'] ?? 300)), true);
 		$url = $data['url'];
+		if (empty($data['url'])) {
+			$self->response->throwJson([
+				'code' => 0,
+				'msg' => '封面URL获取失败！'
+			]);
+		}
 		$self->response->setStatus(302);
 		header("Location: $url");
 		exit;

@@ -508,124 +508,143 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	/* 重写评论功能 */
+	/** 初始化评论 */
 	{
-		if ($(".joe_comment__respond").length) {
-			const respond = $(".joe_comment__respond");
-			/* 重写回复功能 */
-			$(".joe_comment__reply").on("click", function () {
-				/* 父级ID */
-				const coid = $(this).attr("data-coid");
-				/* 当前的项 */
-				const item = $("#" + $(this).attr("data-id"));
-				/* 添加自定义属性表示父级ID */
-				respond.find(".joe_comment__respond-form").attr("data-coid", coid);
-				item.append(respond);
-				$(".joe_comment__respond-type .item[data-type='text']").click();
-				$(".joe_comment__cancle").show();
-				window.scrollTo({
-					top: item.offset().top - $(".joe_header").height() - 15,
-					behavior: "smooth",
+		window.Joe.initComment = () => {
+			/* 重写评论功能 */
+			if ($(".joe_comment__respond").length) {
+				const respond = $(".joe_comment__respond");
+				/* 重写回复功能 */
+				$(".joe_comment__reply").on("click", function () {
+					/* 父级ID */
+					const coid = $(this).attr("data-coid");
+					/* 当前的项 */
+					const item = $("#" + $(this).attr("data-id"));
+					/* 添加自定义属性表示父级ID */
+					respond.find(".joe_comment__respond-form").attr("data-coid", coid);
+					item.append(respond);
+					$(".joe_comment__respond-type .item[data-type='text']").click();
+					$(".joe_comment__cancle").show();
+					window.scrollTo({
+						top: item.offset().top - $(".joe_header").height() - 15,
+						behavior: "smooth",
+					});
 				});
+				/* 重写取消回复功能 */
+				$(".joe_comment__cancle").on("click", function () {
+					/* 移除自定义属性父级ID */
+					respond.find(".joe_comment__respond-form").removeAttr("data-coid");
+					$(".joe_comment__cancle").hide();
+					$(".joe_comment>.comment-list").before(respond);
+					$(".joe_comment__respond-type .item[data-type='text']").click();
+					window.scrollTo({
+						top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,
+						behavior: "smooth",
+					});
+				});
+			}
+			/* 激活评论提交 */
+			if ($(".joe_comment").length) {
+				var isSubmit = false;
+				$(".joe_comment__respond-form").on("submit", function (event) {
+					event.preventDefault();
+					const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
+					const type = $(".joe_comment__respond-form").attr("data-type");
+					const parent = $(".joe_comment__respond-form").attr("data-coid");
+					const author = $(".joe_comment__respond-form .head input[name='author']").val();
+					const _ = $(".joe_comment__respond-form input[name='_']").val();
+					const mail = $(".joe_comment__respond-form .head input[name='mail']").val();
+					const url = $(".joe_comment__respond-form .head input[name='url']").val();
+					let text = $(".joe_comment__respond-form .body textarea[name='text']").val();
+					if (author.trim() === "") return Qmsg.info("请输入昵称！");
+					if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(mail)) return Qmsg.info(
+						"请输入正确的邮箱！");
+					if (type === "text" && text.trim() === "") return Qmsg.info("请输入评论内容！");
+					if (type === "draw") {
+						const txt = $("#joe_comment_draw")[0].toDataURL("image/webp", 0.1);
+						text = "{!{" + txt + "}!} ";
+					}
+
+					if (isSubmit) return;
+					isSubmit = true;
+					$(".joe_comment__respond-form .foot .submit button").html('<i class="loading mr6"></i>发送中...');
+					var data = new FormData();
+					data.append('author', author);
+					data.append('mail', mail);
+					data.append('text', text);
+					data.append('parent', parent);
+					data.append('url', url);
+					data.append('_', _);
+					$.pjax({
+						type: 'POST',
+						url: action,
+						container: '#comment_module',
+						data,
+						processData: false,
+						contentType: false,
+						timeout: 99999999,
+						push: false,
+						replace: false,
+						fragment: "#comment_module",
+						scrollTo: false,
+					});
+				});
+			}
+			/* 设置评论回复网址为新窗口打开 */
+			$(".comment-list__item .term .content .user .author a").each((index, item) => $(item).attr("target",
+				"_blank"));
+			/* 格式化评论分页的hash值 */
+			$(".joe_comment .joe_pagination a").each((index, item) => {
+				const href = $(item).attr("href");
+				if (href && href.includes("#")) {
+					$(item).attr("href", href.replace("#comments", "#comment_module"));
+				}
+				$(item).attr('ajax-replace', 'true');
+				$(item).addClass('pjax');
 			});
-			/* 重写取消回复功能 */
-			$(".joe_comment__cancle").on("click", function () {
-				/* 移除自定义属性父级ID */
-				respond.find(".joe_comment__respond-form").removeAttr("data-coid");
-				$(".joe_comment__cancle").hide();
-				$(".joe_comment>.comment-list").before(respond);
-				$(".joe_comment__respond-type .item[data-type='text']").click();
-				window.scrollTo({
-					top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,
-					behavior: "smooth",
-				});
+		}
+		Joe.initComment();
+		if ($('#comment_module>.joe_pagination a').length > 0) {
+			$(document).pjax('#comment_module>.joe_pagination a', '#comment_module', {
+				timeout: 99999999,
+				push: false,
+				replace: false,
+				fragment: "#comment_module",
+				// target: "#comment_module"
+			});
+			$('#comment_module').on('pjax:start', function () {
+				$('#comment_module>.joe_pagination').html(`<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>`);
+			});
+			$('#comment_module').on('pjax:success', function () {
+				Joe.initComment();
+			});
+			$('#comment_module').on('pjax:error', function (xhr, textStatus, errorThrown) {
+				// isSubmit = false;
+				$(".joe_comment__respond-form .foot .submit button").html("发表评论");
+				console.log(textStatus)
+				res = textStatus.responseText;
+				var str = /<div class="container">\s+(.+)\s+<\/div>/;
+				var msg = res.match(str)[1];
+				if (msg) {
+					Qmsg.warning(msg);
+				} else {
+					Qmsg.warning("发送失败！请刷新重试！");
+				}
 			});
 		}
 	}
 
 	/* 激活评论提交 */
 	{
-		if ($(".joe_comment").length) {
-			let isSubmit = false;
-			$(".joe_comment__respond-form").on("submit", function (e) {
-				e.preventDefault();
-				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
-				const type = $(".joe_comment__respond-form").attr("data-type");
-				const parent = $(".joe_comment__respond-form").attr("data-coid");
-				const author = $(".joe_comment__respond-form .head input[name='author']").val();
-				const _ = $(".joe_comment__respond-form input[name='_']").val();
-				const mail = $(".joe_comment__respond-form .head input[name='mail']").val();
-				const url = $(".joe_comment__respond-form .head input[name='url']").val();
-				let text = $(".joe_comment__respond-form .body textarea[name='text']").val();
-				if (author.trim() === "") return Qmsg.info("请输入昵称！");
-				if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(mail)) return Qmsg.info(
-					"请输入正确的邮箱！");
-				if (type === "text" && text.trim() === "") return Qmsg.info("请输入评论内容！");
-				if (type === "draw") {
-					const txt = $("#joe_comment_draw")[0].toDataURL("image/webp", 0.1);
-					text = "{!{" + txt + "}!} ";
-				}
-				if (isSubmit) return;
-				isSubmit = true;
-				$(".joe_comment__respond-form .foot .submit button").html("发送中...");
-				$.ajax({
-					url: action,
-					type: "POST",
-					data: {
-						author,
-						mail,
-						text,
-						parent,
-						url,
-						_
-					},
-					dataType: "text",
-					success(res) {
-						let arr = [],
-							str = "";
-						arr = $(res).contents();
-						Array.from(arr).forEach((_) => {
-							if (_.parentNode.className === "container") str = _;
-						});
-						if (!/Joe/.test(res)) {
-							Qmsg.warning(str.textContent.trim() || "");
-							isSubmit = false;
-							$(".joe_comment__respond-form .foot .submit button").html("发表评论");
-						} else {
-							window.location.reload();
-						}
-					},
-					error(res) {
-						isSubmit = false;
-						$(".joe_comment__respond-form .foot .submit button").html("发表评论");
-						res = res.responseText;
-						var str = /<div class="container">\s+(.+)\s+<\/div>/;
-						var msg = res.match(str)[1];
-						if (msg) {
-							Qmsg.warning(msg);
-						} else {
-							Qmsg.warning("发送失败！请刷新重试！");
-						}
-					},
-				});
-			});
-		}
+
 	}
 
 	/* 设置评论回复网址为新窗口打开 */
 	{
-		$(".comment-list__item .term .content .user .author a").each((index, item) => $(item).attr("target",
-			"_blank"));
 	}
 
 	/* 格式化评论分页的hash值 */
 	{
-		$(".joe_comment .joe_pagination a").each((index, item) => {
-			const href = $(item).attr("href");
-			if (href && href.includes("#")) {
-				$(item).attr("href", href.replace("#comments", "?scroll=joe_comment"));
-			}
-		});
 	}
 
 	/* 切换标签显示不同的标题 */
@@ -765,13 +784,13 @@ document.addEventListener("DOMContentLoaded", () => {
 						scrollStr += `
 						<ul class="scroll" data-type="${key}">
 							${item.map((_) => {
-								if (key == '颜文字' || key == 'emoji') {
-									return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.icon}">${_.icon}</li>`;
-								} else {
-									let title = /.*?\((.*?)\)/.exec(_.text)[1];
-									return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="${window.Joe.LAZY_LOAD}" data-src="${OwOUrl + _.icon}" title="${title}" alt="${title}"/></li>`;
-								}
-							}).join("")}
+							if (key == '颜文字' || key == 'emoji') {
+								return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.icon}">${_.icon}</li>`;
+							} else {
+								let title = /.*?\((.*?)\)/.exec(_.text)[1];
+								return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="${window.Joe.LAZY_LOAD}" data-src="${OwOUrl + _.icon}" title="${title}" alt="${title}"/></li>`;
+							}
+						}).join("")}
 						</ul>`;
 					}
 					$(".joe_owo__contain").html(`

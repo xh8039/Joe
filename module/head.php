@@ -46,6 +46,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <?php $this->need('module/config.php'); ?>
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
 
+<?php $this->options->commentsPageBreak; ?>
+<?php if ($this->is('single')) : ?>
+<script src="<?= joe\cdn('jquery.pjax/2.0.1/jquery.pjax.min.js') ?>"></script>
+<?php endif; ?>
+
 <!-- Bootstrap: transition.js v3.4.1 -->
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>"></script>
 

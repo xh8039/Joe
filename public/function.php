@@ -1143,3 +1143,25 @@ function TagExternaToInternalLink(string $content, string $tag_name, string $htm
 	}
 	return $content;
 }
+
+function commentsAntiSpam($respondId)
+{
+	if (!\Helper::options()->commentsAntiSpam) return '';
+	return "
+	<script type=\"text/javascript\">
+	(function() {
+		var r = document.getElementById('{$respondId}'),
+			input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = '_';
+		input.value = " . \Typecho\Common::shuffleScriptVar(\Helper::security()->getToken(\Typecho_Request::getInstance()->getRequestUrl())) . "
+		if (null != r) {
+			var forms = r.getElementsByTagName('form');
+			if (forms.length > 0) {
+				forms[0].appendChild(input);
+			}
+		}
+	})();
+	</script>
+	";
+}

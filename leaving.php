@@ -11,6 +11,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
+if ($this->request->getHeader('x-pjax-container') == '#comment_module') {
+	$this->need('module/single/comment.php');
+	exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">

@@ -129,8 +129,16 @@ function _parseContent($post, $login)
 								</div>
 							</div>
 						</div>';
-						$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-						$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+						if ($post->request->getHeader('x-pjax-container') == 'joe-hide') {
+							$hide_show = PHP_EOL . '<div class="joe-hide-show"><script type="text/javascript">$(".pay-box").remove();</script>' . joe\commentsAntiSpam($post->respondId) . PHP_EOL;
+							$content = strtr($content, array("{hide}<br>" => $hide_show, "<br>{/hide}" => '</div>'));
+							$content = strtr($content, array("{hide}" => $hide_show, "{/hide}" => '</div>'));
+							Typecho_Cookie::delete('__typecho_notice');
+							Typecho_Cookie::delete('__typecho_notice_type');
+						} else {
+							$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+							$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+						}
 					} else {
 						$pay_box_position = _payFreeResources($post);
 					}
@@ -154,8 +162,16 @@ function _parseContent($post, $login)
 			}
 			$hasComment = $db->fetchRow($comment_sql);
 			if (!empty($hasComment)) {
-				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+				if ($post->request->getHeader('x-pjax-container') == 'joe-hide') {
+					$hide_show = PHP_EOL . '<div class="joe-hide-show">' . joe\commentsAntiSpam($post->respondId) . PHP_EOL;
+					$content = strtr($content, array("{hide}<br>" => $hide_show, "<br>{/hide}" => '</div>'));
+					$content = strtr($content, array("{hide}" => $hide_show, "{/hide}" => '</div>'));
+					Typecho_Cookie::delete('__typecho_notice');
+					Typecho_Cookie::delete('__typecho_notice_type');
+				} else {
+					$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+					$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+				}
 			}
 		}
 		$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);

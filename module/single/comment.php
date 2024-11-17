@@ -114,7 +114,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 					?>
 				</div>
 				<div class="foot">
-					<div class="owo joe_owo__contain" data-url="<?= empty($this->options->JOwOAssetsUrl) ? '' : rtrim($this->options->JOwOAssetsUrl,' /') . '/' ?>"></div>
+					<div class="owo joe_owo__contain" data-url="<?= empty($this->options->JOwOAssetsUrl) ? '' : rtrim($this->options->JOwOAssetsUrl, ' /') . '/' ?>"></div>
 					<div class="submit">
 						<span class="cancle joe_comment__cancle">取消</span>
 						<?php
@@ -129,7 +129,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 				</div>
 			</form>
 		</div>
-	<?php
+		<?php
 		$comments->listComments();
 		$comments->pageNav(
 			'<i class="fa fa-angle-left em12"></i><span class="hide-sm ml6">上一页</span>',
@@ -146,6 +146,25 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 				'nextClass' => 'next'
 			)
 		);
+		if ($this->request->getHeader('x-pjax') == 'true' && $this->options->commentsAntiSpam && $this->is('single')) {
+			echo joe\commentsAntiSpam($this->respondId);
+			if ($this->request->getHeader('x-pjax-container') == '#comment_module') {
+				?>
+				<script>
+					if ($('joe-hide>.joe_hide>.joe_hide__button').length > 0) {
+						$.pjax.reload('joe-hide', {
+							timeout: 99999999,
+							push: false,
+							replace: false,
+							fragment: ".joe-hide-show",
+						});
+					}
+				</script>
+				<?php
+			}
+			Typecho_Cookie::delete('__typecho_notice');
+			Typecho_Cookie::delete('__typecho_notice_type');
+		}
 	}
 	?>
 </div>

@@ -457,60 +457,54 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	/* 评论框点击切换画图模式和文本模式 */
-	{
-		if ($(".joe_comment").length) {
-			$(".joe_comment__respond-type .item").on("click", function () {
-				$(this).addClass("active").siblings().removeClass("active");
-				if ($(this).attr("data-type") === "draw") {
-					$(".joe_comment__respond-form .body .draw").show().siblings().hide();
-					$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
-					/* 设置表单格式为画图模式 */
-					$(".joe_comment__respond-form").attr("data-type", "draw");
-					/** 隐藏表情包功能 */
-					$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
-				} else {
-					$(".joe_comment__respond-form .body .text").show().siblings().hide();
-					/* 设置表单格式为文字模式 */
-					$(".joe_comment__respond-form").attr("data-type", "text");
-					/** 显示表情包功能 */
-					$('.joe_comment__respond-form .foot .owo').css('opacity', '1');
-				}
-			});
-		}
-	}
-
-	/* 激活画图功能 */
-	{
-		if ($("#joe_comment_draw").length) {
-			/* 激活画板 */
-			window.sketchpad = new Sketchpad({
-				element: "#joe_comment_draw",
-				height: 300,
-				penSize: 5,
-				color: "303133"
-			});
-			/* 撤销上一步 */
-			$(".joe_comment__respond-form .body .draw .icon-undo").on("click", () => window.sketchpad.undo());
-			/* 动画预览 */
-			$(".joe_comment__respond-form .body .draw .icon-animate").on("click", () => window.sketchpad
-				.animate(10));
-			/* 更改画板的线宽 */
-			$(".joe_comment__respond-form .body .draw .line li").on("click", function () {
-				window.sketchpad.penSize = $(this).attr("data-line");
-				$(this).addClass("active").siblings().removeClass("active");
-			});
-			/* 更改画板的颜色 */
-			$(".joe_comment__respond-form .body .draw .color li").on("click", function () {
-				window.sketchpad.color = $(this).attr("data-color");
-				$(this).addClass("active").siblings().removeClass("active");
-			});
-		}
-	}
-
 	/** 初始化评论 */
 	{
 		window.Joe.initComment = () => {
+			/* 评论框点击切换画图模式和文本模式 */
+			if ($(".joe_comment").length) {
+				$(".joe_comment__respond-type .item").on("click", function () {
+					$(this).addClass("active").siblings().removeClass("active");
+					if ($(this).attr("data-type") === "draw") {
+						$(".joe_comment__respond-form .body .draw").show().siblings().hide();
+						$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
+						/* 设置表单格式为画图模式 */
+						$(".joe_comment__respond-form").attr("data-type", "draw");
+						/** 隐藏表情包功能 */
+						$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
+					} else {
+						$(".joe_comment__respond-form .body .text").show().siblings().hide();
+						/* 设置表单格式为文字模式 */
+						$(".joe_comment__respond-form").attr("data-type", "text");
+						/** 显示表情包功能 */
+						$('.joe_comment__respond-form .foot .owo').css('opacity', '1');
+					}
+				});
+			}
+			/* 激活画图功能 */
+			if ($("#joe_comment_draw").length) {
+				/* 激活画板 */
+				window.sketchpad = new Sketchpad({
+					element: "#joe_comment_draw",
+					height: 300,
+					penSize: 5,
+					color: "303133"
+				});
+				/* 撤销上一步 */
+				$(".joe_comment__respond-form .body .draw .icon-undo").on("click", () => window.sketchpad.undo());
+				/* 动画预览 */
+				$(".joe_comment__respond-form .body .draw .icon-animate").on("click", () => window.sketchpad
+					.animate(10));
+				/* 更改画板的线宽 */
+				$(".joe_comment__respond-form .body .draw .line li").on("click", function () {
+					window.sketchpad.penSize = $(this).attr("data-line");
+					$(this).addClass("active").siblings().removeClass("active");
+				});
+				/* 更改画板的颜色 */
+				$(".joe_comment__respond-form .body .draw .color li").on("click", function () {
+					window.sketchpad.color = $(this).attr("data-color");
+					$(this).addClass("active").siblings().removeClass("active");
+				});
+			}
 			/* 重写评论功能 */
 			if ($(".joe_comment__respond").length) {
 				const respond = $(".joe_comment__respond");
@@ -632,19 +626,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			});
 		}
-	}
-
-	/* 激活评论提交 */
-	{
-
-	}
-
-	/* 设置评论回复网址为新窗口打开 */
-	{
-	}
-
-	/* 格式化评论分页的hash值 */
-	{
 	}
 
 	/* 切换标签显示不同的标题 */

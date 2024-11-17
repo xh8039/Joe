@@ -537,7 +537,7 @@ export default class JoeAction {
 						}</div>`;
 				}
 				this._openModal({
-					title: '表情图片',
+					title: '图片表情',
 					hasFooter: false,
 					innerHtml: `<div class="tabbar">${tabbarStr}</div>${listsStr}`,
 					handler: () => {

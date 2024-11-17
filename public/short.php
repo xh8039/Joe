@@ -215,7 +215,7 @@ function _parseContent($post, $login)
 		if (Helper::options()->JPostLinkRedirect == 'on') {
 			// 使用正则表达式匹配链接并直接进行替换
 			$content = preg_replace_callback(
-				'/<a href\="([a-zA-z]+:\/\/[^\s]*)"/',
+				'/<a href\="([^\s]*?)"/',
 				function ($matches) use ($post_cid) {
 					$redirect_link = joe\ExternaToInternalLink($matches[1], $post_cid);
 					return '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';

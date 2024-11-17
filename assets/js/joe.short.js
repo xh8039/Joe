@@ -214,16 +214,16 @@ document.addEventListener('DOMContentLoaded', () => {
 					password: this.getAttribute('password')
 				};
 				const type = {
-					default: '默认网盘',
+					default: '默认云盘',
 					360: '360网盘',
-					bd: '百度网盘',
-					ty: '天翼网盘',
-					ct: '城通网盘',
-					wy: '微云网盘',
-					quark: '夸克网盘',
+					baidu: '百度云盘',
+					tianyi: '天翼云盘',
+					chengtong: '城通网盘',
+					weiyun: '腾讯微云',
+					quark: '夸克云盘',
 					github: 'Github仓库',
 					gitee: 'Gitee仓库',
-					lz: '蓝奏云网盘',
+					lanzou: '蓝奏云网盘',
 				};
 				this.style.display = 'block';
 				this.innerHTML = `

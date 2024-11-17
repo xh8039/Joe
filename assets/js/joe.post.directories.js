@@ -125,6 +125,11 @@ function section_navs(selector) {
 			// 抵消顶栏高度
 			offset: $('.joe_header').innerHeight() + 10 + 1,
 		});
+		// 目录随文章内容滚动
+		$(nav_selector).on('activate.bs.scrollspy', function () {
+			var currentItem = $(this).find('ul>li.active');
+			$(this).scrollTop(currentItem[0].offsetTop - 50);
+		});
 		collapse();
 	};
 

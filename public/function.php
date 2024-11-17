@@ -1153,7 +1153,7 @@ function commentsAntiSpam($respondId)
 	<script type=\"text/javascript\">
 	(function() {
 		var r = document.getElementById('{$respondId}'),
-			input = document.createElement('input');
+			input = document.createElement('input'),
 			url = `{$url}`;
 		input.type = 'hidden';
 		input.name = '_';

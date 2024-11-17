@@ -146,24 +146,22 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 				'nextClass' => 'next'
 			)
 		);
-		if ($this->request->getHeader('x-pjax') == 'true' && $this->options->commentsAntiSpam && $this->is('single')) {
+		if ($this->request->getHeader('x-pjax-container') == '#comment_module' && $this->options->commentsAntiSpam && $this->is('single')) {
 			echo joe\commentsAntiSpam($this->respondId);
-			if ($this->request->getHeader('x-pjax-container') == '#comment_module') {
-				?>
-				<script>
-					if ($('joe-hide>.joe_hide>.joe_hide__button').length > 0) {
-						$.pjax.reload('joe-hide', {
-							timeout: 99999999,
-							push: false,
-							replace: false,
-							fragment: ".joe-hide-show",
-						});
-					}
-				</script>
-				<?php
-			}
 			Typecho_Cookie::delete('__typecho_notice');
 			Typecho_Cookie::delete('__typecho_notice_type');
+			?>
+			<script>
+				if ($('joe-hide>.joe_hide>.joe_hide__button').length > 0) {
+					$.pjax.reload('joe-hide', {
+						timeout: 99999999,
+						push: false,
+						replace: false,
+						fragment: ".joe-hide-show",
+					});
+				}
+			</script>
+			<?php
 		}
 	}
 	?>

@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 (function () {
 
 	// 检查是否为 AJAX 请求
-	if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+	if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 		return;
 	}
 

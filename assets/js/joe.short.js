@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						type: "get",
 						url: `${Joe.BASE_API}/meting?server=netease&type=song&id=${this.options.id}`,
 						dataType: "json",
-						success: function (response) {
+						success: (response) => {
 							new MusicPlayer({
 								container: getChildren(this, '_content'),
 								lrcType: 1,

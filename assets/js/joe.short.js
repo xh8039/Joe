@@ -86,20 +86,41 @@ document.addEventListener('DOMContentLoaded', () => {
 			render() {
 				if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
-				fetch(`${Joe.BASE_API}/meting?server=netease&type=song&id=${this.options.id}`).then(async response => {
-					const audio = await response.json();
-					new MusicPlayer({
-						container: getChildren(this, '_content'),
-						lrcType: 1,
-						theme: this.options.color,
-						autoplay: this.options.autoplay,
-						autotheme: this.options.autotheme,
-						storage: this.options.id,
-						loop: this.options.loop,
-						preload: 'auto',
-						audio
+				if (window.jQuery) {
+					$.ajax({
+						type: "get",
+						url: `${Joe.BASE_API}/meting?server=netease&type=song&id=${this.options.id}`,
+						dataType: "json",
+						success: function (response) {
+							new MusicPlayer({
+								container: getChildren(this, '_content'),
+								lrcType: 1,
+								theme: this.options.color,
+								autoplay: this.options.autoplay,
+								autotheme: this.options.autotheme,
+								storage: this.options.id,
+								loop: this.options.loop,
+								preload: 'auto',
+								response
+							});
+						}
 					});
-				});
+				} else {
+					fetch(`${Joe.BASE_API}/meting?server=netease&type=song&id=${this.options.id}`).then(async response => {
+						const audio = await response.json();
+						new MusicPlayer({
+							container: getChildren(this, '_content'),
+							lrcType: 1,
+							theme: this.options.color,
+							autoplay: this.options.autoplay,
+							autotheme: this.options.autotheme,
+							storage: this.options.id,
+							loop: this.options.loop,
+							preload: 'auto',
+							audio
+						});
+					});
+				}
 			}
 		}
 	);

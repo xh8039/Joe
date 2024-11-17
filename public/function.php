@@ -284,18 +284,21 @@ function checkSensitiveWords($words_str, $str)
 	return false;
 }
 
-function theme_url($path, $param = ['version' => JOE_VERSION])
+function theme_url($path, $param = ['version' => JOE_ASSETS_VERSION])
 {
-	$themeUrl = \Helper::options()->themeUrl;
-	$theme_url_parse = parse_url($themeUrl);
-	$theme_url_domain = $theme_url_parse['host'] . ($theme_url_parse['port'] ?? '');
-	if ($theme_url_domain != $_SERVER['HTTP_HOST']) {
-		$themeUrl = str_replace($theme_url_domain, $_SERVER['HTTP_HOST'], $themeUrl);
+	static $url_root = null;
+	if (is_null($url_root)) {
+		$themeUrl = \Helper::options()->themeUrl;
+		$theme_url_parse = parse_url($themeUrl);
+		$theme_url_domain = $theme_url_parse['host'] . ($theme_url_parse['port'] ?? '');
+		if ($theme_url_domain != $_SERVER['HTTP_HOST']) {
+			$themeUrl = str_replace($theme_url_domain, $_SERVER['HTTP_HOST'], $themeUrl);
+		}
+		$themeUrl = preg_replace("/^https?:\/\//", '//', $themeUrl);
+		$url_root = empty(\Helper::options()->JStaticAssetsUrl) ? $themeUrl : \Helper::options()->JStaticAssetsUrl;
+		$lastChar = substr($url_root, -1);
+		if ($lastChar != '/') $url_root = $url_root . '/';
 	}
-	$themeUrl = preg_replace("/^https?:\/\//", '//', $themeUrl);
-	$url_root = empty(\Helper::options()->JStaticAssetsUrl) ? $themeUrl : \Helper::options()->JStaticAssetsUrl;
-	$lastChar = substr($url_root, -1);
-	if ($lastChar != '/') $url_root = $url_root . '/';
 	$url = $url_root . $path;
 	return url_builder($url, $param);
 }

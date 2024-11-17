@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 define('JOE_VERSION', '1.33');
-define('JOE_ASSETS_VERSION', 3);
+define('JOE_ASSETS_VERSION', 4);
 define('JOE_ROOT', dirname(__FILE__) . '/');
 
 /* Joe核心文件 */

@@ -149,10 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				super();
 				this.options = {
 					icon: this.getAttribute('icon') || '',
-					color: this.getAttribute('color') || '#ff6800',
+					color: this.getAttribute('color') || 'var(--theme)',
 					href: this.getAttribute('href') || 'javascript:;',
 					target: this.getAttribute('target') || '_self',
-					radius: this.getAttribute('radius') || '17.5px',
+					radius: this.getAttribute('radius') || 'var(--radius-wrap)',
 					content: this.getAttribute('content') || '多彩按钮'
 				};
 				this.innerHTML = `

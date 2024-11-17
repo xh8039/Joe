@@ -199,11 +199,6 @@ function themeInit($self)
 			$self->setThemeFile("module/sitemap.php");
 		}
 	}
-
-	/** 全局音乐API */
-	if (strpos($self->request->getRequestUri(), 'joe/api/meting') !== false) {
-		_Meting($self);
-	}
 }
 
 /* 增加自定义字段 */

@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
 				if (window.jQuery) {
 					$.ajax({
-						type: "get",
-						url: `${Joe.BASE_API}/meting?server=netease&type=song&id=${this.options.id}`,
+						type: "POST",
+						url: `${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=song&id=${this.options.id}`,
 						dataType: "json",
 						success: (response) => {
 							new MusicPlayer({
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 					});
 				} else {
-					fetch(`${Joe.BASE_API}/meting?server=netease&type=song&id=${this.options.id}`).then(async response => {
+					fetch(`${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
 						const audio = await response.json();
 						new MusicPlayer({
 							container: getChildren(this, '_content'),
@@ -144,21 +144,43 @@ document.addEventListener('DOMContentLoaded', () => {
 			render() {
 				if (!this.options.id) return (this.innerHTML = '网易云歌单ID未填写！');
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
-				fetch(`${Joe.BASE_API}/meting?server=netease&type=playlist&id=${this.options.id}`).then(async response => {
-					const audio = await response.json();
-					new MusicPlayer({
-						container: getChildren(this, '_content'),
-						lrcType: 3,
-						theme: this.options.color,
-						autoplay: this.options.autoplay,
-						autotheme: this.options.autotheme,
-						storage: this.options.id,
-						loop: this.options.loop,
-						order: this.options.order,
-						preload: 'auto',
-						audio
+				if (window.jQuery) {
+					$.ajax({
+						type: "POST",
+						url: `${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=playlist&id=${this.options.id}`,
+						dataType: "json",
+						success: (response) => {
+							new MusicPlayer({
+								container: getChildren(this, '_content'),
+								lrcType: 3,
+								theme: this.options.color,
+								autoplay: this.options.autoplay,
+								autotheme: this.options.autotheme,
+								storage: this.options.id,
+								loop: this.options.loop,
+								order: this.options.order,
+								preload: 'auto',
+								audio: response
+							});
+						}
 					});
-				});
+				} else {
+					fetch(`${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
+						const audio = await response.json();
+						new MusicPlayer({
+							container: getChildren(this, '_content'),
+							lrcType: 3,
+							theme: this.options.color,
+							autoplay: this.options.autoplay,
+							autotheme: this.options.autotheme,
+							storage: this.options.id,
+							loop: this.options.loop,
+							order: this.options.order,
+							preload: 'auto',
+							audio
+						});
+					});
+				}
 			}
 		}
 	);

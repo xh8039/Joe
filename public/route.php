@@ -785,10 +785,10 @@ function _Meting($self)
 			unset($data[$key]);
 			$data[$key]['author'] = is_array($value['artist']) ? implode(' / ', $value['artist']) : $value['artist'];
 			$data[$key]['title'] = $value['name'];
-			$base_url = Helper::options()->index . '/joe/api/meting';
-			$data[$key]['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'];
-			$data[$key]['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
-			$data[$key]['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
+			$base_url = Helper::options()->index . '/joe/api?routeType=meting';
+			$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'];
+			$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
+			$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
 		}
 		$self->response->setStatus(200);
 		$self->response->throwJson($data);
@@ -828,10 +828,10 @@ function _Meting($self)
 		$data = array_shift(json_decode($data, true));
 		$data['author'] = is_array($data['artist']) ? implode(' / ', $data['artist']) : $data['artist'];
 		$data['title'] = $data['name'];
-		$base_url = Helper::options()->index . '/joe/api/meting';
-		$data['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $data['url_id'];
-		$data['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $data['pic_id'];
-		$data['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];
+		$base_url = Helper::options()->index . '/joe/api?routeType=meting';
+		$data['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $data['url_id'];
+		$data['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&id=' . $data['pic_id'];
+		$data['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];
 		$self->response->setStatus(200);
 		$self->response->throwJson([$data]);
 	}

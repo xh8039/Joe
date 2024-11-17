@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				super();
 				this.startColor = this.getAttribute('startColor') || '#ff6c6c';
 				this.endColor = this.getAttribute('endColor') || '#1989fa';
+				this.style.display = 'block';
 				this.innerHTML = `
 					<span class="joe_dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></span>
 				`;
@@ -222,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					gitee: 'Gitee仓库',
 					lz: '蓝奏云网盘',
 				};
+				this.style.display = 'block';
 				this.innerHTML = `
 					<span class="joe_cloud">
 						<div class="joe_cloud__logo _${this.options.type}"></div>
@@ -244,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			constructor() {
 				super();
 				this.render();
+				this.style.display = 'block';
 			}
 			render() {
 				if (window.Joe.CONTENT.fields.hide == 'pay') {
@@ -319,6 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		class JoeProgress extends HTMLElement {
 			constructor() {
 				super();
+				this.style.display = 'block';
 				this.options = {
 					percentage: /^\d{1,3}%$/.test(this.getAttribute('percentage')) ? this.getAttribute('percentage') : '50%',
 					color: this.getAttribute('color') || '#ff6c6c'

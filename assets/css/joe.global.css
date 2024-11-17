@@ -3117,6 +3117,73 @@
 	line-height: 26px;
 }
 
+.joe_detail__article h1+p>*,
+.joe_detail__article h2+p>*,
+.joe_detail__article h3+p>*,
+.joe_detail__article h4+p>*,
+.joe_detail__article h5+p>*,
+.joe_detail__article h6+p>* {
+	padding-top: 6px;
+}
+
+.joe_detail__article h1+p .joe_abtn,
+.joe_detail__article h2+p .joe_abtn,
+.joe_detail__article h3+p .joe_abtn,
+.joe_detail__article h4+p .joe_abtn,
+.joe_detail__article h5+p .joe_abtn,
+.joe_detail__article h6+p .joe_abtn,
+
+.joe_detail__article h1+p .joe_anote,
+.joe_detail__article h2+p .joe_anote,
+.joe_detail__article h3+p .joe_anote,
+.joe_detail__article h4+p .joe_anote,
+.joe_detail__article h5+p .joe_anote,
+.joe_detail__article h6+p .joe_anote {
+	margin-top: 6px;
+}
+
+.joe_detail__article h1+p>.owo_image,
+.joe_detail__article h2+p>.owo_image,
+.joe_detail__article h3+p>.owo_image,
+.joe_detail__article h4+p>.owo_image,
+.joe_detail__article h5+p>.owo_image,
+.joe_detail__article h6+p>.owo_image {
+	padding-top: unset;
+}
+
+.joe_detail__article h1+table,
+.joe_detail__article h2+table,
+.joe_detail__article h3+table,
+.joe_detail__article h4+table,
+.joe_detail__article h5+table,
+.joe_detail__article h6+table,
+
+.joe_detail__article h1+pre,
+.joe_detail__article h2+pre,
+.joe_detail__article h3+pre,
+.joe_detail__article h4+pre,
+.joe_detail__article h5+pre,
+.joe_detail__article h6+pre,
+
+.joe_detail__article h1+section,
+.joe_detail__article h2+section,
+.joe_detail__article h3+section,
+.joe_detail__article h4+section,
+.joe_detail__article h5+section,
+.joe_detail__article h6+section {
+	margin-top: 14px;
+}
+
+.joe_detail__article h1+p>.joe-message,
+.joe_detail__article h2+p>.joe-message,
+.joe_detail__article h3+p>.joe-message,
+.joe_detail__article h4+p>.joe-message,
+.joe_detail__article h5+p>.joe-message,
+.joe_detail__article h6+p>.joe-message {
+	display: block;
+	margin-top: 20px;
+}
+
 .joe_detail__article ul>li>p {
 	margin-bottom: 5px;
 }
@@ -3142,7 +3209,8 @@
 }
 
 .joe_detail__article a:not([class]) {
-	display: inline-block;
+	/* display: inline-block; */
+	display: inline;
 	line-height: 21px;
 	color: var(--theme);
 	position: relative
@@ -3287,7 +3355,7 @@ html .line-numbers .line-numbers-rows {
 	max-width: 100%;
 	/*table-layout: fixed;*/
 	color: var(--minor);
-	margin-bottom: 18px;
+	margin-bottom: 15px;
 	font-size: 13px;
 	border-top: 1px solid var(--classC);
 	border-left: 1px solid var(--classC)

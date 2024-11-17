@@ -390,6 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				} else {
 					const span = document.createElement('span');
 					span.style.display = 'block';
+					span.style.paddingTop = '8px';
 					span.className = '_content';
 					span.innerHTML = htmlStr;
 					this.appendChild(span);

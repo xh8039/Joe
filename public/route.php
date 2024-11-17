@@ -786,7 +786,7 @@ function _Meting($self)
 			$data[$key]['author'] = is_array($value['artist']) ? implode(' / ', $value['artist']) : $value['artist'];
 			$data[$key]['title'] = $value['name'];
 			$base_url = Helper::options()->index . '/joe/api?routeType=meting';
-			$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'];
+			$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'] . '&time=' . time();
 			$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
 			$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
 		}

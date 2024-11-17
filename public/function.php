@@ -1157,7 +1157,7 @@ function commentsAntiSpam($respondId)
 			url = `{$url}`;
 		input.type = 'hidden';
 		input.name = '_';
-		input.value = " . \Typecho\Common::shuffleScriptVar(\Helper::security()->getToken()) . "
+		input.value = " . \Typecho\Common::shuffleScriptVar(\Helper::security()->getToken($url)) . "
 		if (null != r) {
 			var forms = r.getElementsByTagName('form');
 			if (forms.length > 0) {

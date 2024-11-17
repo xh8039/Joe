@@ -1130,9 +1130,10 @@ function TagExternaToInternalLink(string $content, string $tag_name, string $htm
 				function ($matches) use ($post_cid, $html_name, $attr_name) {
 					if (preg_match('/^[a-zA-z]+:\/\/[^\s]*)"([^}]*/', trim($matches[2]))) {
 						$redirect_link = ExternaToInternalLink(trim($matches[2]), $post_cid);
-						return '<' . $html_name . $matches[1] . $attr_name . '="' . $redirect_link . '"' . $matches[3] . '></' . $html_name . '>';
+					} else {
+						$redirect_link = $matches[2];
 					}
-					return $matches[0];
+					return '<' . $html_name . $matches[1] . $attr_name . '="' . $redirect_link . '"' . $matches[3] . '></' . $html_name . '>';
 				},
 				$content
 			);

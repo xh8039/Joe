@@ -226,6 +226,17 @@ class Joe extends JoeAction {
 							break;
 						case 'delete':
 							super._insetAmboText(this.cm, '~~');
+						case 'font-center':
+							super._insetAmboText(this.cm, '<p align="center">', '</p>');
+							break;
+						case 'font-right':
+							super._insetAmboText(this.cm, '<p align="right">', '</p>');
+							break;
+						case 'font-color':
+							super._insetAmboText(this.cm, '<font color="red">', '</font>');
+							break;
+						case 'font-size':
+							super._insetAmboText(this.cm, '<font size="5">', '</font>');
 							break;
 						case 'code-inline':
 							super._insetAmboText(this.cm, '`');

@@ -126,10 +126,12 @@ function section_navs(selector) {
 			offset: $('.joe_header').innerHeight() + 10 + 1,
 		});
 		// 目录随文章内容滚动
-		$(nav_selector).on('activate.bs.scrollspy', function () {
-			var currentItem = $(this).find('ul>li.active');
-			$(this).scrollTop(currentItem[0].offsetTop - 50);
-		});
+		if (getHiddenElementHeight($(nav_selector + '>ul')) > 400) {
+			$(nav_selector).on('activate.bs.scrollspy', function () {
+				var currentItem = $(this).find('ul>li.active');
+				$(this).scrollTop(currentItem[0].offsetTop - 50);
+			});
+		}
 		collapse();
 	};
 

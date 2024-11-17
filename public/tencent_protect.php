@@ -17,6 +17,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 	if (!isset($_SERVER['HTTP_USER_AGENT'])) $_SERVER['HTTP_USER_AGENT'] = '';
 	if (!isset($_SERVER['HTTP_REFERER'])) $_SERVER['HTTP_REFERER'] = '';
+	if (!isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) $_SERVER['HTTP_ACCEPT_LANGUAGE'] = '';
 
 	// 检查 User-Agent
 	foreach ($spiders as $spider) {

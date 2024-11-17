@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								storage: this.options.id,
 								loop: this.options.loop,
 								preload: 'auto',
-								response
+								audio: response
 							});
 						}
 					});

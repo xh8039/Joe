@@ -630,7 +630,7 @@ export default class JoeAction {
 				const icon = $(".cm-modal input[name='icon']").val();
 				const color = $(".cm-modal input[name='color']").val();
 				const href = $(".cm-modal input[name='href']").val();
-				const target = $(".cm-modal input[name='target']").val();
+				const target = $(".cm-modal select[name='target']").val();
 				const radius = $(".cm-modal input[name='radius']").val();
 				const content = $(".cm-modal input[name='content']").val();
 				const str = `{abtn icon="${icon}" color="${color}" href="${href}" target="${target}" radius="${radius}" content="${content}"/}`;
@@ -682,7 +682,7 @@ export default class JoeAction {
 			confirm: () => {
 				const icon = $(".cm-modal input[name='icon']").val();
 				const href = $(".cm-modal input[name='href']").val();
-				const target = $(".cm-modal input[name='target']").val();
+				const target = $(".cm-modal select[name='target']").val();
 				const type = $(".cm-modal select[name='type']").val();
 				const content = $(".cm-modal input[name='content']").val();
 				const str = `{anote icon="${icon}" href="${href}" target="${target}" type="${type}" content="${content}"/}`;

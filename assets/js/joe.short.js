@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					autotheme: this.getAttribute('autotheme'),
 					loop: this.getAttribute('loop')
 				};
+				this.style.display = 'block';
 				this.render();
 			}
 			render() {
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					loop: this.getAttribute('loop'),
 					order: this.getAttribute('order')
 				};
+				this.style.display = 'block';
 				this.render();
 			}
 			render() {
@@ -559,6 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					screenshot: this.getAttribute('screenshot') == '1' ? this.getAttribute('autoplay') : 0,
 					player: this.getAttribute('player')
 				};
+				this.style.display = 'block';
 				this.render();
 			}
 			render() {
@@ -640,6 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				super();
 				this.bvid = this.getAttribute('bvid');
 				this.page = Object.is(Number(this.getAttribute('page')), NaN) ? 1 : this.getAttribute('page');
+				this.style.display = 'block';
 				this.render();
 			}
 			render() {

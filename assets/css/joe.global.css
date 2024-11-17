@@ -3147,7 +3147,14 @@
 .joe_detail__article h3+p>.owo_image,
 .joe_detail__article h4+p>.owo_image,
 .joe_detail__article h5+p>.owo_image,
-.joe_detail__article h6+p>.owo_image {
+.joe_detail__article h6+p>.owo_image,
+
+.joe_detail__article h1+p>code,
+.joe_detail__article h2+p>code,
+.joe_detail__article h3+p>code,
+.joe_detail__article h4+p>code,
+.joe_detail__article h5+p>code,
+.joe_detail__article h6+p>code {
 	padding-top: unset;
 }
 
@@ -3182,7 +3189,7 @@
 .joe_detail__article h6+p>joe-message:first-child {
 	display: block;
 	margin-top: 20px;
-	padding-top:unset;
+	padding-top: unset;
 }
 
 .joe_detail__article ul>li>p {

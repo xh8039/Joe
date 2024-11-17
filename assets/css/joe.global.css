@@ -2486,7 +2486,7 @@
 .joe_card__describe-title {
 	position: absolute;
 	top: 0;
-	left: 8px;
+	left: 10px;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 	background: var(--background);

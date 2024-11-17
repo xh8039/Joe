@@ -1356,7 +1356,7 @@ body.fullscreen {
 .joe_card__describe-title {
 	position: absolute;
 	top: 0;
-	left: 8px;
+	left: 10px;
 	transform: translateY(-50%);
 	background: #fff;
 	padding: 0 5px;

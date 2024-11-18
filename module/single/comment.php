@@ -172,11 +172,15 @@ function threadedComments($comments, $options)
 			<div class="term">
 				<?php
 				if ($comments->request->getHeader('x-pjax') == 'true') {
-				?><img width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" /><?php
-																															} else {
-																																?><img width="48" height="48" class="avatar lazyload" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" /><?php
-																																																																								}
-																																																																									?>
+				?>
+					<img width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
+				<?php
+				} else {
+				?>
+					<img width="48" height="48" class="avatar lazyload" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
+				<?php
+				}
+				?>
 				<div class="content">
 					<div class="user">
 						<span class="author"><?php $comments->author(); ?></span>
@@ -193,7 +197,7 @@ function threadedComments($comments, $options)
 						<?php echo _parseCommentReply($comments->content); ?>
 					</div>
 					<div class="handle">
-						<time class="date" datetime="<?php $comments->date('Y-m-d'); ?>"><?php $comments->date('Y-m-d'); ?></time>
+						<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 						<?php
 						if (!$login_comment) {
 						?>

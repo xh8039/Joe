@@ -1155,7 +1155,7 @@ function commentsAntiSpam($respondId)
 		$script = "
 	<script type=\"text/javascript\">
 	(function() {
-		var r = document.getElementById('{$respondId}'),
+		var r = document.getElementById('respond-post-{$respondId}'),
 			input = document.createElement('input'),
 			url = `{$url}`;
 		input.type = 'hidden';

@@ -157,13 +157,13 @@ window.Joe.initComment = (options = {}) => {
 				$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
 				if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
 					var pjax = new Pjax({
-						elements: 'joe-hide',
+						elements: '',
 						selectors: ['joe-hide'],
 						history: false,
 						scrollRestoration: false,
 						pjax: 'joe-hide',
 					});
-					pjax.loadUrl(pjax);
+					pjax.loadUrl(window.location.href);
 				}
 			});
 			document.addEventListener('pjax:error', (event) => {

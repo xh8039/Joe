@@ -177,14 +177,13 @@ window.Joe.initComment = (options = {}) => {
 					pjax.loadUrl(window.location.href);
 				}
 			});
-			document.addEventListener('pjax:error', (event) => {
+			document.addEventListener('pjax:error', (options) => {
 				if (options.pjax != "comment-submit") return;
 				isSubmit = false;
 				$(".joe_comment__respond-form .foot .submit button").html("发送评论");
-				console.log(event.options.request)
-				res = event.options.request.responseText;
-				var str = /<div class="container">\s+(.+)\s+<\/div>/;
-				var msg = str.match(res)[1];
+				responseText = options.request.responseText;
+				let match = /<div class="container">\s+(.+)\s+<\/div>/;
+				var msg = responseText.match(match)[1];
 				if (msg) {
 					Qmsg.warning(msg);
 				} else {

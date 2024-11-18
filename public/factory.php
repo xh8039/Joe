@@ -69,7 +69,7 @@ if (
 	Helper::options()->JCommentSMTPSecure
 ) {
 	if (isset($_SESSION['JOE_SEND_MAIL_TIME'])) {
-		if (time() - $_SESSION['JOE_SEND_MAIL_TIME'] >= 60) {
+		if (time() - $_SESSION['JOE_SEND_MAIL_TIME'] >= 180) {
 			Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
 		}
 	} else {

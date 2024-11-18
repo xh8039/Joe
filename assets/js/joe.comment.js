@@ -157,7 +157,8 @@ window.Joe.initComment = (options = {}) => {
 				$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
 				if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
 					var pjax = new Pjax({
-						selectors: { 'joe-hide': '.joe-hide-show' },
+						elements: 'joe-hide',
+						selectors: ['joe-hide'],
 						history: false,
 						scrollRestoration: false,
 						pjax: 'joe-hide',

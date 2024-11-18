@@ -161,6 +161,7 @@ window.Joe.initComment = (options = {}) => {
 				Qmsg.success('发送成功');
 				$('textarea.joe_owo__target').val('');
 				$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
+				$(".joe_comment__respond-form .body textarea[name='text']").focus();
 				if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
 					var pjax = new Pjax({
 						elements: '',

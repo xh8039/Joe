@@ -6,6 +6,7 @@ if ($this->request->getHeader('x-pjax-container') == '#comment_module') {
 if ($this->request->getHeader('x-pjax-container') == 'joe-hide') {
 	if (preg_match('/{hide[^}]*}([\s\S]*?){\/hide}/', $this->content, $content_match)) {
 		$content = joe\markdown_hide($content_match[0], $this, $this->user->hasLogin());
+		$content = _parseContent($this, $this->user->hasLogin(), $content);
 	} else {
 		$content = '';
 	}

@@ -1,10 +1,8 @@
 <?php
 
-
-
-function _parseContent($post, $login)
+function _parseContent($post, $login, $content = null)
 {
-	$content = $post->content;
+	$content = is_string($content) ? $content : $post->content;
 	$content = _parseReply($content);
 	$post_cid = $post->cid;
 
@@ -111,24 +109,23 @@ function _parseContent($post, $login)
 	if (strpos($content, '{copy') !== false) {
 		$content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
 	}
-
-	function images_count()
-	{
-		static $count = 0;
-		$count++;
-		return $count;
-	}
-	$content = preg_replace_callback(
-		'/<img src\="([\s\S]*?)" alt\="" title\="">/',
-		function ($matches) use ($post) {
-			$alt = '图片[' . images_count() . '] - ' . $post->title . ' - ' . Helper::options()->title;
-			return '<img src="' . $matches[1] . '" alt="' . $alt . '" title="' . $alt . '">';
-		},
-		$content
-	);
-
-	// img图片引入时不携带referrer信息
+	
 	if (strpos($content, '<img src="') !== false) {
+		function images_count()
+		{
+			static $count = 0;
+			$count++;
+			return $count;
+		}
+		$content = preg_replace_callback(
+			'/<img src\="([\s\S]*?)" alt\="" title\="">/',
+			function ($matches) use ($post) {
+				$alt = '图片[' . images_count() . '] - ' . $post->title . ' - ' . Helper::options()->title;
+				return '<img src="' . $matches[1] . '" alt="' . $alt . '" title="' . $alt . '">';
+			},
+			$content
+		);
+		// img图片引入时不携带referrer信息
 		$content = str_replace('<img src="', '<img referrerPolicy="no-referrer" rel="noreferrer" src="', $content);
 	}
 
@@ -153,6 +150,7 @@ function _parseContent($post, $login)
 	if (strpos($content, '<pre>') !== false) {
 		$content = str_replace('<pre>', '<pre class="line-numbers">', $content);
 	}
+
 	// shell 已经更名为 powershell
 	if (strpos($content, '<code class="lang-shell">') !== false) {
 		$content = str_replace('<code class="lang-shell">', '<code class="lang-powershell">', $content);

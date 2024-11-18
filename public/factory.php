@@ -68,7 +68,13 @@ if (
 	Helper::options()->JCommentMailPassword &&
 	Helper::options()->JCommentSMTPSecure
 ) {
-	Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
+	if (isset($_SESSION['JOE_SEND_MAIL_TIME'])) {
+		if (time() - $_SESSION['JOE_SEND_MAIL_TIME'] >= 60) {
+			Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
+		}
+	} else {
+		Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
+	}
 }
 
 class Email
@@ -112,6 +118,7 @@ class Email
 					$mail->addAddress($parentMail);
 					$mail->Subject = '您在 [' . $comment->title . '] 的评论有了新的回复！';
 					$mail->send();
+					$_SESSION['JOE_SEND_MAIL_TIME'] = time();
 				}
 			}
 			/* 如果是游客发的评论 */
@@ -134,6 +141,7 @@ class Email
 					$mail->addAddress($authorMail);
 					$mail->Subject = '您的文章 [' . $comment->title . '] 收到一条新的评论！';
 					$mail->send();
+					$_SESSION['JOE_SEND_MAIL_TIME'] = time();
 				}
 				/* 如果发表的评论是回复别人 */
 			} else {
@@ -154,6 +162,7 @@ class Email
 					$mail->addAddress($parentMail);
 					$mail->Subject = '您在 [' . $comment->title . '] 的评论有了新的回复！';
 					$mail->send();
+					$_SESSION['JOE_SEND_MAIL_TIME'] = time();
 				}
 			}
 		}

@@ -4,7 +4,7 @@ if (is_string($this->request->getHeader('x-pjax-selectors'))) {
 		$this->need('module/single/comment.php');
 		exit;
 	}
-	if ($this->request->getHeader('x-pjax-selectors') == '[".joe_hide"]') {
+	if ($this->request->getHeader('x-pjax-selectors') == '["joe-hide"]') {
 		if (preg_match('/{hide[^}]*}([\s\S]*?){\/hide}/', $this->content, $content_match)) {
 			$content = joe\markdown_hide($content_match[0], $this, $this->user->hasLogin());
 			$content = _parseContent($this, $this->user->hasLogin(), $content);
@@ -13,7 +13,7 @@ if (is_string($this->request->getHeader('x-pjax-selectors'))) {
 		}
 		// $content = '<script type="text/javascript">$(".pay-box").remove();</script>' . $content . joe\commentsAntiSpam($this->respondId);
 		$content = '<script type="text/javascript">$(".pay-box").remove();</script>' . $content;
-		$content = '<joe-hide class="joe_hide">' . $content . '</joe-hide>';
+		$content = '<joe-hide style="display: block;">' . $content . '</joe-hide>';
 		echo $content;
 		exit;
 	}

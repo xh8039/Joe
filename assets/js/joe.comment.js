@@ -158,7 +158,7 @@ window.Joe.initComment = (options = {}) => {
 				if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
 					var pjax = new Pjax({
 						elements: '',
-						selectors: ['.joe_hide'],
+						selectors: ['joe-hide'],
 						history: false,
 						scrollRestoration: false,
 						pjax: 'joe-hide',

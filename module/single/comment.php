@@ -134,7 +134,7 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 				</div>
 			</form>
 		</div>
-		<?php
+	<?php
 		$comments->listComments();
 		$comments->pageNav(
 			'<i class="fa fa-angle-left em12"></i><span class="hide-sm ml6">上一页</span>',
@@ -151,23 +151,6 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 				'nextClass' => 'next'
 			)
 		);
-		if ($this->request->getHeader('x-pjax') == 'true' && $this->options->commentsAntiSpam && $this->is('single')) {
-			echo joe\commentsAntiSpam($this->respondId);
-			if (!isset($_GET['_pjax']) && !$this->fields->price) {
-		?>
-				<script>
-					if ($('joe-hide>.joe_hide>.joe_hide__button').length > 0) {
-						$.pjax.reload('joe-hide', {
-							timeout: 99999999,
-							push: false,
-							replace: false,
-							fragment: ".joe-hide-show",
-						});
-					}
-				</script>
-	<?php
-			}
-		}
 	}
 	?>
 </div>
@@ -176,6 +159,9 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 function threadedComments($comments, $options)
 {
 	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
+	if ($comments->request->getHeader('x-pjax') == 'true') {
+		echo joe\commentsAntiSpam($comments->respondId);
+	}
 ?>
 	<li class="comment-list__item">
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">

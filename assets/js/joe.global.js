@@ -459,78 +459,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/** 初始化评论 */
 	{
-		Joe.initComment();
-		if ($('#comment_module>.joe_pagination a').length > 0) {
-			$(document).pjax('#comment_module>.joe_pagination a', '#comment_module', {
-				timeout: 99999999,
-				push: false,
-				replace: false,
-				fragment: "#comment_module",
-				scrollTo: true,
-				// target: "#comment_module"
-			});
-			$('#comment_module').on('pjax:start', function (event) {
-				if (event.target !== document.querySelector('div#comment_module.joe_comment')) return;
+		window.Joe.initComment();
+		if ($('#comment_module>.joe_pagination a').length) {
+			document.addEventListener('pjax:send', (options) => {
+				if (options.pjax != "comment-pagination") return;
 				window.Joe.commentListAutoRefresh = false;
-				$('#comment_module>.joe_pagination').html(`<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>`);
-			});
-			$('#comment_module').on('pjax:success', function (event) {
-				if (event.target !== document.querySelector('div#comment_module.joe_comment')) return;
-				console.log(event);
-				Joe.initComment();
-				window.Joe.commentListAutoRefresh = true;
-			});
-			$('#comment_module').on('pjax:error', function (xhr, textStatus, errorThrown) {
-				if (xhr.target !== document.querySelector('div#comment_module.joe_comment')) return;
-				// isSubmit = false;
-				$(".joe_comment__respond-form .foot .submit button").html("发表评论");
-				console.log(textStatus)
-				res = textStatus.responseText;
-				var str = /<div class="container">\s+(.+)\s+<\/div>/;
-				var msg = res.match(str)[1];
-				if (msg) {
-					Qmsg.warning(msg);
-				} else {
-					Qmsg.warning("发送失败！请刷新重试！");
-				}
+				$('#comment_module>.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
 			});
 		}
 	}
 
+	/** 通用Pjax成功回调 */
+	{
+		document.addEventListener('pjax:success', (options) => {
+			window.Joe.commentListAutoRefresh = true;
+			console.log(options.pjax);
+			if (options.pjax == 'comment-submit' || options.pjax == 'comment-pagination') {
+				Joe.initComment({
+					draw: false,
+					owo: false,
+					submit: false
+				});
+			}
+			if (options.pjax == 'comment-auto-refresh') {
+				Joe.initComment({
+					draw: false,
+					owo: false,
+					submit: false,
+					pagination: false,
+				});
+			}
+		});
+	}
+
 	/** 评论区内容实时刷新 */
 	{
-		if ($('#comment_module a[auto-refresh]').length > 0) {
+		if ($('#comment_module a[auto-refresh]').length) {
 			let time = Number($('#comment_module a[auto-refresh]').attr('auto-refresh'));
 			if (time && Number.isInteger(time)) {
 				window.Joe.commentListAutoRefresh = true;
-				$(document).pjax('#comment_module a[auto-refresh]', '#comment_module>.comment-list', {
-					timeout: 99999999,
-					push: false,
-					replace: false,
-					fragment: ".comment-list",
-					scrollTo: false
-					// target: "#comment_module"
+				var pjax = new Pjax({
+					elements: "#comment_module a[auto-refresh]",
+					selectors: ["#comment_module>.comment-list"],
+					history: false,
+					scrollRestoration: false,
+					pjax: 'comment-auto-refresh',
 				});
-				$('#comment_module>.comment-list').on('pjax:success', function (event) {
-					if (event.target !== document.querySelector('div#comment_module>.comment-list')) return;
-					if (!window.Joe.commentListAutoRefresh) return;
-					Joe.initComment({
-						draw: false,
-						owo: false,
-						submit: false,
-						pagination: false
-					});
-				});
-				$('#comment_module>.comment-list').on('pjax:beforeReplace', function (event) {
-					if (event.target !== document.querySelector('div#comment_module>.comment-list')) return;
-					return window.Joe.commentListAutoRefresh;
-				});
+				pjax._handleResponse = pjax.handleResponse;
+				pjax.handleResponse = function (responseText, request, href, options) {
+					if (window.Joe.commentListAutoRefresh) pjax._handleResponse(responseText, request, href, options);
+				}
 				setInterval(() => {
-					if (document.visibilityState == "hidden") return;
+					if (document.visibilityState == "hidden" || document.hidden) return;
 					if (!window.Joe.commentListAutoRefresh) return;
 					let url = $('#comment_module>.joe_pagination>li.active>a').attr('href');
-					$('#comment_module a[auto-refresh]').attr('href', url);
-					$('#comment_module a[auto-refresh]').click();
+					pjax.loadUrl(url);
 				}, time * 1000);
 			}
 		}

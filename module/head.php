@@ -48,7 +48,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 <?php $this->options->commentsPageBreak; ?>
 <?php if ($this->is('single')) : ?>
-	<script src="<?= joe\theme_url('assets/plugin/jquery.pjax/2.0.1/jquery.pjax.js'); ?>"></script>
+	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>"></script>
 <?php endif; ?>
 
 <!-- Bootstrap: transition.js v3.4.1 -->
@@ -74,8 +74,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>"></script>
 <!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" async></script> -->
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.comment.js', ['version' => 7]); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.global.js', ['version' => 8]); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.comment.js', ['version' => 8]); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.global.js', ['version' => 9]); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 
 <!-- 自定义头部HTML代码 -->

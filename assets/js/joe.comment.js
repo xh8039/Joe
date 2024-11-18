@@ -79,10 +79,10 @@ window.Joe.initComment = (options = {}) => {
 				$(".joe_comment__cancle").hide();
 				$(".joe_comment>.comment-list").before(respond);
 				$(".joe_comment__respond-type .item[data-type='text']").click();
-				window.scrollTo({
-					top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,
-					behavior: "smooth",
-				});
+				// window.scrollTo({
+				// 	top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,
+				// 	behavior: "smooth",
+				// });
 				window.Joe.commentListAutoRefresh = true;
 			});
 		}
@@ -95,6 +95,9 @@ window.Joe.initComment = (options = {}) => {
 			$(".joe_comment__respond-form").on("submit", function (event) {
 				event.preventDefault();
 				window.Joe.commentListAutoRefresh = false;
+				// let action = $('#comment_module>.joe_pagination>li.active>a').attr('href');
+				// action = action ? action : $(".joe_comment__respond-form").attr("action");
+				// action = action + "?time=" + +new Date();
 				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
 				const type = $(".joe_comment__respond-form").attr("data-type");
 				const parent = $(".joe_comment__respond-form").attr("data-coid");
@@ -111,11 +114,12 @@ window.Joe.initComment = (options = {}) => {
 					const txt = $("#joe_comment_draw")[0].toDataURL("image/webp", 0.1);
 					text = "{!{" + txt + "}!} ";
 				}
-
 				if (isSubmit) return;
-				isSubmit = true;
 
+				isSubmit = true;
 				$(".joe_comment__respond-form .foot .submit button").html('<i class="loading mr6"></i>发送中...');
+				$(".joe_owo__contain .box").stop().slideUp("fast");
+
 				var data = new FormData();
 				data.append('author', author);
 				data.append('mail', mail);
@@ -123,23 +127,57 @@ window.Joe.initComment = (options = {}) => {
 				data.append('parent', parent);
 				data.append('url', url);
 				data.append('_', _);
-				$.pjax({
-					type: 'POST',
-					url: action,
-					container: '#comment_module',
-					data,
-					processData: false,
-					contentType: false,
-					timeout: 99999999,
-					push: false,
-					replace: false,
-					fragment: "#comment_module",
-					scrollTo: false,
+
+				var pjax = new Pjax({
+					elements: '.joe_comment__respond-form',
+					selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
+					history: false,
+					scrollRestoration: false,
+					pjax: 'comment-submit',
+					cacheBust: false,
 				});
-				$('#comment_module').on('pjax:success', function (event) {
-					if (event.target !== document.querySelector('div#comment_module.joe_comment')) return;
-					window.Joe.commentListAutoRefresh = true;
+				pjax._handleResponse = pjax.handleResponse;
+				pjax.handleResponse = function (responseText, request, href, options) {
+					$('.joe_comment__cancle').click();
+					pjax._handleResponse(responseText, request, href, options);
+				}
+				pjax.loadUrl(action, {
+					requestOptions: {
+						requestMethod: 'POST',
+						formData: data,
+					},
 				});
+				// console.log(pjax);
+			});
+			document.addEventListener('pjax:success', (options) => {
+				if (options.pjax != "comment-submit") return;
+				isSubmit = false;
+				Qmsg.success('发送成功');
+				$('textarea.joe_owo__target').val('');
+				$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
+				if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
+					var pjax = new Pjax({
+						selectors: { 'joe-hide': '.joe-hide-show' },
+						history: false,
+						scrollRestoration: false,
+						pjax: 'joe-hide',
+					});
+					pjax.loadUrl(pjax);
+				}
+			});
+			document.addEventListener('pjax:error', (event) => {
+				if (options.pjax != "comment-submit") return;
+				isSubmit = false;
+				$(".joe_comment__respond-form .foot .submit button").html("发送评论");
+				console.log(event.options.request)
+				res = event.options.request.responseText;
+				var str = /<div class="container">\s+(.+)\s+<\/div>/;
+				var msg = str.match(res)[1];
+				if (msg) {
+					Qmsg.warning(msg);
+				} else {
+					Qmsg.warning("发送失败！请刷新重试！");
+				}
 			});
 		}
 	}
@@ -153,14 +191,23 @@ window.Joe.initComment = (options = {}) => {
 	/* 格式化评论分页的hash值 */
 	{
 		if (options.pagination !== false) {
-			$(".joe_comment .joe_pagination a").each((index, item) => {
-				const href = $(item).attr("href");
-				if (href && href.includes("#")) {
-					$(item).attr("href", href.replace("#comments", "#comment_module"));
-				}
-				$(item).attr('ajax-replace', 'true');
-				$(item).addClass('pjax');
-			});
+			if ($('#comment_module>.joe_pagination a').length) {
+				$(".joe_comment .joe_pagination a").each((index, item) => {
+					const href = $(item).attr("href");
+					if (href && href.includes("#")) {
+						$(item).attr("href", href.replace("#comments", "#comment_module"));
+					}
+					$(item).attr('ajax-replace', 'true');
+					$(item).addClass('pjax');
+				});
+				new Pjax({
+					elements: "#comment_module>.joe_pagination a[href]", // default is "a[href], form[action]"
+					selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
+					history: false,
+					scrollRestoration: false,
+					pjax: 'comment-pagination',
+				});
+			}
 		}
 	}
 

@@ -1147,9 +1147,12 @@ function TagExternaToInternalLink(string $content, string $tag_name, string $htm
 function commentsAntiSpam($respondId)
 {
 	if (!\Helper::options()->commentsAntiSpam) return '';
-	$referer = \Typecho_Request::getInstance()->getReferer();
-	$url = empty($referer) ? \Typecho_Request::getInstance()->getRequestUrl() : $referer;
-	$script = "
+	static $script = null;
+	if (is_null($script)) {
+		$referer = \Typecho_Request::getInstance()->getReferer();
+		$url = empty($referer) ? \Typecho_Request::getInstance()->getRequestUrl() : $referer;
+		// $url = \Typecho_Request::getInstance()->getRequestUrl();
+		$script = "
 	<script type=\"text/javascript\">
 	(function() {
 		var r = document.getElementById('{$respondId}'),
@@ -1161,15 +1164,18 @@ function commentsAntiSpam($respondId)
 		if (null != r) {
 			var forms = r.getElementsByTagName('form');
 			if (forms.length > 0) {
+				document.querySelector('#{$respondId} input[name=\"_\"]')?.remove();
 				forms[0].appendChild(input);
 			}
 		}
 	})();
 	</script>
 	";
-	\Typecho_Cookie::delete('__typecho_notice');
-	\Typecho_Cookie::delete('__typecho_notice_type');
-	return $script;
+		\Typecho_Cookie::delete('__typecho_notice');
+		\Typecho_Cookie::delete('__typecho_notice_type');
+		return $script;
+	}
+	return '';
 }
 
 function markdown_hide_($content, $post, $login)

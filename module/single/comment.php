@@ -135,7 +135,11 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 			</form>
 		</div>
 	<?php
-		$comments->listComments();
+		if ($comments->have()) {
+			$comments->listComments();
+		} else {
+			echo '<ol class="comment-list" style="display: none;"></ol>';
+		}
 		$comments->pageNav(
 			'<i class="fa fa-angle-left em12"></i><span class="hide-sm ml6">上一页</span>',
 			'<span class="hide-sm mr6">下一页</span><i class="fa fa-angle-right em12"></i>',
@@ -159,20 +163,20 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 function threadedComments($comments, $options)
 {
 	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
-	if ($comments->request->getHeader('x-pjax') == 'true') {
-		echo joe\commentsAntiSpam($GLOBALS['theme_this']->cid);
-	}
+	// if ($comments->request->getHeader('x-pjax') == 'true') {
+	// 	echo joe\commentsAntiSpam($GLOBALS['theme_this']->cid);
+	// }
 ?>
 	<li class="comment-list__item">
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
 			<div class="term">
 				<?php
 				if ($comments->request->getHeader('x-pjax') == 'true') {
-					?><img width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" /><?php
-				}else {
-					?><img width="48" height="48" class="avatar lazyload" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" /><?php
-				}
-				?>
+				?><img width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" /><?php
+																															} else {
+																																?><img width="48" height="48" class="avatar lazyload" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" /><?php
+																																																																								}
+																																																																									?>
 				<div class="content">
 					<div class="user">
 						<span class="author"><?php $comments->author(); ?></span>

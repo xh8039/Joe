@@ -504,6 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					history: false,
 					scrollRestoration: false,
 					pjax: 'comment-auto-refresh',
+					cacheBust: false,
 				});
 				pjax._handleResponse = pjax.handleResponse;
 				pjax.handleResponse = function (responseText, request, href, options) {

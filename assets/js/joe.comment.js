@@ -162,11 +162,11 @@ window.Joe.initComment = (options = {}) => {
 						history: false,
 						scrollRestoration: false,
 						pjax: 'joe-hide',
-						debug: true,
 						switches: {
 							// 切换函数
 							'joe-hide': Pjax.switches.innerHTML
 						},
+						cacheBust: false,
 					});
 					pjax.loadUrl(window.location.href);
 				}
@@ -212,6 +212,7 @@ window.Joe.initComment = (options = {}) => {
 					history: false,
 					scrollRestoration: false,
 					pjax: 'comment-pagination',
+					cacheBust: false,
 				});
 			}
 		}

@@ -5,9 +5,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 $this->comments()->to($comments);
 $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off") ? true : false;
+$login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 ?>
 <div class="joe_comment__title title-theme">评论 <small><?= $is_comment ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
-<div class="joe_comment" id="comment_module" <?= $this->options->JcommentAutoRefresh ? " auto-refresh='{$this->options->JcommentAutoRefresh}'" : null ?>>
+<div class="joe_comment" id="comment_module" <?= $is_comment && $this->options->JcommentAutoRefresh && !$login_comment ? " auto-refresh='{$this->options->JcommentAutoRefresh}'" : null ?>>
 	<?php
 	if ($this->hidden) {
 	?>
@@ -37,7 +38,6 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 		</div>
 	<?php
 	} else {
-		$login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 	?>
 		<div id="<?php $this->respondId(); ?>" class="joe_comment__respond">
 			<div class="joe_comment__respond-type">

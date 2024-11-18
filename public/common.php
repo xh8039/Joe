@@ -82,9 +82,7 @@ function themeInit($self)
 		}
 	}
 
-	$GLOBALS['theme_this'] = function () use ($self) {
-		return $self;
-	};
+	$GLOBALS['theme_this'] = $self;
 	function this()
 	{
 		return $GLOBALS['theme_this'];

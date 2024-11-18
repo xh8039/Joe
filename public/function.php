@@ -1256,7 +1256,7 @@ function markdown_hide($content, $post, $login)
 		$userEmail = $login ? $GLOBALS['JOE_USER']->mail : $post->remember('mail', true);
 		// 查询评论信息
 		$comment = $db->fetchRow($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $userEmail)->limit(1));
-		if ($post->fields->hide == 'pay') {
+		if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
 			// 查询支付信息
 			$payment = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
 			$showContent = !empty($payment); // 是否已支付决定是否显示内容

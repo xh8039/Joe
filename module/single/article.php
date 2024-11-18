@@ -40,9 +40,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				</div>
 			</form>
 		<?php else : ?>
-			<?php _parseContent($this, $this->user->hasLogin()) ?>
+			<?= _parseContent($this, $this->user->hasLogin()) ?>
 		<?php endif; ?>
 	<?php else : ?>
-		<?php _parseContent($this, $this->user->hasLogin()) ?>
+		<?= _parseContent($this, $this->user->hasLogin()) ?>
 	<?php endif; ?>
 </article>

@@ -156,5 +156,5 @@ function _parseContent($post, $login, $content = null)
 		$content = str_replace('<code class="lang-shell">', '<code class="lang-powershell">', $content);
 	}
 
-	echo $content;
+	return $content;
 }

@@ -4,7 +4,7 @@ if (is_string($this->request->getHeader('x-pjax-selectors'))) {
 		$this->need('module/single/comment.php');
 		exit;
 	}
-	if ($this->request->getHeader('x-pjax-selectors') == '["joe-hide"]') {
+	if ($this->request->getHeader('x-pjax-selectors') == '[".joe_hide"]') {
 		if (preg_match('/{hide[^}]*}([\s\S]*?){\/hide}/', $this->content, $content_match)) {
 			$content = joe\markdown_hide($content_match[0], $this, $this->user->hasLogin());
 			$content = _parseContent($this, $this->user->hasLogin(), $content);

@@ -655,7 +655,7 @@
 	}
 
 	html .joe_comment .comment-list__item-children {
-		padding-left: 0
+		padding-left: 10px;
 	}
 
 	html .joe_comment .comment-list__item .joe_comment__respond {

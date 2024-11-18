@@ -148,8 +148,6 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 		);
 		if ($this->request->getHeader('x-pjax-container') == '#comment_module' && $this->options->commentsAntiSpam && $this->is('single')) {
 			echo joe\commentsAntiSpam($this->respondId);
-			Typecho_Cookie::delete('__typecho_notice');
-			Typecho_Cookie::delete('__typecho_notice_type');
 			if (!isset($_GET['_pjax'])) {
 				?>
 				<script>

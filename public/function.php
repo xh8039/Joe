@@ -1147,8 +1147,8 @@ function TagExternaToInternalLink(string $content, string $tag_name, string $htm
 function commentsAntiSpam($respondId)
 {
 	if (!\Helper::options()->commentsAntiSpam) return '';
-	$url = \Typecho_Request::getInstance()->getRequestUrl();
-	$url = explode('/comment-page', $url, 2)[0];
+	$referer = \Typecho_Request::getInstance()->getReferer();
+	$url = empty($referer) ? \Typecho_Request::getInstance()->getRequestUrl() : $referer;
 	$script = "
 	<script type=\"text/javascript\">
 	(function() {

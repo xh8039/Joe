@@ -149,6 +149,12 @@ window.Joe.initComment = (options = {}) => {
 				});
 				// console.log(pjax);
 			});
+			document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {
+				if (event.keyCode === 13) {
+					event.preventDefault();
+					$(".joe_comment__respond-form").submit();
+				}
+			});
 			document.addEventListener('pjax:success', (options) => {
 				if (options.pjax != "comment-submit") return;
 				isSubmit = false;

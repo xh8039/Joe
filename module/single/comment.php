@@ -7,7 +7,7 @@ $this->comments()->to($comments);
 $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off") ? true : false;
 ?>
 <div class="joe_comment__title title-theme">评论 <small><?= $is_comment ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
-<div class="joe_comment" id="comment_module">
+<div class="joe_comment" id="comment_module" <?= $this->options->JcommentAutoRefresh ? " auto-refresh='{$this->options->JcommentAutoRefresh}'" : null ?>>
 	<?php
 	if ($this->hidden) {
 	?>
@@ -149,7 +149,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 		if ($this->request->getHeader('x-pjax-container') == '#comment_module' && $this->options->commentsAntiSpam && $this->is('single')) {
 			echo joe\commentsAntiSpam($this->respondId);
 			if (!isset($_GET['_pjax']) && !$this->fields->price) {
-				?>
+		?>
 				<script>
 					if ($('joe-hide>.joe_hide>.joe_hide__button').length > 0) {
 						$.pjax.reload('joe-hide', {
@@ -160,7 +160,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 						});
 					}
 				</script>
-				<?php
+	<?php
 			}
 		}
 	}

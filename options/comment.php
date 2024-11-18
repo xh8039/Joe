@@ -20,6 +20,17 @@ $JCommentStatus = new \Typecho\Widget\Helper\Form\Element\Select(
 $JCommentStatus->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JCommentStatus->multiMode());
 
+$JcommentAutoRefresh = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JcommentAutoRefresh',
+	NULL,
+	NULL,
+	'评论区内容自动刷新时间',
+	'介绍：填写后，在用户打开本标签页的情况下，每隔指定时间自动同步评论区内容，或许评论区可以实时聊天了哦<br>
+	示例：2'
+);
+$JcommentAutoRefresh->setAttribute('class', 'joe_content joe_comment');
+$form->addInput($JcommentAutoRefresh->multiMode());
+
 $JcommentLogin = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JcommentLogin',
 	['off' => '关闭（默认）', 'on' => '开启'],

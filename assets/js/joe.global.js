@@ -488,6 +488,21 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			});
 		}
+		if ($('#comment_module').length > 0) {
+			let time = $('#comment_module').attr('auto-refresh');
+			if (time && Number.isInteger(time)) {
+				setInterval(() => {
+					if (document.visibilityState == "hidden") return;
+					$('#comment_module[auto-refresh]').pjax.reload('#comment_module[auto-refresh]', {
+						timeout: 99999999,
+						push: false,
+						replace: false,
+						fragment: "#comment_module[auto-refresh]",
+					});
+					Joe.initComment();
+				}, time * 1000);
+			}
+		}
 	}
 
 	/* 切换标签显示不同的标题 */

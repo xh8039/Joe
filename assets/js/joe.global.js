@@ -513,7 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					if (document.visibilityState == "hidden" || document.hidden) return;
 					if (!window.Joe.commentListAutoRefresh) return;
 					let url = $('#comment_module>.joe_pagination>li.active>a').attr('href');
-					pjax.loadUrl(url);
+					pjax.loadUrl(url ? url : window.location.href);
 				}, time * 1000);
 			}
 		}

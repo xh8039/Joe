@@ -36,7 +36,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
-<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css', ['version' => 7]); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
 <link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />

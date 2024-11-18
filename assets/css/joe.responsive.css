@@ -827,6 +827,12 @@
 	html .joe_owo__contain .box .scroll:nth-child(5) .item {
 		width: calc(100% / 1);
 	}
+
+	html .joe_pagination li.prev,
+	html .joe_pagination li.next,
+	html .joe_pagination li:has(> a:not([href])) {
+		display: none;
+	}
 }
 
 @media (max-width: 440px) {

@@ -158,10 +158,11 @@ window.Joe.initComment = (options = {}) => {
 				if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
 					var pjax = new Pjax({
 						elements: '',
-						selectors: ['joe-hide'],
+						selectors: ['.joe_hide'],
 						history: false,
 						scrollRestoration: false,
 						pjax: 'joe-hide',
+						debug: true,
 					});
 					pjax.loadUrl(window.location.href);
 				}

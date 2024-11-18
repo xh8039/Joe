@@ -148,7 +148,7 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 		);
 		if ($this->request->getHeader('x-pjax-container') == '#comment_module' && $this->options->commentsAntiSpam && $this->is('single')) {
 			echo joe\commentsAntiSpam($this->respondId);
-			if (!isset($_GET['_pjax'])) {
+			if (!isset($_GET['_pjax']) && !$this->fields->price) {
 				?>
 				<script>
 					if ($('joe-hide>.joe_hide>.joe_hide__button').length > 0) {

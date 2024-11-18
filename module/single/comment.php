@@ -159,6 +159,9 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 function threadedComments($comments, $options)
 {
 	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
+	if ($comments->request->getHeader('x-pjax') == 'true') {
+		echo joe\commentsAntiSpam($comments->respondId);
+	}
 ?>
 	<li class="comment-list__item">
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">

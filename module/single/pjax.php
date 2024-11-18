@@ -11,7 +11,8 @@ if (is_string($this->request->getHeader('x-pjax-selectors'))) {
 		} else {
 			$content = '';
 		}
-		$content = '<script type="text/javascript">$(".pay-box").remove();</script>' . $content;
+		$content = '<script type="text/javascript">$(".pay-box").remove();</script>' . $content . joe\commentsAntiSpam($this->respondId);
+		// $content = '<script type="text/javascript">$(".pay-box").remove();</script>' . $content;
 		$content = '<joe-hide>' . $content . '</joe-hide>';
 		echo $content;
 		exit;

@@ -494,7 +494,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				setInterval(() => {
 					if (document.visibilityState == "hidden") return;
 					if (
-						document.activeElement !== document.querySelector('body') &&
+						document.activeElement !== document.querySelector('body') ||
 						document.activeElement !== document.querySelector('.joe_comment__respond-form .submit>button')
 					) return;
 					$.pjax.reload('#comment_module[auto-refresh]', {

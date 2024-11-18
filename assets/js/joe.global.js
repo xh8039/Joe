@@ -474,6 +474,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.addEventListener('pjax:success', (options) => {
 			window.Joe.commentListAutoRefresh = true;
 			console.log(options.pjax);
+			window.Joe.tooltip();
 			if (options.pjax == 'comment-submit' || options.pjax == 'comment-pagination') {
 				Joe.initComment({
 					draw: false,

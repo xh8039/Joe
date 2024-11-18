@@ -107,9 +107,9 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '昵称不能超过10个字符'
 		]);
-		if (!preg_match('/^[A-Za-z][A-Za-z0-9]{3,31}$/', $username)) $this->response->throwJson([
+		if (!preg_match('/^[A-Za-z0-9]{4,30}$/i', $username)) $this->response->throwJson([
 			'code' => 0,
-			'msg' => '用户名必须由4-30位字母和数字组成'
+			'msg' => '账号必须由4-30位字母或数字组成'
 		]);
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $this->response->throwJson([
 			'code' => 0,

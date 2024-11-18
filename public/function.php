@@ -1149,7 +1149,7 @@ function commentsAntiSpam($respondId)
 	if (!\Helper::options()->commentsAntiSpam) return '';
 	$url = \Typecho_Request::getInstance()->getRequestUrl();
 	$url = explode('/comment-page', $url, 2)[0];
-	return "
+	$script = "
 	<script type=\"text/javascript\">
 	(function() {
 		var r = document.getElementById('{$respondId}'),
@@ -1167,4 +1167,126 @@ function commentsAntiSpam($respondId)
 	})();
 	</script>
 	";
+	\Typecho_Cookie::delete('__typecho_notice');
+	\Typecho_Cookie::delete('__typecho_notice_type');
+	return $script;
+}
+
+function markdown_hide_($content, $post, $login)
+{
+	if (strpos($content, '{hide') === false) return $content;
+	if ($post->fields->hide == 'pay') {
+		$db = \Typecho_Db::get();
+		$pay = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
+		// '<a rel="nofollow" target="_blank" href="https://bri6.cn/user/order" class="">' . $pay['trade_no'] . '</a>';
+		if (!empty($pay)) {
+			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+			$content = _payPurchased($post, $pay) . $content;
+		} else {
+			if ($post->fields->price > 0) {
+				$pay_box_position = _payBox($post);
+			} else {
+				if ($login) {
+					$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
+				} else {
+					$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
+				}
+				$hasComment = $db->fetchRow($comment_sql);
+				if (!empty($hasComment)) {
+					$pay_box_position = '
+					<div class="pay-box zib-widget paid-box" id="posts-pay">
+						<div class="box-body relative">
+							<div>
+								<span class="badg c-red hollow badg-sm mr6"><i class="fa fa-download mr3"></i>免费资源</span>
+								<b>' . $post->title . '</b>
+							</div>
+							<div class="mt10">
+								<a href="javascript:window.Joe.scrollTo(\'joe-cloud\');" class="but jb-blue padding-lg btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
+							</div>
+						</div>
+					</div>';
+					$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+					$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+				} else {
+					$pay_box_position = _payFreeResources($post);
+				}
+			}
+			if ($post->fields->pay_box_position == 'top' && !detectSpider()) {
+				$content = $pay_box_position . $content;
+			}
+			if ($post->fields->pay_box_position == 'bottom' && !detectSpider()) {
+				$content = $content . $pay_box_position;
+			}
+		}
+	} else if ($post->fields->hide == 'login' && $login) {
+		$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+		$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+	} else {
+		$db = \Typecho_Db::get();
+		if ($login) {
+			$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
+		} else {
+			$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
+		}
+		$hasComment = $db->fetchRow($comment_sql);
+		if (!empty($hasComment)) {
+			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+		}
+	}
+	$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
+	return $content;
+}
+
+function markdown_hide($content, $post, $login)
+{
+	// 如果内容中不存在 {hide} 标签，直接返回原内容
+	if (strpos($content, '{hide') === false) return $content;
+
+	$db = \Typecho_Db::get();
+
+	// 判断是否显示隐藏内容
+	$showContent = false;
+
+	if ($post->fields->hide == 'login') {
+		$showContent = $login; // 是否登录决定是否显示内容
+	} else {
+		// 获取用户邮箱地址，登录用户使用全局变量，未登录用户使用文章记住的邮箱
+		$userEmail = $login ? $GLOBALS['JOE_USER']->mail : $post->remember('mail', true);
+		// 查询评论信息
+		$comment = $db->fetchRow($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $userEmail)->limit(1));
+		if ($post->fields->hide == 'pay') {
+			// 查询支付信息
+			$payment = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
+			$showContent = !empty($payment); // 是否已支付决定是否显示内容
+		} else {
+			$showContent = !empty($comment); // 是否已评论决定是否显示内容
+		}
+	}
+
+	if ($showContent) {
+		// 只在需要显示内容时移除 {hide} 和 {/hide} 标签
+		$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
+		$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
+	} else {
+		//如果隐藏内容没有被显示，保留占位符
+		$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
+	}
+
+	// 处理付费内容显示逻辑 非爬虫才显示付费框
+	if ($post->fields->hide == 'pay' && !detectSpider()) {
+
+		if ($post->fields->price > 0) {
+			$pay_box_position = $showContent ? _payPurchased($post, $payment) : _payBox($post); // 付费资源
+		} else {
+			$pay_box_position = _payFreeResources($post, $comment); // 免费资源
+		}
+
+		// 根据设置在顶部或底部显示付费框
+		if ($post->fields->pay_box_position == 'top') $content = $pay_box_position . $content;
+		if ($post->fields->pay_box_position == 'bottom') $content = $content . $pay_box_position;
+	}
+
+	return $content;
 }

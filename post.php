@@ -3,22 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-if ($this->request->getHeader('x-pjax-container') == '#comment_module') {
-	$this->need('module/single/comment.php');
-	exit;
-}
-if ($this->request->getHeader('x-pjax-container') == 'joe-hide') {
-	_parseContent($this, $this->user->hasLogin());
-	exit;
-}
-if ((joe\detectSpider() || joe\spider_referer()) && isset($_GET['scroll'])) {
-	$this->response->setStatus(301);
-	$url = str_ireplace('scroll=' . $_GET['scroll'], '', $this->request->getRequestUrl());
-	$url = trim($url, '?');
-	$url = str_replace(['?&', '&&'], ['?', '&'], $url);
-	$this->response->redirect($url, true);
-	exit;
-}
+$this->need('module/single/pjax.php');
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">

@@ -164,8 +164,22 @@ function _payPurchased($post, $pay)
 	';
 }
 
-function _payFreeResources($post)
+function _payFreeResources($post, $comment)
 {
+	if (!empty($comment)) {
+		return '
+		<div class="pay-box zib-widget paid-box" id="posts-pay">
+			<div class="box-body relative">
+				<div>
+					<span class="badg c-red hollow badg-sm mr6"><i class="fa fa-download mr3"></i>免费资源</span>
+					<b>' . $post->title . '</b>
+				</div>
+				<div class="mt10">
+					<a href="javascript:window.Joe.scrollTo(\'joe-cloud\');" class="but jb-blue padding-lg btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
+				</div>
+			</div>
+		</div>';
+	}
 	$login_comment = (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on') ? true : false;
 	return '
 	<div class="zib-widget pay-box" id="posts-pay">

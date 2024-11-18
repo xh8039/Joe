@@ -56,27 +56,9 @@ function _parseContent($post, $login)
 
 	// 多彩按钮
 	$content = joe\TagExternaToInternalLink($content, 'abtn', 'joe-abtn', 'href', $post_cid);
-	// if (strpos($content, '{abtn') !== false) {
-	// 	$content = preg_replace('/{abtn([^}]*)\/}/SU', '<joe-abtn $1></joe-abtn>', $content);
-	// }
 
 	// 云盘下载
 	$content = joe\TagExternaToInternalLink($content, 'cloud', 'joe-cloud', 'url', $post_cid);
-	// if (strpos($content, '{cloud') !== false) {
-	// 	if (Helper::options()->JPostLinkRedirect == 'on') {
-	// 		// 使用正则表达式匹配链接并直接进行替换
-	// 		$content = preg_replace_callback(
-	// 			'/{cloud([^}]*)url\="([a-zA-z]+:\/\/[^\s]*)"([^}]*)\/}/',
-	// 			function ($matches) use ($post_cid) {
-	// 				$redirect_link = joe\ExternaToInternalLink($matches[2], $post_cid);
-	// 				return '<joe-cloud' . $matches[1] . 'url="' . $redirect_link . '"' . $matches[3] . '></joe-cloud>';
-	// 			},
-	// 			$content
-	// 		);
-	// 	} else {
-	// 		$content = preg_replace('/{cloud([^}]*)\/}/SU', '<joe-cloud $1></joe-cloud>', $content);
-	// 	}
-	// }
 
 	// 便条按钮
 	$content = joe\TagExternaToInternalLink($content, 'anote', 'joe-anote', 'href', $post_cid);
@@ -97,85 +79,8 @@ function _parseContent($post, $login)
 		$content = preg_replace('/{progress([^}]*)\/}/SU', '<joe-progress $1></joe-progress>', $content);
 	}
 
-	if (strpos($content, '{hide') !== false) {
-		if ($post->fields->hide == 'pay') {
-			$db = Typecho_Db::get();
-			$pay = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post_cid)->limit(1));
-			// '<a rel="nofollow" target="_blank" href="https://bri6.cn/user/order" class="">' . $pay['trade_no'] . '</a>';
-			if (!empty($pay)) {
-				$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-				$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-				$content = _payPurchased($post, $pay) . $content;
-			} else {
-				if ($post->fields->price > 0) {
-					$pay_box_position = _payBox($post);
-				} else {
-					if ($login) {
-						$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post_cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
-					} else {
-						$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post_cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
-					}
-					$hasComment = $db->fetchRow($comment_sql);
-					if (!empty($hasComment)) {
-						$pay_box_position = '
-						<div class="pay-box zib-widget paid-box" id="posts-pay">
-							<div class="box-body relative">
-								<div>
-									<span class="badg c-red hollow badg-sm mr6"><i class="fa fa-download mr3"></i>免费资源</span>
-									<b>' . $post->title . '</b>
-								</div>
-								<div class="mt10">
-									<a href="javascript:window.Joe.scrollTo(\'joe-cloud\');" class="but jb-blue padding-lg btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
-								</div>
-							</div>
-						</div>';
-						if ($post->request->getHeader('x-pjax-container') == 'joe-hide') {
-							$hide_show = PHP_EOL . '<div class="joe-hide-show"><script type="text/javascript">$(".pay-box").remove();</script>' . joe\commentsAntiSpam($post->respondId) . PHP_EOL;
-							$content = strtr($content, array("{hide}<br>" => $hide_show, "<br>{/hide}" => '</div>'));
-							$content = strtr($content, array("{hide}" => $hide_show, "{/hide}" => '</div>'));
-							Typecho_Cookie::delete('__typecho_notice');
-							Typecho_Cookie::delete('__typecho_notice_type');
-						} else {
-							$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-							$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-						}
-					} else {
-						$pay_box_position = _payFreeResources($post);
-					}
-				}
-				if ($post->fields->pay_box_position == 'top' && !joe\detectSpider()) {
-					$content = $pay_box_position . $content;
-				}
-				if ($post->fields->pay_box_position == 'bottom' && !joe\detectSpider()) {
-					$content = $content . $pay_box_position;
-				}
-			}
-		} else if ($post->fields->hide == 'login' && $login) {
-			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-		} else {
-			$db = Typecho_Db::get();
-			if ($login) {
-				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post_cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
-			} else {
-				$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post_cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
-			}
-			$hasComment = $db->fetchRow($comment_sql);
-			if (!empty($hasComment)) {
-				if ($post->request->getHeader('x-pjax-container') == 'joe-hide') {
-					$hide_show = PHP_EOL . '<div class="joe-hide-show">' . joe\commentsAntiSpam($post->respondId) . PHP_EOL;
-					$content = strtr($content, array("{hide}<br>" => $hide_show, "<br>{/hide}" => '</div>'));
-					$content = strtr($content, array("{hide}" => $hide_show, "{/hide}" => '</div>'));
-					Typecho_Cookie::delete('__typecho_notice');
-					Typecho_Cookie::delete('__typecho_notice_type');
-				} else {
-					$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-					$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-				}
-			}
-		}
-		$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
-	}
+	$content = joe\markdown_hide($content, $post, $login);
+
 	if (strpos($content, '{card-default') !== false) {
 		$content = preg_replace('/{card-default([^}]*)}([\s\S]*?){\/card-default}/', '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>', $content);
 	}

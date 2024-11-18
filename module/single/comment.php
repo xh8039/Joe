@@ -160,7 +160,7 @@ function threadedComments($comments, $options)
 {
 	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 	if ($comments->request->getHeader('x-pjax') == 'true') {
-		echo joe\commentsAntiSpam(this()->cid);
+		echo joe\commentsAntiSpam($GLOBALS['theme_this']->cid);
 	}
 ?>
 	<li class="comment-list__item">

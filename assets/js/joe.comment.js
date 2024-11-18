@@ -163,6 +163,10 @@ window.Joe.initComment = (options = {}) => {
 						scrollRestoration: false,
 						pjax: 'joe-hide',
 						debug: true,
+						switches: {
+							// 切换函数
+							'joe-hide': Pjax.switches.innerHTML
+						},
 					});
 					pjax.loadUrl(window.location.href);
 				}

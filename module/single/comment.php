@@ -88,7 +88,7 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 					<?php
 					if ($this->options->JcommentDraw == 'on' && !$login_comment) {
 					?>
-						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="聊点什么吧，回车可快速发送，点击右上方切换成画图试试？"></textarea>
+						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="聊点什么吧，回车可快速发送，点击左上方切换成画图试试？"></textarea>
 						<div class="draw" style="display: none;">
 							<ul class="line">
 								<li data-line="3">细</li>

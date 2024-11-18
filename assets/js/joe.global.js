@@ -489,11 +489,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 		if ($('#comment_module').length > 0) {
-			let time = $('#comment_module').attr('auto-refresh');
+			let time = Number($('#comment_module').attr('auto-refresh'));
 			if (time && Number.isInteger(time)) {
 				setInterval(() => {
 					if (document.visibilityState == "hidden") return;
-					$('#comment_module[auto-refresh]').pjax.reload('#comment_module[auto-refresh]', {
+					$.pjax.reload('#comment_module[auto-refresh]', {
 						timeout: 99999999,
 						push: false,
 						replace: false,

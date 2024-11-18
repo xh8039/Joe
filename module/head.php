@@ -15,9 +15,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <link rel="shortcut icon" href="<?php $this->options->JFavicon() ?>" />
 <title><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php if ($this->_currentPage > 1) echo '第 ' . $this->_currentPage . ' 页 - '; ?><?php $this->options->title(); ?></title>
 <?php if ($this->is('single')) : ?>
-<meta name="keywords" content="<?= $this->fields->keywords ? $this->fields->keywords : $this->keywords; ?>" />
-<meta name="description" content="<?= $this->fields->description ? $this->fields->description : joe\post_description($this); ?>" />
-<?php $this->header('keywords=&description='); ?>
+	<meta name="keywords" content="<?= $this->fields->keywords ? $this->fields->keywords : $this->keywords; ?>" />
+	<meta name="description" content="<?= $this->fields->description ? $this->fields->description : joe\post_description($this); ?>" />
+	<?php $this->header('keywords=&description='); ?>
 <?php else : ?>
 	<?php $this->header(); ?>
 <?php endif; ?>
@@ -48,7 +48,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 <?php $this->options->commentsPageBreak; ?>
 <?php if ($this->is('single')) : ?>
-<script src="<?= joe\cdn('jquery.pjax/2.0.1/jquery.pjax.min.js') ?>"></script>
+	<script src="<?= joe\cdn('jquery.pjax/2.0.1/jquery.pjax.min.js') ?>"></script>
 <?php endif; ?>
 
 <!-- Bootstrap: transition.js v3.4.1 -->
@@ -75,7 +75,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" async></script> -->
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.global.js', ['version' => 6]); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 
 <!-- 自定义头部HTML代码 -->

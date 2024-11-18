@@ -82,6 +82,14 @@ function themeInit($self)
 		}
 	}
 
+	$GLOBALS['theme_this'] = function () use ($self) {
+		return $self;
+	};
+	function this()
+	{
+		return $GLOBALS['theme_this'];
+	}
+
 	/* 主题开放API 路由规则 */
 	if (strpos($self->request->getPathInfo(), "/joe/api") === 0) {
 		switch ($self->request->routeType) {

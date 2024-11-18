@@ -57,7 +57,11 @@ function _parseCommentReply($text)
 		echo "该回复疑似异常，已被系统拦截！";
 	} else {
 		$text = _parseReply($text);
-		echo preg_replace('/\{!\{([^\"]*)\}!\}/', '<img class="lazyload draw_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="$1" alt="画图"/>', $text);
+		if (\Typecho_Request::getInstance()->getHeader('x-pjax') == 'true') {
+			echo preg_replace('/\{!\{([^\"]*)\}!\}/', '<img class="draw_image" src="$1" alt="画图"/>', $text);
+		} else {
+			echo preg_replace('/\{!\{([^\"]*)\}!\}/', '<img class="lazyload draw_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="$1" alt="画图"/>', $text);
+		}
 	}
 }
 

@@ -74,7 +74,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>"></script>
 <!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" async></script> -->
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.comment.js', ['version' => 9]); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.comment.js', ['version' => 10]); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.global.js', ['version' => 9]); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 

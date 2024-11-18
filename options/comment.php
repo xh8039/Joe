@@ -26,7 +26,7 @@ $JcommentAutoRefresh = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'评论区内容自动刷新时间',
 	'介绍：填写后，在用户打开本标签页的情况下，每隔指定时间自动同步评论区内容，或许评论区可以实时聊天了哦<br>
-	示例：2'
+	示例：5'
 );
 $JcommentAutoRefresh->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JcommentAutoRefresh->multiMode());

@@ -1,8 +1,8 @@
-window.Joe.initComment = () => {
+window.Joe.initComment = (options = {}) => {
 
 	/* 评论框点击切换画图模式和文本模式 */
 	{
-		if ($(".joe_comment").length) {
+		if (options.draw !== false && $(".joe_comment").length) {
 			$(".joe_comment__respond-type .item").on("click", function () {
 				$(this).addClass("active").siblings().removeClass("active");
 				if ($(this).attr("data-type") === "draw") {
@@ -25,7 +25,7 @@ window.Joe.initComment = () => {
 
 	/* 激活画图功能 */
 	{
-		if ($("#joe_comment_draw").length) {
+		if (options.draw !== false && $("#joe_comment_draw").length) {
 			/* 激活画板 */
 			window.sketchpad = new Sketchpad({
 				element: "#joe_comment_draw",
@@ -70,6 +70,7 @@ window.Joe.initComment = () => {
 					top: item.offset().top - $(".joe_header").height() - 15,
 					behavior: "smooth",
 				});
+				window.Joe.commentListAutoRefresh = false;
 			});
 			/* 重写取消回复功能 */
 			$(".joe_comment__cancle").on("click", function () {
@@ -82,16 +83,18 @@ window.Joe.initComment = () => {
 					top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,
 					behavior: "smooth",
 				});
+				window.Joe.commentListAutoRefresh = true;
 			});
 		}
 	}
 
 	/* 激活评论提交 */
 	{
-		if ($(".joe_comment").length) {
+		if (options.submit !== false && $(".joe_comment").length) {
 			var isSubmit = false;
 			$(".joe_comment__respond-form").on("submit", function (event) {
 				event.preventDefault();
+				window.Joe.commentListAutoRefresh = false;
 				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
 				const type = $(".joe_comment__respond-form").attr("data-type");
 				const parent = $(".joe_comment__respond-form").attr("data-coid");
@@ -133,6 +136,10 @@ window.Joe.initComment = () => {
 					fragment: "#comment_module",
 					scrollTo: false,
 				});
+				$('#comment_module').on('pjax:success', function (event) {
+					if (event.target !== document.querySelector('div#comment_module.joe_comment')) return;
+					window.Joe.commentListAutoRefresh = true;
+				});
 			});
 		}
 	}
@@ -145,14 +152,16 @@ window.Joe.initComment = () => {
 
 	/* 格式化评论分页的hash值 */
 	{
-		$(".joe_comment .joe_pagination a").each((index, item) => {
-			const href = $(item).attr("href");
-			if (href && href.includes("#")) {
-				$(item).attr("href", href.replace("#comments", "#comment_module"));
-			}
-			$(item).attr('ajax-replace', 'true');
-			$(item).addClass('pjax');
-		});
+		if (options.pagination !== false) {
+			$(".joe_comment .joe_pagination a").each((index, item) => {
+				const href = $(item).attr("href");
+				if (href && href.includes("#")) {
+					$(item).attr("href", href.replace("#comments", "#comment_module"));
+				}
+				$(item).attr('ajax-replace', 'true');
+				$(item).addClass('pjax');
+			});
+		}
 	}
 
 	/* 初始化表情功能 */
@@ -184,9 +193,9 @@ window.Joe.initComment = () => {
 				</div>
 			`);
 			window.Joe.tooltip();
-			$(document).on("click", function () {
-				$(".joe_owo__contain .box").stop().slideUp("fast");
-			});
+			// $(".joe_owo__contain .seat").on("click", function () {
+			// 	$(".joe_owo__contain .box").stop().slideUp("fast");
+			// });
 			$(".joe_owo__contain .seat").on("click", function (e) {
 				e.stopPropagation();
 				$(this).siblings(".box").stop().slideToggle("fast");
@@ -204,7 +213,8 @@ window.Joe.initComment = () => {
 			});
 			$(".joe_owo__contain .box .bar .item").first().click();
 		}
-		if ($(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
+		if (options.owo !== false && $(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
+			console.log('初始化表情');
 			var OwOUrl = $('.joe_owo__contain').attr('data-url') || window.Joe.THEME_URL;
 			if (!window.Joe.OwO) {
 				$.ajax({

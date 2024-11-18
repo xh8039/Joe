@@ -466,15 +466,22 @@ document.addEventListener("DOMContentLoaded", () => {
 				push: false,
 				replace: false,
 				fragment: "#comment_module",
+				scrollTo: true,
 				// target: "#comment_module"
 			});
-			$('#comment_module').on('pjax:start', function () {
+			$('#comment_module').on('pjax:start', function (event) {
+				if (event.target !== document.querySelector('div#comment_module.joe_comment')) return;
+				window.Joe.commentListAutoRefresh = false;
 				$('#comment_module>.joe_pagination').html(`<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>`);
 			});
-			$('#comment_module').on('pjax:success', function () {
+			$('#comment_module').on('pjax:success', function (event) {
+				if (event.target !== document.querySelector('div#comment_module.joe_comment')) return;
+				console.log(event);
 				Joe.initComment();
+				window.Joe.commentListAutoRefresh = true;
 			});
 			$('#comment_module').on('pjax:error', function (xhr, textStatus, errorThrown) {
+				if (xhr.target !== document.querySelector('div#comment_module.joe_comment')) return;
 				// isSubmit = false;
 				$(".joe_comment__respond-form .foot .submit button").html("发表评论");
 				console.log(textStatus)
@@ -488,22 +495,42 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			});
 		}
-		if ($('#comment_module').length > 0) {
-			let time = Number($('#comment_module').attr('auto-refresh'));
+	}
+
+	/** 评论区内容实时刷新 */
+	{
+		if ($('#comment_module a[auto-refresh]').length > 0) {
+			let time = Number($('#comment_module a[auto-refresh]').attr('auto-refresh'));
 			if (time && Number.isInteger(time)) {
+				window.Joe.commentListAutoRefresh = true;
+				$(document).pjax('#comment_module a[auto-refresh]', '#comment_module>.comment-list', {
+					timeout: 99999999,
+					push: false,
+					replace: false,
+					fragment: ".comment-list",
+					scrollTo: false
+					// target: "#comment_module"
+				});
+				$('#comment_module>.comment-list').on('pjax:success', function (event) {
+					if (event.target !== document.querySelector('div#comment_module>.comment-list')) return;
+					if (!window.Joe.commentListAutoRefresh) return;
+					Joe.initComment({
+						draw: false,
+						owo: false,
+						submit: false,
+						pagination: false
+					});
+				});
+				$('#comment_module>.comment-list').on('pjax:beforeReplace', function (event) {
+					if (event.target !== document.querySelector('div#comment_module>.comment-list')) return;
+					return window.Joe.commentListAutoRefresh;
+				});
 				setInterval(() => {
 					if (document.visibilityState == "hidden") return;
-					if (
-						document.activeElement !== document.querySelector('body') ||
-						document.activeElement !== document.querySelector('.joe_comment__respond-form .submit>button')
-					) return;
-					$.pjax.reload('#comment_module[auto-refresh]', {
-						timeout: 99999999,
-						push: false,
-						replace: false,
-						fragment: "#comment_module[auto-refresh]",
-					});
-					Joe.initComment();
+					if (!window.Joe.commentListAutoRefresh) return;
+					let url = $('#comment_module>.joe_pagination>li.active>a').attr('href');
+					$('#comment_module a[auto-refresh]').attr('href', url);
+					$('#comment_module a[auto-refresh]').click();
 				}, time * 1000);
 			}
 		}

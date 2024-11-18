@@ -8,8 +8,13 @@ $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off
 $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 ?>
 <div class="joe_comment__title title-theme">评论 <small><?= $is_comment ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
-<div class="joe_comment" id="comment_module" <?= ($is_comment && $this->options->JcommentAutoRefresh && !$login_comment) ? " auto-refresh='{$this->options->JcommentAutoRefresh}'" : null ?>>
+<div class="joe_comment" id="comment_module">
 	<?php
+	if (($is_comment && is_numeric($this->options->JcommentAutoRefresh) && !$login_comment)) {
+	?>
+		<a ajax-replace="true" href="<?= $this->request->getRequestUrl() ?>" style="display: none;" auto-refresh="<?= $this->options->JcommentAutoRefresh ?>"></a>
+	<?php
+	}
 	if ($this->hidden) {
 	?>
 		<div class="joe_comment__close">
@@ -146,7 +151,7 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 				'nextClass' => 'next'
 			)
 		);
-		if ($this->request->getHeader('x-pjax-container') == '#comment_module' && $this->options->commentsAntiSpam && $this->is('single')) {
+		if ($this->request->getHeader('x-pjax') == 'true' && $this->options->commentsAntiSpam && $this->is('single')) {
 			echo joe\commentsAntiSpam($this->respondId);
 			if (!isset($_GET['_pjax']) && !$this->fields->price) {
 		?>

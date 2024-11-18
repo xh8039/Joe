@@ -80,7 +80,11 @@ function _parseReply($text)
 		foreach ($emoticon_list as $value) {
 			if (strpos($text, $value['text']) !== false) {
 				$emoticon_text_list[] = $value['text'];
-				$emoticon_icon_list[] = '<img class="owo_image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
+				if (\Typecho_Request::getInstance()->getHeader('x-pjax') == 'true') {
+					$emoticon_icon_list[] = '<img class="owo_image" src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
+				} else {
+					$emoticon_icon_list[] = '<img class="owo_image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
+				}
 			}
 		}
 	}

@@ -20,7 +20,7 @@ $JCommentStatus = new \Typecho\Widget\Helper\Form\Element\Select(
 $JCommentStatus->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JCommentStatus->multiMode());
 
-$JcommentAutoRefresh = new \Typecho\Widget\Helper\Form\Element\Select(
+$JcommentAutoRefresh = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JcommentAutoRefresh',
 	NULL,
 	NULL,

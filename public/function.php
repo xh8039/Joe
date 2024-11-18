@@ -1164,7 +1164,7 @@ function commentsAntiSpam($respondId)
 		if (null != r) {
 			var forms = r.getElementsByTagName('form');
 			if (forms.length > 0) {
-				document.querySelector('#{$respondId} input[name=\"_\"]')?.remove();
+				document.querySelector('#respond-post-{$respondId} input[name=\"_\"]')?.remove();
 				forms[0].appendChild(input);
 			}
 		}

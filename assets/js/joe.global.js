@@ -457,6 +457,21 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
+	/** 反机器人评论机制 */
+	if (window.Joe.commentsAntiSpam) {
+		var r = document.getElementById(window.Joe.respondId),
+			input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = '_';
+		input.value = window.Joe.commentsAntiSpam
+		if (r) {
+			var forms = r.getElementsByTagName('form');
+			if (forms.length > 0) {
+				forms[0].appendChild(input);
+			}
+		}
+	}
+
 	/** 初始化评论 */
 	{
 		window.Joe.initComment();

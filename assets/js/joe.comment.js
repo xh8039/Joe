@@ -181,7 +181,7 @@ window.Joe.initComment = (options = {}) => {
 			document.addEventListener('pjax:error', (options) => {
 				if (options.pjax != "comment-submit") return;
 				isSubmit = false;
-				$(".joe_comment__respond-form .foot .submit button").html("发送评论");
+				$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
 				responseText = options.request.responseText;
 				let match = /<div class="container">\s+(.+)\s+<\/div>/;
 				var msg = responseText.match(match)[1];

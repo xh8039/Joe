@@ -24,6 +24,8 @@ $fields = $this->fields->toArray();
 		INDEX_AJAX: <?= $this->options->JIndex_Ajax_List == 'on' ? 'true' : 'false' ?>,
 		VERSION: `<?= JOE_VERSION ?>`,
 		LoadingAnimation: <?= $this->options->JLoading == 'off' ? 'false' : 'true' ?>,
+		commentsAntiSpam: <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())),';') : 'null' ?>,
+		respondId: `<?= $this->respondId ?>`,
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
 			cover: `<?= $this->is('single') ? joe\getThumbnails($this)[0] : null ?>`,

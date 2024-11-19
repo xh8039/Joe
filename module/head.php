@@ -17,9 +17,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <?php if ($this->is('single')) : ?>
 	<meta name="keywords" content="<?= $this->fields->keywords ? $this->fields->keywords : $this->keywords; ?>" />
 	<meta name="description" content="<?= $this->fields->description ? $this->fields->description : joe\post_description($this); ?>" />
-	<?php $this->header('keywords=&description='); ?>
+	<?php $this->header('keywords=&description=&commentReply=&antiSpam='); ?>
 <?php else : ?>
-	<?php $this->header(); ?>
+	<?php $this->header('commentReply=&antiSpam='); ?>
 <?php endif; ?>
 
 <!-- 昼夜模式配色表 -->
@@ -75,7 +75,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" async></script> -->
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.comment.js', ['version' => 15]); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.global.js', ['version' => 11]); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.global.js', ['version' => 12]); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 
 <!-- 自定义头部HTML代码 -->

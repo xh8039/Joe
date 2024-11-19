@@ -212,7 +212,7 @@ window.Joe.initComment = (options = {}) => {
 					$(item).attr('ajax-replace', 'true');
 					$(item).addClass('pjax');
 				});
-				new Pjax({
+				var pjax = new Pjax({
 					elements: "#comment_module>.joe_pagination a[href]", // default is "a[href], form[action]"
 					selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
 					history: false,
@@ -220,6 +220,11 @@ window.Joe.initComment = (options = {}) => {
 					pjax: 'comment-pagination',
 					cacheBust: false,
 				});
+				pjax._handleResponse = pjax.handleResponse;
+				pjax.handleResponse = function (responseText, request, href, options) {
+					$('.joe_comment__cancle').click();
+					pjax._handleResponse(responseText, request, href, options);
+				}
 			}
 		}
 	}

@@ -103,11 +103,11 @@ textarea {
 }
 
 .container .btn-light:hover {
-	transform: scale(0.9);
+	opacity: 0.9;
 }
 
 .container .btn-light:active {
-	transform: scale(0.75);
+	opacity: 0.7;
 }
 
 .container .input-group>.form-control {

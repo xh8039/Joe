@@ -76,13 +76,13 @@ $this->need('user/header.php');
 						password: password
 					},
 					beforeSend: function() {
-						btn($("#login"), '登录中...', true);
+						btn($("#login"), '<i class="loading mr6"></i>登录中...', true);
 					},
 					complete: function() {
-						btn($("#login"), '登录', false);
+						btn($("#login"), '登 录', false);
 					},
 					error: function() {
-						$("#login").text('登录', false);
+						$("#login").text('登 录', false);
 						Qmsg.error("服务器繁忙");
 					},
 					success: function(res) {

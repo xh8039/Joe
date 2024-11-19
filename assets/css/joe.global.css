@@ -4603,7 +4603,8 @@ html .line-numbers .line-numbers-rows {
 	padding: 5px;
 	cursor: pointer;
 	border-radius: var(--radius-inner);
-	transition: background 0.25s
+	user-select: none;
+	transition: background 0.05s
 }
 
 .joe_owo__contain .box .scroll .item img {

@@ -529,6 +529,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				setInterval(() => {
 					if (document.visibilityState == "hidden" || document.hidden) return;
 					if (!window.Joe.commentListAutoRefresh) return;
+					if (!isElementInViewport(document.querySelector('.comment-list'))) return;
 					let url = $('#comment_module>.joe_pagination>li.active>a').attr('href');
 					pjax.loadUrl(url ? url : window.location.href);
 				}, time * 1000);

@@ -73,9 +73,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>"></script>
 <!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" async></script> -->
-<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.function.js', ['version' => 7]); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.comment.js', ['version' => 16]); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.global.js', ['version' => 12]); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.global.js', ['version' => 13]); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 
 <!-- 自定义头部HTML代码 -->

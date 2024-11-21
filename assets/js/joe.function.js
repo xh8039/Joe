@@ -59,6 +59,19 @@ function loadJS(url, callback = function () { }) {
 	// if (existingScript) existingScript.remove();
 }
 
+function isElementInViewport(element) {
+	const rect = element.getBoundingClientRect();
+	const viewportHeight = (window.innerHeight || document.documentElement.clientHeight);
+	const viewportWidth = (window.innerWidth || document.documentElement.clientWidth);
+	// 检查顶部和底部是否都在视口内
+	return (
+		rect.top <= viewportHeight &&
+		rect.bottom >= 0 &&
+		rect.left <= viewportWidth &&
+		rect.right >= 0
+	);
+}
+
 /**
  * 防抖函数
  * @param {*} fn 

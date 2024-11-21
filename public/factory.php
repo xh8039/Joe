@@ -210,7 +210,7 @@ class Editor
 			window.JoeConfig = {
 				uploadAPI: `<?php Helper::security()->index('/action/upload'); ?>`,
 				emojiAPI: `<?= joe\theme_url('assets/typecho/write/json/emoji.json', false) ?>`,
-				expressionAPI: `<?= joe\theme_url('assets/json/joe.owo.json', false) ?>`,
+				expressionAPI: `<?= Helper::options()->themeUrl('assets/json/joe.owo.json') ?>`,
 				characterAPI: `<?= joe\theme_url('assets/typecho/write/json/character.json', false) ?>`,
 				playerAPI: `<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>`,
 				autoSave: <?php Helper::options()->autoSave(); ?>,

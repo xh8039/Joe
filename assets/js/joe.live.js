@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		renderLiveType();
 		function renderLiveType() {
 			$.ajax({
-				url: window.Joe.THEME_URL + 'assets/json/joe.live.json',
+				url: window.Joe.LOCAL_THEME_URL + 'assets/json/joe.live.json',
 				dataType: 'json',
 				success(res) {
 					const item = res[queryData.index];

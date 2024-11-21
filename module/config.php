@@ -9,6 +9,7 @@ $fields = $this->fields->toArray();
 	window.Joe = {
 		TITLE: `<?php $this->options->title() ?>`,
 		THEME_URL: `<?= joe\theme_url('', false) ?>`,
+		LOCAL_THEME_URL: `<?= preg_replace('/^https?:\/\//i', '//', $this->options->themeUrl) ?>/`,
 		LIVE2D: `<?php joe\theme_url('assets/plugin/live2d/model/') . $this->options->JLive2d ?>`,
 		BASE_API: `<?= joe\index('joe/api', '//') ?>`,
 		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
@@ -24,7 +25,7 @@ $fields = $this->fields->toArray();
 		INDEX_AJAX: <?= $this->options->JIndex_Ajax_List == 'on' ? 'true' : 'false' ?>,
 		VERSION: `<?= JOE_VERSION ?>`,
 		LoadingAnimation: <?= $this->options->JLoading == 'off' ? 'false' : 'true' ?>,
-		commentsAntiSpam: <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())),';') : 'null' ?>,
+		commentsAntiSpam: <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null' ?>,
 		respondId: `<?= $this->respondId ?>`,
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,

@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 define('JOE_VERSION', '1.33');
-define('JOE_ASSETS_VERSION', 6);
+define('JOE_ASSETS_VERSION', 7);
 define('JOE_ROOT', dirname(__FILE__) . '/');
 
 /* Joe核心文件 */
@@ -31,7 +31,7 @@ function themeConfig($form)
 			Favicon: `<?= trim(Helper::options()->JFavicon ?? '') ?>`
 		}
 	</script>
-	<script src="<?= joe\theme_url('assets/typecho/config/js/joe.config.min.js', ['version' => 7]) ?>"></script>
+	<script src="<?= joe\theme_url('assets/typecho/config/js/joe.config.min.js') ?>"></script>
 	<div class="joe_config">
 		<div>
 			<div class="joe_config__aside">

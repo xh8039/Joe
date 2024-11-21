@@ -232,6 +232,8 @@ window.Joe.initComment = (options = {}) => {
 	/* 初始化表情功能 */
 	{
 		function initOwO(res) {
+			console.log('初始化表情');
+			window.Joe.OwO = res;
 			let barStr = "";
 			let scrollStr = "";
 			for (let key in res) {
@@ -279,15 +281,22 @@ window.Joe.initComment = (options = {}) => {
 			$(".joe_owo__contain .box .bar .item").first().click();
 		}
 		if (options.owo !== false && $(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
-			console.log('初始化表情');
 			var OwOUrl = $('.joe_owo__contain').attr('data-url') || window.Joe.THEME_URL;
 			if (!window.Joe.OwO) {
 				$.ajax({
 					url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
 					dataType: "json",
 					success(res) {
-						window.Joe.OwO = res;
 						initOwO(res);
+					},
+					error() {
+						$.ajax({
+							url: window.Joe.LOCAL_THEME_URL + "assets/json/joe.owo.json",
+							dataType: "json",
+							success(res) {
+								initOwO(res);
+							}
+						});
 					}
 				});
 			} else {

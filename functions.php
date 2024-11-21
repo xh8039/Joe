@@ -31,7 +31,7 @@ function themeConfig($form)
 			Favicon: `<?= trim(Helper::options()->JFavicon ?? '') ?>`
 		}
 	</script>
-	<script src="<?= joe\theme_url('assets/typecho/config/js/joe.config.min.js') ?>"></script>
+	<script src="<?= joe\theme_url('assets/typecho/config/js/joe.config.min.js', ['version' => 7]) ?>"></script>
 	<div class="joe_config">
 		<div>
 			<div class="joe_config__aside">

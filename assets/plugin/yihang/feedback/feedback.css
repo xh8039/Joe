@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/*!
+ * 易航Alert  v1.0 (http://blog.bri6.cn)
+ * Copyright 2024-2024 The 易航Alert Authors
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+.YiHangFeedbackMask {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	background-color: #000;
+	transition: opacity .15s linear;
+	opacity: 0
+}
+
+.YiHangFeedbackMaskShow {
+	opacity: .5
+}
+
+.YiHangFeedbackAlert {
+	/* 弹窗的基本样式 */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 4px;
+	box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08);
+	z-index: 1050;
+	min-width: 300px;
+	max-width: 90vw;
+	padding-bottom: 15px;
+	/* 动画初始状态 */
+	opacity: 0;
+	transform: translate(-50%, -50%) scale(0);
+	transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.YiHangFeedbackAlertShow {
+	/* 动画最终状态 */
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.YiHangFeedbackAlertTitle {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #303133;
+	line-height: 24px;
+}
+
+.YiHangFeedbackAlertContent {
+	color: #606266;
+	line-height: 1.4;
+}
+
+.YiHangFeedbackAlertButtons {
+	margin-top: 15px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.YiHangFeedbackAlertButton {
+	font-size: 14px;
+	margin-left: 10px;
+	padding: 8px 15px;
+	border: none;
+	border-radius: 4px;
+	background-color: #4CAF50;
+	/* 确定按钮背景色 */
+	color: #fff;
+	cursor: pointer;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	transition: color .2s, background .3s, opacity .3s, box-shadow .3s, transform .3s;
+}
+
+.YiHangFeedbackAlertButton:hover {
+	opacity: 0.8;
+}
+
+.YiHangFeedbackLoading {
+	top: 50%;
+	margin-top: calc((0px - 42px) / 2);
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	z-index: 1050;
+	opacity: 0;
+	transition: opacity 0.15s;
+}
+
+.YiHangFeedbackLoadingShow {
+	opacity: 1;
+}
+
+.YiHangFeedbackLoading>svg {
+	display: inline;
+	height: 42px;
+	width: 42px;
+	animation: YiHangFeedbackLoadingRotate 2s linear infinite;
+}
+
+@keyframes YiHangFeedbackLoadingRotate {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.YiHangFeedbackLoading>svg>circle {
+	animation: YiHangFeedbackLoadingDash 1.5s ease-in-out infinite;
+	stroke-dasharray: 90, 150;
+	stroke-dashoffset: 0;
+	stroke-width: 2;
+	stroke-linecap: round;
+}
+
+@keyframes YiHangFeedbackLoadingDash {
+	0% {
+		stroke-dasharray: 1, 200;
+		stroke-dashoffset: 0
+	}
+
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -40px
+	}
+
+	to {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -120px
+	}
+}
+
+@media (max-width: 768px) {
+	html .YiHangFeedbackAlert {
+		padding: 15px;
+	}
+}
+
+@media (max-width: 380px) {
+	html .YiHangFeedbackAlert {
+		min-width: 80vw;
+	}
+}

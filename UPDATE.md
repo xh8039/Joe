@@ -300,4 +300,10 @@
 
 - 新增评论区内容自动刷新功能
 - 优化评论模块发送评论和分页功能为Pjax加载
+- 修复使用IP V6地址下单付费阅读时创建订单失败的BUG，请手动执行以下MySQL语句
+
+```sql
+ALTER TABLE `typecho_joe_pay` CHANGE `ip` `ip` VARCHAR(128) CHARACTER SET utf8mb4 NULL DEFAULT NULL;
+```
+
 - 正在开发中...

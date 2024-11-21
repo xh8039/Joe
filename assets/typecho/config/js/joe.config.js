@@ -42,20 +42,18 @@ document.addEventListener("DOMContentLoaded", function () {
 		sessionStorage.setItem("joe_config_current", 'joe_notice');
 		// sessionStorage.removeItem("joe_config_current");
 	}
-	//模拟form表单提交打开新的页面
-	function open_page(url, param = {}) {
-		var form = '<form action="' + url + '"  target="_blank"  id="windowOpen" style="display:none">';
-		if (param) {
-			for (var key in param) {
-				form += '<input name="' + key + '" value="' + param[key] + '"/>';
-			}
-		}
-		form += '</form>';
-		$('body').append(form);
-		$('#windowOpen').submit();
-		$('#windowOpen').remove();
+	function openLinkInNewTab(url) {
+		const a = document.createElement('a');
+		a.href = url;
+		a.target = '_blank';
+		a.dispatchEvent(new MouseEvent('click', {
+			bubbles: true,
+			cancelable: true,
+			view: window
+		}));
 	}
 	function update(type = 'passive') {
+		const Feedback = YiHang.Feedback;
 		$.ajax({
 			type: "post",
 			url: `${Joe.service_domain}update`,
@@ -69,30 +67,33 @@ document.addEventListener("DOMContentLoaded", function () {
 			dataType: "json",
 			beforeSend: () => {
 				if (type == 'active') {
-					layer.load(1, {
-						shade: [0.3, '#fff'] //0.1透明度的白色背景
-					});
+					Feedback.loading();
 				}
 			},
 			success: (data) => {
-				layer.closeAll();
+				Feedback.closeAll();
 				if (data.update) {
-					var btn = JSON.stringify(data.btn);
-					btn = JSON.parse(btn);
-					layer.confirm(data.msg, {
-						btn: btn
-					}, function () {
-						open_page(data.download, data.param);
-					})
-				} else {
-					if (type == 'active') {
-						layer.msg(data.msg);
-					}
+					Feedback.alert({
+						content: data.msg,
+						buttons: {
+							'暂不更新': {
+								background: 'transparent',
+								color: '#444'
+							},
+							"前往更新": {
+								callback: () => {
+									openLinkInNewTab(data.download);
+								}
+							},
+						},
+					});
+				} else if (type == 'active') {
+					Qmsg.info(data.msg);
 				}
 			},
 			error: () => {
-				layer.closeAll();
-				layer.msg('请求错误，请检查您的网络');
+				Feedback.closeAll();
+				Qmsg.error('请求错误，请检查您的网络');
 			}
 		});
 	}

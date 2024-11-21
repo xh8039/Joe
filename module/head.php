@@ -67,7 +67,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>"></script>
 <script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
 <script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script>
-<script src="<?= joe\theme_url('assets/plugin/MusicPlayer.js'); ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
 <script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>"></script>

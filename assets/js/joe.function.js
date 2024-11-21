@@ -221,7 +221,7 @@ function zib_ajax(_this, data, success, noty, no_loading) {
 		data: data,
 		dataType: 'json',
 		error: function (n) {
-			var _msg = '操作失败 ' + n.status + ' ' + n.statusText + '，请刷新页面后重试';
+			var _msg = '操作失败 ' + n.status + ' ' + n?.responseText + '，请刷新页面后重试';
 			if (n.responseText && n.responseText.indexOf('致命错误') > -1) {
 				_msg = '网站遇到致命错误，请检查插件冲突或通过错误日志排除错误';
 			}

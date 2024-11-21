@@ -70,7 +70,7 @@
 
 .joe_config__aside .tabs .item.active {
 	color: #409eff;
-	/* font-weight: 500 */
+	background: #f2f6fc;
 }
 
 .joe_config__aside .backup {

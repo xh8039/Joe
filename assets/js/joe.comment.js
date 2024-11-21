@@ -291,10 +291,19 @@ window.Joe.initComment = (options = {}) => {
 					},
 					error() {
 						$.ajax({
-							url: window.Joe.LOCAL_THEME_URL + "assets/json/joe.owo.json",
+							url: window.Joe.THEME_URL + "assets/json/joe.owo.php",
 							dataType: "json",
 							success(res) {
 								initOwO(res);
+							},
+							error() {
+								$.ajax({
+									url: window.Joe.LOCAL_THEME_URL + "assets/json/joe.owo.json",
+									dataType: "json",
+									success(res) {
+										initOwO(res);
+									}
+								});
 							}
 						});
 					}

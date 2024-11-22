@@ -2,7 +2,7 @@ window.Joe.initComment = (options = {}) => {
 
 	/* 评论框点击切换画图模式和文本模式 */
 	{
-		if (options.draw !== false && $(".joe_comment").length) {
+		if (options.draw !== false && $(".joe_comment__respond-form").length) {
 			$(".joe_comment__respond-type .item").on("click", function () {
 				$(this).addClass("active").siblings().removeClass("active");
 				if ($(this).attr("data-type") === "draw") {
@@ -25,7 +25,7 @@ window.Joe.initComment = (options = {}) => {
 
 	/* 激活画图功能 */
 	{
-		if (options.draw !== false && $("#joe_comment_draw").length) {
+		if (options.draw !== false && $(".joe_comment__respond-form").length && $("#joe_comment_draw").length) {
 			/* 激活画板 */
 			window.sketchpad = new Sketchpad({
 				element: "#joe_comment_draw",
@@ -53,7 +53,7 @@ window.Joe.initComment = (options = {}) => {
 
 	/* 重写评论功能 */
 	{
-		if ($(".joe_comment__respond").length) {
+		if ($(".joe_comment__respond>.joe_comment__respond-form").length) {
 			const respond = $(".joe_comment__respond");
 			/* 重写回复功能 */
 			$(".joe_comment__reply").on("click", function () {
@@ -90,7 +90,7 @@ window.Joe.initComment = (options = {}) => {
 
 	/* 激活评论提交 */
 	{
-		if (options.submit !== false && $(".joe_comment").length) {
+		if (options.submit !== false && $(".joe_comment__respond-form").length) {
 			var isSubmit = false;
 			$(".joe_comment__respond-form").on("submit", function (event) {
 				event.preventDefault();
@@ -202,29 +202,27 @@ window.Joe.initComment = (options = {}) => {
 
 	/* 格式化评论分页的hash值 */
 	{
-		if (options.pagination !== false) {
-			if ($('#comment_module>.joe_pagination a').length) {
-				$(".joe_comment .joe_pagination a").each((index, item) => {
-					const href = $(item).attr("href");
-					if (href && href.includes("#")) {
-						$(item).attr("href", href.replace("#comments", "#comment_module"));
-					}
-					$(item).attr('ajax-replace', 'true');
-					$(item).addClass('pjax');
-				});
-				var pjax = new Pjax({
-					elements: "#comment_module>.joe_pagination a[href]", // default is "a[href], form[action]"
-					selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
-					history: false,
-					scrollRestoration: false,
-					pjax: 'comment-pagination',
-					cacheBust: false,
-				});
-				pjax._handleResponse = pjax.handleResponse;
-				pjax.handleResponse = function (responseText, request, href, options) {
-					$('.joe_comment__cancle').click();
-					pjax._handleResponse(responseText, request, href, options);
+		if (options.pagination !== false && $('#comment_module>.joe_pagination a').length) {
+			$(".joe_comment .joe_pagination a").each((index, item) => {
+				const href = $(item).attr("href");
+				if (href && href.includes("#")) {
+					$(item).attr("href", href.replace("#comments", "#comment_module"));
 				}
+				$(item).attr('ajax-replace', 'true');
+				$(item).addClass('pjax');
+			});
+			var pjax = new Pjax({
+				elements: "#comment_module>.joe_pagination a[href]", // default is "a[href], form[action]"
+				selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
+				history: false,
+				scrollRestoration: false,
+				pjax: 'comment-pagination',
+				cacheBust: false,
+			});
+			pjax._handleResponse = pjax.handleResponse;
+			pjax.handleResponse = function (responseText, request, href, options) {
+				$('.joe_comment__cancle').click();
+				pjax._handleResponse(responseText, request, href, options);
 			}
 		}
 	}

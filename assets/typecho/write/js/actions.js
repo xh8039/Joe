@@ -1,4 +1,4 @@
-export default class JoeAction {
+class JoeAction {
 	constructor() {
 		$('body').append(`
 				<div class="cm-modal">

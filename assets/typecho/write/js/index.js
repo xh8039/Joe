@@ -1,7 +1,3 @@
-import tools from './tools.js';
-import JoeAction from './actions.js';
-import createPreviewHtml from './create.js';
-
 class Joe extends JoeAction {
 	constructor() {
 		super();

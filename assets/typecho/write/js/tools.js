@@ -1,4 +1,4 @@
-export default [
+var tools = [
 	{
 		type: 'undo',
 		title: '撤销',

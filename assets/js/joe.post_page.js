@@ -259,10 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			const next = () => {
 				let item = document.querySelector('.featured-video-episode>.switch-video.active');
 				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
-				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)>.dplayer-video-wrap').click();
+				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
 			}
 			videoPlayer.on('play', () => {
-				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)>.dplayer-video-wrap').click();
+				setTimeout(() => {
+					$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
+				}, 1000);
 			});
 			videoPlayer.on('ended', () => {
 				next();

@@ -336,7 +336,7 @@ function themeFields($layout)
 		NULL,
 		'M3U8或MP4地址（非必填）',
 		'填写后，文章会插入一个视频模板 <br>
-		 格式：[视频名称--视频介绍]视频地址。如果有多个，换行写即可 <br>
+		 格式：[视频名称--视频介绍](视频地址)。如果有多个，换行写即可 <br>
 		 例如：<br>
 		 [第01集--凭什么仙家就可以遨游天地，而我等凡人只能做这井底之蛙](https://txmov2.a.kwimgs.com/upic/2022/08/20/07/BMjAyMjA4MjAwNzA5MzJfMTg0NzU1MDY3M184MjI2NDMxMTgyOV8yXzM=_b_Bb964ab3fd8fad18a949ed715402c992b.mp4)<br>
 		 [第02集--韩大哥，没有灵根......真的不能成为修仙者吗](https://alimov2.a.kwimgs.com/upic/2022/07/24/23/BMjAyMjA3MjQyMzU1MzdfMjYxMzE4ODhfODAwNTQ2NzczNDhfMl8z_b_B6e7adb80a3c3cad6f66d318c66c48b68.mp4)'

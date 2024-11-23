@@ -79,7 +79,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	}
 
 	.friend_submit>.button>.submit:hover {
-		animation: 5s ease-in-out 0s infinite normal none running shaked;
+		opacity: 0.9;
+	}
+
+	.friend_submit>.button>.submit:focus {
+		opacity: 0.7;
 	}
 
 	.friend_submit>.button>.submit {
@@ -115,7 +119,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	</div>
 	<div class="input">
 		<label class="input-label">图标</label>
-		<input type="url" placeholder="LOGO地址，不填写则使用您的QQ头像" id="logo">
+		<input type="url" placeholder="LOGO地址，不填写则使用默认头像" id="logo">
 	</div>
 	<div class="input">
 		<!-- <label class="input-label">ＱＱ</label> -->
@@ -158,7 +162,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			},
 			dataType: "json",
 			beforeSend() {
-				$('#friend_submit').html('提交中...');
+				$('#friend_submit').html('<i class="loading mr6"></i>提交中...');
 			},
 			success(data) {
 				$('#friend_submit').html('立即提交');

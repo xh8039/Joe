@@ -343,6 +343,18 @@ function themeFields($layout)
 	);
 	$layout->addItem($video);
 
+	$max_image_height = new \Typecho\Widget\Helper\Form\Element\Text(
+		'max_image_height',
+		NULL,
+		NULL,
+		'PC端图片极限高度',
+		'介绍：用于设置当前页的图片最高高度 <br />
+		 例如：30vh、300px、unset <br />
+		 注意：填写 unset 即可使用自动高度
+		 其他：如果不填写此项，则默认为30vh'
+	);
+	$layout->addItem($max_image_height);
+
 	if (Helper::options()->JPost_Record_Detection == 'on') {
 		$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(
 			'baidu_push',
@@ -363,15 +375,4 @@ function themeFields($layout)
 		'是否显示全局广告',
 	);
 	$layout->addItem($global_advert);
-
-	$max_image_height = new \Typecho\Widget\Helper\Form\Element\Text(
-		'max_image_height',
-		NULL,
-		NULL,
-		'PC端图片极限高度',
-		'介绍：用于设置当前页的图片最高高度 <br />
-		 例如：30vh、300px、auto <br />
-		 其他：如果不填写此项，则默认为30vh'
-	);
-	$layout->addItem($max_image_height);
 }

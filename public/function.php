@@ -674,13 +674,17 @@ function dateWord($original_date)
 	return $original_date;
 }
 
-function optionMulti($string, string $line = "\r\n", $separator = '||'): array
+function optionMulti($string, string $line = "\r\n", $separator = '||', $key = []): array
 {
 	if (empty($string) || !is_string($string)) return [];
 	$optionMulti = [];
 	$customArr = explode($line, $string);
 	foreach ($customArr as $value) {
-		$optionMulti[] = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
+		$option = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
+		foreach ($key as $index => $value) {
+			$option[$value] = isset($option[$index]) ? $option[$index] : null;
+		}
+		$optionMulti[] = $option;
 	}
 	return $optionMulti;
 }
@@ -1295,4 +1299,29 @@ function markdown_hide($content, $post, $login)
 	}
 
 	return $content;
+}
+
+function parse_markdown_link($content)
+{
+	preg_match_all('/\[(.*?)\]\((.*?)\)/', $content, $matches);
+	$data = [];
+	foreach ($matches as $key => $value) {
+		$title = trim($value[1]);
+		if ($title) {
+			$description_explode = explode('--', $title, 2);
+			if (isset($description_explode[1])) {
+				$description = trim($description_explode[1]);
+				$title = trim($description_explode[0]);
+			} else {
+				$title = str_replace('-/-', '--', $title);
+				$description = null;
+			}
+		} else {
+			$title = null;
+			$description = null;
+		}
+		$url = trim($value[2]);
+		$data[] = ['title' => $title, 'description' => $description, 'url' => $url];
+	}
+	return $data;
 }

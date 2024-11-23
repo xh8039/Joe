@@ -17,9 +17,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="dplayer-video" webkit-playsinline="" playsinline=""></div>
 			<h2>剧集列表</h2>
 			<div class="featured-video-episode mt10 dplayer-featured">
-				<?php $video_arr = joe\optionMulti($this->fields->video, "\r\n", '$') ?>
+				<?php
+				$video_arr = strpos($this->fields->video, '$') === false ? joe\parse_markdown_link($this->fields->video) : joe\optionMulti($this->fields->video, "\r\n", '$', ['title', 'url', 'description']) ?>
 				<?php foreach ($video_arr as $key => $item) : ?>
-					<a data-toggle="tooltip" class="switch-video text-ellipsis" data-index="<?= $key + 1 ?>" video-url="<?= $item[1] ?? '' ?>" data-original-title="<?= $item[2] ?? '' ?>" href="javascript:;"><span class="mr6 badg badg-sm"><?= $key + 1 ?></span><i class="episode-active-icon"></i><?= $item[0] ?? '' ?></a>
+					<a data-toggle="tooltip" class="switch-video text-ellipsis" data-index="<?= $key + 1 ?>" video-url="<?= $item['url'] ?>" data-original-title="<?= $item['description'] ?>" href="javascript:;"><span class="mr6 badg badg-sm"><?= $key + 1 ?></span><i class="episode-active-icon"></i><?= $item['title'] ? $item['title'] : ('第' . $key . '集') ?></a>
 				<?php endforeach; ?>
 			</div>
 		</div>

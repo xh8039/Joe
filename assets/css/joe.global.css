@@ -3157,7 +3157,7 @@
 .joe_detail__article h4+p>code,
 .joe_detail__article h5+p>code,
 .joe_detail__article h6+p>code {
-	padding-top: 2px !important;
+	padding-top: 0px !important;
 }
 
 .joe_detail__article h1+table,
@@ -3250,12 +3250,9 @@
 
 .joe_detail__article code:not([class]) {
 	border-radius: var(--radius-inner);
-	font-size: 85%;
 	background: #ecf5ff;
 	color: #409eff;
-	padding: 2px 4px;
-	/* vertical-align: top; */
-	vertical-align: 1px;
+	padding: 0px 4px;
 	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 	word-break: break-word;
 	font-weight: normal;

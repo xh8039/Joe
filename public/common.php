@@ -350,7 +350,7 @@ function themeFields($layout)
 		'PC端图片极限高度',
 		'介绍：用于设置当前页的图片最高高度 <br />
 		 例如：30vh、300px、unset <br />
-		 注意：填写 unset 即可使用自动高度
+		 注意：填写 unset 即可使用自动高度 <br />
 		 其他：如果不填写此项，则默认为30vh'
 	);
 	$layout->addItem($max_image_height);

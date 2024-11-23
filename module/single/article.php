@@ -10,7 +10,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 ?>
 <article class="joe_detail__article" data-nav="posts">
-	<?= _parseContent($this->options->JArticleHeaderHTML, $this->user->hasLogin()) ?>
+	<?= _parseContent($this, $this->options->JArticleHeaderHTML) ?>
 	<?php if (!$this->hidden && $this->fields->video) : ?>
 		<meta name="referrer" content="no-referrer">
 		<div class="joe_detail__article-video">
@@ -44,9 +44,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				</div>
 			</form>
 		<?php else : ?>
-			<?= _parseContent($this, $this->user->hasLogin()) ?>
+			<?= _parseContent($this) ?>
 		<?php endif; ?>
 	<?php else : ?>
-		<?= _parseContent($this, $this->user->hasLogin()) ?>
+		<?= _parseContent($this) ?>
 	<?php endif; ?>
 </article>

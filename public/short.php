@@ -1,9 +1,10 @@
 <?php
 
-function _parseContent($post, $login, $content = null)
+function _parseContent($post, $content = null)
 {
 	$content = is_string($content) ? $content : $post->content;
 	$content = _parseReply($content);
+	$login = $GLOBALS['JOE_USER']->hasLogin();
 	$post_cid = $post->cid;
 
 	// 跑马灯
@@ -109,7 +110,7 @@ function _parseContent($post, $login, $content = null)
 	if (strpos($content, '{copy') !== false) {
 		$content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
 	}
-	
+
 	if (strpos($content, '<img src="') !== false) {
 		function images_count()
 		{

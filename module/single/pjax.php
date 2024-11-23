@@ -7,7 +7,7 @@ if (is_string($this->request->getHeader('x-pjax-selectors'))) {
 	if ($this->request->getHeader('x-pjax-selectors') == '["joe-hide"]') {
 		if (preg_match('/{hide[^}]*}([\s\S]*?){\/hide}/', $this->content, $content_match)) {
 			$content = joe\markdown_hide($content_match[0], $this, $this->user->hasLogin());
-			$content = _parseContent($this, $this->user->hasLogin(), $content);
+			$content = _parseContent($this, $content);
 		} else {
 			$content = '';
 		}

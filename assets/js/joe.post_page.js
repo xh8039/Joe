@@ -261,17 +261,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)>.dplayer-video-wrap').click();
 			}
+			videoPlayer.on('play', () => {
+				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)>.dplayer-video-wrap').click();
+			});
 			videoPlayer.on('ended', () => {
 				next();
 			});
 			videoPlayer.on('loadeddata', () => {
-				if (videoPlayer.video.paused) {
-					videoPlayer.play();
-				}
-				if (videoPlayer.video.paused) {
-					console.log(videoPlayer.video.paused);
-					videoPlayer.video.play();
-				}
+				if (videoPlayer.video.paused) videoPlayer.video.play();
 			});
 			videoPlayer.on('error', () => {
 				if (!videoPlayer.video.error) {

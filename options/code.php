@@ -169,6 +169,17 @@ $JCustomTrackCode->setAttribute('class', 'joe_content joe_code');
 $JCustomTrackCode->setAttribute('data-language', 'htmlmixed');
 $form->addInput($JCustomTrackCode);
 
+$JArticleHeaderHTML = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	'JArticleHeaderHTML',
+	NULL,
+	NULL,
+	'自定义文章页头部HTML代码（非必填）',
+	htmlentities('介绍：位于 <article> 标签下方，所有文章内容上方')
+);
+$JArticleHeaderHTML->setAttribute('class', 'joe_content joe_code');
+$JArticleHeaderHTML->setAttribute('data-language', 'htmlmixed');
+$form->addInput($JArticleHeaderHTML);
+
 $JCustomFunctionsCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomFunctionsCode',
 	NULL,

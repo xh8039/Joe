@@ -1305,8 +1305,8 @@ function parse_markdown_link($content)
 {
 	preg_match_all('/\[(.*?)\]\((.*?)\)/', $content, $matches);
 	$data = [];
-	foreach ($matches as $key => $value) {
-		$title = trim($value[1]);
+	foreach ($matches[0] as $key => $value) {
+		$title = trim($matches[1][$key]);
 		if ($title) {
 			$description_explode = explode('--', $title, 2);
 			if (isset($description_explode[1])) {
@@ -1320,7 +1320,7 @@ function parse_markdown_link($content)
 			$title = null;
 			$description = null;
 		}
-		$url = trim($value[2]);
+		$url = trim($matches[2][$key]);
 		$data[] = ['title' => $title, 'description' => $description, 'url' => $url];
 	}
 	return $data;

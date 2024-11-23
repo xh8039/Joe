@@ -19,8 +19,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="featured-video-episode mt10 dplayer-featured">
 				<?php
 				$video_arr = strpos($this->fields->video, '$') === false ? joe\parse_markdown_link($this->fields->video) : joe\optionMulti($this->fields->video, "\r\n", '$', ['title', 'url', 'description']) ?>
-				<?php foreach ($video_arr as $key => $item) : ?>
-					<a data-toggle="tooltip" class="switch-video text-ellipsis" data-index="<?= $key + 1 ?>" video-url="<?= $item['url'] ?>" data-original-title="<?= $item['description'] ?>" href="javascript:;"><span class="mr6 badg badg-sm"><?= $key + 1 ?></span><i class="episode-active-icon"></i><?= $item['title'] ? $item['title'] : ('第' . $key . '集') ?></a>
+				<?php foreach ($video_arr as $key => $item) :
+					$video_title = $item['title'] ? $item['title'] : ('第' . $key . '集'); ?>
+					<a data-toggle="tooltip" class="switch-video text-ellipsis" data-index="<?= $key + 1 ?>" video-url="<?= $item['url'] ?>" data-original-title="<?= $item['description'] ? $item['description'] : $video_title ?>" href="javascript:;"><span class="mr6 badg badg-sm"><?= $key + 1 ?></span><i class="episode-active-icon"></i><?= $video_title ?></a>
 				<?php endforeach; ?>
 			</div>
 		</div>

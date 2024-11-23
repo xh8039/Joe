@@ -1330,6 +1330,6 @@ function global_count($name, $start = 0)
 {
 	static $count = [];
 	$count[$name] = isset($count[$name]) ? $count[$name] : $start;
-	$count[$name]++;
+	$count[$name] = $count[$name] + 1;
 	return $count[$name];
 }

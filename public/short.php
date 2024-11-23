@@ -115,7 +115,7 @@ function _parseContent($post, $content = null)
 		$content = preg_replace_callback(
 			'/<img src\="([\s\S]*?)" alt\="" title\="">/',
 			function ($matches) use ($post) {
-				$alt = '图片[' . joe\global_count('_parseContent') . '] - ' . $post->title . ' - ' . Helper::options()->title;
+				$alt = '图片[' . joe\global_count('_parseContent', 1) . '] - ' . $post->title . ' - ' . Helper::options()->title;
 				return '<img src="' . $matches[1] . '" alt="' . $alt . '" title="' . $alt . '">';
 			},
 			$content

@@ -725,6 +725,14 @@ function _friendSubmit($self)
 	if (empty($logo)) $logo = joe\theme_url('assets/images/avatar-default.png', false);
 
 	$db = Typecho_Db::get();
+	$value = $db->fetchRow($db->select('status')->from('table.friends')->where('url = ?', $link));
+	if (is_array($value) && isset($value['status'])) {
+		$self->response->throwJson([
+			'code' => 0,
+			'msg' => ($value['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')
+		]);
+	}
+	$db->a($db->select('status')->where('url = ?', $link));
 	$sql = $db->insert('table.friends')->rows(
 		array(
 			'title' => $title,

@@ -10,7 +10,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 ?>
 <article class="joe_detail__article" data-nav="posts">
-	<?= _parseContent($this, $this->options->JArticleHeaderHTML) ?>
+	<?= empty($this->options->JArticleHeaderHTML) ? null : _parseContent($this, $this->options->JArticleHeaderHTML) ?>
 	<?php if (!$this->hidden && $this->fields->video) : ?>
 		<meta name="referrer" content="no-referrer">
 		<div class="joe_detail__article-video">

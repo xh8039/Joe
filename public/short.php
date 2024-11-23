@@ -112,16 +112,10 @@ function _parseContent($post, $content = null)
 	}
 
 	if (strpos($content, '<img src="') !== false) {
-		function images_count()
-		{
-			static $count = 0;
-			$count++;
-			return $count;
-		}
 		$content = preg_replace_callback(
 			'/<img src\="([\s\S]*?)" alt\="" title\="">/',
 			function ($matches) use ($post) {
-				$alt = '图片[' . images_count() . '] - ' . $post->title . ' - ' . Helper::options()->title;
+				$alt = '图片[' . joe\global_count('_parseContent') . '] - ' . $post->title . ' - ' . Helper::options()->title;
 				return '<img src="' . $matches[1] . '" alt="' . $alt . '" title="' . $alt . '">';
 			},
 			$content

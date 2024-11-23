@@ -1325,3 +1325,11 @@ function parse_markdown_link($content)
 	}
 	return $data;
 }
+
+function global_count($name, $start = 0)
+{
+	static $count = [];
+	$count[$name] = isset($count[$name]) ? $count[$name] : $start;
+	$count[$name]++;
+	return $count[$name];
+}

@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-define('JOE_VERSION', '1.33');
+define('JOE_VERSION', '1.34');
 define('JOE_ASSETS_VERSION', 7);
 define('JOE_ROOT', dirname(__FILE__) . '/');
 

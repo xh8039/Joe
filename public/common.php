@@ -363,4 +363,15 @@ function themeFields($layout)
 		'是否显示全局广告',
 	);
 	$layout->addItem($global_advert);
+
+	$max_image_height = new \Typecho\Widget\Helper\Form\Element\Text(
+		'max_image_height',
+		NULL,
+		NULL,
+		'PC端图片极限高度',
+		'介绍：用于设置当前页的图片最高高度 <br />
+		 例如：30vh、300px、auto <br />
+		 其他：如果不填写此项，则默认为30vh'
+	);
+	$layout->addItem($max_image_height);
 }

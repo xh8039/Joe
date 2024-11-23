@@ -259,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const next = () => {
 				let item = document.querySelector('.featured-video-episode>.switch-video.active');
 				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
+				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)>.dplayer-video-wrap').click();
 			}
 			videoPlayer.on('ended', () => {
 				next();

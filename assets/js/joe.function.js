@@ -65,6 +65,7 @@ function isElementInViewport(element) {
 	const viewportWidth = (window.innerWidth || document.documentElement.clientWidth);
 	// 检查顶部和底部是否都在视口内
 	return (
+		(rect.top != 0 && rect.bottom != 0 && rect.left != 0 && rect.right != 0) &&
 		rect.top <= viewportHeight &&
 		rect.bottom >= 0 &&
 		rect.left <= viewportWidth &&

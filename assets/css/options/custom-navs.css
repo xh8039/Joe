@@ -229,6 +229,10 @@ body:not(.nav-fixed) .header.show-slide {
 	padding: 7px 10px;
 }
 
+.navbar-logo {
+	display: block;
+}
+
 .navbar-logo>img {
 	height: 36px;
 	padding: 0 30px;

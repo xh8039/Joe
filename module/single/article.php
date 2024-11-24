@@ -12,7 +12,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <article class="joe_detail__article" data-nav="posts">
 	<?php
 	echo (empty($this->options->JArticleHeaderHTML) || joe\detectSpider()) ? null : _parseContent($this, $this->options->JArticleHeaderHTML);
-	if ($this->password) {
+	if ($this->hidden) {
 		$this->need('module/single/password.php');
 	} else {
 		if ($this->fields->video) $this->need('module/single/video.php');

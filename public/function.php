@@ -414,9 +414,9 @@ function markdown_filter($content): string
 /**
  * 对文章的简短纯文本描述
  *
- * @return string|null
+ * @return string
  */
-function post_description($item, ?int $length = 150): ?string
+function post_description($item, ?int $length = 150)
 {
 	if ($item->password) {
 		$content = "加密文章，请前往内页查看详情";
@@ -428,11 +428,9 @@ function post_description($item, ?int $length = 150): ?string
 		$content = str_replace(["\n", '"'], [' ', '&quot;'], strip_tags(markdown_filter($content)));
 		$content = preg_replace('/\s+/s', ' ', $content);
 		$content = empty($content) ? $item->title : $content;
-		if (is_numeric($length)) {
-			return trim(\Typecho\Common::subStr($content, 0, $length, '...'));
-		}
-		return trim($content);
+		if (is_numeric($length)) $content = trim(\Typecho\Common::subStr($content, 0, $length, '...'));
 	}
+	return trim($content);
 }
 
 function html_tags_filter(string $content, array $tags): string

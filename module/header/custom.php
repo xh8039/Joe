@@ -11,7 +11,7 @@ $custom_navs = joe\custom_navs();
 		<div class="container-fluid container-header">
 			<div class="navbar-header">
 				<div class="navbar-brand">
-					<a referrerpolicy="no-referrer" rel="noreferrer" class="navbar-logo" href="<?php $this->options->siteUrl() ?>"><img src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" switch-src="<?php $this->options->JDarkLogo(); ?>" alt="<?= $this->options->title ?>"></a>
+					<a referrerpolicy="no-referrer" rel="noreferrer" class="navbar-logo" href="<?php $this->options->siteUrl() ?>"><img src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" switch-src="<?php $this->options->JDarkLogo(); ?>" alt="<?= $this->options->title ?>" class="<?= $this->options->JLogo_Light_Effect == 'on' ? 'joe_scan_light' : null ?>"></a>
 				</div>
 				<button type="button" data-toggle-class="mobile-navbar-show" data-target="body" class="navbar-toggle joe_header__above-slideicon"><i class="em12 css-icon i-menu"><i></i></i></button>
 				<a class="main-search-btn navbar-toggle joe_header__above-searchicon" href="javascript:;"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-search"></use></svg></a>

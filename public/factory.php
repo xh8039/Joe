@@ -12,6 +12,28 @@ require_once JOE_ROOT . 'public/smtp.php';
 Typecho_Plugin::factory('Widget_Feedback')->comment = array('Intercept', 'message');
 class Intercept
 {
+	public static function waiting($text)
+	{
+		$preg_list = [
+			'/http[s]?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/i', // 判断用户输入是否包含网址URL
+			'/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/i', // 判断用户输入是否包含域名
+			'/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/i', // 判断用户输入是否包含邮箱
+		];
+		foreach ($preg_list as $preg) {
+			if (preg_match($preg, $text)) return true;
+		}
+
+		// 判断用户输入是否大于字符
+		if (Helper::options()->JTextLimit && strlen($text) > Helper::options()->JTextLimit) return true;
+
+		// 判断评论内容是否包含敏感词
+		if (Helper::options()->JSensitiveWords && joe\checkSensitiveWords(Helper::options()->JSensitiveWords, $text)) return true;
+
+		// 判断评论是否至少包含一个中文
+		if (Helper::options()->JLimitOneChinese === "on" && preg_match("/[\x{4e00}-\x{9fa5}]/u", $text) == 0) return true;
+
+		return false;
+	}
 	public static function message($comment)
 	{
 		if (Helper::options()->JCommentStatus == 'off') {
@@ -39,17 +61,7 @@ class Intercept
 					return false;
 				}
 			}
-		} else if (preg_match('/[a-zA-z]+:\/\/[^\s]*/i', $comment['text'])) {
-			// 判断用户输入是否包含网址URL
-			$comment['status'] = 'waiting';
-		} else if (Helper::options()->JTextLimit && strlen($comment['text']) > Helper::options()->JTextLimit) {
-			// 判断用户输入是否大于字符
-			$comment['status'] = 'waiting';
-		} else if (Helper::options()->JSensitiveWords && joe\checkSensitiveWords(Helper::options()->JSensitiveWords, $comment['text'])) {
-			// 判断评论内容是否包含敏感词
-			$comment['status'] = 'waiting';
-		} else if (Helper::options()->JLimitOneChinese === "on" && preg_match("/[\x{4e00}-\x{9fa5}]/u", $comment['text']) == 0) {
-			// 判断评论是否至少包含一个中文
+		} else if (self::waiting($comment['text'])) {
 			$comment['status'] = 'waiting';
 		}
 

@@ -615,7 +615,7 @@ body:not(.nav-fixed) .header.show-slide {
 }
 
 .dark-theme .fa-toggle-theme::after {
-    transform: translateX(-2em);
+	transform: translateX(-2em);
 }
 
 .navbar-text {
@@ -819,6 +819,12 @@ body:not(.nav-fixed) .header.show-slide {
 		position: absolute;
 		width: 100%;
 		text-align: center;
+		display: flex;
+		justify-content: center;
+	}
+
+	html .navbar-logo>img {
+		padding: 0;
 	}
 
 	.navbar-toggle {

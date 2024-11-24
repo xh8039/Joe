@@ -893,13 +893,13 @@ function install()
 		$table_contents = empty($table_contents) ? [] : $table_contents;
 
 		$views = $_db->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'views';");
-		$agree = $_db->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'views';");
+		$agree = $_db->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'agree';");
 
 		if (!array_key_exists('views', $table_contents) && !$views) {
-			$_db->query("ALTER TABLE `{$_prefix}contents` ADD `views` INT DEFAULT 0;");
+			$_db->query("ALTER TABLE `{$_prefix}contents` ADD `views` INT NOT NULL DEFAULT 0;");
 		}
 		if (!array_key_exists('agree', $table_contents) && !$agree) {
-			$_db->query("ALTER TABLE `{$_prefix}contents` ADD `agree` INT DEFAULT 0;");
+			$_db->query("ALTER TABLE `{$_prefix}contents` ADD `agree` INT NOT NULL DEFAULT 0;");
 		}
 
 		/* 主题核心代码🏀🏀🏀全网最精髓🐔🐔🐔 */

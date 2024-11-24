@@ -284,7 +284,7 @@ if (!empty($footer_tabbar)) {
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
 	<script src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>" async></script>
 <?php endif; ?>
-<script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
+<script src="<?= joe\theme_url('assets/js/svg.icon.js', ['version' => 1]) ?>"></script>
 <script>
 	/* 自定义JavaScript */
 	<?php $this->options->JCustomScript() ?>

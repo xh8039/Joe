@@ -1,4 +1,4 @@
-<form class="joe_detail__article-protected" action="<?= $this->security->getTokenUrl($value['permalink']) ?>">
+<form class="joe_detail__article-protected" action="<?= $this->security->getTokenUrl($this->permalink) ?>">
 	<div class="contain">
 		<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
 			<path d="M812.631 664.064H373.54a79.027 79.027 0 0 0-78.956 79.099v196.966h518.047a79.027 79.027 0 0 0 78.95-79.099V743.183a79.027 79.027 0 0 0-78.95-79.119z" fill="#F4CA1C" />

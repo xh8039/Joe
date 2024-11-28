@@ -4376,7 +4376,7 @@ html .line-numbers .line-numbers-rows {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	margin-right: 10px
+	margin-right: 5px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .user .author a {
@@ -4387,9 +4387,11 @@ html .line-numbers .line-numbers-rows {
 	flex-shrink: 0;
 	background: var(--theme);
 	color: #fff;
-	padding: 0 5px;
+	padding: 2px 2px;
 	border-radius: 2px;
-	font-style: normal
+	font-style: normal;
+	font-size: 10px;
+	line-height: 10px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .user .agent {

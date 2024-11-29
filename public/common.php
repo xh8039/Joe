@@ -65,7 +65,7 @@ function themeInit($self)
 		exit;
 	}
 
-	session_start();
+	if (!joe\is_session_started()) session_start();
 
 	if (!isset($GLOBALS['JOE_USER'])) {
 		Typecho_Widget::widget('Widget_User')->to($user);

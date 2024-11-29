@@ -303,7 +303,7 @@ function baidu_index($url)
 	$user_agent = empty(Helper::options()->Baidu_Index_User_Agent) ? '' : trim(Helper::options()->Baidu_Index_User_Agent);
 	$client->header([
 		'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-		'accept-encoding' => 'gzip, deflate, br, zstd',
+		// 'accept-encoding' => 'gzip, deflate, br, zstd',
 		'Accept-Language' => 'zh-CN,zh;q=0.9',
 		'cache-control' => 'max-age=0',
 		'Connection' => 'keep-alive',
@@ -316,7 +316,7 @@ function baidu_index($url)
 		// 'sec-fetch-mode' => 'navigate',
 		// 'sec-fetch-site' => 'none',
 		// 'sec-fetch-user' => '?1',
-		'upgrade-insecure-requests' => '1',
+		// 'upgrade-insecure-requests' => '1',
 		'User-Agent' => $user_agent,
 	]);
 	$response = $client->get('http://www.baidu.com/s')->toArray();

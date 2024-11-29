@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 $custom_navs = joe\custom_navs();
 ?>
-<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/custom-navs.css', ['version' => 1]) ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/custom-navs.css') ?>">
 <div class="header header-layout-2">
 	<nav class="navbar navbar-top center">
 		<div class="container-fluid container-header">

@@ -284,7 +284,7 @@ function checkSensitiveWords($words_str, $str)
 	return false;
 }
 
-function theme_url($path, $param = ['version' => JOE_ASSETS_VERSION])
+function theme_url($path, $param = ['version' => 'md5'])
 {
 	static $url_root = null;
 	if (is_null($url_root)) {
@@ -300,6 +300,10 @@ function theme_url($path, $param = ['version' => JOE_ASSETS_VERSION])
 		if ($lastChar != '/') $url_root = $url_root . '/';
 	}
 	$url = $url_root . $path;
+	if (isset($param['version']) && $param['version'] == 'md5') {
+		$file = JOE_ROOT . $path;
+		$param['version'] = file_exists($file) ? md5_file($file) : JOE_ASSETS_VERSION;
+	}
 	return url_builder($url, $param);
 }
 

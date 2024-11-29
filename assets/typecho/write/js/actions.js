@@ -340,7 +340,7 @@ class JoeAction {
 		const sessionStorageType = sessionStorage.getItem('selectType') || '';
 		let htmlStr = '';
 		languageArr.forEach(item => {
-			htmlStr += `<option ${sessionStorageType === item ? 'selected' : ''} value="${item}">${item.toUpperCase()}</option>`;
+			htmlStr += `<option ${sessionStorageType === item ? 'selected' : ''} value="${item}">${item}</option>`;
 		});
 		this._openModal({
 			title: '插入代码块',

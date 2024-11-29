@@ -261,24 +261,18 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
 			}
-			videoPlayer.on('play', () => {
-				setTimeout(() => {
-					$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
-				}, 1000);
-			});
-			videoPlayer.on('ended', () => {
-				next();
-			});
+			videoPlayer.on('play', setTimeout(() => {
+				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
+			}, 1000));
+			videoPlayer.on('ended', () => next());
 			videoPlayer.on('loadeddata', () => {
 				if (videoPlayer.video.paused) videoPlayer.video.play();
 			});
 			videoPlayer.on('error', () => {
-				if (!videoPlayer.video.error) {
-					// 不是视频加载错误，可能是海报加载失败，请参阅 #307
-					return;
-				}
+				// 不是视频加载错误，可能是海报加载失败
+				if (!videoPlayer.video.error) return;
 				console.log('视频加载失败：' + videoPlayer.video.src);
-				next();
+				setTimeout(() => next(), 2000);
 			});
 		}
 	}

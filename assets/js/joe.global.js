@@ -489,7 +489,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		document.addEventListener('pjax:success', (options) => {
 			window.Joe.commentListAutoRefresh = true;
 			console.log('pjax-success：' + options.pjax);
-			window.Joe.tooltip();
+			if (window.Joe.tooltip) window.Joe.tooltip();
+			if (window.Joe.thumbOnError) window.Joe.thumbOnError();
+			if (window.Joe.avatarOnError) window.Joe.avatarOnError();
 			if (options.pjax == 'comment-submit' || options.pjax == 'comment-pagination') {
 				Joe.initComment({
 					draw: false,
@@ -857,7 +859,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
 	{
-		window.thumbOnError = function () {
+		window.Joe.thumbOnError = function () {
 			$('img.error-thumbnail').on('error', function () {
 				if (!this.dataset.thumbnailLoaded) {
 					// 生成一个 1 到 42 之间的随机整数
@@ -871,12 +873,12 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			});
 		}
-		thumbOnError();
+		window.Joe.thumbOnError();
 	}
 
 	/** 头像加载失败代替 */
 	{
-		window.avatarOnError = () => {
+		window.Joe.avatarOnError = () => {
 			$('img.avatar').on('error', function () {
 				if (!this.dataset.defaultAvatarLoaded) {
 					this.setAttribute('data-src', Joe.THEME_URL + 'assets/images/avatar-default.png');
@@ -885,7 +887,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			});
 		}
-		avatarOnError();
+		window.Joe.avatarOnError();
 	}
 
 	/** 模态框 */
@@ -1114,6 +1116,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
 					if ($(this).attr('target') == '_blank') return true;
 					if ($(this).attr('ajax-replace')) return true;
+					if ($(this).attr('data-pjax-state') != undefined) return true;
 					let url = $(this).attr('href');
 					if (checkUrl(url)) window.Joe.loadingStart();
 					setTimeout(() => {

@@ -35,7 +35,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css', false); ?>">
 
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
-<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css', ['version' => 0.01]); ?>">
+<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
 <link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
@@ -73,8 +73,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>"></script>
 <!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" async></script> -->
-<script src="<?= joe\theme_url('assets/js/joe.function.js', ['version' => 1]); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.comment.js', ['version' => 2]); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
+<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 

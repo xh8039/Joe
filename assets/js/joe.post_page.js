@@ -257,7 +257,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 			$('.featured-video-episode>.switch-video').first().click();
 			const next = () => {
-				let item = document.querySelector('.featured-video-episode>.switch-video.active');
+				const notice = document.querySelector('.joe_detail__article-video .dplayer-notice');
+				if (notice) {
+					notice.classList.add('remove-notice');
+					videoPlayer.events.trigger('notice_hide');
+					setTimeout(() => notice.remove(), 3000);
+				}
+				const item = document.querySelector('.featured-video-episode>.switch-video.active');
 				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
 			}
@@ -271,7 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			videoPlayer.on('error', () => {
 				// 不是视频加载错误，可能是海报加载失败
 				if (!videoPlayer.video.error) return;
-				console.log('视频加载失败：' + videoPlayer.video.src);
 				setTimeout(() => next(), 2000);
 			});
 		}

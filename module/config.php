@@ -10,7 +10,7 @@ $fields = $this->fields->toArray();
 		TITLE: `<?php $this->options->title() ?>`,
 		THEME_URL: `<?= joe\theme_url('', false) ?>`,
 		LOCAL_THEME_URL: `<?= preg_replace('/^https?:\/\//i', '//', $this->options->themeUrl) ?>/`,
-		LIVE2D: `<?php joe\theme_url('assets/plugin/live2d/model/') . $this->options->JLive2d ?>`,
+		LIVE2D: `<?= $this->options->JLive2d ?>`,
 		BASE_API: `<?= joe\index('joe/api', '//') ?>`,
 		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
@@ -25,7 +25,6 @@ $fields = $this->fields->toArray();
 		INDEX_AJAX: <?= $this->options->JIndex_Ajax_List == 'on' ? 'true' : 'false' ?>,
 		VERSION: `<?= JOE_VERSION ?>`,
 		LoadingAnimation: <?= $this->options->JLoading == 'off' ? 'false' : 'true' ?>,
-		commentsAntiSpam: <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null' ?>,
 		respondId: `<?= $this->respondId ?>`,
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
@@ -38,7 +37,8 @@ $fields = $this->fields->toArray();
 		CDN: (path) => {
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		},
-		startTime: performance.now()
+		startTime: performance.now(),
+		commentsAntiSpam: <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null' ?>
 	}
 
 	// 19:00 PM - 6:00 AM 是黑夜

@@ -302,7 +302,7 @@ function theme_url($path, $param = ['version' => 'md5'])
 	$url = $url_root . $path;
 	if (isset($param['version']) && $param['version'] == 'md5') {
 		$file = JOE_ROOT . $path;
-		$param['version'] = file_exists($file) ? md5_file($file) : JOE_ASSETS_VERSION;
+		$param['version'] = is_file($file) ? md5_file($file) : JOE_ASSETS_VERSION;
 	}
 	return url_builder($url, $param);
 }

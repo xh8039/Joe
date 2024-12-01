@@ -289,7 +289,7 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '你输入的邮箱已经注册账号'
 		]);
-		$send_time = time() - isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0;
+		$send_time = time() - (isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0);
 		if (isset($_SESSION['JOE_SEND_MAIL_TIME']) && $send_time <= 60) $this->response->throwJson([
 			'code' => 0,
 			'msg' => (60 - $send_time) . '秒后重可发验证码'
@@ -333,7 +333,7 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '你输入的邮箱未注册账号'
 		]);
-		$send_time = time() - isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0;
+		$send_time = time() - (isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0);
 		if (isset($_SESSION['JOE_SEND_MAIL_TIME']) && $send_time <= 60) $this->response->throwJson([
 			'code' => 0,
 			'msg' => (60 - $send_time) . '秒后重可发验证码'

@@ -284,39 +284,42 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱后发送验证码'
 		]);
-		sleep(1);
 		$db = Typecho_Db::get();
-		if ($db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) {
+		if ($db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) $this->response->throwJson([
+			'code' => 0,
+			'msg' => '你输入的邮箱已经注册账号'
+		]);
+		$send_time = time() - isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0;
+		if (isset($_SESSION['JOE_SEND_MAIL_TIME']) && $send_time <= 60) $this->response->throwJson([
+			'code' => 0,
+			'msg' => (60 - $send_time) . '秒后重可发验证码'
+		]);
+		$code = rand(100000, 999999);
+		$_SESSION["Gm_Reg_Code"] = $code;
+		$_SESSION["Gm_Reg_Email"] = $email;
+		$mail->Body = strtr(
+			$html,
+			array(
+				"{title}" => '注册验证 - ' . $this->options->title,
+				"{subtitle}" => '您正在进行注册操作，验证码是:',
+				"{content}" => $code,
+			)
+		);
+		$mail->addAddress($email);
+		$mail->Subject = '注册验证 - ' . $this->options->title;
+		if ($mail->send()) {
+			$_SESSION['JOE_SEND_MAIL_TIME'] = time();
 			$this->response->throwJson([
-				'code' => 0,
-				'msg' => '你输入的邮箱已经注册账号'
+				'code' => 1,
+				'msg' => '验证码已发送到您的邮箱'
 			]);
 		} else {
-			$code = rand(100000, 999999);
-			$_SESSION["Gm_Reg_Code"] = $code;
-			$_SESSION["Gm_Reg_Email"] = $email;
-			$mail->Body = strtr(
-				$html,
-				array(
-					"{title}" => '注册验证 - ' . $this->options->title,
-					"{subtitle}" => '您正在进行注册操作，验证码是:',
-					"{content}" => $code,
-				)
-			);
-			$mail->addAddress($email);
-			$mail->Subject = '注册验证 - ' . $this->options->title;
-			if ($mail->send()) {
-				$this->response->throwJson([
-					'code' => 1,
-					'msg' => '验证码已发送到您的邮箱'
-				]);
-			} else {
-				$this->response->throwJson([
-					'code' => 0,
-					'msg' => $mail->ErrorInfo
-				]);
-			}
+			$this->response->throwJson([
+				'code' => 0,
+				'msg' => $mail->ErrorInfo
+			]);
 		}
+
 		break;
 
 	case 'forget_code':
@@ -325,38 +328,40 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱后发送验证码'
 		]);
-		sleep(1);
 		$db = Typecho_Db::get();
-		if (!$db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) {
+		if (!$db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) $this->response->throwJson([
+			'code' => 0,
+			'msg' => '你输入的邮箱未注册账号'
+		]);
+		$send_time = time() - isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0;
+		if (isset($_SESSION['JOE_SEND_MAIL_TIME']) && $send_time <= 60) $this->response->throwJson([
+			'code' => 0,
+			'msg' => (60 - $send_time) . '秒后重可发验证码'
+		]);
+		$code = rand(100000, 999999);
+		$_SESSION["Gm_Forget_Code"] = $code;
+		$_SESSION["Gm_Forget_email"] = $email;
+		$mail->Body = strtr(
+			$html,
+			array(
+				"{title}" => '重置密码 - ' . $this->options->title,
+				"{subtitle}" => '您正在进行重置密码操作，验证码是:',
+				"{content}" => $code,
+			)
+		);
+		$mail->addAddress($email);
+		$mail->Subject = '重置密码 - ' . $this->options->title;
+		if ($mail->send()) {
+			$_SESSION['JOE_SEND_MAIL_TIME'] = time();
 			$this->response->throwJson([
-				'code' => 0,
-				'msg' => '你输入的邮箱未注册账号'
+				'code' => 1,
+				'msg' => '验证码已发送到您的邮箱'
 			]);
 		} else {
-			$code = rand(100000, 999999);
-			$_SESSION["Gm_Forget_Code"] = $code;
-			$_SESSION["Gm_Forget_email"] = $email;
-			$mail->Body = strtr(
-				$html,
-				array(
-					"{title}" => '重置密码 - ' . $this->options->title,
-					"{subtitle}" => '您正在进行重置密码操作，验证码是:',
-					"{content}" => $code,
-				)
-			);
-			$mail->addAddress($email);
-			$mail->Subject = '重置密码 - ' . $this->options->title;
-			if ($mail->send()) {
-				$this->response->throwJson([
-					'code' => 1,
-					'msg' => '验证码已发送到您的邮箱'
-				]);
-			} else {
-				$this->response->throwJson([
-					'code' => 0,
-					'msg' => $mail->ErrorInfo
-				]);
-			}
+			$this->response->throwJson([
+				'code' => 0,
+				'msg' => $mail->ErrorInfo
+			]);
 		}
 		break;
 	default:

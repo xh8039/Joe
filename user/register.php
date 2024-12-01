@@ -1,5 +1,8 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 $this->need('user/header.php');
 ?>
 <!DOCTYPE html>
@@ -65,7 +68,7 @@ $this->need('user/header.php');
 			<?php
 			}
 			?>
-		</div> 
+		</div>
 	</div>
 	<?php $this->need('module/footer.php'); ?>
 	<script>
@@ -84,7 +87,7 @@ $this->need('user/header.php');
 					countdown = 60;
 					return;
 				} else {
-					$("#send").html("(" + countdown + "秒)后重可发 ");
+					$("#send").html(countdown + "秒后重可发");
 					$("#email").attr("disabled", true);
 					$("#send").attr("disabled", true);
 					countdown--;

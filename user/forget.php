@@ -1,5 +1,8 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 $this->need('user/header.php');
 ?>
 <!DOCTYPE html>
@@ -59,16 +62,16 @@ $this->need('user/header.php');
 				obj.html(msg);
 				obj.attr("disabled", code);
 			}
-			let countdown = 60;
+			var countdown = 60;
 			let setTime = function() {
 				if (countdown == 0) {
-					$("#send").html(' 获取验证码 ');
+					$("#send").html('获取验证码');
 					$("#send").attr("disabled", false);
 					$("#email").attr("disabled", false);
 					countdown = 60;
 					return;
 				} else {
-					$("#send").html(" (" + countdown + "秒)后重可发 ");
+					$("#send").html(countdown + "秒后重可发");
 					$("#email").attr("disabled", true);
 					$("#send").attr("disabled", true);
 					countdown--;

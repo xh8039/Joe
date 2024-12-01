@@ -145,7 +145,6 @@
 }
 
 .friend_submit>.button>.submit {
-	margin-left: 36px;
 	margin-right: 2vw;
 	box-shadow: 1px 1px 3px -1px var(--theme);
 }
@@ -163,7 +162,7 @@
 
 @media (max-width: 768px) {
 	.friend_submit>.input {
-		display: unset;
+		display: block;
 		margin-bottom: 10px;
 	}
 

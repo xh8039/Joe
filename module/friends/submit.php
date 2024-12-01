@@ -39,6 +39,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	</div>
 </form>
 <script type="text/javascript">
+	function HtmlTextContent(string) {
+		var div = document.createElement('div');
+		div.innerHTML = string;
+		return div.textContent || div.innerText || "";
+	}
 	$(".friend_submit").submit(function(event) {
 		event.preventDefault();
 		$.ajax({
@@ -60,7 +65,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			error(xhr, status, error) {
 				console.log(xhr);
 				$('.friend_submit .submit').html('立即提交');
-				Qmsg.error('提交失败！' + xhr.responseText);
+				Qmsg.error('提交失败！' + HtmlTextContent(xhr.responseText));
 			}
 		});
 	});

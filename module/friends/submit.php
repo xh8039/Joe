@@ -40,9 +40,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 </form>
 <script type="text/javascript">
 	function HtmlTextContent(string) {
-		var div = document.createElement('div');
+		string = string.replace(/<script.*?<\/script>/gis, "").replace(/<style.*?<\/style>/gis, "");
+		let div = document.createElement('div');
 		div.innerHTML = string;
-		return div.textContent || div.innerText || "";
+		let textContent = div.innerText || div.textContent || "";
+		textContent = textContent.replace(/[\r\n]/g, " ").replace(/\s+/g, " ");
+		console.log(textContent);
+		return textContent;
 	}
 	$(".friend_submit").submit(function(event) {
 		event.preventDefault();

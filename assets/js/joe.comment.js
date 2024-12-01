@@ -208,8 +208,6 @@ window.Joe.initComment = (options = {}) => {
 				if (href && href.includes("#")) {
 					$(item).attr("href", href.replace("#comments", "#comment_module"));
 				}
-				$(item).attr('ajax-replace', 'true');
-				$(item).addClass('pjax');
 			});
 			var pjax = new Pjax({
 				elements: "#comment_module>.joe_pagination a[href]", // default is "a[href], form[action]"

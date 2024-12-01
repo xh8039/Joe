@@ -294,7 +294,7 @@ function theme_url($path, $param = ['version' => 'md5'])
 		if ($theme_url_domain != $_SERVER['HTTP_HOST']) {
 			$themeUrl = str_replace($theme_url_domain, $_SERVER['HTTP_HOST'], $themeUrl);
 		}
-		$themeUrl = preg_replace("/^https?:\/\//", '//', $themeUrl);
+		$themeUrl = preg_replace("/^http[s]?:\/\//", '//', $themeUrl);
 		$url_root = empty(\Helper::options()->JStaticAssetsUrl) ? $themeUrl : \Helper::options()->JStaticAssetsUrl;
 		$lastChar = substr($url_root, -1);
 		if ($lastChar != '/') $url_root = $url_root . '/';

@@ -718,7 +718,7 @@ function _friendSubmit($self)
 		'code' => 0,
 		'msg' => '网站地址错误！'
 	]);
-	if (empty($logo)) $logo = joe\theme_url('assets/images/avatar-default.png', false);
+	if (empty($logo)) $logo = Helper::options()->themeUrl . '/assets/images/avatar-default.png';
 	if (!preg_match('/^http[s]?:\/\/[^\s]*/', $logo)) $self->response->throwJson([
 		'code' => 0,
 		'msg' => '网站LOGO地址错误！'

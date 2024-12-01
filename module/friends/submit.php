@@ -30,8 +30,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	</div>
 	<div class="input">
 		<label class="input-label">提交验证</label>
-		<input placeholder="请输入图片中的内容" name="captcha">
-		<img style="cursor: pointer;height: 36px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" data-toggle="tooltip" title="点击刷新">
+		<div style="display: flex;align-items: center;"><input placeholder="请输入图片中的内容" name="captcha"><img style="cursor: pointer;height: 36px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" data-toggle="tooltip" title="点击刷新"></div>
 	</div>
 	<div class="button">
 		<button class="submit" type="submit">立即提交</button>
@@ -45,7 +44,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		div.innerHTML = string;
 		let textContent = div.innerText || div.textContent || "";
 		textContent = textContent.replace(/[\r\n]/g, " ").replace(/\s+/g, " ");
-		console.log(textContent);
 		return textContent;
 	}
 	$(".friend_submit").submit(function(event) {

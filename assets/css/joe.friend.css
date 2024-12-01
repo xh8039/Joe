@@ -160,3 +160,15 @@
 	background: var(--classB);
 	border-color: var(--classA);
 }
+
+@media (max-width: 768px) {
+	.friend_submit>.input {
+		display: unset;
+		margin-bottom: 10px;
+	}
+
+	.friend_submit>.input>.input-label {
+		margin-bottom: 5px;
+		display: block;
+	}
+}

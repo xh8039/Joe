@@ -4,7 +4,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 ?>
-<form id="friend_submit">
+<form class="friend_submit">
 	<h2>在线申请</h2>
 	<div class="input">
 		<label class="input-label">网站标题</label>
@@ -38,7 +38,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	</div>
 </form>
 <script type="text/javascript">
-	$("#friend_submit").submit(function(event) {
+	$(".friend_submit").submit(function(event) {
 		event.preventDefault();
 		$.ajax({
 			url: Joe.BASE_API,
@@ -46,10 +46,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			data: $(this).serialize(),
 			dataType: 'json',
 			beforeSend() {
-				$('#friend_submit .submit').html('<i class="loading mr6"></i>提交中...');
+				$('.friend_submit .submit').html('<i class="loading mr6"></i>提交中...');
 			},
 			success(data) {
-				$('#friend_submit .submit').html('立即提交');
+				$('.friend_submit .submit').html('立即提交');
 				if (data.code == 200) {
 					Qmsg.success(data.msg);
 				} else {
@@ -58,7 +58,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			},
 			error(xhr, status, error) {
 				console.log(xhr);
-				$('#friend_submit .submit').html('立即提交');
+				$('.friend_submit .submit').html('立即提交');
 				Qmsg.error('提交失败！' + xhr.responseText);
 			}
 		});

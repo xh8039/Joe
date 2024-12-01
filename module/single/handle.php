@@ -9,14 +9,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-if ($this->is('post')) : ?>
-	<div style="font-size: .9em;color: var(--muted-3-color);line-height: 1.42857143;">
-		<div><span>©</span> 版权声明</div>
-		<div class="posts-copyright">文章版权归作者所有，未经允许请勿转载。</div>
-	</div>
-	<div class="separator">THE END</div>
-<?php
-endif;
+if ($this->is('post')) $this->options->JArticleCopyrightHTML();
 ?>
 <div class="article-tags">
 	<?php

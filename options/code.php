@@ -180,6 +180,32 @@ $JArticleHeaderHTML->setAttribute('class', 'joe_content joe_code');
 $JArticleHeaderHTML->setAttribute('data-language', 'htmlmixed');
 $form->addInput($JArticleHeaderHTML);
 
+$JArticleBottomHTML = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	'JArticleBottomHTML',
+	NULL,
+	NULL,
+	'自定义文章页底部HTML代码（非必填）',
+	htmlentities('介绍：位于 </article> 标签上方，所有文章内容下方，支持Joe文章编辑器语法')
+);
+$JArticleBottomHTML->setAttribute('class', 'joe_content joe_code');
+$JArticleBottomHTML->setAttribute('data-language', 'htmlmixed');
+$form->addInput($JArticleBottomHTML);
+
+$JArticleCopyrightHTML = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	'JArticleCopyrightHTML',
+	NULL,
+	htmlentities('<div class="em09 muted-3-color">
+	<div><span>©</span> 版权声明</div>
+	<div class="posts-copyright">文章版权归作者所有，未经允许请勿转载。</div>
+</div>
+<div class="separator">THE END</div>'),
+	'自定义文章页版权声明HTML代码（非必填）',
+	htmlentities('介绍：位于 </article> 标签下方，所有文章内容下方')
+);
+$JArticleCopyrightHTML->setAttribute('class', 'joe_content joe_code');
+$JArticleCopyrightHTML->setAttribute('data-language', 'htmlmixed');
+$form->addInput($JArticleCopyrightHTML);
+
 $JCustomFunctionsCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JCustomFunctionsCode',
 	NULL,

@@ -7,7 +7,7 @@ $thePrev = Joe\thePrev($this);
 $theNext = Joe\theNext($this);
 if ($thePrev || $theNext) {
 ?>
-    <div style="height:99px;margin-bottom: 20px;line-height: 1.42857143;">
+    <div style="height:99px;margin-bottom: 20px;">
         <nav class="article-nav">
             <!-- 上一篇 -->
             <?php if (!empty($thePrev)) : ?>

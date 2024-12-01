@@ -3,6 +3,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	window.CodeMirrorEditor = {};
 
+	window.CodeMirrorEditor.defaultOptions = {
+		lineWrapping: true, // 编辑器自动换行
+		theme: "dracula",
+		lineNumbers: true, // 显示行号
+		matchBrackets: true, // 匹配{}
+		autoCloseBrackets: true, // 自动关闭{}
+		indentUnit: 4, // 缩进单位
+		indentWithTabs: true, // 使用制表符缩进
+	}
+
 	var formatCode = {
 		htmlmixed: html_beautify,
 		css: css_beautify,
@@ -15,13 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		// PHP代码没有代码提示和格式化功能
 		if (mode == 'php') {
 			CodeMirrorEditor[codeInput.name] = CodeMirror.fromTextArea(codeInput, {
+				...CodeMirrorEditor.defaultOptions,
 				mode: mode,
-				theme: "dracula",
-				lineNumbers: true,
-				matchBrackets: true, // 匹配{}
-				autoCloseBrackets: true, // 自动关闭{}
-				indentUnit: 4, // 缩进单位
-				indentWithTabs: true, // 使用制表符缩进
 				extraKeys: { "Ctrl-/": 'toggleComment' }
 			});
 			return;
@@ -29,13 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// 将 textarea 转换为 CodeMirror 编辑器实例
 		CodeMirrorEditor[codeInput.name] = CodeMirror.fromTextArea(codeInput, {
+			...CodeMirrorEditor.defaultOptions,
 			mode: mode,
-			theme: "dracula",
-			lineNumbers: true,
-			matchBrackets: true, // 匹配{}
-			autoCloseBrackets: true, // 自动关闭{}
-			indentUnit: 4, // 缩进单位
-			indentWithTabs: true, // 使用制表符缩进
 			extraKeys: {
 				"Ctrl-Space": "autocomplete",
 				"Shift-Alt-F": function (cm) {
@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// 监听输入事件
 		CodeMirrorEditor[codeInput.name].on("inputRead", (cm, obj) => {
+			console.log(obj.origin);
+			if (obj.origin != "+input") return;
 			cm.showHint({
 				hint: CodeMirror.hint[mode], // 使用正确的方式获取自动完成函数
 				completeSingle: false, // 不自动选择第一个匹配项

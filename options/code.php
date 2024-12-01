@@ -83,6 +83,10 @@ if (isset($_GET['joe_code'])) {
 			.CodeMirror-vscrollbar, .CodeMirror-hscrollbar {
 				display: none !important; /* 隐藏滚动条 */
 			}
+			.CodeMirror pre.CodeMirror-line, .CodeMirror pre.CodeMirror-line-like {
+				font-family: \'SF Mono\', Menlo, Monaco, Consolas, \'Courier New\', -apple-system, system-ui, monospace;
+				font-size: 12px;
+			}
 		</style>
 	
 		<b>自定义代码提醒事项：</b><br>

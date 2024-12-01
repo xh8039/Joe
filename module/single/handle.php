@@ -24,7 +24,7 @@ endif;
 	foreach ($this->categories as $key => $item) {
 		echo '<a href="' . $item['permalink'] . '" class="but ml6 radius ' . ($color_array[$key] ? $color_array[$key] : 'c-blue') . '" title="查看此分类更多文章"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $item['name'] . '</a>';
 	}
-	echo '<br>';
+	if (!empty($this->tags)) echo '<br>';
 	foreach ($this->tags as $key => $value) {
 		echo '<a class="but ml6 radius" href="' . $value['url'] . '" title="查看此标签更多文章"># ' . $value['name'] . '</a>';
 	}

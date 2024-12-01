@@ -6,6 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 ?>
 <form class="friend_submit">
 	<h2>在线申请</h2>
+	<input type="hidden" name="routeType" value="friend_submit">
 	<div class="input">
 		<label class="input-label">网站标题</label>
 		<input type="text" placeholder="请输入您的网站标题" name="title">

@@ -109,7 +109,7 @@
 	color: var(--main);
 }
 
-.friend_submit>.input>input {
+.friend_submit>.input input {
 	height: 36px;
 	width: 100%;
 	display: block;
@@ -121,7 +121,7 @@
 	transition: 0.3s;
 }
 
-.friend_submit>.input>input:focus {
+.friend_submit>.input input:focus {
 	background: var(--background);
 	border-color: var(--theme);
 }

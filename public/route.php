@@ -732,7 +732,6 @@ function _friendSubmit($self)
 			'msg' => ($value['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')
 		]);
 	}
-	$db->a($db->select('status')->where('url = ?', $link));
 	$sql = $db->insert('table.friends')->rows(
 		array(
 			'title' => $title,

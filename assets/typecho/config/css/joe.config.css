@@ -168,10 +168,7 @@
 	margin-bottom: 15px;
 	padding: 5px 15px;
 	color: #409eff;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	cursor: auto;
 	border-radius: 0 4px 4px 0;
 	font-weight: bold;
 }

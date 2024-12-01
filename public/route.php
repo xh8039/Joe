@@ -683,18 +683,14 @@ function _friendSubmit($self)
 	$self->response->setStatus(200);
 
 	$captcha = $self->request->captcha;
-	if (empty($captcha)) {
-		$self->response->throwJson([
-			'code' => 0,
-			'msg' => '请输入验证码！'
-		]);
-	}
-	if (empty($_SESSION['joe_captcha'])) {
-		$self->response->throwJson([
-			'code' => 0,
-			'msg' => '验证码过期，请重新获取验证码'
-		]);
-	}
+	if (empty($captcha)) $self->response->throwJson([
+		'code' => 0,
+		'msg' => '请输入验证码！'
+	]);
+	if (empty($_SESSION['joe_captcha'])) $self->response->throwJson([
+		'code' => 0,
+		'msg' => '验证码过期，请重新获取验证码'
+	]);
 	if ($_SESSION['joe_captcha'] != $captcha) {
 		unset($_SESSION['joe_captcha']);
 		$self->response->throwJson([
@@ -706,50 +702,47 @@ function _friendSubmit($self)
 
 	$title = $self->request->title;
 	$description = $self->request->description;
-	$link = $self->request->link;
+	$url = $self->request->url;
 	$logo = $self->request->logo;
 	$email = $self->request->email;
-	if (empty($title) || empty($link) || empty($email)) {
-		$self->response->throwJson([
-			'code' => 0,
-			'msg' => '必填项不能为空'
-		]);
-	}
-	if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) {
-		$self->response->throwJson([
-			'code' => 0,
-			'msg' => '邮箱号错误！'
-		]);
-	}
 
+	if (empty($title) || empty($url) || empty($email)) $self->response->throwJson([
+		'code' => 0,
+		'msg' => '必填项不能为空'
+	]);
+	if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) $self->response->throwJson([
+		'code' => 0,
+		'msg' => '联系邮箱错误！'
+	]);
+	if (!preg_match('/^http[s]?:\/\/[^\s]*/', $url)) $self->response->throwJson([
+		'code' => 0,
+		'msg' => '网站地址错误！'
+	]);
 	if (empty($logo)) $logo = joe\theme_url('assets/images/avatar-default.png', false);
+	if (!preg_match('/^http[s]?:\/\/[^\s]*/', $logo)) $self->response->throwJson([
+		'code' => 0,
+		'msg' => '网站LOGO地址错误！'
+	]);
 
 	$db = Typecho_Db::get();
-	$value = $db->fetchRow($db->select('status')->from('table.friends')->where('url = ?', $link));
-	if (is_array($value) && isset($value['status'])) {
-		$self->response->throwJson([
-			'code' => 0,
-			'msg' => ($value['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')
-		]);
-	}
-	$sql = $db->insert('table.friends')->rows(
-		array(
-			'title' => $title,
-			'url' =>  $link,
-			'logo' =>  $logo,
-			'description' => $description,
-			'email' => $email,
-		)
-	);
+	$value = $db->fetchRow($db->select('status')->from('table.friends')->where('url = ?', $url));
+	if (is_array($value) && isset($value['status'])) $self->response->throwJson([
+		'code' => 0,
+		'msg' => ($value['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')
+	]);
+
+	$sql = $db->insert('table.friends')->rows([
+		'title' => $title,
+		'url' =>  $url,
+		'logo' =>  $logo,
+		'description' => $description,
+		'email' => $email,
+	]);
 	if ($db->query($sql)) {
 		if (Helper::options()->JFriendEmail == 'on') {
 			$EmailTitle = '友链申请';
-			$subtitle = $title . '向您提交了友链申请：';
-			$content = "<p>友链标题：$title</p>
-			<p>站点链接：$link</p>
-			<p>站点LOGO：$logo</p>
-			<p>站点描述：$description</p>
-			<p>对方邮箱：$email</p>";
+			$subtitle = $title . ' 向您提交了友链申请';
+			$content = "<p>友链标题：$title</p><p>站点链接：$url</p><p>站点LOGO：$logo</p><p>站点描述：$description</p><p>对方邮箱：$email</p>";
 			$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
 		}
 		$self->response->throwJson([
@@ -761,10 +754,6 @@ function _friendSubmit($self)
 			'code' => 0,
 			'msg' => '提交失败，请联系本站点管理员进行处理'
 		]);
-		// $self->response->throwJson([
-		// 	'code' => 0,
-		// 	'msg' => '提交失败，错误原因：' . $SendEmail
-		// ]);
 	}
 }
 

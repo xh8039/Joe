@@ -45,7 +45,8 @@ $JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	'公共静态资源CDN接口',
 	'
 	<span>介绍：留空则使用本地资源，不懂请勿乱填。若您的站点宽带不高，可从下方接口列表选择或提供自己的接口</span><br>
-	<span>格式：URL接口 || 版本号分隔符，版本号分隔符不填写则默认为 / ，JsDelivr类型的需要使用 @</span><br>
+	<span>格式：URL接口 || 版本号分隔符</span><br>
+	<span>注意：版本号分隔符不填写则默认为 / ，JsDelivr类型的需要使用 @</span><br>
 	<span>BootCDN：https://cdn.bootcdn.net/ajax/libs/</span><br>
 	<span>Staticfile CDN：https://cdn.staticfile.net/</span><br>
 	<span>字节跳动（距上次更新已两年多）：https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/</span><br>

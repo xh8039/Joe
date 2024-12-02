@@ -829,8 +829,7 @@
 	}
 
 	html .joe_pagination li.prev,
-	html .joe_pagination li.next,
-	html .joe_pagination li:has(> a:not([href])) {
+	html .joe_pagination li.next {
 		display: none;
 	}
 }

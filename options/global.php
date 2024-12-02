@@ -88,12 +88,12 @@ $JMoreNavs = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	'导航栏更多链接（非必填）',
 	'介绍：用于添加更多导航栏链接 <br />
-		 格式：跳转文字 || 跳转链接（中间使用两个竖杠分隔）<br />
-		 其他：一行一个，一行代表一个超链接 <br />
-		 例如：<br />
-			百度一下 || https://baidu.com <br />
-			腾讯视频 || https://v.qq.com
-		 '
+	格式：跳转文字 || 跳转链接（中间使用两个竖杠分隔）<br />
+	其他：一行一个，一行代表一个超链接 <br />
+	例如：<br />
+	百度一下 || https://baidu.com <br />
+	腾讯视频 || https://v.qq.com
+	'
 );
 $JMoreNavs->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JMoreNavs);

@@ -69,8 +69,7 @@ $JWeChatPay = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JWeChatPay',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
-	'微信支付功能',
-	'介绍：用于文章付费阅读功能'
+	'微信支付功能'
 );
 $JWeChatPay->setAttribute('class', 'joe_content joe_pay');
 $form->addInput($JWeChatPay);
@@ -79,8 +78,7 @@ $JAlipayPay = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAlipayPay',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
-	'支付宝支付功能',
-	'介绍：用于文章付费阅读功能'
+	'支付宝支付功能'
 );
 $JAlipayPay->setAttribute('class', 'joe_content joe_pay');
 $form->addInput($JAlipayPay);
@@ -89,8 +87,7 @@ $JQQPay = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JQQPay',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
-	'QQ支付功能',
-	'介绍：用于文章付费阅读功能'
+	'QQ支付功能'
 );
 $JQQPay->setAttribute('class', 'joe_content joe_pay');
 $form->addInput($JQQPay);

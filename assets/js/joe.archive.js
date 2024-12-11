@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		new Pjax({
 			elements: '.joe_pagination>li>a[href]',
 			selectors: ['title', 'h1', '.joe_main'],
-			history: false,
+			history: true,
 			scrollRestoration: false,
 			pjax: 'archive-pagination',
 			cacheBust: false,
@@ -29,10 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.addEventListener('pjax:send', (options) => {
 			if (options.pjax != 'archive-pagination') return;
 			$('.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
-		});
-		document.addEventListener('pjax:success', (options) => {
-			if (options.pjax != 'archive-pagination') return;
-			window.scrollTo(0, 0);
 		});
 	}
 

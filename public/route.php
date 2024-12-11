@@ -71,40 +71,34 @@ function _getPost($self)
 	}
 	$JIndex_Hide_Post = array_map('trim', explode("||", Helper::options()->JIndex_Hide_Post ?? ''));
 	$hide_post_list = array_merge($sticky_arr, $JIndex_Hide_Post);
-	$hide_categorize_list = array_map('trim', explode("||", Helper::options()->JIndex_Hide_Categorize ?? ''));
 	$self->widget('Widget_Contents_Sort', 'page=' . $page . '&pageSize=' . $pageSize . '&type=' . $type)->to($item);
 	while ($item->next()) {
-		foreach ($item->categories as $key => $categorie) {
-			if (in_array($categorie['slug'], $hide_categorize_list)) continue 2;
-		}
-		if (!in_array($item->cid, $hide_post_list)) {
-			$result[] = array(
-				"cid" => $item->cid,
-				"mode" => $item->fields->mode ? $item->fields->mode : 'default',
-				"image" => joe\getThumbnails($item),
-				"time" => date('Y-m-d', $item->created),
-				'date_time' => date('Y-m-d H:i:s', $item->created),
-				"created" => date('Y年m月d日', $item->created),
-				'dateWord' => joe\dateWord($item->dateWord),
-				"title" => $item->title,
-				"abstract" => joe\getAbstract($item, false),
-				"category" => $item->categories,
-				"views" => number_format($item->views),
-				"commentsNum" => number_format($item->commentsNum),
-				"agree" => number_format($item->agree),
-				"permalink" => $item->permalink,
-				"lazyload" => joe\getLazyload(false),
-				"type" => 'normal',
-				'target' => Helper::options()->Jessay_target,
-				'author_screenName' => $item->author->screenName,
-				'author_permalink' => $item->author->permalink,
-				'author_avatar' => joe\getAvatarByMail($item->author->mail, false),
-				'tags' => $item->tags,
-				'fields' => $item->fields->toArray()
-			);
-		}
+		if (in_array($item->cid, $hide_post_list)) continue;
+		$result[] = [
+			"cid" => $item->cid,
+			"mode" => $item->fields->mode ? $item->fields->mode : 'default',
+			"image" => joe\getThumbnails($item),
+			"time" => date('Y-m-d', $item->created),
+			'date_time' => date('Y-m-d H:i:s', $item->created),
+			"created" => date('Y年m月d日', $item->created),
+			'dateWord' => joe\dateWord($item->dateWord),
+			"title" => $item->title,
+			"abstract" => joe\getAbstract($item, false),
+			"category" => $item->categories,
+			"views" => number_format($item->views),
+			"commentsNum" => number_format($item->commentsNum),
+			"agree" => number_format($item->agree),
+			"permalink" => $item->permalink,
+			"lazyload" => joe\getLazyload(false),
+			"type" => 'normal',
+			'target' => Helper::options()->Jessay_target,
+			'author_screenName' => $item->author->screenName,
+			'author_permalink' => $item->author->permalink,
+			'author_avatar' => joe\getAvatarByMail($item->author->mail, false),
+			'tags' => $item->tags,
+			'fields' => $item->fields->toArray()
+		];
 	};
-
 	$self->response->throwJson(array("data" => $result));
 }
 

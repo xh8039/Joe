@@ -61,9 +61,6 @@ function _parseContent($post, $content = null)
 
 	// 便条按钮
 	$content = joe\TagExternaToInternalLink($content, 'anote', 'joe-anote', 'href', $post_cid);
-	if (strpos($content, '{anote') !== false) {
-		$content = preg_replace('/{anote([^}]*)\/}/SU', '<joe-anote $1></joe-anote>', $content);
-	}
 
 	// 彩色虚线
 	if (strpos($content, '{dotted') !== false) {

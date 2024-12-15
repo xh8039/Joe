@@ -1145,7 +1145,7 @@ function TagExternaToInternalLink(string $content, string $tag_name, string $htm
 				$content
 			);
 		} else {
-			$content = preg_replace('/{cloud([^}]*)\/}/SU', '<' . $html_name . ' $1></' . $html_name . '>', $content);
+			$content = preg_replace('/{' . $tag_name . '([^}]*)\/}/SU', '<' . $html_name . ' $1></' . $html_name . '>', $content);
 		}
 	}
 	return $content;

@@ -1063,7 +1063,7 @@ function _initiatePay($self)
 							'msg' => '创建订单成功',
 							'order_name' => Helper::options()->title . ' - 付费阅读',
 							'trade_no' => $out_trade_no,
-							'order_price' => $data['price'],
+							'order_price' => isset($data['price']) ? $data['price'] : $price,
 							'payment_method' => $self->request->payment_method,
 							'price' => $price,
 							'return_url' => Helper::options()->themeUrl . '/library/pay/callback.php',

@@ -1,10 +1,10 @@
 <?php
-if (is_string($this->request->getHeader('x-pjax-selectors'))) {
-	if (strpos($this->request->getHeader('x-pjax-selectors'), '#comment_module>.comment-list') !== false) {
-		$this->need('module/single/comment.php');
-		exit;
-	}
-	if ($this->request->getHeader('x-pjax-selectors') == '["joe-hide"]') {
+$selectors = $this->request->getHeader('x-pjax-selectors');
+if (is_string($selectors)) {
+	$selectors = json_decode($selectors, true);
+	if (in_array('#comment_module>.comment-list', $selectors)) $this->need('module/single/comment.php');
+	if (in_array('.joe_detail__leaving', $selectors)) $this->need('module/single/leaving.php');
+	if (in_array('joe-hide', $selectors)) {
 		if (preg_match('/{hide[^}]*}([\s\S]*?){\/hide}/', $this->content, $content_match)) {
 			$content = joe\markdown_hide($content_match[0], $this, $this->user->hasLogin());
 			$content = _parseContent($this, $content);
@@ -15,8 +15,8 @@ if (is_string($this->request->getHeader('x-pjax-selectors'))) {
 		$content = '<script type="text/javascript">$(".pay-box").remove();</script>' . $content;
 		$content = '<joe-hide>' . $content . '</joe-hide>';
 		echo $content;
-		exit;
 	}
+	exit;
 }
 if ($this->is('single') && strpos($this->request->getPathInfo(), '/comment-page-1') !== false) {
 	$this->response->setStatus(302);

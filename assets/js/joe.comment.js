@@ -209,9 +209,11 @@ window.Joe.initComment = (options = {}) => {
 					$(item).attr("href", href.replace("#comments", "#comment_module"));
 				}
 			});
+			let selectors = ["#comment_module>.comment-list", '#comment_module>.joe_pagination'];
+			if (document.querySelector('.joe_detail__leaving')) selectors.push('.joe_detail__leaving');
 			var pjax = new Pjax({
 				elements: "#comment_module>.joe_pagination a[href]", // default is "a[href], form[action]"
-				selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
+				selectors: selectors,
 				history: false,
 				scrollRestoration: false,
 				pjax: 'comment-pagination',

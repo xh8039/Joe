@@ -1,5 +1,5 @@
 <?php
-$domain = 'blog.bri6.cn'; // 这里填写你的域名
+$domain = '*'; // 如需限制指定域名 请将*改为你的域名
 //判断是http还是https
 $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'ON') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'HTTPS')) ? 'https://' : 'http://';
 //全路径

@@ -30,7 +30,7 @@ function alert($content)
 }
 function location()
 {
-	$referer = Typecho_Request::getInstance()->getHeader('referer');
+	$referer = empty($_REQUEST['referer']) ? Typecho_Request::getInstance()->getHeader('referer') : $_REQUEST['referer'];
 	$url = Helper::security()->getAdminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=index');
 	$href = empty($referer) ? $url : $referer;
 	echo "<script>window.location.href='$href';</script>";

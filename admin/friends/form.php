@@ -58,6 +58,9 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 				$id = new Typecho_Widget_Helper_Form_Element_Hidden('id');
 				$form->addInput($id);
 
+				$referer = new Typecho_Widget_Helper_Form_Element_Hidden('referer', null, Typecho_Request::getInstance()->getHeader('referer'));
+				$form->addInput($referer);
+
 				/** 提交按钮 */
 				$submit = new Typecho_Widget_Helper_Form_Element_Submit();
 				$submit->input->setAttribute('class', 'btn primary');

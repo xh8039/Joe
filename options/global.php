@@ -48,6 +48,7 @@ $JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	<span>格式：URL接口 || 版本号分隔符</span><br>
 	<span>注意：版本号分隔符不填写则默认为 / ，JsDelivr类型的需要使用 @</span><br>
 	<span>BootCDN：https://cdn.bootcdn.net/ajax/libs/</span><br>
+	<span>360CDN：https://lib.baomitu.com/</span><br>
 	<span>Staticfile CDN：https://cdn.staticfile.net/</span><br>
 	<span>字节跳动（距上次更新已两年多）：https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/</span><br>
 	<span>Zstatic（又拍云赞助）：https://s4.zstatic.net/ajax/libs/</span><br>
@@ -56,7 +57,7 @@ $JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	<span>渺软公益CDN回源UNPKG（cdn.onmicrosoft.cn）：https://npm.onmicrosoft.cn/</span><br>
 	<span>渺软公益CDN回源CDNJS（cdn.onmicrosoft.cn）：https://cdnjs.onmicrosoft.cn/ajax/libs/</span><br>
 	<span>南方科技大学：https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/</span><br>
-	<span>360（单纯放到这里）: https://cdn.baomitu.com</span><br>
+	<span>360CDN: https://cdn.baomitu.com</span><br>
 	<span>JsDelivr：https://cdn.jsdelivr.net/npm/ || @</span><br>
 	<span>Google Hosted Libraries（国内用不了）：https://ajax.googleapis.com/ajax/libs/</span><br>
 	<span>CDNJS（国内不稳定）：https://cdnjs.cloudflare.com/ajax/libs/</span><br>

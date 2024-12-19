@@ -1284,7 +1284,11 @@ function markdown_hide($content, $post, $login)
 		$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 	} else {
 		//如果隐藏内容没有被显示，保留占位符
-		$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
+		if (strpos($content, '<br>{hide') !== false || strpos($content, '<p>{hide') !== false) {
+			$content = preg_replace('/\<br\>{hide[^}]*}([\s\S]*?){\/hide}/', '<br><joe-hide style="display:block"></joe-hide>', $content);
+			$content = preg_replace('/\<p\>{hide[^}]*}([\s\S]*?){\/hide}/', '<p><joe-hide style="display:block"></joe-hide>', $content);
+		}
+		$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide style="display:inline"></joe-hide>', $content);
 	}
 
 	// 处理付费内容显示逻辑 非爬虫才显示付费框

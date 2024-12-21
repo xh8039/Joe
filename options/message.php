@@ -120,7 +120,7 @@ $JCommentMailFromName = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	NULL,
 	'发件人昵称',
-	'介绍：留空则使用站点名称'
+	'介绍：不填写则使用站点名称'
 );
 $JCommentMailFromName->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailFromName->multiMode());

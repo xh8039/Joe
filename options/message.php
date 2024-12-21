@@ -76,8 +76,8 @@ $form->addInput($JPaymentOrderEmail->multiMode());
 if (!empty(\Helper::options()->JMailApi)) {
 	$JMailApi = joe\optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'name', 'content', 'email', 'code', '200', 'message']);
 	$JMailApiOptions = '<br>
+	<span style="color:#409eff">
 	现在的配置：<br>
-	<span style="color:#ecf5ff">
 	对接地址：' . $JMailApi['url'] . '<br>
 	标题字段：' . $JMailApi['title'] . '<br>
 	副标题字段：' . $JMailApi['subtitle'] . '<br>

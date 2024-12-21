@@ -77,6 +77,7 @@ if (!empty(\Helper::options()->JMailApi)) {
 	$JMailApi = joe\optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'name', 'content', 'email', 'code', '200', 'message']);
 	$JMailApiOptions = '<br>
 	现在的配置：<br>
+	<p style="color:#ecf5ff">
 	对接地址：' . $JMailApi['url'] . '<br>
 	标题字段：' . $JMailApi['title'] . '<br>
 	副标题字段：' . $JMailApi['subtitle'] . '<br>
@@ -85,7 +86,7 @@ if (!empty(\Helper::options()->JMailApi)) {
 	发送邮箱字段：' . $JMailApi['email'] . '<br>
 	响应成功字段：' . $JMailApi['code'] . '<br>
 	响应成功内容：' . $JMailApi['200'] . '<br>
-	响应失败内容字段：' . $JMailApi['message'] . '<br>
+	响应失败内容字段：' . $JMailApi['message'] . '</p>
 	';
 } else {
 	$JMailApiOptions = '';

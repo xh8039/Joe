@@ -546,11 +546,13 @@ function send_email($title, $subtitle, $content, $email = '')
 		}
 	}
 	if (empty($subtitle)) $subtitle = '';
+	$FromName = empty(\Helper::options()->JCommentMailFromName) ? \Helper::options()->title : \Helper::options()->JCommentMailFromName;
 	if (!empty(\Helper::options()->JMailApi)) {
-		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'content', 'email', 'code', '200', 'message']);
+		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'name', 'content', 'email', 'code', '200', 'message']);
 		$send_email = \network\http\get($JMailApi['url'], [
 			$JMailApi['title'] => $title,
 			$JMailApi['subtitle'] => $subtitle,
+			$JMailApi['name'] => $FromName,
 			$JMailApi['content'] => $content,
 			$JMailApi['email'] => $email
 		])->toArray();
@@ -575,7 +577,7 @@ function send_email($title, $subtitle, $content, $email = '')
 	$mail->SMTPSecure = \Helper::options()->JCommentSMTPSecure;
 	$mail->Host = \Helper::options()->JCommentMailHost;
 	$mail->Port = \Helper::options()->JCommentMailPort;
-	$mail->FromName = \Helper::options()->JCommentMailFromName;
+	$mail->FromName = $FromName;
 	$mail->Username = \Helper::options()->JCommentMailAccount;
 	$mail->From = \Helper::options()->JCommentMailAccount;
 	$mail->Password = \Helper::options()->JCommentMailPassword;

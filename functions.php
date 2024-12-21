@@ -59,6 +59,7 @@ function themeConfig($form)
 				<form action="options-theme.php" method="post" class="mailtest" style="display: none;">
 					<input type="submit" name="mod" value="mailtest">
 				</form>
+				<div class="typecho-login" style="display: none;"></div>
 				<?php require_once JOE_ROOT . 'public/backup.php'; ?>
 			</div>
 		</div>

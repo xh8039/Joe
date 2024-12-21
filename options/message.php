@@ -74,7 +74,7 @@ $JPaymentOrderEmail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JPaymentOrderEmail->multiMode());
 
 if (!empty(\Helper::options()->JMailApi)) {
-	$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'name', 'content', 'email', 'code', '200', 'message']);
+	$JMailApi = joe\optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'name', 'content', 'email', 'code', '200', 'message']);
 	$JMailApiOptions = '<br>
 	现在的配置：<br>
 	对接地址：' . $JMailApi['url'] . '<br>
@@ -90,7 +90,6 @@ if (!empty(\Helper::options()->JMailApi)) {
 } else {
 	$JMailApiOptions = '';
 }
-
 
 $JMailApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JMailApi',

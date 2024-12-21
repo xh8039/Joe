@@ -514,6 +514,7 @@ function baidu_statistic_config()
 /** 检测主题设置是否配置邮箱 */
 function email_config()
 {
+	if (!empty(\Helper::options()->JMailApi)) return true;
 	if (
 		empty(\Helper::options()->JCommentMailHost) ||
 		empty(\Helper::options()->JCommentMailPort) ||
@@ -528,12 +529,13 @@ function email_config()
 	}
 }
 
-/** 发送电子邮件 */
+/**
+ * 发送电子邮件
+ * @return true|string
+ */
 function send_email($title, $subtitle, $content, $email = '')
 {
-	if (!email_config()) {
-		return false;
-	}
+	if (!email_config()) return false;
 	if (empty($email)) {
 		$db = \Typecho_Db::get();
 		$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
@@ -541,6 +543,24 @@ function send_email($title, $subtitle, $content, $email = '')
 			$email = \Helper::options()->JCommentMailAccount;
 		} else {
 			$email = $authoInfo['mail'];
+		}
+	}
+	if (!empty(\Helper::options()->JMailApi)) {
+		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'content', 'email', 'code', '200', 'message']);
+		$send_email = \network\http\get($JMailApi['url'], [
+			$JMailApi['title'] => $title,
+			$JMailApi['subtitle'] => $subtitle,
+			$JMailApi['content'] => $content,
+			$JMailApi['email'] => $email
+		])->toArray();
+		if (is_array($send_email)) {
+			if ($send_email[$JMailApi['code']] == $JMailApi['200']) {
+				return true;
+			} else {
+				return isset($send_email[$JMailApi['message']]) ? $send_email[$JMailApi['message']] : 'API对接发件失败！失败消息不存在';
+			}
+		} else {
+			return $send_email;
 		}
 	}
 	if (!class_exists('\PHPMailer', false)) {
@@ -570,11 +590,7 @@ function send_email($title, $subtitle, $content, $email = '')
 	);
 	$mail->addAddress($email);
 	$mail->Subject = $title . ' - ' . \Helper::options()->title;
-	if ($mail->send()) {
-		return 'success';
-	} else {
-		return $mail->ErrorInfo;
-	}
+	return $mail->send() ? true : $mail->ErrorInfo;
 }
 
 /**

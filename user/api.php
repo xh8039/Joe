@@ -5,19 +5,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 session_start();
 $action = $_POST['action'];
-$mail = new PHPMailer();
-$mail->isSMTP();
-$mail->SMTPAuth = true;
-$mail->CharSet = 'UTF-8';
-$mail->SMTPSecure = Helper::options()->JCommentSMTPSecure;
-$mail->Host = Helper::options()->JCommentMailHost;
-$mail->Port = Helper::options()->JCommentMailPort;
-$mail->FromName = Helper::options()->JCommentMailFromName;
-$mail->Username = Helper::options()->JCommentMailAccount;
-$mail->From = Helper::options()->JCommentMailAccount;
-$mail->Password = Helper::options()->JCommentMailPassword;
-$mail->isHTML(true);
-$html = '<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"><meta name="viewport"content="width=device-width, initial-scale=1.0"><title>{title}</title></head><body><style>.Joe{width:95%;margin:0 auto;border-radius:8px;overflow:hidden;font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);word-break:break-all}.Joe_title{color:#fff;background:linear-gradient(-45deg,rgba(9,69,138,0.2),rgba(68,155,255,0.7),rgba(117,113,251,0.7),rgba(68,155,255,0.7),rgba(9,69,138,0.2));background-size:400%400%;background-position:50%100%;padding:15px;font-size:15px;line-height:1.5}</style><div class="Joe"><div class="Joe_title">{title}</div><div style="background: #fff;padding: 20px;font-size: 13px;color: #666;"><div style="margin-bottom: 20px;line-height: 1.5;">{subtitle}</div><div style="padding: 15px;margin-bottom: 20px;line-height: 1.5;background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);">{content}</div><div style="line-height: 2">请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div></div></div></body></html>';
 switch ($action) {
 	case 'code':
 		$this->geetest($_POST['info']);
@@ -297,17 +284,8 @@ switch ($action) {
 		$code = rand(100000, 999999);
 		$_SESSION["Gm_Reg_Code"] = $code;
 		$_SESSION["Gm_Reg_Email"] = $email;
-		$mail->Body = strtr(
-			$html,
-			array(
-				"{title}" => '注册验证 - ' . $this->options->title,
-				"{subtitle}" => '您正在进行注册操作，验证码是:',
-				"{content}" => $code,
-			)
-		);
-		$mail->addAddress($email);
-		$mail->Subject = '注册验证 - ' . $this->options->title;
-		if ($mail->send()) {
+		$send_email = joe\send_email('注册验证', '您正在进行注册操作，验证码是：', $code, $email);
+		if ($send_email === true) {
 			$_SESSION['JOE_SEND_MAIL_TIME'] = time();
 			$this->response->throwJson([
 				'code' => 1,
@@ -316,7 +294,7 @@ switch ($action) {
 		} else {
 			$this->response->throwJson([
 				'code' => 0,
-				'msg' => $mail->ErrorInfo
+				'msg' => $send_email
 			]);
 		}
 
@@ -341,17 +319,8 @@ switch ($action) {
 		$code = rand(100000, 999999);
 		$_SESSION["Gm_Forget_Code"] = $code;
 		$_SESSION["Gm_Forget_email"] = $email;
-		$mail->Body = strtr(
-			$html,
-			array(
-				"{title}" => '重置密码 - ' . $this->options->title,
-				"{subtitle}" => '您正在进行重置密码操作，验证码是:',
-				"{content}" => $code,
-			)
-		);
-		$mail->addAddress($email);
-		$mail->Subject = '重置密码 - ' . $this->options->title;
-		if ($mail->send()) {
+		$send_email = joe\send_email('重置密码', '您正在进行重置密码操作，验证码是：', $code, $email);
+		if ($send_email === true) {
 			$_SESSION['JOE_SEND_MAIL_TIME'] = time();
 			$this->response->throwJson([
 				'code' => 1,
@@ -360,7 +329,7 @@ switch ($action) {
 		} else {
 			$this->response->throwJson([
 				'code' => 0,
-				'msg' => $mail->ErrorInfo
+				'msg' => $send_email
 			]);
 		}
 		break;

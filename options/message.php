@@ -54,6 +54,18 @@ $JPaymentOrderEmail = new \Typecho\Widget\Helper\Form\Element\Select(
 $JPaymentOrderEmail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JPaymentOrderEmail->multiMode());
 
+$JMailApi = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JMailApi',
+	NULL,
+	NULL,
+	'邮箱API对接发件',
+	'介绍：使用API接口发送邮件，配置后优先使用本功能
+	格式：对接地址 || 标题字段 || 副标题字段 || 内容字段 || 发送指定邮箱字段 || 响应成功字段 || 响应成功内容 || 响应失败内容字段
+	例如：http://api.bri6.cn/api/email/index.php || title || subtitle || content || email || code || 200 || message'
+);
+$JMailApi->setAttribute('class', 'joe_content joe_message');
+$form->addInput($JMailApi->multiMode());
+
 $JCommentMailHost = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailHost',
 	NULL,

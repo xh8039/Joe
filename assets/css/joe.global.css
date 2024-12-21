@@ -2137,16 +2137,19 @@
 	background-size: 80px
 }
 
-.joe_hide_block {
-	display: block;
+.joe_hide {
 	background: repeating-linear-gradient(145deg, var(--classD), var(--classD) 15px, var(--background) 0, var(--background) 25px);
-	padding: 15px 0;
-	text-align: center;
-	position: relative;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+.joe_hide_block {
+	display: block;
+	padding: 15px 0;
+	text-align: center;
+	position: relative;
 	line-height: normal
 }
 
@@ -3259,7 +3262,7 @@
 	border-radius: var(--radius-inner);
 	background: #ecf5ff;
 	color: #409eff;
-	padding: 0px 4px;
+	padding: 1px 4px;
 	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 	word-break: break-word;
 	font-weight: normal;

@@ -56,6 +56,9 @@ function themeConfig($form)
 					<a class="item" data-current="joe_code" href="<?= Helper::options()->rootUrl . __TYPECHO_ADMIN_DIR__ ?>options-theme.php?joe_code=true">插入代码</a>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
+				<form action="options-theme.php" method="post" class="mailtest" style="display: none;">
+					<input type="submit" name="mod" value="mailtest">
+				</form>
 				<?php require_once JOE_ROOT . 'public/backup.php'; ?>
 			</div>
 		</div>

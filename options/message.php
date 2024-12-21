@@ -14,11 +14,7 @@ if (empty($authoInfo['mail'])) {
 }
 
 if (joe\email_config()) {
-	$JEmailTestText = '
-	<form action="?Joe_backup" method="post">
-		<button type="submit" name="type" value="mailtest">点击给 ' . $email . ' 发一封测试邮件</button>
-	</form>
-	';
+	$JEmailTestText = '<a href="javascript:document.querySelector(".mailtest").submit()">点击给 ' . $email . ' 发一封测试邮件</a>';
 	if (isset($_POST['mod']) && $_POST['mod'] == 'mailtest') {
 		$send_email = joe\send_email('邮件发送测试', null, '<p>这是一封测试邮件！<p>来自：<a target="_blank" href="' . Helper::options()->siteUrl . '">' . Helper::options()->siteUrl . '</a><p>', $email);
 		$JEmailTestText = ($send_email === true ? '邮件发送成功！' : $send_email);

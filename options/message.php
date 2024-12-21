@@ -118,9 +118,9 @@ $form->addInput($JCommentMailPort->multiMode());
 $JCommentMailFromName = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailFromName',
 	NULL,
-	Helper::options()->title,
+	NULL,
 	'发件人昵称',
-	'例如：帅气的象拔蚌'
+	'介绍：留空则使用站点名称'
 );
 $JCommentMailFromName->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailFromName->multiMode());

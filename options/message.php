@@ -5,6 +5,27 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$db = \Typecho_Db::get();
+$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
+if (empty($authoInfo['mail'])) {
+	$email = \Helper::options()->JCommentMailAccount;
+} else {
+	$email = $authoInfo['mail'];
+}
+
+$JEmailTest = new \Typecho\Widget\Helper\Form\Element\Hidden(
+	'',
+	NULL,
+	NULL,
+	'<a href="?mod=mailtest">给 ' . $email . ' 发一封测试邮件</a>'
+);
+$JEmailTest->setAttribute('class', 'joe_content joe_message');
+$form->addInput($JEmailTest);
+
+if (isset($_GET['mod']) && $_GET['mod'] == 'mailtest') {
+	joe\send_email('邮件发送测试', null, '<p>这是一封测试邮件！<p>来自：<a target="_blank" href="' . Helper::options()->siteUrl . '">' . Helper::options()->siteUrl . '</a><p>', $email);
+}
+
 /* 评论发信 */
 $JCommentMail = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JCommentMail',
@@ -60,7 +81,7 @@ $JMailApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'邮箱API对接发件',
 	'介绍：使用API接口发送邮件，配置后优先使用本功能<br>
-	格式：对接地址 || 标题字段 || 副标题字段 || 内容字段 || 发送指定邮箱字段 || 响应成功字段 || 响应成功内容 || 响应失败内容字段<br>
+	格式：对接地址 || 标题字段 || 副标题字段 || 内容字段 || 发送邮箱字段 || 响应成功字段 || 响应成功内容 || 响应失败内容字段<br>
 	例如：http://api.bri6.cn/api/email/index.php || title || subtitle || content || email || code || 200 || message'
 );
 $JMailApi->setAttribute('class', 'joe_content joe_message');

@@ -545,6 +545,7 @@ function send_email($title, $subtitle, $content, $email = '')
 			$email = $authoInfo['mail'];
 		}
 	}
+	if (empty($subtitle)) $subtitle = $title;
 	if (!empty(\Helper::options()->JMailApi)) {
 		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'content', 'email', 'code', '200', 'message']);
 		$send_email = \network\http\get($JMailApi['url'], [

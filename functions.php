@@ -57,7 +57,7 @@ function themeConfig($form)
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
 				<form action="options-theme.php" method="post" class="mailtest" style="display: none;">
-					<input type="submit" name="mod" value="mailtest">
+					<input name="mod" value="mailtest">
 				</form>
 				<div class="typecho-login" style="display: none;"></div>
 				<?php require_once JOE_ROOT . 'public/backup.php'; ?>

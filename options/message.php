@@ -115,16 +115,6 @@ $JCommentMailPort = new \Typecho\Widget\Helper\Form\Element\Text(
 $JCommentMailPort->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailPort->multiMode());
 
-$JCommentMailFromName = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JCommentMailFromName',
-	NULL,
-	NULL,
-	'发件人昵称',
-	'介绍：不填写则使用站点名称'
-);
-$JCommentMailFromName->setAttribute('class', 'joe_content joe_message');
-$form->addInput($JCommentMailFromName->multiMode());
-
 $JCommentMailAccount = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailAccount',
 	NULL,
@@ -147,3 +137,13 @@ $JCommentMailPassword = new \Typecho\Widget\Helper\Form\Element\Text(
 );
 $JCommentMailPassword->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailPassword->multiMode());
+
+$JCommentMailFromName = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JCommentMailFromName',
+	NULL,
+	NULL,
+	'发件人昵称',
+	'介绍：不填写则使用站点名称'
+);
+$JCommentMailFromName->setAttribute('class', 'joe_content joe_message');
+$form->addInput($JCommentMailFromName->multiMode());

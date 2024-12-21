@@ -31,8 +31,7 @@ $JCommentMail = new \Typecho\Widget\Helper\Form\Element\Select(
 	'off',
 	'是否开启评论回复邮件通知',
 	'介绍：开启后评论内容将会进行邮箱通知，评论有新的回复，也会向用户发送邮件<br />
-	注意：此项需要您完整无错的填写下方的邮箱设置！！！<br />
-	其他：下方例子以QQ邮箱为例，推荐使用QQ邮箱'
+	注意：此项需要您完整无错的填写下方的邮箱设置！！！'
 );
 $JCommentMail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMail->multiMode());
@@ -43,8 +42,7 @@ $JFriendEmail = new \Typecho\Widget\Helper\Form\Element\Select(
 	'on',
 	'是否开启友链申请邮件通知',
 	'介绍：开启后友链申请将会进行邮箱通知<br />
-	注意：此项需要您完整无错的填写下方的邮箱设置！！！<br />
-	其他：下方例子以QQ邮箱为例，推荐使用QQ邮箱'
+	注意：此项需要您完整无错的填写下方的邮箱设置！！！'
 );
 $JFriendEmail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JFriendEmail->multiMode());
@@ -55,8 +53,7 @@ $JPaymentOrderToAdminEmail = new \Typecho\Widget\Helper\Form\Element\Select(
 	'on',
 	'是否开启新订单管理员邮件通知',
 	'介绍：用户支付订单后 向管理员发送邮件<br />
-	注意：此项需要您完整无错的填写下方的邮箱设置！！！<br />
-	其他：下方例子以QQ邮箱为例，推荐使用QQ邮箱'
+	注意：此项需要您完整无错的填写下方的邮箱设置！！！'
 );
 $JPaymentOrderToAdminEmail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JPaymentOrderToAdminEmail->multiMode());
@@ -67,8 +64,7 @@ $JPaymentOrderEmail = new \Typecho\Widget\Helper\Form\Element\Select(
 	'on',
 	'是否开启新订单用户邮件通知',
 	'介绍：用户支付订单后 向用户发送邮件<br />
-	注意：此项需要您完整无错的填写下方的邮箱设置！！！<br />
-	其他：下方例子以QQ邮箱为例，推荐使用QQ邮箱'
+	注意：此项需要您完整无错的填写下方的邮箱设置！！！'
 );
 $JPaymentOrderEmail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JPaymentOrderEmail->multiMode());

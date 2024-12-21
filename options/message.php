@@ -74,13 +74,12 @@ $JPaymentOrderEmail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JPaymentOrderEmail->multiMode());
 
 if (!empty(\Helper::options()->JMailApi)) {
-	$JMailApi = joe\optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'name', 'content', 'email', 'code', '200', 'message']);
+	$JMailApi = joe\optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'name', 'content', 'email', 'code', '200', 'message']);
 	$JMailApiOptions = '<br>
 	<span style="color:#409eff">
 	现在的配置：<br>
 	对接地址：' . $JMailApi['url'] . '<br>
 	标题字段：' . $JMailApi['title'] . '<br>
-	副标题字段：' . $JMailApi['subtitle'] . '<br>
 	发件昵称字段：' . $JMailApi['name'] . '<br>
 	内容字段：' . $JMailApi['content'] . '<br>
 	发送邮箱字段：' . $JMailApi['email'] . '<br>
@@ -98,8 +97,8 @@ $JMailApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'邮箱API对接发件',
 	'介绍：使用API接口发送邮件，配置后优先使用本功能<br>
-	格式：对接地址 || 标题字段 || 副标题字段 || 发件昵称字段 || 内容字段 || 发送邮箱字段 || 响应成功字段 || 响应成功内容 || 响应失败内容字段<br>
-	例如：http://api.bri6.cn/api/email/index.php || title || subtitle || name || content || email || code || 200 || message' . $JMailApiOptions
+	格式：对接地址 || 标题字段 || 发件昵称字段 || 内容字段 || 发送邮箱字段 || 响应成功字段 || 响应成功内容 || 响应失败内容字段<br>
+	例如：http://api.bri6.cn/api/email/index.php || title || name || content || email || code || 200 || message' . $JMailApiOptions
 );
 $JMailApi->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JMailApi->multiMode());

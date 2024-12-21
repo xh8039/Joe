@@ -546,14 +546,22 @@ function send_email($title, $subtitle, $content, $email = '')
 		}
 	}
 	if (empty($subtitle)) $subtitle = '';
+	$html = '<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"><meta name="viewport"content="width=device-width, initial-scale=1.0"></head><body><style>.container{width:95%;margin:0 auto;border-radius:8px;font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);word-break:break-all}.title{color:#ffffff;background:linear-gradient(-45deg,rgba(9,69,138,0.2),rgba(68,155,255,0.7),rgba(117,113,251,0.7),rgba(68,155,255,0.7),rgba(9,69,138,0.2));background-size:400% 400%;background-position:50% 100%;padding:15px;font-size:15px;line-height:1.5}</style><div class="container"><div class="title">{title}</div><div style="background: #fff;padding: 20px;font-size: 13px;color: #666;">{subtitle}<div style="padding: 15px;margin-bottom: 20px;line-height: 1.5;background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);">{content}</div><div style="line-height: 2">请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div></div></div></body></html>';
+	$html = strtr(
+		$html,
+		array(
+			"{title}" => $title . ' - ' . \Helper::options()->title,
+			"{subtitle}" => empty($subtitle) ? '' : '<div style="margin-bottom: 20px;line-height: 1.5;">' . $subtitle . '</div>',
+			"{content}" => $content,
+		)
+	);
 	$FromName = empty(\Helper::options()->JCommentMailFromName) ? \Helper::options()->title : \Helper::options()->JCommentMailFromName;
 	if (!empty(\Helper::options()->JMailApi)) {
-		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'subtitle', 'name', 'content', 'email', 'code', '200', 'message']);
+		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'name', 'content', 'email', 'code', '200', 'message']);
 		$send_email = \network\http\get($JMailApi['url'], [
 			$JMailApi['title'] => $title,
-			$JMailApi['subtitle'] => $subtitle,
 			$JMailApi['name'] => $FromName,
-			$JMailApi['content'] => $content,
+			$JMailApi['content'] => $html,
 			$JMailApi['email'] => $email
 		])->toArray();
 		if (is_array($send_email)) {
@@ -582,15 +590,7 @@ function send_email($title, $subtitle, $content, $email = '')
 	$mail->From = \Helper::options()->JCommentMailAccount;
 	$mail->Password = \Helper::options()->JCommentMailPassword;
 	$mail->isHTML(true);
-	$html = '<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"><meta name="viewport"content="width=device-width, initial-scale=1.0"></head><body><style>.container{width:95%;margin:0 auto;border-radius:8px;font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);word-break:break-all}.title{color:#ffffff;background:linear-gradient(-45deg,rgba(9,69,138,0.2),rgba(68,155,255,0.7),rgba(117,113,251,0.7),rgba(68,155,255,0.7),rgba(9,69,138,0.2));background-size:400% 400%;background-position:50% 100%;padding:15px;font-size:15px;line-height:1.5}</style><div class="container"><div class="title">{title}</div><div style="background: #fff;padding: 20px;font-size: 13px;color: #666;">{subtitle}<div style="padding: 15px;margin-bottom: 20px;line-height: 1.5;background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);">{content}</div><div style="line-height: 2">请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div></div></div></body></html>';
-	$mail->Body = strtr(
-		$html,
-		array(
-			"{title}" => $title . ' - ' . \Helper::options()->title,
-			"{subtitle}" => empty($subtitle) ? '' : '<div style="margin-bottom: 20px;line-height: 1.5;">' . $subtitle . '</div>',
-			"{content}" => $content,
-		)
-	);
+	$mail->Body = $html;
 	$mail->addAddress($email);
 	$mail->Subject = $title . ' - ' . \Helper::options()->title;
 	return $mail->send() ? true : $mail->ErrorInfo;

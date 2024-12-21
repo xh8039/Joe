@@ -698,12 +698,16 @@ function optionMulti($string, string $line = "\r\n", $separator = '||', $key = [
 	if (empty($string) || !is_string($string)) return [];
 	$optionMulti = [];
 	$customArr = explode($line, $string);
-	foreach ($customArr as $value) {
+	foreach ($customArr as $index => $value) {
 		$option = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
-		foreach ($key as $index => $value) {
-			$option[$value] = isset($option[$index]) ? $option[$index] : null;
+		foreach ($key as $i => $val) {
+			if (is_string($separator)) $option[$val] = isset($option[$i]) ? $option[$i] : null;
 		}
-		$optionMulti[] = $option;
+		if (!is_string($separator) && isset($key[$index])) {
+			$optionMulti[$key[$index]] = $option;
+		} else {
+			$optionMulti[] = $option;
+		}
 	}
 	return $optionMulti;
 }

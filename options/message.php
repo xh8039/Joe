@@ -14,10 +14,10 @@ if (empty($authoInfo['mail'])) {
 }
 
 if (joe\email_config()) {
-	$JEmailTestText = '<a href="?mod=mailtest">点击给 ' . $email . ' 发一封测试邮件</a>';
+	$JEmailTestText = '<a href="' . Helper::security()->getAdminUrl('options-theme.php?mod=mailtest') . '">点击给 ' . $email . ' 发一封测试邮件</a>';
 	if (isset($_GET['mod']) && $_GET['mod'] == 'mailtest') {
 		$send_email = joe\send_email('邮件发送测试', null, '<p>这是一封测试邮件！<p>来自：<a target="_blank" href="' . Helper::options()->siteUrl . '">' . Helper::options()->siteUrl . '</a><p>', $email);
-		$JEmailTestText = $send_email === true ? '邮件发送成功！' : $send_email;
+		$JEmailTestText = ($send_email === true ? '邮件发送成功！' : $send_email);
 	}
 	$JEmailTest = new \Typecho\Widget\Helper\Form\Element\Hidden('', NULL, NULL, $JEmailTestText);
 	$JEmailTest->setAttribute('class', 'joe_content joe_message');

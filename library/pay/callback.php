@@ -12,6 +12,7 @@ ob_start();
 require_once dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR . 'config.inc.php';
 $public_root = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR;
 require_once $public_root . 'function.php';
+require_once dirname($public_root) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 ob_end_clean();
 
 /** 初始化组件 */

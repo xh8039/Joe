@@ -4428,16 +4428,13 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_comment .comment-list__item-contain .term .content .substance>p {
+	display: inline;
 	margin-bottom: 0;
 }
 
 .joe_comment .comment-list__item-contain .term .content .substance .parent {
 	color: #388bff;
-	margin-bottom: 5px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	/* margin-bottom: 5px; */
 	font-weight: 500
 }
 

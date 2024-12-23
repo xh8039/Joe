@@ -17,8 +17,6 @@ if ($this->options->JMusic == 'on') {
 	<?php
 }
 
-echo base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cuYnJpNi5jbiIgcmVsPSJmcmllbmQiIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0iaGlkZSI+5piT6Iiq5Y2a5a6iPC9hPg==');
-
 if ($this->options->JIndexFriends == 'on' && $this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\detectSpider())) {
 	$db = Typecho_Db::get();
 	$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->order('order', Typecho_Db::SORT_DESC));
@@ -42,6 +40,7 @@ if ($this->options->JFooterMode == 'commercial') {
 	?>
 	<footer class="footer">
 		<div class="container-fluid container-footer">
+			<?= base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cuYnJpNi5jbiIgcmVsPSJmcmllbmQiIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0iaGlkZSI+5piT6Iiq5Y2a5a6iPC9hPg=='); ?>
 			<ul class="list-inline">
 				<li class="hidden-xs" style="max-width: 300px;">
 					<p>
@@ -130,6 +129,7 @@ if ($this->options->JFooterMode == 'commercial') {
 	?>
 	<footer class="joe_footer">
 		<div class="joe_container">
+			<?= base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cuYnJpNi5jbiIgcmVsPSJmcmllbmQiIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0iaGlkZSI+5piT6Iiq5Y2a5a6iPC9hPg=='); ?>
 			<div class="item">
 				<?php $this->options->JFooter_Left() ?>
 			</div>

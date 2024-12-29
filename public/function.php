@@ -558,7 +558,7 @@ function send_email($title, $subtitle, $content, $email = '')
 	$FromName = empty(\Helper::options()->JCommentMailFromName) ? \Helper::options()->title : \Helper::options()->JCommentMailFromName;
 	if (!empty(\Helper::options()->JMailApi)) {
 		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'name', 'content', 'email', 'code', '200', 'message']);
-		require_once JOE_ROOT . 'vendor/autoload.php';
+		require_once dirname(__DIR__) . '/vendor/autoload.php';
 		$send_email = \network\http\post($JMailApi['url'], [
 			$JMailApi['title'] => $title,
 			$JMailApi['name'] => $FromName,

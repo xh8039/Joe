@@ -68,7 +68,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 			<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
 			<p>付款时间：' . (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time']) . '</p>
 			');
-			if ($admin_email == 'success') {
+			if ($admin_email === true) {
 				// 更新订单状态
 				$db->query($db->update('table.joe_pay')->rows(['admin_email' => 1,])->where('trade_no = ?', $_GET['out_trade_no']));
 			}
@@ -83,7 +83,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 				<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
 				<p>付款时间：' . (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time']) . '</p>
 				', $authoInfo['mail']);
-				if ($user_email == 'success') {
+				if ($user_email === true) {
 					$db->query($db->update('table.joe_pay')->rows(['user_email' => 1,])->where('trade_no = ?', $_GET['out_trade_no']));
 				}
 			}

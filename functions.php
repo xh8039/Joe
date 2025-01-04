@@ -60,6 +60,7 @@ function themeConfig($form)
 					<input name="mod" value="mailtest">
 				</form>
 				<div class="typecho-login" style="display: none;"></div>
+				<script>$('.operate>a:last-child').attr('target', '_blank').attr('rel', 'noopener noreferrer');</script>
 				<?php require_once JOE_ROOT . 'public/backup.php'; ?>
 			</div>
 		</div>

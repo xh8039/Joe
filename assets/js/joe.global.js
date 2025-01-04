@@ -791,9 +791,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 监听移动端键盘弹出 */
 	{
-		var footerTabbar = document.querySelector('.footer-tabbar');
-		var joeAction = document.querySelector('.joe_action');
-		if (footerTabbar || joeAction) {
+		const footerTabbar = document.querySelector('.footer-tabbar');
+		const joeAction = document.querySelector('.joe_action');
+		const aplayer = document.querySelector('.aplayer.aplayer-fixed');
+		if (footerTabbar || joeAction || aplayer) {
 			const ua = typeof window === 'object' ? window.navigator.userAgent : '';
 			let _isIOS = -1;
 			let _isAndroid = -1;
@@ -812,10 +813,12 @@ document.addEventListener("DOMContentLoaded", () => {
 			const popUp = () => {
 				if (footerTabbar) footerTabbar.style.display = 'none';
 				if (joeAction) joeAction.style.display = 'none';
+				if (aplayer) aplayer.style.display = 'none';
 			}
 			const retract = () => {
-				if (footerTabbar) footerTabbar.style.display = 'flex';
-				if (joeAction) joeAction.style.display = 'block';
+				if (footerTabbar) footerTabbar.style.display = null;
+				if (joeAction) joeAction.style.display = null;
+				if (aplayer) aplayer.style.display = null;
 			}
 			if (isAndroid()) {
 				const innerHeight = window.innerHeight;

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	window.CodeMirrorEditor = {};
 
 	window.CodeMirrorEditor.defaultOptions = {
-		lineWrapping: true, // 编辑器自动换行
+		lineWrapping: !/windows phone|iphone|android/gi.test(window.navigator.userAgent), // 编辑器自动换行
 		theme: "dracula",
 		lineNumbers: true, // 显示行号
 		matchBrackets: true, // 匹配{}

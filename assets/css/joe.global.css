@@ -3115,9 +3115,9 @@
 }
 
 .joe_detail__article p {
-	/* line-height: 2; */
 	margin-bottom: 16px;
 	line-height: 26px;
+	text-align: justify;
 }
 
 .joe_detail__article h1+p>*:first-child,
@@ -3263,13 +3263,15 @@
 	background: #ecf5ff;
 	color: #409eff;
 	padding: 1px 4px;
-	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	font-family: "SFMono-Regular", consolas, "Liberation Mono", menlo, courier, monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	word-break: break-word;
 	font-weight: normal;
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	white-space: normal;
-	font-size: 90%;
+	font-size: .875em;
+	margin-inline-start: .25em;
+	margin-inline-end: .25em;
 }
 
 .joe_detail__article pre[class*='language-'] {

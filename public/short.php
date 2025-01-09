@@ -110,7 +110,7 @@ function _parseContent($post, $content = null)
 
 	if (strpos($content, '<img src="') !== false) {
 		$content = preg_replace_callback(
-			'/<img src\="([\s\S]*?)" alt\="([\s\S]*?)" title\="([\s\S]*?)">/',
+			'/<img src\="([^\s]*?)" alt\="([^\s]*?)" title\="([^\s]*?)">/',
 			function ($matches) use ($post) {
 				if (empty($matches[2]) || $matches[2] == '图片' || $matches[2] == 'Test') {
 					$alt = '图片[' . joe\global_count('_parseContent') . '] - ' . $post->title . ' - ' . Helper::options()->title;

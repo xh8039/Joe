@@ -306,16 +306,6 @@ function themeFields($layout)
 	);
 	$layout->addItem($description);
 
-	$abstract = new \Typecho\Widget\Helper\Form\Element\Textarea(
-		'abstract',
-		NULL,
-		NULL,
-		'自定义摘要（非必填）',
-		'填写时：将会显示填写的摘要 <br>
-		 不填写时：默认取文章里的内容'
-	);
-	$layout->addItem($abstract);
-
 	$thumb = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'thumb',
 		NULL,
@@ -329,6 +319,16 @@ function themeFields($layout)
 		 注意：多个缩略图时换行填写，一行一个（仅在三图模式下生效）'
 	);
 	$layout->addItem($thumb);
+
+	$abstract = new \Typecho\Widget\Helper\Form\Element\Textarea(
+		'abstract',
+		NULL,
+		NULL,
+		'自定义摘要（非必填）',
+		'填写时：将会显示填写的摘要 <br>
+		 不填写时：默认取文章里的内容'
+	);
+	$layout->addItem($abstract);
 
 	$video = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'video',

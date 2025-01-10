@@ -977,8 +977,8 @@ class JoeAction {
 				</div>
 			`,
 			confirm: () => {
-				const height = $(".cm-modal input[name='height']").val();
-				const url = $(".cm-modal input[name='url']").val();
+				const height = $(".cm-modal input[name='height']").val().trim();
+				const url = $(".cm-modal input[name='url']").val().trim();
 				const str = `\n{iframe src="${url}" height="${height}"/}\n`;
 				this._replaceSelection(cm, (this._getLineCh(cm) ? '\n' : '') + str);
 				cm.focus();

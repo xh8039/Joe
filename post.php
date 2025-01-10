@@ -9,6 +9,7 @@ $this->need('module/single/pjax.php');
 <html lang="zh-CN">
 
 <head>
+	<meta name="referrer" content="no-referrer" />
 	<?php
 	$this->related(6)->to($relatedPosts);
 	if ($relatedPosts->have()) {

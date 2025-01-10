@@ -9,7 +9,6 @@ $this->need('module/archive/pjax.php');
 <html lang="zh-CN">
 
 <head>
-	<!-- <meta name="referrer" content="no-referrer" /> -->
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.archive.css'); ?>">
 	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>"></script>

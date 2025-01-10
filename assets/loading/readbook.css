@@ -11,7 +11,7 @@
 	z-index: 9999999999999999999999;
 }
 
-.loader {
+#loading-animation>.loader {
 	--background: linear-gradient(135deg, #23C4F8, #275EFE);
 	--shadow: rgba(39, 94, 254, 0.28);
 	--text: #6C7486;
@@ -23,8 +23,8 @@
 	position: relative;
 }
 
-.loader:before,
-.loader:after {
+#loading-animation>.loader:before,
+#loading-animation>.loader:after {
 	--r: -6deg;
 	content: "";
 	position: absolute;
@@ -35,16 +35,16 @@
 	transform: rotate(var(--r));
 }
 
-.loader:before {
+#loading-animation>.loader:before {
 	left: 4px;
 }
 
-.loader:after {
+#loading-animation>.loader:after {
 	--r: 6deg;
 	right: 4px;
 }
 
-.loader div {
+#loading-animation>.loader div {
 	width: 100%;
 	height: 100%;
 	border-radius: 13px;
@@ -55,14 +55,14 @@
 	background-image: var(--background);
 }
 
-.loader div ul {
+#loading-animation>.loader div ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 	position: relative;
 }
 
-.loader div ul li {
+#loading-animation>.loader div ul li {
 	--r: 180deg;
 	--o: 0;
 	--c: var(--page);
@@ -77,46 +77,46 @@
 	animation: var(--duration) ease infinite;
 }
 
-.loader div ul li:nth-child(2) {
+#loading-animation>.loader div ul li:nth-child(2) {
 	--c: var(--page-fold);
 	-webkit-animation-name: page-2;
 	animation-name: page-2;
 }
 
-.loader div ul li:nth-child(3) {
+#loading-animation>.loader div ul li:nth-child(3) {
 	--c: var(--page-fold);
 	-webkit-animation-name: page-3;
 	animation-name: page-3;
 }
 
-.loader div ul li:nth-child(4) {
+#loading-animation>.loader div ul li:nth-child(4) {
 	--c: var(--page-fold);
 	-webkit-animation-name: page-4;
 	animation-name: page-4;
 }
 
-.loader div ul li:nth-child(5) {
+#loading-animation>.loader div ul li:nth-child(5) {
 	--c: var(--page-fold);
 	-webkit-animation-name: page-5;
 	animation-name: page-5;
 }
 
-.loader div ul li svg {
+#loading-animation>.loader div ul li svg {
 	width: 90px;
 	height: 120px;
 	display: block;
 }
 
-.loader div ul li:first-child {
+#loading-animation>.loader div ul li:first-child {
 	--r: 0deg;
 	--o: 1;
 }
 
-.loader div ul li:last-child {
+#loading-animation>.loader div ul li:last-child {
 	--o: 1;
 }
 
-.loader span {
+#loading-animation>.loader span {
 	display: block;
 	left: 0;
 	right: 0;

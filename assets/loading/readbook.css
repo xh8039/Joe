@@ -4,6 +4,9 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background: var(--background);
 	z-index: 9999999999999999999999;
 }

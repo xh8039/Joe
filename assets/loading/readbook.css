@@ -1,3 +1,13 @@
+#loading-animation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: var(--background);
+	z-index: 9999999999999999999999;
+}
+
 .loader {
 	--background: linear-gradient(135deg, #23C4F8, #275EFE);
 	--shadow: rgba(39, 94, 254, 0.28);
@@ -8,7 +18,6 @@
 	width: 200px;
 	height: 140px;
 	position: relative;
-	z-index: 9999999999999999999999;
 }
 
 .loader:before,

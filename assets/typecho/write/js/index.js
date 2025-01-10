@@ -366,6 +366,9 @@ class Joe extends JoeAction {
 						case 'alert':
 							super.handleAlert(this.cm);
 							break;
+						case 'iframe':
+							super.handleIframe(this.cm);
+							break;
 						case 'preview':
 							el.toggleClass('active');
 							if (el.hasClass('active')) window.JoeConfig.canPreview = true;

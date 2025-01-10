@@ -392,13 +392,13 @@ class JoeAction {
 				</div>
 				<div class="fitem">
 					<label>主题颜色</label>
-					<input autocomplete="off" name="color" type="color"/>
+					<input autocomplete="off" name="color" type="color" value="#409eff"/>
 				</div>
 				<div class="fitem">
 					<label>自动播放</label>
 					<select name="autoplay">
-						<option value="1" selected>是</option>
-						<option value="0">否</option>
+						<option value="1">是</option>
+						<option value="0" selected>否</option>
 					</select>
 				</div>
 				<div class="fitem">
@@ -475,13 +475,13 @@ class JoeAction {
 </div>
 <div class="fitem">
 	<label>主题颜色</label>
-	<input autocomplete="off" name="theme" type="color"/>
+	<input autocomplete="off" name="theme" type="color" value="#409eff"/>
 </div>
 <div class="fitem">
 	<label>自动播放</label>
 	<select name="autoplay">
-		<option value="1" selected>是</option>
-		<option value="0">否</option>
+		<option value="1">是</option>
+		<option value="0" selected>否</option>
 	</select>
 </div>
 <div class="fitem">
@@ -829,7 +829,7 @@ class JoeAction {
 </div>
 <div class="fitem">
 	<label>主题颜色</label>
-	<input autocomplete="off" name="theme" type="color"/>
+	<input autocomplete="off" name="theme" type="color" value="#409eff"/>
 </div>
 <div class="fitem">
 	<label>歌词内容</label>
@@ -853,8 +853,8 @@ class JoeAction {
 <div class="fitem">
 	<label>自动播放</label>
 	<select name="autoplay">
-		<option value="1" selected>是</option>
-		<option value="0">否</option>
+		<option value="1">是</option>
+		<option value="0" selected>否</option>
 	</select>
 </div>
 <div class="fitem">
@@ -959,6 +959,28 @@ class JoeAction {
 				const str = `\n{alert type="${type}"}\n警告提示\n{/alert}\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
+	handleIframe(cm) {
+		this._openModal({
+			title: '页面内嵌（可嵌入禁止跨域的MP4视频）',
+			innerHtml: `
+				<div class="fitem">
+					<label>内嵌页面</label>
+					<input autocomplete="off" name="url" type="url" placeholder="请输入页面网址链接"/>
+				</div>
+				<div class="fitem">
+					<label>框架高度</label>
+					<input autocomplete="off" name="height" value="50vh" placeholder="例：50vh"/>
+				</div>
+			`,
+			confirm: () => {
+				const height = $(".cm-modal input[name='height']").val();
+				const url = $(".cm-modal input[name='url']").val();
+				const str = `\n{iframe src="${url}" height="${height}"/}\n`;
+				this._replaceSelection(cm, (this._getLineCh(cm) ? '\n' : '') + str);
 				cm.focus();
 			}
 		});

@@ -108,7 +108,7 @@ function _parseContent($post, $content = null)
 		$content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
 	}
 	if (strpos($content, '{iframe') !== false) {
-		$content = preg_replace('/{iframe([^}]*)\/}/SU', '<iframe $1><p>您的浏览器不支持 iframe 标签</p></iframe>', $content);
+		$content = preg_replace('/{iframe([^}]*) height="([^}]*)" ([^}]*)\/}/SU', '<iframe $1 style="height:$2;" $3><p>您的浏览器不支持 iframe 标签</p></iframe>', $content);
 	}
 
 	if (strpos($content, '<img src="') !== false) {

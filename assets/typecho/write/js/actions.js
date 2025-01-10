@@ -584,7 +584,8 @@ class JoeAction {
 		cm.focus();
 	}
 	handleHide(cm) {
-		const str = `${this._getLineCh(cm) ? '' : ''}{hide}\n需要隐藏的内容\n{/hide}`;
+		const selection = this._getSelection(cm);
+		const str = `{hide}${this._getLineCh(cm) ? '' : '\n'}${selection ? selection : '需要隐藏的内容'}${this._getLineCh(cm) ? '' : '\n'}{/hide}`;
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}

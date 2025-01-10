@@ -9,7 +9,6 @@ $this->need('module/single/pjax.php');
 <html lang="zh-CN">
 
 <head>
-	<meta name="referrer" content="no-referrer" />
 	<?php
 	$this->related(6)->to($relatedPosts);
 	if ($relatedPosts->have()) {
@@ -22,6 +21,7 @@ $this->need('module/single/pjax.php');
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
 	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.post_page.js'); ?>"></script>
+	<meta name="referrer" content="no-referrer">
 </head>
 
 <body>

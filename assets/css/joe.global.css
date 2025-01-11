@@ -3114,6 +3114,10 @@
 	margin-bottom: 18px
 }
 
+.joe_detail__article iframe {
+	width: 100%;
+}
+
 .joe_detail__article p {
 	margin-bottom: 16px;
 	line-height: 26px;

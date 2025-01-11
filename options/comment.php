@@ -51,7 +51,7 @@ $JcommentDraw = new \Typecho\Widget\Helper\Form\Element\Select(
 $JcommentDraw->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JcommentDraw->multiMode());
 
-$JSensitiveWords = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JSensitiveWords = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JSensitiveWords',
 	NULL,
 	'你妈死了 || 傻逼 || 操你妈 || 射你妈一脸',

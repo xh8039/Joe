@@ -25,7 +25,7 @@ $JAside_Author_Nick = new \Typecho\Widget\Helper\Form\Element\Text(
 $JAside_Author_Nick->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Nick);
 
-$JAside_Author_Avatar = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JAside_Author_Avatar = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Author_Avatar',
 	NULL,
 	NULL,
@@ -36,7 +36,7 @@ $JAside_Author_Avatar = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JAside_Author_Avatar->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Avatar);
 
-$JAside_Author_Image = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JAside_Author_Image = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Author_Image',
 	NULL,
 	'//api.bri6.cn/api/wallpaper/pc.php',
@@ -47,7 +47,7 @@ $JAside_Author_Image = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JAside_Author_Image->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Author_Image);
 
-$JAside_Wap_Image = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JAside_Wap_Image = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Wap_Image',
 	NULL,
 	'//api.bri6.cn/api/wallpaper/phone.php',

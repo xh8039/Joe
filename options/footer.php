@@ -82,7 +82,7 @@ $JFooterLeftText = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JFooterLeftText->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterLeftText);
 
-$JFooterContactWechatImg = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JFooterContactWechatImg = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JFooterContactWechatImg',
 	NULL,
 	NULL,

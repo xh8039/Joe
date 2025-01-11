@@ -2,7 +2,7 @@
 
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 
-$JFavicon = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JFavicon = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JFavicon',
 	NULL,
 	'http://blog.bri6.cn/favicon.ico',
@@ -14,7 +14,7 @@ $JFavicon = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JFavicon->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JFavicon);
 
-$JLogo = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JLogo = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JLogo',
 	NULL,
 	NULL,
@@ -26,7 +26,7 @@ $JLogo = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JLogo->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JLogo);
 
-$JDarkLogo = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JDarkLogo = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JDarkLogo',
 	NULL,
 	NULL,
@@ -50,7 +50,7 @@ $JThumbnail = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JThumbnail->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JThumbnail);
 
-$JLazyload = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JLazyload = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JLazyload',
 	NULL,
 	NULL,
@@ -80,7 +80,7 @@ $JDynamic_Background = new \Typecho\Widget\Helper\Form\Element\Select(
 $JDynamic_Background->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JDynamic_Background->multiMode());
 
-$JWallpaper_Background_PC = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JWallpaper_Background_PC = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JWallpaper_Background_PC',
 	NULL,
 	NULL,
@@ -92,7 +92,7 @@ $JWallpaper_Background_PC = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JWallpaper_Background_PC->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JWallpaper_Background_PC);
 
-$JWallpaper_Background_WAP = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JWallpaper_Background_WAP = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JWallpaper_Background_WAP',
 	NULL,
 	NULL,
@@ -118,7 +118,7 @@ $JWallpaper_Background_Optimal = new \Typecho\Widget\Helper\Form\Element\Select(
 $JWallpaper_Background_Optimal->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JWallpaper_Background_Optimal->multiMode());
 
-$JShare_QQ_Image = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JShare_QQ_Image = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JShare_QQ_Image',
 	NULL,
 	"http://blog.bri6.cn/usr/uploads/logo/favicon.ico",

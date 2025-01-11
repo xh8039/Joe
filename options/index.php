@@ -70,7 +70,7 @@ $JIndex_Article_Double_Column = new \Typecho\Widget\Helper\Form\Element\Select(
 $JIndex_Article_Double_Column->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Article_Double_Column->multiMode());
 
-$JIndex_Header_Img = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JIndex_Header_Img = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Header_Img',
 	NULL,
 	null,

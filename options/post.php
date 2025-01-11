@@ -44,7 +44,7 @@ $JPost_Header_Img_Switch = new \Typecho\Widget\Helper\Form\Element\Select(
 $JPost_Header_Img_Switch->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Header_Img_Switch);
 
-$JPost_Header_Img = new \Typecho\Widget\Helper\Form\Element\Textarea(
+$JPost_Header_Img = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JPost_Header_Img',
 	NULL,
 	NULL,

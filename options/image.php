@@ -42,8 +42,8 @@ $JThumbnail = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JThumbnail',
 	NULL,
 	NULL,
-	'自定义缩略图',
-	'介绍：用于修改主题默认缩略图 <br/>
+	'自定义文章缩略图',
+	'介绍：用于修改主题默认的文章缩略图 <br/>
 		 格式：图片地址，一行一个 <br />
 		 注意：不填写时，则使用主题内置的默认缩略图'
 );

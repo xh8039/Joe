@@ -9,11 +9,11 @@
 }
 
 /* From Uiverse.io by SelfMadeSystem */
-.loader {
+#loading-animation .loader {
 	--c: #f7971d;
 }
 
-.ph1 {
+#loading-animation .ph1 {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -26,7 +26,7 @@
 	clip-path: polygon(-4em -1em, 4em -1em, 4em 1em, -4em 1em);
 }
 
-.record {
+#loading-animation .record {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -38,7 +38,7 @@
 	transform: translate(-3.5em, -50%);
 }
 
-.record-text {
+#loading-animation .record-text {
 	position: absolute;
 	color: var(--c);
 	font-size: 2.2em;
@@ -96,7 +96,7 @@
 	}
 }
 
-.ph2 {
+#loading-animation .ph2 {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -140,7 +140,7 @@
 	}
 }
 
-.laptop-b {
+#loading-animation .laptop-b {
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -152,7 +152,7 @@
 	animation: ph2b 3s ease infinite;
 }
 
-.laptop-t {
+#loading-animation .laptop-t {
 	margin: 0 1.25em;
 	color: var(--c);
 	transform-origin: 50% 100%;
@@ -192,7 +192,7 @@
 	}
 }
 
-.icon {
+#loading-animation .icon {
 	position: absolute;
 	width: 4em;
 	height: 4em;
@@ -276,7 +276,7 @@
 	}
 }
 
-.icon::before {
+#loading-animation .icon::before {
 	content: "";
 	position: absolute;
 	top: 50%;
@@ -313,7 +313,7 @@
 	}
 }
 
-.icon::after {
+#loading-animation .icon::after {
 	content: "";
 	position: absolute;
 	top: 50%;

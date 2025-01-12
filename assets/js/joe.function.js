@@ -9,7 +9,7 @@ window.Joe.scrollTo = (selector) => {
 }
 
 window.Joe.addMeta = (name, content) => {
-	const existingMeta = document.querySelectorAll('meta[name="referrer"]');
+	const existingMeta = document.querySelectorAll(`meta[name="${name}"]`);
 	if (existingMeta.length > 0) existingMeta.forEach(meta => meta.remove());
 
 	const lastMeta = document.head.querySelector('meta:last-of-type');
@@ -22,6 +22,13 @@ window.Joe.addMeta = (name, content) => {
 		newMeta.content = content;
 		document.head.appendChild(newMeta);
 	}
+}
+
+window.Joe.removeMeta = (name) => {
+	const existingMeta = document.querySelectorAll(`meta[name="${name}"]`);
+	if (existingMeta.length > 0) existingMeta.forEach((meta) => {
+		if (meta == name) meta.remove();
+	});
 }
 
 window.Joe.tooltip = () => {

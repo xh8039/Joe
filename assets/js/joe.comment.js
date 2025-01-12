@@ -128,7 +128,7 @@ window.Joe.initComment = (options = {}) => {
 				data.append('url', url);
 				data.append('_', _);
 				var referrer = document.querySelector('meta[name="referrer"]:last-of-type');
-				if (referrer && referrer.content == 'no-referrer') window.Joe.removeMeta('referrer');
+				if (referrer && referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'unsafe-url');
 				var pjax = new Pjax({
 					elements: '.joe_comment__respond-form',
 					selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],

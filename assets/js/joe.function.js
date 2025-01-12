@@ -8,9 +8,15 @@ window.Joe.scrollTo = (selector) => {
 	window.scrollTo({ top, behavior: 'smooth' });
 }
 
-window.Joe.addMeta = (name, content) => {
+window.Joe.removeMeta = (name) => {
 	const existingMeta = document.querySelectorAll(`meta[name="${name}"]`);
-	if (existingMeta.length > 0) existingMeta.forEach(meta => meta.remove());
+	if (existingMeta.length > 0) existingMeta.forEach((meta) => {
+		if (meta.name == name) meta.remove();
+	});
+}
+
+window.Joe.addMeta = (name, content) => {
+	window.Joe.removeMeta(name);
 
 	const lastMeta = document.head.querySelector('meta:last-of-type');
 
@@ -22,15 +28,6 @@ window.Joe.addMeta = (name, content) => {
 		newMeta.content = content;
 		document.head.appendChild(newMeta);
 	}
-}
-
-window.Joe.removeMeta = (name) => {
-	const existingMeta = document.querySelectorAll(`meta[name="${name}"]`);
-	if (existingMeta.length > 0) existingMeta.forEach((meta) => {
-		if (meta.name == name) {
-			meta.remove();
-		}
-	});
 }
 
 window.Joe.tooltip = () => {

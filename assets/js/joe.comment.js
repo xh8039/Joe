@@ -147,7 +147,9 @@ window.Joe.initComment = (options = {}) => {
 						formData: data,
 					},
 				});
-				// console.log(pjax);
+				pjax.request.setRequestHeader('Referer', window.location.href);
+				console.log(pjax.request);
+				console.log(pjax);
 			});
 			document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {
 				if (event.keyCode === 13) {

@@ -61,7 +61,6 @@ $this->need('module/single/pjax.php');
 			<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>"></script>
 			<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
 		<?php endif; ?>
-		<meta name="referrer" content="no-referrer-when-downgrade">
 	</div>
 </body>
 

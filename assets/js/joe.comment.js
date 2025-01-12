@@ -141,12 +141,14 @@ window.Joe.initComment = (options = {}) => {
 					$('.joe_comment__cancle').click();
 					pjax._handleResponse(responseText, request, href, options);
 				}
+				window.Joe.addMeta('referrer','no-referrer-when-downgrade');
 				pjax.loadUrl(action, {
 					requestOptions: {
 						requestMethod: 'POST',
 						formData: data,
 					},
 				});
+				window.Joe.addMeta('referrer','no-referrer');
 				// console.log(pjax);
 			});
 			document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {

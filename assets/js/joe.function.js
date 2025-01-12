@@ -8,6 +8,22 @@ window.Joe.scrollTo = (selector) => {
 	window.scrollTo({ top, behavior: 'smooth' });
 }
 
+window.Joe.addMeta = (name, content) => {
+	const existingMeta = document.querySelectorAll('meta[name="referrer"]');
+	if (existingMeta.length > 0) existingMeta.forEach(meta => meta.remove());
+
+	const lastMeta = document.head.querySelector('meta:last-of-type');
+
+	if (lastMeta) {
+		lastMeta.insertAdjacentHTML('afterend', `<meta name="${name}" content="${content}">`);
+	} else {
+		const newMeta = document.createElement('meta');
+		newMeta.name = name;
+		newMeta.content = content;
+		document.head.appendChild(newMeta);
+	}
+}
+
 window.Joe.tooltip = () => {
 	if (Joe.IS_MOBILE) {
 		// 遍历所有的元素

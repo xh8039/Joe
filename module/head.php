@@ -22,6 +22,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php $this->header('commentReply=&antiSpam='); ?>
 <?php endif; ?>
 
+<?= $this->options->JLoading != 'off' ? '<link rel="stylesheet" href="' . joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') . '">' : null ?>
+
 <!-- 昼夜模式配色表 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
 

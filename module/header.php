@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-if (!empty($this->options->JLoading) && $this->options->JLoading != 'off') {
+if ($this->options->JLoading != 'off') {
 	$JLoadingFile = 'module/loading/' . $this->options->JLoading . '.php';
 	if (file_exists(JOE_ROOT . $JLoadingFile)) {
 		echo '<!-- Loading开始 -->';

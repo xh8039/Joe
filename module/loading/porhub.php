@@ -6,16 +6,7 @@
 		</div>
 		<div class="ph2">
 			<div class="laptop-b"></div>
-			<svg
-				class="laptop-t"
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 42 30">
-				<path
-					d="M21 1H5C2.78 1 1 2.78 1 5V25a4 4 90 004 4H37a4 4 90 004-4V5c0-2.22-1.8-4-4-4H21"
-					pathLength="100"
-					stroke-width="2"
-					stroke="currentColor"
-					fill="none"></path>
+			<svg class="laptop-t" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 30"><path d="M21 1H5C2.78 1 1 2.78 1 5V25a4 4 90 004 4H37a4 4 90 004-4V5c0-2.22-1.8-4-4-4H21" pathLength="100" stroke-width="2" stroke="currentColor" fill="none"></path>
 			</svg>
 		</div>
 		<div class="icon"></div>

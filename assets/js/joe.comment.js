@@ -145,6 +145,7 @@ window.Joe.initComment = (options = {}) => {
 				XMLHttpRequest.prototype.open = (function (originalOpen) {
 					return function (method, url, async, user, password) {
 						originalOpen.apply(this, arguments);
+						console.log(window.location.href);
 						this.setRequestHeader('Referer', window.location.href);
 					};
 				})(XMLHttpRequest.prototype.open);

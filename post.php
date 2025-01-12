@@ -63,5 +63,5 @@ $this->need('module/single/pjax.php');
 		<?php endif; ?>
 	</div>
 </body>
-<meta name="referrer" content="no-referrer">
+<meta name="referrer" content="no-referrer-when-downgrade">
 </html>

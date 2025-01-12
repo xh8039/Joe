@@ -5,6 +5,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$JPostMetaReferrer = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JPostMetaReferrer',
+	NULL,
+	NULL,
+	'文章页面Referrer属性',
+	'介绍：设置为 no-referrer 可有效破解对方站点的图片、视频等防盗链功能，留空则浏览器会发送默认的Referrer请求头'
+);
+$JPostMetaReferrer->setAttribute('class', 'joe_content joe_post');
+$form->addInput($JPostMetaReferrer);
+
 $JPostLinkRedirect = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPostLinkRedirect',
 	['on' => '开启（默认）', 'off' => '关闭'],

@@ -141,21 +141,12 @@ window.Joe.initComment = (options = {}) => {
 					$('.joe_comment__cancle').click();
 					pjax._handleResponse(responseText, request, href, options);
 				}
-				const XMLHttpRequestPrototypeOpen = XMLHttpRequest.prototype.open;
-				XMLHttpRequest.prototype.open = (function (originalOpen) {
-					return function (method, url, async, user, password) {
-						originalOpen.apply(this, arguments);
-						console.log(window.location.href);
-						this.setRequestHeader('Referer', window.location.href);
-					};
-				})(XMLHttpRequest.prototype.open);
 				pjax.loadUrl(action, {
 					requestOptions: {
 						requestMethod: 'POST',
 						formData: data,
 					},
 				});
-				XMLHttpRequest.prototype.open = XMLHttpRequestPrototypeOpen;
 				// console.log(pjax);
 			});
 			document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {

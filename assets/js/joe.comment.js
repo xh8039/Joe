@@ -128,7 +128,7 @@ window.Joe.initComment = (options = {}) => {
 				data.append('url', url);
 				data.append('_', _);
 				var referrer = document.querySelector('meta[name="referrer"]:last-of-type');
-				if (referrer.content == 'no-referrer') window.Joe.removeMeta('referrer');
+				if (referrer && referrer.content == 'no-referrer') window.Joe.removeMeta('referrer');
 				var pjax = new Pjax({
 					elements: '.joe_comment__respond-form',
 					selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
@@ -139,7 +139,7 @@ window.Joe.initComment = (options = {}) => {
 				});
 				pjax._handleResponse = pjax.handleResponse;
 				pjax.handleResponse = function (responseText, request, href, options) {
-					if (referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'no-referrer');
+					if (referrer && referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'no-referrer');
 					$('.joe_comment__cancle').click();
 					pjax._handleResponse(responseText, request, href, options);
 				}

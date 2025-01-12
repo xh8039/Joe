@@ -4,6 +4,7 @@
 	--fg: hsl(var(--hue), 10%, 10%);
 	--trans-dur: 0.3s;
 	font-size: calc(28px + (60 - 28) * (100vw - 280px) / (3840 - 280));
+	z-index:9999999999999;
 }
 
 #loading-animation {

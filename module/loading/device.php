@@ -1,5 +1,5 @@
 <!-- 随机设备 -->
-<div id="loading-animation" style="z-index:9999999999999">
+<div id="loading-animation">
 	<div class="device">
 		<div class="device__a">
 			<div class="device__a-1"></div>

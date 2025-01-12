@@ -1,5 +1,5 @@
 <!-- 太极八卦 -->
-<div id="loading-animation" style="z-index:9999999999999">
+<div id="loading-animation">
 	<div class="table">
 		<div class="table-cell">
 			<svg width="70%" height="50vh" viewBox="0 0 470 470" version="1.1" xmlns="http://www.w3.org/2000/svg"

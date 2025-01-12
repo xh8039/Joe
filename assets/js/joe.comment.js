@@ -127,7 +127,8 @@ window.Joe.initComment = (options = {}) => {
 				data.append('parent', parent);
 				data.append('url', url);
 				data.append('_', _);
-
+				var referrer = document.querySelector('meta[name="referrer"]:last-of-type').content;
+				if (referrer == 'no-referrer') window.Joe.addMeta('referrer', 'no-referrer-when-downgrade');
 				var pjax = new Pjax({
 					elements: '.joe_comment__respond-form',
 					selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
@@ -138,17 +139,16 @@ window.Joe.initComment = (options = {}) => {
 				});
 				pjax._handleResponse = pjax.handleResponse;
 				pjax.handleResponse = function (responseText, request, href, options) {
+					if (referrer == 'no-referrer') window.Joe.addMeta('referrer', 'no-referrer');
 					$('.joe_comment__cancle').click();
 					pjax._handleResponse(responseText, request, href, options);
 				}
-				window.Joe.addMeta('referrer','no-referrer-when-downgrade');
 				pjax.loadUrl(action, {
 					requestOptions: {
 						requestMethod: 'POST',
 						formData: data,
 					},
 				});
-				window.Joe.addMeta('referrer','no-referrer');
 				// console.log(pjax);
 			});
 			document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {

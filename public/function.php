@@ -279,7 +279,7 @@ function getThumbnails($item)
 /* 获取父级评论 */
 function getParentReply($parent)
 {
-	if ($parent !== "0") {
+	if ($parent != "0") {
 		$db = \Typecho_Db::get();
 		$commentInfo = $db->fetchRow($db->select('author')->from('table.comments')->where('coid = ?', $parent));
 		if (empty($commentInfo['author'])) return;

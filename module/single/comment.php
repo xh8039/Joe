@@ -220,13 +220,7 @@ function threadedComments($comments, $options)
 					<div class="substance">
 						<?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
 						<?php
-						if (joe\isMobile()) {
-						?>
-							<p class="handle mobile-handle">
-								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i></span>' : null ?>
-							</p>
-						<?php
-						}
+						if (joe\isMobile() && !$login_comment) echo '<p class="handle mobile-handle"><span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i></span></p>';
 						?>
 					</div>
 				</div>

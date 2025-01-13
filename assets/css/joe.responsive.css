@@ -658,7 +658,7 @@
 		margin-top: 0;
 	}
 
-	.joe_comment .comment-list__item-contain .term .content .substance {
+	html .joe_comment .comment-list__item-contain .term .content .substance {
 		margin-bottom: 0;
 	}
 
@@ -671,7 +671,11 @@
 	}
 
 	html .joe_comment .comment-list__item-contain .term .content .mobile-handle {
-		display: flex;
+		display: inline;
+	}
+
+	html .joe_comment .comment-list__item-contain .term .content .handle .reply {
+		display: inline;
 	}
 
 	/* html .joe_comment .comment-list__item-contain .term .content .user .agent {

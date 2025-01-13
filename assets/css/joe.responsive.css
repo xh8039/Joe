@@ -660,6 +660,7 @@
 
 	html .joe_comment .comment-list__item-contain .term .content .substance {
 		margin-bottom: 0;
+		padding: 8px;
 	}
 
 	html .joe_comment .comment-list__item-contain .term {

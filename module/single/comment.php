@@ -198,7 +198,7 @@ function threadedComments($comments, $options)
 							$browser_svg_url =  joe\theme_url('assets/images/agent/' . $browser_svg, false);
 							?>
 							<img src="<?= $os_svg_url ?>" title="<?= $AgentOS ?>" data-toggle="tooltip">
-							<span> · </span>
+							<span>&nbsp;·&nbsp;</span>
 							<img src="<?= $browser_svg_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
 						</div>
 						<div class="handle">

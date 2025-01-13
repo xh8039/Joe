@@ -518,7 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				window.Joe.commentListAutoRefresh = true;
 				var pjax = new Pjax({
 					elements: "#comment_module a[auto-refresh]",
-					selectors: ["#comment_module>.comment-list"],
+					selectors: ['#comment_module>.comment-list', '.joe_comment__title>small'],
 					history: false,
 					scrollRestoration: false,
 					pjax: 'comment-auto-refresh',

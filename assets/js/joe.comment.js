@@ -131,7 +131,7 @@ window.Joe.initComment = (options = {}) => {
 				if (referrer && referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'unsafe-url');
 				var pjax = new Pjax({
 					elements: '.joe_comment__respond-form',
-					selectors: ["#comment_module>.comment-list", '#comment_module>.joe_pagination'],
+					selectors: ["#comment_module>.comment-list", '.joe_comment__title>small', '#comment_module>.joe_pagination'],
 					history: false,
 					scrollRestoration: false,
 					pjax: 'comment-submit',

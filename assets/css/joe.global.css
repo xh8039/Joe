@@ -4473,15 +4473,15 @@ html .line-numbers .line-numbers-rows {
 	max-width: 100%
 }
 
-.joe_comment .comment-list__item-contain .term .content .mobile-handle {
-	display: none;
-}
-
 .joe_comment .comment-list__item-contain .term .content .handle {
 	display: flex;
 	align-items: center;
 	color: var(--minor);
 	margin-left: auto;
+}
+
+.joe_comment .comment-list__item-contain .term .content .mobile-handle {
+	display: none;
 }
 
 .joe_comment .comment-list__item-contain .term .content .handle .date {

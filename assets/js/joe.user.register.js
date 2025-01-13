@@ -24,7 +24,7 @@ var setTime = function () {
 $("#username").on('input propertychange', function () {
 	// 获取input元素，并实时监听用户输入
 	let QQ = $(this).val();
-	if (/[1-9][0-9]{4,}/.test(QQ)) $("#email").val(QQ + '@qq.com');
+	if (/^[1-9][0-9]{4,}$/.test(QQ)) $("#email").val(QQ + '@qq.com');
 });
 $("#send").click(function () {
 	let email = $("#email").val();

@@ -4447,6 +4447,10 @@ html .line-numbers .line-numbers-rows {
 	line-height: 24px
 }
 
+.joe_comment .comment-list__item-contain .term .content .substance .mobile-author {
+	display: none;
+}
+
 .joe_comment .comment-list__item-contain .term .content .substance>p {
 	display: inline;
 	margin-bottom: 0;

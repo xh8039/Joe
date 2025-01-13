@@ -171,7 +171,7 @@ function threadedComments($comments, $options)
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
 			<div class="term">
 				<?php
-				$mobile_handle = joe\isMobile() ? 'data-placement="right" data-trigger="hover" data-content="' . '<p class="mobile-author">' . $comments->author . '</p>&nbsp;·&nbsp;' . joe\getAgentOS($comments->agent) . '&nbsp;·&nbsp;' . joe\getAgentBrowser($comments->agent) . '&nbsp;·&nbsp;' . joe\dateWord($comments->dateWord) . '" data-toggle="popover"' : null;
+				$mobile_handle = joe\isMobile() ? 'data-placement="right" data-trigger="hover" data-content="' . $comments->author . '&nbsp;·&nbsp;' . joe\getAgentOS($comments->agent) . '&nbsp;·&nbsp;' . joe\getAgentBrowser($comments->agent) . '&nbsp;·&nbsp;' . joe\dateWord($comments->dateWord) . '" data-toggle="popover"' : null;
 				if ($comments->request->getHeader('x-pjax') == 'true') {
 				?>
 					<img <?= $mobile_handle ?> width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />

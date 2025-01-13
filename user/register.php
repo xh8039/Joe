@@ -3,14 +3,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-$this->need('user/header.php');
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
 
 <head>
 	<title>账号注册 - <?php $this->options->title() ?></title>
-	<?php $this->need('module/head.php'); ?>
+	<?php $this->need('module/head.php') ?>
+	<?php $this->need('user/head.php') ?>
 	<link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
 </head>
 

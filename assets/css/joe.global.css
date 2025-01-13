@@ -4461,7 +4461,8 @@ html .line-numbers .line-numbers-rows {
 .joe_comment .comment-list__item-contain .term .content .handle {
 	display: flex;
 	align-items: center;
-	color: var(--minor)
+	color: var(--minor);
+	margin-left: auto;
 }
 
 .joe_comment .comment-list__item-contain .term .content .handle .date {

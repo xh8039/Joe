@@ -65,7 +65,7 @@ function getAgentBrowser($agent)
 	} else {
 		$outputer = 'Google Chrome';
 	}
-	echo $outputer;
+	return $outputer;
 }
 
 /* 根据评论agent获取设备类型 */
@@ -109,7 +109,7 @@ function getAgentOS($agent)
 	} else {
 		$os = 'Linux';
 	}
-	echo $os;
+	return $os;
 }
 
 /* 获取全局懒加载图 */

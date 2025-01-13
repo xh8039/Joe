@@ -209,14 +209,14 @@ function threadedComments($comments, $options)
 								<img src="<?= $browser_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
 							</div>
 							<div class="handle">
-								<time class="date" data-toggle="popover" data-toggle="tooltip" title="<?= joe\getAgentOS($comments->agent) . joe\getAgentBrowser($comments->agent) ?>&nbsp;·&nbsp;<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
+								<time class="date" data-toggle="popover" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
 							</div>
 						</div>
 					<?php
 					}
 					?>
-					<div class="substance" data-placement="top" data-content="<?php $comments->date('Y-m-d H:i:s') ?>" <?= joe\isMobile() ? 'data-toggle="popover"' : null ?>>
+					<div class="substance" data-placement="top" data-content="<?= joe\getAgentOS($comments->agent) . joe\getAgentBrowser($comments->agent) ?>&nbsp;·&nbsp;<?php $comments->date('Y-m-d H:i:s') ?>" <?= joe\isMobile() ? 'data-toggle="popover"' : null ?>>
 						<?= (joe\isMobile() ? '<p class="mobile-author">' . $comments->author . '：</p>' : null) ?><?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
 						<?php
 						if (joe\isMobile()) {

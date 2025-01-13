@@ -209,7 +209,7 @@ function threadedComments($comments, $options)
 								<img src="<?= $browser_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
 							</div>
 							<div class="handle">
-								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
+								<time class="date" data-toggle="popover" data-toggle="tooltip" title="<?= joe\getAgentOS($comments->agent) . joe\getAgentBrowser($comments->agent) ?>&nbsp;·&nbsp;<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
 							</div>
 						</div>

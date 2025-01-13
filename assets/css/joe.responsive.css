@@ -690,6 +690,10 @@
 		font-size: 12px;
 	}
 
+	html .joe_comment .comment-list__item-contain .term .content .substance .draw_image {
+		max-width: 50%;
+	}
+
 	/* html .joe_comment .comment-list__item-contain .term .content .user .agent {
 		display: none
 	} */

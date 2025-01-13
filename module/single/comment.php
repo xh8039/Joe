@@ -222,7 +222,6 @@ function threadedComments($comments, $options)
 						if (joe\isMobile()) {
 						?>
 							<p class="handle mobile-handle">
-								<time class="date" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i></span>' : null ?>
 							</p>
 						<?php

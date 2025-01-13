@@ -4377,8 +4377,8 @@ html .line-numbers .line-numbers-rows {
 .joe_comment .comment-list__item-contain .term .content {
 	min-width: 0;
 	flex: 1;
-	border-bottom: 1px solid var(--classC);
-	padding-bottom: 15px
+	/* border-bottom: 1px solid var(--classC); */
+	padding-bottom: 10px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .user {
@@ -4392,14 +4392,12 @@ html .line-numbers .line-numbers-rows {
 .joe_comment .comment-list__item-contain .term .content .user .nickname {
 	display: flex;
 	align-items: center;
-	margin-right: 5px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .user .author {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	margin-right: 5px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .user .author a {
@@ -4415,16 +4413,21 @@ html .line-numbers .line-numbers-rows {
 	font-style: normal;
 	font-size: 10px;
 	line-height: 10px;
+	margin-left: 5px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .user .agent {
-	font-size: 12px;
-	color: var(--minor)
+	display: flex;
+	align-items: center;
+}
+
+.joe_comment .comment-list__item-contain .term .content .user .agent img:first-child {
+	margin-right: 5px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .user .agent img {
-	width: 1em;
-	height: 1em;
+	width: 14px;
+	height: 14px;
 }
 
 .joe_comment .comment-list__item-contain .term .content .user .waiting {

@@ -217,7 +217,7 @@ function threadedComments($comments, $options)
 					}
 					?>
 					<div class="substance">
-						<p class="mobile-author"><?php $comments->author() ?>：</p><?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
+						<?= (joe\isMobile() ? '<p class="mobile-author">' . $comments->author . '：</p>' : null) ?><?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
 						<?php
 						if (joe\isMobile()) {
 						?>

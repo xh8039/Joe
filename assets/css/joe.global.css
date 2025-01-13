@@ -4422,6 +4422,11 @@ html .line-numbers .line-numbers-rows {
 	color: var(--minor)
 }
 
+.joe_comment .comment-list__item-contain .term .content .user .agent img {
+	width: 1em;
+	height: 1em;
+}
+
 .joe_comment .comment-list__item-contain .term .content .user .waiting {
 	color: #e6a23c;
 	font-style: normal

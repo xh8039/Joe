@@ -216,7 +216,7 @@ function threadedComments($comments, $options)
 					<?php
 					}
 					?>
-					<div class="substance" data-content="<?php $comments->date('Y-m-d H:i:s') ?>" <?= joe\isMobile() ? 'data-toggle="popover"' : null ?>>
+					<div class="substance" data-placement="top" data-content="<?php $comments->date('Y-m-d H:i:s') ?>" <?= joe\isMobile() ? 'data-toggle="popover"' : null ?>>
 						<?= (joe\isMobile() ? '<p class="mobile-author">' . $comments->author . '：</p>' : null) ?><?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
 						<?php
 						if (joe\isMobile()) {

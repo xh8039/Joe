@@ -31,7 +31,7 @@ $("#login").click(function () {
 			if (res.code == 1) {
 				Qmsg.success("登录成功");
 				setTimeout(function () {
-					window.location.href = document.getElementById('referer').innerText;
+					window.location.href = window.Joe.referer;
 				}, 1000);
 			} else {
 				Qmsg.warning(res.msg);

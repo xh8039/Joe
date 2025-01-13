@@ -188,11 +188,11 @@ function threadedComments($comments, $options)
 							<?= $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
 							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
 						</div>
+						<div class="agent"><?php joe\getAgentOS($comments->agent); ?> · <?php joe\getAgentBrowser($comments->agent); ?></div>
 						<div class="handle">
 							<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 							<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
 						</div>
-						<div class="agent"><?php joe\getAgentOS($comments->agent); ?> · <?php joe\getAgentBrowser($comments->agent); ?></div>
 					</div>
 					<div class="substance">
 						<?php joe\getParentReply($comments->parent) ?>

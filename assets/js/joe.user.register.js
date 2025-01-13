@@ -100,7 +100,7 @@ $("#register").click(function () {
 			if (res.code == 1) {
 				Qmsg.success("注册成功");
 				setTimeout(function () {
-					window.location.href = from ? from : "/";
+					window.location.href = document.getElementById('referer').innerText;
 				}, 1000);
 			} else {
 				Qmsg.warning(res.msg);

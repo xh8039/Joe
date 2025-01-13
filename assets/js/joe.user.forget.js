@@ -127,7 +127,7 @@ $("#forget").click(function () {
             if (res.code == 1) {
                 Qmsg.success("密码重置成功");
                 setTimeout(function () {
-                    window.location.href = from ? from : '/';
+                    window.location.href = document.getElementById('referer').innerText;
                 }, 1500);
             } else {
                 Qmsg.warning(res.msg);

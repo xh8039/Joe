@@ -4,7 +4,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 if ($this->user->hasLogin()) {
-	$from = isset($_GET['from']) ? $_GET['from'] : '';
+	$from = isset($_GET['referer']) ? $_GET['referer'] : '';
 	$from_parse = parse_url($from);
 	$from_host = $from_parse['host'] ?? null;
 	$from_path = $from_parse['path'] ?? '';

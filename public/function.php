@@ -460,17 +460,17 @@ function user_login($uid, $expire = 30243600)
 function user_url($action, $from = true)
 {
 	if ($from === true) {
-		if (!empty($_GET['from'])) {
-			$url = '?from=' . urlencode($_GET['from']);
+		if (!empty($_GET['referer'])) {
+			$url = '?referer=' . urlencode($_GET['referer']);
 		} else {
 			$sys_protocal = isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://';
 			$php_self = $_SERVER['PHP_SELF'] ? $_SERVER['PHP_SELF'] : $_SERVER['SCRIPT_NAME'];
 			$path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
 			$relate_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $php_self . (isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : $path_info);
-			$url = '?from=' . urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
+			$url = '?referer=' . urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
 		}
 	} else if (is_string($from)) {
-		$url = '?from=' . urlencode($from);
+		$url = '?referer=' . urlencode($from);
 	} else {
 		$url = '';
 	}

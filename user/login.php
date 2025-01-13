@@ -33,7 +33,7 @@ $this->need('user/header.php');
 					<?php
 					if ($this->options->JUser_Forget == 'on') {
 					?>
-						<a href="./forget<?= isset($_GET['from']) ? '?from=' . urlencode($_GET['from']) : ''; ?>" class="text-muted float-right">
+						<a href="./forget<?= isset($_GET['referer']) ? '?referer=' . urlencode($_GET['referer']) : ''; ?>" class="text-muted float-right">
 							<small>忘记密码?</small>
 						</a>
 					<?php
@@ -46,14 +46,14 @@ $this->need('user/header.php');
 			<?php
 			if ($this->options->allowRegister) {
 			?>
-				<p class="text-muted">没有账号吗？<a href="./register<?= isset($_GET['from']) ? '?from=' . urlencode($_GET['from']) : ''; ?>" class="text-dark ml-1"><b>注册</b></a></p>
+				<p class="text-muted">没有账号吗？<a href="./register<?= isset($_GET['referer']) ? '?referer=' . urlencode($_GET['referer']) : ''; ?>" class="text-dark ml-1"><b>注册</b></a></p>
 			<?php
 			}
 			?>
 		</div>
 	</div>
+	<div id="referer"><?= empty($_GET['referer']) ? '/' : addslashes(strip_tags($_GET['referer'])) ?></div>
 	<?php $this->need('module/footer.php'); ?>
-	<script>var from = '<?= addslashes(strip_tags($_GET['from'])) ?>';</script>
 	<script src="<?= joe\theme_url('assets/js/joe.user.login.js'); ?>"></script>
 </body>
 

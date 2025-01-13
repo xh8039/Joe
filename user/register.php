@@ -64,14 +64,14 @@ $this->need('user/header.php');
 			<?php
 			if ($this->options->allowRegister) {
 			?>
-				<p class="text-muted">已有账号? <a href="./login<?php echo isset($_GET['from']) ? '?from=' . urlencode($_GET['from']) : ''; ?>" class="text-dark ml-1"><b>登陆</b></a></p>
+				<p class="text-muted">已有账号? <a href="./login<?php echo isset($_GET['referer']) ? '?referer=' . urlencode($_GET['referer']) : ''; ?>" class="text-dark ml-1"><b>登陆</b></a></p>
 			<?php
 			}
 			?>
 		</div>
 	</div>
+	<div id="referer"><?= empty($_GET['referer']) ? '/' : addslashes(strip_tags($_GET['referer'])) ?></div>
 	<?php $this->need('module/footer.php'); ?>
-	<script>var from = '<?= isset($_GET['from']) ? $_GET['from'] : '' ?>';</script>
 	<script src="<?= joe\theme_url('assets/js/joe.user.register.js') ?>"></script>
 </body>
 

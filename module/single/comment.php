@@ -182,40 +182,52 @@ function threadedComments($comments, $options)
 				}
 				?>
 				<div class="content">
-					<div class="user">
-						<div class="nickname">
-							<span class="author"><?php $comments->author(); ?></span>
-							<?= $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
-							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
-						</div>
-						<span>&nbsp;·&nbsp;</span>
-						<div class="agent">
-							<?php
-							$os_svg = joe\getAgentOSIcon($comments->agent) . '.svg';
-							$os_svg_url =  joe\theme_url('assets/images/agent/' . $os_svg, false);
+					<?php
+					if (joe\isPc()) {
+					?>
+						<div class="user">
+							<div class="nickname">
+								<span class="author"><?php $comments->author(); ?></span>
+								<?= $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
+								<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
+							</div>
+							<span>&nbsp;·&nbsp;</span>
+							<div class="agent">
+								<?php
+								$os_svg = joe\getAgentOSIcon($comments->agent) . '.svg';
+								$os_svg_url =  joe\theme_url('assets/images/agent/' . $os_svg, false);
 
-							$AgentBrowser = joe\getAgentBrowser($comments->agent);
-							$browser_svg = str_replace(' ', '-', $AgentBrowser);
-							if (file_exists(JOE_ROOT . 'assets/images/agent/' . $browser_svg . '.svg')) {
-								$browser_url =  joe\theme_url('assets/images/agent/' . $browser_svg . '.svg', false);
-							} else {
-								$browser_url =  joe\theme_url('assets/images/agent/' . $browser_svg . '.png', false);
-							}
-							?>
-							<img src="<?= $os_svg_url ?>" title="<?= joe\getAgentOS($comments->agent) ?>" data-toggle="tooltip">
-							<img src="<?= $browser_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
+								$AgentBrowser = joe\getAgentBrowser($comments->agent);
+								$browser_svg = str_replace(' ', '-', $AgentBrowser);
+								if (file_exists(JOE_ROOT . 'assets/images/agent/' . $browser_svg . '.svg')) {
+									$browser_url =  joe\theme_url('assets/images/agent/' . $browser_svg . '.svg', false);
+								} else {
+									$browser_url =  joe\theme_url('assets/images/agent/' . $browser_svg . '.png', false);
+								}
+								?>
+								<img src="<?= $os_svg_url ?>" title="<?= joe\getAgentOS($comments->agent) ?>" data-toggle="tooltip">
+								<img src="<?= $browser_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
+							</div>
+							<div class="handle">
+								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
+								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
+							</div>
 						</div>
-						<div class="handle">
-							<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
-							<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
-						</div>
-					</div>
+					<?php
+					}
+					?>
 					<div class="substance">
 						<p class="mobile-author"><?php $comments->author() ?>：</p><?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
-						<div class="handle mobile-handle">
-							<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
-							<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
-						</div>
+						<?php
+						if (joe\isMobile()) {
+						?>
+							<div class="handle mobile-handle">
+								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
+								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
+							</div>
+						<?php
+						}
+						?>
 					</div>
 				</div>
 			</div>

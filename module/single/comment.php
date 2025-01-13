@@ -171,13 +171,14 @@ function threadedComments($comments, $options)
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
 			<div class="term">
 				<?php
+				$mobile_handle = joe\isMobile() ? 'data-placement="right" data-content="' . joe\getAgentOS($comments->agent) . '&nbsp;·&nbsp;' . joe\getAgentBrowser($comments->agent) . '&nbsp;·&nbsp;' . joe\dateWord($comments->dateWord) . '" data-toggle="popover"' : null;
 				if ($comments->request->getHeader('x-pjax') == 'true') {
 				?>
-					<img width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
+					<img <?= $mobile_handle ?> width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
 				<?php
 				} else {
 				?>
-					<img width="48" height="48" class="avatar lazyload" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
+					<img <?= $mobile_handle ?> width="48" height="48" class="avatar lazyload" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
 				<?php
 				}
 				?>
@@ -216,7 +217,7 @@ function threadedComments($comments, $options)
 					<?php
 					}
 					?>
-					<div class="substance" data-placement="top" data-content="<?= joe\getAgentOS($comments->agent) ?>&nbsp;·&nbsp;<?= joe\getAgentBrowser($comments->agent) ?>&nbsp;·&nbsp;<?= joe\dateWord($comments->dateWord) ?>" <?= joe\isMobile() ? 'data-toggle="popover"' : null ?>>
+					<div class="substance">
 						<?= (joe\isMobile() ? '<p class="mobile-author">' . $comments->author . '：</p>' : null) ?><?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
 						<?php
 						if (joe\isMobile()) {

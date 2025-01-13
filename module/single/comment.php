@@ -185,7 +185,7 @@ function threadedComments($comments, $options)
 					<div class="user">
 						<div>
 							<span class="author"><?php $comments->author(); ?></span>
-							<?php $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
+							<?= $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
 							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
 						</div>
 						<div class="handle">

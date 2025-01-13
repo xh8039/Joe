@@ -4445,7 +4445,8 @@ html .line-numbers .line-numbers-rows {
 	color: var(--main-color);
 	margin-bottom: 5px;
 	word-break: break-word;
-	line-height: 24px
+	line-height: 24px;
+	display: flex;
 }
 
 .joe_comment .comment-list__item-contain .term .content .substance .mobile-author {
@@ -4470,6 +4471,10 @@ html .line-numbers .line-numbers-rows {
 
 .joe_comment .comment-list__item-contain .term .content .substance .draw_image {
 	max-width: 100%
+}
+
+.joe_comment .comment-list__item-contain .term .content .mobile-handle {
+	display: none;
 }
 
 .joe_comment .comment-list__item-contain .term .content .handle {

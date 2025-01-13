@@ -216,13 +216,13 @@ function threadedComments($comments, $options)
 					<?php
 					}
 					?>
-					<div class="substance">
+					<div class="substance" <?= joe\isMobile() ? 'data-toggle="popover" data-content="' . $comments->date('Y-m-d H:i:s') . '"' : null ?>>
 						<?= (joe\isMobile() ? '<p class="mobile-author">' . $comments->author . '：</p>' : null) ?><?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
 						<?php
 						if (joe\isMobile()) {
 						?>
 							<p class="handle mobile-handle">
-								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
+								<time class="date" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i></span>' : null ?>
 							</p>
 						<?php

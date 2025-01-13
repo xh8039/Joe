@@ -4389,6 +4389,12 @@ html .line-numbers .line-numbers-rows {
 	color: var(--main)
 }
 
+.joe_comment .comment-list__item-contain .term .content .user .nickname {
+	display: flex;
+	align-items: center;
+	margin-right: 5px;
+}
+
 .joe_comment .comment-list__item-contain .term .content .user .author {
 	overflow: hidden;
 	white-space: nowrap;

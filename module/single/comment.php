@@ -183,29 +183,20 @@ function threadedComments($comments, $options)
 				?>
 				<div class="content">
 					<div class="user">
-						<span class="author"><?php $comments->author(); ?></span>
-						<?php if ($comments->authorId === $comments->ownerId) : ?>
-							<i class="owner">作者</i>
-						<?php endif; ?>
-						<?php if ($comments->status === "waiting") : ?>
-							<em class="waiting">（评论审核中...）</em>
-						<?php endif; ?>
-						<?php
-						if (!$login_comment) {
-						?>
-							<span class="reply joe_comment__reply" data-id="<?php $comments->theId(); ?>" data-coid="<?php $comments->coid(); ?>"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>
-						<?php
-						}
-						?>
+						<div>
+							<span class="author"><?php $comments->author(); ?></span>
+							<?php $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
+							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
+						</div>
+						<div class="handle">
+							<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
+							<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
+						</div>
 						<div class="agent"><?php joe\getAgentOS($comments->agent); ?> · <?php joe\getAgentBrowser($comments->agent); ?></div>
 					</div>
 					<div class="substance">
 						<?php joe\getParentReply($comments->parent) ?>
 						<?php echo _parseCommentReply($comments->content); ?>
-					</div>
-					<div class="handle">
-						<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
-
 					</div>
 				</div>
 			</div>

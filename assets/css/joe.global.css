@@ -4412,7 +4412,6 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_comment .comment-list__item-contain .term .content .user .agent {
-	margin-left: auto;
 	font-size: 12px;
 	color: var(--minor)
 }

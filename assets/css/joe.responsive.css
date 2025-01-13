@@ -650,9 +650,9 @@
 		margin-right: 10px
 	}
 
-	html .joe_comment .comment-list__item-contain .term .content .user .agent {
+	/* html .joe_comment .comment-list__item-contain .term .content .user .agent {
 		display: none
-	}
+	} */
 
 	html .joe_comment .comment-list__item-children {
 		padding-left: 10px;

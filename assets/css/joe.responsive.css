@@ -672,10 +672,21 @@
 
 	html .joe_comment .comment-list__item-contain .term .content .mobile-handle {
 		display: inline;
+		float: right;
+	}
+
+	html .joe_comment .comment-list__item-contain .term .content .handle .reply .icon {
+		margin-right: 0px;
+	}
+
+	html .joe_comment .comment-list__item-contain .term .content .handle .date {
+		margin-right: 5px;
+		font-size: 12px;
 	}
 
 	html .joe_comment .comment-list__item-contain .term .content .handle .reply {
 		display: inline;
+		font-size: 12px;
 	}
 
 	/* html .joe_comment .comment-list__item-contain .term .content .user .agent {

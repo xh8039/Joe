@@ -12,7 +12,7 @@ if ($this->user->hasLogin()) {
 		?>
 		<script>
 			let from = '<?= trim(addslashes(strip_tags($from))) ?>';
-			window.location.href = from ? from : "<?= Typecho_Common::url('/', Helper::options()->index) ?>";
+			window.location.href = from ? from : '/';
 		</script>
 		<?php
 	}

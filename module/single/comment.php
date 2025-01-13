@@ -191,15 +191,19 @@ function threadedComments($comments, $options)
 						<span>&nbsp;·&nbsp;</span>
 						<div class="agent">
 							<?php
-							$AgentOS = joe\getAgentOS($comments->agent);
-							$AgentBrowser = joe\getAgentBrowser($comments->agent);
-							$os_svg = str_replace(' ', '-', $AgentOS) . '.svg';
-							$browser_svg = str_replace(' ', '-', $AgentBrowser) . '.svg';
+							$os_svg = joe\getAgentOSIcon($comments->agent) . '.svg';
 							$os_svg_url =  joe\theme_url('assets/images/agent/' . $os_svg, false);
-							$browser_svg_url =  joe\theme_url('assets/images/agent/' . $browser_svg, false);
+
+							$AgentBrowser = joe\getAgentBrowser($comments->agent);
+							$browser_svg = str_replace(' ', '-', $AgentBrowser);
+							if (file_exists(JOE_ROOT . 'assets/images/agent/' . $browser_svg . '.svg')) {
+								$browser_url =  joe\theme_url('assets/images/agent/' . $browser_svg . '.svg', false);
+							} else {
+								$browser_url =  joe\theme_url('assets/images/agent/' . $browser_svg . '.png', false);
+							}
 							?>
-							<img src="<?= $os_svg_url ?>" title="<?= $AgentOS ?>" data-toggle="tooltip">
-							<img src="<?= $browser_svg_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
+							<img src="<?= $os_svg_url ?>" title="<?= joe\getAgentOS($comments->agent) ?>" data-toggle="tooltip">
+							<img src="<?= $browser_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
 						</div>
 						<div class="handle">
 							<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>

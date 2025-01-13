@@ -69,6 +69,44 @@ function getAgentBrowser($agent)
 }
 
 /* 根据评论agent获取设备类型 */
+function getAgentOSIcon($agent)
+{
+	$os = "Linux";
+	if (preg_match('/win/i', $agent)) {
+		if (preg_match('/nt 6.0/i', $agent)) {
+			$os = 'Windows-7';
+		} else if (preg_match('/nt 6.1/i', $agent)) {
+			$os = 'Windows-7';
+		} else if (preg_match('/nt 6.2/i', $agent)) {
+			$os = 'Windows-8';
+		} else if (preg_match('/nt 6.3/i', $agent)) {
+			$os = 'Windows-8';
+		} else if (preg_match('/nt 5.1/i', $agent)) {
+			$os = 'Windows-XP';
+		} else if (preg_match('/nt 10.0/i', $agent)) {
+			$os = 'Windows-10';
+		} else {
+			$os = 'Windows-7';
+		}
+	} else if (preg_match('/android/i', $agent)) {
+		$os = 'Android';
+	} else if (preg_match('/ubuntu/i', $agent)) {
+		$os = 'Ubuntu';
+	} else if (preg_match('/linux/i', $agent)) {
+		$os = 'Linux';
+	} else if (preg_match('/iPhone/i', $agent)) {
+		$os = 'iPhone';
+	} else if (preg_match('/mac/i', $agent)) {
+		$os = 'MacOS';
+	} else if (preg_match('/fusion/i', $agent)) {
+		$os = 'Android';
+	} else {
+		$os = 'Linux';
+	}
+	return $os;
+}
+
+/* 根据评论agent获取设备类型 */
 function getAgentOS($agent)
 {
 	$os = "Linux";

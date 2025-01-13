@@ -190,6 +190,13 @@ function threadedComments($comments, $options)
 						<?php if ($comments->status === "waiting") : ?>
 							<em class="waiting">（评论审核中...）</em>
 						<?php endif; ?>
+						<?php
+						if (!$login_comment) {
+						?>
+							<span class="reply joe_comment__reply" data-id="<?php $comments->theId(); ?>" data-coid="<?php $comments->coid(); ?>"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>
+						<?php
+						}
+						?>
 						<div class="agent"><?php joe\getAgentOS($comments->agent); ?> · <?php joe\getAgentBrowser($comments->agent); ?></div>
 					</div>
 					<div class="substance">
@@ -198,13 +205,7 @@ function threadedComments($comments, $options)
 					</div>
 					<div class="handle">
 						<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
-						<?php
-						if (!$login_comment) {
-						?>
-							<span class="reply joe_comment__reply" data-id="<?php $comments->theId(); ?>" data-coid="<?php $comments->coid(); ?>"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>
-						<?php
-						}
-						?>
+
 					</div>
 				</div>
 			</div>

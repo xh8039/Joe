@@ -4401,7 +4401,8 @@ html .line-numbers .line-numbers-rows {
 	text-overflow: ellipsis;
 }
 
-.joe_comment .comment-list__item-contain .term .content .user .author a {
+.joe_comment .comment-list__item-contain .term .content .user .author a,
+.joe_comment .comment-list__item-contain .term .content .substance .mobile-author a {
 	color: #409eff
 }
 

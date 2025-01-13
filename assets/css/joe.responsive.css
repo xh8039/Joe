@@ -650,6 +650,26 @@
 		margin-right: 10px
 	}
 
+	html .joe_comment .comment-list__item-contain .term .content .substance .mobile-author {
+		display: inline;
+	}
+
+	html html .joe_comment .comment-list__item-contain .term .avatar {
+		margin-top: 0;
+	}
+
+	.joe_comment .comment-list__item-contain .term .content .substance {
+		margin-bottom: 0;
+	}
+
+	html .joe_comment .comment-list__item-contain .term {
+		align-items: center;
+	}
+
+	html .joe_comment .comment-list__item-contain .term .content .user {
+		display: none;
+	}
+
 	/* html .joe_comment .comment-list__item-contain .term .content .user .agent {
 		display: none
 	} */

@@ -211,9 +211,9 @@ function threadedComments($comments, $options)
 						</div>
 					</div>
 					<div class="substance">
-						<p class="mobile-author"><?php $comments->author() ?>：</p>
-						<?php joe\getParentReply($comments->parent) ?>
-						<?php echo _parseCommentReply($comments->content); ?>
+						<p class="mobile-author"><?php $comments->author() ?>：</p><?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
+						<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
+							<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
 					</div>
 				</div>
 			</div>

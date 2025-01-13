@@ -4371,7 +4371,8 @@ html .line-numbers .line-numbers-rows {
 	padding: 3px;
 	border: 1px solid var(--classD);
 	-o-object-fit: cover;
-	object-fit: cover
+	object-fit: cover;
+	margin-top: 10px;
 }
 
 .joe_comment .comment-list__item-contain .term .content {

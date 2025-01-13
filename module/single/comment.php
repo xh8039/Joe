@@ -188,6 +188,7 @@ function threadedComments($comments, $options)
 							<?= $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
 							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
 						</div>
+						<span>&nbsp;·&nbsp;</span>
 						<div class="agent">
 							<?php
 							$AgentOS = joe\getAgentOS($comments->agent);
@@ -197,7 +198,6 @@ function threadedComments($comments, $options)
 							$os_svg_url =  joe\theme_url('assets/images/agent/' . $os_svg, false);
 							$browser_svg_url =  joe\theme_url('assets/images/agent/' . $browser_svg, false);
 							?>
-							<span>&nbsp;·&nbsp;</span>
 							<img src="<?= $os_svg_url ?>" title="<?= $AgentOS ?>" data-toggle="tooltip">
 							<img src="<?= $browser_svg_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
 						</div>

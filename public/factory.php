@@ -176,7 +176,8 @@ class Editor
 				playerAPI: `<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>`,
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
-				JOwOAssetsUrl: `<?= empty(Helper::options()->JOwOAssetsUrl) ? '' : (rtrim(Helper::options()->JOwOAssetsUrl, ' /') . '/') ?>`,
+				JOwOAssetsUrl: `<?= empty(Helper::options()->JOwOAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
+				JStaticAssetsUrl: `<?= empty(Helper::options()->JStaticAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				canPreview: false
 			}
 		</script>
@@ -201,6 +202,7 @@ class Editor
 		<script src="<?= joe\theme_url('assets/typecho/write/js/index.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
+		<script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js', false) ?>"></script>
 	<?php
 	}
 

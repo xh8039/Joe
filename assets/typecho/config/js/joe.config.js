@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-	Joe.domain = window.location.host;
-	Joe.service_domain = '//auth.bri6.cn/server/joe/';
 	var e = document.querySelectorAll(".joe_config__aside .item"),
 		t = document.querySelector(".joe_config__notice"),
 		s = document.querySelector(".joe_config > form"),
@@ -29,19 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
 				e.classList.contains(o) && (e.style.display = "block")
 			})
 	} else e[0].classList.add("active"), t.style.display = "block", s.style.display = "none";
-	var c = new XMLHttpRequest;
-	c.onreadystatechange = function () {
-		if (4 === c.readyState)
-			if (200 <= c.status && 300 > c.status || 304 === c.status) {
-				var e = JSON.parse(c.responseText);
-				t.innerHTML = e.success ? '<p class="title">最新版本：' + e.title + "</p>" + e.content : "请求失败！"
-			} else t.innerHTML = "请求失败！"
-	}, c.open("get", `${Joe.service_domain}message`, !0), c.send(
-		null);
 	if ($('[data-current="joe_code"]').hasClass('active')) {
 		sessionStorage.setItem("joe_config_current", 'joe_notice');
 		// sessionStorage.removeItem("joe_config_current");
 	}
+	Joe.service_domain = '//auth.bri6.cn/server/joe/';
+	$.getJSON(`${Joe.service_domain}message`, function (data) {
+		t.innerHTML = '<p class="title">最新版本：' + data.title + "</p>" + data.content;
+	});
 	function openLinkInNewTab(url) {
 		const a = document.createElement('a');
 		a.href = url;
@@ -53,46 +46,41 @@ document.addEventListener("DOMContentLoaded", function () {
 		}));
 	}
 	function update(type = 'passive') {
-		const Feedback = YiHang.Feedback;
+		if (type == 'active') var loading = layer.load(2, { shade: 0.3 });
 		$.ajax({
 			type: "post",
 			url: `${Joe.service_domain}update`,
 			data: {
 				title: Joe.title,
 				version: Joe.version,
-				domain: Joe.domain,
+				domain: window.location.host,
 				logo: Joe.logo,
 				favicon: Joe.Favicon
 			},
 			dataType: "json",
-			beforeSend: () => {
-				if (type == 'active') {
-					Feedback.loading();
-				}
-			},
 			success: (data) => {
-				Feedback.closeAll();
+				layer.close(loading);
 				if (data.update) {
-					Feedback.alert({
+					layer.alert({
 						content: data.msg,
-						buttons: {
-							'暂不更新': {
-								background: 'transparent',
-								color: '#444'
-							},
-							"前往更新": {
-								callback: () => {
-									openLinkInNewTab(data.download);
-								}
-							},
+						btn: ['暂不更新', '前往更新'],
+						btn1: () => {
+							layer.alert(`<p>最怕问初衷，大梦成空。</p>
+				<p>眉间鬓上老英雄，剑甲鞮鍪封厚土，说甚擒龙。</p>
+				<p>壮志付西风，逝去无踪。</p>
+				<p>少年早作一闲翁，诗酒琴棋终日里，岁月匆匆。</p>
+				<p>不更新等着养老吗？</p>`);
 						},
+						bun2: () => {
+							openLinkInNewTab(data.download);
+						}
 					});
 				} else if (type == 'active') {
 					Qmsg.info(data.msg);
 				}
 			},
 			error: () => {
-				Feedback.closeAll();
+				layer.close(loading);
 				Qmsg.error('请求错误，请检查您的网络');
 			}
 		});

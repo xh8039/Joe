@@ -59,6 +59,7 @@ class JoeAction {
 		cm.focus();
 	}
 	_createTableLists(cm, url, activeTab = '', modalTitle) {
+		const loading = layer.load(2, { shade: 0.3 });
 		$.ajax({
 			url,
 			dataType: 'json',
@@ -70,6 +71,7 @@ class JoeAction {
 					tabbarStr += `<div class="tabbar-item ${key === activeTab ? 'active' : ''}" data-show="${key}">${key}</div>`;
 					listsStr += `<div class="lists ${key === activeTab ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item}">${item}</div>`).join(' ')}</div>`;
 				}
+				layer.close(loading);
 				this._openModal({
 					title: modalTitle,
 					hasFooter: false,
@@ -517,6 +519,7 @@ class JoeAction {
 		$('#btn-save').click();
 	}
 	handleExpression(cm) {
+		const loading = layer.load(2, { shade: 0.3 });
 		$.ajax({
 			url: window.JoeConfig.expressionAPI,
 			dataType: 'json',
@@ -532,10 +535,11 @@ class JoeAction {
 							return `<div data-toggle="tooltip" class="lists-item" data-text="${item.icon}" title="${item.text}">${item.icon}</div>`;
 						}
 						let title = /.*?\((.*?)\)/.exec(item.text)[1];
-						return `<div data-toggle="tooltip" class="lists-item" data-text="${item.text}" title="${title}"><img src="${(window.JoeConfig.JOwOAssetsUrl || window.JoeConfig.themeURL) + item.icon}"></div>`;
+						return `<div data-toggle="tooltip" class="lists-item" data-text="${item.text}" title="${title}"><img src="${(window.JoeConfig.JOwOAssetsUrl || window.JoeConfig.JStaticAssetsUrl || window.JoeConfig.themeURL) + item.icon}"></div>`;
 					}).join(' ')
 						}</div>`;
 				}
+				layer.close(loading);
 				this._openModal({
 					title: '图片表情',
 					hasFooter: false,

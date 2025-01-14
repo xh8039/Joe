@@ -492,6 +492,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (window.Joe.tooltip) window.Joe.tooltip();
 			if (window.Joe.thumbOnError) window.Joe.thumbOnError();
 			if (window.Joe.avatarOnError) window.Joe.avatarOnError();
+			$(".comment-list [data-toggle='popover']").popover();
 			if (options.pjax == 'comment-submit' || options.pjax == 'comment-pagination') {
 				Joe.initComment({
 					draw: false,

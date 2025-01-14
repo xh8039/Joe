@@ -14,12 +14,13 @@ require_once JOE_ROOT . 'public/common.php';
 
 function themeConfig($form)
 {
+	global $options;
 	/** 首次启用安装主题 */
 	joe\install();
 ?>
 	<link rel="stylesheet" href="<?php Helper::options()->themeUrl('assets/plugin/qmsg/qmsg.css'); ?>">
 	<link rel="stylesheet" href="<?php Helper::options()->themeUrl('assets/typecho/config/css/joe.config.css') ?>">
-	<!-- <script src="<?php Helper::options()->themeUrl('assets/plugin/jquery/3.6.0/jquery.min.js', false) ?>"></script> -->
+	<script src="<?php $options->adminStaticUrl('js', 'jquery.js'); ?>"></script>
 	<script src="<?php Helper::options()->themeUrl('assets/plugin/qmsg/qmsg.js'); ?>"></script>
 	<script src="<?= Helper::options()->themeUrl('assets/plugin/layer/3.7.0/layer.js') ?>"></script>
 	<script>

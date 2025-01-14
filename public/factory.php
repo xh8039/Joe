@@ -176,7 +176,7 @@ class Editor
 				playerAPI: `<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>`,
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
-				JOwOAssetsUrl: `<?php empty(Helper::options()->JOwOAssetsUrl) ? '' : rtrim(Helper::options()->JOwOAssetsUrl, ' /') . '/' ?>`,
+				JOwOAssetsUrl: `<?php empty(Helper::options()->JOwOAssetsUrl) ? '' : (rtrim(Helper::options()->JOwOAssetsUrl, ' /') . '/') ?>`,
 				canPreview: false
 			}
 		</script>

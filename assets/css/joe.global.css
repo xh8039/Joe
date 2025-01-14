@@ -4509,12 +4509,12 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_comment .comment-list__item-children {
-	padding-left: 63px
+	padding-left: 20px
 }
 
-.joe_comment .comment-list__item-children .comment-list__item-children {
+/* .joe_comment .comment-list__item-children .comment-list__item-children {
 	padding-left: 0
-}
+} */
 
 .joe_comment .comment-list__item .joe_comment__respond {
 	margin-left: 63px;

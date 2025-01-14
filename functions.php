@@ -15,7 +15,7 @@ require_once JOE_ROOT . 'public/common.php';
 function themeConfig($form)
 {
 	global $options;
-	var_dump($options);
+	$options = is_object($options) ? $options : \Widget\Options::alloc();
 	/** 首次启用安装主题 */
 	joe\install();
 ?>

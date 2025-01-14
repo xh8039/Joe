@@ -61,14 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			success: (data) => {
 				layer.close(loading);
 				if (data.update) {
-					layer.alert(data.msg, {
-						btn: ['前往更新', '暂不更新'],
-						btn1: () => {
-							openLinkInNewTab(data.download);
-						},
-						bun2: () => {
-							layer.alert(`<p>最怕问初衷，大梦成空。</p><p>眉间鬓上老英雄，剑甲鞮鍪封厚土，说甚擒龙。</p><p>壮志付西风，逝去无踪。</p><p>少年早作一闲翁，诗酒琴棋终日里，岁月匆匆。</p><p>不更新等着养老吗？</p>`);
-						}
+					layer.confirm(data.msg, {
+						btn: ['前往更新', '暂不更新']
+					}, () => {
+						openLinkInNewTab(data.download);
+					}, () => {
+						layer.alert(`<p>最怕问初衷，大梦成空。</p><p>眉间鬓上老英雄，剑甲鞮鍪封厚土，说甚擒龙。</p><p>壮志付西风，逝去无踪。</p><p>少年早作一闲翁，诗酒琴棋终日里，岁月匆匆。</p><p>不更新等着养老吗？</p>`);
 					});
 				} else if (type == 'active') {
 					Qmsg.info(data.msg);

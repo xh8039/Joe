@@ -25,8 +25,10 @@ $db = Typecho_Db::get();
 
 function alert($content)
 {
+	$referer = empty($_REQUEST['referer']) ? Typecho_Request::getInstance()->getHeader('referer') : $_REQUEST['referer'];
 	$url = Helper::security()->getAdminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=index');
-	echo "<script>alert('$content');window.location.href='$url';</script>";
+	$href = empty($referer) ? $url : $referer;
+	echo "<script>alert('$content');window.location.href='$href';</script>";
 }
 function location()
 {

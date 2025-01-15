@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log(obj);
 			if (obj.origin != "+input") return;
 			let text = ''.concat(...obj.text);
-			console.log(text);
+			console.log(/^[a-zA-Z_]+$/.test(text) ? '启用代码提示' : '禁用代码提示');
 			if (!/^[a-zA-Z_]+$/.test(text)) return;
 			cm.showHint({
 				hint: CodeMirror.hint[mode], // 使用正确的方式获取自动完成函数

@@ -461,7 +461,7 @@ function markdown_filter($content): string
 function post_description($item, ?int $length = 150)
 {
 	if ($item->password) {
-		$content = "加密文章，请前往内页查看详情";
+		return "加密文章，请前往内页查看详情";
 	} else {
 		$content = $item->content;
 		$content = html_tags_filter($content, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']);
@@ -472,8 +472,8 @@ function post_description($item, ?int $length = 150)
 		$content = preg_replace('/\s+/s', ' ', $content);
 		$content = empty($content) ? $item->title : $content;
 		if (is_numeric($length)) $content = trim(\Typecho\Common::subStr($content, 0, $length, '...'));
+		return trim($content);
 	}
-	return trim($content);
 }
 
 function html_tags_filter(string $content, array $tags): string

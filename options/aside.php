@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 $JAside_Notice = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Notice',
@@ -200,19 +203,25 @@ $JADContent = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JADContent->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JADContent);
 
-
 $JAside_3DTag = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_3DTag',
-	array(
-		'off' => '关闭（默认）',
-		'on' => '开启'
-	),
+	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
-	'是否开启3D云标签 - PC',
+	'是否开启3D标签云 - PC',
 	NULL
 );
 $JAside_3DTag->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_3DTag->multiMode());
+
+$JAsideTagList = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JAsideTagList',
+	['on' => '开启（默认）', 'off' => '关闭'],
+	'on',
+	'是否开启列表标签云 - PC',
+	NULL
+);
+$JAsideTagList->setAttribute('class', 'joe_content joe_aside');
+$form->addInput($JAsideTagList->multiMode());
 
 $JAside_Flatterer = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Flatterer',

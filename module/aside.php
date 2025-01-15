@@ -194,22 +194,20 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="joe_aside__item-title">
 				<div class="text">标签云</div>
 			</div>
-			<?php $this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 50))->to($tags); ?>
-			<div class="joe_aside__item-contain">
-				<?php if ($tags->have()) :
+			<div class="zib-widget widget-tag-cloud author-tag">
+				<?php
+				$this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 50))->to($tags);
+				if ($tags->have()) {
 					$color_list = array('c-blue', 'c-yellow', 'c-green', 'c-purple', 'c-red', 'c-blue-2', 'c-yellow-2', 'c-green-2', 'c-purple-2', 'c-red-2');
+					while ($tags->next()) {
+						$color_index = array_rand($color_list);
+						$color_class = $color_list[$color_index];
+						echo "<a href=\"{$tags->permalink}\" class=\"text-ellipsis but {$color_class}\">{$tags->name}</a>";
+					}
+				} else {
+					echo '<div class="empty">暂无标签</div>';
+				}
 				?>
-					<div class="zib-widget widget-tag-cloud author-tag">
-						<?php while ($tags->next()) :
-							$color_index = array_rand($color_list);
-							$color_class = $color_list[$color_index];
-						?>
-							<a href="<?php $tags->permalink() ?>" class="text-ellipsis but <?= $color_class ?>"><?php $tags->name() ?></a>
-						<?php endwhile; ?>
-					</div>
-				<?php else : ?>
-					<div class="empty">暂无标签</div>
-				<?php endif; ?>
 			</div>
 		</section>
 	<?php endif; ?>

@@ -5,6 +5,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$NewYearLantern = new \Typecho\Widget\Helper\Form\Element\Select(
+	'NewYearLantern',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
+	'是否开启新年灯笼',
+	'介绍：春节，亦称农历新年，是中国最重要的传统节日之一，春节时期往往伴随着阖家团圆和一个新的开始，春节不仅是一个普通的节日，它凝聚了中华民族的历史记忆和文化情感，承载着深厚的文化意义和社会价值。开启后网站顶部将会始终展示新年灯笼挂件，增添网站新年氛围'
+);
+
 $JLogo_Light_Effect = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLogo_Light_Effect',
 	['on' => '开启（默认）', 'off' => '关闭'],

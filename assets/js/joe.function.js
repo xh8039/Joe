@@ -30,10 +30,10 @@ window.Joe.addMeta = (name, content) => {
 	}
 }
 
-window.Joe.tooltip = () => {
+window.Joe.tooltip = (selectors = '') => {
 	if (Joe.IS_MOBILE) {
 		// 遍历所有的元素
-		$('[data-toggle="tooltip"]').each(function () {
+		$(selectors + ' [data-toggle="tooltip"]').each(function () {
 			// 获取当前元素的data-original-title属性
 			var title = $(this).attr('data-original-title') || $(this).attr('title');
 			// 设置title属性为data-original-title的值
@@ -43,10 +43,10 @@ window.Joe.tooltip = () => {
 			});
 		});
 	} else {
-		$("[data-toggle='tooltip']").tooltip({
+		$(selectors + ' [data-toggle="tooltip"]').tooltip({
 			container: "body"
 		});
-		$("[data-toggle='tooltip']").on('click', function (event) {
+		$(selectors + ' [data-toggle="tooltip"]').on('click', function (event) {
 			$(this).tooltip('hide');
 		});
 	}

@@ -38,7 +38,7 @@ while ($this->next()) :
 								</span>
 							</a>
 							<span class="hide-sm ml6"><?= $this->author->screenName ?></span>
-							<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
+							<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" data-toggle="tooltip" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
 						</item>
 						<div class="meta-right">
 							<item class="meta-comm">
@@ -80,7 +80,7 @@ while ($this->next()) :
 								</span>
 							</a>
 							<span class="hide-sm ml6"><?= $this->author->screenName ?></span>
-							<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
+							<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" data-toggle="tooltip" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
 						</item>
 						<div class="meta-right">
 							<item class="meta-comm">
@@ -142,7 +142,7 @@ while ($this->next()) :
 							</span>
 						</a>
 						<span class="hide-sm ml6"><?= $this->author->screenName ?></span>
-						<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
+						<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" data-toggle="tooltip" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
 					</item>
 					<div class="meta-right">
 						<item class="meta-comm">
@@ -185,7 +185,7 @@ while ($this->next()) :
 								</span>
 							</a>
 							<span class="hide-sm ml6"><?= $this->author->screenName ?></span>
-							<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
+							<span title="<?= date('Y-m-d H:i:s', $this->created) ?>" data-toggle="tooltip" class="icon-circle" style="white-space: nowrap;overflow: hidden;"><?= joe\dateWord($this->dateWord) ?></span>
 						</item>
 						<div class="meta-right">
 							<item class="meta-comm">

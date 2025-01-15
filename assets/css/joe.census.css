@@ -213,7 +213,8 @@
 	background: var(--classD);
 	padding: 10px;
 	height: 40px;
-	border-radius: 4px
+	border-radius: 4px;
+	user-select: none;
 }
 
 .joe_census__filing .content .item .wrapper .panel svg {

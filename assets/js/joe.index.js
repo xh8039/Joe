@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>
-										<span title="${_.date_time}" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
+										<span title="${_.date_time}" data-toggle="tooltip" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
 									</item>
 									<div class="meta-right">
 										<item class="meta-comm">
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>
-										<span title="${_.date_time}" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
+										<span title="${_.date_time}" data-toggle="tooltip" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
 									</item>
 									<div class="meta-right">
 										<item class="meta-comm">
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 										</span>
 									</a>
 									<span class="hide-sm ml6">${_.author_screenName}</span>
-									<span title="${_.date_time}" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
+									<span title="${_.date_time}" data-toggle="tooltip" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
 								</item>
 								<div class="meta-right">
 									<item class="meta-comm">
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>
-										<span title="${_.date_time}" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
+										<span title="${_.date_time}" data-toggle="tooltip" class="icon-circle" style="white-space: nowrap;overflow: hidden;">${_.dateWord}</span>
 									</item>
 									<div class="meta-right">
 										<item class="meta-comm">
@@ -287,6 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						if (window.Joe.thumbOnError) window.Joe.thumbOnError();
 						// a标签点击后的离开Loading动画
 						if (window.Joe.offLoading) window.Joe.offLoading();
+						if (window.Joe.tooltip) window.Joe.tooltip('.joe_index__list');
 						$('.joe_load').removeAttr('loading');
 						$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
 						$('.joe_index__list .joe_list__loading').hide();

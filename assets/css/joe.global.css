@@ -1897,6 +1897,7 @@
 	color: var(--muted-color);
 	opacity: .6;
 	cursor: pointer;
+	user-select: none;
 }
 
 .joe_load:hover,

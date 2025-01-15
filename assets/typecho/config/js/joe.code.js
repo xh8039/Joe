@@ -53,6 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		CodeMirrorEditor[codeInput.name].on("inputRead", (cm, obj) => {
 			console.log(obj);
 			if (obj.origin != "+input") return;
+			let text = ''.concat(...obj.text);
+			console.log(text);
+			if (!/^[a-zA-Z_]+$/.test(text)) return;
 			cm.showHint({
 				hint: CodeMirror.hint[mode], // 使用正确的方式获取自动完成函数
 				completeSingle: false, // 不自动选择第一个匹配项

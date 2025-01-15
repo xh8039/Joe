@@ -5890,3 +5890,16 @@ html .aplayer {
 .item-meta item .icon {
 	margin-right: 2px;
 }
+
+.author-tag .badg,
+.author-tag .but {
+	margin-right: 5px;
+	margin: 2px;
+	padding: .15em .4em;
+	font-size: 12px;
+	font-weight: 400
+}
+
+.widget-tag-cloud.author-tag .but {
+	font-size: 13px
+}

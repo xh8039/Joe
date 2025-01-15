@@ -19,12 +19,6 @@
 	text-shadow: none
 }
 
-.header .dropdown-menu a,
-.header .sub-menu a,
-.header .sub-menu svg {
-	color: var(--main-color)
-}
-
 body:not(.nav-fixed) .header.show-slide {
 	margin-bottom: 0
 }

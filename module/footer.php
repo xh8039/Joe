@@ -285,11 +285,12 @@ if (!empty($footer_tabbar)) {
 	<script src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>" async></script>
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
+
+<!-- 自定义JavaScript -->
 <script>
-	/* 自定义JavaScript */
 	<?php $this->options->JCustomScript() ?>
-	/* 自定义JavaScript */
 </script>
+<!-- 自定义JavaScript -->
 
 <!-- 自定义底部HTML代码 -->
 <?php $this->options->JCustomBodyEnd() ?>

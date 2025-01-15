@@ -729,6 +729,8 @@ function dateWord($original_date)
 	// 昨天 21:11 -> 昨天
 	$original_date = preg_replace('/昨天 \d+:\d+/i', '昨天', $original_date);
 
+	$original_date = str_replace(['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'], ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'], $original_date);
+
 	// 10月8日 -> 10月
 	// $original_date = preg_replace('/(\d+月)\d+日/i', '$1', $original_date); 
 

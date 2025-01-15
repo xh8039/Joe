@@ -6,7 +6,7 @@
  * @package Joe再续前缘
  * @author  易航
  * @version 1.0
- * @update: 2024.10.24
+ * @update: 2025.01.15
  * @link http://blog.bri6.cn
  */
 

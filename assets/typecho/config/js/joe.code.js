@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// 监听输入事件
 		CodeMirrorEditor[codeInput.name].on("inputRead", (cm, obj) => {
-			console.log(obj.origin);
+			console.log(obj);
 			if (obj.origin != "+input") return;
 			cm.showHint({
 				hint: CodeMirror.hint[mode], // 使用正确的方式获取自动完成函数

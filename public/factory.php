@@ -15,29 +15,35 @@ class Intercept
 	public static function waiting($text)
 	{
 		// 判断用户输入是否大于字符
-		if (Helper::options()->JTextLimit && strlen($text) > Helper::options()->JTextLimit) return true;
+		if (Helper::options()->JTextLimit && strlen($text) > Helper::options()->JTextLimit) {
+			Typecho\Cookie::set('__typecho_remember_text', $text);
+			throw new Typecho\Widget\Exception(_t('评论的内容超出 ' . Helper::options()->JTextLimit . ' 字符限制！'));
+		}
+
+		// 判断评论是否至少包含一个中文
+		if (Helper::options()->JLimitOneChinese == "on" && preg_match("/[\x{4e00}-\x{9fa5}]/u", $text) == 0) {
+			Typecho\Cookie::set('__typecho_remember_text', $text);
+			throw new Typecho\Widget\Exception(_t('评论至少包含一个中文！'));
+		}
 
 		// 判断评论内容是否包含敏感词
 		if (Helper::options()->JSensitiveWords && joe\checkSensitiveWords(Helper::options()->JSensitiveWords, $text)) return true;
-
-		// 判断评论是否至少包含一个中文
-		if (Helper::options()->JLimitOneChinese == "on" && preg_match("/[\x{4e00}-\x{9fa5}]/u", $text) == 0) return true;
 
 		return false;
 	}
 	public static function message($comment)
 	{
 		if (Helper::options()->JCommentStatus == 'off') {
-			throw new Typecho_Exception(_t('叼毛 不要想着强制评论！'));
+			throw new Typecho\Widget\Exception(_t('叼毛 不要想着强制评论！'));
 			return false;
 		}
 		if (Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID)) {
-			throw new Typecho_Exception(_t('叼毛 老老实实登录评论！'));
+			throw new Typecho\Widget\Exception(_t('叼毛 老老实实登录评论！'));
 			return false;
 		}
 
 		// 用户输入内容画图模式
-		if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
+		if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches) && Helper::options()->JcommentDraw == 'on') {
 			// 如果判断是否有双引号，如果有双引号，则禁止评论
 			if (strpos($matches[1], '"') !== false || _checkXSS($matches[1])) {
 				$comment['status'] = 'waiting';
@@ -56,7 +62,7 @@ class Intercept
 			$comment['status'] = 'waiting';
 		}
 
-		Typecho_Cookie::delete('__typecho_remember_text');
+		// Typecho_Cookie::delete('__typecho_remember_text');
 		return $comment;
 	}
 }

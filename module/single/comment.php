@@ -113,7 +113,7 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 					<?php
 					} else {
 					?>
-						<textarea class="text joe_owo__target" name="text" value="" autocomplete="new-password" placeholder="<?= $login_comment ? '请登录后再进行评论' : '来都来啦，聊点什么吧，回车可快速发送' ?>" <?= $login_comment ? 'disabled="true"' : null ?>></textarea>
+						<textarea class="text joe_owo__target" name="text" value="<?php $this->remember('text') ?>" autocomplete="new-password" placeholder="<?= $login_comment ? '请登录后再进行评论' : '来都来啦，聊点什么吧，回车可快速发送' ?>" <?= $login_comment ? 'disabled="true"' : null ?>><?php $this->remember('text') ?></textarea>
 					<?php
 					}
 					?>

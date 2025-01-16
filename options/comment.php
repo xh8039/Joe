@@ -67,7 +67,7 @@ $JLimitOneChinese = new \Typecho\Widget\Helper\Form\Element\Select(
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',
 	'是否开启评论至少包含一个中文',
-	'介绍：开启后如果评论内容未包含一个中文，则将会把评论置为审核状态 <br />
+	'介绍：开启后如果评论内容未包含一个中文，则禁止评论 <br />
 		 其他：用于屏蔽国外机器人刷的全英文垃圾广告信息'
 );
 $JLimitOneChinese->setAttribute('class', 'joe_content joe_comment');
@@ -78,7 +78,7 @@ $JTextLimit = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	NULL,
 	'限制用户评论最大字符',
-	'介绍：如果用户评论的内容超出字符限制，则将会把评论置为审核状态 <br />
+	'介绍：如果用户评论的内容超出字符限制，则禁止评论 <br />
 		 其他：请输入数字格式，不填写则不限制'
 );
 $JTextLimit->setAttribute('class', 'joe_content joe_comment');

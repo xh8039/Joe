@@ -158,11 +158,13 @@ function themeInit($self)
 			if (is_numeric($cid)) {
 				$db = Typecho_Db::get();
 				$post = $db->fetchRow($db->select('text')->from('table.contents')->where('cid = ?', $cid));
-				if (!empty($post['text']) && strpos($post['text'], $link) !== false) {
-					$location = $link;
-				}
+				if (!empty($post['text']) && strpos($post['text'], $link) !== false) $location = $link;
 			}
-			require_once JOE_ROOT . '/module/goto.php';
+			if ($location == Helper::options()->siteUrl) {
+				echo '<script>alert("链接非法，已返回");window.location.href="' . $location . '"</script>';
+			} else {
+				require_once JOE_ROOT . '/module/goto.php';
+			}
 			$self->response->throwContent('');
 		})();
 	}

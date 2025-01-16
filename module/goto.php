@@ -8,6 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__') || empty($_SERVER['HTTP_HOST'])) {
 <html lang='zh-CN'>
 
 <head>
+    <meta name="referrer" content="no-referrer">
     <title>即将跳转到外部网站 - <?= Helper::options()->title ?></title>
     <meta content='noindex, nofollow' name='robots'>
     <meta charset='utf-8'>

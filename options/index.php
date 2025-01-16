@@ -191,6 +191,18 @@ $JIndex_Mobile_Hot = new \Typecho\Widget\Helper\Form\Element\Text(
 $JIndex_Mobile_Hot->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Mobile_Hot->multiMode());
 
+$IndexHotHidePost = new \Typecho\Widget\Helper\Form\Element\Text(
+	'IndexHotHidePost',
+	NULL,
+	NULL,
+	'首页隐藏热门文章（非必填）',
+	'介绍：用于隐藏指定的热门文章，请务必填写正确的格式 <br/>
+	格式：文章的ID || 文章的ID （中间使用两个竖杠分隔）<br />
+	例如：1 || 2'
+);
+$IndexHotHidePost->setAttribute('class', 'joe_content joe_index');
+$form->addInput($IndexHotHidePost);
+
 $JIndex_Ad_Title = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Ad_Title',
 	NULL,

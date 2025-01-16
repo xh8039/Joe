@@ -35,14 +35,17 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 	public function execute()
 	{
 		$recommend_text = Joe\isMobile() ? Helper::options()->JIndex_Mobile_Recommend : Helper::options()->JIndex_Recommend;
-		$recommend = joe\optionMulti($recommend_text, '||', false);
-		if (empty($recommend)) $recommend = ['empty'];
+		$recommend = joe\optionMulti($recommend_text, '||', null);
+		$JIndexSticky = joe\optionMulti(Helper::options()->JIndexSticky, '||', null);
+		$IndexHotHidePost = joe\optionMulti(Helper::options()->IndexHotHidePost, '||', null);
+		$hide_contents_cid_list = array_unique(array_merge($recommend, $JIndexSticky, $IndexHotHidePost));
+		if (empty($hide_contents_cid_list)) $hide_contents_cid_list = ['empty'];
 		$this->parameter->setDefault(array('pageSize' => 10));
 		$select = $this->select();
 		$select->cleanAttribute('fields');
 		$this->db->fetchAll(
 			$select->from('table.contents')
-				->where('table.contents.cid NOT' . "\r\n" . 'IN?', $recommend)
+				->where('table.contents.cid NOT' . "\r\n" . 'IN?', $hide_contents_cid_list)
 				->where("table.contents.password IS NULL OR table.contents.password = ''")
 				->where('table.contents.status = ?', 'publish')
 				->where('table.contents.created <= ?', time())

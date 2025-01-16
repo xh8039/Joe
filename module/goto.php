@@ -19,7 +19,7 @@ if (!defined('__TYPECHO_ROOT_DIR__') || empty($_SERVER['HTTP_HOST'])) {
 
 <body>
     <div class='gitee-external-link-wrapper'>
-        <img class="logo-img" src="/static/images/logo-black.svg" alt="Logo black" />
+        <img class="logo-img" src="<?= Helper::options()->JLogo ?>" alt="Logo black" />
         <div class='content-box'>
             <div class='content-title'>即将跳转到外部网站</div>
             <div class='content-text'>您将要访问的链接不属于 <?= Helper::options()->title ?> ，请关注您的账号安全。</div>
@@ -36,7 +36,7 @@ if (!defined('__TYPECHO_ROOT_DIR__') || empty($_SERVER['HTTP_HOST'])) {
     window.is_black = false;
     (function() {
         var e = document.querySelector(".external-link-href"),
-            t = window.atob(new URLSearchParams(location.search).get("target"));
+            t = window.atob(new URLSearchParams(location.search).get("url"));
         if (t && (e.innerText = t, !window.is_black)) {
             var n = document.querySelector(".external-link-btn");
             n && n.addEventListener("click", function() {

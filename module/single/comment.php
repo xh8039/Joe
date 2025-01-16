@@ -218,6 +218,7 @@ function threadedComments($comments, $options)
 					}
 					?>
 					<div class="substance">
+						<?= ($comments->status == "waiting" && joe\isMobile()) ? '<em class="waiting">（评论审核中...）</em>' : null ?>
 						<?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
 						<?php
 						if (joe\isMobile() && !$login_comment) echo '<p class="handle mobile-handle"><span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i></span></p>';

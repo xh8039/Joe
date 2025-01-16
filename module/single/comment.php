@@ -164,11 +164,12 @@ function threadedComments($comments, $options)
 {
 	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 ?>
-	<li class="comment-list__item"<?= $comments->status == 'waiting' ? ' style="opacity: 0.8;"' : null ?>>
+	<li class="comment-list__item" <?= $comments->status == 'waiting' ? 'style="opacity: 0.8;"' : null ?>>
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
 			<div class="term">
 				<?php
-				$mobile_handle = joe\isMobile() ? 'data-placement="right" data-trigger="hover" data-content="' . $comments->author . '&nbsp;·&nbsp;' . joe\getAgentOS($comments->agent) . '&nbsp;·&nbsp;' . joe\getAgentBrowser($comments->agent) . '&nbsp;·&nbsp;' . joe\dateWord($comments->dateWord) . '" data-toggle="popover"' : null;
+				$mobile_handle = joe\isMobile() ? 'data-placement="right" data-trigger="hover" data-content="' . ($comments->authorId == $comments->ownerId ? '作者&nbsp;·&nbsp;' : '') . $comments->author . '&nbsp;·&nbsp;' . joe\getAgentOS($comments->agent) . '&nbsp;·&nbsp;' . joe\getAgentBrowser($comments->agent) . '&nbsp;·&nbsp;' . joe\dateWord($comments->dateWord) . '" data-toggle="popover"' : '';
+				if ($comments->authorId == $comments->ownerId) $mobile_handle .= ' style="border-color: var(--theme);"';
 				if ($comments->request->getHeader('x-pjax') == 'true') {
 				?>
 					<img <?= $mobile_handle ?> width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />

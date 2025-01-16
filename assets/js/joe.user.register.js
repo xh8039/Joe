@@ -39,7 +39,7 @@ $("#send").click(function () {
 			email: email
 		},
 		beforeSend: function () {
-			btn($("#send"), "发送中...", true);
+			btn($("#send"), '<i class="loading mr6"></i>发送中...', true);
 		},
 		complete: function () {
 			btn($("#send"), "获取验证码", false);
@@ -87,7 +87,7 @@ $("#register").click(function () {
 			cpassword: cpassword
 		},
 		beforeSend: function () {
-			btn($("#register"), "注册中...", true);
+			btn($("#register"), '<i class="loading mr6"></i>注册中...', true);
 		},
 		complete: function () {
 			btn($("#register"), "注册", false);

@@ -33,7 +33,7 @@ $("#send").click(function () {
             email: email
         },
         beforeSend: function () {
-            btn($("#send"), "发送中...", true);
+            btn($("#send"), '<i class="loading mr6"></i>发送中...', true);
         },
         complete: function () {
             btn($("#send"), "获取验证码", false);
@@ -69,7 +69,7 @@ $("#check").click(function () {
             code: code
         },
         beforeSend: function () {
-            btn($("#check"), "验证中...", true);
+            btn($("#check"), '<i class="loading mr6"></i>验证中...', true);
         },
         complete: function () {
             btn($("#check"), "验证", false);
@@ -114,7 +114,7 @@ $("#forget").click(function () {
             cpassword: cpassword
         },
         beforeSend: function () {
-            btn($("#forget"), "设置中...", true);
+            btn($("#forget"), '<i class="loading mr6"></i>设置中...', true);
         },
         complete: function () {
             btn($("#forget"), "设置密码", false);

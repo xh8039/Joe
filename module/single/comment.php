@@ -163,9 +163,6 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 function threadedComments($comments, $options)
 {
 	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
-	// if ($comments->request->getHeader('x-pjax') == 'true') {
-	// 	echo joe\commentsAntiSpam($GLOBALS['theme_this']->respondId);
-	// }
 ?>
 	<li class="comment-list__item">
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
@@ -190,7 +187,6 @@ function threadedComments($comments, $options)
 							<div class="nickname">
 								<span class="author"><?php $comments->author(); ?></span>
 								<?= $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
-								<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
 							</div>
 							<span>&nbsp;·&nbsp;</span>
 							<div class="agent">
@@ -209,6 +205,7 @@ function threadedComments($comments, $options)
 								<img src="<?= $os_svg_url ?>" title="<?= joe\getAgentOS($comments->agent) ?>" data-toggle="tooltip">
 								<img src="<?= $browser_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">
 							</div>
+							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
 							<div class="handle">
 								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>

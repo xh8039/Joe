@@ -21,6 +21,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <?php else : ?>
 	<?php $this->header('commentReply=&antiSpam='); ?>
 <?php endif;
+if ($this->options->FirstLoading == 'on') {
+	Typecho\Cookie::get('joe_first_loading') ? $this->options->JLoading = 'off' : Typecho\Cookie::set('joe_first_loading', 'true', 86400 * 30);
+}
 if ($this->options->JLoading != 'off') : ?>
 	<link rel="preload" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>" as="style" />
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>">

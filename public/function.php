@@ -1,5 +1,31 @@
 <?php
 
+if (!function_exists('str_starts_with')) {
+	/**
+	 * 判断字符串是否以指定字符串开头
+	 * @param string $haystack 
+	 * @param string $needle 要在 haystack 中搜索的子串。
+	 * @return bool
+	 */
+	function str_starts_with(string $haystack, string $needle): bool
+	{
+		return $needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0;
+	}
+}
+
+if (!function_exists('str_ends_with')) {
+	/**
+	 * 判断字符串是否以指定字符串结尾
+	 * @param string $haystack 
+	 * @param string $needle 要在 haystack 中搜索的子串。
+	 * @return bool
+	 */
+	function str_ends_with(string $haystack, string $needle): bool
+	{
+		return $needle !== '' && substr($haystack, -strlen($needle)) === (string) $needle;
+	}
+}
+
 namespace joe;
 
 use \Helper;
@@ -308,16 +334,14 @@ function getAsideAuthorNav()
 }
 
 /* 判断敏感词是否在字符串内 */
-function checkSensitiveWords($words_str, $str)
+function checkSensitiveWords($pregs_string, $string)
 {
-	$words = explode("||", $words_str);
-	if (empty($words)) {
-		return false;
-	}
-	foreach ($words as $word) {
-		if (false !== strpos($str, trim($word))) {
-			return true;
-		}
+	$preg_list = explode("||", $pregs_string);
+	if (empty($preg_list)) return false;
+	foreach ($preg_list as $preg) {
+		$preg = trim($preg);
+		if (str_starts_with($preg, '/')) return preg_match($preg, $string);
+		if (strpos($string, $preg) !== false) return true;
 	}
 	return false;
 }

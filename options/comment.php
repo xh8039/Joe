@@ -56,8 +56,8 @@ $JSensitiveWords = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'你妈死了 || 傻逼 || 操你妈 || 射你妈一脸',
 	'评论敏感词（非必填）',
-	'介绍：用于设置评论敏感词汇，如果用户评论包含这些词汇，则将会把评论置为审核状态 <br />
-		 例如：你妈死了 || 你妈炸了 || 我是你爹 || 你妈坟头冒烟 （多个使用 || 分隔开）'
+	'介绍：用于设置评论敏感词汇，如果用户评论包含这些词汇，则将会把评论置为审核状态，支持正则表达式 <br />
+	例如：/http[s]?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/i || /[a-z0-9]{0,62}\.[a-z]{0,10}/i || /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/i || 你妈死了 || 你妈炸了 || 我是你爹 || 你妈坟头冒烟（多个使用 || 分隔开）'
 );
 $JSensitiveWords->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JSensitiveWords);

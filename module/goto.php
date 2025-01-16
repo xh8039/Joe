@@ -26,7 +26,7 @@ if (!defined('__TYPECHO_ROOT_DIR__') || empty($_SERVER['HTTP_HOST'])) {
             <div class='content-link'>
                 <div class='external-link-href'></div>
             </div>
-            <div class='ui button orange external-link-btn'>继续前往</div>
+            <div style="background:#409eff" class='ui button orange external-link-btn'>继续前往</div>
         </div>
     </div>
 </body>

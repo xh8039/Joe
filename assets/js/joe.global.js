@@ -1114,7 +1114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			return true;
 		}
-		if (window.Joe.loadingEnd && window.Joe.loadingStart) {
+		if (window.Joe.loadingEnd && window.Joe.loadingStart && window.Joe?.offLoading !== false) {
 			window.Joe.offLoading = () => {
 				// a标签加载动画
 				$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {

@@ -25,6 +25,7 @@ $fields = $this->fields->toArray();
 		INDEX_AJAX: <?= $this->options->JIndex_Ajax_List == 'on' ? 'true' : 'false' ?>,
 		VERSION: `<?= JOE_VERSION ?>`,
 		LoadingAnimation: <?= $this->options->JLoading == 'off' ? 'false' : 'true' ?>,
+		offLoading: <?= $this->options->FirstLoading == 'on' ? 'true' : 'false' ?>,
 		respondId: `<?= $this->respondId ?>`,
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,

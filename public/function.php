@@ -1,31 +1,5 @@
 <?php
 
-if (!function_exists('str_starts_with')) {
-	/**
-	 * 判断字符串是否以指定字符串开头
-	 * @param string $haystack 
-	 * @param string $needle 要在 haystack 中搜索的子串。
-	 * @return bool
-	 */
-	function str_starts_with(string $haystack, string $needle): bool
-	{
-		return $needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0;
-	}
-}
-
-if (!function_exists('str_ends_with')) {
-	/**
-	 * 判断字符串是否以指定字符串结尾
-	 * @param string $haystack 
-	 * @param string $needle 要在 haystack 中搜索的子串。
-	 * @return bool
-	 */
-	function str_ends_with(string $haystack, string $needle): bool
-	{
-		return $needle !== '' && substr($haystack, -strlen($needle)) === (string) $needle;
-	}
-}
-
 namespace joe;
 
 use \Helper;

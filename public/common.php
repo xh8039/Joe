@@ -73,10 +73,10 @@ function themeInit($self)
 		if ($user->hasLogin()) {
 			if (!defined('USER_ID')) define('USER_ID', $user->uid);
 		} else {
-			$cookiesid = isset($_COOKIE['userid']) ? $_COOKIE['userid'] : null;
+			$cookiesid = Typecho\Cookie::get('joe_user_id');
 			if ((!$cookiesid) || (!preg_match('/^[0-9a-z]{32}$/i', $cookiesid))) {
 				$cookiesid = md5(uniqid(mt_rand(), 1) . time());
-				setcookie('userid', $cookiesid, time() + 94672800, '/'); // 游客用户ID存储三年
+				Typecho\Cookie::set('joe_user_id', $cookiesid, 31536000 * 10); // 游客用户ID存储十年
 			}
 			if (!defined('USER_ID')) define('USER_ID', $cookiesid);
 		}

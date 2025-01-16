@@ -164,7 +164,7 @@ function threadedComments($comments, $options)
 {
 	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 ?>
-	<li class="comment-list__item">
+	<li class="comment-list__item"<?= $comments->status == 'waiting' ? ' style="opacity: 0.7;"' : null ?>>
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
 			<div class="term">
 				<?php

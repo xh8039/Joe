@@ -11,58 +11,62 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 			<div class="col-mb-12 col-tb-6 col-tb-offset-3">
 				<?php
 				/** 构建表格 */
-				$form = new Typecho_Widget_Helper_Form(
+				$form = new Typecho\Widget\Helper\Form(
 					Helper::security()->getAdminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php'),
-					Typecho_Widget_Helper_Form::POST_METHOD
+					Typecho\Widget\Helper\Form::POST_METHOD
 				);
 
 				/** 友链名称 */
-				$name = new Typecho_Widget_Helper_Form_Element_Text('title', null, null, _t('友链标题*'));
+				$name = new Typecho\Widget\Helper\Form\Element\Text('title', null, null, _t('友链标题*'));
 				$form->addInput($name);
 
 				/** 友链地址 */
-				$url = new Typecho_Widget_Helper_Form_Element_Text('url', null, "http://", _t('友链地址*'));
+				$url = new Typecho\Widget\Helper\Form\Element\Text('url', null, "http://", _t('友链地址*'));
 				$form->addInput($url);
 
 				/** 友链描述 */
-				$description =  new Typecho_Widget_Helper_Form_Element_Textarea('description', null, null, _t('友链描述'));
+				$description =  new Typecho\Widget\Helper\Form\Element\Textarea('description', null, null, _t('友链描述'));
 				$form->addInput($description);
 
 				/** 友链图片 */
-				$logo = new Typecho_Widget_Helper_Form_Element_Text('logo', null, null, _t('友链图片'),  _t('需要以 http:// 或 https:// 开头，留空表示没有友链图片'));
+				$logo = new Typecho\Widget\Helper\Form\Element\Text('logo', null, null, _t('友链图片'),  _t('需要以 http:// 或 https:// 开头，留空表示没有友链图片'));
 				$form->addInput($logo);
 
 
 				/** 友链rel属性 */
-				$rel = new Typecho_Widget_Helper_Form_Element_Text('rel', null, "friend", _t('友链rel属性'));
+				$rel = new Typecho\Widget\Helper\Form\Element\Text('rel', null, "friend", _t('友链rel属性'));
 				$form->addInput($rel);
 
 				/** 友链邮箱 */
-				$email = new Typecho_Widget_Helper_Form_Element_Text('email', null, null, _t('友链邮箱'));
+				$email = new Typecho\Widget\Helper\Form\Element\Text('email', null, null, _t('友链邮箱'));
 				$form->addInput($email);
 
 				/** 友链排序 */
-				$order = new Typecho_Widget_Helper_Form_Element_Text('order', null, "0", _t('友链排序'));
+				$order = new Typecho\Widget\Helper\Form\Element\Text('order', null, "0", _t('友链排序'));
 				$form->addInput($order);
 
+				/** 友链位置 */
+				$list = array('index_bottom' => '首页底部', 'single' => '独立页面');
+				$position = new Typecho\Widget\Helper\Form\Element\Checkbox('position', $list, NULL, '友链位置', '注意：此处编辑友链状态不会邮箱通知对方');
+				$form->addInput($position);
+
 				/** 友链状态 */
-				$list = array('0' => '禁用', '1' => '启用');
-				$status = new Typecho_Widget_Helper_Form_Element_Radio('status', $list, '1', '友链状态', '注意：此处编辑友链状态不会邮箱通知对方');
+				$status = new Typecho\Widget\Helper\Form\Element\Radio('status', ['0' => '禁用', '1' => '启用'], '1', '友链状态', '注意：此处编辑友链状态不会邮箱通知对方');
 				$form->addInput($status);
 
 				/** 友链动作 */
-				$do = new Typecho_Widget_Helper_Form_Element_Hidden('action');
+				$do = new Typecho\Widget\Helper\Form\Element\Hidden('action');
 				$form->addInput($do);
 
 				/** 友链主键 */
-				$id = new Typecho_Widget_Helper_Form_Element_Hidden('id');
+				$id = new Typecho\Widget\Helper\Form\Element\Hidden('id');
 				$form->addInput($id);
 
-				$referer = new Typecho_Widget_Helper_Form_Element_Hidden('referer', null, Typecho_Request::getInstance()->getHeader('referer'));
+				$referer = new Typecho\Widget\Helper\Form\Element\Hidden('referer', null, Typecho_Request::getInstance()->getHeader('referer'));
 				$form->addInput($referer);
 
 				/** 提交按钮 */
-				$submit = new Typecho_Widget_Helper_Form_Element_Submit();
+				$submit = new Typecho\Widget\Helper\Form\Element\Submit();
 				$submit->input->setAttribute('class', 'btn primary');
 				$form->addItem($submit);
 				$request = Typecho_Request::getInstance();
@@ -85,7 +89,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 					$rel->value($link['rel']);
 					$email->value($link['email']);
 					$order->value($link['order']);
-					// $user->value($link['user']);
+					$position->value($link['position']);
 					$status->value($link['status']);
 					$do->value('update');
 					$id->value($link['id']);
@@ -97,9 +101,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 					$_action = 'insert';
 				}
 
-				if (empty($action)) {
-					$action = $_action;
-				}
+				if (empty($action)) $action = $_action;
 
 				/** 给表单增加规则 */
 				if ('create' == $action || 'edit' == $action) {

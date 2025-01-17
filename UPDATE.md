@@ -310,6 +310,7 @@
 - 新增新年灯笼挂件特效
 - 新增评论敏感词功能支持正则表达式验证
 - 新增首页隐藏指定热门文章功能
+- 新增友情链接可自定义展示位置
 - PC端侧栏位置新增列表标签云模块
 - 优化archive页面的分页功能为Pjax加载
 - 优化评论模块发送评论和分页功能为Pjax加载
@@ -323,6 +324,7 @@
 - 本次更新后请手动执行以下MySQL语句
 
 ```sql
+ALTER TABLE `blog_friends` ADD `position` VARCHAR(255) NULL DEFAULT NULL AFTER `email`;
 RENAME TABLE `typecho_joe_pay` to `typecho_orders`;
 ALTER TABLE `typecho_orders` CHANGE `ip` `ip` VARCHAR(128);
 ```

@@ -48,9 +48,7 @@ $this->need('module/single/pjax.php');
 						</style>
 						<ul class="joe_detail__friends">
 							<?php
-							if ($this->options->JFriends_shuffle == 'on') {
-								shuffle($friends);
-							}
+							if ($this->options->JFriends_shuffle == 'on') shuffle($friends);
 							foreach ($friends as $item) : ?>
 								<li class="joe_detail__friends-item">
 									<a class="contain" href="<?= $item['url'] ?>" target="_blank" rel="<?= $item['rel'] ?>" style="background: <?= $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">

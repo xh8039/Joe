@@ -53,10 +53,12 @@ if ($this->options->JIndex_Ajax_List == 'on') {
 					<div class="thumbnail"></div>
 					<div class="information">
 						<div class="title"></div>
-						<div class="abstract">
-							<p class="mb0"></p>
-							<p class="mb0"></p>
-						</div>
+						<!-- <div class="abstract"> -->
+							<p></p>
+							<p></p>
+							<p></p>
+							<p></p>
+						<!-- </div> -->
 					</div>
 				</li>
 			<?php

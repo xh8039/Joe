@@ -8,7 +8,7 @@ if (empty($icon_crid_list)) return;
 
 echo '<div>';
 if (!empty($this->options->JIndex_Icon_Card_Title)) {
-	echo '<div class="title-theme" style="margin-bottom: 15px;">' . $this->options->JIndex_Icon_Card_Title . '</div>';
+	echo '<div class="box-body notop"><div class="title-theme">' . $this->options->JIndex_Icon_Card_Title . '</div></div>';
 }
 echo '<div class="mb25"><div class="row gutters-5">';
 

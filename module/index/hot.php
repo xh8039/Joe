@@ -12,7 +12,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 if (Joe\isMobile()) $this->options->JIndex_Hot = $this->options->JIndex_Mobile_Hot;
 if ((is_numeric($this->options->JIndex_Hot)) && ($this->options->JIndex_Hot >= 1)) : ?>
 	<?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=' . $this->options->JIndex_Hot)->to($item); ?>
-	<div class="title-theme" style="margin-bottom: 15px;">热门文章</div>
+	<div class="box-body notop">
+		<div class="title-theme">热门文章</div>
+	</div>
 	<div class="joe_index__hot mb25">
 		<ul class="joe_index__hot-list">
 			<?php while ($item->next()) : ?>

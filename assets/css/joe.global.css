@@ -4919,8 +4919,8 @@ html .aplayer {
 
 @keyframes list_thumbnail_loading {
 	0% {
-		-webkit-transform: scale(0.85);
-		transform: scale(0.85)
+		-webkit-transform: scale(0.95);
+		transform: scale(0.95)
 	}
 
 	100% {

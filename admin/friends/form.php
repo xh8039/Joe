@@ -47,7 +47,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 
 				/** 友链位置 */
 				$list = array('index_bottom' => '首页底部', 'single' => '独立页面');
-				$position = new Typecho\Widget\Helper\Form\Element\Checkbox('position', $list, NULL, '友链位置', '注意：此处编辑友链状态不会邮箱通知对方');
+				$position = new Typecho\Widget\Helper\Form\Element\Checkbox('position', $list, NULL, '友链位置');
 				$form->addInput($position);
 
 				/** 友链状态 */
@@ -89,7 +89,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 					$rel->value($link['rel']);
 					$email->value($link['email']);
 					$order->value($link['order']);
-					$position->value($link['position']);
+					$position->value(explode(',', $link['position']));
 					$status->value($link['status']);
 					$do->value('update');
 					$id->value($link['id']);

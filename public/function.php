@@ -770,16 +770,12 @@ function panel_exists(string $fileName): bool
 
 function install()
 {
-	if (PHP_VERSION < 7.4) {
-		throw new \Typecho_Exception('请使用 PHP 7.4 及以上版本！');
-		exit;
-	}
+	if (PHP_VERSION < 7.4) throw new \Typecho\Exception('请使用 PHP 7.4 及以上版本！');
+
+	if (\Typecho\Common::VERSION < '1.2') throw new \Typecho\Exception('请使用 Typecho 1.2 及以上版本！');
 
 	$_db = Typecho_Db::get();
-	if ((float) $_db->getVersion() < 5.6) {
-		throw new \Typecho_Exception('请使用 MySql 5.6 及以上版本！');
-		exit;
-	}
+	if ((float) $_db->getVersion() < 5.6) throw new \Typecho\Exception('请使用 MySql 5.6 及以上版本！');
 
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
 	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
@@ -972,6 +968,17 @@ function install()
 		if (file_exists($typecho_admin_root . 'themes.php')) {
 			file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyPnRkPnA+YS5hY3RpdmF0ZScpLmF0dHIoJ2hyZWYnLCAnamF2YXNjcmlwdDphbGVydCgi5ZCv55So5aSx6LSl77yB6K+35qOA5p+lVHlwZWNob+aPkuS7tuWGsueqgSIpJyk7Cgl9LCAxMDApKTsKPC9zY3JpcHQ+"); ?>', FILE_APPEND | LOCK_EX);
 		}
+
+		if (\Typecho\Common::VERSION <= '1.2.1') {
+			/* 修复typecho用户登陆后审核状态的评论不显示的BUG */
+			$typecho_comments_archive_file = __TYPECHO_ROOT_DIR__ . '/var/Widget/Comments/Archive.php';
+			if (is_file($typecho_comments_archive_file) && is_writable($typecho_comments_archive_file)) {
+				$typecho_comments_archive_content = file_get_contents($typecho_comments_archive_file);
+				$typecho_comments_archive_content = str_replace(['$commentsAuthor = Cookie::get(\'__typecho_remember_author\');', '$commentsMail = Cookie::get(\'__typecho_remember_mail\');'], ['$commentsAuthor = $this->user->hasLogin() ? $this->user->screenName : Cookie::get(\'__typecho_remember_author\');', '$commentsMail = $this->user->hasLogin() ? $this->user->mail : Cookie::get(\'__typecho_remember_mail\');'], $typecho_comments_archive_content);
+				file_put_contents($typecho_comments_archive_file, $typecho_comments_archive_content);
+			}
+		}
+
 
 		$theme_install = $_db->insert('table.options')->rows(array('name' => $install_field, 'user' => '0', 'value' => THEME_NAME));
 		$_db->query($theme_install);

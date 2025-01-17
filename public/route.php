@@ -1033,7 +1033,7 @@ function _initiatePay($self)
 	$self->response->setStatus(200);
 
 	$db = Typecho_Db::get();
-	$sql = $db->insert('table.joe_pay')->rows([
+	$sql = $db->insert('table.orders')->rows([
 		'trade_no' => $out_trade_no,
 		"name" =>  Helper::options()->title . ' - 付费阅读',
 		'content_title' => $item->title,
@@ -1053,7 +1053,7 @@ function _initiatePay($self)
 					$self->response->throwJson(['code' => 500, 'msg' => '获取支付接口订单号失败！']);
 				} else {
 					// 更新订单状态
-					$order_update_sql = $db->update('table.joe_pay')->rows([
+					$order_update_sql = $db->update('table.orders')->rows([
 						'api_trade_no' =>  $data['trade_no'],
 					])->where('trade_no = ?', $out_trade_no);
 					if ($db->query($order_update_sql)) {
@@ -1132,7 +1132,7 @@ function _checkPay($self)
 	}
 
 	$db = Typecho_Db::get();
-	$row = $db->fetchRow($db->select()->from('table.joe_pay')->where('trade_no = ?', $trade_no)->limit(1));
+	$row = $db->fetchRow($db->select()->from('table.orders')->where('trade_no = ?', $trade_no)->limit(1));
 	if (sizeof($row) > 0) {
 		//建立请求
 		require_once JOE_ROOT . 'library/pay/EpayCore.php';

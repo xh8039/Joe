@@ -832,10 +832,10 @@ function install()
 	try {
 		$_prefix = $_db->getPrefix();
 		$adapter = $_db->getAdapterName();
-		$joe_pay = $_prefix . "joe_pay";
+		$orders = $_prefix . "orders";
 		$friends = $_prefix . 'friends';
 		if ($adapter == 'Pdo_SQLite' || $adapter == 'SQLite') {
-			$_db->query("CREATE TABLE IF NOT EXISTS `$joe_pay` (
+			$_db->query("CREATE TABLE IF NOT EXISTS `$orders` (
 				`id` INTEGER PRIMARY KEY AUTOINCREMENT,
 				`trade_no` TEXT NOT NULL UNIQUE,
 				`api_trade_no` TEXT,
@@ -867,7 +867,7 @@ function install()
 				`create_time` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 			);");
 		} else if ($adapter == 'Pdo_Mysql' || $adapter == 'Mysql' || $adapter == 'Mysqli') {
-			$_db->query("CREATE TABLE IF NOT EXISTS `$joe_pay` (
+			$_db->query("CREATE TABLE IF NOT EXISTS `$orders` (
 				`id` INT NOT NULL AUTO_INCREMENT,
 				`trade_no` varchar(64) NOT NULL unique,
 				`api_trade_no` varchar(64) DEFAULT NULL,
@@ -901,7 +901,7 @@ function install()
 				PRIMARY KEY  (`id`)
 			) DEFAULT CHARSET=utf8mb4;");
 		} else if ($adapter == 'Pdo_Pgsql' || $adapter == 'Pgsql') {
-			$_db->query('CREATE TABLE IF NOT EXISTS ' . $joe_pay . ' (
+			$_db->query('CREATE TABLE IF NOT EXISTS ' . $orders . ' (
 				id SERIAL PRIMARY KEY,
 				trade_no VARCHAR(64) UNIQUE NOT NULL,
 				api_trade_no VARCHAR(64),
@@ -1253,7 +1253,7 @@ function markdown_hide_($content, $post, $login)
 	if (strpos($content, '{hide') === false) return $content;
 	if ($post->fields->hide == 'pay') {
 		$db = \Typecho_Db::get();
-		$pay = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
+		$pay = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
 		// '<a rel="nofollow" target="_blank" href="https://bri6.cn/user/order" class="">' . $pay['trade_no'] . '</a>';
 		if (!empty($pay)) {
 			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
@@ -1334,7 +1334,7 @@ function markdown_hide($content, $post, $login)
 		$comment = $db->fetchRow($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $userEmail)->limit(1));
 		if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
 			// 查询支付信息
-			$payment = $db->fetchRow($db->select()->from('table.joe_pay')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
+			$payment = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
 			$showContent = !empty($payment); // 是否已支付决定是否显示内容
 		} else {
 			$showContent = !empty($comment); // 是否已评论决定是否显示内容

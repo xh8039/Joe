@@ -131,7 +131,7 @@ function _parseAsideLink($link)
 function _payPurchased($post, $pay)
 {
 	$db = Typecho_Db::get();
-	$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.joe_pay')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
+	$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
 	return '
 	<div class="zib-widget pay-box paid-box" id="posts-pay">
 		<div class="flex ac jb-green padding-10 em09">
@@ -227,7 +227,7 @@ function _payFreeResources($post, $comment)
 function _payBox($post)
 {
 	$db = Typecho_Db::get();
-	$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.joe_pay')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
+	$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
 	return '
 	<div class="zib-widget pay-box" id="posts-pay">
 		<div class="flex pay-flexbox">

@@ -97,7 +97,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	}
 	public function select()
 	{
-		return $this->db->select()->from('table.joe_pay');
+		return $this->db->select()->from('table.orders');
 	}
 	/**
 	 * 执行函数
@@ -227,7 +227,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	{
 		return $this->db->fetchObject($condition
 			->select(array('COUNT(DISTINCT id)' => 'num'))
-			->from('table.joe_pay')
+			->from('table.orders')
 			->cleanAttribute('group'))->num;
 	}
 

@@ -322,7 +322,8 @@
 - 修复使用IP V6地址下单付费阅读时创建订单失败的BUG，请手动执行以下MySQL语句
 
 ```sql
-ALTER TABLE `typecho_joe_pay` CHANGE `ip` `ip` VARCHAR(128) CHARACTER SET utf8mb4 NULL DEFAULT NULL;
+RENAME TABLE `typecho_joe_pay` to `typecho_orders`;
+ALTER TABLE `typecho_orders` CHANGE `ip` `ip` VARCHAR(128);
 ```
 
 - 正在开发中...

@@ -39,7 +39,7 @@ if ($action == 'index') {
 if ($action == 'delete') {
 	$id = isset($_POST['id']) ? $_POST['id'] : [];
 	if (!is_array($id)) $id = [];
-	$sql = $db->delete('table.joe_pay')->where('id in?', $id);
+	$sql = $db->delete('table.orders')->where('id in?', $id);
 	if ($db->query($sql)) {
 		alert('删除订单成功');
 	} else {

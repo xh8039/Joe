@@ -32,7 +32,7 @@ if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\de
 					<?php endforeach;
 					$friends_page = $db->fetchRow($db->select()->from('table.contents')->where('type = ?', 'page')->where('template = ?', 'friends.php')->where('status = ?', 'publish')->limit(1));
 					?>
-					<a class="icon-spot" href="<?= joe\index($friends_page['slug']) ?>.html">查看更多</a>
+					<a class="icon-spot" href="/<?= $friends_page['slug'] ?>.html">查看更多</a>
 				</div>
 			</div>
 		</div>

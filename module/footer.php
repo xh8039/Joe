@@ -27,12 +27,11 @@ if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\de
 					<?php
 					if ($this->options->JFriends_shuffle == 'on') shuffle($friends);
 					$friends = array_values($friends);
-					foreach ($friends as $key => $item) : ?>
-						<a rel="<?= $item['rel'] ?? '' ?>" target="_blank" class="<?= $key ? 'icon-spot' : null ?>" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="<?= $item['description'] ?? '暂无简介' ?>" href="<?= $item['url'] ?>" data-original-title="<?= $item['title'] ?>"><?= $item['title'] ?></a>
-					<?php endforeach;
+					foreach ($friends as $key => $item) echo '<a rel="' . $item['rel'] . '" target="_blank" class="' . ($key ? 'icon-spot' : null) . '" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="' . ($item['description'] ?? '暂无简介') . '" referrer="unsafe-url" href="' . $item['url'] . '" data-original-title="' . $item['title'] . '">' . $item['title'] . '</a>';
 					$friends_page = $db->fetchRow($db->select()->from('table.contents')->where('type = ?', 'page')->where('template = ?', 'friends.php')->where('status = ?', 'publish')->limit(1));
 					$friends_page_pathinfo = Typecho\Router::url('page', $friends_page);
-					?><a class="icon-spot" href="<?= Typecho\Common::url($friends_page_pathinfo, $this->options->index) ?>">查看更多</a>
+					echo '<a class="icon-spot" href="' . Typecho\Common::url($friends_page_pathinfo, $this->options->index) . '">查看更多</a>';
+					?>
 				</div>
 			</div>
 		</div>

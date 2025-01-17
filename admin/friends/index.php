@@ -84,7 +84,7 @@ $waiting_count = waiting_count();
 									<th>站点链接</th>
 									<th>站点简介</th>
 									<th>LOGO</th>
-									<th>rel属性</th>
+									<th>位置</th>
 									<th>排序</th>
 									<th>状态</th>
 									<th>创建时间</th>
@@ -102,7 +102,7 @@ $waiting_count = waiting_count();
 											<td><a target="_blank" href="<?php $orders->url() ?>"><?php $orders->url() ?></a></td>
 											<td><?php $orders->description() ?></td>
 											<td><img referrerpolicy="no-referrer" rel="noreferrer" width="50px" height="50px" src="<?php $orders->logo() ?>"></td>
-											<td><?php $orders->rel(); ?></td>
+											<td><?php $orders->position(); ?></td>
 											<td><?php $orders->order(); ?></td>
 											<td><?php $orders->status(); ?></td>
 											<td><?php $orders->create_time(); ?></td>

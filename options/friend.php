@@ -16,15 +16,6 @@ $JFriends = new \Typecho\Widget\Helper\Form\Element\Hidden(
 $JFriends->setAttribute('class', 'joe_content joe_friend');
 $form->addInput($JFriends);
 
-$JIndexFriends = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JIndexFriends',
-	array('on' => '开启（默认）', 'off' => '关闭'),
-	'on',
-	'是否开启首页底部友情链接模块'
-);
-$JIndexFriends->setAttribute('class', 'joe_content joe_friend');
-$form->addInput($JIndexFriends->multiMode());
-
 $JFriends_Submit = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JFriends_Submit',
 	array('off' => '关闭（默认）', 'on' => '开启'),

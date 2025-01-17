@@ -176,6 +176,9 @@ class JoeFriends_Widget extends Typecho_Widget implements Widget_Interface_Do
 	public function filter(array $value)
 	{
 		$value['status'] = $value['status'] ? '已通过' : '<font color="red">待审核</font>';
+		if (!empty($value['position'])) {
+			$value['position'] = str_replace(['index_bottom', 'single'], ['首页底部', '独立页面'], $value['position']);
+		}
 		return $value;
 	}
 

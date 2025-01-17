@@ -324,7 +324,8 @@
 - 本次更新后请手动执行以下MySQL语句
 
 ```sql
-ALTER TABLE `blog_friends` ADD `position` VARCHAR(255) NULL DEFAULT NULL AFTER `email`;
+ALTER TABLE `typecho_friends` ADD `position` VARCHAR(255) NULL DEFAULT NULL AFTER `email`;
+UPDATE `typecho_friends` SET `position`='single';
 RENAME TABLE `typecho_joe_pay` to `typecho_orders`;
 ALTER TABLE `typecho_orders` CHANGE `ip` `ip` VARCHAR(128);
 ```

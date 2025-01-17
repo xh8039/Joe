@@ -17,9 +17,9 @@ if ($this->options->JMusic == 'on') {
 	<?php
 }
 
-if ($this->options->JIndexFriends == 'on' && $this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\detectSpider())) {
+if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\detectSpider())) {
 	$db = Typecho_Db::get();
-	$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->order('order', Typecho_Db::SORT_DESC));
+	$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->where("FIND_IN_SET('index_bottom',position)")->order('order', Typecho_Db::SORT_DESC));
 	if (sizeof($friends) > 0) : ?>
 		<div class="container fluid-widget">
 			<div class="links-widget mb20">

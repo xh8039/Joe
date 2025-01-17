@@ -789,7 +789,8 @@
 		display: none;
 	}
 
-	html .joe_list__item {
+	html .joe_list__item,
+	html .joe_list__loading .item {
 		padding: 10px;
 		margin-bottom: 10px;
 	}

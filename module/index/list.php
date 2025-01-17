@@ -57,7 +57,6 @@ if ($this->options->JIndex_Ajax_List == 'on') {
 							<p></p>
 							<p></p>
 							<p></p>
-							<p></p>
 						<!-- </div> -->
 					</div>
 				</li>

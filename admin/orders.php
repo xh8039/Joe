@@ -33,7 +33,7 @@ function location()
 }
 
 if ($action == 'index') {
-	require_once __DIR__ . '/orders/index.php';
+	require_once __DIR__ . '/orders/table.php';
 }
 
 if ($action == 'delete') {

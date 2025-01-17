@@ -53,7 +53,7 @@ function getFriends(array $id)
 }
 
 if ($action == 'index') {
-	require_once __DIR__ . '/friends/index.php';
+	require_once __DIR__ . '/friends/table.php';
 }
 
 if ($action == 'create' || $action == 'edit') {

@@ -29,7 +29,10 @@ if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\de
 					$friends = array_values($friends);
 					foreach ($friends as $key => $item) : ?>
 						<a rel="<?= $item['rel'] ?? '' ?>" target="_blank" class="<?= $key ? 'icon-spot' : null ?>" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="<?= $item['description'] ?? '暂无简介' ?>" href="<?= $item['url'] ?>" data-original-title="<?= $item['title'] ?>"><?= $item['title'] ?></a>
-					<?php endforeach; ?>
+					<?php endforeach;
+					$friends_page = $db->fetchRow($db->select()->from('table.contents')->where('type = ?', 'page')->where('template = ?', 'friends.php')->where('status = ?', 'publish')->limit(1));
+					?>
+					<a class="icon-spot" href="<?= $friends_page['slug'] ?>">查看更多</a>
 				</div>
 			</div>
 		</div>

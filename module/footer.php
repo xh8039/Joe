@@ -32,8 +32,7 @@ if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\de
 					<?php endforeach;
 					$friends_page = $db->fetchRow($db->select()->from('table.contents')->where('type = ?', 'page')->where('template = ?', 'friends.php')->where('status = ?', 'publish')->limit(1));
 					$friends_page_pathinfo = Typecho\Router::url('page', $friends_page);
-					?>
-					<a class="icon-spot" href="<?= Typecho\Common::url($friends_page_pathinfo, $this->options->index) ?>">查看更多</a>
+					?><a class="icon-spot" href="<?= Typecho\Common::url($friends_page_pathinfo, $this->options->index) ?>">查看更多</a>
 				</div>
 			</div>
 		</div>

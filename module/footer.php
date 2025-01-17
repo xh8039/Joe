@@ -31,9 +31,9 @@ if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\de
 						<a rel="<?= $item['rel'] ?? '' ?>" target="_blank" class="<?= $key ? 'icon-spot' : null ?>" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="<?= $item['description'] ?? '暂无简介' ?>" href="<?= $item['url'] ?>" data-original-title="<?= $item['title'] ?>"><?= $item['title'] ?></a>
 					<?php endforeach;
 					$friends_page = $db->fetchRow($db->select()->from('table.contents')->where('type = ?', 'page')->where('template = ?', 'friends.php')->where('status = ?', 'publish')->limit(1));
-					$friends_page_slug = Typecho\Router::url('page', $friends_page);
+					$friends_page_pathinfo = Typecho\Router::url('page', $friends_page);
 					?>
-					<a class="icon-spot" href="<?= Typecho\Common::url($friends_page_slug, $this->options->index) ?>">查看更多</a>
+					<a class="icon-spot" href="<?= Typecho\Common::url($friends_page_pathinfo, $this->options->index) ?>">查看更多</a>
 				</div>
 			</div>
 		</div>

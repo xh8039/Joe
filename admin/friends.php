@@ -69,6 +69,7 @@ if ($action == 'insert') {
 			'description' =>  $_POST['description'],
 			'rel' =>  $_POST['rel'],
 			'email' => $_POST['email'],
+			'position' => implode(',', $_POST['position']),
 			'order' =>  $_POST['order'],
 			'status' =>  $_POST['status']
 		)
@@ -91,6 +92,7 @@ if ($action == 'update') {
 				'description' =>  $_POST['description'],
 				'rel' =>  $_POST['rel'],
 				'email' => $_POST['email'],
+				'position' => implode(',', $_POST['position']),
 				'order' =>  $_POST['order'],
 				'status' =>  $_POST['status']
 			)

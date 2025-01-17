@@ -29,7 +29,7 @@ $JFriends_Submit = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JFriends_Submit',
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',
-	'是否开启友情链接在线申请',
+	'是否开启友情链接在线提交',
 	'注意：需正确配置邮箱 否则收不到申请'
 );
 $JFriends_Submit->setAttribute('class', 'joe_content joe_friend');

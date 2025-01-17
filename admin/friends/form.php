@@ -51,7 +51,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 				$form->addInput($position);
 
 				/** 友链状态 */
-				$status = new Typecho\Widget\Helper\Form\Element\Radio('status', ['0' => '禁用', '1' => '启用'], '1', '友链状态', '注意：此处编辑友链状态不会邮箱通知对方');
+				$status = new Typecho\Widget\Helper\Form\Element\Radio('status', ['1' => '启用', '0' => '禁用'], '1', '友链状态', '注意：此处编辑友链状态不会邮箱通知对方');
 				$form->addInput($status);
 
 				/** 友链动作 */

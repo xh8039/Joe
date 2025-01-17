@@ -772,7 +772,7 @@ function install()
 {
 	if (PHP_VERSION < 7.4) throw new \Typecho\Exception('请使用 PHP 7.4 及以上版本！');
 
-	if (\Typecho\Common::VERSION < '1.2') throw new \Typecho\Exception('请使用 Typecho 1.2 及以上版本！');
+	if (\Typecho\Common::VERSION < 1.2) throw new \Typecho\Exception('请使用 Typecho 1.2.0 及以上版本！');
 
 	$_db = Typecho_Db::get();
 	if ((float) $_db->getVersion() < 5.6) throw new \Typecho\Exception('请使用 MySql 5.6 及以上版本！');
@@ -984,8 +984,7 @@ function install()
 		$_db->query($theme_install);
 		echo '<script>alert("主题首次启用安装成功！");</script>';
 	} catch (\Exception $e) {
-		throw new \Typecho_Exception($e);
-		exit;
+		throw new \Typecho\Exception($e);
 	}
 }
 

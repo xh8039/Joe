@@ -73,8 +73,8 @@ $waiting_count = waiting_count();
 								<col width="200px" />
 								<col width="80px" />
 								<col width="80px" />
-								<col width="50px" />
 								<col width="70px" />
+								<col width="50px" />
 								<col width="150px" />
 							</colgroup>
 							<thead>
@@ -85,8 +85,8 @@ $waiting_count = waiting_count();
 									<th>站点简介</th>
 									<th>LOGO</th>
 									<th>位置</th>
-									<th>排序</th>
 									<th>状态</th>
+									<th>排序</th>
 									<th>创建时间</th>
 								</tr>
 							</thead>
@@ -103,8 +103,8 @@ $waiting_count = waiting_count();
 											<td><?php $orders->description() ?></td>
 											<td><img referrerpolicy="no-referrer" rel="noreferrer" width="50px" height="50px" src="<?php $orders->logo() ?>"></td>
 											<td><?php $orders->position(); ?></td>
-											<td><?php $orders->order(); ?></td>
 											<td><?php $orders->status(); ?></td>
+											<td><?php $orders->order(); ?></td>
 											<td><?php $orders->create_time(); ?></td>
 										</tr>
 									<?php endwhile; ?>

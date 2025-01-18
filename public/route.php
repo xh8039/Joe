@@ -449,8 +449,8 @@ function _pushBing($self)
 function _getWallpaperType($self)
 {
 	$self->response->setStatus(200);
-	$WallpaperAPI = joe\optionMulti(Helper::options()->WallpaperAPI, '||');
-	$api = empty($WallpaperAPI[0]) ? 'http://cdn.apc.360.cn/index.php' : $WallpaperAPI[0];
+	$WallpaperAPI = joe\optionMulti(Helper::options()->WallpaperAPI, '||', null, ['type', 'list']);
+	$api = $WallpaperAPI['type'] ?? 'http://cdn.apc.360.cn/index.php';
 	$res = \network\http\get($api . "?c=WallPaper&a=getAllCategoriesV2&from=360chrome")->toArray();
 	if (is_array($res) && $res['errno'] == 0) {
 		$self->response->throwJson([
@@ -472,8 +472,8 @@ function _getWallpaperList($self)
 	$cid = $self->request->cid;
 	$start = $self->request->start;
 	$count = $self->request->count;
-	$WallpaperAPI = joe\optionMulti(Helper::options()->WallpaperAPI, '||');
-	$api = empty($WallpaperAPI[1]) ? 'http://wallpaper.apc.360.cn/index.php' : $WallpaperAPI[1];
+	$WallpaperAPI = joe\optionMulti(Helper::options()->WallpaperAPI, '||', null, ['type', 'list']);
+	$api = $WallpaperAPI['list'] ?? 'http://wallpaper.apc.360.cn/index.php';
 	$res = \network\http\get($api . "?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome")->toArray();
 	if (is_array($res) && $res['errno'] == 0) {
 		$self->response->throwJson([

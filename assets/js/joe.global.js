@@ -497,7 +497,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;
 			if (url.startsWith('/')) url = location.origin + url;
-			console.log(url);
 			NProgress.start();
 			Turbolinks.visit(url);
 		});

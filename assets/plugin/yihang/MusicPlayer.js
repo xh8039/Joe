@@ -22,6 +22,9 @@ class MusicPlayer {
 	 * 初始化播放器
 	 */
 	init() {
+
+		console.log('调用：MusicPlayer');
+
 		// 优化全部音乐信息
 		this.setMusic()
 

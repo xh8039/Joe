@@ -43,7 +43,7 @@ if ($this->options->IndexAjaxList == 'on') {
 			</div>
 		<?php endif; ?>
 	</div>
-	<div class="joe_index__list" data-wow="<?php $this->options->JList_Animate() ?>">
+	<div class="joe_index__list" data-wow="<?php $this->options->JListAnimate() ?>">
 		<ul class="joe_list"></ul>
 		<ul class="joe_list__loading">
 			<?php

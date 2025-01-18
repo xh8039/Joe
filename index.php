@@ -24,8 +24,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '"></script>';
 	}
 	$this->need('module/head.php');
+	if ($this->options->JListAnimate != 'off') echo '<script src="' . joe\cdn('wow/1.1.2/wow.min.js') . '"></script>';
 	?>
-	<script src="<?= joe\cdn('wow/1.1.2/wow.min.js') ?>"></script>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.index.css'); ?>">
 	<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>
 </head>

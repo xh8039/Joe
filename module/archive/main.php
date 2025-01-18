@@ -15,7 +15,7 @@
         </div>
 
         <?php if ($this->have()) : ?>
-            <ul class="joe_archive__list joe_list" data-wow="<?php $this->options->JList_Animate() ?>">
+            <ul class="joe_archive__list joe_list" data-wow="<?php $this->options->JListAnimate() ?>">
                 <?php $this->need('module/archive/list.php') ?>
             </ul>
         <?php else : ?>

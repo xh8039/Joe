@@ -124,8 +124,8 @@ $JFooter_Fish = new \Typecho\Widget\Helper\Form\Element\Select(
 $JFooter_Fish->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JFooter_Fish->multiMode());
 
-$JList_Animate = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JList_Animate',
+$JListAnimate = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JListAnimate',
 	array(
 		'off' => '关闭（默认）',
 		'bounce' => 'bounce',
@@ -205,11 +205,11 @@ $JList_Animate = new \Typecho\Widget\Helper\Form\Element\Select(
 		'slideOutUp' => 'slideOutUp',
 	),
 	'off',
-	'选择一款炫酷的列表动画',
-	'介绍：开启后，列表将会显示所选择的炫酷动画'
+	'文章列表动画',
+	'介绍：开启后，文章列表将会显示所选择的炫酷动画'
 );
-$JList_Animate->setAttribute('class', 'joe_content joe_decoration');
-$form->addInput($JList_Animate->multiMode());
+$JListAnimate->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JListAnimate->multiMode());
 
 $JLive2d = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLive2d',

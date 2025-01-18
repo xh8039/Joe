@@ -132,11 +132,10 @@ function _parseContent($post, $content = null)
 		if (Helper::options()->JPostLinkRedirect == 'on') {
 			// 使用正则表达式匹配链接并直接进行替换
 			$content = preg_replace_callback(
-				'/<a href\="([^\s]*?)"/',
+				'/<a href\="http([^\s]*?)"/',
 				function ($matches) use ($post_cid) {
-					if (str_starts_with($matches[1], 'javascript:')) return $matches[0];
-					if (str_starts_with($matches[1], '/')) return $matches[0];
-					$redirect_link = joe\ExternaToInternalLink($matches[1], $post_cid);
+					$url = 'http' . $matches[1];
+					$redirect_link = joe\ExternaToInternalLink($url, $post_cid);
 					return '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';
 				},
 				$content

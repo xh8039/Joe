@@ -14,7 +14,7 @@ if ($this->options->JMusic == 'on') {
 }
 ?>
 
-<div class="joe_action">
+<div class="joe_action" data-turbolinks-permanent id="data-turbolinks-permanent-joe-action">
 	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" data-original-title="返回顶部">
 		<i class="fa fa-angle-up em12"></i>
 	</div>

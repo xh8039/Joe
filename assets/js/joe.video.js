@@ -188,5 +188,4 @@ Joe.DOMContentLoaded.video = () => {
         }
     }
 }
-document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.video);
-document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.video);
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.video);

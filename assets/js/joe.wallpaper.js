@@ -78,5 +78,4 @@ Joe.DOMContentLoaded.wallpaper = () => {
 		renderDom();
 	});
 }
-document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.wallpaper);
-document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.wallpaper);
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.wallpaper);

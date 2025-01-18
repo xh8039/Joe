@@ -308,8 +308,7 @@ Joe.DOMContentLoaded.single = () => {
 	}
 };
 
-document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.single);
-document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.single);
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.single);
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
 window.addEventListener('load', function () {

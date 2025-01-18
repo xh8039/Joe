@@ -324,5 +324,4 @@ Joe.DOMContentLoaded.index = () => {
 		if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
 	}
 }
-document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.index);
-document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.index);
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.index);

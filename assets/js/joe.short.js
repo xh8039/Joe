@@ -748,5 +748,4 @@ Joe.DOMContentLoaded.short = () => {
 
 	$('.joe_detail__article p:empty').remove();
 }
-document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.short);
-document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.short);
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short);

@@ -1138,5 +1138,4 @@ Joe.DOMContentLoaded.global = () => {
 		});
 	}
 }
-document.addEventListener("DOMContentLoaded", Joe.DOMContentLoaded.global);
-document.addEventListener("turbolinks:load", Joe.DOMContentLoaded.global);
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.global);

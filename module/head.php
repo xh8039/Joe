@@ -66,7 +66,7 @@ if ($this->options->JLoading != 'off') : ?>
 	<?php if ($this->options->JMusic == 'on') : ?>
 		<script src="<?= joe\theme_url('assets/plugin/Meting.js', false) ?>" data-turbolinks-permanent id="script-Meting"></script>
 	<?php endif; ?>
-	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>" data-turbolinks-permanent id="script-MusicPlayer"></script>
+	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js', false); ?>" data-turbolinks-permanent id="script-MusicPlayer"></script>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>

@@ -81,22 +81,19 @@ if (window.Joe.options.JLoading == 'on') {
 	}
 }
 
-function loadJS(url, callback = function () { }) {
-	window.loadJSList = window.loadJSList ? window.loadJSList : {};
-	if (!loadJSList[url]) {
-		var script = document.createElement('script');
+window.Joe.loadJS = (url, callback = function () { })=>{
+	window.Joe.loadJSList = window.Joe.loadJSList ? window.Joe.loadJSList : {};
+	if (!Joe.loadJSList[url]) {
+		let script = document.createElement('script');
 		script.type = 'text/javascript';
 		script.addEventListener('load', callback);
 		script.src = url;
 		document.getElementsByTagName('head')[0].appendChild(script);
-		loadJSList[url] = script;
+		Joe.loadJSList[url] = script;
 	} else {
-		var script = loadJSList[url];
+		let script = Joe.loadJSList[url];
 		script.addEventListener('load', callback);
 	}
-	// 检查元素是否存在，如果存在，则删除，浏览器不会重复载入
-	// const existingScript = document.querySelector(`script[src="${url}"]`);
-	// if (existingScript) existingScript.remove();
 }
 
 function isElementInViewport(element) {

@@ -55,6 +55,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					pagination: false,
 				});
 			}
+			if (options.pjax == 'archive-pagination') {
+				$('.joe_pagination>li>a[href]').attr('data-turbolinks', 'false');
+			}
 			if (options.pjax == 'global') {
 				console.log(options);
 				// HTMLDocument(<html><body>...parsed nodes</body></html>)

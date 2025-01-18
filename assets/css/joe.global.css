@@ -3199,7 +3199,14 @@
 .joe_detail__article h3+section,
 .joe_detail__article h4+section,
 .joe_detail__article h5+section,
-.joe_detail__article h6+section {
+.joe_detail__article h6+section,
+
+.joe_detail__article h1+blockquote,
+.joe_detail__article h2+blockquote,
+.joe_detail__article h3+blockquote,
+.joe_detail__article h4+blockquote,
+.joe_detail__article h5+blockquote,
+.joe_detail__article h6+blockquote {
 	margin-top: 14px !important;
 }
 

@@ -73,7 +73,7 @@ if (!empty(\Helper::options()->JMailApi)) {
 	$JMailApi = joe\optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'name', 'content', 'email', 'code', '200', 'message']);
 	$JMailApiOptions = '<br>
 	<span style="color:#409eff">
-	现在的配置：<br>
+	现在的配置<br>
 	对接地址：' . $JMailApi['url'] . '<br>
 	标题字段：' . $JMailApi['title'] . '<br>
 	发件昵称字段：' . $JMailApi['name'] . '<br>

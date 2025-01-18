@@ -89,7 +89,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 					$rel->value($link['rel']);
 					$email->value($link['email']);
 					$order->value($link['order']);
-					$position->value(explode(',', $link['position']));
+					$position->value(explode(',', $link['position'] ?? ''));
 					$status->value($link['status']);
 					$do->value('update');
 					$id->value($link['id']);

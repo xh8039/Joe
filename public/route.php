@@ -733,6 +733,7 @@ function _friendSubmit($self)
 		'logo' =>  $logo,
 		'description' => $description,
 		'email' => $email,
+		'position' => 'single'
 	]);
 	if ($db->query($sql)) {
 		if (Helper::options()->JFriendEmail == 'on') {

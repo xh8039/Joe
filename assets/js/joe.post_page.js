@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活代码高亮 */
 	{
-		window.Prism.plugins.autoloader.languages_path = Joe.CDN(`prism/1.9.0/components/`);
 		Prism.highlightAll(); 
 		$("pre[class*='language-']").each(function (index, item) {
 			let text = $(item).find("code[class*='language-']").text().replace(/    /g, '	');

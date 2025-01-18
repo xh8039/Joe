@@ -1151,6 +1151,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	if (window.Turbolinks) {
 		$('body').on('click', 'a[href]:not([href=""])', function (event) {
+			console.log(window.Joe.checkUrl(this))
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;

@@ -2,7 +2,6 @@ if (!window.Joe) window.Joe = {};
 
 window.Joe.checkUrl = (string) => {
 	try {
-		console.log(string);
 		if (string instanceof Element) {
 			if ($(this).attr('target') == '_blank') return false;
 			if ($(this).attr('ajax-replace')) return false;

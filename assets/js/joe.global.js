@@ -1123,6 +1123,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	/* NProgress.js */
 	if (window.NProgress) {
+		NProgress.configure({ trickleSpeed: 10 });
 		$(document).on('turbolinks:click', function () {
 			NProgress.start();
 		});
@@ -1133,7 +1134,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		if (window.Joe.options.NProgressJS == 'on') {
 			$('body').on('click', 'a[href]:not([href=""])', function (e) {
 				if (window.Joe.checkUrl(this)) {
-					NProgress.configure({ trickleSpeed: 10 });
 					NProgress.start();
 					window.addEventListener('visibilitychange', function () {
 						if (document.visibilityState === 'hidden') NProgress.done();

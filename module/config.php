@@ -32,9 +32,9 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		},
 		startTime: performance.now(),
-		DOMContentLoaded: window.Joe.DOMContentLoaded ? window.Joe.DOMContentLoaded : {},
 		options: <?= $options ?>,
 	}
+	window.Joe.DOMContentLoaded = window.Joe?.DOMContentLoaded ? window.Joe.DOMContentLoaded : {};
 	Joe.options.BaiduPush = <?= empty($this->options->BaiduPushToken) ? 'false' : 'true' ?>;
 	Joe.options.BingPush = <?= empty($this->options->BingPushToken) ? 'false' : 'true' ?>;
 	Joe.options.commentsAntiSpam = <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null' ?>;

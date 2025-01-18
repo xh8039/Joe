@@ -106,13 +106,13 @@ function show_svg() {
     })
 }
 
-! function () {
+!function () {
     var svg = '';
     for (let key in zib_svgs) {
         svg += zib_svgs[key] ? '<symbol id="icon-' + key + '" viewBox="0 0 1024 1024">' + zib_svgs[key] + '</symbol>' : '';
     }
 
-    var i = '<svg id="svg-icons" aria-hidden="true" style="position:absolute;width:0px;height:0px;overflow:hidden;">' + svg + '</svg>';
+    var i = '<svg data-turbolinks-permanent id="svg-icons" aria-hidden="true" style="position:absolute;width:0px;height:0px;overflow:hidden;">' + svg + '</svg>';
     if (!$('svg#svg-icons').length) {
         $('body').prepend(i);
     }

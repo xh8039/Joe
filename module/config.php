@@ -11,7 +11,7 @@ foreach (['themeUrl', 'IndexAjaxList', 'BaiduPushToken', 'DynamicBackground', 'J
 $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 ?>
 <script>
-	window.Joe = {
+	window.Joe = Object.assign(window?.Joe ? window.Joe : {}, {
 		THEME_URL: `<?= joe\theme_url('', false) ?>`,
 		BASE_API: `<?= joe\index('joe/api', '//') ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
@@ -34,7 +34,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 		startTime: performance.now(),
 		DOMContentLoaded: window.Joe?.DOMContentLoaded ? window.Joe.DOMContentLoaded : {},
 		options: <?= $options ?>,
-	}
+	});
 	Joe.options.BaiduPush = <?= empty($this->options->BaiduPushToken) ? 'false' : 'true' ?>;
 	Joe.options.BingPush = <?= empty($this->options->BingPushToken) ? 'false' : 'true' ?>;
 	Joe.options.commentsAntiSpam = <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null' ?>;

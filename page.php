@@ -17,8 +17,8 @@ $this->need('module/single/pjax.php');
 </head>
 
 <body>
+	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
-		<?php $this->need('module/header.php'); ?>
 		<div class="joe_container">
 			<div class="joe_main">
 				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">

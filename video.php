@@ -21,8 +21,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 </head>
 
 <body>
+	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
-		<?php $this->need('module/header.php'); ?>
 		<div class="joe_container">
 			<div class="joe_main">
 				<?php if (isset($_GET['vod_id'])) : ?>

@@ -16,8 +16,8 @@ $this->need('module/archive/pjax.php');
 
 <body>
 	<h1 style="display:none"><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php if ($this->_currentPage > 1) echo '第 ' . $this->_currentPage . ' 页 - '; ?><?php $this->options->title(); ?></h1>
+	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
-		<?php $this->need('module/header.php'); ?>
 		<div class="joe_container">
 			<?php $this->need('module/archive/main.php'); ?>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>

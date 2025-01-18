@@ -15,11 +15,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 </head>
 
 <body>
+	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
-		<?php
-		$this->need('module/header.php');
-		$referer = empty($_GET['referer']) ? '/' : urlencode(strip_tags($_GET['referer']));
-		?>
+		<?php $referer = empty($_GET['referer']) ? '/' : urlencode(strip_tags($_GET['referer'])); ?>
 		<div class="container">
 			<div>
 				<div class="card-body">

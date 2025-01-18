@@ -57,7 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活代码高亮 */
 	{
-		Prism.highlightAll();
+		Prism.plugins.autoloader.languages_path = Joe.CDN(`prism/1.9.0/components/`);
+		Prism.highlightAll(); 
 		$("pre[class*='language-']").each(function (index, item) {
 			let text = $(item).find("code[class*='language-']").text().replace(/    /g, '	');
 			let span = $(`<span data-toggle="tooltip" data-placement="top" title="点击复制" class="copy"><i class="fa fa-clone"></i></span>`);

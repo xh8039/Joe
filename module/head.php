@@ -50,8 +50,8 @@ if ($this->options->JLoading != 'off') : ?>
 <?php $this->need('module/config.php'); ?>
 
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>"></script>
 <?php if ($this->is('single')) : ?>
-	<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>"></script>
 	<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>"></script>
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>

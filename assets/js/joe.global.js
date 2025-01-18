@@ -55,9 +55,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					pagination: false,
 				});
 			}
-			if (options.pjax == 'archive-pagination') {
-				$('.joe_pagination>li>a[href]').attr('data-turbolinks', 'false');
-			}
 			if (options.pjax == 'global') {
 				console.log(options);
 				// HTMLDocument(<html><body>...parsed nodes</body></html>)
@@ -533,7 +530,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		// })
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
-			if ($(this).attr('data-turbolinks') == 'false') return true;
+			console.log($(this).attr('data-pjax-state'));
+			if ($(this).attr('data-pjax-state')) return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;
 			if (url.startsWith('/')) url = location.origin + url;

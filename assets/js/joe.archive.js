@@ -26,7 +26,6 @@ Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoad
 			cacheBust: false,
 			scrollTo: 0,
 		});
-		$('.joe_pagination>li>a[href]').attr('data-turbolinks', 'false');
 		document.addEventListener('pjax:send', (options) => {
 			if (options.pjax != 'archive-pagination') return;
 			$('.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');

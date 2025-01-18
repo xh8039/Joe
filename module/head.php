@@ -79,7 +79,7 @@ if ($this->options->JLoading != 'off') : ?>
 	<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>"></script> -->
 	<script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>"></script>
-	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" defer></script>
+	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 <?php endif; ?>
 
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" defer></script>

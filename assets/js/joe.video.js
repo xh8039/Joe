@@ -1,4 +1,4 @@
-Joe.DOMContentLoaded.video = () => {
+Joe.DOMContentLoaded.video = Joe.DOMContentLoaded.video ? Joe.DOMContentLoaded.video : () => {
     const p = new URLSearchParams(window.location.search);
     const vod_id = p.get('vod_id');
 

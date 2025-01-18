@@ -1,4 +1,4 @@
-Joe.DOMContentLoaded.global = () => {
+Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded.global : () => {
 	/* 检测IE */
 	{
 		function detectIE() {

@@ -1,4 +1,4 @@
-Joe.DOMContentLoaded.census = () => {
+Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded.census : () => {
 	{
 		/* 转换字节 */
 		const bytesToSize = bytes => {

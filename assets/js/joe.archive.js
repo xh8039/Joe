@@ -1,5 +1,5 @@
 /* 搜索页面需要用到的JS */
-Joe.DOMContentLoaded.archive = () => {
+Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoaded.archive : () => {
 
 	/* 激活列表特效 */
 	{

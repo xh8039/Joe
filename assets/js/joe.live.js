@@ -1,4 +1,4 @@
-Joe.DOMContentLoaded.live = () => {
+Joe.DOMContentLoaded.live = Joe.DOMContentLoaded.live ? Joe.DOMContentLoaded.live : () => {
 	const p = new URLSearchParams(window.location.search);
 	if (!p.get('profileRoom')) initLiveList();
 	function initLiveList() {

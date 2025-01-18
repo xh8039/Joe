@@ -1,5 +1,5 @@
 Prism.plugins.autoloader.languages_path = Joe.CDN(`prism/1.9.0/components/`);
-Joe.DOMContentLoaded.single = () => {
+Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded.single : () => {
 	const encryption = str => window.btoa(unescape(encodeURIComponent(str)));
 	const decrypt = str => decodeURIComponent(escape(window.atob(str)));
 

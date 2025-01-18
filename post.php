@@ -24,7 +24,7 @@ $this->need('module/single/pjax.php');
 </head>
 
 <body>
-	<div id="Joe">
+	<div id="Joe" data-pjax-state>
 		<?php
 		$this->need('module/header.php');
 		$this->need('module/post/image.php');

@@ -31,7 +31,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 <body>
 	<h1 style="display:none"><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php $this->options->title(); ?></h1>
-	<div id="Joe">
+	<div id="Joe" data-pjax-state>
 		<?php
 		$this->need('module/header.php');
 		$this->need('module/index/image.php');

@@ -1128,8 +1128,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				window.addEventListener('pagehide', function (event) {
 					NProgress.done();
 				});
+				window.addEventListener('visibilitychange', function () {
+					if (document.visibilityState === 'hidden') NProgress.done();
+				});
 				window.addEventListener('unload', function (event) {
-					// NProgress.done();
 					NProgress.remove();
 				});
 			}

@@ -743,11 +743,7 @@ function optionMulti($string, string $line = "\r\n", $separator = '||', $key = [
 	foreach ($customArr as $index => $value) {
 		$option = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
 		foreach ($key as $i => $val) {
-			if (is_string($separator)) {
-				$option[$val] = isset($option[$i]) ? $option[$i] : null;
-			} else {
-				$customArr[$val] = isset($customArr[$i]) ? $customArr[$i] : null;
-			}
+			if (is_string($separator)) $option[$val] = isset($option[$i]) ? $option[$i] : null;
 		}
 		if (!is_string($separator) && isset($key[$index])) {
 			$optionMulti[$key[$index]] = $option;

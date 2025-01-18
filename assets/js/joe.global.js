@@ -239,7 +239,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		});
 
 		// 每次都刷新的模态框
-		$('body').on('click', '[data-toggle="RefreshModal"]', function () {
+		$(document).on('click', '[data-toggle="RefreshModal"]', function () {
 			var _this = $(this);
 			var dataclass = _this.attr('data-class') || '';
 			var remote = _this.attr('data-remote');

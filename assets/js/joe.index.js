@@ -322,4 +322,3 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 	}
 }
 document.addEventListener(window.Turbolinks ? 'turbolinks:render' : 'DOMContentLoaded', Joe.DOMContentLoaded.index);
-Joe.DOMContentLoaded.index();

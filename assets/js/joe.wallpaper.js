@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('.joe_wallpaper__pagination').html(htmlStr);
 	}
 	$('.joe_wallpaper__pagination').on('click', '.joe_wallpaper__pagination-item', function () {
+		$('.joe_wallpaper__pagination-item').removeClass('active');
+		$(this).addClass('active');
 		const start = $(this).attr('data-start');
 		if (!start || isLoading) return;
 		queryData.start = Number(start);

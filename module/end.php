@@ -14,7 +14,7 @@ if ($this->options->JMusic == 'on') {
 		window.meting_api = `<?= empty($this->options->JMusicApi) ? '${Joe.BASE_API}/joe/api?routeType=meting&server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>`
 	</script>
 	<script src="<?= joe\theme_url('assets/plugin/Meting.js'); ?>"></script>
-	<?php
+<?php
 }
 ?>
 
@@ -104,23 +104,25 @@ if (!empty($footer_tabbar)) {
 		?>
 	</div>
 	<script data-turbo-permanent>
-		const height = document.querySelector('.footer-tabbar').clientHeight;
+		(function() {
+			const height = document.querySelector('.footer-tabbar').clientHeight;
 
-		if (document.querySelector('.joe_action')) {
-			document.querySelector('.joe_action').style.bottom = (height + <?= $joe_action_bottom ?>) + 'px'
-		}
+			if (document.querySelector('.joe_action')) {
+				document.querySelector('.joe_action').style.bottom = (height + <?= $joe_action_bottom ?>) + 'px'
+			}
 
-		if (document.getElementById('cc-myssl-seal')) {
-			document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
-		}
+			if (document.getElementById('cc-myssl-seal')) {
+				document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
+			}
 
-		document.querySelector('.joe_header__slideout').style.height = `calc(var(--vh, 1vh) * 100 - ${(height + document.querySelector('.joe_header').clientHeight)}px)`;
+			document.querySelector('.joe_header__slideout').style.height = `calc(var(--vh, 1vh) * 100 - ${(height + document.querySelector('.joe_header').clientHeight)}px)`;
 
-		var aplayerStyle = document.createElement('style');
-		aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${height + 10}px}`;
-		$('head').append(aplayerStyle);
+			var aplayerStyle = document.createElement('style');
+			aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${height + 10}px}`;
+			$('head').append(aplayerStyle);
 
-		document.querySelector('body').style.paddingBottom = height + 'px';
+			document.querySelector('body').style.paddingBottom = height + 'px';
+		})();
 	</script>
 <?php
 }

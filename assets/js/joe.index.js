@@ -288,7 +288,6 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 						// a标签点击后的离开Loading动画
 						if (window.Joe.offLoading) window.Joe.offLoading();
 						if (window.Joe.tooltip) window.Joe.tooltip('.joe_index__list');
-						if (window.Turbolinks) Turbolinks.start();
 						$('.joe_load').removeAttr('loading');
 						$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
 						$('.joe_index__list .joe_list__loading').hide();

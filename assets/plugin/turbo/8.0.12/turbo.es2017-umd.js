@@ -1426,6 +1426,7 @@ Copyright © 2024 37signals LLC
   }
 
   function getPermanentElementById(node, id) {
+    console.log(node.querySelector(`[id='${id}'][data-turbo-permanent]`))
     return node.querySelector(`[id='${id}'][data-turbo-permanent]`)
   }
 

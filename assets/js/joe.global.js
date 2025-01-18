@@ -58,7 +58,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (options.pjax == 'global') {
 				const responseDocument = (new DOMParser()).parseFromString(options.request.responseText, 'text/html');
 				$(responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
-					let url = this.src;
+					let url = this.src ? this.src.trim() : null;
 					if (!url) return;
 					console.log(`script[src="${url}"]`);
 					let script = document.querySelector(`script[src="${url}"]`);

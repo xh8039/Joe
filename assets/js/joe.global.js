@@ -1146,7 +1146,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			});
 		}
 	}
-
+	console.log(Joe.DOMContentLoaded.global);
 	if (window.Turbolinks && Joe.DOMContentLoaded.global == undefined) {
 		document.addEventListener('turbolinks:request-start', function (event) {
 			event.data.xhr.setRequestHeader('X-Turbolinks', 'true')

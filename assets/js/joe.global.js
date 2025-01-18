@@ -474,7 +474,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/** 初始化评论 */
 	{
-		window.Joe.initComment();
+		if (window.Joe.initComment) window.Joe.initComment();
 		if ($('#comment_module>.joe_pagination a').length) {
 			document.addEventListener('pjax:send', (options) => {
 				if (options.pjax != "comment-pagination") return;
@@ -494,14 +494,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (window.Joe.avatarOnError) window.Joe.avatarOnError();
 			$(".comment-list [data-toggle='popover']").popover();
 			if (options.pjax == 'comment-submit' || options.pjax == 'comment-pagination') {
-				Joe.initComment({
+				if (Joe.initComment) Joe.initComment({
 					draw: false,
 					owo: false,
 					submit: false
 				});
 			}
 			if (options.pjax == 'comment-auto-refresh') {
-				Joe.initComment({
+				if (Joe.initComment) Joe.initComment({
 					draw: false,
 					owo: false,
 					submit: false,

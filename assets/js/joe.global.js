@@ -22,6 +22,194 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		jQuery.ajaxSetup({ cache: true });
 	}
 
+	/* 初始化昼夜模式 */
+	{
+		if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
+		} else {
+			$("html").removeAttr("data-night");
+		}
+		if (document.querySelector('.toggle-theme')) {
+			$(".toggle-theme").on("click", () => {
+				$(".joe_action_item.mode").click();
+			});
+		}
+		if (document.querySelector('.joe_action_item.mode')) {
+			if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
+				$(".joe_action_item.mode .icon-1").addClass("active");
+				$(".joe_action_item.mode .icon-2").removeClass("active");
+				$('body').addClass('dark-theme');
+				let switchSrc = $('.navbar-logo>img').attr('switch-src');
+				let src = $('.navbar-logo>img').attr('src');
+				$('.navbar-logo>img').attr('src', switchSrc);
+				$('.navbar-logo>img').attr('switch-src', src);
+				if (!Joe.IS_MOBILE) {
+					$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+					$(".joe_action_item.mode").tooltip({
+						container: "body"
+					});
+				}
+			} else {
+				$(".joe_action_item.mode .icon-1").removeClass("active");
+				$(".joe_action_item.mode .icon-2").addClass("active");
+				$('body').removeClass('dark-theme');
+				if (!Joe.IS_MOBILE) {
+					$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+					$(".joe_action_item.mode").tooltip({
+						container: "body"
+					});
+				}
+			}
+			$(".joe_action_item.mode").on("click", () => {
+				let switchSrc = $('.navbar-logo>img').attr('switch-src');
+				let src = $('.navbar-logo>img').attr('src');
+				$('.navbar-logo>img').attr('src', switchSrc);
+				$('.navbar-logo>img').attr('switch-src', src);
+				if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
+					$(".joe_action_item.mode .icon-1").removeClass("active");
+					$(".joe_action_item.mode .icon-2").addClass("active");
+					$('body').removeClass('dark-theme');
+					$("html").removeAttr("data-night");
+					localStorage.removeItem("data-night");
+					if (!Joe.IS_MOBILE) {
+						$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+						$(".joe_action_item.mode").tooltip({
+							container: "body"
+						});
+					}
+				} else {
+					$(".joe_action_item.mode .icon-1").addClass("active");
+					$(".joe_action_item.mode .icon-2").removeClass("active");
+					$('body').addClass('dark-theme');
+					$("html").attr("data-night", "night");
+					localStorage.setItem("data-night", "night");
+					if (!Joe.IS_MOBILE) {
+						$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+						$(".joe_action_item.mode").tooltip({
+							container: "body"
+						});
+					}
+				}
+			});
+		}
+	}
+
+	/* 搜索框弹窗 */
+	{
+		$(".joe_header__above-search .input").on("click", (e) => {
+			e.stopPropagation();
+			$(".joe_header__above-search .result").addClass("active");
+		});
+		$(document).on("click", function () {
+			$(".joe_header__above-search .result").removeClass("active");
+		});
+	}
+
+	/* 激活全局返回顶部功能 */
+	{
+		$(".joe_action_item.scroll").on("click", () => window.scrollTo({
+			top: 0,
+			behavior: "smooth"
+		}));
+	}
+
+	/* 小屏幕伸缩侧边栏 */
+	{
+		$(".joe_header__above-slideicon").on("click", function () {
+			/* 关闭搜索框 */
+			$(".joe_header__searchout").removeClass("active");
+			/* 处理开启关闭状态 */
+			if ($(".joe_header__slideout").hasClass("active")) {
+				$("body").css("overflow", "");
+				$('body').addClass('mobile-navbar-show');
+				$(".joe_header__mask").removeClass("active slideout");
+				$(".joe_header__slideout").removeClass("active");
+				$('.joe_header__above').css('box-shadow', '');
+			} else {
+				$("body").css("overflow", "hidden");
+				$('body').removeClass('mobile-navbar-show');
+				$(".joe_header__mask").addClass("active slideout");
+				$(".joe_header__slideout").addClass("active");
+				$('.joe_header__above').css('box-shadow', '0 10px 10px var(--main-shadow)');
+			}
+		});
+	}
+
+	/* 小屏幕搜索框 */
+	{
+		$(".joe_header__above-searchicon").on("click", function () {
+			/* 关闭侧边栏 */
+			$(".joe_header__slideout").removeClass("active");
+			$('.joe_header__above').css('box-shadow', '');
+			$('body').removeClass('mobile-navbar-show');
+			/* 处理开启关闭状态 */
+			if ($(".joe_header__searchout").hasClass("active")) {
+				$("body").css("overflow", "");
+				$(".joe_header__mask").removeClass("active slideout");
+				$(".joe_header__searchout").removeClass("active");
+			} else {
+				$("body").css("overflow", "hidden");
+				$(".joe_header__mask").addClass("active");
+				$(".joe_header__searchout").addClass("active");
+			}
+		});
+	}
+
+	/* 点击遮罩层关闭 */
+	{
+		$(".joe_header__mask").on("click", function () {
+			$("body").css("overflow", "");
+			$('body').removeClass('mobile-navbar-show');
+			$(".joe_header__mask").removeClass("active slideout");
+			$(".joe_header__searchout").removeClass("active");
+			$(".joe_header__slideout").removeClass("active");
+			$('.joe_header__above').css('box-shadow', '');
+		});
+	}
+
+	/* 移动端侧边栏菜单手风琴 */
+	{
+		$(".joe_header__slideout-menu .current").parents(".panel-body").show().siblings(".panel").addClass(
+			"in");
+		$(".joe_header__slideout-menu .panel").on("click", function () {
+			const panelBox = $(this).parent().parent();
+			/* 清除全部内容 */
+			panelBox.find(".panel").not($(this)).removeClass("in");
+			panelBox.find(".panel-body").not($(this).siblings(".panel-body")).stop().hide("fast");
+			/* 激活当前的内容 */
+			$(this).toggleClass("in").siblings(".panel-body").stop().toggle("fast");
+		});
+	}
+
+	/* 初始化网站运行时间 */
+	{
+		if (Joe.options.JBirthDay && /(\d{4})\/(\d{1,2})\/(\d{1,2}) (\d{1,2})\:(\d{1,2})\:(\d{1,2})/.test(Joe
+			.options.JBirthDay)) {
+			const getRunTime = () => {
+				const birthDay = new Date(Joe.options.JBirthDay);
+				const today = +new Date();
+				const timePast = today - birthDay.getTime();
+				let day = timePast / (1000 * 24 * 60 * 60);
+				let dayPast = Math.floor(day);
+				let hour = (day - dayPast) * 24;
+				let hourPast = Math.floor(hour);
+				let minute = (hour - hourPast) * 60;
+				let minutePast = Math.floor(minute);
+				let second = (minute - minutePast) * 60;
+				let secondPast = Math.floor(second);
+				day = String(dayPast).padStart(2, 0);
+				hour = String(hourPast).padStart(2, 0);
+				minute = String(minutePast).padStart(2, 0);
+				second = String(secondPast).padStart(2, 0);
+				$(".joe_run__day").html(day);
+				$(".joe_run__hour").html(hour);
+				$(".joe_run__minute").html(minute);
+				$(".joe_run__second").html(second);
+			};
+			getRunTime();
+			setInterval(getRunTime, 1000);
+		}
+	}
+
 	/** 初始化评论 */
 	{
 		document.addEventListener('pjax:send', (options) => {

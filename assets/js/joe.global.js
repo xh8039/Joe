@@ -1148,6 +1148,10 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	if (window.Turbolinks) {
+		document.addEventListener('turbolinks:request-start', function (event) {
+			var xhr = event.data.xhr;
+			xhr.setRequestHeader('X-Turbolinks', 'true')
+		})
 		$('body').on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为

@@ -64,6 +64,11 @@ if ($this->options->JLoading != 'off') : ?>
 	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>"></script>
 <?php endif; ?>
 
+<?php if ($this->options->NProgressJS == 'on') : ?>
+	<link rel="stylesheet" href="<?= joe\cdn('nprogress/0.2.0/nprogress.min.css') ?>">
+	<script src="<?= joe\cdn('nprogress/0.2.0/nprogress.min.js') ?>"></script>
+<?php endif; ?>
+
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 

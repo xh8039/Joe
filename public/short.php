@@ -128,12 +128,14 @@ function _parseContent($post, $content = null)
 		$content = str_replace('<img src="', '<img referrerPolicy="no-referrer" rel="noreferrer" src="', $content);
 	}
 
-	if (strpos($content, '<a href="') !== false && strpos($content, '<a href="javascript:') === false) {
+	if (strpos($content, '<a href="') !== false) {
 		if (Helper::options()->JPostLinkRedirect == 'on') {
 			// 使用正则表达式匹配链接并直接进行替换
 			$content = preg_replace_callback(
 				'/<a href\="([^\s]*?)"/',
 				function ($matches) use ($post_cid) {
+					if (str_starts_with($matches[1], 'javascript:')) return $matches[0];
+					if (str_starts_with($matches[1], '/')) return $matches[0];
 					$redirect_link = joe\ExternaToInternalLink($matches[1], $post_cid);
 					return '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';
 				},
@@ -141,7 +143,7 @@ function _parseContent($post, $content = null)
 			);
 		} else {
 			// 告诉搜索引擎不将这个链接的权重传递给目标页面
-			$content = str_replace('<a href="', '<a target="_blank" rel="noopener nofollow" href="', $content);
+			$content = str_replace('<a href="http', '<a target="_blank" rel="noopener nofollow" href="http', $content);
 		}
 	}
 

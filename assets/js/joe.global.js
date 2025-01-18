@@ -1,3 +1,4 @@
+console.log('调用 Joe.DOMContentLoaded.global');
 Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded.global : () => {
 	/* 检测IE */
 	{

@@ -1,3 +1,4 @@
+console.log(Joe.DOMContentLoaded.index);
 Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.index : () => {
 	console.log('调用 Joe.DOMContentLoaded.index');
 	/* 激活轮播图功能 */

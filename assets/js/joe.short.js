@@ -8,28 +8,26 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 	$('.joe_detail__article p:empty').remove();
 
 	// 清除可能存在的全局自定义元素定义
-	let definedElements = customElements.keys();
-	definedElements.forEach(elementName => {
-		customElements.get(elementName).prototype.disconnectedCallback = undefined; //清空disconnect方法
-		customElements.get(elementName).prototype.connectedCallback = undefined; //清空connect方法
-		delete customElements.get(elementName); //删除定义
-	});
+	// let definedElements = customElements.keys();
+	// definedElements.forEach(elementName => {
+	// 	customElements.get(elementName).prototype.disconnectedCallback = undefined; //清空disconnect方法
+	// 	customElements.get(elementName).prototype.connectedCallback = undefined; //清空connect方法
+	// 	delete customElements.get(elementName); //删除定义
+	// });
 
-	customElements.define(
-		'joe-mtitle',
-		class JoeMtitle extends HTMLElement {
-			constructor() {
-				super();
-				this.innerHTML = `
+	delete customElements.get('joe-mtitle');
+	customElements.define('joe-mtitle', class JoeMtitle extends HTMLElement {
+		constructor() {
+			super();
+			this.innerHTML = `
 				<span class="joe_mtitle">
 					<span class="joe_mtitle__text">
 						${this.getAttribute('title') || '默认标题'}
 					</span>
 				</span>
 			`;
-			}
 		}
-	);
+	});
 
 	customElements.define(
 		'joe-mp3',

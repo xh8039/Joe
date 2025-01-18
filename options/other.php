@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 $WallpaperAPI = new \Typecho\Widget\Helper\Form\Element\Text(
 	'WallpaperAPI',
 	NULL,
-	'http://cdn.apc.360.cn/index.php || http://wallpaper.apc.360.cn/index.php',
+	NULL,
 	'壁纸模板API',
 	'格式：壁纸分类API || 壁纸列表API <br />
 	示例：http://cdn.apc.360.cn/index.php || http://wallpaper.apc.360.cn/index.php'

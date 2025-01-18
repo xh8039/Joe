@@ -1127,9 +1127,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (window.Joe.checkUrl(this)) {
 				NProgress.start();
 				window.addEventListener('beforeunload', function (event) {
-					NProgress.done();
+					
 				});
 				window.addEventListener('unload', function (event) {
+					NProgress.done();
 					NProgress.remove();
 				});
 			}

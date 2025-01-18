@@ -56,13 +56,29 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				});
 			}
 			if (options.pjax == 'global') {
-				NProgress.done();
 				console.log(options);
 				// HTMLDocument(<html><body>...parsed nodes</body></html>)
 				const responseDocument = (new DOMParser()).parseFromString(options.request.responseText, 'text/html');
 				// 解析好的DOM节点
 				window.responseDocument = responseDocument;
 				console.log(responseDocument);
+				$(window.responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
+					let url = this.src;
+					console.log(`script[src="${url}"]`);
+					let script = document.querySelector(`script[src="${url}"]`);
+					if (script) {
+						script.insertAdjacentHTML('afterend', `<script src="${url}">`);
+						script.remove();
+					} else {
+						$.getScript(url, function (script, textStatus, jqXHR) {
+							const event = new CustomEvent('turbolinks:load', {
+								detail: { script, options }
+							});
+							document.dispatchEvent(event);
+						});
+					}
+				});
+				NProgress.done();
 			}
 		});
 	}

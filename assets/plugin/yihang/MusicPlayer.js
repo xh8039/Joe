@@ -56,6 +56,7 @@ class MusicPlayer {
 			}
 		}
 		this.PLAYER.on('loadeddata', () => {
+			console.log('监听：loadeddata')
 			this.OPTIONS['autotheme'] ? this.autoTheme(this.PLAYER.list.index) : null;
 			if ('mediaSession' in navigator) {
 				var music = this.PLAYER.list.audios[this.PLAYER.list.index];
@@ -67,6 +68,7 @@ class MusicPlayer {
 			}
 		})
 		this.PLAYER.on('error', this.throttle(() => {
+			console.log('监听：error');
 			// console.log(this.PLAYER);
 			console.log(this.PLAYER.list.audios[this.PLAYER.list.index]);
 			// this.PLAYER.skipForward()
@@ -125,6 +127,7 @@ class MusicPlayer {
 		this.PLAYER.list.switch(storage_music.index);
 		var seek_loadedmetadata = true;
 		this.PLAYER.on('loadedmetadata', () => {
+			console.log('监听：loadedmetadata')
 			if (!seek_loadedmetadata) {
 				return
 			}

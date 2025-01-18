@@ -52,7 +52,7 @@ if ($this->options->JLoading != 'off') : ?>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>" data-turbolinks-permanent id="script-bootstrap-modal"></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>" data-turbolinks-permanent id="script-bootstrap-tooltip"></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>" data-turbolinks-permanent id="script-bootstrap-popover"></script>
-<?php if ($this->is('single') || $this->is('archive') || $this->options->IndexAjaxList == 'off') : ?>
+<?php if ($this->options->Turbolinks == 'on' || $this->is('single') || $this->is('archive') || $this->options->IndexAjaxList == 'off') : ?>
 	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>" data-turbolinks-permanent id="script-pjax"></script>
 <?php endif; ?>
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent id="script-lazysizes"></script>
@@ -70,7 +70,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>
-	<script src="<?= joe\cdn('turbolinks/5.2.0/turbolinks.js') ?>" data-turbolinks-permanent id="script-turbolinks"></script>
+	<!-- <script src="<?= joe\cdn('turbolinks/5.2.0/turbolinks.js') ?>" data-turbolinks-permanent id="script-turbolinks"></script> -->
 <?php endif; ?>
 
 <?php if ($this->options->NProgressJS == 'on' || $this->options->Turbolinks == 'on') : ?>

@@ -154,7 +154,7 @@ if (!empty($footer_tabbar)) {
 <!-- 网站统计HTML代码 -->
 
 <script>
-	<?php if ($this->request->getHeader('X-Turbolinks') != 'true') {
+	<?php if ($this->request->getHeader('x-pjax') != 'true') {
 		$cookie = Typecho_Cookie::getPrefix();
 		$notice = $cookie . '__typecho_notice';
 		$type = $cookie . '__typecho_notice_type';

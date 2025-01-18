@@ -1,7 +1,8 @@
 class MetingJSElement extends HTMLElement {
 
 	connectedCallback() {
-		if (window.APlayer && window.fetch) {
+		console.log(document.querySelector('meting-js>.aplayer'));
+		if (!document.querySelector('meting-js>.aplayer') && window.APlayer && window.fetch) {
 			this._init()
 			this._parse()
 		}
@@ -130,7 +131,7 @@ class MetingJSElement extends HTMLElement {
 
 }
 
-if (!document.querySelector('meting-js>.aplayer') && window.customElements && !window.customElements.get('meting-js')) {
+if (window.customElements && !window.customElements.get('meting-js')) {
 	console.log('meting-js 激活');
 	window.MetingJSElement = MetingJSElement
 	window.customElements.define('meting-js', MetingJSElement)

@@ -228,10 +228,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		$(document).on('show.bs.modal loaded.bs.modal', '.modal:not(.flex)', function () {
 			var o = $(this);
 			var i = o.find('.modal-dialog');
-			o.css('display', 'block'),
-				i.css({
-					'margin-top': Math.max(0, (_hei - i.height()) / 2),
-				});
+			o.css('display', 'block');
+			i.css({ 'margin-top': Math.max(0, (_hei - i.height()) / 2), });
 		});
 
 		// 每次都刷新的模态框
@@ -448,7 +446,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	/** 全局Loading动画补全 */
 	if (window.Joe.options.JLoading == 'on') {
 		window.Joe.loadingEnd();
-		if (window.Joe.loadingEnd && window.Joe.loadingStart && window.Joe.options.FirstLoading != 'on') {
+		if (window.Joe.loadingStart && window.Joe.loadingEnd && window.Joe.options.FirstLoading != 'on') {
 			// a标签加载动画
 			$(document).on('click', 'a[href]:not([href=""])', function (e) {
 				if (window.Joe.checkUrl(this)) window.Joe.loadingStart();

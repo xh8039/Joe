@@ -10,5 +10,5 @@ if (is_string($this->request->getHeader('x-pjax-selectors'))) {
 	if (in_array('title', $selectors)) echo '<title>' . $title . '</title>';
 	if (in_array('h1', $selectors)) echo '<h1 style="display:none">' . $title . '</h1>';
 	if (in_array('.joe_main', $selectors)) $this->need('module/archive/main.php');
-	exit;
+	if (!in_array('#Joe', $selectors)) exit;
 }

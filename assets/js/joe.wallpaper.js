@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+Joe.DOMContentLoaded.wallpaper = () => {
 	let isLoading = false;
 	let queryData = { cid: -999, start: -999, count: 48 };
 	let total = -999;
@@ -77,4 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		queryData.start = Number(start);
 		renderDom();
 	});
-});
+}
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.wallpaper);
+document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.wallpaper);

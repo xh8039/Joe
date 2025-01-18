@@ -1,5 +1,5 @@
 Prism.plugins.autoloader.languages_path = Joe.CDN(`prism/1.9.0/components/`);
-document.addEventListener('DOMContentLoaded', () => {
+Joe.DOMContentLoaded.single = () => {
 	const encryption = str => window.btoa(unescape(encodeURIComponent(str)));
 	const decrypt = str => decodeURIComponent(escape(window.atob(str)));
 
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活代码高亮 */
 	{
-		Prism.highlightAll(); 
+		Prism.highlightAll();
 		$("pre[class*='language-']").each(function (index, item) {
 			let text = $(item).find("code[class*='language-']").text().replace(/    /g, '	');
 			let span = $(`<span data-toggle="tooltip" data-placement="top" title="点击复制" class="copy"><i class="fa fa-clone"></i></span>`);
@@ -306,7 +306,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 	$(document).on('click', () => $('.joe_detail__operate-share').removeClass('active'));
 		// }
 	}
-});
+};
+
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.single);
+document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.single);
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
 window.addEventListener('load', function () {

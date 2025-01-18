@@ -3,8 +3,7 @@ function getChildren(el, className) {
 	for (let item of el.children) if (item.className === className) return item;
 	return null;
 }
-
-document.addEventListener('DOMContentLoaded', () => {
+Joe.DOMContentLoaded.short = () => {
 	$('.joe_detail__article p:empty').remove();
 
 	customElements.define(
@@ -748,4 +747,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	);
 
 	$('.joe_detail__article p:empty').remove();
-});
+}
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.short);
+document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.short);

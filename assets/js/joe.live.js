@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+Joe.DOMContentLoaded.live = () => {
 	const p = new URLSearchParams(window.location.search);
 	if (!p.get('profileRoom')) initLiveList();
 	function initLiveList() {
@@ -117,4 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			return num;
 		}
 	}
-});
+}
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.live);
+document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.live);

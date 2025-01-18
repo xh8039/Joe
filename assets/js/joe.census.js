@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+Joe.DOMContentLoaded.census = () => {
 	{
 		/* 转换字节 */
 		const bytesToSize = bytes => {
@@ -362,4 +362,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			$(this).html('loading...');
 		});
 	}
-});
+}
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.census);
+document.addEventListener("turbolinks:load", Joe.DOMContentLoaded.census);

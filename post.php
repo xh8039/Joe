@@ -21,7 +21,7 @@ $this->need('module/single/pjax.php');
 	?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
 	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
-	<script src="<?= joe\theme_url('assets/js/joe.post_page.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>
 
 <body>

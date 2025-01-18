@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+Joe.DOMContentLoaded.index = () => {
 	/* 激活轮播图功能 */
 	{
 		if ($('.joe_index__banner .swiper').length !== 0) {
@@ -323,4 +323,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		const wow = $('.joe_index__list').attr('data-wow');
 		if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
 	}
-});
+}
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.index);
+document.addEventListener('turbolinks:load', Joe.DOMContentLoaded.index);

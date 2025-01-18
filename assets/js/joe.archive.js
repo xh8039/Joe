@@ -1,5 +1,5 @@
 /* 搜索页面需要用到的JS */
-document.addEventListener('DOMContentLoaded', () => {
+Joe.DOMContentLoaded.archive = () => {
 
 	/* 激活列表特效 */
 	{
@@ -32,4 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-});
+};
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.archive);
+document.addEventListener("turbolinks:load", Joe.DOMContentLoaded.archive);

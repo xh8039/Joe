@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-
+Joe.DOMContentLoaded.global = () => {
 	/* 检测IE */
 	{
 		function detectIE() {
@@ -1138,4 +1137,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}
-});
+}
+document.addEventListener("DOMContentLoaded", Joe.DOMContentLoaded.global);
+document.addEventListener("turbolinks:load", Joe.DOMContentLoaded.global);

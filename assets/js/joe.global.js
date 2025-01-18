@@ -1121,7 +1121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	/* NProgress.js */
-	{
+	if (window.NProgress) {
 		$('body').on('click', 'a[href]:not([href=""])', function (e) {
 			if (window.Joe.checkUrl(this)) {
 				NProgress.configure({ trickleSpeed: 10 });

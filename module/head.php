@@ -21,9 +21,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <?php else : ?>
 	<?php $this->header('commentReply=&antiSpam='); ?>
 <?php endif;
-if ($this->options->FirstLoading == 'on') {
-	Typecho\Cookie::get('joe_first_loading') ? $this->options->JLoading = 'off' : Typecho\Cookie::set('joe_first_loading', 'true');
-}
+
+if ($this->options->FirstLoading == 'on') Typecho\Cookie::get('joe_first_loading') ? $this->options->JLoading = 'off' : Typecho\Cookie::set('joe_first_loading', 'true');
 if ($this->options->JLoading != 'off') : ?>
 	<link rel="preload" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>" as="style" />
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>">
@@ -31,54 +30,51 @@ if ($this->options->JLoading != 'off') : ?>
 
 <!-- 昼夜模式配色表 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
-<!-- Bootstrap: modal.css v3.4.1 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>">
-<!-- Bootstrap: tooltip.css v3.4.1 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
-<!-- Bootstrap: popover.css v3.4.1 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css', false); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
-<link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
+
+<?php if ($this->is('single')) : ?>
+	<link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
+<?php endif; ?>
+
 <link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
-<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
-<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
-<link rel="stylesheet" href="<?= joe\cdn('nprogress/0.2.0/nprogress.min.css') ?>">
 
 <?php $this->need('module/config.php'); ?>
 
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>"></script>
-<?php $this->options->commentsPageBreak; ?>
-<?php if ($this->is('single')) : ?>
-	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>"></script>
+<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>"></script>
+<script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>"></script>
+<script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>"></script>
+
+<?php if ($this->is('single') || $this->options->JMusic == 'on') : ?>
+	<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
+	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
+	<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script>
+	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>"></script>
 <?php endif; ?>
 
-<!-- Bootstrap: transition.js v3.4.1 -->
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>"></script>
-<!-- Bootstrap: modal.js v3.4.1 -->
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>"></script>
-<!-- Bootstrap: tooltip.js v3.4.1 -->
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
-<!-- Bootstrap: popover.js v3.4.1 -->
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>"></script>
-<!-- <script src="<?= joe\theme_url('assets/js/joe.scroll.js'); ?>"></script> -->
-<script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>"></script>
-<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
-<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script>
-<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
-<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>"></script>
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>"></script>
-<script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>"></script>
-<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" async></script> -->
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>"></script>
+
+<?php if ($this->is('single')) : ?>
+	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
+<?php endif; ?>
+
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
-<script src="<?= joe\cdn('nprogress/0.2.0/nprogress.min.js') ?>"></script>
 
 <!-- 自定义头部HTML代码 -->
 

@@ -53,7 +53,7 @@ if ($this->options->JMusic == 'on') {
 if ($this->options->JPendant_SSL == 'on') {
 	$joe_action_bottom = $joe_action_bottom + 65;
 ?>
-	<style data-turbolinks-permanent>
+	<style data-turbolinks-permanent id="cc-myssl-seal-style">
 		#cc-myssl-seal {
 			width: 65px;
 			height: 65px;
@@ -79,8 +79,8 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 }
 if (!empty($footer_tabbar)) {
 ?>
-	<link data-turbolinks-permanent rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">
-	<div data-turbolinks-permanent class="footer-tabbar">
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">
+	<div data-turbolinks-permanent class="footer-tabbar" id="data-turbolinks-permanent-footer-tabbar">
 		<?php
 		$admin_dir_preg_quote = preg_quote(__TYPECHO_ADMIN_DIR__, '/');
 		foreach ($footer_tabbar as $value) {
@@ -99,7 +99,7 @@ if (!empty($footer_tabbar)) {
 		}
 		?>
 	</div>
-	<script defer>
+	<script data-turbolinks-permanent id="data-turbolinks-permanent-footer-tabbar-script">
 		(function() {
 			const height = document.querySelector('.footer-tabbar').clientHeight;
 
@@ -123,7 +123,7 @@ if (!empty($footer_tabbar)) {
 <?php
 }
 ?>
-<style data-turbolinks-permanent>
+<style>
 	html .joe_action {
 		bottom: <?= $joe_action_bottom ?>px;
 	}

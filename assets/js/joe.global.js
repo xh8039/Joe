@@ -56,24 +56,17 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				});
 			}
 			if (options.pjax == 'global') {
+				const event = new CustomEvent('turbolinks:load', {
+					detail: { options }
+				});
+				document.dispatchEvent(event);
 				const responseDocument = (new DOMParser()).parseFromString(options.request.responseText, 'text/html');
 				$(responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
 					let url = this.src ? this.src.trim() : null;
 					if (!url) return;
-					console.log(`script[src="${url}"]`);
+					// console.log(`script[src="${url}"]`);
 					let script = document.querySelector(`script[src="${url}"]`);
-					console.log(script);
-					// if (script) {
-					// 	script.insertAdjacentHTML('afterend', `<script src="${url}">`);
-					// 	script.remove();
-					// } else {
-					// 	$.getScript(url, function (script, textStatus, jqXHR) {
-					// 		const event = new CustomEvent('turbolinks:load', {
-					// 			detail: { script, options }
-					// 		});
-					// 		document.dispatchEvent(event);
-					// 	});
-					// }
+					// console.log(script);
 					if (script) script.remove();
 					script = document.createElement('script');
 					script.src = url;

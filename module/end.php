@@ -13,7 +13,6 @@ if ($this->options->JMusic == 'on') {
 	<script data-turbo-permanent>
 		window.meting_api = `<?= empty($this->options->JMusicApi) ? '${Joe.BASE_API}/joe/api?routeType=meting&server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>`
 	</script>
-	<script data-turbo-permanent src="<?= joe\theme_url('assets/plugin/Meting.js'); ?>"></script>
 <?php
 }
 ?>

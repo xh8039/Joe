@@ -32,7 +32,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		},
 		startTime: performance.now(),
-		DOMContentLoaded: {},
+		DOMContentLoaded: window.Joe.DOMContentLoaded ? window.Joe.DOMContentLoaded : {},
 		options: <?= $options ?>,
 	}
 	Joe.options.BaiduPush = <?= empty($this->options->BaiduPushToken) ? 'false' : 'true' ?>;

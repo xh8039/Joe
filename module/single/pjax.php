@@ -16,7 +16,8 @@ if (is_string($selectors)) {
 		$content = '<joe-hide>' . $content . '</joe-hide>';
 		echo $content;
 	}
-	if (!in_array('#Joe',$selectors)) exit;
+	var_dump($selectors);
+	if (!in_array('#Joe', $selectors)) exit;
 }
 if ($this->is('single') && strpos($this->request->getPathInfo(), '/comment-page-1') !== false) {
 	$this->response->setStatus(302);

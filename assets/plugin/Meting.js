@@ -131,6 +131,7 @@ class MetingJSElement extends HTMLElement {
 }
 
 if (window.customElements && !window.customElements.get('meting-js')) {
+	console.log('meting-js 激活');
 	window.MetingJSElement = MetingJSElement
 	window.customElements.define('meting-js', MetingJSElement)
 }

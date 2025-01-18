@@ -1,5 +1,5 @@
 Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.main : () => {
-
+	console.log('调用：Joe.DOMContentLoaded.main');
 	/* 展示百度统计信息 */
 	{
 		if ($('#statistics').is(':visible')) {

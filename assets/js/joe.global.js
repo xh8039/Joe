@@ -75,7 +75,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					// 	});
 					// }
 					if (script) script.remove();
-					script = document.createElement('script').script.src = url;
+					script = document.createElement('script').src = url;
 				});
 				NProgress.done();
 			}

@@ -3,9 +3,9 @@ if (!window.Joe) window.Joe = {};
 window.Joe.checkUrl = (string) => {
 	try {
 		if (string instanceof Element) {
-			if ($(this).attr('target') == '_blank') return false;
-			if ($(this).attr('ajax-replace')) return false;
-			if ($(this).attr('data-pjax-state')) return false;
+			if ($(string).attr('target') == '_blank') return false;
+			if ($(string).attr('ajax-replace')) return false;
+			if ($(string).attr('data-pjax-state')) return false;
 			string = string.href;
 		}
 		if (string.startsWith('/')) return true;

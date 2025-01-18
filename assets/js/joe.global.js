@@ -534,7 +534,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if ($(this).attr('data-pjax-state')) return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;
-			if (url.startsWith('/')) url = location.origin + url;
+			// if (url.startsWith('/')) url = location.origin + url;
 			NProgress.start();
 			var pjax = new Pjax({
 				selectors: ["#Joe"],

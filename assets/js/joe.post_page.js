@@ -280,6 +280,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
+	/* 复制链接 */
+	if (document.querySelector('.share-btn.copy')) {
+		let clipboard = new ClipboardJS('.share-btn.copy');
+		clipboard.on('success', function (e) {
+			//注销对象
+			e.clearSelection();
+			Qmsg.success('链接已复制！')
+		});
+		clipboard.on('error', function (e) {
+			//注销对象
+			e.clearSelection();
+			Qmsg.error('链接复制失败！')
+		});
+	}
+
 	/* 分享 */
 	{
 		// if ($('.joe_detail__operate-share').length) {

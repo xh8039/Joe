@@ -52,19 +52,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</icon>
 					<text>复制链接<text></text></text>
 				</a>
-				<script>
-					var clipboard = new ClipboardJS('.share-btn.copy');
-					clipboard.on('success', function(e) {
-						//注销对象
-						e.clearSelection();
-						Qmsg.success('链接已复制！')
-					});
-					clipboard.on('error', function(e) {
-						//注销对象
-						e.clearSelection();
-						Qmsg.error('链接复制失败！')
-					});
-				</script>
 			</div>
 		</div>
 	</span>

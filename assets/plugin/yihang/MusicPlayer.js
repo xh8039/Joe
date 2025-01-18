@@ -64,10 +64,10 @@ class MusicPlayer {
 			}
 		})
 		this.PLAYER.on('error', this.throttle(() => {
-			console.log(this.PLAYER);
-			console.log(this.PLAYER.list.audios[this.PLAYER.list.index])
-			this.PLAYER.skipForward()
-			this.PLAYER.seek(0)
+			// console.log(this.PLAYER);
+			console.log(this.PLAYER.list.audios[this.PLAYER.list.index]);
+			// this.PLAYER.skipForward()
+			// this.PLAYER.seek(0)
 		}, 5000));
 	}
 

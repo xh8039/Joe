@@ -749,5 +749,4 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 
 	$('.joe_detail__article p:empty').remove();
 }
-// document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short);
-document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.short);
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short);

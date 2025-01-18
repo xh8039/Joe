@@ -502,4 +502,4 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		});
 	}
 }
-document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.global);
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.global);

@@ -61,6 +61,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				// HTMLDocument(<html><body>...parsed nodes</body></html>)
 				const responseDocument = (new DOMParser()).parseFromString(options.request.responseText, 'text/html');
 				// 解析好的DOM节点
+				window.responseDocument = responseDocument;
 				console.log(responseDocument);
 			}
 		});

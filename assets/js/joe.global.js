@@ -56,7 +56,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				});
 			}
 			if (options.pjax == 'global') {
-
+				NProgress.done();
+				console.log(options);
 			}
 		});
 	}

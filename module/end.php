@@ -9,7 +9,7 @@ $joe_action_bottom = 20;
 
 if ($this->options->JMusic == 'on') {
 ?>
-	<meting-js data-turbolinks-permanent fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
+	<meting-js data-turbo-permanent fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" id="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
 	<script>
 		window.meting_api = `<?= empty($this->options->JMusicApi) ? '${Joe.BASE_API}/joe/api?routeType=meting&server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>`
 	</script>
@@ -57,7 +57,7 @@ if ($this->options->JMusic == 'on') {
 if ($this->options->JPendant_SSL == 'on') {
 	$joe_action_bottom = $joe_action_bottom + 65;
 ?>
-	<style data-turbolinks-permanent>
+	<style data-turbo-permanent>
 		#cc-myssl-seal {
 			width: 65px;
 			height: 65px;
@@ -68,7 +68,7 @@ if ($this->options->JPendant_SSL == 'on') {
 			cursor: pointer;
 		}
 	</style>
-	<div data-turbolinks-permanent id="cc-myssl-seal">
+	<div data-turbo-permanent id="cc-myssl-seal">
 		<div title="TrustAsia 安全签章" id="myssl_seal" style="text-align: center">
 			<img src="<?= Joe\theme_url('assets/images/myssl-id.png') ?>" alt="SSL" style="width: 100%; height: 100%"></a>
 		</div>
@@ -83,8 +83,8 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 }
 if (!empty($footer_tabbar)) {
 ?>
-	<link data-turbolinks-permanent rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">
-	<div data-turbolinks-permanent class="footer-tabbar">
+	<link data-turbo-permanent rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">
+	<div data-turbo-permanent class="footer-tabbar">
 		<?php
 		$admin_dir_preg_quote = preg_quote(__TYPECHO_ADMIN_DIR__, '/');
 		foreach ($footer_tabbar as $value) {
@@ -103,7 +103,7 @@ if (!empty($footer_tabbar)) {
 		}
 		?>
 	</div>
-	<script data-turbolinks-permanent>
+	<script data-turbo-permanent>
 		const height = document.querySelector('.footer-tabbar').clientHeight;
 
 		if (document.querySelector('.joe_action')) {
@@ -125,21 +125,21 @@ if (!empty($footer_tabbar)) {
 <?php
 }
 ?>
-<style data-turbolinks-permanent>
+<style data-turbo-permanent>
 	html .joe_action {
 		bottom: <?= $joe_action_bottom ?>px;
 	}
 </style>
 <?php if ($this->options->JAside_3DTag == 'on') : ?>
-	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js'); ?>"></script>
+	<script data-turbo-permanent src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js'); ?>"></script>
 <?php endif; ?>
 <?php if (!empty($this->options->NewYearLantern)) : ?>
-	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/china-lantern.min.js', ['text' => $this->options->NewYearLantern]); ?>"></script>
+	<script data-turbo-permanent src="<?= joe\theme_url('assets/plugin/china-lantern.min.js', ['text' => $this->options->NewYearLantern]); ?>"></script>
 <?php endif; ?>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects != 'off') : ?>
-	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>" async></script>
+	<script data-turbo-permanent src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>" async></script>
 <?php endif; ?>
-<script data-turbolinks-permanent src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
+<script data-turbo-permanent src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
 
 <!-- 自定义JavaScript -->
 <script>
@@ -156,7 +156,7 @@ if (!empty($footer_tabbar)) {
 <!-- 网站统计HTML代码 -->
 
 <script>
-	<?php if ($this->request->getHeader('X-Turbolinks') != 'true') {
+	<?php if ($this->request->getHeader('X-Turbo') != 'true') {
 		$cookie = Typecho_Cookie::getPrefix();
 		$notice = $cookie . '__typecho_notice';
 		$type = $cookie . '__typecho_notice_type';

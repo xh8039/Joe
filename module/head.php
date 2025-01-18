@@ -67,8 +67,11 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>
-	<script src="<?= joe\cdn('turbolinks/5.2.0.beta1/turbolinks.js') ?>"></script>
-	<script src="https://unpkg.com/@hotwired/turbo@8.0.12/dist/turbo.es2017-esm.js"></script>
+	<!-- <script src="<?= joe\cdn('turbolinks/5.2.0.beta1/turbolinks.js') ?>"></script> -->
+	<script type="module">
+		import Turbo from 'https://unpkg.com/@hotwired/turbo@8.0.12/dist/turbo.es2017-esm.js';
+	</script>
+	<!-- <script src="https://unpkg.com/@hotwired/turbo@8.0.12/dist/turbo.es2017-esm.js"></script> -->
 <?php endif; ?>
 
 <?php if ($this->options->NProgressJS == 'on' || $this->options->Turbolinks == 'on') : ?>

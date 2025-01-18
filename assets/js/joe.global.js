@@ -460,10 +460,10 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	/* NProgress.js */
 	if (window.NProgress) {
 		NProgress.configure({ trickleSpeed: 10 });
-		$(document).on('turbolinks:click', function () {
+		$(document).on('turbo:click', function () {
 			NProgress.start();
 		});
-		$(document).on('turbolinks:render', function () {
+		$(document).on('turbo:render', function () {
 			NProgress.done();
 			NProgress.remove();
 		});
@@ -485,9 +485,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		}
 	}
 
-	if (window.Turbolinks) {
-		document.addEventListener('turbolinks:request-start', function (event) {
-			event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
+	if (window.turbo) {
+		document.addEventListener('turbo:request-start', function (event) {
+			event.data.xhr.setRequestHeader('X-Turbo', 'true')
 		})
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
@@ -495,7 +495,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			let url = this.href;
 			if (url.startsWith('/')) url = location.origin + url;
 			NProgress.start();
-			Turbolinks.visit(url);
+			Turbo.visit(url);
 		});
 	}
 }

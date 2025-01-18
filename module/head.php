@@ -33,6 +33,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php if ($this->is('single')) : ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>">
 <?php endif; ?>
+<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css', false); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
@@ -54,6 +55,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php if ($this->is('single')) : ?>
 	<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>"></script>
 <?php endif; ?>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>"></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>"></script>
 <?php if ($this->is('single') || $this->options->IndexAjaxList == 'off') : ?>
@@ -80,7 +82,7 @@ if ($this->options->JLoading != 'off') : ?>
 
 <?php if ($this->is('single')) : ?>
 	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>"></script>
-	<script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>"></script>
+	<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>"></script> -->
 	<script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>

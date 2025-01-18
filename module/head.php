@@ -63,7 +63,7 @@ if ($this->options->JLoading != 'off') : ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
 	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
 	<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script>
-	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/Meting.js') ?>"></script>
+	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/Meting.js', false) ?>"></script>
 	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>"></script>
 <?php endif; ?>
 

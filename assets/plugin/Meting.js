@@ -26,7 +26,7 @@ class MetingJSElement extends HTMLElement {
 			config[this._camelize(this.attributes[i].name)] = this.attributes[i].value
 		}
 		let keys = [
-			'server', 'type', 'id', 'api', 'auth',
+			'server', 'type', 'dataId', 'api', 'auth',
 			'auto', 'lock',
 			'name', 'title', 'artist', 'author', 'url', 'cover', 'pic', 'lyric', 'lrc',
 		]
@@ -65,7 +65,7 @@ class MetingJSElement extends HTMLElement {
 			if (res !== null) {
 				this.meta.server = rule[1]
 				this.meta.type = rule[2]
-				this.meta.id = res[1]
+				this.meta.dataId = res[1]
 				return
 			}
 		}
@@ -95,7 +95,7 @@ class MetingJSElement extends HTMLElement {
 		let url = this.api
 			.replace(':server', this.meta.server)
 			.replace(':type', this.meta.type)
-			.replace(':id', this.meta.id)
+			.replace(':id', this.meta.dataId)
 			.replace(':auth', this.meta.auth)
 			.replace(':r', Math.random())
 

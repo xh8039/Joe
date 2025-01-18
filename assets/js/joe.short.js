@@ -4,7 +4,6 @@ function getChildren(el, className) {
 	return null;
 }
 Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
-	console.log('调用 Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
 
 	if (!customElements.get('joe-mtitle')) customElements.define('joe-mtitle', class JoeMtitle extends HTMLElement {

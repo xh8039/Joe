@@ -1,6 +1,4 @@
-console.log('引入 Joe.DOMContentLoaded.global');
 Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded.global : () => {
-	console.log('调用 Joe.DOMContentLoaded.global');
 	/* 检测IE */
 	{
 		function detectIE() {
@@ -1125,9 +1123,11 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	if (window.NProgress) {
 		NProgress.configure({ trickleSpeed: 10 });
 		$(document).on('turbolinks:click', function () {
+			console.log('turbolinks:click');
 			NProgress.start();
 		});
 		$(document).on('turbolinks:render', function () {
+			console.log('turbolinks:render');
 			NProgress.done();
 			NProgress.remove();
 		});

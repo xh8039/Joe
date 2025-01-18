@@ -55,6 +55,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					pagination: false,
 				});
 			}
+			if (options.pjax == 'global') {
+
+			}
 		});
 	}
 
@@ -496,6 +499,25 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (url.startsWith('/')) url = location.origin + url;
 			NProgress.start();
 			Turbolinks.visit(url);
+		});
+	}
+
+	if (window.Joe.options.Turbolinks == 'on') {
+		// document.addEventListener('turbolinks:request-start', function (event) {
+		// 	event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
+		// })
+		$(document).on('click', 'a[href]:not([href=""])', function (event) {
+			if (!window.Joe.checkUrl(this)) return true;
+			event.preventDefault(); // 阻止默认行为
+			let url = this.href;
+			if (url.startsWith('/')) url = location.origin + url;
+			NProgress.start();
+			var pjax = new Pjax({
+				elements: '#Joe',
+				selectors: ["#Joe", 'script:not([data-turbolinks-permanent])', 'link'],
+				pjax: 'global',
+			});
+			pjax.loadUrl(url);
 		});
 	}
 }

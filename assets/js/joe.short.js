@@ -520,7 +520,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 						}
 					}
 					const videoPlayer = () => {
-						loadJS(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
+						Joe.loadJS(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
 							new DPlayer({
 								container: this, // 播放器容器元素
 								autoplay: this.options.autoplay, // 视频自动播放
@@ -540,7 +540,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 						});
 					}
 					if (isM3U8(this.options.src)) {
-						loadJS(window.Joe.CDN('hls.js/1.5.13/hls.min.js'), videoPlayer);
+						Joe.loadJS(window.Joe.CDN('hls.js/1.5.13/hls.min.js'), videoPlayer);
 					} else {
 						videoPlayer();
 					}

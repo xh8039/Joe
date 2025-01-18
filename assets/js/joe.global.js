@@ -1147,10 +1147,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		}
 	}
 
-	if (window.Turbolinks) {
+	if (window.Turbolinks && Joe.DOMContentLoaded.global == undefined) {
 		document.addEventListener('turbolinks:request-start', function (event) {
-			var xhr = event.data.xhr;
-			xhr.setRequestHeader('X-Turbolinks', 'true')
+			event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
 		})
 		$('body').on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;

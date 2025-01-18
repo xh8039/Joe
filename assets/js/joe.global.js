@@ -1126,11 +1126,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
 			if (window.Joe.checkUrl(this)) {
 				NProgress.start();
-				window.addEventListener('beforeunload', function (event) {
-					
+				window.addEventListener('pagehide', function (event) {
+					NProgress.done();
 				});
 				window.addEventListener('unload', function (event) {
-					NProgress.done();
+					// NProgress.done();
 					NProgress.remove();
 				});
 			}

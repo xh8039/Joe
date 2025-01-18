@@ -1426,10 +1426,10 @@ Copyright © 2024 37signals LLC
   }
 
   function getPermanentElementById(node, id) {
-    console.log(node.querySelector(`[id='${id}'][data-turbo-permanent]`));
-    console.log(`[id='${id}'][data-turbo-permanent]`);
-    console.log($(`[id='${id}'][data-turbo-permanent]`));
-    return node.querySelector(`[id='${id}'][data-turbo-permanent]`)
+    let element = /^\d+$/.test(id) ? node.querySelector(`[id='${id}'][data-turbo-permanent]`) : node.querySelector(`#${id}[data-turbo-permanent]`);
+    console.log($(`#${id}[data-turbo-permanent]`));
+    console.log(element)
+    return element
   }
 
   function queryPermanentElementsAll(node) {

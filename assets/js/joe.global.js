@@ -1103,26 +1103,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	/** 全局Loading动画补全 */
 	if (window.Joe.LoadingAnimation) {
 		window.Joe.loadingEnd();
-		function checkUrl(string) {
-			try {
-				// console.log(string);
-				if (string.startsWith('/')) return true;
-				let url = new URL(string);
-				if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
-			} catch (error) {
-				return false;
-			}
-			return true;
-		}
 		if (window.Joe.loadingEnd && window.Joe.loadingStart && window.Joe?.offLoading !== false) {
 			window.Joe.offLoading = () => {
 				// a标签加载动画
 				$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
-					if ($(this).attr('target') == '_blank') return true;
-					if ($(this).attr('ajax-replace')) return true;
-					if ($(this).attr('data-pjax-state') != undefined) return true;
-					let url = $(this).attr('href');
-					if (checkUrl(url)) window.Joe.loadingStart();
+					if (window.Joe.checkUrl(this)) window.Joe.loadingStart();
 					setTimeout(() => {
 						window.Joe.loadingEnd();
 					}, 5000);
@@ -1134,5 +1119,20 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			window.Joe.offLoading();
 		}
+	}
+
+	/* NProgress.js */
+	{
+		$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
+			if (window.Joe.checkUrl(this)) {
+				NProgress.start();
+				window.addEventListener('beforeunload', function (event) {
+					NProgress.done();
+				});
+				window.addEventListener('unload', function (event) {
+					NProgress.remove();
+				});
+			}
+		});
 	}
 });

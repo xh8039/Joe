@@ -1,5 +1,23 @@
 if (!window.Joe) window.Joe = {};
 
+window.Joe.checkUrl = (string) => {
+	try {
+		// console.log(string);
+		if (string instanceof Element) {
+			if ($(this).attr('target') == '_blank') return false;
+			if ($(this).attr('ajax-replace')) return false;
+			if ($(this).attr('data-pjax-state') != undefined) return false;
+			string = string.href;
+		}
+		if (string.startsWith('/')) return true;
+		let url = new URL(string);
+		if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
+	} catch (error) {
+		return false;
+	}
+	return true;
+}
+
 window.Joe.scrollTo = (selector) => {
 	const $comment = document.querySelector(selector);
 	const $header = document.querySelector('.joe_header');

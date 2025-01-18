@@ -60,19 +60,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					detail: { options }
 				});
 				document.dispatchEvent(event);
-				const responseDocument = (new DOMParser()).parseFromString(options.request.responseText, 'text/html');
-				$(responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
-					let url = this.src ? this.src.trim() : null;
-					if (!url) return;
-					// console.log(`script[src="${url}"]`);
-					let script = document.querySelector(`script[src="${url}"]`);
-					// console.log(script);
-					if (script) script.remove();
-					script = document.createElement('script');
-					script.src = url;
-					if (this.type) script.type = this.type;
-					document.head.appendChild(script);
-				});
+
 				NProgress.done();
 			}
 		});
@@ -535,6 +523,23 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				cacheBust: false,
 			});
 			pjax.loadUrl(url);
+			pjax._handleResponse = pjax.handleResponse;
+			pjax.handleResponse = function (responseText, request, href, options) {
+				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
+				$(responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
+					let url = this.src ? this.src.trim() : null;
+					if (!url) return;
+					console.log(`script[src="${url}"]`);
+					let script = document.querySelector(`script[src="${url}"]`);
+					// console.log(script);
+					if (script) script.remove();
+					script = document.createElement('script');
+					script.src = url;
+					if (this.type) script.type = this.type;
+					document.head.appendChild(script);
+				});
+				pjax._handleResponse(responseText, request, href, options);
+			}
 		});
 	}
 }

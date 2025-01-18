@@ -99,7 +99,7 @@ if (!empty($footer_tabbar)) {
 		}
 		?>
 	</div>
-	<script data-turbolinks-permanent>
+	<script defer>
 		(function() {
 			const height = document.querySelector('.footer-tabbar').clientHeight;
 

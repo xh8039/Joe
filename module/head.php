@@ -61,10 +61,10 @@ if ($this->options->JLoading != 'off') : ?>
 <?php if ($this->is('single') || $this->options->JMusic == 'on') : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
-	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
-	<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script>
-	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/Meting.js', false) ?>"></script>
-	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>"></script>
+	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>" defer></script>
+	<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>" defer></script>
+	<script src="<?= joe\theme_url('assets/plugin/Meting.js', false) ?>" defer></script>
+	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>" defer></script>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>

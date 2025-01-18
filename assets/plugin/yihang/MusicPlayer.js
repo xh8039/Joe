@@ -66,10 +66,9 @@ class MusicPlayer {
 		})
 		this.PLAYER.on('error', this.throttle(() => {
 			console.log('监听：error');
-			// console.log(this.PLAYER);
 			console.log(this.PLAYER.list.audios[this.PLAYER.list.index]);
-			// this.PLAYER.skipForward()
-			// this.PLAYER.seek(0)
+			this.PLAYER.skipForward()
+			this.PLAYER.seek(0)
 		}, 5000));
 	}
 

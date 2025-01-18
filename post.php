@@ -64,12 +64,5 @@ $this->need('module/single/pjax.php');
 	</div>
 	<?php $this->need('module/end.php') ?>
 </body>
-<?php
-if ($this->options->JMusic == 'on') {
-?>
-	<meting-js id="global-meting-js" data-turbolinks-permanent fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" api="<?= empty($this->options->JMusicApi) ? joe\index('joe/api', '//') . '/joe/api?routeType=meting&server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" dataId="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
-<?php
-}
-?>
 
 </html>

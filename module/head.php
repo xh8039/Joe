@@ -67,7 +67,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>
-	<script src="<?= joe\cdn('turbolinks/5.2.0/turbolinks.js') ?>"></script>
+	<script src="<?= joe\cdn('turbolinks/5.2.0.beta1/turbolinks.js') ?>"></script>
 <?php endif; ?>
 
 <?php if ($this->options->NProgressJS == 'on' || $this->options->Turbolinks == 'on') : ?>

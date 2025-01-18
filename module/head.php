@@ -67,9 +67,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>
-	<script type="module">
-		import * as Turbo from '<?= joe\theme_url('assets/plugin/turbo/8.0.12/turbo.es2017-esm.js', false); ?>';
-	</script>
+	<script src="<?= joe\theme_url('assets/plugin/turbo/8.0.12/turbo.es2017-umd.js', false); ?>"></script>
 <?php endif; ?>
 
 <?php if ($this->options->NProgressJS == 'on' || $this->options->Turbolinks == 'on') : ?>

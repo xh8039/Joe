@@ -3,12 +3,11 @@ function getChildren(el, className) {
 	for (let item of el.children) if (item.className === className) return item;
 	return null;
 }
-// Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : 
-document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', () => {
+Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
 	console.log('调用 Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
 
-	customElements.define('joe-mtitle', class JoeMtitle extends HTMLElement {
+	if (!customElements.get('joe-mtitle')) customElements.define('joe-mtitle', class JoeMtitle extends HTMLElement {
 		constructor() {
 			super();
 			this.innerHTML = `
@@ -21,86 +20,80 @@ document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoa
 		}
 	});
 
-	customElements.define(
-		'joe-mp3',
-		class JoeMp3 extends HTMLElement {
-			constructor() {
-				super();
-				this.options = {
-					name: this.getAttribute('name').trim(),
-					url: this.getAttribute('url').trim(),
-					theme: (this.getAttribute('theme') || '#1989fa').trim(),
-					cover: this.getAttribute('cover').trim(),
-					autoplay: this.getAttribute('autoplay') ? true : false,
-					loop: this.getAttribute('loop').trim(),
-					artist: this.getAttribute('artist').trim(),
-					lrc: this.getAttribute('lrc') ? this.getAttribute('lrc').trim() : '[00:00.000] 暂无歌词',
-					autotheme: this.getAttribute('autotheme').trim(),
-					lrcType: this.getAttribute('lrcType').trim()
-				};
-				this.render();
-			}
-			render() {
-				if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
-				this.innerHTML = '<span style="display: block" class="_content"></span>';
+	if (!customElements.get('joe-mp3')) customElements.define('joe-mp3', class JoeMp3 extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				name: this.getAttribute('name').trim(),
+				url: this.getAttribute('url').trim(),
+				theme: (this.getAttribute('theme') || '#1989fa').trim(),
+				cover: this.getAttribute('cover').trim(),
+				autoplay: this.getAttribute('autoplay') ? true : false,
+				loop: this.getAttribute('loop').trim(),
+				artist: this.getAttribute('artist').trim(),
+				lrc: this.getAttribute('lrc') ? this.getAttribute('lrc').trim() : '[00:00.000] 暂无歌词',
+				autotheme: this.getAttribute('autotheme').trim(),
+				lrcType: this.getAttribute('lrcType').trim()
+			};
+			this.render();
+		}
+		render() {
+			if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
+			this.innerHTML = '<span style="display: block" class="_content"></span>';
+			new MusicPlayer({
+				container: getChildren(this, '_content'),
+				theme: this.options.theme,
+				autoplay: this.options.autoplay,
+				loop: this.options.loop,
+				preload: 'auto',
+				lrcType: this.options.lrcType,
+				autotheme: this.options.autotheme,
+				storage: this.options.url,
+				audio: [
+					{
+						url: this.options.url,
+						name: this.options.name,
+						cover: this.options.cover,
+						artist: this.options.artist,
+						lrc: this.options.lrc
+					}
+				]
+			});
+		}
+	});
+
+	if (!customElements.get('joe-music')) customElements.define('joe-music', class JoeMusic extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				id: this.getAttribute('id'),
+				color: this.getAttribute('color') || '#1989fa',
+				autoplay: this.getAttribute('autoplay') ? true : false,
+				autotheme: this.getAttribute('autotheme'),
+				loop: this.getAttribute('loop')
+			};
+			this.style.display = 'block';
+			this.render();
+		}
+		render() {
+			if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
+			this.innerHTML = '<span style="display: block" class="_content"></span>';
+			fetch(`${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
+				const audio = await response.json();
 				new MusicPlayer({
 					container: getChildren(this, '_content'),
-					theme: this.options.theme,
+					lrcType: 1,
+					theme: this.options.color,
 					autoplay: this.options.autoplay,
+					autotheme: this.options.autotheme,
+					storage: this.options.id,
 					loop: this.options.loop,
 					preload: 'auto',
-					lrcType: this.options.lrcType,
-					autotheme: this.options.autotheme,
-					storage: this.options.url,
-					audio: [
-						{
-							url: this.options.url,
-							name: this.options.name,
-							cover: this.options.cover,
-							artist: this.options.artist,
-							lrc: this.options.lrc
-						}
-					]
+					audio
 				});
-			}
+			});
 		}
-	);
-
-	customElements.define(
-		'joe-music',
-		class JoeMusic extends HTMLElement {
-			constructor() {
-				super();
-				this.options = {
-					id: this.getAttribute('id'),
-					color: this.getAttribute('color') || '#1989fa',
-					autoplay: this.getAttribute('autoplay') ? true : false,
-					autotheme: this.getAttribute('autotheme'),
-					loop: this.getAttribute('loop')
-				};
-				this.style.display = 'block';
-				this.render();
-			}
-			render() {
-				if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
-				this.innerHTML = '<span style="display: block" class="_content"></span>';
-				fetch(`${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
-					const audio = await response.json();
-					new MusicPlayer({
-						container: getChildren(this, '_content'),
-						lrcType: 1,
-						theme: this.options.color,
-						autoplay: this.options.autoplay,
-						autotheme: this.options.autotheme,
-						storage: this.options.id,
-						loop: this.options.loop,
-						preload: 'auto',
-						audio
-					});
-				});
-			}
-		}
-	);
+	});
 
 	customElements.define(
 		'joe-mlist',
@@ -746,4 +739,5 @@ document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoa
 	);
 
 	$('.joe_detail__article p:empty').remove();
-});
+}
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short);

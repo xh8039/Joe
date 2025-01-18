@@ -126,7 +126,8 @@ class MetingJSElement extends HTMLElement {
 		options.container = div
 		this.appendChild(div)
 		console.log('调用：MusicPlayer');
-		this.aplayer = new MusicPlayer(options)
+		this.aplayer = new MusicPlayer(options);
+		window.MetingJS = this;
 	}
 
 }

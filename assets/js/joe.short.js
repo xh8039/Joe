@@ -4,6 +4,7 @@ function getChildren(el, className) {
 	return null;
 }
 Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
+	console.log('调用 Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
 
 	customElements.define(

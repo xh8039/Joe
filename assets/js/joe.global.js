@@ -63,17 +63,19 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					console.log(`script[src="${url}"]`);
 					let script = document.querySelector(`script[src="${url}"]`);
 					console.log(script);
-					if (script) {
-						script.insertAdjacentHTML('afterend', `<script src="${url}">`);
-						script.remove();
-					} else {
-						$.getScript(url, function (script, textStatus, jqXHR) {
-							const event = new CustomEvent('turbolinks:load', {
-								detail: { script, options }
-							});
-							document.dispatchEvent(event);
-						});
-					}
+					// if (script) {
+					// 	script.insertAdjacentHTML('afterend', `<script src="${url}">`);
+					// 	script.remove();
+					// } else {
+					// 	$.getScript(url, function (script, textStatus, jqXHR) {
+					// 		const event = new CustomEvent('turbolinks:load', {
+					// 			detail: { script, options }
+					// 		});
+					// 		document.dispatchEvent(event);
+					// 	});
+					// }
+					if (script) script.remove();
+					script = document.createElement('script').script.src = url;
 				});
 				NProgress.done();
 			}

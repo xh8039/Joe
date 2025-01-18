@@ -1157,6 +1157,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			let url = this.href;
 			if (url.startsWith('/')) url = location.origin + url;
 			console.log(url);
+			NProgress.start();
 			Turbolinks.visit(url);
 		});
 	}

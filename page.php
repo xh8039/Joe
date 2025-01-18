@@ -31,10 +31,10 @@ $this->need('module/single/pjax.php');
 			</div>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
-		<?php $this->need('module/footer.php'); ?>
+		<?php $this->need('module/bottom.php'); ?>
 		<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 	</div>
-	<?php $this->need('module/end.php') ?>
+	<?php $this->need('module/footer.php') ?>
 </body>
 
 </html>

@@ -35,10 +35,10 @@ $this->need('module/single/pjax.php');
 				<?php $this->need('module/single/comment.php'); ?>
 			</div>
 		</div>
-		<?php $this->need('module/footer.php'); ?>
+		<?php $this->need('module/bottom.php'); ?>
 		<script src="<?= joe\theme_url('assets/js/joe.leaving.js'); ?>"></script>
 	</div>
-	<?php $this->need('module/end.php') ?>
+	<?php $this->need('module/footer.php') ?>
 </body>
 
 </html>

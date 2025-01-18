@@ -22,10 +22,10 @@ $this->need('module/archive/pjax.php');
 			<?php $this->need('module/archive/main.php'); ?>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
-		<?php $this->need('module/footer.php') ?>
+		<?php $this->need('module/bottom.php') ?>
 		<script src="<?= joe\theme_url('assets/js/joe.archive.js'); ?>"></script>
 	</div>
-	<?php $this->need('module/end.php') ?>
+	<?php $this->need('module/footer.php') ?>
 </body>
 
 </html>

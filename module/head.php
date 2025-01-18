@@ -63,12 +63,12 @@ if ($this->options->JLoading != 'off') : ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
 	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
 	<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script>
-	<script data-turbo-permanent src="<?= joe\theme_url('assets/plugin/Meting.js') ?>"></script>
+	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/Meting.js') ?>"></script>
 	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>"></script>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>
-	<script src="<?= joe\theme_url('assets/plugin/turbo/8.0.12/turbo.es2017-umd.js'); ?>"></script>
+	<script src="<?= joe\cdn('turbolinks/5.2.0/turbolinks.js') ?>"></script>
 <?php endif; ?>
 
 <?php if ($this->options->NProgressJS == 'on' || $this->options->Turbolinks == 'on') : ?>

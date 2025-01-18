@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				},
 				success(res) {
 					if (!res.data) {
-						if (Joe.BAIDU_PUSH) {
+						if (Joe.options.BaiduPush) {
 							$('#Joe_Baidu_Record').html(`<a href="javascript:window.Joe.submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
 							return
 						}
@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
 						return
 					}
 					/* 如果填写了Token，则自动推送给百度 */
-					if ((res.data == '未收录') && (Joe.BAIDU_PUSH)) {
+					if ((res.data == '未收录') && (Joe.options.BaiduPush)) {
 						window.Joe.submit_baidu('未收录，推送中...');
 						return
 					}
-					if (Joe.BAIDU_PUSH) {
+					if (Joe.options.BaiduPush) {
 						$('#Joe_Baidu_Record').html(`<a href="javascript:window.Joe.submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
 						return
 					}
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				text: () => text
 			}).on('success', () => {
 				window.code_copy = true;
-				Qmsg.success(`复制成功 内容版权属于 ${Joe.TITLE} 转载请标明出处！`, { 'showClose': true, 'autoClose': false });
+				Qmsg.success(`复制成功 内容版权属于 ${Joe.options.title} 转载请标明出处！`, { 'showClose': true, 'autoClose': false });
 			});
 			$(item).append(span);
 		});
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				// 获取被复制的元素
 				// const copiedElement = event.target;
 				if (window.code_copy !== true && window.post_copy !== true) {
-					Qmsg.warning(`本文版权属于 ${Joe.TITLE} 转载请标明出处！`, {
+					Qmsg.warning(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, {
 						'showClose': true,
 						'autoClose': false
 					});

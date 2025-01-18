@@ -130,8 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 动态背景 */
 	{
-		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND !== "off" && Joe.DYNAMIC_BACKGROUND && !Joe.WALLPAPER_BACKGROUND_PC) {
-			$.getScript(`${Joe.THEME_URL}assets/plugin/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
+		if (!Joe.IS_MOBILE && Joe.options.DynamicBackground != "off" && !Joe.WALLPAPER_BACKGROUND_PC) {
+			$.getScript(`${Joe.THEME_URL}assets/plugin/backdrop/${Joe.options.DynamicBackground}`);
 		}
 	}
 
@@ -435,11 +435,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 激活Live2d人物 */
 	{
-		if (Joe.LIVE2D !== "off" && Joe.LIVE2D) {
+		if (Joe.options.JLive2d !== "off" && Joe.options.JLive2d) {
 			$.getScript(`${Joe.THEME_URL}assets/plugin/live2d/L2Dwidget.min.js`, () => {
 				L2Dwidget.init({
 					model: {
-						jsonPath: Joe.LIVE2D,
+						jsonPath: Joe.options.JLive2d,
 						scale: 1
 					},
 					mobile: {
@@ -458,13 +458,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	/** 反机器人评论机制 */
-	if (window.Joe.commentsAntiSpam) {
+	if (window.Joe.options.commentsAntiSpam) {
 		var r = document.getElementById(window.Joe.respondId);
 		if (r) {
 			var input = document.createElement('input');
 			input.type = 'hidden';
 			input.name = '_';
-			input.value = window.Joe.commentsAntiSpam;
+			input.value = window.Joe.options.commentsAntiSpam;
 			var forms = r.getElementsByTagName('form');
 			if (forms.length > 0) {
 				forms[0].appendChild(input);
@@ -542,11 +542,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 切换标签显示不同的标题 */
 	{
-		if (Joe.DOCUMENT_TITLE) {
+		if (Joe.options.JDocumentTitle) {
 			const TITLE = document.title;
 			document.addEventListener("visibilitychange", () => {
 				if (document.visibilityState === "hidden") {
-					document.title = Joe.DOCUMENT_TITLE;
+					document.title = Joe.options.JDocumentTitle;
 				} else {
 					document.title = TITLE;
 				}
@@ -632,29 +632,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* 初始化网站运行时间 */
 	{
-		const getRunTime = () => {
-			const birthDay = new Date(Joe.BIRTHDAY);
-			const today = +new Date();
-			const timePast = today - birthDay.getTime();
-			let day = timePast / (1000 * 24 * 60 * 60);
-			let dayPast = Math.floor(day);
-			let hour = (day - dayPast) * 24;
-			let hourPast = Math.floor(hour);
-			let minute = (hour - hourPast) * 60;
-			let minutePast = Math.floor(minute);
-			let second = (minute - minutePast) * 60;
-			let secondPast = Math.floor(second);
-			day = String(dayPast).padStart(2, 0);
-			hour = String(hourPast).padStart(2, 0);
-			minute = String(minutePast).padStart(2, 0);
-			second = String(secondPast).padStart(2, 0);
-			$(".joe_run__day").html(day);
-			$(".joe_run__hour").html(hour);
-			$(".joe_run__minute").html(minute);
-			$(".joe_run__second").html(second);
-		};
-		if (Joe.BIRTHDAY && /(\d{4})\/(\d{1,2})\/(\d{1,2}) (\d{1,2})\:(\d{1,2})\:(\d{1,2})/.test(Joe
-			.BIRTHDAY)) {
+		if (Joe.options.JBirthDay && /(\d{4})\/(\d{1,2})\/(\d{1,2}) (\d{1,2})\:(\d{1,2})\:(\d{1,2})/.test(Joe
+			.options.JBirthDay)) {
+			const getRunTime = () => {
+				const birthDay = new Date(Joe.options.JBirthDay);
+				const today = +new Date();
+				const timePast = today - birthDay.getTime();
+				let day = timePast / (1000 * 24 * 60 * 60);
+				let dayPast = Math.floor(day);
+				let hour = (day - dayPast) * 24;
+				let hourPast = Math.floor(hour);
+				let minute = (hour - hourPast) * 60;
+				let minutePast = Math.floor(minute);
+				let second = (minute - minutePast) * 60;
+				let secondPast = Math.floor(second);
+				day = String(dayPast).padStart(2, 0);
+				hour = String(hourPast).padStart(2, 0);
+				minute = String(minutePast).padStart(2, 0);
+				second = String(secondPast).padStart(2, 0);
+				$(".joe_run__day").html(day);
+				$(".joe_run__hour").html(hour);
+				$(".joe_run__minute").html(minute);
+				$(".joe_run__second").html(second);
+			};
 			getRunTime();
 			setInterval(getRunTime, 1000);
 		}
@@ -1101,9 +1101,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	/** 全局Loading动画补全 */
-	if (window.Joe.LoadingAnimation) {
+	if (window.Joe.options.JLoading == 'on') {
 		window.Joe.loadingEnd();
-		if (window.Joe.loadingEnd && window.Joe.loadingStart && window.Joe?.offLoading !== false) {
+		if (window.Joe.loadingEnd && window.Joe.loadingStart && window.Joe.options.FirstLoading != 'on') {
 			window.Joe.offLoading = () => {
 				// a标签加载动画
 				$('body').on('click', 'a[href]:not([href=""])', function (e) {

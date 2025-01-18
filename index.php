@@ -50,7 +50,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					?>
 				</div>
 				<?php
-				if ($this->options->JIndex_Ajax_List == 'on') {
+				if ($this->options->IndexAjaxList == 'on') {
 					echo '<div class="joe_load_box"><a href="javascript:;" class="joe_load"><i class="fa fa-angle-right"></i>加载更多</a></div>';
 				} else if ($this->have()) {
 					'<a class="pag-jump page-numbers" href="javascript:;">

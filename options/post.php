@@ -125,27 +125,27 @@ $Baidu_Index_User_Agent = new \Typecho\Widget\Helper\Form\Element\Text(
 $Baidu_Index_User_Agent->setAttribute('class', 'joe_content joe_post');
 $form->addInput($Baidu_Index_User_Agent);
 
-$JBaiduToken = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JBaiduToken',
+$BaiduPushToken = new \Typecho\Widget\Helper\Form\Element\Text(
+	'BaiduPushToken',
 	NULL,
 	NULL,
 	'百度推送Token',
 	'介绍：填写此处，前台文章页如果未收录，则会自动将当前链接推送给百度加快收录 <br />
 		 其他：Token在百度收录平台注册账号获取'
 );
-$JBaiduToken->setAttribute('class', 'joe_content joe_post');
-$form->addInput($JBaiduToken);
+$BaiduPushToken->setAttribute('class', 'joe_content joe_post');
+$form->addInput($BaiduPushToken);
 
-$JBingToken = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JBingToken',
+$BingPushToken = new \Typecho\Widget\Helper\Form\Element\Text(
+	'BingPushToken',
 	NULL,
 	NULL,
 	'必应推送Token',
 	'介绍：填写此处，则会自动将当前链接推送给必应加快收录 <br />
 		 其他：Token在必应收录平台注册账号获取'
 );
-$JBingToken->setAttribute('class', 'joe_content joe_post');
-$form->addInput($JBingToken);
+$BingPushToken->setAttribute('class', 'joe_content joe_post');
+$form->addInput($BingPushToken);
 
 $Jsearch_target = new \Typecho\Widget\Helper\Form\Element\Select(
 	'Jsearch_target',

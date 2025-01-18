@@ -61,8 +61,8 @@ $JLazyload = new \Typecho\Widget\Helper\Form\Element\Text(
 $JLazyload->setAttribute('class', 'joe_content joe_image');
 $form->addInput($JLazyload);
 
-$JDynamic_Background = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JDynamic_Background',
+$DynamicBackground = new \Typecho\Widget\Helper\Form\Element\Select(
+	'DynamicBackground',
 	array(
 		'off' => '关闭（默认）',
 		'backdrop1.js' => '效果1',
@@ -77,8 +77,8 @@ $JDynamic_Background = new \Typecho\Widget\Helper\Form\Element\Select(
 	'介绍：用于设置PC端动态背景<br />
 	 注意：如果您填写了下方PC端静态壁纸，将优先展示下方静态壁纸！如需显示动态壁纸，请将PC端静态壁纸设置成空'
 );
-$JDynamic_Background->setAttribute('class', 'joe_content joe_image');
-$form->addInput($JDynamic_Background->multiMode());
+$DynamicBackground->setAttribute('class', 'joe_content joe_image');
+$form->addInput($DynamicBackground->multiMode());
 
 $JWallpaper_Background_PC = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JWallpaper_Background_PC',

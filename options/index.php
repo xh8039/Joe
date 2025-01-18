@@ -25,14 +25,14 @@ $JIndex_Icon_Card = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JIndex_Icon_Card->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Icon_Card);
 
-$JIndex_Ajax_List = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JIndex_Ajax_List',
+$IndexAjaxList = new \Typecho\Widget\Helper\Form\Element\Select(
+	'IndexAjaxList',
 	['on' => '开启（默认）', 'off' => '关闭'],
 	'on',
 	'首页文章Ajax加载'
 );
-$JIndex_Ajax_List->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Ajax_List->multiMode());
+$IndexAjaxList->setAttribute('class', 'joe_content joe_index');
+$form->addInput($IndexAjaxList->multiMode());
 
 $JIndex_Hide_Post = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Hide_Post',

@@ -71,7 +71,7 @@ window.Joe.tooltip = (selectors = '') => {
 	}
 }
 
-if (window.Joe.LoadingAnimation) {
+if (window.Joe.options.JLoading == 'on') {
 	window.Joe.loadingStart = () => {
 		$("#loading-animation").fadeIn(150);
 	}
@@ -206,7 +206,7 @@ window.Joe.submit_baidu = (msg = '推送中...') => {
 		}
 	});
 	// 	顺便推送URL到必应
-	if (!Joe.BING_PUSH) return;
+	if (!Joe.options.BingPush) return;
 	$.ajax({
 		url: Joe.BASE_API,
 		type: 'POST',

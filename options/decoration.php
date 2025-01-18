@@ -5,6 +5,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$NProgressJS = new \Typecho\Widget\Helper\Form\Element\Select(
+	'NProgressJS',
+	['on' => '开启（默认）', 'off' => '关闭'],
+	'on',
+	'页面顶部链接加载进度条动画'
+);
+$NProgressJS->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($NProgressJS->multiMode());
+
 $NewYearLantern = new \Typecho\Widget\Helper\Form\Element\Text(
 	'NewYearLantern',
 	NULL,

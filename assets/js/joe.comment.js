@@ -298,7 +298,7 @@ window.Joe.initComment = (options = {}) => {
 							},
 							error() {
 								$.ajax({
-									url: window.Joe.LOCAL_THEME_URL + "assets/json/joe.owo.json",
+									url: window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
 									dataType: "json",
 									success(res) {
 										initOwO(res);

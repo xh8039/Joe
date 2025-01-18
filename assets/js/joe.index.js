@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	/* 初始化首页列表功能 */
-	if (Joe.INDEX_AJAX) {
+	if (Joe.options.IndexAjaxList == 'on') {
 		const getTags = (data) => {
 			let tagsHtml = '';
 			if (data.fields.hide == 'pay' && data.fields.pay_tag_background != 'none') {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 									<item class="meta-author flex ac">
 										<a href="${_.author_permalink}">
 											<span class="avatar-mini">
-												<img alt="${_.author_screenName}的头像 - ${Joe.TITLE}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 									<item class="meta-author flex ac">
 										<a href="${_.author_permalink}">
 											<span class="avatar-mini">
-												<img alt="${_.author_screenName}的头像 - ${Joe.TITLE}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								<item class="meta-author flex ac">
 									<a href="${_.author_permalink}">
 										<span class="avatar-mini">
-											<img alt="${_.author_screenName}的头像 - ${Joe.TITLE}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+											<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
 										</span>
 									</a>
 									<span class="hide-sm ml6">${_.author_screenName}</span>
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 									<item class="meta-author flex ac">
 										<a href="${_.author_permalink}">
 											<span class="avatar-mini">
-												<img alt="${_.author_screenName}的头像 - ${Joe.TITLE}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>

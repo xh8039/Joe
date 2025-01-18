@@ -348,7 +348,7 @@ function _pushRecord($self)
 		return;
 	}
 
-	$token = trim(Helper::options()->JBaiduToken);
+	$token = trim(Helper::options()->BaiduPushToken);
 	$domain = $self->request->domain;
 	$url = explode('?', $self->request->url, 2)[0];
 	$urls = explode(",", $url);
@@ -415,7 +415,7 @@ function _pushRecord($self)
 function _pushBing($self)
 {
 	$self->response->setStatus(200);
-	$token = Helper::options()->JBingToken;
+	$token = Helper::options()->BingPushToken;
 	if (empty($token)) {
 		exit;
 	}

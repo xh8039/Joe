@@ -9,7 +9,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-if ($this->options->JIndex_Ajax_List == 'on') {
+if ($this->options->IndexAjaxList == 'on') {
 ?>
 	<div class="box-body notop nobottom">
 		<div class="title-theme">最新发布</div>

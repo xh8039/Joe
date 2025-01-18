@@ -4,28 +4,22 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 $fields = $this->fields->toArray();
+$options = [];
+foreach (['themeUrl', 'IndexAjaxList', 'BaiduPushToken', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'NProgressJS', 'JThemeMode', 'JLoading', 'FirstLoading', 'title'] as $value) {
+	$options[$value] = $this->options->$value;
+}
+$options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+var_dump($options);
 ?>
 <script>
 	window.Joe = {
-		TITLE: `<?php $this->options->title() ?>`,
 		THEME_URL: `<?= joe\theme_url('', false) ?>`,
-		LOCAL_THEME_URL: `<?= preg_replace('/^https?:\/\//i', '//', $this->options->themeUrl) ?>/`,
-		LIVE2D: `<?= $this->options->JLive2d ?>`,
 		BASE_API: `<?= joe\index('joe/api', '//') ?>`,
-		DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
 		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
-		BAIDU_PUSH: <?= empty($this->options->JBaiduToken) ? 'false' : 'true' ?>,
-		BING_PUSH: <?= empty($this->options->JBingToken) ? 'false' : 'true' ?>,
-		DOCUMENT_TITLE: `<?php $this->options->JDocumentTitle() ?>`,
 		LAZY_LOAD: `<?php joe\getLazyload() ?>`,
-		BIRTHDAY: `<?php $this->options->JBirthDay() ?>`,
 		MOTTO: `<?php joe\getAsideAuthorMotto() ?>`,
 		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`,
-		THEME_MODE: `<?php $this->options->JThemeMode() ?>`,
-		INDEX_AJAX: <?= $this->options->JIndex_Ajax_List == 'on' ? 'true' : 'false' ?>,
 		VERSION: `<?= JOE_VERSION ?>`,
-		LoadingAnimation: <?= $this->options->JLoading == 'off' ? 'false' : 'true' ?>,
-		offLoading: <?= $this->options->FirstLoading == 'on' ? 'false' : 'true' ?>,
 		respondId: `<?= $this->respondId ?>`,
 		CONTENT: {
 			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
@@ -39,14 +33,18 @@ $fields = $this->fields->toArray();
 			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
 		},
 		startTime: performance.now(),
-		commentsAntiSpam: <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null' ?>
+		options: <?= $options ?>,
 	}
+	Joe.options.BaiduPush = <?= empty($this->options->BaiduPushToken) ? 'false' : 'true' ?>;
+	Joe.options.BingPush = <?= empty($this->options->BingPushToken) ? 'false' : 'true' ?>;
+	Joe.options.commentsAntiSpam = <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null' ?>;
+
 
 	// 19:00 PM - 6:00 AM 是黑夜
-	if (Joe.THEME_MODE == 'auto' && ((new Date()).getHours() >= 19 || (new Date()).getHours() < 6)) {
+	if (Joe.options.JThemeMode == 'auto' && ((new Date()).getHours() >= 19 || (new Date()).getHours() < 6)) {
 		document.querySelector("html").setAttribute("data-night", "night");
 	}
-	if (Joe.THEME_MODE == 'night') document.querySelector("html").setAttribute("data-night", "night");
+	if (Joe.options.JThemeMode == 'night') document.querySelector("html").setAttribute("data-night", "night");
 	localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
 </script>
 <style>

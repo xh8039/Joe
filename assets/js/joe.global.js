@@ -78,7 +78,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	{
-		$('body').on('click', '[data-toggle-class]', function () {
+		$(document).on('click', '[data-toggle-class]', function () {
 			var c = $(this).attr('data-toggle-class') || 'show';
 			var e = $(this).attr('data-target') || this;
 			return $(e).toggleClass(c).trigger('toggleClass'), !1;
@@ -229,7 +229,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		var _wid = $(window).width();
 		var _hei = $(window).height();
 		// 模态框居中
-		$('body').on('show.bs.modal loaded.bs.modal', '.modal:not(.flex)', function () {
+		$(document).on('show.bs.modal loaded.bs.modal', '.modal:not(.flex)', function () {
 			var o = $(this);
 			var i = o.find('.modal-dialog');
 			o.css('display', 'block'),
@@ -354,7 +354,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	{
 		//搜索多选择
-		$('body').on('click', '[data-for]', function () {
+		$(document).on('click', '[data-for]', function () {
 			var _this = $(this);
 			var _tt;
 			var _for = _this.attr('data-for');
@@ -421,7 +421,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
 	{
 		window.Joe.thumbOnError = function () {
-			$('body').on('error', 'img.error-thumbnail', function () {
+			$(document).on('error', 'img.error-thumbnail', function () {
 				if (!this.dataset.thumbnailLoaded) {
 					// 生成一个 1 到 42 之间的随机整数
 					const randomNumber = Math.floor(Math.random() * 41) + 1;
@@ -440,7 +440,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	/** 头像加载失败代替 */
 	{
 		window.Joe.avatarOnError = () => {
-			$('body').on('error', 'img.avatar', function () {
+			$(document).on('error', 'img.avatar', function () {
 				if (!this.dataset.defaultAvatarLoaded) {
 					this.setAttribute('data-src', Joe.THEME_URL + 'assets/images/avatar-default.png');
 					this.setAttribute('src', Joe.THEME_URL + 'assets/images/avatar-default.png');
@@ -457,7 +457,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		if (window.Joe.loadingEnd && window.Joe.loadingStart && window.Joe.options.FirstLoading != 'on') {
 			window.Joe.offLoading = () => {
 				// a标签加载动画
-				$('body').on('click', 'a[href]:not([href=""])', function (e) {
+				$(document).on('click', 'a[href]:not([href=""])', function (e) {
 					if (window.Joe.checkUrl(this)) window.Joe.loadingStart();
 					setTimeout(() => {
 						window.Joe.loadingEnd();
@@ -482,7 +482,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			NProgress.remove();
 		});
 		if (window.Joe.options.NProgressJS == 'on') {
-			$('body').on('click', 'a[href]:not([href=""])', function (e) {
+			$(document).on('click', 'a[href]:not([href=""])', function (e) {
 				if (window.Joe.checkUrl(this)) {
 					NProgress.start();
 					window.addEventListener('visibilitychange', function () {
@@ -503,7 +503,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		document.addEventListener('turbolinks:request-start', function (event) {
 			event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
 		})
-		$('body').on('click', 'a[href]:not([href=""])', function (event) {
+		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;

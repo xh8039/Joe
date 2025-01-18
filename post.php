@@ -62,6 +62,7 @@ $this->need('module/single/pjax.php');
 			<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
 		<?php endif; ?>
 	</div>
+	<?php $this->need('module/end.php') ?>
 </body>
 
 </html>

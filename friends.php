@@ -81,6 +81,7 @@ $this->need('module/single/pjax.php');
 			});
 		</script>
 	</div>
+	<?php $this->need('module/end.php') ?>
 </body>
 
 </html>

@@ -34,6 +34,7 @@ $this->need('module/single/pjax.php');
 		<?php $this->need('module/footer.php'); ?>
 		<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 	</div>
+	<?php $this->need('module/end.php') ?>
 </body>
 
 </html>

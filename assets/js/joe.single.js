@@ -231,7 +231,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/* 激活文章视频模块 */
 	{
-		if ($('.joe_detail__article-video').length > 0) Joe.loadJS(Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
+		if ($('.joe_detail__article-video').length > 0) window.Joe.loadJS(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
 			window.videoPlayer = new DPlayer({
 				container: document.querySelector('.joe_detail__article-video>.dplayer-video'), // 播放器容器元素
 				autoplay: true, // 视频自动播放

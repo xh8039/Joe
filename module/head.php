@@ -52,8 +52,7 @@ if ($this->options->JLoading != 'off') : ?>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>"></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>"></script>
-<?php var_dump($this->is('single')) ?>
-<?php if ($this->is('single') || $this->options->IndexAjaxList == 'off') : ?>
+<?php if ($this->is('single') || $this->is('archive') || $this->options->IndexAjaxList == 'off') : ?>
 	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>"></script>
 <?php endif; ?>
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>"></script>

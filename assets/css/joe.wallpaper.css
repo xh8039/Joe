@@ -179,11 +179,11 @@
 	transform: rotate(180deg)
 }
 
-.joe_wallpaper__pagination-item.active {
+.joe_wallpaper__pagination-item.active,
+.joe_wallpaper__pagination-item:active {
 	color: #fff;
 	background: var(--theme);
-	user-select: none;
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .joe_wallpaper__pagination-item:hover {

@@ -56,23 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	function initPagination() {
 		let htmlStr = '';
+		let totalPages = Math.ceil(total / queryData.count);
+		let currentPage = Math.ceil(queryData.start / queryData.count) + 1;
 		if (queryData.start / queryData.count !== 0) {
-			htmlStr += `
-				<li class="joe_wallpaper__pagination-item" data-start="0">首页</li>
-				<li class="joe_wallpaper__pagination-item hide-sm" data-start="${queryData.start - queryData.count}">
-					<i class="fa fa-angle-left em12"></i><span class="ml6">上一页</span>
-				</li>
-				<li class="joe_wallpaper__pagination-item" data-start="${queryData.start - queryData.count}">${Math.ceil(queryData.start / queryData.count)}</li>
-			`;
+			htmlStr += `<li class="joe_wallpaper__pagination-item" data-start="0">首页</li><li class="joe_wallpaper__pagination-item hide-sm" data-start="${queryData.start - queryData.count}"><i class="fa fa-angle-left em12"></i><span class="ml6">上一页</span></li><li class="joe_wallpaper__pagination-item" data-start="${queryData.start - queryData.count}">${currentPage - 1}</li>`;
 		}
-		htmlStr += `<li class="joe_wallpaper__pagination-item active">${Math.ceil(queryData.start / queryData.count) + 1}</li>`;
-		if (queryData.start != total - queryData.count) {
-			htmlStr += `
-				<li class="joe_wallpaper__pagination-item" data-start="${queryData.start + queryData.count}">${Math.ceil(queryData.start / queryData.count) + 2}</li>
-				<li class="joe_wallpaper__pagination-item hide-sm" data-start="${queryData.start + queryData.count}">
-					<span class="mr6">下一页</span><i class="fa fa-angle-right em12"></i>
-				</li>
-			`;
+		htmlStr += `<li class="joe_wallpaper__pagination-item active">${currentPage}</li>`;
+		if (currentPage < totalPages) {
+			// if (queryData.start != total - queryData.count) {
+			htmlStr += `<li class="joe_wallpaper__pagination-item" data-start="${queryData.start + queryData.count}">${currentPage + 1}</li><li class="joe_wallpaper__pagination-item hide-sm" data-start="${queryData.start + queryData.count}"><span class="mr6">下一页</span><i class="fa fa-angle-right em12"></i></li>`;
 		}
 		if (queryData.start < total - queryData.count) htmlStr += `<li class="joe_wallpaper__pagination-item" data-start="${total - queryData.count}">末页</li>`;
 		$('.joe_wallpaper__pagination').html(htmlStr);

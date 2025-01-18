@@ -530,6 +530,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		// })
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
+			if ($(this).attr('data-turbolinks') == 'false') return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;
 			if (url.startsWith('/')) url = location.origin + url;

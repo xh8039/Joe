@@ -20,9 +20,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	/* 设置$.getScript()方法缓存 */
 	{
-		jQuery.ajaxSetup({
-			cache: true
-		});
+		jQuery.ajaxSetup({ cache: true });
 	}
 
 	/** 初始化评论 */
@@ -42,8 +40,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			window.Joe.commentListAutoRefresh = true;
 			console.log('pjax-success：' + options.pjax);
 			if (window.Joe.tooltip) window.Joe.tooltip();
-			if (window.Joe.thumbOnError) window.Joe.thumbOnError();
-			if (window.Joe.avatarOnError) window.Joe.avatarOnError();
 			$(".comment-list [data-toggle='popover']").popover();
 			if (options.pjax == 'comment-submit' || options.pjax == 'comment-pagination') {
 				if (Joe.initComment) Joe.initComment({
@@ -420,54 +416,45 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
 	{
-		window.Joe.thumbOnError = function () {
-			$(document).on('error', 'img.error-thumbnail', function () {
-				if (!this.dataset.thumbnailLoaded) {
-					// 生成一个 1 到 42 之间的随机整数
-					const randomNumber = Math.floor(Math.random() * 41) + 1;
-					// 将随机数格式化为两位数
-					const formattedNumber = ("0" + randomNumber).slice(-2);
-					const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
-					$(this).attr('data-src', thumb);
-					$(this).attr('src', thumb);
-					this.dataset.thumbnailLoaded = true;
-				}
-			});
-		}
-		window.Joe.thumbOnError();
+		$(document).on('error', 'img.error-thumbnail', function () {
+			if (!this.dataset.thumbnailLoaded) {
+				// 生成一个 1 到 42 之间的随机整数
+				const randomNumber = Math.floor(Math.random() * 41) + 1;
+				// 将随机数格式化为两位数
+				const formattedNumber = ("0" + randomNumber).slice(-2);
+				const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
+				$(this).attr('data-src', thumb);
+				$(this).attr('src', thumb);
+				this.dataset.thumbnailLoaded = true;
+			}
+		});
 	}
 
 	/** 头像加载失败代替 */
 	{
-		window.Joe.avatarOnError = () => {
-			$(document).on('error', 'img.avatar', function () {
-				if (!this.dataset.defaultAvatarLoaded) {
-					this.setAttribute('data-src', Joe.THEME_URL + 'assets/images/avatar-default.png');
-					this.setAttribute('src', Joe.THEME_URL + 'assets/images/avatar-default.png');
-					this.dataset.defaultAvatarLoaded = true;
-				}
-			});
-		}
-		window.Joe.avatarOnError();
+		$(document).on('error', 'img.avatar', function () {
+			if (!this.dataset.defaultAvatarLoaded) {
+				this.setAttribute('data-src', Joe.THEME_URL + 'assets/images/avatar-default.png');
+				this.setAttribute('src', Joe.THEME_URL + 'assets/images/avatar-default.png');
+				this.dataset.defaultAvatarLoaded = true;
+			}
+		});
 	}
 
 	/** 全局Loading动画补全 */
 	if (window.Joe.options.JLoading == 'on') {
 		window.Joe.loadingEnd();
 		if (window.Joe.loadingEnd && window.Joe.loadingStart && window.Joe.options.FirstLoading != 'on') {
-			window.Joe.offLoading = () => {
-				// a标签加载动画
-				$(document).on('click', 'a[href]:not([href=""])', function (e) {
-					if (window.Joe.checkUrl(this)) window.Joe.loadingStart();
-					setTimeout(() => {
-						window.Joe.loadingEnd();
-					}, 5000);
-					window.addEventListener('unload', function (event) {
-						window.Joe.loadingEnd();
-					});
+			// a标签加载动画
+			$(document).on('click', 'a[href]:not([href=""])', function (e) {
+				if (window.Joe.checkUrl(this)) window.Joe.loadingStart();
+				setTimeout(() => {
+					window.Joe.loadingEnd();
+				}, 5000);
+				window.addEventListener('unload', function (event) {
+					window.Joe.loadingEnd();
 				});
-			}
-			window.Joe.offLoading();
+			});
 		}
 	}
 

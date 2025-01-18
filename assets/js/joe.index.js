@@ -283,10 +283,6 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 							return Qmsg.warning('没有更多内容了');
 						}
 						res.data.forEach(data => $('.joe_index__list .joe_list').append(getListMode(data)));
-						// 文章列表缩略图加载失败自动使用主题自带缩略图
-						if (window.Joe.thumbOnError) window.Joe.thumbOnError();
-						// a标签点击后的离开Loading动画
-						if (window.Joe.offLoading) window.Joe.offLoading();
 						if (window.Joe.tooltip) window.Joe.tooltip('.joe_index__list');
 						$('.joe_load').removeAttr('loading');
 						$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');

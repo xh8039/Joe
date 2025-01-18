@@ -487,6 +487,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	if (window.turbo) {
 		document.addEventListener('turbo:before-fetch-request', function (event) {
+			console.log(event);
 			event.data.xhr.setRequestHeader('X-Turbo', 'true')
 		})
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {

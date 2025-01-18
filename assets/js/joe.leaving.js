@@ -130,7 +130,7 @@ Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoad
 };
 
 Joe.DOMContentLoaded.leaving();
-console.log('调用 Joe.DOMContentLoaded.leaving');
+console.log('调用：Joe.DOMContentLoaded.leaving');
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
 window.addEventListener('load', function () {

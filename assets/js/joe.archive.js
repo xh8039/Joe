@@ -34,4 +34,4 @@ Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoad
 
 };
 Joe.DOMContentLoaded.archive();
-console.log('调用 Joe.DOMContentLoaded.archive');
+console.log('调用：Joe.DOMContentLoaded.archive');

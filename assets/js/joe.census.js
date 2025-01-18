@@ -364,4 +364,4 @@ Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded
 	}
 }
 Joe.DOMContentLoaded.census();
-console.log('调用 Joe.DOMContentLoaded.census');
+console.log('调用：Joe.DOMContentLoaded.census');

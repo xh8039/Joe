@@ -321,4 +321,4 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 	}
 }
 Joe.DOMContentLoaded.index();
-console.log('调用 Joe.DOMContentLoaded.index');
+console.log('调用：Joe.DOMContentLoaded.index');

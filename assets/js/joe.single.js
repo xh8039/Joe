@@ -351,7 +351,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 };
 
 Joe.DOMContentLoaded.single();
-console.log('调用 Joe.DOMContentLoaded.single');
+console.log('调用：Joe.DOMContentLoaded.single');
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
 window.addEventListener('load', function () {

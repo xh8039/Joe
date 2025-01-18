@@ -180,7 +180,7 @@
 }
 
 .joe_wallpaper__pagination-item.active,
-.joe_wallpaper__pagination-item:active {
+.joe_wallpaper__pagination-item:focus {
 	color: #fff;
 	background: var(--theme);
 	pointer-events: none;

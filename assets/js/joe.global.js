@@ -433,6 +433,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	/** 头像加载失败代替 */
 	{
 		document.addEventListener("error", function (event) {
+			console.log(event)
 			var element = event.target;
 			if (element.tagName.toLowerCase() == 'img' && element.classList.contains('avatar')) {
 				element.src = "/img/hint.jpg";

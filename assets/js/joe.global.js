@@ -522,7 +522,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				pjax: 'global',
 				cacheBust: false,
 			});
-			pjax.loadUrl(url);
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
@@ -540,6 +539,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				});
 				pjax._handleResponse(responseText, request, href, options);
 			}
+			pjax.loadUrl(url);
 		});
 	}
 }

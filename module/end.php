@@ -10,7 +10,6 @@ $joe_action_bottom = 20;
 if ($this->options->JMusic == 'on') {
 ?>
 	<meting-js id="global-meting-js" data-turbolinks-permanent fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" api="<?= empty($this->options->JMusicApi) ? joe\index('joe/api', '//') . '/joe/api?routeType=meting&server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" dataId="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
-	<script src="<?= joe\theme_url('assets/plugin/Meting.js', false) ?>" defer></script>
 <?php
 }
 ?>

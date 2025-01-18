@@ -47,49 +47,49 @@ if ($this->options->JLoading != 'off') : ?>
 
 <?php $this->need('module/config.php'); ?>
 
-<script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>" defer></script>
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>" defer></script>
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>" defer></script>
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>" defer></script>
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>" defer></script>
+<script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>" data-turbolinks-permanent id="script-jquery"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>" data-turbolinks-permanent id="script-bootstrap-transition"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>" data-turbolinks-permanent id="script-bootstrap-modal"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>" data-turbolinks-permanent id="script-bootstrap-tooltip"></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>" data-turbolinks-permanent id="script-bootstrap-popover"></script>
 <?php if ($this->is('single') || $this->is('archive') || $this->options->IndexAjaxList == 'off') : ?>
-	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>" defer></script>
+	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>" data-turbolinks-permanent id="script-pjax"></script>
 <?php endif; ?>
-<script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" defer></script>
-<script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>" defer></script>
+<script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent id="script-lazysizes"></script>
+<script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>" data-turbolinks-permanent id="script-qmsg"></script>
 
 <?php if ($this->is('single') || $this->options->JMusic == 'on') : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
-	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>" defer></script>
-	<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>" defer></script>
+	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>" data-turbolinks-permanent id="script-APlayer"></script>
+	<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>" data-turbolinks-permanent id="script-color-thief"></script>
 	<?php if ($this->options->JMusic == 'on') : ?>
-		<script src="<?= joe\theme_url('assets/plugin/Meting.js', false) ?>" defer></script>
+		<script src="<?= joe\theme_url('assets/plugin/Meting.js', false) ?>" data-turbolinks-permanent id="script-Meting"></script>
 	<?php endif; ?>
-	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>" defer></script>
+	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>" data-turbolinks-permanent id="script-MusicPlayer"></script>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>
-	<script src="<?= joe\cdn('turbolinks/5.2.0/turbolinks.js') ?>" defer></script>
+	<script src="<?= joe\cdn('turbolinks/5.2.0/turbolinks.js') ?>" data-turbolinks-permanent id="script-turbolinks"></script>
 <?php endif; ?>
 
 <?php if ($this->options->NProgressJS == 'on' || $this->options->Turbolinks == 'on') : ?>
-	<link rel="stylesheet" href="<?= joe\cdn('nprogress/0.2.0/nprogress.min.css') ?>" defer>
-	<script src="<?= joe\cdn('nprogress/0.2.0/nprogress.min.js') ?>" defer></script>
+	<link rel="stylesheet" href="<?= joe\cdn('nprogress/0.2.0/nprogress.min.css') ?>">
+	<script src="<?= joe\cdn('nprogress/0.2.0/nprogress.min.js') ?>" data-turbolinks-permanent id="script-nprogress"></script>
 <?php endif; ?>
 
-<script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>"></script>
-<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>" defer></script>
+<script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>" data-turbolinks-permanent id="script-joe-extend"></script>
+<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>" data-turbolinks-permanent id="script-joe-function"></script>
 
 <?php if ($this->is('single')) : ?>
-	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>" defer></script>
+	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>" data-turbolinks-permanent id="script-jquery-fancybox"></script>
 	<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>"></script> -->
 	<script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
-	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" defer></script>
+	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent id="script-joe-comment"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 <?php endif; ?>
 
-<script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" defer></script>
+<script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" data-turbolinks-permanent id="script-joe-global"></script>
 <script src="<?= joe\theme_url('assets/js/joe.main.js'); ?>"></script>
 
 <!-- 自定义头部HTML代码 -->

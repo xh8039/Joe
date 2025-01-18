@@ -75,9 +75,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
-		<?php $this->need('module/footer.php'); ?>
-		<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>
 	</div>
+	<?php $this->need('module/footer.php'); ?>
+	<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>
 	<?php $this->need('module/end.php') ?>
 </body>
 

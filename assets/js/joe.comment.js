@@ -232,7 +232,7 @@ window.Joe.initComment = (options = {}) => {
 	/* 初始化表情功能 */
 	{
 		function initOwO(res) {
-			console.log('初始化表情');
+			// console.log('初始化表情');
 			window.Joe.OwO = res;
 			let barStr = "";
 			let scrollStr = "";

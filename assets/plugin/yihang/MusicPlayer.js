@@ -22,9 +22,6 @@ class MusicPlayer {
 	 * 初始化播放器
 	 */
 	init() {
-
-		console.log('调用：MusicPlayer');
-
 		// 优化全部音乐信息
 		this.setMusic()
 
@@ -128,9 +125,7 @@ class MusicPlayer {
 		var seek_loadedmetadata = true;
 		this.PLAYER.on('loadedmetadata', () => {
 			console.log('监听：loadedmetadata')
-			if (!seek_loadedmetadata) {
-				return
-			}
+			if (!seek_loadedmetadata) return
 			this.PLAYER.seek(storage_music.time);
 			var time = this.PLAYER.audio.currentTime;
 			if (time <= 0) {

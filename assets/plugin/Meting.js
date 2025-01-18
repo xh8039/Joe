@@ -124,13 +124,13 @@ class MetingJSElement extends HTMLElement {
 		let div = document.createElement('div')
 		options.container = div
 		this.appendChild(div)
-
+		console.log('调用：MusicPlayer');
 		this.aplayer = new MusicPlayer(options)
 	}
 
 }
 
-if (window.customElements && !window.customElements.get('meting-js')) {
+if (!document.querySelector('meting-js>.aplayer') && window.customElements && !window.customElements.get('meting-js')) {
 	console.log('meting-js 激活');
 	window.MetingJSElement = MetingJSElement
 	window.customElements.define('meting-js', MetingJSElement)

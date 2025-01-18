@@ -735,22 +735,45 @@ function dateWord($original_date)
 	return $original_date;
 }
 
-function optionMulti($string, string $line = "\r\n", $separator = '||', $key = []): array
+function optionMulti($string, string $line = "\r\n", $separator = '||', array $key = []): array
 {
 	if (empty($string) || !is_string($string)) return [];
-	$optionMulti = [];
-	$customArr = explode($line, $string);
-	foreach ($customArr as $index => $value) {
-		$option = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
-		foreach ($key as $i => $val) {
-			if (is_string($separator)) $option[$val] = isset($option[$i]) ? $option[$i] : null;
+	$explode_string = explode($line, $string);
+	if (is_string($separator)) {
+		$optionMulti = [];
+		foreach ($explode_string as $index => $value) {
+			$option = array_map('trim', explode($separator, $value));
+			foreach ($key as $i => $val) {
+				$option[$val] = isset($option[$i]) ? $option[$i] : null;
+			}
+			$optionMulti[$index] = $option;
 		}
-		if (!is_string($separator) && isset($key[$index])) {
-			$optionMulti[$key[$index]] = $option;
-		} else {
-			$optionMulti[] = $option;
+	} else {
+		$optionMulti = array_map('trim', $explode_string);
+		foreach ($key as $index => $value) {
+			$optionMulti[$value] = isset($optionMulti[$index]) ? $optionMulti[$index] : null;
 		}
 	}
+	// foreach ($customArr as $index => $value) {
+	// 	if (is_string($separator)) {
+	// 		$option = array_map('trim', explode($separator, $value));
+	// 		foreach ($key as $i => $val) {
+	// 			$option[$val] = isset($option[$i]) ? $option[$i] : null;
+	// 		}
+	// 		$optionMulti[$index] = $option;
+	// 	} else {
+	// 		$optionMulti[$index] = trim($value);
+	// 	}
+	// 	$option = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
+	// 	foreach ($key as $i => $val) {
+	// 		if (is_string($separator)) $option[$val] = isset($option[$i]) ? $option[$i] : null;
+	// 	}
+	// 	if (!is_string($separator) && isset($key[$index])) {
+	// 		$optionMulti[$key[$index]] = $option;
+	// 	} else {
+	// 		$optionMulti[] = $option;
+	// 	}
+	// }
 	return $optionMulti;
 }
 

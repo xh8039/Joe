@@ -58,9 +58,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (options.pjax == 'global') {
 				NProgress.done();
 				console.log(options);
-				const DOMParser = new DOMParser();
 				// HTMLDocument(<html><body>...parsed nodes</body></html>)
-				const responseDocument = DOMParser.parseFromString(options.request.responseText, 'text/html');
+				const responseDocument = (new DOMParser()).parseFromString(options.request.responseText, 'text/html');
 				// 解析好的DOM节点
 				console.log(responseDocument);
 			}

@@ -3,19 +3,11 @@ function getChildren(el, className) {
 	for (let item of el.children) if (item.className === className) return item;
 	return null;
 }
-Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
+// Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : 
+document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', () => {
 	console.log('调用 Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
 
-	// 清除可能存在的全局自定义元素定义
-	// let definedElements = customElements.keys();
-	// definedElements.forEach(elementName => {
-	// 	customElements.get(elementName).prototype.disconnectedCallback = undefined; //清空disconnect方法
-	// 	customElements.get(elementName).prototype.connectedCallback = undefined; //清空connect方法
-	// 	delete customElements.get(elementName); //删除定义
-	// });
-
-	delete customElements.get('joe-mtitle');
 	customElements.define('joe-mtitle', class JoeMtitle extends HTMLElement {
 		constructor() {
 			super();
@@ -754,5 +746,4 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 	);
 
 	$('.joe_detail__article p:empty').remove();
-}
-document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short);
+});

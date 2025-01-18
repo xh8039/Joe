@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 $fields = $this->fields->toArray();
 $options = [];
-foreach (['themeUrl', 'IndexAjaxList', 'BaiduPushToken', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'title'] as $value) {
+foreach (['themeUrl', 'IndexAjaxList', 'BaiduPushToken', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'NProgressJS', 'title'] as $value) {
 	$options[$value] = $this->options->$value;
 }
 $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

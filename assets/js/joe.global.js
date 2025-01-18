@@ -1122,7 +1122,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	/* NProgress.js */
-	if (window.NProgress) {
+	if (window.Joe.options.NProgressJS == 'on' && window.NProgress) {
 		$('body').on('click', 'a[href]:not([href=""])', function (e) {
 			if (window.Joe.checkUrl(this)) {
 				NProgress.configure({ trickleSpeed: 10 });

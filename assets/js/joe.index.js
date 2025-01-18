@@ -1,5 +1,6 @@
 Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.index : () => {
 	console.log('调用 Joe.DOMContentLoaded.index');
+	console.log(document.querySelector('body'));
 	/* 激活轮播图功能 */
 	{
 		if ($('.joe_index__banner .swiper').length !== 0) {
@@ -321,4 +322,4 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 		if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
 	}
 }
-document.addEventListener(window.Turbolinks ? 'turbolinks:render' : 'DOMContentLoaded', Joe.DOMContentLoaded.index);
+Joe.DOMContentLoaded.index();

@@ -38,44 +38,4 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</div>
 	</div>
-	<script>
-		$('.swiper-scroll').each(function(e) {
-			if ($(this).hasClass('swiper-container-initialized')) return;
-			var option = {};
-			var _this = $(this);
-			var _eq = 'swiper-scroll-eq-' + e;
-			var slideClass = _this.attr('data-slideClass') || false;
-			slideClass && (option.slideClass = slideClass);
-
-			if (!_this.attr('scroll-nogroup')) {
-				var c_w = _this.width();
-				var i_w = _this.find('.swiper-slide').outerWidth(true);
-				var slidesPerGroup = ~~(c_w / i_w);
-				option.slidesPerGroup = slidesPerGroup || 1;
-			}
-
-			option.autoplay = _this.attr('data-autoplay') ? {
-					delay: ~~_this.attr('data-interval') || 4000,
-					disableOnInteraction: false,
-				} :
-				false;
-			option.loop = _this.attr('data-loop');
-			option.slidesPerView = 'auto';
-			option.mousewheel = {
-				forceToAxis: true,
-			};
-			option.freeMode = true;
-			option.freeModeSticky = true;
-
-			option.navigation = {
-				nextEl: '.swiper-scroll.' + _eq + ' .swiper-button-next',
-				prevEl: '.swiper-scroll.' + _eq + ' .swiper-button-prev',
-			};
-
-			// console.log(option)
-
-			_this.addClass(_eq).attr('swiper-scroll-index', e);
-			new Swiper('.swiper-scroll.' + _eq, option);
-		});
-	</script>
 <?php endif; ?>

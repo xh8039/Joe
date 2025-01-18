@@ -1124,12 +1124,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	{
 		$('body').on('click', 'a[href]:not([href=""])', function (e) {
 			if (window.Joe.checkUrl(this)) {
+				NProgress.configure({ trickleSpeed: 10 });
 				NProgress.start();
-				window.addEventListener('pagehide', function (event) {
-					NProgress.done();
-				});
 				window.addEventListener('visibilitychange', function () {
 					if (document.visibilityState === 'hidden') NProgress.done();
+				});
+				window.addEventListener('pagehide', function (event) {
+					NProgress.done();
 				});
 				window.addEventListener('unload', function (event) {
 					NProgress.remove();

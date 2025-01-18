@@ -5915,3 +5915,7 @@ html .aplayer {
 .widget-tag-cloud.author-tag .but {
 	font-size: 13px
 }
+
+.turbolinks-progress-bar {
+	visibility: hidden;
+}

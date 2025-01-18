@@ -66,7 +66,11 @@ if ($this->options->JLoading != 'off') : ?>
 	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js'); ?>"></script>
 <?php endif; ?>
 
-<?php if ($this->options->NProgressJS == 'on') : ?>
+<?php if ($this->options->Turbolinks == 'on') : ?>
+	<script src="<?= joe\cdn('turbolinks/5.2.0/turbolinks.js') ?>"></script>
+<?php endif; ?>
+
+<?php if ($this->options->NProgressJS == 'on' || $this->options->Turbolinks == 'on') : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('nprogress/0.2.0/nprogress.min.css') ?>">
 	<script src="<?= joe\cdn('nprogress/0.2.0/nprogress.min.js') ?>"></script>
 <?php endif; ?>

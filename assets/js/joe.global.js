@@ -1123,11 +1123,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	if (window.NProgress) {
 		NProgress.configure({ trickleSpeed: 10 });
 		$(document).on('turbolinks:click', function () {
-			console.log('turbolinks:click');
 			NProgress.start();
 		});
 		$(document).on('turbolinks:render', function () {
-			console.log('turbolinks:render');
 			NProgress.done();
 			NProgress.remove();
 		});

@@ -1154,6 +1154,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;
+			if (url.startsWith('/')) url = location.origin + url;
+			console.log(url);
 			Turbolinks.visit(url);
 		});
 	}

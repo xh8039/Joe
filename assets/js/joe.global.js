@@ -1106,13 +1106,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (window.Joe.loadingEnd && window.Joe.loadingStart && window.Joe?.offLoading !== false) {
 			window.Joe.offLoading = () => {
 				// a标签加载动画
-				$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
+				$('body').on('click', 'a[href]:not([href=""])', function (e) {
 					if (window.Joe.checkUrl(this)) window.Joe.loadingStart();
 					setTimeout(() => {
 						window.Joe.loadingEnd();
 					}, 5000);
 					window.addEventListener('unload', function (event) {
-						// 在这里执行你希望在用户离开前运行的代码
 						window.Joe.loadingEnd();
 					});
 				});
@@ -1123,7 +1122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	/* NProgress.js */
 	{
-		$(document.querySelectorAll('a[href]:not([href=""])')).click(function (e) {
+		$('body').on('click', 'a[href]:not([href=""])', function (e) {
 			if (window.Joe.checkUrl(this)) {
 				NProgress.start();
 				window.addEventListener('pagehide', function (event) {

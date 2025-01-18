@@ -29,3 +29,4 @@ if ($this->options->JLoading != 'off') {
 	}
 	?>
 </header>
+<a href="" data-pjax-state id="global-pjax-element"></a>

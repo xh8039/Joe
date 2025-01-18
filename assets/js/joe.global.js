@@ -513,7 +513,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (url.startsWith('/')) url = location.origin + url;
 			NProgress.start();
 			var pjax = new Pjax({
-				elements: '#Joe',
+				elements: '#global-pjax-element',
 				selectors: ["#Joe", 'script:not([data-turbolinks-permanent])', 'link'],
 				pjax: 'global',
 			});

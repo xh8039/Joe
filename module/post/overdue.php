@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-if (!empty($this->options->JOverdue) && floor((time() - ($this->modified)) / 86400) >= $this->options->JOverdue) {
+if (is_numeric($this->options->JOverdue) && floor((time() - ($this->modified)) / 86400) >= $this->options->JOverdue) {
 ?>
     <div class="joe_detail__overdue">
         <div class="joe_detail__overdue-wrapper">

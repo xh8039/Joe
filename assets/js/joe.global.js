@@ -1122,22 +1122,31 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	/* NProgress.js */
-	if (window.Joe.options.NProgressJS == 'on' && window.NProgress) {
-		$('body').on('click', 'a[href]:not([href=""])', function (e) {
-			if (window.Joe.checkUrl(this)) {
-				NProgress.configure({ trickleSpeed: 10 });
-				NProgress.start();
-				window.addEventListener('visibilitychange', function () {
-					if (document.visibilityState === 'hidden') NProgress.done();
-				});
-				window.addEventListener('pagehide', function (event) {
-					NProgress.done();
-				});
-				window.addEventListener('unload', function (event) {
-					NProgress.remove();
-				});
-			}
+	if (window.NProgress) {
+		$(document).on('turbolinks:click', function () {
+			NProgress.start();
 		});
+		$(document).on('turbolinks:render', function () {
+			NProgress.done();
+			NProgress.remove();
+		});
+		if (window.Joe.options.NProgressJS == 'on') {
+			$('body').on('click', 'a[href]:not([href=""])', function (e) {
+				if (window.Joe.checkUrl(this)) {
+					NProgress.configure({ trickleSpeed: 10 });
+					NProgress.start();
+					window.addEventListener('visibilitychange', function () {
+						if (document.visibilityState === 'hidden') NProgress.done();
+					});
+					window.addEventListener('pagehide', function (event) {
+						NProgress.done();
+					});
+					window.addEventListener('unload', function (event) {
+						NProgress.remove();
+					});
+				}
+			});
+		}
 	}
 
 	if (window.Turbolinks) {
@@ -1145,7 +1154,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;
-			Turbolinks.visit(location);
+			Turbolinks.visit(url);
 		});
 	}
 }

@@ -1,6 +1,4 @@
 Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.index : () => {
-	console.log('调用 Joe.DOMContentLoaded.index');
-	console.log(document.querySelector('body'));
 	/* 激活轮播图功能 */
 	{
 		if ($('.joe_index__banner .swiper').length !== 0) {
@@ -323,3 +321,4 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 	}
 }
 Joe.DOMContentLoaded.index();
+console.log('调用 Joe.DOMContentLoaded.index');

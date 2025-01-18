@@ -33,4 +33,5 @@ Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoad
 	}
 
 };
-document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.archive);
+Joe.DOMContentLoaded.archive();
+console.log('调用 Joe.DOMContentLoaded.archive');

@@ -19,7 +19,6 @@ $this->need('module/single/pjax.php');
 <head>
 	<?php $this->need('module/head.php'); ?>
 	<script src="<?= joe\cdn('draggabilly/2.3.0/draggabilly.pkgd.min.js') ?>"></script>
-	<script src="<?= joe\theme_url('assets/js/joe.leaving.js'); ?>"></script>
 </head>
 
 <body>
@@ -37,6 +36,7 @@ $this->need('module/single/pjax.php');
 			</div>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
+		<script src="<?= joe\theme_url('assets/js/joe.leaving.js'); ?>"></script>
 	</div>
 </body>
 

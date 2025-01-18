@@ -19,7 +19,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.census.css'); ?>">
 	<script src="<?= joe\cdn('echarts/5.1.1/echarts.min.js') ?>"></script>
-	<script src="<?= joe\theme_url('assets/js/joe.census.js'); ?>"></script>
 </head>
 
 <body>
@@ -131,6 +130,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
+		<script src="<?= joe\theme_url('assets/js/joe.census.js'); ?>"></script>
 	</div>
 </body>
 

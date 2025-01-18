@@ -14,7 +14,6 @@ $this->need('module/single/pjax.php');
 	$this->need('module/single/prism.php');
 	?>
 	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
-	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>
 
 <body>
@@ -33,6 +32,7 @@ $this->need('module/single/pjax.php');
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
+		<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 	</div>
 </body>
 

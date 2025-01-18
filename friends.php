@@ -23,7 +23,6 @@ $this->need('module/single/pjax.php');
 	?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.friend.css') ?>">
 	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
-	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>
 
 <body>
@@ -73,14 +72,15 @@ $this->need('module/single/pjax.php');
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/footer.php'); ?>
+		<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
+		<script>
+			const AvatarLazyload = `${Joe.THEME_URL}assets/images/avatar-default.png`;
+			$('.joe_detail__friends .avatar').on('error', function() {
+				$(this).attr('data-src', AvatarLazyload);
+				$(this).attr('src', AvatarLazyload);
+			});
+		</script>
 	</div>
-	<script>
-		const AvatarLazyload = `${Joe.THEME_URL}assets/images/avatar-default.png`;
-		$('.joe_detail__friends .avatar').on('error', function() {
-			$(this).attr('data-src', AvatarLazyload);
-			$(this).attr('src', AvatarLazyload);
-		});
-	</script>
 </body>
 
 </html>

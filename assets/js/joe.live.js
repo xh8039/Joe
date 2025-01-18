@@ -118,4 +118,5 @@ Joe.DOMContentLoaded.live = Joe.DOMContentLoaded.live ? Joe.DOMContentLoaded.liv
 		}
 	}
 }
-document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.live);
+Joe.DOMContentLoaded.live();
+console.log('调用：Joe.DOMContentLoaded.live');

@@ -363,4 +363,5 @@ Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded
 		});
 	}
 }
-document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.census);
+Joe.DOMContentLoaded.census();
+console.log('调用 Joe.DOMContentLoaded.census');

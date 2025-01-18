@@ -56,16 +56,13 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				});
 			}
 			if (options.pjax == 'global') {
-				console.log(options);
-				// HTMLDocument(<html><body>...parsed nodes</body></html>)
 				const responseDocument = (new DOMParser()).parseFromString(options.request.responseText, 'text/html');
-				// 解析好的DOM节点
-				window.responseDocument = responseDocument;
-				console.log(responseDocument);
-				$(window.responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
+				$(responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
 					let url = this.src;
+					if (!url) return;
 					console.log(`script[src="${url}"]`);
 					let script = document.querySelector(`script[src="${url}"]`);
+					console.log(script);
 					if (script) {
 						script.insertAdjacentHTML('afterend', `<script src="${url}">`);
 						script.remove();
@@ -530,8 +527,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		// })
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
-			console.log($(this).attr('data-pjax-state'));
-			if ($(this).attr('data-pjax-state')) return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;
 			// if (url.startsWith('/')) url = location.origin + url;

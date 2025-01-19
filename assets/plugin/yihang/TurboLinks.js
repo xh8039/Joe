@@ -9,6 +9,8 @@ class TurboLinks {
 	/** 本次需要加载的 JavaScript文件列表 */
 	loadJSList = [];
 
+	loadJSIndex = 1;
+
 	/** 全局已经加载过的 JavaScript文件列表 */
 	static documentScriptList = [];
 
@@ -31,13 +33,13 @@ class TurboLinks {
 			const loadCSSList = responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]');
 			loadCSSList.forEach(this.loadCSSLink);
 
-			this.loadJSList = responseDocument.head.querySelectorAll('script');
+			this.loadJSList = responseDocument.head.querySelectorAll('script[src]');
 			if (this.loadJSList.length < 1) return pjax._handleResponse(responseText, request, href, options);
 			document.querySelectorAll('script[src]').forEach(element => {
 				TurboLinks.documentScriptList.push(element.src);
 			});
 			this.loadJSList.forEach((element, index) => {
-				this.replaceJs(element, index);
+				this.replaceJs(element);
 			});
 
 		}
@@ -45,15 +47,16 @@ class TurboLinks {
 		this.pjax = pjax;
 	}
 
-	JsLoaded(element, index) {
+	JsLoaded(element) {
 		TurboLinks.documentScriptList.push(element.src);
-		if (index == (this.loadJSList.length - 1)) {
+		if (this.loadJSIndex == this.loadJSList.length) {
 			console.log('所有JavaScript文件都已加载！');
-			this.pjax._handleResponse(this.handleResponseParam.responseText, this.handleResponseParam.request, this.handleResponseParam.href, this.handleResponseParam.options);
+			return this.pjax._handleResponse(this.handleResponseParam.responseText, this.handleResponseParam.request, this.handleResponseParam.href, this.handleResponseParam.options);
 		}
+		this.loadJSIndex++;
 	}
 
-	replaceJs(element, index) {
+	replaceJs(element) {
 		if (!this || !this instanceof TurboLinks) {
 			console.log(this);
 			console.error('请使用TurboLinks对象调用！');
@@ -72,18 +75,18 @@ class TurboLinks {
 
 		if (element.src) {
 			if ($(element).attr('data-turbolinks-permanent') != undefined && TurboLinks.documentScriptList.includes(element.src)) {
-				this.JsLoaded(element, index);
+				this.JsLoaded(element);
 				return true;
 			}
 			script.src = element.src;
 			script.async = false;
 			script.addEventListener('load', () => {
 				console.log('引入JS：' + element.src);
-				this.JsLoaded(element, index);
+				this.JsLoaded(element);
 			});
 			script.addEventListener('error', () => {
 				console.error('Error loading script:', element.src);
-				this.JsLoaded(element, index);
+				this.JsLoaded(element);
 			});
 			// 强制同步加载外部JS
 		}
@@ -111,7 +114,7 @@ class TurboLinks {
 	loadStyle(element, index) {
 		let code = element.text || element.textContent || element.innerHTML || null;
 		if (!code) return false;
-		console.log('引入CSS：'.code);
+		console.log('引入style：'.code);
 		let style = document.createElement('style');
 		style.type = 'text/css';
 		try {

@@ -136,7 +136,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	/* 小屏幕搜索框 */
-	{
+	if (document.querySelector('.joe_header__above-searchicon')) {
 		$(".joe_header__above-searchicon").on("click", function () {
 			/* 关闭侧边栏 */
 			$(".joe_header__slideout").removeClass("active");
@@ -245,6 +245,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				});
 			}
 			if (options.pjax == 'global') {
+				if (document.querySelector('.joe_header__above-searchicon')) document.querySelector('.joe_header__above-searchicon').click();
 				document.dispatchEvent(new CustomEvent('turbolinks:load'));
 				NProgress.done();
 			}

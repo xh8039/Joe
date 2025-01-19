@@ -3,8 +3,8 @@ function getChildren(el, className) {
 	for (let item of el.children) if (item.className === className) return item;
 	return null;
 }
-// Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
-Joe.DOMContentLoaded.short = () => {
+Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
+// Joe.DOMContentLoaded.short = () => {
 	console.log('调用：Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
 
@@ -510,6 +510,7 @@ Joe.DOMContentLoaded.short = () => {
 			this.render();
 		}
 		render() {
+			console.log(this);
 			if (this.options.src) {
 				if (this.options.player == 'false') {
 					function isM3U8(url) {
@@ -522,6 +523,7 @@ Joe.DOMContentLoaded.short = () => {
 						}
 					}
 					const videoPlayer = () => {
+						console.log('加载：DPlayer.min.js');
 						window.Joe.loadJS(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
 							new DPlayer({
 								container: this, // 播放器容器元素

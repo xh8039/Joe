@@ -59,7 +59,7 @@ class TurboLinks {
 			if (options.pjax != 'TurboLinks') return;
 			document.dispatchEvent(new CustomEvent('turbolinks:load'));
 		});
-		a_element.remove();
+		link_element.remove();
 	}
 
 	JsLoaded(element) {

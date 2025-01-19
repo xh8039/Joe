@@ -196,7 +196,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 			<div class="zib-widget widget-tag-cloud author-tag">
 				<?php
-				$this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 50))->to($tags);
+				$this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 20))->to($tags);
 				if ($tags->have()) {
 					$color_list = array('c-blue', 'c-yellow', 'c-green', 'c-purple', 'c-red', 'c-blue-2', 'c-yellow-2', 'c-green-2', 'c-purple-2', 'c-red-2');
 					while ($tags->next()) {

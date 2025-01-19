@@ -215,11 +215,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	{
 		document.addEventListener('pjax:send', (options) => {
 			console.log('pjax-send:' + options.pjax);
-			if (options.pjax != "comment-pagination") return;
-			if ($('#comment_module>.joe_pagination a').length) {
-				window.Joe.commentListAutoRefresh = false;
-				$('#comment_module>.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
-			}
 		});
 	}
 
@@ -230,13 +225,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			console.log('pjax-success：' + options.pjax);
 			if (window.Joe.tooltip) window.Joe.tooltip();
 			$(".comment-list [data-toggle='popover']").popover();
-			if (options.pjax == 'comment-submit' || options.pjax == 'comment-pagination') {
-				if (Joe.initComment) Joe.initComment({
-					draw: false,
-					owo: false,
-					submit: false
-				});
-			}
 			if (options.pjax == 'comment-auto-refresh') {
 				if (Joe.initComment) Joe.initComment({
 					draw: false,

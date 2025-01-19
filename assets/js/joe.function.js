@@ -1,5 +1,31 @@
 if (!window.Joe) window.Joe = {};
 
+window.Joe.pjax = (url, selectors, options) => {
+	$.ajax({
+		type: options.type ? options : 'GET',
+		url: url,
+		dataType: "html",
+		data: options.data ? options.data : null,
+		beforeSend(xhr) {
+			xhr.setRequestHeader('x-ajax-selectors', JSON.stringify(selectors));
+			if (options.beforeSend) options.beforeSend(xhr);
+		},
+		success: function (response) {
+			let success = options.success ? options.success(response) : true;
+			if (success !== false) {
+				const DocumentParser = (new DOMParser()).parseFromString(response, 'text/html');
+				selectors.forEach(selector => {
+					$(selector).html($(DocumentParser).find(selector).html());
+				});
+			}
+			if (options.replace) options.replace(response);
+		},
+		error() {
+			options.error();
+		}
+	});
+}
+
 window.Joe.checkUrl = (string) => {
 	try {
 		if (string instanceof Element) {
@@ -81,7 +107,7 @@ if (window.Joe.options.JLoading == 'on') {
 	}
 }
 
-window.Joe.loadJS = (url, callback = function () { })=>{
+window.Joe.loadJS = (url, callback = function () { }) => {
 	window.Joe.loadJSList = window.Joe.loadJSList ? window.Joe.loadJSList : {};
 	if (!Joe.loadJSList[url]) {
 		let script = document.createElement('script');

@@ -329,24 +329,16 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 			let time = Number($('#comment_module a[auto-refresh]').attr('auto-refresh'));
 			if (time && Number.isInteger(time)) {
 				window.Joe.commentListAutoRefresh = true;
-				var pjax = new Pjax({
-					elements: "#comment_module a[auto-refresh]",
-					selectors: ['#comment_module>.comment-list', '.joe_comment__title>small'],
-					history: false,
-					scrollRestoration: false,
-					pjax: 'comment-auto-refresh',
-					cacheBust: false,
-				});
-				pjax._handleResponse = pjax.handleResponse;
-				pjax.handleResponse = function (responseText, request, href, options) {
-					if (window.Joe.commentListAutoRefresh) pjax._handleResponse(responseText, request, href, options);
-				}
 				setInterval(() => {
 					if (document.visibilityState == "hidden" || document.hidden) return;
 					if (!window.Joe.commentListAutoRefresh) return;
 					if (!isElementInViewport(document.querySelector('.comment-list'))) return;
 					let url = $('#comment_module>.joe_pagination>li.active>a').attr('href');
-					pjax.loadUrl(url ? url : window.location.href);
+					window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
+						success() {
+							return window.Joe.commentListAutoRefresh;
+						}
+					});
 				}, time * 1000);
 			}
 		}

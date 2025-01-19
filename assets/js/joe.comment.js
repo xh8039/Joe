@@ -97,9 +97,6 @@ window.Joe.initComment = (options = {}) => {
 			$(".joe_comment__respond-form").on("submit", function (event) {
 				event.preventDefault();
 				window.Joe.commentListAutoRefresh = false;
-				// let action = $('#comment_module>.joe_pagination>li.active>a').attr('href');
-				// action = action ? action : $(".joe_comment__respond-form").attr("action");
-				// action = action + "?time=" + +new Date();
 				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
 				const type = $(".joe_comment__respond-form").attr("data-type");
 				const parent = $(".joe_comment__respond-form").attr("data-coid");
@@ -131,68 +128,48 @@ window.Joe.initComment = (options = {}) => {
 				data.append('_', _);
 				var referrer = document.querySelector('meta[name="referrer"]:last-of-type');
 				if (referrer && referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'unsafe-url');
-				var pjax = new Pjax({
-					elements: '.joe_comment__respond-form',
+				window.Joe.ajax({
+					type: "POST",
+					url: action,
+					data: data,
 					selectors: ["#comment_module>.comment-list", '.joe_comment__title>small', '#comment_module>.joe_pagination'],
-					history: false,
-					scrollRestoration: false,
-					pjax: 'comment-submit',
-					cacheBust: false,
-				});
-				pjax._handleResponse = pjax.handleResponse;
-				pjax.handleResponse = function (responseText, request, href, options) {
-					if (referrer && referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'no-referrer');
-					$('.joe_comment__cancle').click();
-					pjax._handleResponse(responseText, request, href, options);
-				}
-				pjax.loadUrl(action, {
-					requestOptions: {
-						requestMethod: 'POST',
-						formData: data,
+					beforeSend() {
+						window.Joe.commentListAutoRefresh = false;
+						$('#comment_module>.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
 					},
+					success() {
+						if (referrer && referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'no-referrer');
+						$('.joe_comment__cancle').click();
+					},
+					replace() {
+						if (Joe.initComment) Joe.initComment({ draw: false, owo: false, submit: false });
+						isSubmit = false;
+						Qmsg.success('发送成功');
+						$('textarea.joe_owo__target').val('');
+						$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
+						$(".joe_comment__respond-form .body textarea[name='text']").focus();
+						if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
+							window.Joe.pjax(window.location.href, ['joe-hide']);
+						}
+					},
+					error() {
+						isSubmit = false;
+						$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
+						responseText = options.request.responseText;
+						let match = /<div class="container">\s+(.+)\s+<\/div>/;
+						var msg = responseText.match(match)[1];
+						if (msg) {
+							Qmsg.warning(msg);
+						} else {
+							Qmsg.warning("发送失败！请刷新重试！");
+						}
+					}
 				});
-				// console.log(pjax);
 			});
 			document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {
 				if (event.keyCode === 13) {
 					event.preventDefault();
 					$(".joe_comment__respond-form").submit();
-				}
-			});
-			document.addEventListener('pjax:success', (options) => {
-				if (options.pjax != "comment-submit") return;
-				isSubmit = false;
-				Qmsg.success('发送成功');
-				$('textarea.joe_owo__target').val('');
-				$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
-				$(".joe_comment__respond-form .body textarea[name='text']").focus();
-				if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
-					var pjax = new Pjax({
-						elements: 'joe-hide>.joe_hide>.joe_hide__button',
-						selectors: ['joe-hide'],
-						history: false,
-						scrollRestoration: false,
-						pjax: 'joe-hide',
-						switches: {
-							// 切换函数
-							'joe-hide': Pjax.switches.innerHTML
-						},
-						cacheBust: false,
-					});
-					pjax.loadUrl(window.location.href);
-				}
-			});
-			document.addEventListener('pjax:error', (options) => {
-				if (options.pjax != "comment-submit") return;
-				isSubmit = false;
-				$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
-				responseText = options.request.responseText;
-				let match = /<div class="container">\s+(.+)\s+<\/div>/;
-				var msg = responseText.match(match)[1];
-				if (msg) {
-					Qmsg.warning(msg);
-				} else {
-					Qmsg.warning("发送失败！请刷新重试！");
 				}
 			});
 		}
@@ -212,22 +189,27 @@ window.Joe.initComment = (options = {}) => {
 				if (href && href.includes("#")) {
 					$(item).attr("href", href.replace("#comments", "#comment_module"));
 				}
+				$(item).attr('ajax-replace', true);
 			});
 			let selectors = ["#comment_module>.comment-list", '#comment_module>.joe_pagination'];
 			if (document.querySelector('.joe_detail__leaving')) selectors.push('.joe_detail__leaving');
-			var pjax = new Pjax({
-				elements: "#comment_module>.joe_pagination a[href]", // default is "a[href], form[action]"
-				selectors: selectors,
-				history: false,
-				scrollRestoration: false,
-				pjax: 'comment-pagination',
-				cacheBust: false,
+			$('#comment_module>.joe_pagination').on('click', 'a[href]', function (event) {
+				event.preventDefault();
+				url = this.href;
+				window.Joe.pjax(url, selectors, {
+					beforeSend() {
+						window.Joe.commentListAutoRefresh = false;
+						$('#comment_module>.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
+					},
+					success() {
+						$('.joe_comment__cancle').click();
+					},
+					replace() {
+						Joe.initComment({ draw: false, owo: false, submit: false });
+						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
+					}
+				});
 			});
-			pjax._handleResponse = pjax.handleResponse;
-			pjax.handleResponse = function (responseText, request, href, options) {
-				$('.joe_comment__cancle').click();
-				pjax._handleResponse(responseText, request, href, options);
-			}
 		}
 	}
 

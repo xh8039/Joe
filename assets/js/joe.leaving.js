@@ -1,7 +1,7 @@
 
 Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoaded.leaving : () => {
 	console.log('调用：Joe.DOMContentLoaded.leaving');
-	const leavingListInit = () => {
+	window.Joe.leavingListInit = () => {
 		let _index = 100;
 		const colors = ['#F8D800', '#0396FF', '#EA5455', '#7367F0', '#32CCBC', '#F6416C', '#28C76F', '#9F44D3', '#F55555', '#736EFE', '#E96D71', '#DE4313', '#D939CD', '#4C83FF', '#F072B6', '#C346C2', '#5961F9', '#FD6585', '#465EFB', '#FFC600', '#FA742B', '#5151E5', '#BB4E75', '#FF52E5', '#49C628', '#00EAFF', '#F067B4', '#F067B4', '#ff9a9e', '#00f2fe', '#4facfe', '#f093fb', '#6fa3ef', '#bc99c4', '#46c47c', '#f9bb3c', '#e8583d', '#f68e5f'];
 		const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -113,20 +113,12 @@ Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoad
 
 	/* 激活随机样式 */
 	{
-		leavingListInit();
+		window.Joe.leavingListInit();
 	}
 
 	/** 用户留言标签 */
 	{
 		$('.joe_detail__leaving-list>li>.user>.nickname>a').attr('target', '_blank');
-	}
-
-	/** pjax重新激活留言列表 */
-	{
-		document.addEventListener('pjax:success', (options) => {
-			if (options.pjax != "comment-pagination") return;
-			leavingListInit();
-		});
 	}
 };
 

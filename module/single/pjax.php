@@ -1,5 +1,5 @@
 <?php
-$selectors = $this->request->getHeader('x-pjax-selectors');
+$selectors = $this->request->getHeader('x-ajax-selectors');
 if (is_string($selectors)) {
 	$selectors = json_decode($selectors, true);
 	if (in_array('#comment_module>.comment-list', $selectors)) $this->need('module/single/comment.php');

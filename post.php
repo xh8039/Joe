@@ -22,6 +22,10 @@ $this->need('module/single/pjax.php');
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
 	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
+	<?php if ($this->options->JArticle_Guide == 'on') : ?>
+		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
+		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>" data-turbolinks-permanent></script>
+	<?php endif; ?>
 </head>
 
 <body>
@@ -56,12 +60,10 @@ $this->need('module/single/pjax.php');
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>
+		<?php if ($this->options->JArticle_Guide == 'on') : ?>
+			<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
+		<?php endif; ?>
 	</div>
-	<?php if ($this->options->JArticle_Guide == 'on') : ?>
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
-		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>"></script>
-		<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
-	<?php endif; ?>
 	<?php $this->need('module/footer.php') ?>
 </body>
 

@@ -1,7 +1,5 @@
 function section_navs(selector) {
 
-	console.log($(selector));
-
 	//严格模式
 	'use strict';
 
@@ -159,7 +157,7 @@ function section_navs(selector) {
 			$(this).toggleClass('fa-rotate-90').parent().nextUntil(find_selector).toggleClass('yc');
 		});
 	};
-
+	console.log($(selector_s));
 	if ($(selector_s).length > 2) {
 		add_box();
 		if (window.Joe.IS_MOBILE) {

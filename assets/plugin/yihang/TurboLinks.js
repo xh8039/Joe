@@ -22,11 +22,11 @@ class TurboLinks {
 		options.selectors = options.selectors || selectors;
 		options.cacheBust = options.cacheBust || false;
 		if (!options.element) {
-			let element_id = 'turbo-links-' + (+new Date());
-			let element = document.createElement('a');
-			element.id = element_id;
-			element.href = url;
-			document.body.appendChild(element);
+			let a_element_id = 'turbo-links-' + (+new Date());
+			var a_element = document.createElement('a');
+			a_element.id = a_element_id;
+			a_element.href = url;
+			document.body.appendChild(a_element);
 			options.element = '#' + element_id;
 		}
 		console.log(options);
@@ -53,7 +53,6 @@ class TurboLinks {
 			this.loadJSList.forEach((element, index) => {
 				this.replaceJs(element);
 			});
-
 		}
 		pjax.loadUrl(url);
 		this.pjax = pjax;
@@ -61,6 +60,7 @@ class TurboLinks {
 			if (options.pjax != 'TurboLinks') return;
 			document.dispatchEvent(new CustomEvent('turbolinks:load'));
 		});
+		a_element.remove();
 	}
 
 	JsLoaded(element) {

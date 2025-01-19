@@ -710,7 +710,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
 				function JsLoaded(element, index) {
-					if (index == (loadJSList.length - 1)) {
+					console.log(index)
+					console.log(loadJSList.length);					
+					if (index == loadJSList.length) {
 						console.log('所有JavaScript文件都已加载！');
 						pjax._handleResponse(responseText, request, href, options);
 					}

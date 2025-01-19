@@ -167,8 +167,11 @@ function section_navs(selector) {
 }
 
 document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', () => {
+	console.log('激活文章目录');
+	$('.posts-nav-switcher>.zib-widget').remove();
 	section_navs('[data-nav]');
 	if (window.Joe.IS_MOBILE) {
+		$('.joe_action_item.posts-nav-switcher').unbind('click');
 		$('.joe_action_item.posts-nav-switcher').on('click', function (event) {
 			$('.posts-nav-switcher>.zib-widget').css('display') == 'none' ? $('.joe_action').css('z-index', '100') : $('.joe_action').css('z-index', '98');
 			$('.posts-nav-switcher>.zib-widget').fadeToggle(200);

@@ -246,7 +246,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			}
 			if (options.pjax == 'global') {
 				document.dispatchEvent(new CustomEvent('turbolinks:load'));
-				window.Joe.DOMContentLoaded = {};
 				NProgress.done();
 			}
 		});
@@ -695,6 +694,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	if (window.Joe.options.Turbolinks == 'on') {
 		document.dispatchEvent(new CustomEvent('turbolinks:load'));
+		window.Joe.loadJSList = window.Joe.loadJSList ?? [];
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
@@ -711,9 +711,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
-				var loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
+				var loadJSList = responseDocument.head.querySelectorAll('script');
 				function JsLoaded(element, index) {
-					console.log(element.src);
 					if (index == (loadJSList.length - 1)) {
 						console.log('所有JavaScript文件都已加载！');
 						pjax._handleResponse(responseText, request, href, options);
@@ -733,6 +732,13 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 					/* istanbul ignore if */
 					if (element.src) {
+						if ($(element).attr('data-turbolinks-permanent')) {
+							if (document.querySelector(`script[url="${element.src}"]`) || window.Joe.loadJSList.includes(element.url)) {
+								JsLoaded(element, index);
+								return true;
+							}
+						}
+						window.Joe.loadJSList.push(element.src);
 						script.src = element.src;
 						script.async = false;
 						script.addEventListener('load', () => {

@@ -421,5 +421,9 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 			sanitize: false,
 		});
 	}
+
+	{
+		Joe.DOMContentLoaded.main = null;
+	}
 }
 document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.main);

@@ -1,10 +1,12 @@
 class TurboLinks {
 
+	"use strict";
+
 	pjax;
 
-	loadJSList;
+	loadJSList = [];
 
-	documentScriptList;
+	documentScriptList = [];
 
 	constructor(url, options) {
 		var pjax = new Pjax(options);

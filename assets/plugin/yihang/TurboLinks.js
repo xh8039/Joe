@@ -91,6 +91,7 @@ class TurboLinks {
 	loadStyle(element, index) {
 		let code = element.text || element.textContent || element.innerHTML || null;
 		if (code) {
+			console.log('引入CSS：'.code);
 			let style = document.createElement('style');
 			style.type = 'text/css';
 			try {
@@ -105,6 +106,7 @@ class TurboLinks {
 			link.rel = 'stylesheet';
 			link.href = element.href;
 			document.head.appendChild(link);
+			console.log('引入CSS：' + element.href);
 		}
 	}
 }

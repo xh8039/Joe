@@ -72,7 +72,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				?>
 			</div>
 		</div>
-		<?php $this->need('module/footer.php'); ?>
+		<?php $this->need('module/bottom.php'); ?>
 		<script src="<?= joe\theme_url('assets/js/joe.user.register.js') ?>"></script>
 	</div>
 	<?php $this->need('module/footer.php') ?>

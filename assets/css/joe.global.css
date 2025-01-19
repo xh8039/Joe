@@ -5922,7 +5922,6 @@ html .aplayer {
 
 html #nprogress .bar {
 	background: var(--theme);
-	height: 3px;
 	box-shadow: 0px 2px 5px 0px var(--theme);
 }
 
@@ -5931,7 +5930,6 @@ html #nprogress .peg {
 }
 
 html #nprogress .spinner-icon {
-	border-width: 3px;
 	border-top-color: var(--theme);
 	border-left-color: var(--theme);
 }

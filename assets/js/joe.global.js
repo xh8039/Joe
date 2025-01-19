@@ -664,7 +664,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
 				NProgress.done();
 			});
-			console.log(Turbo);
+			// console.log(Turbo);
 		});
 	}
 }

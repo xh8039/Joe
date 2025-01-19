@@ -731,7 +731,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 						script.src = src;
 						script.async = false;
 						script.addEventListener('load', () => {
-							pjax.options.loadJSList[index].remote();
+							pjax.options.loadJSList[index] = null;
 							delete pjax.options.loadJSList[index];
 							console.log(pjax.options.loadJSList);
 						});

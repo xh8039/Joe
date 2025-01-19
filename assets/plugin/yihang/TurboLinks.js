@@ -8,7 +8,7 @@ class TurboLinks {
 
 	documentScriptList = [];
 
-	constructor(url, options) {
+	constructor(url, options = {}) {
 		var pjax = new Pjax(options);
 		pjax._handleResponse = pjax.handleResponse;
 		pjax.handleResponse = (responseText, request, href, options) => {

@@ -699,12 +699,13 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			NProgress.start();
-			new TurboLinks(this.href, {
+			let Turbo = new TurboLinks(this.href, {
 				elements: '#global-pjax-element',
 				selectors: ["#Joe"],
 				pjax: 'global',
 				cacheBust: false,
 			});
+			console.log(Turbo);
 		});
 	}
 }

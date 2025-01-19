@@ -613,13 +613,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	/* NProgress.js */
 	if (window.NProgress) {
 		NProgress.configure({ trickleSpeed: 10 });
-		$(document).on('turbolinks:click', function () {
-			NProgress.start();
-		});
-		$(document).on('turbolinks:render', function () {
-			NProgress.done();
-			NProgress.remove();
-		});
 		if (window.Joe.options.NProgressJS == 'on') {
 			$(document).on('click', 'a[href]:not([href=""])', function (e) {
 				if (window.Joe.checkUrl(this)) {
@@ -636,6 +629,15 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				}
 			});
 		}
+	}
+
+	if (document.querySelector('.navbar-nav')) {
+		$('.navbar-nav a').click(function () {
+			$('.navbar-nav a').parent('li.menu-item').removeClass('current-menu-item');
+			$('.navbar-nav a').parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').removeClass('current-menu-item');
+			$(this).parent('li.menu-item').addClass('current-menu-item');
+			$(this).parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').addClass('current-menu-item');
+		});
 	}
 
 	if (window.Turbolinks) {

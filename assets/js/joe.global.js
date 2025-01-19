@@ -714,9 +714,11 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				document.querySelectorAll('script[src]').forEach(element => {
 					documentScriptList.push(element.src);
 				});
+				console.log(documentScriptList);
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 				const loadJSList = responseDocument.head.querySelectorAll('script');
 				function JsLoaded(element, index) {
+					window.Joe.loadJSList.push(element.src);
 					if (index == (loadJSList.length - 1)) {
 						console.log('所有JavaScript文件都已加载！');
 						pjax._handleResponse(responseText, request, href, options);
@@ -735,20 +737,16 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					if (element.id) script.id = element.id;
 
 					if (element.src) {
-						console.log($(element));
-						if ($(element).attr('data-turbolinks-permanent')) {
-							console.log(documentScriptList);
-							console.log(element.src);
-							console.log(documentScriptList.includes(element.src));
-							if (documentScriptList.includes(element.src) || window.Joe.loadJSList.includes(element.url)) {
+						if ($(element).attr('data-turbolinks-permanent') != undefined) {
+							if (documentScriptList.includes(element.src) || window.Joe.loadJSList.includes(element.src)) {
 								JsLoaded(element, index);
 								return true;
 							}
 						}
-						window.Joe.loadJSList.push(element.src);
 						script.src = element.src;
 						script.async = false;
 						script.addEventListener('load', () => {
+							console.log('引入JS：' + element.src);
 							JsLoaded(element, index);
 						});
 						script.addEventListener('error', () => {

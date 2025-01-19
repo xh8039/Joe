@@ -11,7 +11,7 @@ $this->need('module/archive/pjax.php');
 <head>
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.archive.css'); ?>">
-	<?= $this->options->JListAnimate != 'off' ? '<script src="' . joe\cdn('wow/1.1.2/wow.min.js') . '"></script>' : null ?>
+	<?= $this->options->JListAnimate != 'off' ? '<script src="' . joe\cdn('wow/1.1.2/wow.min.js') . '" data-turbolinks-permanent></script>' : null ?>
 	<script src="<?= joe\theme_url('assets/js/joe.archive.js'); ?>"></script>
 </head>
 

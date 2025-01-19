@@ -21,10 +21,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php
 	if (!empty($this->options->JIndex_Carousel)) {
 		echo '<link rel="stylesheet" href="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') . '">';
-		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '"></script>';
+		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '" data-turbolinks-permanent></script>';
 	}
 	$this->need('module/head.php');
-	if ($this->options->JListAnimate != 'off') echo '<script src="' . joe\cdn('wow/1.1.2/wow.min.js') . '"></script>';
+	if ($this->options->JListAnimate != 'off') echo '<script src="' . joe\cdn('wow/1.1.2/wow.min.js') . '" data-turbolinks-permanent></script>';
 	?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.index.css'); ?>">
 	<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>

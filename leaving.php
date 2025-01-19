@@ -18,7 +18,7 @@ $this->need('module/single/pjax.php');
 
 <head>
 	<?php $this->need('module/head.php'); ?>
-	<script src="<?= joe\cdn('draggabilly/2.3.0/draggabilly.pkgd.min.js') ?>"></script>
+	<script src="<?= joe\cdn('draggabilly/2.3.0/draggabilly.pkgd.min.js') ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/js/joe.leaving.js'); ?>"></script>
 </head>
 

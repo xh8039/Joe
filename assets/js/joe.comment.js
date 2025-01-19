@@ -26,27 +26,29 @@ window.Joe.initComment = (options = {}) => {
 	/* 激活画图功能 */
 	{
 		if (options.draw !== false && $(".joe_comment__respond-form").length && $("#joe_comment_draw").length) {
-			/* 激活画板 */
-			window.sketchpad = new Sketchpad({
-				element: "#joe_comment_draw",
-				height: 300,
-				penSize: 5,
-				color: "303133"
-			});
-			/* 撤销上一步 */
-			$(".joe_comment__respond-form .body .draw .icon-undo").on("click", () => window.sketchpad.undo());
-			/* 动画预览 */
-			$(".joe_comment__respond-form .body .draw .icon-animate").on("click", () => window.sketchpad
-				.animate(10));
-			/* 更改画板的线宽 */
-			$(".joe_comment__respond-form .body .draw .line li").on("click", function () {
-				window.sketchpad.penSize = $(this).attr("data-line");
-				$(this).addClass("active").siblings().removeClass("active");
-			});
-			/* 更改画板的颜色 */
-			$(".joe_comment__respond-form .body .draw .color li").on("click", function () {
-				window.sketchpad.color = $(this).attr("data-color");
-				$(this).addClass("active").siblings().removeClass("active");
+			$.getScript(Joe.THEME_URL + 'assets/js/joe.sketchpad.js', function (script, textStatus, jqXHR) {
+				/* 激活画板 */
+				window.sketchpad = new Sketchpad({
+					element: "#joe_comment_draw",
+					height: 300,
+					penSize: 5,
+					color: "303133"
+				});
+				/* 撤销上一步 */
+				$(".joe_comment__respond-form .body .draw .icon-undo").on("click", () => window.sketchpad.undo());
+				/* 动画预览 */
+				$(".joe_comment__respond-form .body .draw .icon-animate").on("click", () => window.sketchpad
+					.animate(10));
+				/* 更改画板的线宽 */
+				$(".joe_comment__respond-form .body .draw .line li").on("click", function () {
+					window.sketchpad.penSize = $(this).attr("data-line");
+					$(this).addClass("active").siblings().removeClass("active");
+				});
+				/* 更改画板的颜色 */
+				$(".joe_comment__respond-form .body .draw .color li").on("click", function () {
+					window.sketchpad.color = $(this).attr("data-color");
+					$(this).addClass("active").siblings().removeClass("active");
+				});
 			});
 		}
 	}

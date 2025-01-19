@@ -13,7 +13,7 @@ $this->need('module/single/pjax.php');
 	$this->need('module/head.php');
 	$this->need('module/single/prism.php');
 	?>
-	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
+	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>
 

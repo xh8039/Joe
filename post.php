@@ -13,14 +13,14 @@ $this->need('module/single/pjax.php');
 	$this->related(6)->to($relatedPosts);
 	if ($relatedPosts->have()) {
 		echo '<link rel="stylesheet" href="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') . '">';
-		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '"></script>';
+		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '" data-turbolinks-permanent></script>';
 	}
 	$this->need('module/head.php');
 	$this->need('module/single/prism.php');
 	if (!empty($this->options->JPostMetaReferrer)) echo '<meta name="referrer" content="' . $this->options->JPostMetaReferrer . '">';
 	?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
-	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>"></script>
+	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>
 

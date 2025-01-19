@@ -80,7 +80,6 @@ if ($this->options->JLoading != 'off') : ?>
 <?php if ($this->is('single')) : ?>
 	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>" data-turbolinks-permanent></script>
 	<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>"></script> -->
-	<script src="<?= joe\theme_url('assets/js/joe.sketchpad.js'); ?>"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
 <?php endif; ?>

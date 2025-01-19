@@ -694,7 +694,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	if (window.Joe.options.Turbolinks == 'on') {
 		document.dispatchEvent(new CustomEvent('turbolinks:load'));
-		window.Joe.loadJSList = window.Joe.loadJSList ?? [];
+		window.Joe.loadJSList = [];
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为

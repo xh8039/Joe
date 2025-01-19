@@ -735,11 +735,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 							delete pjax.options.loadJSList[index];
 							console.log(pjax.options.loadJSList);
 						});
-						script.onload = () => {
-							delete pjax.options.loadJSList[index];
-							console.log(pjax.options.loadJSList);
-						};
-						console.log(script);
 						// force synchronous loading of peripheral JS
 					}
 
@@ -752,7 +747,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 							script.text = code;
 						}
 					}
-
+					console.log(parent);
 					// execute
 					parent.appendChild(script);
 					// 仅避免头部或身体标签污染

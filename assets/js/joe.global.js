@@ -757,7 +757,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 					return true;
 				});
-				pjax._handleResponse(responseText, request, href, options);
+				// pjax._handleResponse(responseText, request, href, options);
 			}
 			pjax.loadUrl(url);
 		});

@@ -524,8 +524,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					}
 					const videoPlayer = () => {
 						console.log('加载：DPlayer.min.js');
-						window.Joe.loadJS(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
-							new DPlayer({
+						$.getScript(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
+							new DPlayer({ 
 								container: this, // 播放器容器元素
 								autoplay: this.options.autoplay, // 视频自动播放
 								theme: this.options.theme, // 主题色
@@ -544,7 +544,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 						});
 					}
 					if (isM3U8(this.options.src)) {
-						window.Joe.loadJS(window.Joe.CDN('hls.js/1.5.13/hls.min.js'), videoPlayer);
+						$.getScript(window.Joe.CDN('hls.js/1.5.13/hls.min.js'), videoPlayer);
 					} else {
 						videoPlayer();
 					}

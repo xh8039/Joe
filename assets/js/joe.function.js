@@ -88,11 +88,12 @@ window.Joe.loadJS = (url, callback = function () { })=>{
 		script.type = 'text/javascript';
 		script.addEventListener('load', callback);
 		script.src = url;
-		document.getElementsByTagName('head')[0].appendChild(script);
+		document.head.appendChild(script);
 		Joe.loadJSList[url] = script;
 	} else {
-		let script = Joe.loadJSList[url];
-		script.addEventListener('load', callback);
+		// let script = Joe.loadJSList[url];
+		// script.addEventListener('load', callback);
+		callback();
 	}
 }
 

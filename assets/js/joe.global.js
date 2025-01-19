@@ -710,6 +710,10 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			});
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
+				const documentScriptList = [];
+				document.querySelectorAll('script[src]').forEach(element => {
+					documentScriptList.push(element.src);
+				});
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 				var loadJSList = responseDocument.head.querySelectorAll('script');
 				function JsLoaded(element, index) {
@@ -723,17 +727,19 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					var script = document.createElement("script");
 
 					if (code.match("document.write")) {
-						if (console && console.log) console.log("Script contains document.write. Can’t be executed correctly. Code skipped ", element);
+						if (console && console.log) console.log("脚本包含document.write。无法正确执行。代码已跳过", element);
 						return false;
 					}
 
 					script.type = "text/javascript";
 					if (element.id) script.id = element.id;
 
-					/* istanbul ignore if */
 					if (element.src) {
 						if ($(element).attr('data-turbolinks-permanent')) {
-							if (document.querySelector(`script[url="${element.src}"]`) || window.Joe.loadJSList.includes(element.url)) {
+							console.log(documentScriptList);
+							console.log(element.src);
+							console.log(documentScriptList.includes(element.src));
+							if (documentScriptList.includes(element.src) || window.Joe.loadJSList.includes(element.url)) {
 								JsLoaded(element, index);
 								return true;
 							}
@@ -748,7 +754,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 							console.error('Error loading script:', element.src);
 							JsLoaded(element, index);
 						});
-						// force synchronous loading of peripheral JS
+						// 强制同步加载外部JS
 					}
 
 					if (code !== "") {

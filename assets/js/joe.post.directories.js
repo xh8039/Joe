@@ -161,7 +161,7 @@ function section_navs(selector) {
 	if ($(selector_s).length > 2) {
 		add_box();
 	} else {
-		$(navbox_selector).remove();
+		$(navbox_selector + '>*').remove();
 	}
 
 }

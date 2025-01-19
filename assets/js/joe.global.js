@@ -245,7 +245,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				});
 			}
 			if (options.pjax == 'global') {
-				if (document.querySelector('.joe_header__above-searchicon')) document.querySelector('.joe_header__above-searchicon').click();
+				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
 				document.dispatchEvent(new CustomEvent('turbolinks:load'));
 				NProgress.done();
 			}

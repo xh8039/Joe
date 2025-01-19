@@ -729,13 +729,17 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 					/* istanbul ignore if */
 					if (src !== "") {
-						console.log(pjax.options.loadJSList[index]);
 						script.src = src;
 						script.async = false;
 						script.addEventListener('load', () => {
 							delete pjax.options.loadJSList[index];
 							console.log(pjax.options.loadJSList);
 						});
+						script.onload = () => {
+							delete pjax.options.loadJSList[index];
+							console.log(pjax.options.loadJSList);
+						};
+						console.log(script);
 						// force synchronous loading of peripheral JS
 					}
 

@@ -8,16 +8,11 @@ class MetingJSElement extends HTMLElement {
 	}
 
 	disconnectedCallback() {
-		if (!this.lock) {
-			this.aplayer.destroy()
-		}
+		if (!this.lock) this.aplayer.destroy()
 	}
 
 	_camelize(str) {
-		return str
-			.replace(/^[_.\- ]+/, '')
-			.toLowerCase()
-			.replace(/[_.\- ]+(\w|$)/g, (m, p1) => p1.toUpperCase())
+		return str.replace(/^[_.\- ]+/, '').toLowerCase().replace(/[_.\- ]+(\w|$)/g, (m, p1) => p1.toUpperCase())
 	}
 
 	_init() {

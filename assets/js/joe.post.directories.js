@@ -1,7 +1,9 @@
-//严格模式
-'use strict';
-
 function section_navs(selector) {
+
+	console.log($(selector));
+
+	//严格模式
+	'use strict';
 
 	var navbox_selector = '.posts-nav-box';
 	var _body = $('body');

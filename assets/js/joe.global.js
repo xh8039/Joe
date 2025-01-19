@@ -656,17 +656,20 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	if (window.Joe.options.Turbolinks == 'on') {
+		$.fancybox.defaults.hash = false;
 		window.Joe.loadScriptList = [];
 		document.dispatchEvent(new CustomEvent('turbolinks:load'));
 		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);
 		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
-			NProgress.start();
 			new TurboLinks(this.href, ["#Joe"]);
 			document.addEventListener('turbolinks:load', () => {
 				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
 				NProgress.done();
+			});
+			window.addEventListener('popstate', () => {
+				NProgress.start();
 			});
 		});
 	}

@@ -55,10 +55,9 @@ window.Joe.checkUrl = (string) => {
 			string = string.href;
 		}
 		if (string.startsWith('/')) return true;
-		console.log(string);
 		let url = new URL(string);
 		if (url.host != location.host) return false;
-		if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
+		if (url.protocol == 'javascript:') return false;
 		console.log(url);
 	} catch (error) {
 		return false;

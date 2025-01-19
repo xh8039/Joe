@@ -3,6 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
+if ($this->request->getHeader('x-pjax') == 'true') return;
 $fields = $this->fields->toArray();
 $options = [];
 foreach (['themeUrl', 'IndexAjaxList', 'BaiduPushToken', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'NProgressJS', 'title','Turbolinks'] as $value) {

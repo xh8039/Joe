@@ -725,7 +725,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					}
 
 					script.type = "text/javascript";
-					script.id = element.id;
+					if (element.id) script.id = element.id;
 
 					/* istanbul ignore if */
 					if (src !== "") {
@@ -757,7 +757,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					parent.appendChild(script);
 					// 仅避免头部或身体标签污染
 					if ((parent instanceof HTMLHeadElement || parent instanceof HTMLBodyElement) && parent.contains(script)) {
-						parent.removeChild(script);
+						// parent.removeChild(script);
 					}
 
 					return true;

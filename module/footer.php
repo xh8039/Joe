@@ -197,7 +197,6 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 } else {
 	$footer_tabbar = false;
 }
-var_dump($footer_tabbar);
 if (!empty($footer_tabbar)) {
 ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">

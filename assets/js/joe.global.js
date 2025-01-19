@@ -726,7 +726,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (src !== "") {
 				script.src = src;
 				script.async = false;
-				script.addEventListener('load', ()=>{
+				script.addEventListener('load', () => {
 					pjax.loadJSList
 				});
 				// force synchronous loading of peripheral JS
@@ -767,29 +767,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 				pjax.options.loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
 				console.log(pjax.options.loadJSList);
-				pjax.options.loadJSList.each(function () {
-					evalScript(this);
-					// if (el.tagName.toLowerCase() === "script") {
-					// 	evalScript(el);
-					// }
-					// forEachEls(el.querySelectorAll("script"), function (script) {
-					// 	if (!script.type || script.type.toLowerCase() === "text/javascript") {
-					// 		if (script.parentNode) {
-					// 			script.parentNode.removeChild(script);
-					// 		}
-					// 		evalScript(script);
-					// 	}
-					// });
-					// let url = this.src ? this.src.trim() : null;
-					// if (!url) return;
-					// console.log(`script[src="${url}"]`);
-					// let script = document.querySelector(`script[src="${url}"]`);
-					// // console.log(script);
-					// if (script) script.remove();
-					// script = document.createElement('script');
-					// script.src = url;
-					// script.type = this.type || 'text/javascript';
-					// document.head.appendChild(script);
+				pjax.options.loadJSList.forEach((element, index) => {
+					evalScript(element, index);
 				});
 				pjax._handleResponse(responseText, request, href, options);
 			}

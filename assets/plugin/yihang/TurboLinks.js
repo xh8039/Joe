@@ -24,7 +24,8 @@ class TurboLinks {
 		options.cacheBust = options.cacheBust || false;
 		if (!options.element) {
 			let element_id = 'turbo-links-' + (+new Date());
-			let element = document.createElement('a').id = element_id;
+			let element = document.createElement('a');
+			element.id = element_id;
 			element.href = url;
 			document.body.appendChild(element);
 			options.element = '#' + element_id;

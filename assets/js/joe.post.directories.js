@@ -159,8 +159,8 @@ function section_navs(selector) {
 	};
 	console.log($(selector_s));
 	if ($(selector_s).length > 2) {
-		console.log($('.joe_action>' + selector_s));
-		if (Joe.IS_MOBILE && !$('.joe_action>' + selector_s).length) {
+		console.log($('.joe_action>' + navbox_selector));
+		if (Joe.IS_MOBILE && !$('.joe_action>' + navbox_selector).length) {
 			$('.joe_action').append('<div data-affix="true" class="joe_action_item posts-nav-box posts-nav-switcher" data-title="文章目录"><i class="fa fa-list-ul"></i></div>');
 		}
 		add_box();

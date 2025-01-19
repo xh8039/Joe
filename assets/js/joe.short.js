@@ -679,9 +679,5 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 	});
 
 	$('.joe_detail__article p:empty').remove();
-
-	{
-		delete Joe.DOMContentLoaded.short;
-	}
 }
 document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short, { once: true });

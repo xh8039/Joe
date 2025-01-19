@@ -31,9 +31,5 @@ Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoad
 			$('.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
 		});
 	}
-
-	{
-		delete Joe.DOMContentLoaded.archive;
-	}
 };
 document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.archive, { once: true });

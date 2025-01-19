@@ -128,10 +128,6 @@ Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoad
 			leavingListInit();
 		});
 	}
-
-	{
-		delete Joe.DOMContentLoaded.leaving
-	}
 };
 
 document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.leaving, { once: true });

@@ -363,9 +363,5 @@ Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded
 			$(this).html('loading...');
 		});
 	}
-
-	{
-		delete Joe.DOMContentLoaded.census;
-	}
 }
 document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.census, { once: true });

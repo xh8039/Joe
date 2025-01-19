@@ -656,7 +656,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	if (window.Joe.options.Turbolinks == 'on') {
-		$.fancybox.defaults.hash = false;
+		if ($.fancybox) $.fancybox.defaults.hash = false;
 		window.Joe.loadScriptList = [];
 		document.dispatchEvent(new CustomEvent('turbolinks:load'));
 		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);

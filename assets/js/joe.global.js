@@ -665,7 +665,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			event.preventDefault(); // 阻止默认行为
 			NProgress.done();
 			NProgress.start();
-			new TurboLinks(this.href, ['head>title', 'head>meta', '#Joe']);
+			new TurboLinks(this.href, ['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '#Joe']);
 			document.addEventListener('turbolinks:load', () => {
 				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
 				NProgress.done();

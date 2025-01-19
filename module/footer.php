@@ -5,6 +5,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+if ($this->request->getHeader('x-pjax') == 'true') return;
+
 if ($this->options->JFooterMode == 'commercial') {
 ?>
 	<footer class="footer">
@@ -283,40 +285,39 @@ if (!empty($footer_tabbar)) {
 <!-- 网站统计HTML代码 -->
 
 <script>
-	<?php if ($this->request->getHeader('x-pjax') != 'true') {
-		$cookie = Typecho_Cookie::getPrefix();
-		$notice = $cookie . '__typecho_notice';
-		$type = $cookie . '__typecho_notice_type';
+	<?php
+	$cookie = Typecho_Cookie::getPrefix();
+	$notice = $cookie . '__typecho_notice';
+	$type = $cookie . '__typecho_notice_type';
 
-		if (isset($_COOKIE[$notice]) && isset($_COOKIE[$type]) && ($_COOKIE[$type] == 'success' || $_COOKIE[$type] == 'notice' || $_COOKIE[$type] == 'error')) { ?>
-			Qmsg.info("<?php echo preg_replace('#\[\"(.*?)\"\]#', '$1', $_COOKIE[$notice]); ?>！");
-		<?php }
+	if (isset($_COOKIE[$notice]) && isset($_COOKIE[$type]) && ($_COOKIE[$type] == 'success' || $_COOKIE[$type] == 'notice' || $_COOKIE[$type] == 'error')) { ?>
+		Qmsg.info("<?php echo preg_replace('#\[\"(.*?)\"\]#', '$1', $_COOKIE[$notice]); ?>！");
+	<?php }
 
-		Typecho_Cookie::delete('__typecho_notice');
-		Typecho_Cookie::delete('__typecho_notice_type');
+	Typecho_Cookie::delete('__typecho_notice');
+	Typecho_Cookie::delete('__typecho_notice_type');
 
-		// 获取脚本结束执行的时间戳
-		$end_time = microtime(true);
-		// 计算脚本运行时间
-		$execution_time = $end_time - JOE_START_TIME;
-		$execution_time = number_format($execution_time, 2, '.', '');
+	// 获取脚本结束执行的时间戳
+	$end_time = microtime(true);
+	// 计算脚本运行时间
+	$execution_time = $end_time - JOE_START_TIME;
+	$execution_time = number_format($execution_time, 2, '.', '');
 
-		// 记录最终内存使用量
-		$end_memory = memory_get_usage();
-		// 计算内存消耗
-		$memory_usage = $end_memory - JOE_START_MEMORY;
-		// 将内存大小转换为 KB
-		$memory_usage_kb = round($memory_usage / 1024, 2);
-		?>
-		console.log("%cTypecho Theme By Joe再续前缘", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
-		window.addEventListener('load', () => {
-			// 计算页面加载时间，并转换为秒
-			const loadTime = ((performance.now() - Joe.startTime) / 1000).toFixed(2);
-			console.log(`主题PHP脚本运行时间：<?= $execution_time ?> S`);
-			console.log(`主题PHP脚本内存消耗：<?= $memory_usage_kb ?> KB`);
-			console.log(`主题WEB资源加载耗时：${loadTime} S`);
-		});
-	<?php } ?>
+	// 记录最终内存使用量
+	$end_memory = memory_get_usage();
+	// 计算内存消耗
+	$memory_usage = $end_memory - JOE_START_MEMORY;
+	// 将内存大小转换为 KB
+	$memory_usage_kb = round($memory_usage / 1024, 2);
+	?>
+	console.log("%cTypecho Theme By Joe再续前缘", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
+	window.addEventListener('load', () => {
+		// 计算页面加载时间，并转换为秒
+		const loadTime = ((performance.now() - Joe.startTime) / 1000).toFixed(2);
+		console.log(`主题PHP脚本运行时间：<?= $execution_time ?> S`);
+		console.log(`主题PHP脚本内存消耗：<?= $memory_usage_kb ?> KB`);
+		console.log(`主题WEB资源加载耗时：${loadTime} S`);
+	});
 </script>
 
 <?php $this->footer(); ?>

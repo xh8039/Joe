@@ -699,6 +699,55 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		// document.addEventListener('turbolinks:request-start', function (event) {
 		// 	event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
 		// })
+		var forEachEls = (els, fn, context) => {
+			if (els instanceof HTMLCollection || els instanceof NodeList || els instanceof Array) {
+				return Array.prototype.forEach.call(els, fn, context);
+			}
+			// assume simple DOM element
+			return fn.call(context, els);
+		}
+		var evalScript = (el) => {
+			var code = el.text || el.textContent || el.innerHTML || "";
+			var src = el.src || "";
+			var parent = el.parentNode || document.querySelector("head") || document.documentElement;
+			var script = document.createElement("script");
+
+			if (code.match("document.write")) {
+				if (console && console.log) {
+					console.log("Script contains document.write. Can’t be executed correctly. Code skipped ", el);
+				}
+				return false;
+			}
+
+			script.type = "text/javascript";
+			script.id = el.id;
+
+			/* istanbul ignore if */
+			if (src !== "") {
+				script.src = src;
+				script.async = false;
+				// force synchronous loading of peripheral JS
+			}
+
+			if (code !== "") {
+				try {
+					script.appendChild(document.createTextNode(code));
+				} catch (e) {
+					/* istanbul ignore next */
+					// old IEs have funky script nodes
+					script.text = code;
+				}
+			}
+
+			// execute
+			parent.appendChild(script);
+			// 仅避免头部或身体标签污染
+			if ((parent instanceof HTMLHeadElement || parent instanceof HTMLBodyElement) && parent.contains(script)) {
+				parent.removeChild(script);
+			}
+
+			return true;
+		}
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
@@ -714,16 +763,28 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			pjax.handleResponse = function (responseText, request, href, options) {
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 				$(responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
-					let url = this.src ? this.src.trim() : null;
-					if (!url) return;
-					console.log(`script[src="${url}"]`);
-					let script = document.querySelector(`script[src="${url}"]`);
-					// console.log(script);
-					if (script) script.remove();
-					script = document.createElement('script');
-					script.src = url;
-					if (this.type) script.type = this.type;
-					document.head.appendChild(script);
+					evalScript(this);
+					// if (el.tagName.toLowerCase() === "script") {
+					// 	evalScript(el);
+					// }
+					// forEachEls(el.querySelectorAll("script"), function (script) {
+					// 	if (!script.type || script.type.toLowerCase() === "text/javascript") {
+					// 		if (script.parentNode) {
+					// 			script.parentNode.removeChild(script);
+					// 		}
+					// 		evalScript(script);
+					// 	}
+					// });
+					// let url = this.src ? this.src.trim() : null;
+					// if (!url) return;
+					// console.log(`script[src="${url}"]`);
+					// let script = document.querySelector(`script[src="${url}"]`);
+					// // console.log(script);
+					// if (script) script.remove();
+					// script = document.createElement('script');
+					// script.src = url;
+					// script.type = this.type || 'text/javascript';
+					// document.head.appendChild(script);
 				});
 				pjax._handleResponse(responseText, request, href, options);
 			}

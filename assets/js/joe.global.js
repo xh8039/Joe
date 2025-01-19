@@ -737,7 +737,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 							JsLoaded(element, index);
 							console.log(element.src);
 						});
-						script.addEventListener('load', () => {
+						script.addEventListener('error', () => {
 							console.error('Error loading script:', element.src);
 							JsLoaded(element, index);
 						});

@@ -85,7 +85,7 @@ if ($this->options->JLoading != 'off') : ?>
 	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>" data-turbolinks-permanent></script>
 	<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>"></script> -->
 	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
-	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" data-turbolinks-permanent></script>

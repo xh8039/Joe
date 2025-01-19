@@ -715,7 +715,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					documentScriptList.push(element.src);
 				});
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
-				var loadJSList = responseDocument.head.querySelectorAll('script');
+				const loadJSList = responseDocument.head.querySelectorAll('script');
 				function JsLoaded(element, index) {
 					if (index == (loadJSList.length - 1)) {
 						console.log('所有JavaScript文件都已加载！');
@@ -735,6 +735,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					if (element.id) script.id = element.id;
 
 					if (element.src) {
+						console.log($(element));
 						if ($(element).attr('data-turbolinks-permanent')) {
 							console.log(documentScriptList);
 							console.log(element.src);

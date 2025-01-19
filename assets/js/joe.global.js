@@ -765,7 +765,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
-				pjax.options.loadJSList = responseDocument.head.querySelector('script:not([data-turbolinks-permanent])');
+				pjax.options.loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
 				console.log(pjax.options.loadJSList);
 				pjax.options.loadJSList.each(function () {
 					evalScript(this);

@@ -14,7 +14,7 @@ class TurboLinks {
 			const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 
 			const loadStyleList = responseDocument.head.querySelectorAll('style');
-			loadStyleList.forEach(loadStyle);
+			loadStyleList.forEach(this.loadStyle);
 
 			this.loadJSList = responseDocument.head.querySelectorAll('script');
 			if (this.loadJSList.length < 1) return pjax._handleResponse(responseText, request, href, options);

@@ -140,12 +140,12 @@ $joe_action_bottom = 20;
 
 if ($this->options->JMusic == 'on') {
 ?>
-	<meting-js id="global-meting-js" data-turbolinks-permanent fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" api="<?= empty($this->options->JMusicApi) ? joe\index('joe/api', '//') . '/joe/api?routeType=meting&server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" dataId="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
+	<meting-js id="global-meting-js" fixed="true" preload="metadata" mutex="true" volume="0.3" autotheme="true" api="<?= empty($this->options->JMusicApi) ? joe\index('joe/api', '//') . '/joe/api?routeType=meting&server=:server&type=:type&id=:id&r=:r' : $this->options->JMusicApi ?>" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" dataId="<?= $this->options->JMusicId ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
 <?php
 }
 ?>
 
-<div class="joe_action" data-turbolinks-permanent id="data-turbolinks-permanent-joe-action">
+<div class="joe_action">
 	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" data-original-title="返回顶部">
 		<i class="fa fa-angle-up em12"></i>
 	</div>
@@ -184,18 +184,7 @@ if ($this->options->JMusic == 'on') {
 if ($this->options->JPendant_SSL == 'on') {
 	$joe_action_bottom = $joe_action_bottom + 65;
 ?>
-	<style data-turbolinks-permanent id="cc-myssl-seal-style">
-		#cc-myssl-seal {
-			width: 65px;
-			height: 65px;
-			z-index: 9;
-			position: fixed;
-			right: 0;
-			bottom: 0;
-			cursor: pointer;
-		}
-	</style>
-	<div data-turbolinks-permanent id="cc-myssl-seal">
+	<div id="cc-myssl-seal" style="width:65px;height:65px;z-index:9;position:fixed;right:0;bottom:0;cursor:pointer;">
 		<div title="TrustAsia 安全签章" id="myssl_seal" style="text-align: center">
 			<img src="<?= Joe\theme_url('assets/images/myssl-id.png') ?>" alt="SSL" style="width: 100%; height: 100%"></a>
 		</div>
@@ -211,7 +200,7 @@ if (!empty($this->options->JFooterTabbar) && joe\isMobile()) {
 if (!empty($footer_tabbar)) {
 ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/options/footer-tabbar.css') ?>">
-	<div data-turbolinks-permanent class="footer-tabbar" id="data-turbolinks-permanent-footer-tabbar">
+	<div class="footer-tabbar">
 		<?php
 		$admin_dir_preg_quote = preg_quote(__TYPECHO_ADMIN_DIR__, '/');
 		foreach ($footer_tabbar as $value) {
@@ -230,7 +219,7 @@ if (!empty($footer_tabbar)) {
 		}
 		?>
 	</div>
-	<script data-turbolinks-permanent id="data-turbolinks-permanent-footer-tabbar-script">
+	<script>
 		(function() {
 			const height = document.querySelector('.footer-tabbar').clientHeight;
 

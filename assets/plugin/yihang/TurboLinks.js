@@ -1,7 +1,5 @@
 class TurboLinks {
 
-	// "use strict";
-
 	pjax;
 
 	handleResponseParam = {};

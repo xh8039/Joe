@@ -18,9 +18,6 @@ class TurboLinks {
 	static documentCSSLinkList = [];
 
 	constructor(url, selectors = [], options = {}) {
-		console.log('实例化 TurboLinks ！');
-		console.log(arguments);
-		debugger;
 		options.pjax = options.pjax || 'TurboLinks';
 		options.selectors = options.selectors || selectors;
 		options.cacheBust = options.cacheBust || false;
@@ -66,6 +63,7 @@ class TurboLinks {
 	}
 
 	JsLoaded(element) {
+		debugger;
 		TurboLinks.documentScriptList.push(element.src);
 		if (this.loadJSIndex == this.loadJSList.length) {
 			console.log('所有JavaScript文件都已加载！');

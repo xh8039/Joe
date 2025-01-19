@@ -63,7 +63,6 @@ class TurboLinks {
 	}
 
 	JsLoaded(element) {
-		debugger;
 		TurboLinks.documentScriptList.push(element.src);
 		if (this.loadJSIndex == this.loadJSList.length) {
 			console.log('所有JavaScript文件都已加载！');

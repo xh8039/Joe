@@ -11,6 +11,14 @@ if ($this->options->JLoading != 'off') {
 		echo '<!-- Loading 结束 -->';
 	}
 }
+$selectors = $this->request->getHeader('x-pjax-selectors');
+if (is_string($selectors)) {
+	$selectors = json_decode($selectors, true);
+	if (!in_array('header', $selectors)) $header = true;
+} else {
+	$header = true;
+}
+if (!$header) return;
 ?>
 <header class="joe_header <?php echo $this->is('post') ? 'current' : '' ?>">
 	<?php

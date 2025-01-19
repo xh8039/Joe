@@ -712,7 +712,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 				pjax.options.loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
 				pjax.options.loadJSList.forEach((element, index) => {
-					console.log(pjax.options.loadJSList[index]);
 					var code = element.text || element.textContent || element.innerHTML || "";
 					var src = element.src || "";
 					var parent = element.parentNode || document.querySelector("head") || document.documentElement;
@@ -730,6 +729,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 					/* istanbul ignore if */
 					if (src !== "") {
+						console.log(pjax.options.loadJSList[index]);
 						script.src = src;
 						script.async = false;
 						script.addEventListener('load', () => {

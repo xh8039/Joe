@@ -56,8 +56,9 @@ window.Joe.checkUrl = (string) => {
 		}
 		if (string.startsWith('/')) return true;
 		let url = new URL(string);
-		console.log(url);
+		if (url.host != location.host) return false;
 		if (url.protocol == 'javascript:' || url.protocol == 'javascript::' || url.search != '') return false;
+		console.log(url);
 	} catch (error) {
 		return false;
 	}

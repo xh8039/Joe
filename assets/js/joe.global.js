@@ -598,7 +598,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		window.Joe.loadingEnd();
 		if (window.Joe.loadingStart && window.Joe.loadingEnd && window.Joe.options.FirstLoading != 'on') {
 			// a标签加载动画
-			$(document).on('click', 'a[href]:not([href=""])', function (e) {
+			$(document).on('click', 'a[href]', function (e) {
 				if (window.Joe.checkUrl(this)) window.Joe.loadingStart();
 				setTimeout(() => {
 					window.Joe.loadingEnd();
@@ -614,7 +614,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	if (window.NProgress) {
 		NProgress.configure({ trickleSpeed: 10 });
 		if (window.Joe.options.NProgressJS == 'on') {
-			$(document).on('click', 'a[href]:not([href=""])', function (e) {
+			$(document).on('click', 'a[href]', function (e) {
 				if (window.Joe.checkUrl(this)) {
 					NProgress.start();
 					window.addEventListener('visibilitychange', function () {

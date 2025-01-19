@@ -18,7 +18,6 @@ class TurboLinks {
 	static documentCSSLinkList = [];
 
 	constructor(url, selectors = [], options = {}) {
-		console.log(url);
 		options.pjax = options.pjax || 'TurboLinks';
 		options.selectors = options.selectors || selectors;
 		options.cacheBust = options.cacheBust || false;
@@ -30,6 +29,7 @@ class TurboLinks {
 			document.body.appendChild(element);
 			options.element = '#' + element_id;
 		}
+		console.log(options);
 		var pjax = new Pjax(options);
 		pjax._handleResponse = pjax.handleResponse;
 		pjax.handleResponse = (responseText, request, href, options) => {

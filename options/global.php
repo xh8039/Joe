@@ -7,8 +7,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 $Turbolinks = new \Typecho\Widget\Helper\Form\Element\Select(
 	'Turbolinks',
-	['off' => '关闭（默认）', 'on' => '开启'],
-	'off',
+	['on' => '开启（默认）', 'off' => '关闭'],
+	'on',
 	'Turbolinks单页模式',
 	'介绍：目前处于测试阶段，Turbolinks 可以更快地导航您的 Web 应用程序。获得单页应用程序的性能优势，而不会增加客户端 JavaScript 框架的复杂性。使用 HTML 在服务器端呈现您的视图，并像往常一样链接到页面。当您点击链接时，Turbolinks 会自动获取该页面，交换并合并该页面，所有这些都不会产生整个页面加载的成本，开启后网站全局音乐不会被打断'
 );

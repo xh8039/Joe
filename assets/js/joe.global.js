@@ -168,8 +168,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	{
 		$(".joe_header__slideout-menu .current").parents(".panel-body").show().siblings(".panel").addClass("in");
 		$(".joe_header__slideout-menu .panel").on("click", function () {
+			/** 总panelBox */
 			const panelBox = $(this).parent().parent();
-			console.log(panelBox);
 			/* 清除全部内容 */
 			panelBox.find(".panel").not($(this)).removeClass("in");
 			panelBox.find(".panel-body").not($(this).siblings(".panel-body")).stop().hide("fast");
@@ -177,10 +177,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			$(this).toggleClass("in").siblings(".panel-body").stop().toggle("fast");
 		});
 		$(".joe_header__slideout-menu a.link:not(.panel)").click(function () {
-			$(".joe_header__slideout-menu a.link").removeClass('current in');
-			$(this).parent('li').parent('ul.panel-body').stop().toggle("fast");
+			$(".joe_header__slideout-menu a.link:not(.panel)").removeClass('current in');
 			$(this).addClass('current in');
-		})
+		});
 	}
 
 	/* 初始化网站运行时间 */
@@ -663,14 +662,12 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
-
 			NProgress.start();
-			let Turbo = new TurboLinks(this.href, ["#Joe"]);
+			new TurboLinks(this.href, ["#Joe"]);
 			document.addEventListener('turbolinks:load', () => {
 				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
 				NProgress.done();
 			});
-			// console.log(Turbo);
 		});
 	}
 }

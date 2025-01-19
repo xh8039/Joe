@@ -4,6 +4,7 @@ function getChildren(el, className) {
 	return null;
 }
 Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
+	console.log('调用：Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
 
 	if (!customElements.get('joe-mtitle')) customElements.define('joe-mtitle', class JoeMtitle extends HTMLElement {
@@ -679,4 +680,4 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 
 	$('.joe_detail__article p:empty').remove();
 }
-document.addEventListener(window.Turbolinks ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short);
+document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short);

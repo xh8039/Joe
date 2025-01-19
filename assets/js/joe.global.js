@@ -248,7 +248,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					detail: { options }
 				});
 				document.dispatchEvent(event);
-
 				NProgress.done();
 			}
 		});

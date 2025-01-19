@@ -709,17 +709,20 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			});
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
+				function JsLoaded(element, index) {
+					if (index == (loadJSList.length - 1)) {
+						console.log('All JavaScript files loaded!');
+						pjax._handleResponse(responseText, request, href, options);
+					}
+				}
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
-			 	var loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
+				var loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
 				loadJSList.forEach((element, index) => {
 					var code = element.text || element.textContent || element.innerHTML || "";
-					var src = element.src || "";
 					var script = document.createElement("script");
 
 					if (code.match("document.write")) {
-						if (console && console.log) {
-							console.log("Script contains document.write. Can’t be executed correctly. Code skipped ", element);
-						}
+						if (console && console.log) console.log("Script contains document.write. Can’t be executed correctly. Code skipped ", element);
 						return false;
 					}
 
@@ -727,14 +730,16 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					if (element.id) script.id = element.id;
 
 					/* istanbul ignore if */
-					if (src !== "") {
-						script.src = src;
+					if (element.src) {
+						script.src = element.src;
 						script.async = false;
 						script.addEventListener('load', () => {
-							console.log(loadJSList[index]);
-							loadJSList[index] = null;
-							delete loadJSList[index];
-							console.log(loadJSList);
+							JsLoaded(element, index);
+							console.log(element.src);
+						});
+						script.addEventListener('load', () => {
+							console.error('Error loading script:', element.src);
+							JsLoaded(element, index);
 						});
 						// force synchronous loading of peripheral JS
 					}
@@ -750,7 +755,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					}
 
 					let parent = document.querySelector("head") || document.documentElement;
-					// execute
 					parent.appendChild(script);
 					// 仅避免头部或身体标签污染
 					if ((parent instanceof HTMLHeadElement || parent instanceof HTMLBodyElement) && parent.contains(script)) {

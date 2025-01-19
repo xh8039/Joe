@@ -1,7 +1,6 @@
 class MetingJSElement extends HTMLElement {
 
 	connectedCallback() {
-		console.log(document.querySelector('meting-js>.aplayer'));
 		if (!document.querySelector('meting-js>.aplayer') && window.APlayer && window.fetch) {
 			this._init()
 			this._parse()
@@ -125,7 +124,6 @@ class MetingJSElement extends HTMLElement {
 		let div = document.createElement('div')
 		options.container = div
 		this.appendChild(div)
-		console.log('调用：MusicPlayer');
 		this.aplayer = new MusicPlayer(options);
 		window.MetingJS = this;
 	}
@@ -133,7 +131,6 @@ class MetingJSElement extends HTMLElement {
 }
 
 if (window.customElements && !window.customElements.get('meting-js')) {
-	console.log('meting-js 激活');
 	window.MetingJSElement = MetingJSElement
 	window.customElements.define('meting-js', MetingJSElement)
 }

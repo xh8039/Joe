@@ -3,12 +3,14 @@ if (!window.Joe) window.Joe = {};
 window.Joe.pjax = (url, selectors, options) => {
 	return new class JoePjax {
 		constructor(url, selectors, options) {
+			if (/^\//.test(url) || /^http/.test(url) || /^\/\//.test(url)) {
+				this.ajax(url, selectors, options);
+				return;
+			}
 			if (document.querySelector(url)) {
 				$(document).on('click', url, (event) => {
 					this.ajax(event.target.href, selectors, options);
 				});
-			} else {
-				this.ajax(url, selectors, options);
 			}
 		}
 		ajax(url, selectors, options) {

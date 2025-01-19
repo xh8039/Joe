@@ -362,10 +362,10 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	{
 		if (window.Joe.IS_MOBILE) {
 			function resetVhAndPx() {
-				let vh = window.innerHeight * 0.01
-				document.documentElement.style.setProperty('--vh', `${vh}px`)
+				let vh = window.innerHeight * 0.01;
+				document.documentElement.style.setProperty('--vh', `${vh}px`);
 				// document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
-				console.log('重新计算VH高度')
+				console.log('重新计算VH高度');
 			}
 			resetVhAndPx();
 			// 监听resize事件 视图大小发生变化就重新计算1vh的值
@@ -663,6 +663,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
+			NProgress.done();
 			NProgress.start();
 			new TurboLinks(this.href, ['head>title', 'head>meta', '#Joe']);
 			document.addEventListener('turbolinks:load', () => {

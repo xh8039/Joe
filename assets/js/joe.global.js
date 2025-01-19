@@ -107,10 +107,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	/* 激活全局返回顶部功能 */
 	{
-		$(".joe_action_item.scroll").on("click", () => window.scrollTo({
-			top: 0,
-			behavior: "smooth"
-		}));
+		$(".joe_action_item.scroll").on("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 	}
 
 	/* 小屏幕伸缩侧边栏 */
@@ -169,16 +166,21 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	/* 移动端侧边栏菜单手风琴 */
 	{
-		$(".joe_header__slideout-menu .current").parents(".panel-body").show().siblings(".panel").addClass(
-			"in");
+		$(".joe_header__slideout-menu .current").parents(".panel-body").show().siblings(".panel").addClass("in");
 		$(".joe_header__slideout-menu .panel").on("click", function () {
 			const panelBox = $(this).parent().parent();
+			console.log(panelBox);
 			/* 清除全部内容 */
 			panelBox.find(".panel").not($(this)).removeClass("in");
 			panelBox.find(".panel-body").not($(this).siblings(".panel-body")).stop().hide("fast");
 			/* 激活当前的内容 */
 			$(this).toggleClass("in").siblings(".panel-body").stop().toggle("fast");
 		});
+		$(".joe_header__slideout-menu a.link:not(.panel)").click(function () {
+			$(".joe_header__slideout-menu a.link").removeClass('current in');
+			$(this).parent('li').parent('ul.panel-body').stop().toggle("fast");
+			$(this).addClass('current in');
+		})
 	}
 
 	/* 初始化网站运行时间 */

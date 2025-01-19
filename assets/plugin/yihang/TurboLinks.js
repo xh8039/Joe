@@ -25,10 +25,10 @@ class TurboLinks {
 			const loadStyleList = responseDocument.head.querySelectorAll('style');
 			loadStyleList.forEach(this.loadStyle);
 
-			document.querySelectorAll('link[href]').forEach(element => {
+			document.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				TurboLinks.documentCSSLinkList.push(element.href);
 			});
-			const loadCSSList = responseDocument.head.querySelectorAll('link[href]');
+			const loadCSSList = responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]');
 			loadCSSList.forEach(this.loadCSSLink);
 
 			this.loadJSList = responseDocument.head.querySelectorAll('script');

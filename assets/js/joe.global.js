@@ -660,6 +660,10 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			event.preventDefault(); // 阻止默认行为
 			NProgress.start();
 			let Turbo = new TurboLinks(this.href, ["#Joe"]);
+			document.addEventListener('turbolinks:load', () => {
+				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
+				NProgress.done();
+			})
 			console.log(Turbo);
 		});
 	}

@@ -58,9 +58,7 @@ class TurboLinks {
 		this.pjax = pjax;
 		document.addEventListener('pjax:success', (options) => {
 			if (options.pjax != 'TurboLinks') return;
-			if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
 			document.dispatchEvent(new CustomEvent('turbolinks:load'));
-			NProgress.done();
 		});
 	}
 

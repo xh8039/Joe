@@ -683,7 +683,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		document.addEventListener('turbolinks:request-start', function (event) {
 			event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
 		})
-		$(document).on('click', 'a[href]:not([href=""])', function (event) {
+		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			let url = this.href;
@@ -696,7 +696,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	if (window.Joe.options.Turbolinks == 'on') {
 		window.Joe.loadScriptList = [];
 		document.dispatchEvent(new CustomEvent('turbolinks:load'));
-		$(document).on('click', 'a[href]:not([href=""])', function (event) {
+		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			NProgress.start();

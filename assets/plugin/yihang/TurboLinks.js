@@ -18,6 +18,7 @@ class TurboLinks {
 	static documentCSSLinkList = [];
 
 	constructor(url, options = {}) {
+		console.log(url);
 		var pjax = new Pjax(options);
 		pjax._handleResponse = pjax.handleResponse;
 		pjax.handleResponse = (responseText, request, href, options) => {

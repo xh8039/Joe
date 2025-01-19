@@ -159,6 +159,7 @@ function section_navs(selector) {
 	};
 
 	if ($(selector_s).length > 2) {
+		console.log('激活文章目录');
 		add_box();
 	} else {
 		$(navbox_selector).remove();
@@ -167,7 +168,6 @@ function section_navs(selector) {
 }
 
 document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', () => {
-	console.log('激活文章目录');
 	$('.posts-nav-switcher>.zib-widget').remove();
 	section_navs('[data-nav]');
 	if (window.Joe.IS_MOBILE) {

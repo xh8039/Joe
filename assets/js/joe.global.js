@@ -246,7 +246,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			}
 			if (options.pjax == 'global') {
 				document.dispatchEvent(new CustomEvent('turbolinks:load'));
-				Joe.DOMContentLoaded = {};
+				// Joe.DOMContentLoaded = {};
 				NProgress.done();
 			}
 		});
@@ -698,6 +698,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
+			Joe.DOMContentLoaded = {};
 			let url = this.href;
 			// if (url.startsWith('/')) url = location.origin + url;
 			NProgress.start();

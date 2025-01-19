@@ -20,6 +20,7 @@ class TurboLinks {
 	constructor(url, selectors = [], options = {}) {
 		console.log('实例化 TurboLinks ！');
 		console.log(arguments);
+		debugger;
 		options.pjax = options.pjax || 'TurboLinks';
 		options.selectors = options.selectors || selectors;
 		options.cacheBust = options.cacheBust || false;

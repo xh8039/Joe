@@ -726,6 +726,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (src !== "") {
 				script.src = src;
 				script.async = false;
+				script.addEventListener('load', ()=>{
+					pjax.loadJSList
+				});
 				// force synchronous loading of peripheral JS
 			}
 
@@ -762,7 +765,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
-				$(responseDocument.head).children('script:not([data-turbolinks-permanent])').each(function () {
+				pjax.options.loadJSList = responseDocument.head.querySelector('script:not([data-turbolinks-permanent])');
+				console.log(pjax.options.loadJSList);
+				pjax.options.loadJSList.each(function () {
 					evalScript(this);
 					// if (el.tagName.toLowerCase() === "script") {
 					// 	evalScript(el);

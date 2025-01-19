@@ -245,10 +245,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				});
 			}
 			if (options.pjax == 'global') {
-				const event = new CustomEvent('turbolinks:load', {
-					detail: { options }
-				});
-				document.dispatchEvent(event);
+				document.dispatchEvent(new CustomEvent('turbolinks:load'));
+				Joe.DOMContentLoaded = {};
 				NProgress.done();
 			}
 		});

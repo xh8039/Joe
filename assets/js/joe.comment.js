@@ -166,7 +166,7 @@ window.Joe.initComment = (options = {}) => {
 				$(".joe_comment__respond-form .body textarea[name='text']").focus();
 				if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
 					var pjax = new Pjax({
-						elements: '',
+						elements: 'joe-hide>.joe_hide>.joe_hide__button',
 						selectors: ['joe-hide'],
 						history: false,
 						scrollRestoration: false,

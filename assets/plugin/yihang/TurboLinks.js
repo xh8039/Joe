@@ -17,8 +17,18 @@ class TurboLinks {
 	/** 全局已经加载过的 CSS 文件列表 */
 	static documentCSSLinkList = [];
 
-	constructor(url, options = {}) {
+	constructor(url, selectors = [], options = {}) {
 		console.log(url);
+		options.pjax = options.pjax || 'TurboLinks';
+		options.selectors = options.selectors || selectors;
+		options.cacheBust = options.cacheBust || false;
+		if (!options.element) {
+			let element_id = 'turbo-links-'. (new Date()).getTime();
+			let element = document.createElement('a').id = element_id;
+			element.href = url;
+			document.body.appendChild(element);
+			options.element = '#' + element_id;
+		}
 		var pjax = new Pjax(options);
 		pjax._handleResponse = pjax.handleResponse;
 		pjax.handleResponse = (responseText, request, href, options) => {
@@ -46,6 +56,12 @@ class TurboLinks {
 		}
 		pjax.loadUrl(url);
 		this.pjax = pjax;
+		document.addEventListener('pjax:success', (options) => {
+			if (options.pjax != 'TurboLinks') return;
+			if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
+			document.dispatchEvent(new CustomEvent('turbolinks:load'));
+			NProgress.done();
+		});
 	}
 
 	JsLoaded(element) {

@@ -211,36 +211,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		}
 	}
 
-	/** 初始化评论 */
-	{
-		document.addEventListener('pjax:send', (options) => {
-			console.log('pjax-send:' + options.pjax);
-		});
-	}
-
-	/** 通用Pjax成功回调 */
-	{
-		document.addEventListener('pjax:success', (options) => {
-			window.Joe.commentListAutoRefresh = true;
-			console.log('pjax-success：' + options.pjax);
-			if (window.Joe.tooltip) window.Joe.tooltip();
-			$(".comment-list [data-toggle='popover']").popover();
-			if (options.pjax == 'comment-auto-refresh') {
-				if (Joe.initComment) Joe.initComment({
-					draw: false,
-					owo: false,
-					submit: false,
-					pagination: false,
-				});
-			}
-			if (options.pjax == 'global') {
-				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
-				document.dispatchEvent(new CustomEvent('turbolinks:load'));
-				NProgress.done();
-			}
-		});
-	}
-
 	/* 切换标签显示不同的标题 */
 	{
 		if (Joe.options.JDocumentTitle) {
@@ -689,12 +659,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			NProgress.start();
-			let Turbo = new TurboLinks(this.href, {
-				elements: '#global-pjax-element',
-				selectors: ["#Joe"],
-				pjax: 'global',
-				cacheBust: false,
-			});
+			let Turbo = new TurboLinks(this.href, ["#Joe"]);
 			console.log(Turbo);
 		});
 	}

@@ -22,6 +22,8 @@ window.Joe.pjax = (url, selectors, options) => {
 					if (options.beforeSend) options.beforeSend(xhr);
 				},
 				success: function (response) {
+					window.Joe.commentListAutoRefresh = true;
+					console.log('pjax-success');
 					let success = options.success ? options.success(response) : true;
 					if (success !== false) {
 						const DocumentParser = (new DOMParser()).parseFromString(response, 'text/html');
@@ -29,6 +31,8 @@ window.Joe.pjax = (url, selectors, options) => {
 							$(selector).html($(DocumentParser).find(selector).html());
 						});
 					}
+					if (window.Joe.tooltip) window.Joe.tooltip();
+					$(".comment-list [data-toggle='popover']").popover();
 					if (options.replace) options.replace(response);
 					if (options.scrollTo != undefined) window.scrollTo(options.scrollTo, { behavior: 'smooth' });
 				},

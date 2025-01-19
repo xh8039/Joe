@@ -337,6 +337,14 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 					window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
 						success() {
 							return window.Joe.commentListAutoRefresh;
+						},
+						replace() {
+							Joe.initComment({
+								draw: false,
+								owo: false,
+								submit: false,
+								pagination: false,
+							});
 						}
 					});
 				}, time * 1000);

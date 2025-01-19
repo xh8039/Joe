@@ -20,7 +20,6 @@ if (is_string($selectors)) {
 }
 if (!$header) return;
 ?>
-<a href="" id="global-pjax-element"></a>
 <header class="joe_header <?php echo $this->is('post') ? 'current' : '' ?>">
 	<?php
 	if (empty(joe\custom_navs())) {

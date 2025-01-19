@@ -188,5 +188,6 @@ Joe.DOMContentLoaded.video = Joe.DOMContentLoaded.video ? Joe.DOMContentLoaded.v
             return '暂无简介';
         }
     }
+    delete Joe.DOMContentLoaded.video;
 }
 document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.video);

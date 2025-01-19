@@ -349,6 +349,10 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 		// 	$(document).on('click', () => $('.joe_detail__operate-share').removeClass('active'));
 		// }
 	}
+
+	{
+		delete Joe.DOMContentLoaded.single;
+	}
 };
 
 document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.single);

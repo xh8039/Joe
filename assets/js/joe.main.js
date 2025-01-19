@@ -423,7 +423,7 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 	}
 
 	{
-		Joe.DOMContentLoaded.main = null;
+		delete Joe.DOMContentLoaded.main;
 	}
 }
 document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.main);

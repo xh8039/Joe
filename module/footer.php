@@ -266,7 +266,7 @@ if (!empty($footer_tabbar)) {
 	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/china-lantern.min.js', ['text' => $this->options->NewYearLantern]); ?>"></script>
 <?php endif; ?>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects != 'off') : ?>
-	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>" async></script>
+	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>"></script>
 <?php endif; ?>
 <script data-turbolinks-permanent src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
 

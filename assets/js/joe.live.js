@@ -118,5 +118,9 @@ Joe.DOMContentLoaded.live = Joe.DOMContentLoaded.live ? Joe.DOMContentLoaded.liv
 			return num;
 		}
 	}
+
+	{
+		delete Joe.DOMContentLoaded.live;
+	}
 }
 document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.live);

@@ -78,5 +78,6 @@ Joe.DOMContentLoaded.wallpaper = Joe.DOMContentLoaded.wallpaper ? Joe.DOMContent
 		queryData.start = Number(start);
 		renderDom();
 	});
+	delete Joe.DOMContentLoaded.wallpaper;
 }
 document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.wallpaper);

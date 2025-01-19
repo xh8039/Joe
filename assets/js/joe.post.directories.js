@@ -175,7 +175,8 @@ document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : '
 		$('.joe_action_item.posts-nav-switcher').unbind('click');
 		$('.joe_action_item.posts-nav-switcher').on('click', function (event) {
 			console.log(event.target.parentElement);
-			if (event.target != this || event.target.parentElement != this) return;
+			console.log(this);
+			if (event.target != this && event.target.parentElement != this) return;
 			$('.posts-nav-switcher>.zib-widget').css('display') == 'none' ? $('.joe_action').css('z-index', '100') : $('.joe_action').css('z-index', '98');
 			$('.posts-nav-switcher>.zib-widget').fadeToggle(200);
 		});

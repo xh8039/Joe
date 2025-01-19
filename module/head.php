@@ -74,6 +74,10 @@ if ($this->options->JLoading != 'off') : ?>
 	<script src="<?= joe\cdn('nprogress/0.2.0/nprogress.min.js') ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 
+<?php if ($this->options->Turbolinks == 'on') : ?>
+	<script src="<?= joe\theme_url('plugin/yihang/TurboLinks.js') ?>" data-turbolinks-permanent></script>
+<?php endif; ?>
+
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>" data-turbolinks-permanent></script>
 

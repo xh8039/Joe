@@ -693,110 +693,18 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	if (window.Joe.options.Turbolinks == 'on') {
-		window.Joe.loadJSList = [];
+		window.Joe.loadScriptList = [];
 		document.dispatchEvent(new CustomEvent('turbolinks:load'));
-		function loadStyle(element, index) {
-			let code = element.text || element.textContent || element.innerHTML || null;
-			if (code) {
-				let style = document.createElement('style');
-				style.type = 'text/css';
-				try {
-					style.appendChild(document.createTextNode(code));
-				} catch (ex) {
-					style.styleSheet.cssText = code; // 兼容IE
-				}
-				document.head.appendChild(style);
-			} else {
-				let link = document.createElement('link');
-				link.type = 'text/css';
-				link.rel = 'stylesheet';
-				link.href = element.href;
-				document.head.appendChild(link);
-			}
-		}
-		function JsLoaded(element, index) {
-			window.Joe.loadJSList.push(element.src);
-			if (index == (loadJSList.length - 1)) {
-				console.log('所有JavaScript文件都已加载！');
-				pjax._handleResponse(responseText, request, href, options);
-			}
-		}
-		function replaceJs(element, index) {
-			var code = element.text || element.textContent || element.innerHTML || "";
-			var script = document.createElement("script");
-
-			if (code.match("document.write")) {
-				if (console && console.log) console.log("脚本包含document.write。无法正确执行。代码已跳过", element);
-				return false;
-			}
-
-			script.type = "text/javascript";
-			if (element.id) script.id = element.id;
-
-			if (element.src) {
-				if ($(element).attr('data-turbolinks-permanent') != undefined) {
-					if (window.Joe.loadJSList.includes(element.src)) {
-						JsLoaded(element, index);
-						return true;
-					}
-				}
-				script.src = element.src;
-				script.async = false;
-				script.addEventListener('load', () => {
-					console.log('引入JS：' + element.src);
-					JsLoaded(element, index);
-				});
-				script.addEventListener('error', () => {
-					console.error('Error loading script:', element.src);
-					JsLoaded(element, index);
-				});
-				// 强制同步加载外部JS
-			}
-
-			if (code !== "") {
-				try {
-					script.appendChild(document.createTextNode(code));
-				} catch (e) {
-					/* istanbul ignore next */
-					// old IEs have funky script nodes
-					script.text = code;
-				}
-			}
-
-			let parent = document.querySelector("head") || document.documentElement;
-			parent.appendChild(script);
-			// 仅避免头部或身体标签污染
-			if ((parent instanceof HTMLHeadElement || parent instanceof HTMLBodyElement) && parent.contains(script)) {
-				parent.removeChild(script);
-			}
-
-			return true;
-		}
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
 			NProgress.start();
-			let url = this.href;
-			// if (url.startsWith('/')) url = location.origin + url;
-			var pjax = new Pjax({
+			new TurboLinks(this.href, {
 				elements: '#global-pjax-element',
 				selectors: ["#Joe"],
 				pjax: 'global',
 				cacheBust: false,
 			});
-			pjax._handleResponse = pjax.handleResponse;
-			pjax.handleResponse = function (responseText, request, href, options) {
-				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
-				const loadStyleList = responseDocument.head.querySelectorAll('style');
-				loadStyleList.forEach(loadStyle);
-				const loadJSList = responseDocument.head.querySelectorAll('script');
-				if (loadJSList.length < 1) return pjax._handleResponse(responseText, request, href, options);
-				document.querySelectorAll('script[src]').forEach(element => {
-					window.Joe.loadJSList.push(element.src);
-				});
-				loadJSList.forEach(replaceJs);
-			}
-			pjax.loadUrl(url);
 		});
 	}
 }

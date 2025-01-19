@@ -246,6 +246,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			}
 			if (options.pjax == 'global') {
 				document.dispatchEvent(new CustomEvent('turbolinks:load'));
+				window.Joe.DOMContentLoaded = {};
 				NProgress.done();
 			}
 		});
@@ -698,10 +699,10 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		$(document).on('click', 'a[href]:not([href=""])', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			event.preventDefault(); // 阻止默认行为
+			NProgress.start();
 			window.Joe.DOMContentLoaded = {};
 			let url = this.href;
 			// if (url.startsWith('/')) url = location.origin + url;
-			NProgress.start();
 			var pjax = new Pjax({
 				elements: '#global-pjax-element',
 				selectors: ["#Joe"],
@@ -714,7 +715,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				document.querySelectorAll('script[src]').forEach(element => {
 					documentScriptList.push(element.src);
 				});
-				console.log(documentScriptList);
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 				const loadJSList = responseDocument.head.querySelectorAll('script');
 				function JsLoaded(element, index) {

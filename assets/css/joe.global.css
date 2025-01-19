@@ -5919,3 +5919,18 @@ html .aplayer {
 .turbolinks-progress-bar {
 	visibility: hidden;
 }
+
+html #nprogress .bar {
+	background: var(--theme);
+	height: 3px;
+}
+
+html #nprogress .peg {
+	box-shadow: 0 0 10px var(--theme), 0 0 5px var(--theme);
+}
+
+html #nprogress .spinner-icon {
+	border-width: 3px;
+	border-top-color: var(--theme);
+	border-left-color: var(--theme);
+}

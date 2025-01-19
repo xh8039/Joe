@@ -725,7 +725,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					}
 
 					script.type = "text/javascript";
-					script.id = el.id;
+					script.id = element.id;
 
 					/* istanbul ignore if */
 					if (src !== "") {

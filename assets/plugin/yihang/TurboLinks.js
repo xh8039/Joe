@@ -1,6 +1,6 @@
 class TurboLinks {
 
-	"use strict";
+	// "use strict";
 
 	pjax;
 
@@ -19,6 +19,7 @@ class TurboLinks {
 
 	constructor(url, selectors = [], options = {}) {
 		console.log('实例化 TurboLinks ！');
+		console.log(arguments);
 		console.log(arguments.callee.caller);
 		options.pjax = options.pjax || 'TurboLinks';
 		options.selectors = options.selectors || selectors;

@@ -709,16 +709,17 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			});
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
+				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
+				var loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
+				totalJsFiles = loadJSList.length - 1;
 				function JsLoaded(element, index) {
 					console.log(index)
-					console.log(loadJSList.length);					
-					if (index == loadJSList.length) {
+					console.log(totalJsFiles);					
+					if (index == totalJsFiles) {
 						console.log('所有JavaScript文件都已加载！');
 						pjax._handleResponse(responseText, request, href, options);
 					}
 				}
-				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
-				var loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
 				loadJSList.forEach((element, index) => {
 					var code = element.text || element.textContent || element.innerHTML || "";
 					var script = document.createElement("script");

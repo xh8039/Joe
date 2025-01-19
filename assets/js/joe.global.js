@@ -731,6 +731,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 						script.src = src;
 						script.async = false;
 						script.addEventListener('load', () => {
+							console.log(loadJSList[index]);
 							loadJSList[index] = null;
 							delete loadJSList[index];
 							console.log(loadJSList);

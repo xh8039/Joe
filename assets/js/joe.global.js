@@ -714,7 +714,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				pjax.options.loadJSList.forEach((element, index) => {
 					var code = element.text || element.textContent || element.innerHTML || "";
 					var src = element.src || "";
-					var parent = element.parentNode || document.querySelector("head") || document.documentElement;
+					var parent = document.querySelector("head") || document.documentElement;
 					var script = document.createElement("script");
 
 					if (code.match("document.write")) {
@@ -747,12 +747,11 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 							script.text = code;
 						}
 					}
-					console.log(parent);
 					// execute
 					parent.appendChild(script);
 					// 仅避免头部或身体标签污染
 					if ((parent instanceof HTMLHeadElement || parent instanceof HTMLBodyElement) && parent.contains(script)) {
-						// parent.removeChild(script);
+						parent.removeChild(script);
 					}
 
 					return true;

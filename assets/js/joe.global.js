@@ -246,7 +246,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			}
 			if (options.pjax == 'global') {
 				document.dispatchEvent(new CustomEvent('turbolinks:load'));
-				// Joe.DOMContentLoaded = {};
+				window.Joe.DOMContentLoaded = {};
 				NProgress.done();
 			}
 		});

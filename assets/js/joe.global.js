@@ -214,6 +214,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	/** 初始化评论 */
 	{
 		document.addEventListener('pjax:send', (options) => {
+			console.log('pjax-send:' + options.pjax);
 			if (options.pjax != "comment-pagination") return;
 			if ($('#comment_module>.joe_pagination a').length) {
 				window.Joe.commentListAutoRefresh = false;

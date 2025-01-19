@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <html lang="zh-cn">
 
 <head>
-	<title>重置密码 - <?php $this->options->title() ?></title>
+	<?php $this->setArchiveTitle('重置密码') ?>
 	<?php $this->need('module/head.php') ?>
 	<?php $this->need('user/head.php') ?>
 	<link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />

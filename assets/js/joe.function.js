@@ -1,29 +1,43 @@
 if (!window.Joe) window.Joe = {};
 
 window.Joe.pjax = (url, selectors, options) => {
-	$.ajax({
-		type: options.type ? options : 'GET',
-		url: url,
-		dataType: "html",
-		data: options.data ? options.data : null,
-		beforeSend(xhr) {
-			xhr.setRequestHeader('x-ajax-selectors', JSON.stringify(selectors));
-			if (options.beforeSend) options.beforeSend(xhr);
-		},
-		success: function (response) {
-			let success = options.success ? options.success(response) : true;
-			if (success !== false) {
-				const DocumentParser = (new DOMParser()).parseFromString(response, 'text/html');
-				selectors.forEach(selector => {
-					$(selector).html($(DocumentParser).find(selector).html());
+	return new class JoePjax {
+		constructor(url, selectors, options) {
+			if (document.querySelector(url)) {
+				$(document).on('click', url, (event) => {
+					this.ajax(event.target.href, selectors, options);
 				});
+			} else {
+				this.ajax(url, selectors, options);
 			}
-			if (options.replace) options.replace(response);
-		},
-		error() {
-			options.error();
 		}
-	});
+		ajax(url, selectors, options) {
+			$.ajax({
+				type: options.type ? options : 'GET',
+				url: url,
+				dataType: "html",
+				data: options.data ? options.data : null,
+				beforeSend(xhr) {
+					xhr.setRequestHeader('x-ajax-selectors', JSON.stringify(selectors));
+					if (options.beforeSend) options.beforeSend(xhr);
+				},
+				success: function (response) {
+					let success = options.success ? options.success(response) : true;
+					if (success !== false) {
+						const DocumentParser = (new DOMParser()).parseFromString(response, 'text/html');
+						selectors.forEach(selector => {
+							$(selector).html($(DocumentParser).find(selector).html());
+						});
+					}
+					if (options.replace) options.replace(response);
+					if (options.scrollTo != undefined) window.scrollTo(options.scrollTo, { behavior: 'smooth' });
+				},
+				error() {
+					options.error();
+				}
+			});
+		}
+	}(url, selectors, options);
 }
 
 window.Joe.checkUrl = (string) => {

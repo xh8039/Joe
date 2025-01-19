@@ -521,7 +521,6 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 						}
 					}
 					const videoPlayer = () => {
-						console.log('加载：DPlayer.min.js');
 						$.getScript(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
 							new DPlayer({
 								container: this, // 播放器容器元素

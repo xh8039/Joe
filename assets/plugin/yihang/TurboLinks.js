@@ -22,12 +22,11 @@ class TurboLinks {
 		options.selectors = options.selectors || selectors;
 		options.cacheBust = options.cacheBust || false;
 		if (!options.element) {
-			let a_element_id = 'turbo-links-' + (+new Date());
-			var a_element = document.createElement('a');
-			a_element.id = a_element_id;
-			a_element.href = url;
-			document.body.appendChild(a_element);
-			options.element = '#' + element_id;
+			var link_element = document.createElement('a');
+			link_element.id = 'turbo-links-' + (+new Date());
+			link_element.href = url;
+			document.body.appendChild(link_element);
+			options.element = '#' + link_element.id;
 		}
 		console.log(options);
 		var pjax = new Pjax(options);

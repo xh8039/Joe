@@ -1,4 +1,5 @@
 Joe.DOMContentLoaded.wallpaper = Joe.DOMContentLoaded.wallpaper ? Joe.DOMContentLoaded.wallpaper : () => {
+	console.log('调用：Joe.DOMContentLoaded.wallpaper');
 	let isLoading = false;
 	let queryData = { cid: -999, start: -999, count: 48 };
 	let total = -999;
@@ -78,5 +79,4 @@ Joe.DOMContentLoaded.wallpaper = Joe.DOMContentLoaded.wallpaper ? Joe.DOMContent
 		renderDom();
 	});
 }
-Joe.DOMContentLoaded.wallpaper();
-console.log('调用：Joe.DOMContentLoaded.wallpaper');
+document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.wallpaper);

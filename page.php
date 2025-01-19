@@ -33,7 +33,6 @@ $this->need('module/single/pjax.php');
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>
-		
 	</div>
 	<?php $this->need('module/footer.php') ?>
 </body>

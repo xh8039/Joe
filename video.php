@@ -18,6 +18,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.video.min.css'); ?>">
+	<script src="<?= joe\theme_url('assets/js/joe.video.js'); ?>"></script>
 </head>
 
 <body>
@@ -57,7 +58,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>
-		<script src="<?= joe\theme_url('assets/js/joe.video.js'); ?>"></script>
 	</div>
 	<?php $this->need('module/footer.php') ?>
 </body>

@@ -12,6 +12,7 @@ $this->need('module/archive/pjax.php');
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.archive.css'); ?>">
 	<?= $this->options->JListAnimate != 'off' ? '<script src="' . joe\cdn('wow/1.1.2/wow.min.js') . '"></script>' : null ?>
+	<script src="<?= joe\theme_url('assets/js/joe.archive.js'); ?>"></script>
 </head>
 
 <body>
@@ -23,7 +24,6 @@ $this->need('module/archive/pjax.php');
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php') ?>
-		<script src="<?= joe\theme_url('assets/js/joe.archive.js'); ?>"></script>
 	</div>
 	<?php $this->need('module/footer.php') ?>
 </body>

@@ -1,4 +1,5 @@
 Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded.census : () => {
+	console.log('调用：Joe.DOMContentLoaded.census');
 	{
 		/* 转换字节 */
 		const bytesToSize = bytes => {
@@ -363,5 +364,4 @@ Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded
 		});
 	}
 }
-Joe.DOMContentLoaded.census();
-console.log('调用：Joe.DOMContentLoaded.census');
+document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.census);

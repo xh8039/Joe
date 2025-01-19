@@ -5924,11 +5924,10 @@ html #nprogress .bar {
 	background: var(--theme);
 	height: 3px;
 	box-shadow: 0px 2px 5px 0px var(--theme);
-	box-shadow: 0 4px 10px 1px var(--theme);
 }
 
 html #nprogress .peg {
-	box-shadow: 0 0 10px var(--theme), 0 0 5px var(--theme);
+	display: none;
 }
 
 html #nprogress .spinner-icon {

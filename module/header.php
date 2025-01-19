@@ -14,7 +14,7 @@ if ($this->options->JLoading != 'off') {
 $selectors = $this->request->getHeader('x-pjax-selectors');
 if (is_string($selectors)) {
 	$selectors = json_decode($selectors, true);
-	if (!in_array('header', $selectors)) $header = true;
+	$header = in_array('header', $selectors);
 } else {
 	$header = true;
 }

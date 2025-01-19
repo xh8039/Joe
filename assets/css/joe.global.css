@@ -5923,6 +5923,8 @@ html .aplayer {
 html #nprogress .bar {
 	background: var(--theme);
 	height: 3px;
+	box-shadow: 0px 2px 5px 0px var(--theme);
+	box-shadow: 0 4px 10px 1px var(--theme);
 }
 
 html #nprogress .peg {

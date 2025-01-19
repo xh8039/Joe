@@ -123,4 +123,4 @@ Joe.DOMContentLoaded.live = Joe.DOMContentLoaded.live ? Joe.DOMContentLoaded.liv
 		delete Joe.DOMContentLoaded.live;
 	}
 }
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.live);
+document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.live, { once: true });

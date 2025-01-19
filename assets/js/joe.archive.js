@@ -36,4 +36,4 @@ Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoad
 		delete Joe.DOMContentLoaded.archive;
 	}
 };
-document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.archive);
+document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.archive, { once: true });

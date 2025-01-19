@@ -190,4 +190,4 @@ Joe.DOMContentLoaded.video = Joe.DOMContentLoaded.video ? Joe.DOMContentLoaded.v
     }
     delete Joe.DOMContentLoaded.video;
 }
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.video);
+document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.video, { once: true });

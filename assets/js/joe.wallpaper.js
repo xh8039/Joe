@@ -80,4 +80,4 @@ Joe.DOMContentLoaded.wallpaper = Joe.DOMContentLoaded.wallpaper ? Joe.DOMContent
 	});
 	delete Joe.DOMContentLoaded.wallpaper;
 }
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.wallpaper);
+document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.wallpaper, { once: true });

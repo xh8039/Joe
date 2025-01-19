@@ -134,7 +134,7 @@ Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoad
 	}
 };
 
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.leaving);
+document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.leaving, { once: true });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
 window.addEventListener('load', function () {

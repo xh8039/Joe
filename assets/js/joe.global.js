@@ -779,4 +779,4 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		});
 	}
 }
-document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.global);
+document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.global, { once: true });

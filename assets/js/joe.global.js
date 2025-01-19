@@ -663,7 +663,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			document.addEventListener('turbolinks:load', () => {
 				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
 				NProgress.done();
-			})
+			});
 			console.log(Turbo);
 		});
 	}

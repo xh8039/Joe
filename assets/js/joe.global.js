@@ -710,8 +710,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			pjax._handleResponse = pjax.handleResponse;
 			pjax.handleResponse = function (responseText, request, href, options) {
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
-				pjax.options.loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
-				pjax.options.loadJSList.forEach((element, index) => {
+			 	var loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
+				loadJSList.forEach((element, index) => {
 					var code = element.text || element.textContent || element.innerHTML || "";
 					var src = element.src || "";
 					var script = document.createElement("script");
@@ -731,9 +731,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 						script.src = src;
 						script.async = false;
 						script.addEventListener('load', () => {
-							pjax.options.loadJSList[index] = null;
-							delete pjax.options.loadJSList[index];
-							console.log(pjax.options.loadJSList);
+							loadJSList[index] = null;
+							delete loadJSList[index];
+							console.log(loadJSList);
 						});
 						// force synchronous loading of peripheral JS
 					}

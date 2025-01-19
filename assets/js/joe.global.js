@@ -712,7 +712,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 				var loadJSList = responseDocument.head.querySelectorAll('script:not([data-turbolinks-permanent])');
 				function JsLoaded(element, index) {
-					console.log(index);
 					if (index == (loadJSList.length - 1)) {
 						console.log('所有JavaScript文件都已加载！');
 						pjax._handleResponse(responseText, request, href, options);
@@ -735,7 +734,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 						script.src = element.src;
 						script.async = false;
 						script.addEventListener('load', () => {
-							console.log(element.src);
 							JsLoaded(element, index);
 						});
 						script.addEventListener('error', () => {

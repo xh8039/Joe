@@ -1,6 +1,7 @@
 Prism.plugins.autoloader.languages_path = Joe.CDN(`prism/1.9.0/components/`);
 
 Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded.single : () => {
+	console.log('调用：Joe.DOMContentLoaded.single');
 	const encryption = str => window.btoa(unescape(encodeURIComponent(str)));
 	const decrypt = str => decodeURIComponent(escape(window.atob(str)));
 
@@ -350,8 +351,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 	}
 };
 
-Joe.DOMContentLoaded.single();
-console.log('调用：Joe.DOMContentLoaded.single');
+document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.single);
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
 window.addEventListener('load', function () {

@@ -21,12 +21,13 @@ class TurboLinks {
 		options.pjax = options.pjax || 'TurboLinks';
 		options.selectors = options.selectors || selectors;
 		options.cacheBust = options.cacheBust || false;
-		if (!options.element) {
+		if (!options.elements) {
 			var link_element = document.createElement('a');
 			link_element.id = 'turbo-links-' + (+new Date());
 			link_element.href = url;
+			link_element.setAttribute('data-pjax-state', true);
 			document.body.appendChild(link_element);
-			options.element = '#' + link_element.id;
+			options.elements = '#' + link_element.id;
 		}
 		console.log(options);
 		var pjax = new Pjax(options);

@@ -127,7 +127,7 @@ window.Joe.tooltip = (selectors = '') => {
 	}
 }
 
-if (window.Joe.options.JLoading == 'on') {
+if (window.Joe.options.JLoading != 'off') {
 	window.Joe.loadingStart = () => {
 		$("#loading-animation").fadeIn(150);
 	}

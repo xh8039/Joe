@@ -595,12 +595,13 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 
 	/** 全局Loading动画补全 */
-	if (window.Joe.options.JLoading == 'on') {
+	if (window.Joe.loadingEnd) {
 		window.Joe.loadingEnd();
-		if (window.Joe.loadingStart && window.Joe.loadingEnd && window.Joe.options.FirstLoading != 'on') {
+		if (window.Joe.loadingStart && window.Joe.options.FirstLoading != 'on') {
 			// a标签加载动画
 			$(document).on('click', 'a[href]', function (e) {
-				if (window.Joe.checkUrl(this)) window.Joe.loadingStart();
+				if (!window.Joe.checkUrl(this)) return true;
+				window.Joe.loadingStart();
 				setTimeout(() => {
 					window.Joe.loadingEnd();
 				}, 5000);

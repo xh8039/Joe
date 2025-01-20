@@ -99,7 +99,7 @@ window.Joe.initComment = (options = {}) => {
 				window.Joe.commentListAutoRefresh = false;
 				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
 				const type = $(".joe_comment__respond-form").attr("data-type");
-				const parent = $(".joe_comment__respond-form").attr("data-coid");
+				const parent = $(".joe_comment__respond-form").attr("data-coid") || null;
 				const author = $(".joe_comment__respond-form .head input[name='author']").val();
 				const _ = $(".joe_comment__respond-form input[name='_']").val();
 				const mail = $(".joe_comment__respond-form .head input[name='mail']").val();

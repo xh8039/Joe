@@ -48,8 +48,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 			};
 			if (options.processData != undefined) ajax.processData = options.processData;
 			if (options.contentType != undefined) ajax.contentType = options.contentType;
-			if (options.data = !undefined) ajax.data = options.data;
-			console.log(options);
+			if (options.data != undefined) ajax.data = options.data;
 			console.log(ajax);
 			$.ajax(ajax);
 		}

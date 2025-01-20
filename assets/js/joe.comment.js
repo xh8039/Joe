@@ -132,6 +132,8 @@ window.Joe.initComment = (options = {}) => {
 					type: "POST",
 					url: action,
 					data: data,
+					processData: false,
+					contentType: false,
 					selectors: ["#comment_module>.comment-list", '.joe_comment__title>small', '#comment_module>.joe_pagination'],
 					beforeSend() {
 						window.Joe.commentListAutoRefresh = false;

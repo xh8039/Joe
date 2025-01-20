@@ -128,7 +128,7 @@ window.Joe.initComment = (options = {}) => {
 				data.append('_', _);
 				var referrer = document.querySelector('meta[name="referrer"]:last-of-type');
 				if (referrer && referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'unsafe-url');
-				window.Joe.ajax({
+				window.Joe.pjax({
 					type: "POST",
 					url: action,
 					data: data,

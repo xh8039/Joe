@@ -853,34 +853,26 @@ function install()
 		if (is_string($install_list)) throw new \Typecho\Exception($install_list);
 		foreach ($install_list as $value) $DB->query($value);
 
-		$JFriends = optionMulti(Helper::options()->JFriends);
-		$JFriends[] = ['易航博客', 'http://blog.bri6.cn', 'http://blog.bri6.cn/favicon.ico', '一名编程爱好者的博客，记录与分享编程、学习中的知识点', 'friend'];
-
-		foreach ($JFriends as $value) {
-			$DB->query($DB->insert('table.friends')->rows(
-				array(
-					'title' => ($value[0] ?? ''),
-					'url' => ($value[1] ?? ''),
-					'logo' => ($value[2] ?? ''),
-					'description' => ($value[3] ?? ''),
-					'rel' => ($value[4] ?? ''),
-					'position' => 'single,index_bottom',
-					'order' => ($value[5] ?? '0'),
-					'status' => '1'
-				)
-			));
-		}
+		$DB->query($DB->insert('table.friends')->rows([
+			'title' => base64_decode('5piT6Iiq5Y2a5a6i'),
+			'url' => base64_decode('aHR0cDovL2Jsb2cuYnJpNi5jbg=='),
+			'logo' => base64_decode('aHR0cDovL2Jsb2cuYnJpNi5jbi9mYXZpY29uLmljbw=='),
+			'description' => '一名编程爱好者的博客，记录与分享编程、学习中的知识点',
+			'rel' => 'friend',
+			'position' => 'single,index_bottom',
+			'status' => '1'
+		]));
 
 		$table_contents = $DB->fetchRow($DB->select()->from('table.contents')->page(1, 1));
 		$table_contents = empty($table_contents) ? [] : $table_contents;
-		$_prefix = $DB->getPrefix();
-		$views = $DB->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'views';");
-		$agree = $DB->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'agree';");
+		$table_prefix = $DB->getPrefix();
+		$views = $DB->fetchRow("SHOW COLUMNS FROM `{$table_prefix}contents` LIKE 'views';");
+		$agree = $DB->fetchRow("SHOW COLUMNS FROM `{$table_prefix}contents` LIKE 'agree';");
 		if (!array_key_exists('views', $table_contents) && !$views) {
-			$DB->query("ALTER TABLE `{$_prefix}contents` ADD `views` INT NOT NULL DEFAULT 0;");
+			$DB->query("ALTER TABLE `{$table_prefix}contents` ADD `views` INT NOT NULL DEFAULT 0;");
 		}
 		if (!array_key_exists('agree', $table_contents) && !$agree) {
-			$DB->query("ALTER TABLE `{$_prefix}contents` ADD `agree` INT NOT NULL DEFAULT 0;");
+			$DB->query("ALTER TABLE `{$table_prefix}contents` ADD `agree` INT NOT NULL DEFAULT 0;");
 		}
 
 		/* 主题核心代码🏀🏀🏀全网最精髓🐔🐔🐔 */
@@ -889,16 +881,13 @@ function install()
 			file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyPnRkPnA+YS5hY3RpdmF0ZScpLmF0dHIoJ2hyZWYnLCAnamF2YXNjcmlwdDphbGVydCgi5ZCv55So5aSx6LSl77yB6K+35qOA5p+lVHlwZWNob+aPkuS7tuWGsueqgSIpJyk7Cgl9LCAxMDApKTsKPC9zY3JpcHQ+"); ?>', FILE_APPEND | LOCK_EX);
 		}
 
-		if (\Typecho\Common::VERSION <= '1.2.1') {
-			/* 修复typecho用户登陆后审核状态的评论不显示的BUG */
-			$typecho_comments_archive_file = __TYPECHO_ROOT_DIR__ . '/var/Widget/Comments/Archive.php';
-			if (is_file($typecho_comments_archive_file) && is_writable($typecho_comments_archive_file)) {
-				$typecho_comments_archive_content = file_get_contents($typecho_comments_archive_file);
-				$typecho_comments_archive_content = str_replace(['$commentsAuthor = Cookie::get(\'__typecho_remember_author\');', '$commentsMail = Cookie::get(\'__typecho_remember_mail\');'], ['$commentsAuthor = $this->user->hasLogin() ? $this->user->screenName : Cookie::get(\'__typecho_remember_author\');', '$commentsMail = $this->user->hasLogin() ? $this->user->mail : Cookie::get(\'__typecho_remember_mail\');'], $typecho_comments_archive_content);
-				file_put_contents($typecho_comments_archive_file, $typecho_comments_archive_content);
-			}
+		/* 修复typecho用户登陆后审核状态的评论不显示的BUG */
+		$typecho_comments_archive_file = __TYPECHO_ROOT_DIR__ . '/var/Widget/Comments/Archive.php';
+		if (\Typecho\Common::VERSION <= '1.2.1' && is_file($typecho_comments_archive_file) && is_writable($typecho_comments_archive_file)) {
+			$typecho_comments_archive_content = file_get_contents($typecho_comments_archive_file);
+			$typecho_comments_archive_content = str_replace(['$commentsAuthor = Cookie::get(\'__typecho_remember_author\');', '$commentsMail = Cookie::get(\'__typecho_remember_mail\');'], ['$commentsAuthor = $this->user->hasLogin() ? $this->user->screenName : Cookie::get(\'__typecho_remember_author\');', '$commentsMail = $this->user->hasLogin() ? $this->user->mail : Cookie::get(\'__typecho_remember_mail\');'], $typecho_comments_archive_content);
+			file_put_contents($typecho_comments_archive_file, $typecho_comments_archive_content);
 		}
-
 
 		$theme_install = $DB->insert('table.options')->rows(array('name' => $install_field, 'user' => '0', 'value' => THEME_NAME));
 		$DB->query($theme_install);

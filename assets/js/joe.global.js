@@ -661,7 +661,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);
 		TurboLinks.start(['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '#Joe']);
 		document.addEventListener('turbolinks:send', () => {
-			console.log('TurboLinks:send');
 			NProgress.done();
 			NProgress.start();
 		});

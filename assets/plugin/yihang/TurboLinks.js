@@ -70,6 +70,7 @@ class TurboLinks {
 		TurboLinks.linkElement.id = 'turbo-links-' + (+new Date());
 		TurboLinks.linkElement.setAttribute('data-pjax-state', true);
 		document.body.appendChild(TurboLinks.linkElement);
+		console.log(TurboLinks.linkElement);
 		return TurboLinks.linkElement;
 	}
 

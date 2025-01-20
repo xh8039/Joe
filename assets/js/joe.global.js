@@ -662,6 +662,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);
 		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
+			if ($(this).attr('data-turbolinks') == 'false') return true;
 			event.preventDefault(); // 阻止默认行为
 			NProgress.done();
 			NProgress.start();

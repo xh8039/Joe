@@ -13,6 +13,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 				return;
 			}
 			if (document.querySelector(url)) {
+				$(url).attr('data-turbolinks', 'false');
 				$(document).on('click', url, (event) => {
 					this.ajax(event.target.href, selectors, options);
 				});

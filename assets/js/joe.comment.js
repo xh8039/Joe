@@ -195,7 +195,7 @@ window.Joe.initComment = (options = {}) => {
 			});
 			let selectors = ["#comment_module>.comment-list", '#comment_module>.joe_pagination'];
 			if (document.querySelector('.joe_detail__leaving')) selectors.push('.joe_detail__leaving');
-			$('#comment_module>.joe_pagination').on('click', 'a[href]', function (event) {
+			$('#comment_module>.joe_pagination a[href]').click(function (event) {
 				event.preventDefault();
 				url = this.href;
 				window.Joe.pjax(url, selectors, {

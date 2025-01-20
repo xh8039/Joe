@@ -94,6 +94,61 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		}
 	}
 
+	/* 展示百度统计信息 */
+	{
+		if ($('#statistics').is(':visible')) {
+			$.ajax({
+				url: Joe.BASE_API,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					routeType: 'statistics'
+				},
+				success(data) {
+					if (data.access_token == 'off') {
+						$("#statistics").remove();
+						return;
+					}
+					if (data.msg) {
+						$("#statistics").remove();
+						data.code == 200 ? Qmsg.info('百度统计：' + data.msg) : Qmsg.error('百度统计：' + data.msg);
+						return;
+					}
+					let statistics = $('#statistics span strong');
+					$(statistics[0]).text(data['today'][0]);
+					$(statistics[1]).text(data['yesterday'][1]);
+					$(statistics[2]).text(data['month'][0]);
+				},
+				error() {
+					$("#statistics").remove();
+				}
+			});
+		}
+	}
+
+	/* 激活顶栏全局下拉框功能 */
+	{
+		$(".joe_dropdown").each(function (index, item) {
+			const menu = $(this).find(".joe_dropdown__menu");
+			const trigger = $(item).attr("trigger") || "click";
+			const placement = $(item).attr("placement") || $(this).height() || 0;
+			menu.css("top", placement);
+			if (trigger === "hover") {
+				$(this).hover(
+					() => $(this).addClass("active"),
+					() => $(this).removeClass("active")
+				);
+			} else {
+				$(this).on("click", function (e) {
+					$(this).toggleClass("active");
+					$(document).one("click", () => $(this).removeClass("active"));
+					e.stopPropagation();
+				});
+				menu.on("click", (e) => e.stopPropagation());
+			}
+		});
+	}
+
 	/* 搜索框弹窗 */
 	{
 		$(".joe_header__above-search .input").on("click", (e) => {
@@ -324,14 +379,14 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				return _isAndroid === 1;
 			}
 			const popUp = () => {
-				if (footerTabbar) document.querySelector('.footer-tabbar').style.display = 'none';
-				if (joeAction) document.querySelector('.joe_action').style.display = 'none';
-				if (aplayer) document.querySelector('.aplayer.aplayer-fixed').style.display = 'none';
+				if (footerTabbar) footerTabbar.style.display = 'none';
+				if (joeAction) joeAction.style.display = 'none';
+				if (aplayer) aplayer.style.display = 'none';
 			}
 			const retract = () => {
 				if (footerTabbar) footerTabbar.style.display = null;
-				if (joeAction) document.querySelector('.joe_action').style.display = null;
-				if (aplayer) document.querySelector('.aplayer.aplayer-fixed').style.display = null;
+				if (joeAction) joeAction.style.display = null;
+				if (aplayer) aplayer.style.display = null;
 			}
 			if (isAndroid()) {
 				const innerHeight = window.innerHeight;
@@ -607,6 +662,19 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				}, 5000);
 				window.addEventListener('beforeunload', function (event) {
 					window.Joe.loadingEnd();
+				});
+			});
+		}
+	}
+
+	/* 激活Live2d人物 */
+	{
+		if (Joe.options.JLive2d !== "off" && Joe.options.JLive2d) {
+			$.getScript(`${Joe.THEME_URL}assets/plugin/live2d/L2Dwidget.min.js`, () => {
+				L2Dwidget.init({
+					model: { jsonPath: Joe.options.JLive2d, scale: 1 },
+					mobile: { show: true },
+					display: { position: "left", width: 130, height: 170, hOffset: 0, vOffset: 0 },
 				});
 			});
 		}

@@ -1,65 +1,11 @@
 Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.main : () => {
 	console.log('调用：Joe.DOMContentLoaded.main');
-	/* 展示百度统计信息 */
-	{
-		if ($('#statistics').is(':visible')) {
-			$.ajax({
-				url: Joe.BASE_API,
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					routeType: 'statistics'
-				},
-				success(data) {
-					if (data.access_token == 'off') {
-						$("#statistics").remove();
-						return;
-					}
-					if (data.msg) {
-						$("#statistics").remove();
-						data.code == 200 ? Qmsg.info('百度统计：' + data.msg) : Qmsg.error('百度统计：' + data.msg);
-						return;
-					}
-					let statistics = $('#statistics span strong');
-					$(statistics[0]).text(data['today'][0]);
-					$(statistics[1]).text(data['yesterday'][1]);
-					$(statistics[2]).text(data['month'][0]);
-				},
-				error() {
-					$("#statistics").remove();
-				}
-			});
-		}
-	}
 
 	/* 动态背景 */
 	{
 		if (!Joe.IS_MOBILE && Joe.options.DynamicBackground != "off" && !Joe.WALLPAPER_BACKGROUND_PC) {
 			$.getScript(`${Joe.THEME_URL}assets/plugin/backdrop/${Joe.options.DynamicBackground}`);
 		}
-	}
-
-	/* 激活全局下拉框功能 */
-	{
-		$(".joe_dropdown").each(function (index, item) {
-			const menu = $(this).find(".joe_dropdown__menu");
-			const trigger = $(item).attr("trigger") || "click";
-			const placement = $(item).attr("placement") || $(this).height() || 0;
-			menu.css("top", placement);
-			if (trigger === "hover") {
-				$(this).hover(
-					() => $(this).addClass("active"),
-					() => $(this).removeClass("active")
-				);
-			} else {
-				$(this).on("click", function (e) {
-					$(this).toggleClass("active");
-					$(document).one("click", () => $(this).removeClass("active"));
-					e.stopPropagation();
-				});
-				menu.on("click", (e) => e.stopPropagation());
-			}
-		});
 	}
 
 	/* 激活侧边栏人生倒计时功能 */
@@ -279,30 +225,6 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 		}
 	}
 
-	/* 激活Live2d人物 */
-	{
-		if (Joe.options.JLive2d !== "off" && Joe.options.JLive2d) {
-			$.getScript(`${Joe.THEME_URL}assets/plugin/live2d/L2Dwidget.min.js`, () => {
-				L2Dwidget.init({
-					model: {
-						jsonPath: Joe.options.JLive2d,
-						scale: 1
-					},
-					mobile: {
-						show: true
-					},
-					display: {
-						position: "left",
-						width: 130,
-						height: 170,
-						hOffset: 0,
-						vOffset: 0
-					},
-				});
-			});
-		}
-	}
-
 	/** 反机器人评论机制 */
 	if (window.Joe.options.commentsAntiSpam) {
 		var r = document.getElementById(window.Joe.respondId);
@@ -325,7 +247,7 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 
 	/** 评论区内容实时刷新 */
 	{
-		if ($('#comment_module a[auto-refresh]').length) {
+		if (document.querySelector('#comment_module a[auto-refresh]')) {
 			let time = Number($('#comment_module a[auto-refresh]').attr('auto-refresh'));
 			if (time && Number.isInteger(time)) {
 				window.Joe.commentListAutoRefresh = true;
@@ -339,12 +261,7 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 							return window.Joe.commentListAutoRefresh;
 						},
 						replace() {
-							Joe.initComment({
-								draw: false,
-								owo: false,
-								submit: false,
-								pagination: false,
-							});
+							Joe.initComment({ draw: false, owo: false, submit: false, pagination: false });
 						}
 					});
 				}, time * 1000);
@@ -354,59 +271,12 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 
 	/* 座右铭 */
 	{
-		const mottoArray = [
-			'风急天高猿啸哀，渚清沙白鸟飞回',
-			'无边落木萧萧下，不尽长江滚滚来',
-			'万里悲秋常作客，百年多病独登台',
-			'艰难苦恨繁霜鬓，潦倒新停浊酒杯',
-			'君不见黄河之水天上来，奔流到海不复回',
-			'君不见高堂明镜悲白发，朝如青丝暮成雪',
-			'人生得意须尽欢，莫使金樽空对月',
-			'天生我材必有用，千金散尽还复来',
-			'问君能有几多愁，恰似一江春水向东流',
-			'不知天上宫阙，今夕是何年',
-			'我欲乘风归去，又恐琼楼玉宇',
-			'高处不胜寒，起舞弄清影，何似在人间',
-			'醉里挑灯看剑，梦回吹角连营',
-			'八百里分麾下炙，五十弦翻塞外声，沙场秋点兵',
-			'在天愿为比翼鸟，在地愿为连理枝',
-			'莫愁前路无知己，天下谁人不识君',
-			'枯藤老树昏鸦，小桥流水人家',
-			'夕阳西下，断肠人在天涯',
-			'安能摧眉折腰事权贵，使我不得开心颜？',
-			'国破山河在，城春草木深',
-			'感时花溅泪，恨别鸟惊心',
-			'羌管悠悠霜满地，人不寐，将军白发征夫泪',
-			'五花马，千金裘，呼儿将出换美酒',
-			'山无陵，江水为竭，冬雷震震，夏雨雪，天地合，乃敢与君绝',
-			'劝君更尽一杯酒,西出阳关无故人',
-			'人生自是有情痴，此恨不关风与月',
-			'千山鸟飞绝，万径人踪灭',
-			'孤舟蓑笠翁，独钓寒江雪',
-			'十年生死两茫茫，不思量，自难忘。千里孤坟，无处话凄凉',
-			'纵使相逢应不识，尘满面，鬓如霜',
-			'少年不识愁滋味，爱上层楼。爱上层楼，为赋新词强说愁',
-			'时光只解催人老，不信多情，长恨离亭，泪滴春衫酒易醒',
-			'梧桐昨夜西风急，淡月胧明，好梦频惊，何处高楼雁一声？',
-			'惶恐滩头说惶恐，零丁洋里叹零丁',
-			'人生自古谁无死？留取丹心照汗青',
-			'前不见古人，后不见来者',
-			'念天地之悠悠，独怆然而涕下',
-			'我醉欲眠卿且去，明朝有意抱琴来',
-			'人生自古谁无死，留取丹心照汗青',
-			'黑云压城城欲摧，甲光向日金鳞开'
-		];
+		const mottoArray = ['风急天高猿啸哀，渚清沙白鸟飞回', '无边落木萧萧下，不尽长江滚滚来', '万里悲秋常作客，百年多病独登台', '艰难苦恨繁霜鬓，潦倒新停浊酒杯', '君不见黄河之水天上来，奔流到海不复回', '君不见高堂明镜悲白发，朝如青丝暮成雪', '人生得意须尽欢，莫使金樽空对月', '天生我材必有用，千金散尽还复来', '问君能有几多愁，恰似一江春水向东流', '不知天上宫阙，今夕是何年', '我欲乘风归去，又恐琼楼玉宇', '高处不胜寒，起舞弄清影，何似在人间', '醉里挑灯看剑，梦回吹角连营', '八百里分麾下炙，五十弦翻塞外声，沙场秋点兵', '在天愿为比翼鸟，在地愿为连理枝', '莫愁前路无知己，天下谁人不识君', '枯藤老树昏鸦，小桥流水人家', '夕阳西下，断肠人在天涯', '安能摧眉折腰事权贵，使我不得开心颜？', '国破山河在，城春草木深', '感时花溅泪，恨别鸟惊心', '羌管悠悠霜满地，人不寐，将军白发征夫泪', '五花马，千金裘，呼儿将出换美酒', '山无陵，江水为竭，冬雷震震，夏雨雪，天地合，乃敢与君绝', '劝君更尽一杯酒,西出阳关无故人', '人生自是有情痴，此恨不关风与月', '千山鸟飞绝，万径人踪灭', '孤舟蓑笠翁，独钓寒江雪', '十年生死两茫茫，不思量，自难忘。千里孤坟，无处话凄凉', '纵使相逢应不识，尘满面，鬓如霜', '少年不识愁滋味，爱上层楼。爱上层楼，为赋新词强说愁', '时光只解催人老，不信多情，长恨离亭，泪滴春衫酒易醒', '梧桐昨夜西风急，淡月胧明，好梦频惊，何处高楼雁一声？', '惶恐滩头说惶恐，零丁洋里叹零丁', '人生自古谁无死？留取丹心照汗青', '前不见古人，后不见来者', '念天地之悠悠，独怆然而涕下', '我醉欲眠卿且去，明朝有意抱琴来', '人生自古谁无死，留取丹心照汗青', '黑云压城城欲摧，甲光向日金鳞开'];
 		let motto = mottoArray[Math.floor(Math.random() * mottoArray.length)];
 		$(".joe_motto").html(motto);
 		if (Joe.MOTTO) {
 			if (Joe.MOTTO.startsWith("https://") || Joe.MOTTO.startsWith("http://") || Joe.MOTTO.startsWith("//")) {
-				$.ajax({
-					url: Joe.MOTTO,
-					dataType: "text",
-					success: (res) => {
-						$(".joe_motto").html(res);
-					}
-				});
+				$.get(Joe.MOTTO, text => $(".joe_motto").html(text), "text");
 			} else {
 				$(".joe_motto").html(Joe.MOTTO);
 			}
@@ -417,9 +287,7 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 		// tooltip.js
 		window.Joe.tooltip();
 		// popover.js
-		$("[data-toggle='popover']").popover({
-			sanitize: false,
-		});
+		$("[data-toggle='popover']").popover({ sanitize: false });
 	}
 }
 document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.main, { once: true });

@@ -20,8 +20,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <?php
 	$this->header('keywords=&description=&commentReply=&antiSpam=');
 } else {
-	$this->description = $this->description ?? ' ';
-	$this->keywords = $this->keywords ?? ' ';
+	$this->description = empty($this->description) ? '	' : $this->description;
+	$this->keywords = empty($this->keywords) ? '	' : $this->keywords;
 	$this->header('commentReply=&antiSpam=');
 }
 

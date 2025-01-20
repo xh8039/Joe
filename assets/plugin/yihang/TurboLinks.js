@@ -86,7 +86,7 @@ class TurboLinks {
 			console.log('所有JavaScript文件都已加载！');
 			TurboLinks.loadJSList = [];
 			TurboLinks.loadJSIndex = 1;
-			console.log(urboLinks.handleResponseParam);
+			console.log(TurboLinks.handleResponseParam);
 			return TurboLinks.handleResponse(TurboLinks.handleResponseParam.responseText, TurboLinks.handleResponseParam.request, TurboLinks.handleResponseParam.href, TurboLinks.handleResponseParam.options);
 		}
 		TurboLinks.loadJSIndex++;

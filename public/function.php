@@ -791,20 +791,32 @@ function panel_exists(string $fileName): bool
 	return in_array($fileName, $panelTable['file']);
 }
 
+function install_list()
+{
+	$DB = Typecho_Db::get();
+	$adapter = $DB->getAdapterName();
+	$adapter = ltrim($adapter, 'Pdo_');
+	if ($adapter == 'Mysqli') $adapter = 'Mysql';
+	if (!file_exists(JOE_ROOT . 'install/' . $adapter . '.sql')) return '暂不兼容 [' . $adapter . '] 数据库适配器！';
+	$SQL = file_get_contents(JOE_ROOT . 'install/' . $adapter . '.sql');
+	$SQL = str_replace('prefix_', $DB->getPrefix(), $SQL);
+	return explode(';', $SQL);
+}
+
 function install()
 {
 	if (PHP_VERSION < 7.4) throw new \Typecho\Exception('请使用 PHP 7.4 及以上版本！');
 
 	if (\Typecho\Common::VERSION < 1.2) throw new \Typecho\Exception('请使用 Typecho 1.2.0 及以上版本！');
 
-	$_db = Typecho_Db::get();
-	if ((float) $_db->getVersion() < 5.6) throw new \Typecho\Exception('请使用 MySql 5.6 及以上版本！');
+	$DB = Typecho_Db::get();
+	if ((float) $DB->getVersion() < 5.6) throw new \Typecho\Exception('请使用 MySql 5.6 及以上版本！');
 
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
 	$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
 
 	$install_field = 'theme:JoeInstall';
-	$install = $_db->fetchRow($_db->select()->from('table.options')->where('name = ?', $install_field));
+	$install = $DB->fetchRow($DB->select()->from('table.options')->where('name = ?', $install_field));
 	$install_value = isset($install['value']) ? $install['value'] : null;
 	if ($install_value) {
 		if (is_string($install_value) && $install_value != THEME_NAME) {
@@ -816,12 +828,11 @@ function install()
 			if (!panel_exists($orders_url)) Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
 			if (!panel_exists($friends_url)) Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
 
-			$theme_name_update = $_db->update('table.options')->rows(array('value' => THEME_NAME))->where('name = ?', $install_field);
-			if ($_db->query($theme_name_update)) {
+			$theme_name_update = $DB->update('table.options')->rows(array('value' => THEME_NAME))->where('name = ?', $install_field);
+			if ($DB->query($theme_name_update)) {
 				echo '<script>alert("主题目录更换为 [' . THEME_NAME . '] 成功！");</script>';
 			} else {
-				throw new \Typecho_Exception('主题目录更换为 [' . THEME_NAME . '] 失败！');
-				exit;
+				throw new \Typecho\Exception('主题目录更换为 [' . THEME_NAME . '] 失败！');
 			}
 		}
 		return;
@@ -832,158 +843,44 @@ function install()
 	Helper::removePanel(3, $friends_url);
 
 	// 注册后台订单页面
-	if (!panel_exists($orders_url)) {
-		Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
-	}
+	if (!panel_exists($orders_url)) Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
 
 	// 注册后台友链页面
-	if (!panel_exists($friends_url)) {
-		Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
-	}
-
-	// 注册订单删除接口
-	// $actionTable = unserialize(Helper::options()->actionTable);
-	// $actionTable = empty($actionTable) ? [] : $actionTable;
-	// if (!isset($actionTable['joe-pay-edit']) || $actionTable['joe-pay-edit'] != 'JoeOrders_Widget') {
-	// 	Helper::addAction('joe-pay-edit', 'JoeOrders_Widget');
-	// }
+	if (!panel_exists($friends_url)) Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
 
 	try {
-		$_prefix = $_db->getPrefix();
-		$adapter = $_db->getAdapterName();
-		$orders = $_prefix . "orders";
-		$friends = $_prefix . 'friends';
-		if ($adapter == 'Pdo_SQLite' || $adapter == 'SQLite') {
-			$_db->query("CREATE TABLE IF NOT EXISTS `$orders` (
-				`id` INTEGER PRIMARY KEY AUTOINCREMENT,
-				`trade_no` TEXT NOT NULL UNIQUE,
-				`api_trade_no` TEXT,
-				`name` TEXT NOT NULL,
-				`content_title` TEXT,
-				`content_cid` INTEGER NOT NULL,
-				`type` TEXT NOT NULL,
-				`money` TEXT NOT NULL,
-				`ip` TEXT,
-				`user_id` TEXT NOT NULL,
-				`create_time` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-				`update_time` TEXT,
-				`pay_type` TEXT,
-				`pay_price` TEXT,
-				`admin_email` INTEGER NOT NULL DEFAULT 0,
-				`user_email` INTEGER NOT NULL DEFAULT 0,
-				`status` INTEGER NOT NULL DEFAULT 0
-			);");
-			$_db->query("CREATE TABLE IF NOT EXISTS `$friends` (
-				`id` INTEGER PRIMARY KEY AUTOINCREMENT,
-				`title` TEXT NOT NULL,
-				`url` TEXT NOT NULL,
-				`description` TEXT,
-				`logo` TEXT,
-				`rel` TEXT,
-				`email` TEXT,
-				`order` INTEGER NOT NULL DEFAULT 0,
-				`status` INTEGER NOT NULL DEFAULT 0,
-				`create_time` TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-			);");
-		} else if ($adapter == 'Pdo_Mysql' || $adapter == 'Mysql' || $adapter == 'Mysqli') {
-			$_db->query("CREATE TABLE IF NOT EXISTS `$orders` (
-				`id` INT NOT NULL AUTO_INCREMENT,
-				`trade_no` varchar(64) NOT NULL unique,
-				`api_trade_no` varchar(64) DEFAULT NULL,
-				`name` varchar(64) NOT NULL,
-				`content_title` varchar(150) DEFAULT NULL,
-				`content_cid` INT NOT NULL,
-				`type` varchar(10) NOT NULL,
-				`money` varchar(32) NOT NULL,
-				`ip` varchar(32) DEFAULT NULL,
-				`user_id` varchar(32) NOT NULL,
-				`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-				`update_time` DATETIME DEFAULT NULL,
-				`pay_type` varchar(10) DEFAULT NULL,
-				`pay_price` varchar(32) DEFAULT NULL,
-				`admin_email` BOOLEAN NOT NULL DEFAULT FALSE,
-				`user_email` BOOLEAN NOT NULL DEFAULT FALSE,
-				`status` BOOLEAN NOT NULL DEFAULT FALSE,
-				PRIMARY KEY  (`id`)
-			) DEFAULT CHARSET=utf8mb4;");
-			$_db->query("CREATE TABLE IF NOT EXISTS `$friends` (
-				`id` INT NOT NULL AUTO_INCREMENT,
-				`title` varchar(128) NOT NULL,
-				`url` varchar(255) NOT NULL,
-				`description` TEXT DEFAULT NULL,
-				`logo` TEXT DEFAULT NULL,
-				`rel` varchar(128) DEFAULT NULL,
-				`email` varchar(64) DEFAULT NULL,
-				`order` INT NOT NULL DEFAULT 0,
-				`status` BOOLEAN NOT NULL DEFAULT FALSE,
-				`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-				PRIMARY KEY  (`id`)
-			) DEFAULT CHARSET=utf8mb4;");
-		} else if ($adapter == 'Pdo_Pgsql' || $adapter == 'Pgsql') {
-			$_db->query('CREATE TABLE IF NOT EXISTS ' . $orders . ' (
-				id SERIAL PRIMARY KEY,
-				trade_no VARCHAR(64) UNIQUE NOT NULL,
-				api_trade_no VARCHAR(64),
-				name VARCHAR(64) NOT NULL,
-				content_title VARCHAR(150),
-				content_cid INT NOT NULL,
-				"type" VARCHAR(10) NOT NULL,
-				money VARCHAR(32) NOT NULL,
-				ip VARCHAR(32),
-				user_id VARCHAR(32) NOT NULL,
-				create_time TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
-				update_time TIMESTAMP WITHOUT TIME ZONE,
-				pay_type VARCHAR(10),
-				pay_price VARCHAR(32),
-				admin_email BOOLEAN NOT NULL DEFAULT FALSE,
-				user_email BOOLEAN NOT NULL DEFAULT FALSE,
-				"status" BOOLEAN NOT NULL DEFAULT FALSE
-			);');
-			$_db->query('CREATE TABLE IF NOT EXISTS ' . $friends . ' (
-				id SERIAL PRIMARY KEY,
-				title VARCHAR(128) NOT NULL,
-				url VARCHAR(255) NOT NULL,
-				description TEXT,
-				logo TEXT,
-				rel VARCHAR(128),
-				email VARCHAR(64),
-				"order" INT NOT NULL DEFAULT 0,
-				"status" BOOLEAN NOT NULL DEFAULT FALSE,
-				create_time TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
-			);');
-		} else {
-			throw new \Typecho_Exception('暂不兼容 [' . $adapter . '] 数据库适配器！');
-			exit;
-		}
+		$install_list = install_list();
+		if (is_string($install_list)) throw new \Typecho\Exception($install_list);
+		foreach ($install_list as $value) $DB->query($value);
 
 		$JFriends = optionMulti(Helper::options()->JFriends);
 		$JFriends[] = ['易航博客', 'http://blog.bri6.cn', 'http://blog.bri6.cn/favicon.ico', '一名编程爱好者的博客，记录与分享编程、学习中的知识点', 'friend'];
 
 		foreach ($JFriends as $value) {
-			$_db->query($_db->insert('table.friends')->rows(
+			$DB->query($DB->insert('table.friends')->rows(
 				array(
 					'title' => ($value[0] ?? ''),
 					'url' => ($value[1] ?? ''),
 					'logo' => ($value[2] ?? ''),
 					'description' => ($value[3] ?? ''),
 					'rel' => ($value[4] ?? ''),
+					'position' => 'single,index_bottom',
 					'order' => ($value[5] ?? '0'),
 					'status' => '1'
 				)
 			));
 		}
 
-		$table_contents = $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1));
+		$table_contents = $DB->fetchRow($DB->select()->from('table.contents')->page(1, 1));
 		$table_contents = empty($table_contents) ? [] : $table_contents;
-
-		$views = $_db->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'views';");
-		$agree = $_db->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'agree';");
-
+		$_prefix = $DB->getPrefix();
+		$views = $DB->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'views';");
+		$agree = $DB->fetchRow("SHOW COLUMNS FROM `{$_prefix}contents` LIKE 'agree';");
 		if (!array_key_exists('views', $table_contents) && !$views) {
-			$_db->query("ALTER TABLE `{$_prefix}contents` ADD `views` INT NOT NULL DEFAULT 0;");
+			$DB->query("ALTER TABLE `{$_prefix}contents` ADD `views` INT NOT NULL DEFAULT 0;");
 		}
 		if (!array_key_exists('agree', $table_contents) && !$agree) {
-			$_db->query("ALTER TABLE `{$_prefix}contents` ADD `agree` INT NOT NULL DEFAULT 0;");
+			$DB->query("ALTER TABLE `{$_prefix}contents` ADD `agree` INT NOT NULL DEFAULT 0;");
 		}
 
 		/* 主题核心代码🏀🏀🏀全网最精髓🐔🐔🐔 */
@@ -1003,8 +900,8 @@ function install()
 		}
 
 
-		$theme_install = $_db->insert('table.options')->rows(array('name' => $install_field, 'user' => '0', 'value' => THEME_NAME));
-		$_db->query($theme_install);
+		$theme_install = $DB->insert('table.options')->rows(array('name' => $install_field, 'user' => '0', 'value' => THEME_NAME));
+		$DB->query($theme_install);
 		echo '<script>alert("主题首次启用安装成功！");</script>';
 	} catch (\Exception $e) {
 		throw new \Typecho\Exception($e);

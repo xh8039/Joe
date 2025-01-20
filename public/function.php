@@ -791,15 +791,29 @@ function panel_exists(string $fileName): bool
 	return in_array($fileName, $panelTable['file']);
 }
 
-function install_list()
+function update_sql()
 {
 	$DB = Typecho_Db::get();
 	$adapter = $DB->getAdapterName();
 	$adapter = ltrim($adapter, 'Pdo_');
 	if ($adapter == 'Mysqli') $adapter = 'Mysql';
-	if (!file_exists(JOE_ROOT . 'install/' . $adapter . '.sql')) return '暂不兼容 [' . $adapter . '] 数据库适配器！';
-	$SQL = file_get_contents(JOE_ROOT . 'install/' . $adapter . '.sql');
-	$SQL = str_replace('prefix_', $DB->getPrefix(), $SQL);
+	$SQLFile = JOE_ROOT . 'install/' . $adapter . '_' . JOE_VERSION . '.sql';
+	if (!file_exists($SQLFile)) return null;
+	$SQL = file_get_contents($SQLFile);
+	$SQL = str_replace(['prefix_', 'typecho_'], $DB->getPrefix(), $SQL);
+	return explode(';', $SQL);
+}
+
+function install_sql()
+{
+	$DB = Typecho_Db::get();
+	$adapter = $DB->getAdapterName();
+	$adapter = ltrim($adapter, 'Pdo_');
+	if ($adapter == 'Mysqli') $adapter = 'Mysql';
+	$SQLFile = JOE_ROOT . 'install/' . $adapter . '.sql';
+	if (!file_exists($SQLFile)) return '暂不兼容 [' . $adapter . '] 数据库适配器！';
+	$SQL = file_get_contents($SQLFile);
+	$SQL = str_replace(['prefix_', 'typecho_'], $DB->getPrefix(), $SQL);
 	return explode(';', $SQL);
 }
 
@@ -819,6 +833,15 @@ function install()
 	$install = $DB->fetchRow($DB->select()->from('table.options')->where('name = ?', $install_field));
 	$install_value = isset($install['value']) ? $install['value'] : null;
 	if ($install_value) {
+		$update_sql = update_sql();
+		if (is_array($update_sql)) {
+			try {
+				foreach ($update_sql as $value) $DB->query($value);
+				unlink(JOE_ROOT . 'install/' . $DB->getAdapterName() . '_' . JOE_VERSION . '.sql');
+			} catch (\Exception $e) {
+				throw new \Typecho\Exception($e);
+			}
+		}
 		if (is_string($install_value) && $install_value != THEME_NAME) {
 			// 删除更改主题目录名后的重复注册面板沉淀
 			Helper::removePanel(3, '../themes/' . $install_value . '/admin/orders.php');
@@ -849,7 +872,7 @@ function install()
 	if (!panel_exists($friends_url)) Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
 
 	try {
-		$install_list = install_list();
+		$install_list = install_sql();
 		if (is_string($install_list)) throw new \Typecho\Exception($install_list);
 		foreach ($install_list as $value) $DB->query($value);
 

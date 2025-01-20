@@ -55,6 +55,7 @@ class TurboLinks {
 			});
 		}
 		document.addEventListener('pjax:start', (options) => {
+			console.log(options);
 			if (options.pjax != 'TurboLinks') return;
 			document.dispatchEvent(new CustomEvent('turbolinks:start'));
 		});

@@ -3,13 +3,13 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 
 	{
 		if (document.querySelector('.navbar-nav')) {
+			$('.navbar-nav li.menu-item').removeClass('current-menu-item');
 			let pathname = window.location.pathname;
 			let search = window.location.search;
 			var path = search ? pathname + search : pathname;
 			$('.navbar-nav a').each(function () {
 				temp_path = $(this).attr('href');
 				if (temp_path == path || temp_path == window.location.href) {
-					$('.navbar-nav li.menu-item').removeClass('current-menu-item');
 					$(this).parent('li.menu-item').addClass('current-menu-item');
 					$(this).parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').addClass('current-menu-item');
 				}

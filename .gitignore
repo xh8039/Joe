@@ -2,4 +2,3 @@ assets.zip
 Joe*.zip
 assets/typecho/write/node_modules
 assets/typecho/write/package-lock.json
-install/*_*.sql

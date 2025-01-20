@@ -338,7 +338,7 @@ function theme_url($path, $param = ['version' => 'md5'])
 	$url = $url_root . $path;
 	if (isset($param['version']) && $param['version'] == 'md5') {
 		$file = JOE_ROOT . $path;
-		$param['version'] = is_file($file) ? md5_file($file) : JOE_ASSETS_VERSION;
+		$param['version'] = is_file($file) ? md5_file($file) : JOE_VERSION;
 	}
 	return url_builder($url, $param);
 }
@@ -797,11 +797,19 @@ function update_sql()
 	$adapter = $DB->getAdapterName();
 	$adapter = ltrim($adapter, 'Pdo_');
 	if ($adapter == 'Mysqli') $adapter = 'Mysql';
-	$SQLFile = JOE_ROOT . 'install/' . $adapter . '_' . JOE_VERSION . '.sql';
+	$version_file = JOE_ROOT . 'install/version';
+	$version = file_get_contents($version_file);
+	$SQLFile = JOE_ROOT . 'install/' . $adapter . '_' . $version . '.sql';
 	if (!file_exists($SQLFile)) return null;
 	$SQL = file_get_contents($SQLFile);
 	$SQL = str_replace(['prefix_', 'typecho_'], $DB->getPrefix(), $SQL);
-	return explode(';', $SQL);
+	$SQL = explode(';', $SQL);
+	try {
+		foreach ($SQL as $value) $DB->query($value);
+		file_put_contents($version_file, $version + 1);
+	} catch (\Exception $e) {
+		throw new \Typecho\Exception($e);
+	}
 }
 
 function install_sql()
@@ -833,15 +841,6 @@ function install()
 	$install = $DB->fetchRow($DB->select()->from('table.options')->where('name = ?', $install_field));
 	$install_value = isset($install['value']) ? $install['value'] : null;
 	if ($install_value) {
-		$update_sql = update_sql();
-		if (is_array($update_sql)) {
-			try {
-				foreach ($update_sql as $value) $DB->query($value);
-				unlink(JOE_ROOT . 'install/' . $DB->getAdapterName() . '_' . JOE_VERSION . '.sql');
-			} catch (\Exception $e) {
-				throw new \Typecho\Exception($e);
-			}
-		}
 		if (is_string($install_value) && $install_value != THEME_NAME) {
 			// 删除更改主题目录名后的重复注册面板沉淀
 			Helper::removePanel(3, '../themes/' . $install_value . '/admin/orders.php');

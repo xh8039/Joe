@@ -44,12 +44,12 @@ class TurboLinks {
 			const loadCSSList = responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]');
 			loadCSSList.forEach(this.loadCSSLink);
 
-			this.loadJSList = responseDocument.head.querySelectorAll('script');
+			this.loadJSList = responseDocument.head.querySelectorAll('script[src]');
 			if (this.loadJSList.length < 1) return pjax._handleResponse(responseText, request, href, options);
 			document.querySelectorAll('script[src]').forEach(element => {
 				TurboLinks.documentScriptList.push(element.src);
 			});
-			this.loadJSList.forEach(element => {
+			responseDocument.head.querySelectorAll('script').forEach(element => {
 				this.replaceJs(element);
 			});
 		}
@@ -80,10 +80,7 @@ class TurboLinks {
 		let code = element.text || element.textContent || element.innerHTML || "";
 		let script = document.createElement("script");
 
-		if (code.match("document.write")) {
-			if (console && console.log) console.log("脚本包含document.write。无法正确执行。代码已跳过", element);
-			return false;
-		}
+		if (code === "" && !element.src) return false;
 
 		script.type = "text/javascript";
 		if (element.id) script.id = element.id;
@@ -107,6 +104,10 @@ class TurboLinks {
 		}
 
 		if (code !== "") {
+			if (code.match("document.write")) {
+				if (console && console.log) console.log("脚本包含document.write。无法正确执行。代码已跳过", element);
+				return false;
+			}
 			try {
 				script.appendChild(document.createTextNode(code));
 			} catch (e) {

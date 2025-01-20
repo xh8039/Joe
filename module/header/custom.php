@@ -14,7 +14,9 @@ $custom_navs = joe\custom_navs();
 					<a class="navbar-logo <?= $this->options->JLogo_Light_Effect == 'on' ? 'joe_scan_light' : null ?>" href="<?php $this->options->siteUrl() ?>"><img referrerpolicy="no-referrer" rel="noreferrer" src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" switch-src="<?php $this->options->JDarkLogo(); ?>" alt="<?= $this->options->title ?>"></a>
 				</div>
 				<button type="button" data-toggle-class="mobile-navbar-show" data-target="body" class="navbar-toggle joe_header__above-slideicon"><i class="em12 css-icon i-menu"><i></i></i></button>
-				<a class="main-search-btn navbar-toggle joe_header__above-searchicon" href="javascript:;"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-search"></use></svg></a>
+				<a class="main-search-btn navbar-toggle joe_header__above-searchicon" href="javascript:;"><svg class="icon svg" aria-hidden="true">
+						<use xlink:href="#icon-search"></use>
+					</svg></a>
 			</div>
 			<?php
 			if (joe\isPc()) {
@@ -43,20 +45,6 @@ $custom_navs = joe\custom_navs();
 						}
 						?>
 					</ul>
-					<script>
-						(function() {
-							var pathname = window.location.pathname;
-							var search = window.location.search;
-							var path = search ? pathname + search : pathname;
-							$('.navbar-nav').find('a').each(function() {
-								temp_path = $(this).attr('href');
-								if (temp_path == path || temp_path == window.location.href) {
-									$(this).parent('li.menu-item').addClass('current-menu-item');
-									$(this).parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').addClass('current-menu-item');
-								}
-							});
-						}());
-					</script>
 					<form method="get" class="navbar-form navbar-left hover-show" action="<?php $this->options->siteUrl(); ?>">
 						<div class="form-group relative dropdown">
 							<input type="text" class="form-control search-input focus-show" name="s" placeholder="搜索内容" value="<?php echo $this->is('search') ? $this->archiveTitle(' &raquo; ', '', '') : '' ?>">

@@ -726,7 +726,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		});
 		document.addEventListener('turbolinks:load', () => {
 			if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
-			if (document.querySelector('.navbar-nav')) $('.navbar-nav li.menu-item').removeClass('current-menu-item');
 			if (window.Joe.loadingEnd) window.Joe.loadingEnd();
 			NProgress.done();
 		});
@@ -736,12 +735,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			event.preventDefault(); // 阻止默认行为
 			TurboLinks.visit(this.href);
 		});
-		if (document.querySelector('.navbar-nav')) {
-			$('.navbar-nav a').click(function () {
-				$(this).parent('li.menu-item').addClass('current-menu-item');
-				$(this).parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').addClass('current-menu-item');
-			});
-		}
 	}
 }
 document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.global, { once: true });

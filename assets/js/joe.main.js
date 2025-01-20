@@ -1,6 +1,22 @@
 Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.main : () => {
 	console.log('调用：Joe.DOMContentLoaded.main');
 
+	{
+		if (document.querySelector('.navbar-nav')) {
+			let pathname = window.location.pathname;
+			let search = window.location.search;
+			var path = search ? pathname + search : pathname;
+			$('.navbar-nav a').each(function () {
+				temp_path = $(this).attr('href');
+				if (temp_path == path || temp_path == window.location.href) {
+					$('.navbar-nav li.menu-item').removeClass('current-menu-item');
+					$(this).parent('li.menu-item').addClass('current-menu-item');
+					$(this).parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').addClass('current-menu-item');
+				}
+			});
+		}
+	}
+
 	/* 动态背景 */
 	{
 		if (!Joe.IS_MOBILE && Joe.options.DynamicBackground != "off" && !Joe.WALLPAPER_BACKGROUND_PC) {

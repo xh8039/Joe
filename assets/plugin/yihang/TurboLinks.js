@@ -44,12 +44,12 @@ class TurboLinks {
 			const loadCSSList = responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]');
 			loadCSSList.forEach(this.loadCSSLink);
 
-			this.loadJSList = responseDocument.head.querySelectorAll('script[src]');
+			this.loadJSList = responseDocument.head.querySelectorAll('script');
 			if (this.loadJSList.length < 1) return pjax._handleResponse(responseText, request, href, options);
 			document.querySelectorAll('script[src]').forEach(element => {
 				TurboLinks.documentScriptList.push(element.src);
 			});
-			this.loadJSList.forEach((element, index) => {
+			this.loadJSList.forEach(element => {
 				this.replaceJs(element);
 			});
 		}
@@ -88,6 +88,7 @@ class TurboLinks {
 		script.type = "text/javascript";
 		if (element.id) script.id = element.id;
 
+		// 强制同步加载外部JS
 		if (element.src) {
 			if ($(element).attr('data-turbolinks-permanent') != undefined && TurboLinks.documentScriptList.includes(element.src)) {
 				this.JsLoaded(element);
@@ -103,7 +104,6 @@ class TurboLinks {
 				console.error('Error loading script:', element.src);
 				this.JsLoaded(element);
 			});
-			// 强制同步加载外部JS
 		}
 
 		if (code !== "") {

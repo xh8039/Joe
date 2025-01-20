@@ -154,10 +154,10 @@ window.Joe.initComment = (options = {}) => {
 							window.Joe.pjax(window.location.href, ['joe-hide']);
 						}
 					},
-					error() {
+					error(xhr, status, error) {
 						isSubmit = false;
 						$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
-						responseText = options.request.responseText;
+						responseText = xhr.responseText;
 						let match = /<div class="container">\s+(.+)\s+<\/div>/;
 						var msg = responseText.match(match)[1];
 						if (msg) {

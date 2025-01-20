@@ -43,8 +43,8 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 					if (options.replace) options.replace(response);
 					if (options.scrollTo != undefined) window.scrollTo(options.scrollTo, { behavior: 'smooth' });
 				},
-				error() {
-					options.error();
+				error(xhr, status, error) {
+					options.error(xhr, status, error);
 				}
 			};
 			if (options.processData != undefined) ajax.processData = options.processData;

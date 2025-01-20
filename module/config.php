@@ -3,8 +3,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-if ($this->request->getHeader('x-pjax') == 'true' && $this->options->commentsAntiSpam && $this->is('single')) {
-	echo '<script>window.Joe.options.commentsAntiSpam = ' . Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())) . ';window.Joe.respondId = `' . $this->respondId . '`;</script>';
+if ($this->request->getHeader('x-pjax') == 'true') {
+	if ($this->options->commentsAntiSpam && $this->is('single')) echo '<script>window.Joe.options.commentsAntiSpam = ' . Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())) . ';window.Joe.respondId = `' . $this->respondId . '`;</script>';
 	return;
 }
 $fields = $this->fields->toArray();

@@ -23,9 +23,6 @@ class TurboLinks {
 	/** Pjax必须需要的链接元素 */
 	static linkElement;
 
-	/** Pjax原本的 handleResponse 方法 */
-	static handleResponse;
-
 	static start(selectors = [], options = {}) {
 		document.dispatchEvent(new CustomEvent('turbolinks:load'));
 		TurboLinks.createLink();
@@ -34,7 +31,7 @@ class TurboLinks {
 		options.cacheBust = options.cacheBust || false;
 		if (!options.elements) options.elements = '#' + TurboLinks.linkElement.id;
 		TurboLinks.pjax = new Pjax(options);
-		TurboLinks.handleResponse = TurboLinks.pjax.handleResponse;
+		TurboLinks.pjax.originHandleResponse = TurboLinks.pjax.handleResponse;
 		TurboLinks.pjax.handleResponse = (responseText, request, href, options) => {
 			TurboLinks.handleResponseParam = { responseText, request, href, options };
 			const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
@@ -49,7 +46,7 @@ class TurboLinks {
 			responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(TurboLinks.loadCSSLink);
 
 			TurboLinks.loadJSList = responseDocument.head.querySelectorAll('script[src]');
-			if (TurboLinks.loadJSList.length < 1) return TurboLinks.handleResponse(responseText, request, href, options);
+			if (TurboLinks.loadJSList.length < 1) return TurboLinks.pjax.originHandleResponse(responseText, request, href, options);
 			document.querySelectorAll('script[src]').forEach(element => {
 				TurboLinks.documentScriptList.push(element.src);
 			});
@@ -86,8 +83,7 @@ class TurboLinks {
 			console.log('所有JavaScript文件都已加载！');
 			TurboLinks.loadJSList = [];
 			TurboLinks.loadJSIndex = 1;
-			console.log(TurboLinks.handleResponseParam);
-			return TurboLinks.handleResponse(TurboLinks.handleResponseParam.responseText, TurboLinks.handleResponseParam.request, TurboLinks.handleResponseParam.href, TurboLinks.handleResponseParam.options);
+			return TurboLinks.pjax.originHandleResponse(TurboLinks.handleResponseParam.responseText, TurboLinks.handleResponseParam.request, TurboLinks.handleResponseParam.href, TurboLinks.handleResponseParam.options);
 		}
 		TurboLinks.loadJSIndex++;
 	}

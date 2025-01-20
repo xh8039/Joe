@@ -605,7 +605,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				setTimeout(() => {
 					window.Joe.loadingEnd();
 				}, 5000);
-				window.addEventListener('unload', function (event) {
+				window.addEventListener('beforeunload', function (event) {
 					window.Joe.loadingEnd();
 				});
 			});
@@ -667,6 +667,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		});
 		document.addEventListener('turbolinks:load', () => {
 			if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
+			if (window.Joe.loadingEnd) window.Joe.loadingEnd();
 			NProgress.done();
 		});
 		$(document).on('click', 'a[href]', function (event) {

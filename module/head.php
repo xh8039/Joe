@@ -14,15 +14,19 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
 <link rel="shortcut icon" href="<?php $this->options->JFavicon() ?>" />
 <title><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php if ($this->_currentPage > 1) echo '第 ' . $this->_currentPage . ' 页 - '; ?><?php $this->options->title(); ?></title>
-<?php if ($this->is('single')) : ?>
+<?php if ($this->is('single')) { ?>
 	<meta name="keywords" content="<?= $this->fields->keywords ? $this->fields->keywords : $this->keywords; ?>" />
 	<meta name="description" content="<?= $this->fields->description ? $this->fields->description : joe\post_description($this); ?>" />
-	<?php $this->header('keywords=&description=&commentReply=&antiSpam='); ?>
-<?php else : ?>
-	<?php $this->header('commentReply=&antiSpam='); ?>
-<?php endif;
+<?php
+	$this->header('keywords=&description=&commentReply=&antiSpam=');
+} else {
+	$this->description = $this->description ?? ' ';
+	$this->keywords = $this->keywords ?? ' ';
+	$this->header('commentReply=&antiSpam=');
+}
 
 if ($this->options->FirstLoading == 'on') Typecho\Cookie::get('joe_first_loading') ? $this->options->JLoading = 'off' : Typecho\Cookie::set('joe_first_loading', 'true');
+
 if ($this->options->JLoading != 'off') : ?>
 	<link rel="preload" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>" as="style" />
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>">

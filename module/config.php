@@ -3,10 +3,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-if ($this->request->getHeader('x-pjax') == 'true') return;
+if ($this->request->getHeader('x-pjax') == 'true' && $this->options->commentsAntiSpam && $this->is('single')) {
+	echo '<script>Joe.options.commentsAntiSpam = ' . Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())) . ';</script>';
+	return;
+}
 $fields = $this->fields->toArray();
 $options = [];
-foreach (['themeUrl', 'IndexAjaxList', 'BaiduPushToken', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'NProgressJS', 'title','Turbolinks'] as $value) {
+foreach (['themeUrl', 'IndexAjaxList', 'BaiduPushToken', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'NProgressJS', 'title', 'Turbolinks'] as $value) {
 	$options[$value] = $this->options->$value;
 }
 $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

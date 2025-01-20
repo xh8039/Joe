@@ -4,7 +4,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 if ($this->request->getHeader('x-pjax') == 'true' && $this->options->commentsAntiSpam && $this->is('single')) {
-	echo '<script>Joe.options.commentsAntiSpam = ' . Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())) . ';</script>';
+	echo '<script>window.Joe.options.commentsAntiSpam = ' . Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())) . ';</script>';
 	return;
 }
 $fields = $this->fields->toArray();

@@ -119,6 +119,7 @@ class TurboLinks {
 
 		let parent = document.querySelector("head") || document.documentElement;
 		parent.appendChild(script);
+		if (code) console.log('执行JS：' + code);
 		// 仅避免头部或身体标签污染
 		if ((parent instanceof HTMLHeadElement || parent instanceof HTMLBodyElement) && parent.contains(script)) {
 			parent.removeChild(script);

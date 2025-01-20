@@ -1,6 +1,11 @@
 if (!window.Joe) window.Joe = {};
 
-window.Joe.pjax = (url, selectors, options) => {
+window.Joe.pjax = (url, selectors = [], options = {}) => {
+	if (url instanceof Object) {
+		options = url;
+		selectors = options.selectors;
+		url = options.url;
+	}
 	return new class JoePjax {
 		constructor(url, selectors, options) {
 			if (/^\//.test(url) || /^http/.test(url) || /^\/\//.test(url)) {

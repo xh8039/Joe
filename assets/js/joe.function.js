@@ -22,11 +22,10 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 			}
 		}
 		ajax(url, selectors, options) {
-			$.ajax({
-				type: options.type ? options : 'GET',
+			let ajax = {
+				type: options.type ? options.type : 'GET',
 				url: url,
 				dataType: "html",
-				data: options.data ? options.data : null,
 				beforeSend(xhr) {
 					xhr.setRequestHeader('x-ajax-selectors', JSON.stringify(selectors));
 					if (options.beforeSend) options.beforeSend(xhr);
@@ -49,7 +48,11 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 				error() {
 					options.error();
 				}
-			});
+			};
+			if (options.processData != undefined) ajax.processData = options.processData;
+			if (options.contentType != undefined) ajax.contentType = options.contentType;
+			if (options.data = !undefined) ajax.data = options.data;
+			$.ajax(ajax);
 		}
 	}(url, selectors, options);
 }

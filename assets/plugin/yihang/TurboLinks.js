@@ -2,14 +2,17 @@ class TurboLinks {
 
 	"use strict";
 
-	pjax;
+	/** Pjax实例 */
+	static pjax;
 
-	handleResponseParam = {};
+	/** 本次响应的的参数 */
+	static handleResponseParam = {};
 
 	/** 本次需要加载的 JavaScript文件列表 */
-	loadJSList = [];
+	static loadJSList = [];
 
-	loadJSIndex = 1;
+	/** 当前正在加载的 JavaScript文件索引 */
+	static loadJSIndex = 1;
 
 	/** 全局已经加载过的 JavaScript文件列表 */
 	static documentScriptList = [];
@@ -17,66 +20,75 @@ class TurboLinks {
 	/** 全局已经加载过的 CSS 文件列表 */
 	static documentCSSLinkList = [];
 
-	constructor(url, selectors = [], options = {}) {
+	/** Pjax必须需要的链接元素 */
+	static linkElement;
+
+	static start(selectors = [], options = {}) {
+		document.dispatchEvent(new CustomEvent('turbolinks:load'));
+		if (!TurboLinks.linkElement instanceof Element) TurboLinks.createLink();
 		options.pjax = options.pjax || 'TurboLinks';
 		options.selectors = options.selectors || selectors;
 		options.cacheBust = options.cacheBust || false;
-		if (!options.elements) {
-			var link_element = document.createElement('a');
-			link_element.id = 'turbo-links-' + (+new Date());
-			link_element.href = url;
-			link_element.setAttribute('data-pjax-state', true);
-			document.body.appendChild(link_element);
-			options.elements = '#' + link_element.id;
-		}
-		var pjax = new Pjax(options);
-		pjax._handleResponse = pjax.handleResponse;
-		pjax.handleResponse = (responseText, request, href, options) => {
-			this.handleResponseParam = { responseText, request, href, options };
+		if (!options.elements) options.elements = '#' + TurboLinks.linkElement.id;
+		TurboLinks.pjax = new Pjax(options);
+		TurboLinks.pjax._handleResponse = TurboLinks.pjax.handleResponse;
+		TurboLinks.pjax.handleResponse = (responseText, request, href, options) => {
+			TurboLinks.handleResponseParam = { responseText, request, href, options };
 			const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 
-			const loadStyleList = responseDocument.head.querySelectorAll('style');
-			loadStyleList.forEach(this.loadStyle);
+			/** 加载style标签中的样式 */
+			responseDocument.head.querySelectorAll('style').forEach(TurboLinks.loadStyle);
 
+			/** 加载link标签中的CSS文件 */
 			document.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				TurboLinks.documentCSSLinkList.push(element.href);
 			});
-			const loadCSSList = responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]');
-			loadCSSList.forEach(this.loadCSSLink);
+			responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(TurboLinks.loadCSSLink);
 
-			this.loadJSList = responseDocument.head.querySelectorAll('script[src]');
-			if (this.loadJSList.length < 1) return pjax._handleResponse(responseText, request, href, options);
+			TurboLinks.loadJSList = responseDocument.head.querySelectorAll('script[src]');
+			if (TurboLinks.loadJSList.length < 1) return TurboLinks.pjax._handleResponse(responseText, request, href, options);
 			document.querySelectorAll('script[src]').forEach(element => {
 				TurboLinks.documentScriptList.push(element.src);
 			});
 			responseDocument.head.querySelectorAll('script').forEach(element => {
-				this.replaceJs(element);
+				TurboLinks.replaceJs(element);
 			});
 		}
-		pjax.loadUrl(url);
-		this.pjax = pjax;
+		document.addEventListener('pjax:start', (options) => {
+			if (options.pjax != 'TurboLinks') return;
+			document.dispatchEvent(new CustomEvent('turbolinks:start'));
+		});
 		document.addEventListener('pjax:success', (options) => {
 			if (options.pjax != 'TurboLinks') return;
 			document.dispatchEvent(new CustomEvent('turbolinks:load'));
 		});
-		link_element.remove();
 	}
 
-	JsLoaded(element) {
+	static createLink(url = null) {
+		TurboLinks.linkElement = document.createElement('a');
+		TurboLinks.linkElement.href = url;
+		TurboLinks.linkElement.id = 'turbo-links-' + (+new Date());
+		TurboLinks.linkElement.setAttribute('data-pjax-state', true);
+		document.body.appendChild(TurboLinks.linkElement);
+		return TurboLinks.linkElement;
+	}
+
+	static visit(url) {
+		return TurboLinks.pjax.loadUrl(url);
+	}
+
+	static JsLoaded(element) {
 		TurboLinks.documentScriptList.push(element.src);
-		if (this.loadJSIndex == this.loadJSList.length) {
+		if (TurboLinks.loadJSIndex == TurboLinks.loadJSList.length) {
 			console.log('所有JavaScript文件都已加载！');
-			return this.pjax._handleResponse(this.handleResponseParam.responseText, this.handleResponseParam.request, this.handleResponseParam.href, this.handleResponseParam.options);
+			TurboLinks.loadJSList = [];
+			TurboLinks.loadJSIndex = 1;
+			return TurboLinks.pjax._handleResponse(TurboLinks.handleResponseParam.responseText, TurboLinks.handleResponseParam.request, TurboLinks.handleResponseParam.href, TurboLinks.handleResponseParam.options);
 		}
-		this.loadJSIndex++;
+		TurboLinks.loadJSIndex++;
 	}
 
-	replaceJs(element) {
-		if (!this || !this instanceof TurboLinks) {
-			console.log(this);
-			console.error('请使用TurboLinks对象调用！');
-			return false;
-		}
+	static replaceJs(element) {
 		let code = element.text || element.textContent || element.innerHTML || "";
 		let script = document.createElement("script");
 
@@ -88,18 +100,18 @@ class TurboLinks {
 		// 强制同步加载外部JS
 		if (element.src) {
 			if ($(element).attr('data-turbolinks-permanent') != undefined && TurboLinks.documentScriptList.includes(element.src)) {
-				this.JsLoaded(element);
+				TurboLinks.JsLoaded(element);
 				return true;
 			}
 			script.src = element.src;
 			script.async = false;
 			script.addEventListener('load', () => {
 				console.log('引入JS：' + element.src);
-				this.JsLoaded(element);
+				TurboLinks.JsLoaded(element);
 			});
 			script.addEventListener('error', () => {
 				console.error('Error loading script:', element.src);
-				this.JsLoaded(element);
+				TurboLinks.JsLoaded(element);
 			});
 		}
 
@@ -128,9 +140,9 @@ class TurboLinks {
 		return true;
 	}
 
-	loadStyle(element, index) {
+	static loadStyle(element) {
 		let code = element.text || element.textContent || element.innerHTML || null;
-		if (!code) return false;
+		if (!code || code == undefined) return false;
 		console.log('引入style：'.code);
 		let style = document.createElement('style');
 		style.type = 'text/css';
@@ -142,15 +154,16 @@ class TurboLinks {
 		document.head.appendChild(style);
 	}
 
-	loadCSSLink(element, index) {
-		if (!element.href) return false;
-		if (TurboLinks.documentCSSLinkList.includes(element.href)) return false;
-		TurboLinks.documentCSSLinkList.push(element.href);
-		let link = document.createElement('link');
-		link.type = 'text/css';
-		link.rel = 'stylesheet';
-		link.href = element.href;
-		document.head.appendChild(link);
-		console.log('引入CSS：' + element.href);
+	static loadCSSLink(element) {
+		let url = element.href;
+		if (!url) return false;
+		if (TurboLinks.documentCSSLinkList.includes(url)) return false;
+		TurboLinks.documentCSSLinkList.push(url);
+		let css = document.createElement('link');
+		css.type = 'text/css';
+		css.rel = 'stylesheet';
+		css.href = url;
+		document.head.appendChild(css);
+		console.log('引入CSS：' + url);
 	}
 }

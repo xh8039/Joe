@@ -252,7 +252,7 @@ if (!empty($footer_tabbar)) {
 	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js'); ?>"></script>
 <?php endif; ?>
 <?php if (!empty($this->options->NewYearLantern)) : ?>
-	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/china-lantern.min.js', ['text' => $this->options->NewYearLantern]); ?>"></script>
+	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/yihang/china-lantern.min.js', ['text' => $this->options->NewYearLantern]); ?>"></script>
 <?php endif; ?>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects != 'off') : ?>
 	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>"></script>

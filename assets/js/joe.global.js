@@ -641,36 +641,38 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		});
 	}
 
-	if (window.Turbolinks) {
-		document.addEventListener('turbolinks:request-start', function (event) {
-			event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
-		})
-		$(document).on('click', 'a[href]', function (event) {
-			if (!window.Joe.checkUrl(this)) return true;
-			event.preventDefault(); // 阻止默认行为
-			let url = this.href;
-			if (url.startsWith('/')) url = location.origin + url;
-			NProgress.start();
-			Turbolinks.visit(url);
-		});
-	}
+	// if (window.Turbolinks) {
+	// 	document.addEventListener('turbolinks:request-start', function (event) {
+	// 		event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
+	// 	})
+	// 	$(document).on('click', 'a[href]', function (event) {
+	// 		if (!window.Joe.checkUrl(this)) return true;
+	// 		event.preventDefault(); // 阻止默认行为
+	// 		let url = this.href;
+	// 		if (url.startsWith('/')) url = location.origin + url;
+	// 		NProgress.start();
+	// 		Turbolinks.visit(url);
+	// 	});
+	// }
 
 	if (window.Joe.options.Turbolinks == 'on') {
 		if ($.fancybox) $.fancybox.defaults.hash = false;
-		window.Joe.loadScriptList = [];
-		document.dispatchEvent(new CustomEvent('turbolinks:load'));
+		// window.Joe.loadScriptList = [];
 		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);
+		TurboLinks.start(['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '#Joe']);
+		document.addEventListener('turbolinks:start', () => {
+			NProgress.done();
+			NProgress.start();
+		});
+		document.addEventListener('turbolinks:load', () => {
+			if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
+			NProgress.done();
+		});
 		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.checkUrl(this)) return true;
 			if ($(this).attr('data-turbolinks') == 'false') return true;
 			event.preventDefault(); // 阻止默认行为
-			NProgress.done();
-			NProgress.start();
-			new TurboLinks(this.href, ['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '#Joe']);
-			document.addEventListener('turbolinks:load', () => {
-				if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
-				NProgress.done();
-			});
+			TurboLinks.visit(this.href);
 		});
 	}
 }

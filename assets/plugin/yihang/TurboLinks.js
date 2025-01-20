@@ -142,8 +142,8 @@ class TurboLinks {
 
 	static loadStyle(element) {
 		let code = element.text || element.textContent || element.innerHTML || null;
-		if (!code || code == undefined) return false;
-		console.log('引入style：'.code);
+		if (!code) return false;
+		console.log('引入style：' + code);
 		let style = document.createElement('style');
 		style.type = 'text/css';
 		try {

@@ -73,7 +73,6 @@ class TurboLinks {
 		TurboLinks.linkElement.id = 'turbo-links-' + (+new Date());
 		TurboLinks.linkElement.setAttribute('data-pjax-state', true);
 		document.body.appendChild(TurboLinks.linkElement);
-		console.log(TurboLinks.linkElement);
 		return TurboLinks.linkElement;
 	}
 
@@ -87,6 +86,7 @@ class TurboLinks {
 			console.log('所有JavaScript文件都已加载！');
 			TurboLinks.loadJSList = [];
 			TurboLinks.loadJSIndex = 1;
+			console.log(urboLinks.handleResponseParam);
 			return TurboLinks.handleResponse(TurboLinks.handleResponseParam.responseText, TurboLinks.handleResponseParam.request, TurboLinks.handleResponseParam.href, TurboLinks.handleResponseParam.options);
 		}
 		TurboLinks.loadJSIndex++;

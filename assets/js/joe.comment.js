@@ -123,7 +123,7 @@ window.Joe.initComment = (options = {}) => {
 				data.append('author', author);
 				data.append('mail', mail);
 				data.append('text', text);
-				data.append('parent', parent);
+				if (parent) data.append('parent', parent);
 				data.append('url', url);
 				data.append('_', _);
 				var referrer = document.querySelector('meta[name="referrer"]:last-of-type');

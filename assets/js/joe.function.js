@@ -6,9 +6,6 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 		selectors = options.selectors;
 		url = options.url;
 	}
-	console.log(url);
-	console.log(selectors);
-	console.log(options);
 	return new class JoePjax {
 		constructor(url, selectors, options) {
 			if (/^\//.test(url) || /^http/.test(url) || /^\/\//.test(url)) {

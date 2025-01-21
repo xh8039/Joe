@@ -37,7 +37,7 @@ class TurboLinks {
 			const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 
 			// 删除旧的style标签中的样式
-			document.head.querySelectorAll('style').forEach(element => element.remove());
+			// document.head.querySelectorAll('style').forEach(element => element.remove());
 			// 加载新的style标签中的样式
 			responseDocument.head.querySelectorAll('style').forEach(TurboLinks.loadStyle);
 

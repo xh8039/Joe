@@ -42,8 +42,10 @@ class TurboLinks {
 			responseDOM.head.querySelectorAll('style').forEach(TurboLinks.loadStyle);
 
 			// 获取新的CSS文件列表
-			const responseDOMCSSLinkList = {};
-			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => responseDOMCSSLinkList[element.src] = element);
+			const responseDOMCSSLinkList = [];
+			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
+				responseDOMCSSLinkList[element.src] = element;
+			});
 
 			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
@@ -56,10 +58,7 @@ class TurboLinks {
 			// document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => element.remove());
 			// 加载新的link标签中的CSS文件
 			console.log(responseDOMCSSLinkList)
-			for (let url in responseDOMCSSLinkList) {
-				console.log(url);
-				TurboLinks.loadCSSLink(url);
-			}
+			responseDOMCSSLinkList.forEach(TurboLinks.loadCSSLink);
 
 			// 获取新的文档中head标签内的JS文件列表
 			TurboLinks.loadJSList = responseDOM.head.querySelectorAll('script[src]');

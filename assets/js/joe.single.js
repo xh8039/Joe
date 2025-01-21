@@ -335,7 +335,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 			let time = Number($('#comment_module a[auto-refresh]').attr('auto-refresh'));
 			if (time && Number.isInteger(time)) {
 				window.Joe.commentListAutoRefresh = true;
-				setInterval(() => {
+				window.Joe.commentListSetInterval = window.Joe.commentListSetInterval ? window.Joe.commentListSetInterval : setInterval(() => {
 					if (!document.querySelector('#comment_module a[auto-refresh]')) return;
 					if (document.visibilityState == "hidden" || document.hidden) return;
 					if (!window.Joe.commentListAutoRefresh) return;

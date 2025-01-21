@@ -42,15 +42,11 @@ class MusicPlayer {
 	 */
 	listen() {
 		if (this.OPTIONS.storage) {
-			setInterval(() => {
-				this.storageMusic()
-			}, 1000);
-			document.getElementsByTagName('a').onclick = () => {
-				this.storageMusic()
-			}
-			window.onbeforeunload = () => {
-				this.storageMusic()
-			}
+			setInterval(() => this.storageMusic(), 1000);
+			document.body.addEventListener('click', (event) => {
+				if (event.target.tagName === 'A') this.storageMusic();
+			});
+			window.addEventListener('beforeunload', () => this.storageMusic());
 		}
 		this.PLAYER.on('loadeddata', () => {
 			this.OPTIONS['autotheme'] ? this.autoTheme(this.PLAYER.list.index) : null;
@@ -59,7 +55,7 @@ class MusicPlayer {
 				navigator.mediaSession.metadata = new MediaMetadata({
 					title: music.name,
 					artist: music.artist,
-					artwork: [{src: music.cover}]
+					artwork: [{ src: music.cover }]
 				});
 			}
 		})

@@ -1,3 +1,10 @@
+/**
+ * @package TurboLinks
+ * @version 1.0
+ * @author 易航
+ * @link http://blog.bri6.cn
+ * @license: MIT
+*/
 class TurboLinks {
 
 	"use strict";
@@ -64,10 +71,12 @@ class TurboLinks {
 			TurboLinks.loadJSList = responseDOM.head.querySelectorAll('script[src]');
 			// 如果没有则直接载入响应的HTML文本
 			if (TurboLinks.loadJSList.length < 1) return TurboLinks.pjax.originHandleResponse(responseText, request, href, options);
+			// 去除重复的全局JS文件列表
+			TurboLinks.documentScriptList = TurboLinks.unique(TurboLinks.documentScriptList);
 			// 记录当前文档中的JS文件列表
 			document.querySelectorAll('script[src]').forEach(element => TurboLinks.documentScriptList.push(element.src));
 			// 先载入新的文档中的JS文件，再载入HTML文本
-			responseDOM.head.querySelectorAll('script').forEach(element => TurboLinks.replaceJs(element));
+			responseDOM.head.querySelectorAll('script').forEach(element => TurboLinks.loadScript(element));
 		}
 		document.addEventListener('pjax:send', (options) => {
 			if (options.pjax != 'TurboLinks') return;
@@ -117,7 +126,7 @@ class TurboLinks {
 		TurboLinks.loadJSIndex++;
 	}
 
-	static replaceJs(element) {
+	static loadScript(element) {
 		let code = element.text || element.textContent || element.innerHTML || "";
 		let script = document.createElement("script");
 

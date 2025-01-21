@@ -87,7 +87,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/* 监听网页复制行为 */
 	{
-		document.querySelectorAll('.joe_detail__article').addEventListener('copy', (event) => {
+		document.querySelector('.joe_detail__article').addEventListener('copy', (event) => {
 			// 获取被复制的元素
 			// const copiedElement = event.target;
 			console.log(event);

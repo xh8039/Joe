@@ -163,11 +163,6 @@ function section_navs(selector) {
 			$('.joe_action').append('<div data-affix="true" class="joe_action_item posts-nav-box posts-nav-switcher" data-title="文章目录"><i class="fa fa-list-ul"></i></div>');
 		}
 		add_box();
-		if (Joe.IS_MOBILE) {
-			window.addEventListener('beforeunload', () => {
-				$('.joe_action>' + navbox_selector).remove();
-			}, { once: true });
-		}
 	} else {
 		$(navbox_selector).remove();
 	}

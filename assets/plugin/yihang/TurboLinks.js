@@ -64,14 +64,14 @@ class TurboLinks {
 			// 删除旧的link标签中的CSS文件
 			// document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => element.remove());
 			// 加载新的link标签中的CSS文件
-			console.log(responseDOMCSSLinkList)
-			responseDOMCSSLinkList.forEach(url => {
+			console.log(responseDOMCSSLinkList);
+			for (let url in responseDOMCSSLinkList) {
 				if (repeatCSSList.includes(url)) {
 					console.log('跳过CSS：' + url);
 					return;
 				}
 				TurboLinks.loadCSSLink(url);
-			});
+			}
 
 			// 获取新的文档中head标签内的JS文件列表
 			TurboLinks.loadJSList = responseDOM.head.querySelectorAll('script[src]');

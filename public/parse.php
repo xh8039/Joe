@@ -57,7 +57,7 @@ function _parseCommentReply($text)
 		echo "该回复疑似异常，已被系统拦截！";
 	} else {
 		$text = _parseReply($text);
-		if (\Typecho_Request::getInstance()->getHeader('x-pjax') == 'true') {
+		if (\Typecho_Request::getInstance()->getHeader('x-requested-with')) {
 			echo preg_replace('/\{!\{([^\"]*)\}!\}/', '<img referrerpolicy="no-referrer" rel="noreferrer" class="draw_image" src="$1" alt="画图"/>', $text);
 		} else {
 			echo preg_replace('/\{!\{([^\"]*)\}!\}/', '<img referrerpolicy="no-referrer" rel="noreferrer" class="lazyload draw_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="$1" alt="画图"/>', $text);
@@ -84,7 +84,7 @@ function _parseReply($text)
 		foreach ($emoticon_list as $value) {
 			if (strpos($text, $value['text']) !== false) {
 				$emoticon_text_list[] = $value['text'];
-				if (\Typecho_Request::getInstance()->getHeader('x-pjax') == 'true') {
+				if (\Typecho_Request::getInstance()->getHeader('x-requested-with') == 'true') {
 					$emoticon_icon_list[] = '<img referrerpolicy="no-referrer" rel="noreferrer" class="owo_image" src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
 				} else {
 					$emoticon_icon_list[] = '<img referrerpolicy="no-referrer" rel="noreferrer" class="owo_image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';

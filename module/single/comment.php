@@ -170,7 +170,7 @@ function threadedComments($comments, $options)
 				<?php
 				$mobile_handle = joe\isMobile() ? 'data-placement="right" data-trigger="hover" data-content="' . ($comments->authorId == $comments->ownerId ? '作者&nbsp;·&nbsp;' : '') . $comments->author . '&nbsp;·&nbsp;' . joe\getAgentOS($comments->agent) . '&nbsp;·&nbsp;' . joe\getAgentBrowser($comments->agent) . '&nbsp;·&nbsp;' . joe\dateWord($comments->dateWord) . '" data-toggle="popover"' : '';
 				if ($comments->authorId == $comments->ownerId && joe\isMobile()) $mobile_handle .= ' style="border-color: var(--theme);"';
-				if ($comments->request->getHeader('x-pjax') == 'true') {
+				if ($comments->request->getHeader('x-requested-with')) {
 				?>
 					<img <?= $mobile_handle ?> width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
 				<?php

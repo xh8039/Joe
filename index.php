@@ -1,10 +1,10 @@
 <?php
 
 /**
- * 环境要求：<br>PHP 7.4 - 8.2<br>Typecho 1.2+
+ * 环境要求：<br>PHP 7.4 - 8.2<br>Typecho 1.2+<br>如果主题启用失败可 <a href="https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes" target="_blank">联系易航</a> 解决
  * 
  * @package Joe再续前缘
- * @author Joe、易航
+ * @author 易航
  * @version 1.33
  * @link http://blog.bri6.cn
  */

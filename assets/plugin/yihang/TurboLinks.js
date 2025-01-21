@@ -42,7 +42,7 @@ class TurboLinks {
 			responseDOM.head.querySelectorAll('style').forEach(TurboLinks.loadStyle);
 
 			// 获取新的CSS文件列表
-			const responseDOMCSSLinkList = [];
+			const responseDOMCSSLinkList = {};
 			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				responseDOMCSSLinkList[element.href] = element;
 			});

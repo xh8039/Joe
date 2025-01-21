@@ -68,9 +68,9 @@ class TurboLinks {
 			for (let url in responseDOMCSSLinkList) {
 				if (repeatCSSList.includes(url)) {
 					console.log('跳过CSS：' + url);
-					return;
+				} else {
+					TurboLinks.loadCSSLink(url);
 				}
-				TurboLinks.loadCSSLink(url);
 			}
 
 			// 获取新的文档中head标签内的JS文件列表

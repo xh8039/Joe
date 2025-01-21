@@ -142,7 +142,7 @@ class TurboLinks {
 				return true;
 			}
 			script.src = element.src;
-			script.async = false;
+			// script.async = false;
 			script.addEventListener('load', () => {
 				console.log('引入JS：' + element.src);
 				TurboLinks.JsLoaded(element);

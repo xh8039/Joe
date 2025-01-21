@@ -20,6 +20,12 @@ class TurboLinks {
 	/** 全局已经加载过的 CSS 文件列表 */
 	// static documentCSSLinkList = [];
 
+	/** 本次响应的 CSS 文件列表 */
+	static responseDOMCSSLinkList = {};
+
+	/** 本次响应重复的 CSS 文件列表 */
+	static repeatCSSList = [];
+
 	/** Pjax必须需要的链接元素 */
 	static linkElement;
 
@@ -42,31 +48,23 @@ class TurboLinks {
 			responseDOM.head.querySelectorAll('style').forEach(TurboLinks.loadStyle);
 
 			// 获取新的CSS文件列表
-			const responseDOMCSSLinkList = {};
+			TurboLinks.responseDOMCSSLinkList = {};
 			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				responseDOMCSSLinkList[element.href] = element;
+				TurboLinks.responseDOMCSSLinkList[element.href] = element;
 			});
-
-			const repeatCSSList = [];
-
-			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
+			TurboLinks.repeatCSSList = [];
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				if (responseDOMCSSLinkList[element.href]) {
-					repeatCSSList.push(element.href);
+				// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
+				if (TurboLinks.responseDOMCSSLinkList[element.href]) {
+					TurboLinks.repeatCSSList.push(element.href);
 				} else {
-					console.log('删除CSS：' + element.href);
-					element.remove();
+					// console.log('删除CSS：' + element.href);
+					// element.remove();
 				}
 			});
-
-			// console.log(repeatCSSList);
-
-			// 删除旧的link标签中的CSS文件
-			// document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => element.remove());
 			// 加载新的link标签中的CSS文件
-			// console.log(responseDOMCSSLinkList);
-			for (let url in responseDOMCSSLinkList) {
-				if (repeatCSSList.includes(url)) {
+			for (let url in TurboLinks.responseDOMCSSLinkList) {
+				if (TurboLinks.repeatCSSList.includes(url)) {
 					console.log('跳过CSS：' + url);
 				} else {
 					TurboLinks.loadCSSLink(url);
@@ -86,6 +84,16 @@ class TurboLinks {
 			if (options.pjax != 'TurboLinks') return;
 			document.dispatchEvent(new CustomEvent('turbolinks:send'));
 		});
+		document.addEventListener('pjax:complete', (options) => {
+			if (options.pjax != 'TurboLinks') return;
+			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
+			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
+				if (!TurboLinks.responseDOMCSSLinkList[element.href]) {
+					console.log('删除CSS：' + element.href);
+					element.remove();
+				}
+			});
+		})
 		document.addEventListener('pjax:success', (options) => {
 			if (options.pjax != 'TurboLinks') return;
 			document.dispatchEvent(new CustomEvent('turbolinks:load'));

@@ -75,7 +75,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 			new ClipboardJS(span[0], {
 				text: () => text
 			}).on('success', () => {
-				autolog.log(`复制成功 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
+				autolog.log(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
 			});
 			$(item).append(span);
 		});

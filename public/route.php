@@ -776,7 +776,7 @@ function _Meting($self)
 	if ($type == 'playlist') {
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->playlist($_REQUEST['id']);
 		$data = json_decode($data, true);
-		var_dump($data);
+		if (!empty($data['error'])) $self->response->throwJson($data);
 		foreach ($data as $key => $value) {
 			unset($data[$key]);
 			$data[$key]['author'] = is_array($value['artist']) ? implode(' / ', $value['artist']) : $value['artist'];

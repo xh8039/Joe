@@ -55,7 +55,10 @@ class TurboLinks {
 			// 删除旧的link标签中的CSS文件
 			// document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => element.remove());
 			// 加载新的link标签中的CSS文件
-			for (let url in responseDocumentCSSLinkList) TurboLinks.loadCSSLink(url);
+			for (let url in responseDocumentCSSLinkList) {
+				console.log(url);
+				TurboLinks.loadCSSLink(url);
+			}
 
 			// 获取新的文档中head标签内的JS文件列表
 			TurboLinks.loadJSList = responseDocument.head.querySelectorAll('script[src]');

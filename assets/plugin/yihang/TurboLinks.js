@@ -18,7 +18,7 @@ class TurboLinks {
 	static documentScriptList = [];
 
 	/** 全局已经加载过的 CSS 文件列表 */
-	static documentCSSLinkList = [];
+	// static documentCSSLinkList = [];
 
 	/** Pjax必须需要的链接元素 */
 	static linkElement;
@@ -36,23 +36,35 @@ class TurboLinks {
 			TurboLinks.handleResponseParam = { responseText, request, href, options };
 			const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
 
-			/** 加载style标签中的样式 */
+			// 删除旧的style标签中的样式
+			document.head.querySelectorAll('style').forEach(element => element.remove());
+			// 加载新的style标签中的样式
 			responseDocument.head.querySelectorAll('style').forEach(TurboLinks.loadStyle);
 
-			/** 加载link标签中的CSS文件 */
-			document.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				TurboLinks.documentCSSLinkList.push(element.href);
-			});
-			responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(TurboLinks.loadCSSLink);
+			// 获取新的CSS文件列表
+			let responseDocumentCSSLinkList = {};
+			responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => responseDocumentCSSLinkList[element.src] = element);
 
+			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
+			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
+				if (responseDocumentCSSLinkList[element.src]) return;
+				console.log('删除CSS：' + element.src);
+				element.remove();
+			});
+
+			// 删除旧的link标签中的CSS文件
+			// document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => element.remove());
+			// 加载新的link标签中的CSS文件
+			responseDocumentCSSLinkList.forEach(TurboLinks.loadCSSLink);
+
+			// 获取新的文档中head标签内的JS文件列表
 			TurboLinks.loadJSList = responseDocument.head.querySelectorAll('script[src]');
+			// 如果没有则直接载入响应的HTML文本
 			if (TurboLinks.loadJSList.length < 1) return TurboLinks.pjax.originHandleResponse(responseText, request, href, options);
-			document.querySelectorAll('script[src]').forEach(element => {
-				TurboLinks.documentScriptList.push(element.src);
-			});
-			responseDocument.head.querySelectorAll('script').forEach(element => {
-				TurboLinks.replaceJs(element);
-			});
+			// 记录当前文档中的JS文件列表
+			document.querySelectorAll('script[src]').forEach(element => TurboLinks.documentScriptList.push(element.src));
+			// 先载入新的文档中的JS文件，再载入HTML文本
+			responseDocument.head.querySelectorAll('script').forEach(element => TurboLinks.replaceJs(element));
 		}
 		document.addEventListener('pjax:send', (options) => {
 			if (options.pjax != 'TurboLinks') return;
@@ -62,6 +74,10 @@ class TurboLinks {
 			if (options.pjax != 'TurboLinks') return;
 			document.dispatchEvent(new CustomEvent('turbolinks:load'));
 		});
+	}
+
+	static unique(arr) {
+		return Array.from(new Set(arr))
 	}
 
 	static createLink(url = null) {
@@ -154,11 +170,11 @@ class TurboLinks {
 		document.head.appendChild(style);
 	}
 
-	static loadCSSLink(element) {
-		let url = element.href;
+	static loadCSSLink(url) {
+		// let url = element.href;
 		if (!url) return false;
-		if (TurboLinks.documentCSSLinkList.includes(url)) return false;
-		TurboLinks.documentCSSLinkList.push(url);
+		// if (TurboLinks.documentCSSLinkList.includes(url)) return false;
+		// TurboLinks.documentCSSLinkList.push(url);
 		let css = document.createElement('link');
 		css.type = 'text/css';
 		css.rel = 'stylesheet';

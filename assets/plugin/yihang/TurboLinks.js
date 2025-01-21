@@ -47,18 +47,31 @@ class TurboLinks {
 				responseDOMCSSLinkList[element.href] = element;
 			});
 
+			const repeatCSSList = [];
+
 			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				if (responseDOMCSSLinkList[element.href]) return;
-				console.log('删除CSS：' + element.href);
-				element.remove();
+				if (responseDOMCSSLinkList[element.href]) {
+					repeatCSSList.push(element.href);
+				} else {
+					console.log('删除CSS：' + element.href);
+					element.remove();
+				}
 			});
+
+			console.log(repeatCSSList);
 
 			// 删除旧的link标签中的CSS文件
 			// document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => element.remove());
 			// 加载新的link标签中的CSS文件
 			console.log(responseDOMCSSLinkList)
-			responseDOMCSSLinkList.forEach(TurboLinks.loadCSSLink);
+			responseDOMCSSLinkList.forEach(url => {
+				if (repeatCSSList.includes(url)) {
+					console.log('跳过CSS：' + url);
+					return;
+				}
+				TurboLinks.loadCSSLink(url);
+			});
 
 			// 获取新的文档中head标签内的JS文件列表
 			TurboLinks.loadJSList = responseDOM.head.querySelectorAll('script[src]');

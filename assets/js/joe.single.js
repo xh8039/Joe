@@ -335,21 +335,23 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 			let time = Number($('#comment_module a[auto-refresh]').attr('auto-refresh'));
 			if (time && Number.isInteger(time)) {
 				window.Joe.commentListAutoRefresh = true;
-				window.Joe.commentListSetInterval = window.Joe.commentListSetInterval ? window.Joe.commentListSetInterval : setInterval(() => {
-					if (!document.querySelector('#comment_module a[auto-refresh]')) return;
-					if (document.visibilityState == "hidden" || document.hidden) return;
-					if (!window.Joe.commentListAutoRefresh) return;
-					if (!isElementInViewport(document.querySelector('.comment-list'))) return;
-					let url = $('#comment_module>.joe_pagination>li.active>a').attr('href');
-					window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
-						success() {
-							return window.Joe.commentListAutoRefresh;
-						},
-						replace() {
-							Joe.initComment({ draw: false, owo: false, submit: false, pagination: false });
-						}
-					});
-				}, time * 1000);
+				if (!window.Joe.commentListSetInterval) {
+					setInterval(() => {
+						if (!document.querySelector('#comment_module a[auto-refresh]')) return;
+						if (document.visibilityState == "hidden" || document.hidden) return;
+						if (!window.Joe.commentListAutoRefresh) return;
+						if (!isElementInViewport(document.querySelector('.comment-list'))) return;
+						let url = $('#comment_module>.joe_pagination>li.active>a').attr('href');
+						window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
+							success() {
+								return window.Joe.commentListAutoRefresh;
+							},
+							replace() {
+								Joe.initComment({ draw: false, owo: false, submit: false, pagination: false });
+							}
+						});
+					}, time * 1000)
+				}
 			}
 		}
 	}

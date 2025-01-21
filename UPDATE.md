@@ -325,6 +325,7 @@
 - 修复使用IPV6地址下单付费阅读时创建订单失败的BUG
 - 修复壁纸模板数量不足以翻页时依然有翻页功能的BUG
 - toast 消息提示组件从 [qmsg](https://gitee.com/leisureLXY/qmsg) 更换为 [autolog.js](https://github.com/Auto-Plugin/autolog.js)
+- 正在开发中...
 - 本次更新后请手动执行以下MySQL语句
 
 ```sql
@@ -334,4 +335,4 @@ RENAME TABLE `typecho_joe_pay` to `typecho_orders`;
 ALTER TABLE `typecho_orders` CHANGE `ip` `ip` VARCHAR(128);
 ```
 
-- 正在开发中...
+![phpMyAdmin执行SQL语句教程](https://shp.qpic.cn/collector/2136118039/dec4ad69-6461-4d0e-a49e-97440627940d/0)

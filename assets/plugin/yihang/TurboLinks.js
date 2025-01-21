@@ -17,14 +17,8 @@ class TurboLinks {
 	/** 全局已经加载过的 JavaScript文件列表 */
 	static documentScriptList = [];
 
-	/** 全局已经加载过的 CSS 文件列表 */
-	// static documentCSSLinkList = [];
-
 	/** 本次响应的 CSS 文件列表 */
 	static responseDOMCSSLinkList = {};
-
-	/** 本次响应重复的 CSS 文件列表 */
-	static repeatCSSList = [];
 
 	/** Pjax必须需要的链接元素 */
 	static linkElement;
@@ -52,19 +46,14 @@ class TurboLinks {
 			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				TurboLinks.responseDOMCSSLinkList[element.href] = element;
 			});
-			TurboLinks.repeatCSSList = [];
+			const repeatCSSList = [];
+			// 记录重复的CSS文件
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
-				if (TurboLinks.responseDOMCSSLinkList[element.href]) {
-					TurboLinks.repeatCSSList.push(element.href);
-				} else {
-					// console.log('删除CSS：' + element.href);
-					// element.remove();
-				}
+				if (TurboLinks.responseDOMCSSLinkList[element.href]) repeatCSSList.push(element.href);
 			});
 			// 加载新的link标签中的CSS文件
 			for (let url in TurboLinks.responseDOMCSSLinkList) {
-				if (TurboLinks.repeatCSSList.includes(url)) {
+				if (repeatCSSList.includes(url)) {
 					console.log('跳过CSS：' + url);
 				} else {
 					TurboLinks.loadCSSLink(url);
@@ -195,10 +184,7 @@ class TurboLinks {
 	}
 
 	static loadCSSLink(url) {
-		// let url = element.href;
 		if (!url) return false;
-		// if (TurboLinks.documentCSSLinkList.includes(url)) return false;
-		// TurboLinks.documentCSSLinkList.push(url);
 		let css = document.createElement('link');
 		css.type = 'text/css';
 		css.rel = 'stylesheet';

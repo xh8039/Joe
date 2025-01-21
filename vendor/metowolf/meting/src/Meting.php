@@ -82,7 +82,7 @@ class Meting
         }
 
         $this->data = $this->raw;
-        var_dump($this->data);
+
         if (isset($api['decode'])) {
             $this->data = call_user_func_array(array($this, $api['decode']), array($this->data));
         }
@@ -145,6 +145,7 @@ class Meting
     private function clean($raw, $rule)
     {
         $raw = json_decode($raw, true);
+        if (!empty($raw['error'])) return json_encode($raw);
         if (!empty($rule)) {
             $raw = $this->pickup($raw, $rule);
         }

@@ -44,13 +44,13 @@ class TurboLinks {
 			// 获取新的CSS文件列表
 			const responseDOMCSSLinkList = [];
 			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				responseDOMCSSLinkList[element.src] = element;
+				responseDOMCSSLinkList[element.href] = element;
 			});
 
 			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				if (responseDOMCSSLinkList[element.src]) return;
-				console.log('删除CSS：' + element.src);
+				if (responseDOMCSSLinkList[element.href]) return;
+				console.log('删除CSS：' + element.href);
 				element.remove();
 			});
 

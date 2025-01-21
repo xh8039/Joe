@@ -18,10 +18,9 @@ function themeConfig($form)
 	/** 首次启用安装主题 */
 	joe\install();
 ?>
-	<link rel="stylesheet" href="<?php Helper::options()->themeUrl('assets/plugin/qmsg/qmsg.css'); ?>">
 	<link rel="stylesheet" href="<?php Helper::options()->themeUrl('assets/typecho/config/css/joe.config.css') ?>">
 	<script src="<?php $options->adminStaticUrl('js', 'jquery.js'); ?>"></script>
-	<script src="<?php Helper::options()->themeUrl('assets/plugin/qmsg/qmsg.js'); ?>"></script>
+	<script src="<?php Helper::options()->themeUrl('assets/plugin/autolog.js/autolog.js'); ?>"></script>
 	<script src="<?= Helper::options()->themeUrl('assets/plugin/layer/3.7.0/layer.js') ?>"></script>
 	<script>
 		window.Joe = {

@@ -76,7 +76,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 				text: () => text
 			}).on('success', () => {
 				window.code_copy = true;
-				Qmsg.success(`复制成功 内容版权属于 ${Joe.options.title} 转载请标明出处！`, { 'showClose': true, 'autoClose': false });
+				autolog.log(`复制成功 内容版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
 			});
 			$(item).append(span);
 		});
@@ -92,10 +92,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 				// 获取被复制的元素
 				// const copiedElement = event.target;
 				if (window.code_copy !== true && window.post_copy !== true) {
-					Qmsg.warning(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, {
-						'showClose': true,
-						'autoClose': false
-					});
+					autolog.log(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, 'warn', false);
 					window.post_copy = true;
 				}
 				window.code_copy = false;
@@ -174,12 +171,12 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 						agreeArr.splice(index, 1);
 						$('.action-like').removeClass('active');
 						$('.action-like>text').text('点赞');
-						Qmsg.info('点赞已取消');
+						autolog.log('取消点赞', 'info');
 					} else {
 						agreeArr.push(cid);
 						$('.action-like').addClass('active');
 						$('.action-like>text').text('已赞');
-						Qmsg.success('已赞，感谢您的支持！');
+						autolog.log('已赞，感谢您的支持！', 'success');
 					}
 					const name = encryption('agree');
 					const val = encryption(JSON.stringify(agreeArr));
@@ -200,7 +197,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 			e.preventDefault();
 			const url = $(this).attr('action') + '&time=' + +new Date();
 			const protectPassword = $(this).find('input[type="password"]').val();
-			if (protectPassword.trim() === '') return Qmsg.info('请输入访问密码！');
+			if (protectPassword.trim() === '') return autolog.log('请输入访问密码！', 'info');
 			if (isSubmit) return;
 			isSubmit = true;
 			$.ajax({
@@ -220,7 +217,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 						if (_.parentNode.className === 'container') str = _;
 					});
 					if (!/Joe/.test(res)) {
-						Qmsg.warning(str.textContent.trim() || '');
+						autolog.log(str.textContent.trim() || '', 'warn');
 						isSubmit = false;
 						$('.joe_comment__respond-form .foot .submit button').html('发表评论');
 					} else {
@@ -289,12 +286,12 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 		clipboard.on('success', function (e) {
 			//注销对象
 			e.clearSelection();
-			Qmsg.success('链接已复制！')
+			autolog.log('链接已复制！', 'success');
 		});
 		clipboard.on('error', function (e) {
 			//注销对象
 			e.clearSelection();
-			Qmsg.error('链接复制失败！')
+			autolog.log('链接复制失败！', 'error');
 		});
 	}
 

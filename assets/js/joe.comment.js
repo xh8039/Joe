@@ -105,10 +105,9 @@ window.Joe.initComment = (options = {}) => {
 				const mail = $(".joe_comment__respond-form .head input[name='mail']").val();
 				const url = $(".joe_comment__respond-form .head input[name='url']").val();
 				let text = $(".joe_comment__respond-form .body textarea[name='text']").val();
-				if (author.trim() === "") return Qmsg.info("请输入昵称！");
-				if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(mail)) return Qmsg.info(
-					"请输入正确的邮箱！");
-				if (type === "text" && text.trim() === "") return Qmsg.info("请输入评论内容！");
+				if (author.trim() === "") return autolog.log("请输入昵称！", 'info');
+				if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(mail)) return autolog.log("请输入正确的邮箱！", 'info');
+				if (type === "text" && text.trim() === "") return autolog.log("请输入评论内容！", 'info');
 				if (type === "draw") {
 					const txt = $("#joe_comment_draw")[0].toDataURL("image/webp", 0.1);
 					text = "{!{" + txt + "}!} ";
@@ -146,7 +145,7 @@ window.Joe.initComment = (options = {}) => {
 					replace() {
 						if (Joe.initComment) Joe.initComment({ draw: false, owo: false, submit: false });
 						isSubmit = false;
-						Qmsg.success('发送成功');
+						autolog.log('发送成功', 'success');
 						$('textarea.joe_owo__target').val('');
 						$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
 						$(".joe_comment__respond-form .body textarea[name='text']").focus();
@@ -161,9 +160,9 @@ window.Joe.initComment = (options = {}) => {
 						let match = /<div class="container">\s+(.+)\s+<\/div>/;
 						var msg = responseText.match(match)[1];
 						if (msg) {
-							Qmsg.warning(msg);
+							autolog.log(msg, 'warn');
 						} else {
-							Qmsg.warning("发送失败！请刷新重试！");
+							autolog.log('发送失败！请刷新重试！', 'warn');
 						}
 					}
 				});

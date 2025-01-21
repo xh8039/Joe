@@ -280,7 +280,7 @@ if (!empty($footer_tabbar)) {
 	$type = $cookie . '__typecho_notice_type';
 
 	if (isset($_COOKIE[$notice]) && isset($_COOKIE[$type]) && ($_COOKIE[$type] == 'success' || $_COOKIE[$type] == 'notice' || $_COOKIE[$type] == 'error')) { ?>
-		Qmsg.info("<?php echo preg_replace('#\[\"(.*?)\"\]#', '$1', $_COOKIE[$notice]); ?>！");
+		autolog.log("<?php echo preg_replace('#\[\"(.*?)\"\]#', '$1', $_COOKIE[$notice]); ?>！", 'info');
 	<?php }
 
 	Typecho_Cookie::delete('__typecho_notice');

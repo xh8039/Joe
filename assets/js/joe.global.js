@@ -111,7 +111,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 					}
 					if (data.msg) {
 						$("#statistics").remove();
-						data.code == 200 ? Qmsg.info('百度统计：' + data.msg) : Qmsg.error('百度统计：' + data.msg);
+						data.code == 200 ? autolog.log('百度统计：' + data.msg, 'info') : autolog.log('百度统计：' + data.msg, 'error');
 						return;
 					}
 					let statistics = $('#statistics span strong');
@@ -524,7 +524,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				try {
 					jsonData = JSON.parse(data);
 					if (jsonData) {
-						Qmsg.error(jsonData.message);
+						autolog.log(jsonData.message, 'error');
 						_modal.modal('hide');
 						return;
 					}
@@ -576,7 +576,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				if (!is_active) {
 					//添加
 					if (_group.find('[data-for="_for"].active').length >= multiple) {
-						return Qmsg.info('最多可选择' + multiple + '个', 'danger');
+						return autolog.log('最多可选择' + multiple + '个', 'info');
 					}
 				}
 

@@ -59,15 +59,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			success(data) {
 				$('.friend_submit .submit').html('立即提交');
 				if (data.code == 200) {
-					Qmsg.success(data.msg);
+					autolog.log(data.msg, 'success');
 				} else {
-					Qmsg.warning(data.msg);
+					autolog.log(data.msg, 'warn');
 				}
 			},
 			error(xhr, status, error) {
 				console.log(xhr);
 				$('.friend_submit .submit').html('立即提交');
-				Qmsg.error('提交失败！' + HtmlTextContent(xhr.responseText));
+				autolog.log('提交失败！' + HtmlTextContent(xhr.responseText), 'error');
 			}
 		});
 	});

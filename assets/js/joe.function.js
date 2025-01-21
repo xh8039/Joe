@@ -319,7 +319,7 @@ function zib_ajax(_this, data, success, noty, no_loading) {
 
 	var _text = _this.html();
 	var _loading = no_loading ? _text : '<i class="loading mr6"></i><text>请稍候</text>';
-	noty != 'stop' && Qmsg.warning(noty || '正在处理请稍后...', 'load', '', 'wp_ajax');
+	noty != 'stop' && autolog.log(noty || '正在处理请稍后...', 'load', '', 'wp_ajax', 'warn');
 	_this.attr('disabled', true).html(_loading);
 	var _url = _this.attr('ajax-href') || window.Joe.BASE_API;
 
@@ -334,7 +334,8 @@ function zib_ajax(_this, data, success, noty, no_loading) {
 				_msg = '网站遇到致命错误，请检查插件冲突或通过错误日志排除错误';
 			}
 			console.error('ajax请求错误，错误信息如下：', n);
-			Qmsg.error(_msg, 'danger', '', noty != 'stop' ? 'wp_ajax' : '');
+			// Qmsg.error(_msg, 'danger', '', noty != 'stop' ? 'wp_ajax' : '');
+			autolog.log(_msg, 'error');
 			_this.attr('disabled', false).html(_text);
 		},
 		success: function (n) {
@@ -344,9 +345,11 @@ function zib_ajax(_this, data, success, noty, no_loading) {
 				data.tcaptcha_ticket && (tcaptcha = {});
 			}
 			if (noty != 'stop') {
-				Qmsg.success(n.msg || '处理完成', ys, '', 'wp_ajax');
+				// Qmsg.success(n.msg || '处理完成', ys, '', 'wp_ajax');
+				autolog.log(n.msg || '处理完成', 'success');
 			} else if (n.msg) {
-				Qmsg.success(n.msg, ys);
+				// Qmsg.success(n.msg, ys);
+				autolog.log(n.msg, 'success');
 			}
 
 			_this.attr('disabled', false).html(_text).trigger('zib_ajax.success', n); //完成

@@ -32,11 +32,11 @@ Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded
 				},
 				success(res) {
 					if (!res.status) {
-						Qmsg.warning('服务器接口异常！');
+						autolog.log('服务器接口异常！', 'warn');
 						return;
 					}
 					if (res.message) {
-						Qmsg.warning(res.message);
+						autolog.log(res.message, 'warn');
 						return;
 					}
 					{
@@ -330,7 +330,7 @@ Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded
 				success(res) {
 					if (!res.length) {
 						$('.joe_census__filing .item.load').remove();
-						return Qmsg.warning('没有更多内容了');
+						return autolog.log('没有更多内容了', 'warn');
 					}
 					let htmlStr = '';
 					res.forEach(item => {

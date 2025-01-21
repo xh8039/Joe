@@ -28,7 +28,7 @@ $("#username").on('input propertychange', function () {
 });
 $("#send").click(function () {
 	let email = $("#email").val();
-	if (!email) return Qmsg.warning("请输入邮箱后发送验证码");
+	if (!email) return autolog.log("请输入邮箱后发送验证码", 'warning');
 	$.ajax({
 		url: '/user/api',
 		type: 'post',
@@ -46,14 +46,14 @@ $("#send").click(function () {
 		},
 		error: function () {
 			btn($("#send"), "获取验证码", false);
-			Qmsg.error("服务器繁忙");
+			autolog.log("服务器繁忙", 'error');
 		},
 		success: function (res) {
 			if (res.code == 1) {
 				setTime();
-				Qmsg.success("验证码已发送到您的邮箱");
+				autolog.log("验证码已发送到您的邮箱", 'success');
 			} else {
-				Qmsg.warning(res.msg);
+				autolog.log(res.msg, 'warn');
 			}
 		}
 	});
@@ -65,13 +65,13 @@ $("#register").click(function () {
 	let code = $("#code").val();
 	let password = $("#password").val();
 	let cpassword = $("#cpassword").val();
-	if (!nickname) return Qmsg.warning("请输入昵称");
-	if (!username) return Qmsg.warning("请输入用户名");
-	if (!email) return Qmsg.warning("请输入邮箱");
-	if ($("#code").length > 0 && !code) return Qmsg.warning("请输入验证码");
-	if (!password) return Qmsg.warning("请输入密码");
-	if (!cpassword) return Qmsg.warning("请输入确认密码");
-	if (cpassword != password) return Qmsg.warning("两次密码不一致");
+	if (!nickname) return autolog.log("请输入昵称", 'warn');
+	if (!username) return autolog.log("请输入用户名", 'warn');
+	if (!email) return autolog.log("请输入邮箱", 'warn');
+	if ($("#code").length > 0 && !code) return autolog.log("请输入验证码", 'warn');
+	if (!password) return autolog.log("请输入密码", 'warn');
+	if (!cpassword) return autolog.log("请输入确认密码", 'warn');
+	if (cpassword != password) return autolog.log("两次密码不一致", 'warn');
 	$.ajax({
 		url: '/user/api',
 		type: 'post',
@@ -94,16 +94,16 @@ $("#register").click(function () {
 		},
 		error: function () {
 			btn($("#register"), "注册", false);
-			Qmsg.error("服务器繁忙");
+			autolog.log('服务器繁忙', 'error');
 		},
 		success: function (res) {
 			if (res.code == 1) {
-				Qmsg.success("注册成功");
+				autolog.log('注册成功', 'success');
 				setTimeout(function () {
 					window.location.href = window.Joe.referer;
 				}, 1000);
 			} else {
-				Qmsg.warning(res.msg);
+				autolog.log(res.msg, 'warn');
 			}
 		}
 	});

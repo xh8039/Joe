@@ -91,7 +91,7 @@
 		var $coupon_data_box = $this.parents('.coupon-input-box').find('.coupon-data-box');
 		ajax_data.action = 'coupon_submit';
 		if (!ajax_data.coupon) {
-			return Qmsg.info('请输入优惠码', 'warning'), !1;
+			return autolog.log('请输入优惠码', 'warn'), !1;
 		}
 
 		var _actual_price_number = form.find('.actual-price-number'); //实际付款金额的元素
@@ -146,7 +146,8 @@
 	}
 
 	function ajax_send(data, _this) {
-		data.openid && Qmsg.info('正在发起支付，请稍后...', 'load', '', 'pay_ajax'); //微信JSAPI支付
+		// data.openid && Qmsg.info('正在发起支付，请稍后...', 'load', '', 'pay_ajax'); //微信JSAPI支付
+		data.openid && autolog.log('正在发起支付，请稍后...', 'info'); //微信JSAPI支付
 
 		zib_ajax(
 			_this,
@@ -167,14 +168,14 @@
 				if (n.url && n.open_url) {
 					window.location.href = n.url;
 					window.location.reload;
-					Qmsg.info('正在跳转到支付页面');
+					autolog.log('正在跳转到支付页面', 'info');
 					return;
 				}
 
 				//2.加载易支付的POST提价
 				if (n.form_html) {
 					_body.append(n.form_html);
-					Qmsg.info('正在跳转到支付页面');
+					autolog.log('正在跳转到支付页面', 'info');
 					return;
 				}
 
@@ -193,7 +194,8 @@
 					} else {
 						weixin_bridge_ready(jsapiParams, jsapi_return);
 					}
-					Qmsg.info('请完成支付', '', '', data.openid ? 'pay_ajax' : '');
+					// Qmsg.info('请完成支付', '', '', data.openid ? 'pay_ajax' : '');
+					autolog.log('请完成支付', 'info');
 					return;
 				}
 
@@ -341,7 +343,8 @@
 			$('a[href="#tab-payvip-' + vip_level + '"]').tab('show');
 			modal.modal('show');
 		} else {
-			Qmsg.info('加载中，请稍等...', 'load', '', 'payvip_ajax');
+			// Qmsg.info('加载中，请稍等...', 'load', '', 'payvip_ajax');
+			autolog.log('加载中，请稍等...');
 			$.ajax({
 				type: 'POST',
 				url: pay_ajax_url,
@@ -356,7 +359,8 @@
 						modal.remove();
 						$('.signin-loader:first').click();
 					}
-					Qmsg.info(msg, n.ys ? n.ys : n.error ? 'danger' : '', 3, 'payvip_ajax');
+					// Qmsg.info(msg, n.ys ? n.ys : n.error ? 'danger' : '', 3, 'payvip_ajax');
+					autolog.log(msg, 'info');
 					if (!n.error) {
 						modal.find('.modal-content').html(n.html);
 						if (!modal.find('.modal-content .tab-pane.active').length) {

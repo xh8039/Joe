@@ -324,6 +324,7 @@
 - 修复文章编辑器多彩按钮和便条按钮模块在关闭文章外链转内链功能的情况下变成云盘下载模块的BUG
 - 修复使用IPV6地址下单付费阅读时创建订单失败的BUG
 - 修复壁纸模板数量不足以翻页时依然有翻页功能的BUG
+- toast 消息提示组件从 [qmsg](https://gitee.com/leisureLXY/qmsg) 更换为 [autolog.js](https://github.com/Auto-Plugin/autolog.js)
 - 本次更新后请手动执行以下MySQL语句
 
 ```sql

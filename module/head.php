@@ -40,7 +40,6 @@ if ($this->options->JLoading != 'off') : ?>
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
-<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/qmsg/qmsg.css'); ?>">
 
 <?php if ($this->is('single')) : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
@@ -60,7 +59,6 @@ if ($this->options->JLoading != 'off') : ?>
 	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent></script>
-<script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/autolog.js/autolog.js'); ?>" data-turbolinks-permanent></script>
 
 <?php if ($this->is('single') || $this->options->JMusic == 'on') : ?>

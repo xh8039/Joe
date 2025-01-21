@@ -675,8 +675,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			};
 			this.innerHTML = `<span class="joe_copy" style="cursor: pointer; user-select: none;">${this.options.showText}</span>`;
 			const button = getChildren(this, 'joe_copy');
-			if (typeof ClipboardJS !== 'undefined' && typeof Qmsg !== 'undefined') {
-				new ClipboardJS(button, { text: () => this.options.copyText }).on('success', () => Qmsg.success('复制成功！'));
+			if (typeof ClipboardJS !== 'undefined' && typeof autolog !== 'undefined') {
+				new ClipboardJS(button, { text: () => this.options.copyText }).on('success', () => autolog.log('复制成功！', 'success'));
 			} else {
 				button.addEventListener('click', () => alert('该功能请前往前台查看！'));
 			}

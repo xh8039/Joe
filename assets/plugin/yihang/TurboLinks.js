@@ -59,12 +59,12 @@ class TurboLinks {
 				}
 			});
 
-			console.log(repeatCSSList);
+			// console.log(repeatCSSList);
 
 			// 删除旧的link标签中的CSS文件
 			// document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => element.remove());
 			// 加载新的link标签中的CSS文件
-			console.log(responseDOMCSSLinkList);
+			// console.log(responseDOMCSSLinkList);
 			for (let url in responseDOMCSSLinkList) {
 				if (repeatCSSList.includes(url)) {
 					console.log('跳过CSS：' + url);

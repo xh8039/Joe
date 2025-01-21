@@ -34,20 +34,20 @@ class TurboLinks {
 		TurboLinks.pjax.originHandleResponse = TurboLinks.pjax.handleResponse;
 		TurboLinks.pjax.handleResponse = (responseText, request, href, options) => {
 			TurboLinks.handleResponseParam = { responseText, request, href, options };
-			const responseDocument = (new DOMParser()).parseFromString(responseText, 'text/html');
+			const responseDOM = (new DOMParser()).parseFromString(responseText, 'text/html');
 
 			// 删除旧的style标签中的样式
 			// document.head.querySelectorAll('style').forEach(element => element.remove());
 			// 加载新的style标签中的样式
-			responseDocument.head.querySelectorAll('style').forEach(TurboLinks.loadStyle);
+			responseDOM.head.querySelectorAll('style').forEach(TurboLinks.loadStyle);
 
 			// 获取新的CSS文件列表
-			let responseDocumentCSSLinkList = {};
-			responseDocument.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => responseDocumentCSSLinkList[element.src] = element);
+			var responseDOMCSSLinkList = {};
+			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => responseDOMCSSLinkList[element.src] = element);
 
 			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				if (responseDocumentCSSLinkList[element.src]) return;
+				if (responseDOMCSSLinkList[element.src]) return;
 				console.log('删除CSS：' + element.src);
 				element.remove();
 			});
@@ -55,19 +55,19 @@ class TurboLinks {
 			// 删除旧的link标签中的CSS文件
 			// document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => element.remove());
 			// 加载新的link标签中的CSS文件
-			for (let url in responseDocumentCSSLinkList) {
+			for (let url in responseDOMCSSLinkList) {
 				console.log(url);
 				TurboLinks.loadCSSLink(url);
 			}
 
 			// 获取新的文档中head标签内的JS文件列表
-			TurboLinks.loadJSList = responseDocument.head.querySelectorAll('script[src]');
+			TurboLinks.loadJSList = responseDOM.head.querySelectorAll('script[src]');
 			// 如果没有则直接载入响应的HTML文本
 			if (TurboLinks.loadJSList.length < 1) return TurboLinks.pjax.originHandleResponse(responseText, request, href, options);
 			// 记录当前文档中的JS文件列表
 			document.querySelectorAll('script[src]').forEach(element => TurboLinks.documentScriptList.push(element.src));
 			// 先载入新的文档中的JS文件，再载入HTML文本
-			responseDocument.head.querySelectorAll('script').forEach(element => TurboLinks.replaceJs(element));
+			responseDOM.head.querySelectorAll('script').forEach(element => TurboLinks.replaceJs(element));
 		}
 		document.addEventListener('pjax:send', (options) => {
 			if (options.pjax != 'TurboLinks') return;

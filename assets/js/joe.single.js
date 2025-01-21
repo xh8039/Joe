@@ -75,11 +75,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 			new ClipboardJS(span[0], {
 				text: () => text
 			}).on('success', () => {
-				window.code_copy = true;
-				autolog.log(`复制成功 内容版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
-				setTimeout(() => {
-					window.code_copy = false;
-				}, 1000);
+				autolog.log(`复制成功 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
 			});
 			$(item).append(span);
 		});
@@ -87,11 +83,8 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/* 监听网页复制行为 */
 	{
-		document.querySelector('.joe_detail__article').addEventListener('copy', (event) => {
-			// 获取被复制的元素
-			// const copiedElement = event.target;
-			console.log(event);
-			if (!window.code_copy) autolog.log(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, 'warn', false);
+		document.querySelector('.joe_detail__article').addEventListener('copy', () => {
+			autolog.log(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, 'warn', false);
 		});
 	}
 

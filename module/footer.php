@@ -40,31 +40,55 @@ if ($this->options->JFooterMode == 'commercial') {
 							<span>今日浏览量&nbsp;<strong>...</strong>丨</span><span>昨日访客&nbsp;<strong>...</strong>丨</span><span>本月访问量&nbsp;<strong>...</strong></span>
 						</div>
 					<?php endif; ?>
-					<div class="footer-contact mt10">
-						<a class="toggle-radius hover-show nowave" href="javascript:;">
-							<svg class="icon svg" aria-hidden="true">
-								<use xlink:href="#icon-d-wechat"></use>
-							</svg>
-							<div class="hover-show-con footer-wechat-img">
-								<img style="box-shadow: 0 5px 10px rgba(0,0,0,.2); border-radius:4px;" height="100" class="lazyload" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $this->options->JFooterContactWechatImg ?>" alt="扫一扫加微信 - <?= $this->options->title ?>">
-							</div>
-						</a>
-						<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="QQ联系" href="https://wpa.qq.com/msgrd?v=3&uin=<?= $this->options->JFooterContactQQ ?>&site=qq&menu=yes">
-							<svg class="icon svg" aria-hidden="true" data-viewBox="-50 0 1100 1100" viewBox="-50 0 1100 1100">
-								<use xlink:href="#icon-d-qq"></use>
-							</svg>
-						</a>
-						<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="微博" href="<?= $this->options->JFooterContactWeiBo ?>">
-							<svg class="icon svg" aria-hidden="true">
-								<use xlink:href="#icon-d-weibo"></use>
-							</svg>
-						</a>
-						<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="发邮件" href="mailto:<?= $this->options->JFooterContactEmail ?>">
-							<svg class="icon svg" aria-hidden="true" data-viewBox="-20 80 1024 1024" viewBox="-20 80 1024 1024">
-								<use xlink:href="#icon-d-email"></use>
-							</svg>
-						</a>
-					</div>
+					<?php
+					if (!empty($this->options->JFooterContactWechatImg) || !empty($this->options->JFooterContactQQ) || !empty($this->options->JFooterContactWeiBo) || !empty($this->options->JFooterContactEmail)) {
+					?>
+						<div class="footer-contact mt10">
+							<?php
+							if (!empty($this->options->JFooterContactWechatImg)) {
+							?>
+								<a class="toggle-radius hover-show nowave" href="javascript:;">
+									<svg class="icon svg" aria-hidden="true">
+										<use xlink:href="#icon-d-wechat"></use>
+									</svg>
+									<div class="hover-show-con footer-wechat-img">
+										<img style="box-shadow: 0 5px 10px rgba(0,0,0,.2); border-radius:4px;" height="100" class="lazyload" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $this->options->JFooterContactWechatImg ?>" alt="扫一扫加微信 - <?= $this->options->title ?>">
+									</div>
+								</a>
+							<?php
+							}
+							if (!empty($this->options->JFooterContactQQ)) {
+							?>
+								<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="QQ联系" href="https://wpa.qq.com/msgrd?v=3&uin=<?= $this->options->JFooterContactQQ ?>&site=qq&menu=yes">
+									<svg class="icon svg" aria-hidden="true" data-viewBox="-50 0 1100 1100" viewBox="-50 0 1100 1100">
+										<use xlink:href="#icon-d-qq"></use>
+									</svg>
+								</a>
+							<?php
+							}
+							if (!empty($this->options->JFooterContactWeiBo)) {
+							?>
+								<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="微博" href="<?= $this->options->JFooterContactWeiBo ?>">
+									<svg class="icon svg" aria-hidden="true">
+										<use xlink:href="#icon-d-weibo"></use>
+									</svg>
+								</a>
+							<?php
+							}
+							if (!empty($this->options->JFooterContactZhiHu)) {
+							?>
+								<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="发邮件" href="mailto:<?= $this->options->JFooterContactEmail ?>">
+									<svg class="icon svg" aria-hidden="true" data-viewBox="-20 80 1024 1024" viewBox="-20 80 1024 1024">
+										<use xlink:href="#icon-d-email"></use>
+									</svg>
+								</a>
+							<?php
+							}
+							?>
+						</div>
+					<?php
+					}
+					?>
 				</li>
 				<?php
 				$JFooterMiniImg = joe\optionMulti($this->options->JFooterMiniImg);

@@ -77,7 +77,7 @@ $JFooterLeftText = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFooterLeftText',
 	NULL,
 	'易航博客，一名编程爱好者的博客，博客主要用来记录与分享编程、学习中的知识点。',
-	'底部栏左侧内容'
+	'底部栏左侧内容（非必填）'
 );
 $JFooterLeftText->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterLeftText);
@@ -85,8 +85,8 @@ $form->addInput($JFooterLeftText);
 $JFooterContactWechatImg = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JFooterContactWechatImg',
 	NULL,
-	NULL,
-	'底部栏中间微信联系二维码',
+	'https://shp.qpic.cn/collector/2136118039/527b463f-2e22-4a7c-b4fe-d709c7cd81b2/0',
+	'底部栏中间微信联系二维码（非必填）',
 );
 $JFooterContactWechatImg->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterContactWechatImg);
@@ -95,7 +95,7 @@ $JFooterContactQQ = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JFooterContactQQ',
 	NULL,
 	'2136118039',
-	'底部栏中间QQ联系账号',
+	'底部栏中间QQ联系账号（非必填）',
 );
 $JFooterContactQQ->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterContactQQ);
@@ -103,8 +103,8 @@ $form->addInput($JFooterContactQQ);
 $JFooterContactWeiBo = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JFooterContactWeiBo',
 	NULL,
-	NULL,
-	'底部栏中间微博链接',
+	'https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes',
+	'底部栏中间微博链接（非必填）',
 );
 $JFooterContactWeiBo->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterContactWeiBo);
@@ -113,7 +113,7 @@ $JFooterContactEmail = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JFooterContactEmail',
 	NULL,
 	'2136118039@qq.com',
-	'底部栏中间邮箱联系账号',
+	'底部栏中间邮箱联系账号（非必填）',
 );
 $JFooterContactEmail->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterContactEmail);
@@ -123,7 +123,7 @@ $JFooterMiniImg = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	'扫码加QQ群 || https://www.lequxiang.com.cn/view.php/ab5c4bad5d98a61de393ba054415bca3.png
 扫码加微信 || https://www.lequxiang.com.cn/view.php/ab5c4bad5d98a61de393ba054415bca3.png',
-	'底部栏右侧图片',
+	'底部栏右侧图片（非必填）',
 	'介绍：一行一个，||用来分割<br>
 	格式：显示文字 || 显示图片
 	示例：<br>
@@ -137,8 +137,8 @@ $JFcodeCustomizeCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JFcodeCustomizeCode',
 	NULL,
 	NULL,
-	'页脚自定义HTML',
-	'最底部额外的自定义代码（支持HTML）'
+	'页脚自定义HTML（非必填）',
+	'最底部额外的自定义代码'
 );
 $JFcodeCustomizeCode->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFcodeCustomizeCode);

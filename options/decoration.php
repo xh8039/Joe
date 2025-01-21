@@ -66,8 +66,8 @@ $form->addInput($JLoading->multiMode());
 
 $FirstLoading = new \Typecho\Widget\Helper\Form\Element\Select(
 	'FirstLoading',
-	['off' => '关闭（默认）', 'on' => '开启'],
-	'off',
+	['on' => '开启（默认）', 'off' => '关闭'],
+	'on',
 	'仅首次加载动画',
 	'介绍：只在用户首次进入网站时展示加载动画，开启后可防止使用谷歌内核的浏览器出现闪动问题'
 );

@@ -71,8 +71,6 @@ class TurboLinks {
 			TurboLinks.loadJSList = responseDOM.head.querySelectorAll('script[src]');
 			// 如果没有则直接载入响应的HTML文本
 			if (TurboLinks.loadJSList.length < 1) return TurboLinks.pjax.originHandleResponse(responseText, request, href, options);
-			// 去除重复的全局JS文件列表
-			TurboLinks.documentScriptList = TurboLinks.unique(TurboLinks.documentScriptList);
 			// 记录当前文档中的JS文件列表
 			document.querySelectorAll('script[src]').forEach(element => TurboLinks.documentScriptList.push(element.src));
 			// 先载入新的文档中的JS文件，再载入HTML文本
@@ -84,6 +82,8 @@ class TurboLinks {
 		});
 		document.addEventListener('pjax:complete', (options) => {
 			if (options.pjax != 'TurboLinks') return;
+			// 去除重复的全局JS文件列表
+			TurboLinks.documentScriptList = TurboLinks.unique(TurboLinks.documentScriptList);
 			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				if (!TurboLinks.responseDOMCSSLinkList[element.href]) {

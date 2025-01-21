@@ -61,6 +61,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/qmsg/qmsg.js'); ?>" data-turbolinks-permanent></script>
+<script src="<?= joe\theme_url('assets/plugin/autolog.js/autolog.js'); ?>" data-turbolinks-permanent></script>
 
 <?php if ($this->is('single') || $this->options->JMusic == 'on') : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">

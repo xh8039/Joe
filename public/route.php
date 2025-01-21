@@ -772,6 +772,7 @@ function _Meting($self)
 	}
 	$api = new Meting($_REQUEST['server']);
 	$type = $_REQUEST['type'];
+	$self->response->setStatus(200);
 	if ($type == 'playlist') {
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->playlist($_REQUEST['id']);
 		$data = json_decode($data, true);
@@ -784,17 +785,12 @@ function _Meting($self)
 			$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
 			$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
 		}
-		$self->response->setStatus(200);
 		$self->response->throwJson($data);
 	}
 	if ($type == 'url') {
-		$self->response->setStatus(200);
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->url($_REQUEST['id']), true);
 		if (empty($data['url'])) {
-			$self->response->throwJson([
-				'code' => 0,
-				'msg' => '音频URL获取失败！'
-			]);
+			$self->response->throwJson(['code' => 0,'msg' => '音频URL获取失败！']);
 		}
 		$url = $data['url'];
 		$self->response->setStatus(302);
@@ -802,7 +798,6 @@ function _Meting($self)
 		exit;
 	}
 	if ($type == 'pic') {
-		$self->response->setStatus(200);
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->pic($_REQUEST['id'], ($_REQUEST['size'] ?? 300)), true);
 		$url = $data['url'];
 		if (empty($data['url'])) {
@@ -820,7 +815,6 @@ function _Meting($self)
 		// 计算180天后的日期
 		$expireTime = gmdate('D, d M Y H:i:s', time() + (180 * 24 * 60 * 60)) . ' GMT';
 		// 设置缓存控制头部
-		$self->response->setStatus(200);
 		header("Cache-Control: max-age=" . (180 * 24 * 60 * 60) . ", public");
 		header("Expires: $expireTime");
 		header("Content-Type: text/plain; charset=utf-8");
@@ -840,7 +834,6 @@ function _Meting($self)
 		$data['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $data['url_id'] . '&time=' . time();
 		$data['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&id=' . $data['pic_id'];
 		$data['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];
-		$self->response->setStatus(200);
 		$self->response->throwJson([$data]);
 	}
 }

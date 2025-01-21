@@ -65,6 +65,7 @@ class Meting
 
     private function exec($api)
     {
+        var_dump($api);
         if (isset($api['encode'])) {
             $api = call_user_func_array(array($this, $api['encode']), array($api));
         }

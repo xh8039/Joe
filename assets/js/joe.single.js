@@ -77,6 +77,9 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 			}).on('success', () => {
 				window.code_copy = true;
 				autolog.log(`复制成功 内容版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
+				setTimeout(() => {
+					window.code_copy = false;
+				}, 1000);
 			});
 			$(item).append(span);
 		});
@@ -84,19 +87,11 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/* 监听网页复制行为 */
 	{
-		// 获取所有具有类名 "joe_detail__article" 的元素
-		const articleElements = document.querySelectorAll('.joe_detail__article');
-		// 遍历每个元素，添加复制事件监听
-		articleElements.forEach(article => {
-			article.addEventListener('copy', (event) => {
-				// 获取被复制的元素
-				// const copiedElement = event.target;
-				if (window.code_copy !== true && window.post_copy !== true) {
-					autolog.log(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, 'warn', false);
-					window.post_copy = true;
-				}
-				window.code_copy = false;
-			});
+		document.querySelectorAll('.joe_detail__article').addEventListener('copy', (event) => {
+			// 获取被复制的元素
+			// const copiedElement = event.target;
+			console.log(event);
+			if (!window.code_copy) autolog.log(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, 'warn', false);
 		});
 	}
 

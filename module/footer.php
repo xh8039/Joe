@@ -75,7 +75,7 @@ if ($this->options->JFooterMode == 'commercial') {
 								</a>
 							<?php
 							}
-							if (!empty($this->options->JFooterContactZhiHu)) {
+							if (!empty($this->options->JFooterContactEmail)) {
 							?>
 								<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="发邮件" href="mailto:<?= $this->options->JFooterContactEmail ?>">
 									<svg class="icon svg" aria-hidden="true" data-viewBox="-20 80 1024 1024" viewBox="-20 80 1024 1024">

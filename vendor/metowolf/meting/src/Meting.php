@@ -65,7 +65,6 @@ class Meting
 
     private function exec($api)
     {
-        var_dump($api);
         if (isset($api['encode'])) {
             $api = call_user_func_array(array($this, $api['encode']), array($api));
         }
@@ -83,7 +82,7 @@ class Meting
         }
 
         $this->data = $this->raw;
-
+        var_dump($this->data);
         if (isset($api['decode'])) {
             $this->data = call_user_func_array(array($this, $api['decode']), array($this->data));
         }

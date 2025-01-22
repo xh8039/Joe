@@ -190,7 +190,7 @@ class MusicPlayer {
 				this.OPTIONS.audio[key]['cover'] = this.OPTIONS.audio[key]['pic'] ? this.OPTIONS.audio[key]['pic'] : 'https://shp.qpic.cn/collector/2136118039/6980eb0f-bff7-4b15-86a1-ef9f794358da/0'
 			}
 		}
-		if (this.OPTIONS.audio.length > 1 && this.OPTIONS.fixed == true) {
+		if (/windows phone|iphone|android/gi.test(window.navigator.userAgent) && this.OPTIONS.audio.length > 1 && this.OPTIONS.fixed == true) {
 			let reserve = {
 				name: '占位音频',
 				artist: '解决 APlayer 缺少最后两个音频的BUG',

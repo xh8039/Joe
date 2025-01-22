@@ -369,7 +369,7 @@ function themeFields($layout)
 
 	$global_advert = new \Typecho\Widget\Helper\Form\Element\Select(
 		'global_advert',
-		['' => '默认', 'display' => '显示', 'hide' => '隐藏'],
+		['' => '显示', 'hide' => '隐藏'],
 		NULL,
 		'是否显示全局广告',
 	);

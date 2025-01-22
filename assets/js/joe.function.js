@@ -42,7 +42,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 					if (window.Joe.tooltip) window.Joe.tooltip();
 					$(".comment-list [data-toggle='popover']").popover();
 					if (options.replace) options.replace(response);
-					if (options.scrollTo != undefined) window.scrollTo(options.scrollTo, { behavior: 'smooth' });
+					if (options.scrollTo != undefined) Joe.scrollTo(options.scrollTo);
 				},
 				error(xhr, status, error) {
 					options.error(xhr, status, error);
@@ -76,11 +76,16 @@ window.Joe.checkUrl = (string) => {
 }
 
 window.Joe.scrollTo = (selector) => {
-	const $comment = document.querySelector(selector);
 	const $header = document.querySelector('.joe_header');
-	if (!$comment || !$header) return;
-	const top = $comment.offsetTop - $header.offsetHeight - 15;
-	window.scrollTo({ top, behavior: 'smooth' });
+	if (/^\d+$/.test(selector)) {
+		let top = selector - $header.offsetHeight - 15;
+		if (top < 0) top = 0;
+	} else {
+		const $selector = document.querySelector(selector);
+		if (!$selector) return;
+		let top = $selector.offsetTop - $header.offsetHeight - 15;
+	}
+	window.scrollTo({ top: top, behavior: 'smooth' });
 }
 
 window.Joe.removeMeta = (name) => {

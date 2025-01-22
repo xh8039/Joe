@@ -1089,45 +1089,35 @@ function _initiatePay($self)
 		if (Helper::options()->JYiPayMapi == 'on') {
 			$parameter['clientip'] = $clientip;
 			$data = $epay->apiPay($parameter);
-			if ($data['code'] == 1) {
-				if (empty($data['trade_no'])) {
-					$self->response->throwJson(['code' => 500, 'msg' => '获取支付接口订单号失败！']);
-				} else {
-					// 更新订单状态
-					$order_update_sql = $db->update('table.orders')->rows([
-						'api_trade_no' =>  $data['trade_no'],
-					])->where('trade_no = ?', $out_trade_no);
-					if ($db->query($order_update_sql)) {
-						$result = [
-							'check_sdk' => 'epay',
-							'code' => 1,
-							'ip_address' => $clientip,
-							'msg' => '创建订单成功',
-							'order_name' => Helper::options()->title . ' - 付费阅读',
-							'trade_no' => $out_trade_no,
-							'order_price' => isset($data['price']) ? $data['price'] : $price,
-							'payment_method' => $self->request->payment_method,
-							'price' => $price,
-							'return_url' => Helper::options()->themeUrl . '/library/pay/callback.php',
-							'api_trade_no' => $data['trade_no'],
-							'user_id' => USER_ID,
-						];
-						if (!empty($data['qrcode'])) {
-							$result['qrcode'] = $data['qrcode'];
-							$result['url_qrcode'] = Helper::options()->themeUrl . '/module/qrcode.php?text=' . urlencode($data['qrcode']);
-						}
-						if (!empty($data['payurl'])) {
-							$result['open_url'] = true;
-							$result['url'] = $data['payurl'];
-						}
-						$self->response->throwJson($result);
-					} else {
-						$self->response->throwJson(['code' => 500, 'msg' => '更新支付接口订单号失败！']);
-					}
-				}
-			} else {
-				$self->response->throwJson(['code' => 500, 'msg' => $data['msg']]);
+			if ($data['code'] != 1) $self->response->throwJson(['code' => 500, 'msg' => $data['msg']]);
+			$data['trade_no'] = isset($data['trade_no']) ? $data['trade_no'] : $data['orderid'];
+			if (empty($data['trade_no'])) $self->response->throwJson(['code' => 500, 'msg' => '获取支付接口订单号失败！']);
+			// 更新订单状态
+			$order_update_sql = $db->update('table.orders')->rows(['api_trade_no' =>  $data['trade_no']])->where('trade_no = ?', $out_trade_no);
+			if (!$db->query($order_update_sql)) $self->response->throwJson(['code' => 500, 'msg' => '更新支付接口订单号失败！']);
+			$result = [
+				'check_sdk' => 'epay',
+				'code' => 1,
+				'ip_address' => $clientip,
+				'msg' => '创建订单成功',
+				'order_name' => Helper::options()->title . ' - 付费阅读',
+				'trade_no' => $out_trade_no,
+				'order_price' => isset($data['price']) ? $data['price'] : (isset($data['money']) ? $data['money'] : $price),
+				'payment_method' => $self->request->payment_method,
+				'price' => $price,
+				'return_url' => Helper::options()->themeUrl . '/library/pay/callback.php',
+				'api_trade_no' => $data['trade_no'],
+				'user_id' => USER_ID,
+			];
+			if (!empty($data['qrcode'])) {
+				$result['qrcode'] = $data['qrcode'];
+				$result['url_qrcode'] = Helper::options()->themeUrl . '/module/qrcode.php?text=' . urlencode($data['qrcode']);
 			}
+			if (!empty($data['payurl'])) {
+				$result['open_url'] = true;
+				$result['url'] = $data['payurl'];
+			}
+			$self->response->throwJson($result);
 		} else {
 			$html_text = $epay->pagePay($parameter);
 			$self->response->throwJson(['code' => 200, 'form_html' => $html_text]);

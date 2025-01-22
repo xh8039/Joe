@@ -197,7 +197,7 @@ class MusicPlayer {
 			cover: '',
 			lrc: '[00:00.000] 暂无歌词',
 		}
-		this.OPTIONS.audio.push(reserve,reserve);
+		this.OPTIONS.audio.push(reserve, reserve);
 		return this.OPTIONS.audio
 	}
 }

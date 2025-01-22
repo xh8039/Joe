@@ -196,8 +196,7 @@ window.Joe.initComment = (options = {}) => {
 			if (document.querySelector('.joe_detail__leaving')) selectors.push('.joe_detail__leaving');
 			$('#comment_module>.joe_pagination a[href]').click(function (event) {
 				event.preventDefault();
-				url = this.href;
-				window.Joe.pjax(url, selectors, {
+				window.Joe.pjax(this.href, selectors, {
 					beforeSend() {
 						window.Joe.commentListAutoRefresh = false;
 						$('#comment_module>.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
@@ -208,6 +207,7 @@ window.Joe.initComment = (options = {}) => {
 					replace() {
 						Joe.initComment({ draw: false, owo: false, submit: false });
 						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
+						Joe.scrollTo('.comment-list');
 					}
 				});
 			});

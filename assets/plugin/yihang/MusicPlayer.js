@@ -101,13 +101,9 @@ class MusicPlayer {
 			return
 		}
 		let storage_music = this.getMusic(this.OPTIONS.storage);
-		if (!storage_music) {
-			return
-		}
+		if (!storage_music) return
 		let music = this.PLAYER.list.audios[storage_music.index]
-		if (!music) {
-			return
-		}
+		if (!music) return
 		if (
 			(this.PLAYER.list.audios.length != 1) &&
 			(music['url'] != storage_music['url']) &&
@@ -123,9 +119,7 @@ class MusicPlayer {
 			var time = this.PLAYER.audio.currentTime;
 			if (time <= 0) {
 				// alert('垃圾浏览器，音频的loadedmetadata事件都监控不准');
-				setTimeout(() => {
-					this.PLAYER.seek(storage_music.time);
-				}, 50);
+				setTimeout(() => this.PLAYER.seek(storage_music.time), 50);
 			}
 			seek_loadedmetadata = false;
 		})
@@ -136,23 +130,17 @@ class MusicPlayer {
 	 * @return object|null
 	 */
 	getMusic(storage = null) {
-		if (localStorage.getItem('music_player')) {
-			var data = JSON.parse(localStorage.getItem('music_player'));
-			if (storage) {
-				return data[storage] ? data[storage] : null
-			}
-			return data
-		}
-		return null
+		if (!localStorage.getItem('music_player')) return null
+		let data = JSON.parse(localStorage.getItem('music_player'));
+		if (storage) return data[storage] ? data[storage] : null
+		return data
 	}
 
 	/**
 	 * 存储音乐
 	 */
 	storageMusic() {
-		if (!this.OPTIONS.storage) {
-			return;
-		}
+		if (!this.OPTIONS.storage) return;
 		let music = this.PLAYER.list.audios[this.PLAYER.list.index];
 		music.time = this.PLAYER.audio.currentTime;
 		music.index = this.PLAYER.list.index;
@@ -166,24 +154,22 @@ class MusicPlayer {
 	 * 音乐播放器自动主题色
 	 */
 	autoTheme(index) {
-		if (this.PLAYER.list.audios[index]) {
-			if (!this.PLAYER.list.audios[index].theme) {
-				let xhr = new XMLHttpRequest()
-				xhr.open('GET', this.PLAYER.list.audios[index].cover, true)
-				xhr.responseType = 'blob'
-				xhr.send()
-				xhr.onload = () => {
-					var coverUrl = URL.createObjectURL(xhr.response)
-					let image = new Image()
-					image.onload = () => {
-						let colorThief = new ColorThief()
-						let color = colorThief.getColor(image)
-						this.PLAYER.theme(`rgb(${color[0]}, ${color[1]}, ${color[2]})`, index)
-						URL.revokeObjectURL(coverUrl)
-					}
-					image.src = coverUrl
-				}
+		if (!this.PLAYER.list.audios[index]) return;
+		if (this.PLAYER.list.audios[index].theme) return;
+		let xhr = new XMLHttpRequest()
+		xhr.open('GET', this.PLAYER.list.audios[index].cover, true)
+		xhr.responseType = 'blob'
+		xhr.send()
+		xhr.onload = () => {
+			var coverUrl = URL.createObjectURL(xhr.response)
+			let image = new Image()
+			image.onload = () => {
+				let colorThief = new ColorThief()
+				let color = colorThief.getColor(image)
+				this.PLAYER.theme(`rgb(${color[0]}, ${color[1]}, ${color[2]})`, index)
+				URL.revokeObjectURL(coverUrl)
 			}
+			image.src = coverUrl
 		}
 	}
 

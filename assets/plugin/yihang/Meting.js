@@ -119,7 +119,7 @@ class MetingJSElement extends HTMLElement {
 		let div = document.createElement('div')
 		options.container = div
 		this.appendChild(div)
-		this.aplayer = new MusicPlayer(options);
+		this.aplayer = new APlayer(options);
 		window.MetingJS = this;
 	}
 

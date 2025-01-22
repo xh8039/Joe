@@ -774,6 +774,9 @@ function _Meting($self)
 	$type = $_REQUEST['type'];
 	$self->response->setStatus(200);
 	if ($type == 'playlist') {
+		if ($_REQUEST['server'] == 'kugou' && !is_numeric($_REQUEST['id'])) {
+			echo \network\http\get('https://t1.kugou.com/' . $_REQUEST['id']);
+		}
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->playlist($_REQUEST['id']);
 		$data = json_decode($data, true);
 		if (!empty($data['error'])) $self->response->throwJson($data);
@@ -790,9 +793,7 @@ function _Meting($self)
 	}
 	if ($type == 'url') {
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->url($_REQUEST['id']), true);
-		if (empty($data['url'])) {
-			$self->response->throwJson(['code' => 0,'msg' => '音频URL获取失败！']);
-		}
+		if (empty($data['url'])) $self->response->throwJson(['code' => 0, 'msg' => '音频URL获取失败！']);
 		$url = $data['url'];
 		$self->response->setStatus(302);
 		header("Location: $url");
@@ -801,12 +802,7 @@ function _Meting($self)
 	if ($type == 'pic') {
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->pic($_REQUEST['id'], ($_REQUEST['size'] ?? 300)), true);
 		$url = $data['url'];
-		if (empty($data['url'])) {
-			$self->response->throwJson([
-				'code' => 0,
-				'msg' => '封面URL获取失败！'
-			]);
-		}
+		if (empty($data['url'])) $self->response->throwJson(['code' => 0, 'msg' => '封面URL获取失败！']);
 		$self->response->setStatus(302);
 		header("Location: $url");
 		exit;

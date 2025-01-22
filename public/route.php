@@ -818,7 +818,7 @@ function _Meting($self)
 					$data[$key]['title'] = trim($name[1]);
 					$base_url = Helper::options()->index . '/joe/api?routeType=meting';
 					$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['hash'] . '&time=' . time();
-					$data[$key]['pic'] = str_replace('{size}', '500', $value['cover']);
+					$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['hash'];
 					$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['hash'];
 				}
 				$self->response->throwJson($data);

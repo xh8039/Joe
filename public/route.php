@@ -810,8 +810,8 @@ function _Meting($self)
 			}
 			if (strpos($response, 'window.$output')) {
 				$data = preg_match('/window\.\$output \= \{(.*)\};/', $response, $response_match);
-				$data = json_decode('{' . $response_match[1] . '}', true);
 				print_r($data);
+				$data = json_decode('{' . $response_match[1] . '}', true);
 				$self->response->throwJson($data);
 				foreach ($data as $key => $value) {
 					unset($data[$key]);

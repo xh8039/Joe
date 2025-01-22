@@ -7,7 +7,7 @@ class Joe extends JoeAction {
 				key: 'Tab',
 				run: ({ state, dispatch }) => {
 					if (state.selection.ranges.some(r => !r.empty)) return CodeMirror.indentMore({ state, dispatch });
-					dispatch(state.update(state.replaceSelection('  ')));
+					dispatch(state.update(state.replaceSelection('    ')));
 					return true;
 				},
 				shift: CodeMirror.indentLess
@@ -21,6 +21,7 @@ class Joe extends JoeAction {
 		this.init_Insert();
 		this.init_AutoSave();
 		this.init_AutoStorage();
+		this.init_CleanFields();
 	}
 
 	/* 已测 √ */
@@ -433,6 +434,23 @@ class Joe extends JoeAction {
 		setInterval(saveFn, 5000);
 	}
 
+	init_CleanFields() {
+		var form = document.querySelector('[name="write_post"]') || document.querySelector('[name="write_page"]');
+		if (!form) return;
+		form.addEventListener('submit', () => {
+			let inputs = document.querySelectorAll('#custom-field tbody input');
+			let textareas = document.querySelectorAll('#custom-field tbody textarea');
+			let selects = document.querySelectorAll('#custom-field tbody select');
+			let fields = [...inputs, ...textareas, ...selects];
+			fields.forEach(field => {
+				if (field.value == '') {
+					console.log(field.name);
+					field.remove();
+				}
+			});
+		});
+	}
+
 	init_AutoStorage() {
 		var form = document.querySelector('[name="write_post"]') || document.querySelector('[name="write_page"]');
 		if (!form) return;
@@ -515,11 +533,7 @@ class Joe extends JoeAction {
 				saveFormData();
 			}
 		});
-
-		form.onsubmit = function (event) {
-			// 删除自动保存的本地存储数据
-			localStorage.removeItem('form-data');
-		};
+		form.addEventListener('submit', () => localStorage.removeItem('form-data'));
 	}
 }
 

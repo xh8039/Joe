@@ -196,7 +196,7 @@ class Editor
 		<script src="<?= joe\theme_url('assets/typecho/write/js/tools.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/actions.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/create.js', false) ?>"></script>
-		<script src="<?= joe\theme_url('assets/typecho/write/js/index.js', false) ?>"></script>
+		<script src="<?= joe\theme_url('assets/typecho/write/js/index.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js', false) ?>"></script>

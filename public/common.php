@@ -45,8 +45,6 @@ require_once(JOE_ROOT . 'public/factory.php');
 /* 主题初始化 */
 function themeInit($self)
 {
-	joe\install_sql();
-	exit;
 	/** 首次启用安装主题 */
 	joe\install();
 	/* 强制用户要求填写邮箱 */

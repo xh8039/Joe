@@ -809,7 +809,7 @@ function _Meting($self)
 				$self->response->throwJson($data);
 			}
 			if (strpos($response, 'window.$output')) {
-				$data = preg_match('/window\.\$output \= \{(.*)\};/', $response, $response_match);
+				$data = preg_match('/window\.\$output \= \{(.*)\}; \<\/script\>/', $response, $response_match);
 				print_r($response_match);
 				$data = json_decode('{' . $response_match[1] . '}', true);
 				$self->response->throwJson($data);

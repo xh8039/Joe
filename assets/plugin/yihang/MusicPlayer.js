@@ -193,6 +193,7 @@ class MusicPlayer {
 	 */
 	setMusic() {
 		let music = this.OPTIONS.audio
+		console.log(music)
 		for (let key in music) {
 			// 音频名称
 			if (!music[key]['name']) {

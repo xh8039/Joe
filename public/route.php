@@ -780,7 +780,7 @@ function _Meting($self)
 				'accept-encoding' => 'gzip, deflate, br, zstd',
 				'accept-language' => 'zh-CN,zh;q=0.9',
 				'cache-control' => 'no-cache',
-				'cookie' => Helper::options()->JMusicCookie,
+				// 'cookie' => Helper::options()->JMusicCookie,
 				'pragma' => 'no-cache',
 				'priority' => 'u=0, i',
 				'sec-ch-ua' => '"Not A(Brand";v="8", "Chromium";v="132", "Microsoft Edge";v="132"',
@@ -791,7 +791,7 @@ function _Meting($self)
 				'sec-fetch-site' => 'none',
 				'sec-fetch-user' => '?1',
 				'upgrade-insecure-requests' => '1',
-				'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0',
+				'user-agent' => 'Baiduspider',
 			];
 			$response = (new \network\http\Client())->header($headers)->get($_REQUEST['id'])->body();
 			echo $response;

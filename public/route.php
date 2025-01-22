@@ -793,7 +793,7 @@ function _Meting($self)
 				'upgrade-insecure-requests' => '1',
 				'user-agent' => 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36 EdgA/129.0.0.0 Edg/130.0.0.0',
 			];
-			$response = (new \network\http\Client(['followLocation' => false]))->header($headers)->get($_REQUEST['id'])->body();
+			$response = (new \network\http\Client())->header($headers)->get($_REQUEST['id'])->body();
 			if (strpos($response, 'dataFromSmarty')) {
 				$data = preg_match('/dataFromSmarty \= \[\{(.*)\}\]/', $response, $response_match);
 				$data = json_decode('[{' . $response_match[1] . '}]', true);

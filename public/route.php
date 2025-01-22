@@ -794,6 +794,7 @@ function _Meting($self)
 				'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0',
 			];
 			$response = (new \network\http\Client())->header($headers)->get($_REQUEST['id'])->body();
+			echo $response;
 			if (strpos($response, 'dataFromSmarty')) {
 				$data = preg_match('/dataFromSmarty \= \[\{(.*)\}\]/', $response, $response_match);
 				$data = json_decode('[{' . $response_match[1] . '}]', true);

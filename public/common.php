@@ -212,7 +212,7 @@ function themeFields($layout)
 	$mode = new \Typecho\Widget\Helper\Form\Element\Select(
 		'mode',
 		array(
-			'default' => '默认模式',
+			'' => '默认模式',
 			'single' => '大图模式',
 			'multiple' => '三图模式',
 			'none' => '无图模式'

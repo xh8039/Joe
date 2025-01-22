@@ -1014,44 +1014,27 @@ function _payCashierModal($self)
 
 function _initiatePay($self)
 {
-	if (!is_numeric($self->request->cid)) {
-		$self->response->setStatus(404);
-		return;
-	}
-
 	$cid = trim($self->request->cid);
+
+	if (!is_numeric($cid)) $self->response->setStatus(404);
 
 	$epay_config = [];
 
-	if (empty(Helper::options()->JYiPayApi)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
-		return;
-	}
+	if (empty(Helper::options()->JYiPayApi)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
 	$epay_config['apiurl'] = trim(Helper::options()->JYiPayApi);
 
-	if (empty(Helper::options()->JYiPayID)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
-		return;
-	}
+	if (empty(Helper::options()->JYiPayID)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
 	$epay_config['partner'] = trim(Helper::options()->JYiPayID);
 
-	if (empty(Helper::options()->JYiPayKey)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
-		return;
-	}
+	if (empty(Helper::options()->JYiPayKey)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
 	$epay_config['key'] = trim(Helper::options()->JYiPayKey);
 
-	if (!empty(Helper::options()->JYiPayMapiUrl)) {
-		$epay_config['mapi_url'] = trim(Helper::options()->JYiPayMapiUrl);
-	}
+	if (!empty(Helper::options()->JYiPayMapiUrl)) $epay_config['mapi_url'] = trim(Helper::options()->JYiPayMapiUrl);
 
 	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 	$item->next();
 	$price = $item->fields->price;
-	if (!is_numeric($price) || round($price, 2) <= 0) {
-		$self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
-		return;
-	}
+	if (!is_numeric($price) || round($price, 2) <= 0) $self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
 	$price = round($price, 2);
 	$out_trade_no = date("YmdHis") . mt_rand(100, 999);
 	//构造要请求的参数数组，无需改动

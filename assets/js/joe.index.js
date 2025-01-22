@@ -311,7 +311,7 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 				window.scrollTo({ top: offset - 15, behavior: 'smooth' });
 			});
 		} else {
-			Joe.pjax('.joe_pagination>li>a[href]', ['title', '.joe_index__list', '.joe_pagination'], {
+			Joe.pjax('.joe_pagination>li>a[href]', ['.joe_index__list', '.joe_pagination'], {
 				beforeSend() {
 					$('.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
 				},

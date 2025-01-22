@@ -190,6 +190,14 @@ class MusicPlayer {
 				this.OPTIONS.audio[key]['cover'] = this.OPTIONS.audio[key]['pic'] ? this.OPTIONS.audio[key]['pic'] : 'https://shp.qpic.cn/collector/2136118039/6980eb0f-bff7-4b15-86a1-ef9f794358da/0'
 			}
 		}
+		let reserve = {
+			name: 'Audio name',
+			artist: 'Audio artist',
+			url: '',
+			cover: '',
+			lrc: '[00:00.000] 暂无歌词',
+		}
+		this.OPTIONS.audio.push(reserve,reserve);
 		console.log(this.OPTIONS.audio)
 		return this.OPTIONS.audio
 	}

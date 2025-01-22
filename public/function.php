@@ -820,9 +820,10 @@ function install_sql()
 	if ($adapter == 'Mysqli') $adapter = 'Mysql';
 	$SQLFile = JOE_ROOT . 'install/' . $adapter . '.sql';
 	if (!file_exists($SQLFile)) return '暂不兼容 [' . $adapter . '] 数据库适配器！';
-	$SQL = file_get_contents($SQLFile);
+	$SQL = trim(file_get_contents($SQLFile), ';');
 	$SQL = str_replace(['prefix_', 'typecho_'], $DB->getPrefix(), $SQL);
-	return explode(';', $SQL);
+	$SQL = explode(';', $SQL);
+	return $SQL;
 }
 
 function install()

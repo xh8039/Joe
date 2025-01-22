@@ -198,7 +198,6 @@ class MusicPlayer {
 			lrc: '[00:00.000] 暂无歌词',
 		}
 		this.OPTIONS.audio.push(reserve,reserve);
-		console.log(this.OPTIONS.audio)
 		return this.OPTIONS.audio
 	}
 }

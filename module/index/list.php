@@ -68,7 +68,7 @@ if ($this->options->IndexAjaxList == 'on') {
 <?php
 } else if ($this->have()) {
 ?>
-	<div class="box-body notop nobottom">
+	<div class="box-body notop">
 		<div class="title-theme">最新发布</div>
 	</div>
 	<div class="joe_index__list">

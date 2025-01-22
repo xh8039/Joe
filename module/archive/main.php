@@ -33,7 +33,7 @@
         '<span class="hide-sm mr6">下一页</span><i class="fa fa-angle-right em12"></i>',
         1,
         '...',
-        array(
+        [
             'wrapTag' => 'ul',
             'wrapClass' => 'joe_pagination',
             'itemTag' => 'li',
@@ -41,7 +41,7 @@
             'currentClass' => 'active',
             'prevClass' => 'prev',
             'nextClass' => 'next'
-        )
+        ]
     );
     ?>
 </div>

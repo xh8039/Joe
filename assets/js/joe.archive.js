@@ -17,9 +17,12 @@ Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoad
 
 	/* 分页Pjax加载 */
 	{
-		Joe.pjax('.joe_pagination>li>a[href]', ['title', 'h1', '.joe_main'], {
+		Joe.pjax('.joe_pagination>li>a[href]', ['title', '.joe_main'], {
 			beforeSend() {
 				$('.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
+			},
+			replace() {
+				$('.joe_pagination>li>a[href]').attr('ajax-replace', 'true');
 			},
 			scrollTo: 0
 		});

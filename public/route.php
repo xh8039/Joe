@@ -811,7 +811,6 @@ function _Meting($self)
 			if (strpos($response, 'window.$output')) {
 				$data = preg_match('/window\.\$output \= \{(.*)\}; \<\/script\>/', $response, $response_match);
 				$data = json_decode('{' . $response_match[1] . '}', true)['info']['songs'];
-				print_r($data);
 				foreach ($data as $key => $value) {
 					unset($data[$key]);
 					$name = explode('-', $value['name']);

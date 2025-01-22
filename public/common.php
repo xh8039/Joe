@@ -226,8 +226,8 @@ function themeFields($layout)
 
 	$hide = new \Typecho\Widget\Helper\Form\Element\Select(
 		'hide',
-		['comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
-		'comment',
+		['' => '默认模式', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
+		NULL,
 		'隐藏内容模式',
 		'可将隐藏内容设置为评论可见、付费可见、登录可见'
 	);

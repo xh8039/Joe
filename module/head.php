@@ -15,8 +15,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <link rel="shortcut icon" href="<?php $this->options->JFavicon() ?>" />
 <title><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php if ($this->_currentPage > 1) echo '第 ' . $this->_currentPage . ' 页 - '; ?><?php $this->options->title(); ?></title>
 <?php if ($this->is('single')) { ?>
-	<meta name="keywords" content="<?= $this->fields->keywords ? $this->fields->keywords : $this->keywords; ?>" />
-	<meta name="description" content="<?= $this->fields->description ? $this->fields->description : joe\post_description($this); ?>" />
+	<meta name="keywords" content="<?= isset($this->fields->keywords) ? $this->fields->keywords : $this->keywords; ?>" />
+	<meta name="description" content="<?= isset($this->fields->description) ? $this->fields->description : joe\post_description($this); ?>" />
 <?php
 	$this->header('keywords=&description=&commentReply=&antiSpam=');
 } else {

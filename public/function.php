@@ -219,7 +219,7 @@ function getAsideAuthorMotto()
 /* 获取文章摘要 */
 function getAbstract($item, $type = true)
 {
-	if ($item->fields->abstract) {
+	if (!empty($item->fields->abstract)) {
 		$abstract = $item->fields->abstract;
 	} else {
 		$abstract = post_description($item, null);
@@ -239,7 +239,7 @@ function getThumbnails($item)
 	$patternMD = '/\!\[.*?\]\((http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i';
 	$patternMDfoot = '/\[.*?\]:\s*(http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i';
 	/* 如果填写了自定义缩略图，则优先显示填写的缩略图 */
-	if ($item->fields->thumb) {
+	if (!empty($item->fields->thumb)) {
 		$fields_thumb_arr = explode("\r\n", $item->fields->thumb);
 		foreach ($fields_thumb_arr as $list) $result[] = $list;
 	}
@@ -980,7 +980,10 @@ function get_archive_tags($item)
 {
 	$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 	$tags = '';
+	if (empty($item->fields->hide)) $item->fields->hide = 'comment';
+	if (empty($item->fields->pay_tag_background)) $item->fields->pay_tag_background = 'yellow';
 	if ($item->fields->hide == 'pay' && $item->fields->pay_tag_background != 'none') {
+		if (empty($item->fields->price)) $item->fields->price = 0;
 		$tags .= '<a rel="nofollow" href="' . $item->permalink . '?scroll=pay-box" class="meta-pay but jb-' . $item->fields->pay_tag_background . '">' . ($item->fields->price > 0 ? '付费阅读<span class="em09 ml3">￥</span>' . $item->fields->price : '免费资源') . '</a>';
 	}
 	foreach ($item->categories as $key => $value) {
@@ -1190,6 +1193,7 @@ function commentsAntiSpam($respondId)
 function markdown_hide_($content, $post, $login)
 {
 	if (strpos($content, '{hide') === false) return $content;
+	if (empty($post->fields->hide)) $post->fields->hide = 'comment';
 	if ($post->fields->hide == 'pay') {
 		$db = \Typecho_Db::get();
 		$pay = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
@@ -1199,6 +1203,7 @@ function markdown_hide_($content, $post, $login)
 			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 			$content = _payPurchased($post, $pay) . $content;
 		} else {
+			if (empty($post->fields->price)) $post->fields->price = 0;
 			if ($post->fields->price > 0) {
 				$pay_box_position = _payBox($post);
 			} else {
@@ -1227,6 +1232,7 @@ function markdown_hide_($content, $post, $login)
 					$pay_box_position = _payFreeResources($post);
 				}
 			}
+			if (empty($post->fields->pay_box_position)) $post->fields->pay_box_position = 'top';
 			if ($post->fields->pay_box_position == 'top' && !detectSpider()) {
 				$content = $pay_box_position . $content;
 			}
@@ -1263,7 +1269,7 @@ function markdown_hide($content, $post, $login)
 
 	// 判断是否显示隐藏内容
 	$showContent = false;
-
+	if (empty($post->fields->hide)) $post->fields->hide = 'comment';
 	if ($post->fields->hide == 'login') {
 		$showContent = $login; // 是否登录决定是否显示内容
 	} else {
@@ -1271,6 +1277,7 @@ function markdown_hide($content, $post, $login)
 		$userEmail = $login ? $GLOBALS['JOE_USER']->mail : $post->remember('mail', true);
 		// 查询评论信息
 		$comment = $db->fetchRow($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $userEmail)->limit(1));
+		if (empty($post->fields->price)) $post->fields->price = 0;
 		if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
 			// 查询支付信息
 			$payment = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
@@ -1295,7 +1302,7 @@ function markdown_hide($content, $post, $login)
 
 	// 处理付费内容显示逻辑 非爬虫才显示付费框
 	if ($post->fields->hide == 'pay' && !detectSpider()) {
-
+		if (empty($post->fields->price)) $post->fields->price = 0;
 		if ($post->fields->price > 0) {
 			$pay_box_position = $showContent ? _payPurchased($post, $payment) : _payBox($post); // 付费资源
 		} else {
@@ -1303,6 +1310,7 @@ function markdown_hide($content, $post, $login)
 		}
 
 		// 根据设置在顶部或底部显示付费框
+		if (empty($post->fields->pay_box_position)) $post->fields->pay_box_position = 'top';
 		if ($post->fields->pay_box_position == 'top') $content = $pay_box_position . $content;
 		if ($post->fields->pay_box_position == 'bottom') $content = $content . $pay_box_position;
 	}

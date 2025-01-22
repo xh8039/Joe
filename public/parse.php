@@ -189,6 +189,7 @@ function _payFreeResources($post, $comment)
 		</div>';
 	}
 	$login_comment = (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on') ? true : false;
+	if (empty($post->fields->price)) $post->fields->price = 0;
 	return '
 	<div class="zib-widget pay-box" id="posts-pay">
 		<div class="flex pay-flexbox">
@@ -228,6 +229,7 @@ function _payBox($post)
 {
 	$db = Typecho_Db::get();
 	$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
+	if (empty($post->fields->price)) $post->fields->price = 0;
 	return '
 	<div class="zib-widget pay-box" id="posts-pay">
 		<div class="flex pay-flexbox">

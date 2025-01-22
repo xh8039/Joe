@@ -4,6 +4,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 $post_ad = joe\optionMulti($this->options->JPost_Ad);
+if (empty($this->fields->global_advert)) $this->fields->global_advert = 'display';
 if (!empty($post_ad) && !joe\detectSpider() && $this->fields->global_advert != 'hide') {
 ?>
 	<style>

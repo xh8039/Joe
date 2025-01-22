@@ -211,12 +211,7 @@ function themeFields($layout)
 
 	$mode = new \Typecho\Widget\Helper\Form\Element\Select(
 		'mode',
-		array(
-			'' => '默认模式',
-			'single' => '大图模式',
-			'multiple' => '三图模式',
-			'none' => '无图模式'
-		),
+		['' => '默认模式（不占数据）', 'default' => '一图模式', 'single' => '大图模式', 'multiple' => '三图模式', 'none' => '无图模式'],
 		NULL,
 		'文章显示方式',
 		'介绍：用于设置当前文章在首页和搜索页的显示方式 <br />
@@ -226,7 +221,7 @@ function themeFields($layout)
 
 	$hide = new \Typecho\Widget\Helper\Form\Element\Select(
 		'hide',
-		['' => '默认模式', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
+		['' => '默认模式（不占数据）', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
 		NULL,
 		'隐藏内容模式',
 		'可将隐藏内容设置为评论可见、付费可见、登录可见'
@@ -236,7 +231,7 @@ function themeFields($layout)
 	$price = new \Typecho\Widget\Helper\Form\Element\Text(
 		'price',
 		NULL,
-		'0',
+		NULL,
 		'隐藏内容付费金额',
 		'设置为 0 则是免费资源，付费可见功能需要在 [主题设置=>付费设置] 处配置好您的支付信息后可用'
 	);
@@ -245,8 +240,8 @@ function themeFields($layout)
 
 	$pay_box_position = new \Typecho\Widget\Helper\Form\Element\Select(
 		'pay_box_position',
-		array('top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'),
-		'top',
+		['' => '默认位置（不占数据）', 'top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'],
+		NULL,
 		'付费阅读模块显示位置',
 		'在文章页面中购买模块的显示位置'
 	);
@@ -254,7 +249,7 @@ function themeFields($layout)
 
 	$pay_tag_background = new \Typecho\Widget\Helper\Form\Element\Select(
 		'pay_tag_background',
-		['' => '默认颜色', 'yellow' => '渐变黄', 'blue' => '渐变蓝', 'cyan' => '渐变青', 'green' => '渐变绿', 'purple' => '渐变紫', 'red' => '渐变红', 'pink' => '渐变粉', 'vip1' => '豪华VIP', 'vip2' => '轻奢VIP', 'none' => '不显示'],
+		['' => '默认颜色（不占数据）', 'yellow' => '渐变黄', 'blue' => '渐变蓝', 'cyan' => '渐变青', 'green' => '渐变绿', 'purple' => '渐变紫', 'red' => '渐变红', 'pink' => '渐变粉', 'vip1' => '豪华VIP', 'vip2' => '轻奢VIP', 'none' => '不显示'],
 		NULL,
 		'付费阅读标签背景颜色',
 		'<script>
@@ -360,8 +355,8 @@ function themeFields($layout)
 	if (Helper::options()->JPost_Record_Detection == 'on') {
 		$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(
 			'baidu_push',
-			array('no' => '未推送', 'yes' => '已推送'),
-			'no',
+			['' => '默认未推送（不占数据）', 'no' => '未推送', 'yes' => '已推送'],
+			NULL,
 			'百度收录推送状态',
 		);
 		$layout->addItem($baidu_push);
@@ -369,7 +364,7 @@ function themeFields($layout)
 
 	$global_advert = new \Typecho\Widget\Helper\Form\Element\Select(
 		'global_advert',
-		['' => '显示', 'hide' => '隐藏'],
+		['' => '默认显示（不占数据）', 'display' => '显示', 'hide' => '隐藏'],
 		NULL,
 		'是否显示全局广告',
 	);

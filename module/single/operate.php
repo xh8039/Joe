@@ -19,17 +19,24 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		</svg><text>分享</text>
 		<div class="zib-widget hover-show-con share-button dropdown-menu">
 			<div>
-				<a rel="nofollow" class="share-btn qzone" target="_blank" title="QQ空间" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?= urlencode($this->permalink) ?>&title=<?= urlencode($this->title . ' - ' . $this->options->title) ?>&pics=<?= urlencode(joe\getThumbnails($this)[0]) ?>&summary=<?= urlencode($this->fields->description ? $this->fields->description : joe\markdown_filter($this->description)) ?>">
+				<?php
+				$description = isset($this->fields->description) ? $this->fields->description : joe\markdown_filter($this->description);
+				$description = urlencode($description);
+				$pic = urlencode(joe\getThumbnails($this)[0]);
+				$title = urlencode($this->title . ' - ' . $this->options->title);
+				$permalink = urlencode($this->permalink);
+				?>
+				<a rel="nofollow" class="share-btn qzone" target="_blank" title="QQ空间" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?= $permalink ?>&title=<?= $title ?>&pics=<?= $pic ?>&summary=<?= $description ?>">
 					<icon><svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-qzone-color"></use>
 						</svg></icon><text>QQ空间<text></text></text>
 				</a>
-				<a rel="nofollow" class="share-btn weibo" target="_blank" title="微博" href="https://service.weibo.com/share/share.php?url=<?= urlencode($this->permalink) ?>&title=<?= urlencode($this->title . ' - ' . $this->options->title) ?>&pic=<?= urlencode(joe\getThumbnails($this)[0]) ?>&searchPic=false">
+				<a rel="nofollow" class="share-btn weibo" target="_blank" title="微博" href="https://service.weibo.com/share/share.php?url=<?= $permalink ?>&title=<?= $title ?>&pic=<?= $pic ?>&searchPic=false">
 					<icon><svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-weibo-color"></use>
 						</svg></icon><text>微博<text></text></text>
 				</a>
-				<a rel="nofollow" class="share-btn qq" target="_blank" title="QQ好友" href="https://connect.qq.com/widget/shareqq/index.html?url=<?= urlencode($this->permalink) ?>&title=<?= urlencode($this->title . ' - ' . $this->options->title) ?>&pics=<?= urlencode(joe\getThumbnails($this)[0]) ?>&desc=<?= urlencode($this->fields->description ? $this->fields->description : joe\markdown_filter($this->description)) ?>">
+				<a rel="nofollow" class="share-btn qq" target="_blank" title="QQ好友" href="https://connect.qq.com/widget/shareqq/index.html?url=<?= $permalink ?>&title=<?= $title ?>&pics=<?= $pic ?>&desc=<?= $description ?>">
 					<icon><svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-qq-color"></use>
 						</svg></icon><text>QQ好友<text></text></text>

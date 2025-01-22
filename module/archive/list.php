@@ -12,7 +12,7 @@ while ($this->next()) :
 		}
 		if (array_intersect($categorize_slug_list, $index_hide_categorize_list)) continue;
 	}
-	if ($this->fields->mode === "default" || !$this->fields->mode) : ?>
+	if ($this->fields->mode == "default" || empty($this->fields->mode)) : ?>
 		<li class="joe_list__item wow default">
 			<div class="line"></div>
 			<a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer">

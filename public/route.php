@@ -810,16 +810,16 @@ function _Meting($self)
 			}
 			if (strpos($response, 'window.$output')) {
 				$data = preg_match('/window\.\$output \= \{(.*)\}; \<\/script\>/', $response, $response_match);
-				print_r($response_match);
-				$data = json_decode('{' . $response_match[1] . '}', true);
-				$self->response->throwJson($data);
+				$data = json_decode('{' . $response_match[1] . '}', true)['info']['songs'];
+				print_r($data);
 				foreach ($data as $key => $value) {
 					unset($data[$key]);
-					$data[$key]['author'] = is_array($value['author_name']) ? implode(' / ', $value['author_name']) : $value['author_name'];
-					$data[$key]['title'] = $value['song_name'];
+					$name = explode('-', $value['name']);
+					$data[$key]['author'] = trim($name[0]);
+					$data[$key]['title'] = trim($name[1]);
 					$base_url = Helper::options()->index . '/joe/api?routeType=meting';
 					$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['hash'] . '&time=' . time();
-					$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['hash'];
+					$data[$key]['pic'] = str_replace('{size}', '500', $value['cover']);
 					$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['hash'];
 				}
 				$self->response->throwJson($data);

@@ -3,7 +3,8 @@ function getChildren(el, className) {
 	for (let item of el.children) if (item.className === className) return item;
 	return null;
 }
-Joe.DOMContentLoaded.short = Joe.DOMContentLoaded?.short ? Joe.DOMContentLoaded.short : () => {
+Joe.DOMContentLoaded = Joe.DOMContentLoaded ? Joe.DOMContentLoaded : {};
+Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
 	console.log('调用：Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
 

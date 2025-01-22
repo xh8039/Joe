@@ -1,5 +1,5 @@
 if (!window.Joe) window.Joe = {};
-
+window.Joe.options = window.Joe.options ? window.Joe.options : {};
 window.Joe.pjax = (url, selectors = [], options = {}) => {
 	if (url instanceof Object) {
 		options = url;

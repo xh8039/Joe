@@ -369,25 +369,19 @@ function _pushRecord($self)
 		// 存储推送记录到文章或者页面的自定义字段里面
 		$db = Typecho_Db::get();
 		if (isset($row['str_value']) && $row['str_value'] != 'yes') {
-			$db->query(
-				$db->update('table.fields')
-					->rows(['str_value' => 'yes'])
-					->where('cid = ?', $cid)
-					->where('name = ?', 'baidu_push')
-			);
+			$db->query($db->update('table.fields')
+				->rows(['str_value' => 'yes'])
+				->where('cid = ?', $cid)
+				->where('name = ?', 'baidu_push'));
 		} else {
-			$db->query(
-				$db
-					->insert('table.fields')
-					->rows(array(
-						'cid' => $cid,
-						'name' => 'baidu_push',
-						'type' => 'str',
-						'str_value' => 'yes',
-						'int_value' => '0',
-						'float_value' => '0',
-					))
-			);
+			$db->query($db->insert('table.fields')->rows([
+				'cid' => $cid,
+				'name' => 'baidu_push',
+				'type' => 'str',
+				'str_value' => 'yes',
+				'int_value' => '0',
+				'float_value' => '0',
+			]));
 		}
 	}
 	if (!empty($result['message'])) {
@@ -404,11 +398,11 @@ function _pushRecord($self)
 			if ($result['message'] == $key) $result['message'] = $value;
 		}
 	}
-	$self->response->throwJson(array(
+	$self->response->throwJson([
 		'domain' => $domain,
 		'url' => $url,
 		'data' => $result
-	));
+	]);
 }
 
 // 主动推送到必应收录
@@ -416,17 +410,12 @@ function _pushBing($self)
 {
 	$self->response->setStatus(200);
 	$token = Helper::options()->BingPushToken;
-	if (empty($token)) {
-		exit;
-	}
+	if (empty($token)) exit;
 	$domain = $self->request->domain;  //网站域名
 	$url = explode('?', $self->request->url, 2)[0];
 	$urls = explode(",", $url);  //要推送的url
 	$api = "https://www.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=$token";
-	$data = array(
-		'siteUrl' => $domain,
-		'urlList' => $urls
-	);
+	$data = ['siteUrl' => $domain, 'urlList' => $urls];
 	$ch = curl_init();
 	$options =  array(
 		CURLOPT_URL => $api,
@@ -453,16 +442,9 @@ function _getWallpaperType($self)
 	$api = $WallpaperAPI['type'] ?? 'http://cdn.apc.360.cn/index.php';
 	$res = \network\http\get($api . "?c=WallPaper&a=getAllCategoriesV2&from=360chrome")->toArray();
 	if (is_array($res) && $res['errno'] == 0) {
-		$self->response->throwJson([
-			"code" => 1,
-			"data" => $res['data']
-		]);
+		$self->response->throwJson(["code" => 1, "data" => $res['data']]);
 	}
-	$self->response->throwJson([
-		"code" => 0,
-		"data" => null,
-		'res' => $res
-	]);
+	$self->response->throwJson(["code" => 0, "data" => null, 'res' => $res]);
 }
 
 /* 获取壁纸列表 已测试 √ */
@@ -476,17 +458,9 @@ function _getWallpaperList($self)
 	$api = $WallpaperAPI['list'] ?? 'http://wallpaper.apc.360.cn/index.php';
 	$res = \network\http\get($api . "?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome")->toArray();
 	if (is_array($res) && $res['errno'] == 0) {
-		$self->response->throwJson([
-			"code" => 1,
-			"data" => $res['data'],
-			"total" => $res['total']
-		]);
+		$self->response->throwJson(["code" => 1, "data" => $res['data'], "total" => $res['total']]);
 	}
-	$self->response->throwJson([
-		"code" => 0,
-		"data" => null,
-		'res' => $res
-	]);
+	$self->response->throwJson(["code" => 0, "data" => null, 'res' => $res]);
 }
 
 /* 抓取苹果CMS视频分类 已测试 √ */
@@ -504,21 +478,12 @@ function _getMaccmsList($self)
 		$json = \network\http\get("{$cms_api}?ac={$ac}&ids={$ids}&t={$t}&pg={$pg}&wd={$wd}");
 		$res = json_decode($json, TRUE);
 		if ($res['code'] === 1) {
-			$self->response->throwJson([
-				"code" => 1,
-				"data" => $res,
-			]);
+			$self->response->throwJson(["code" => 1, "data" => $res,]);
 		} else {
-			$self->response->throwJson([
-				"code" => 0,
-				"data" => "抓取失败！请联系作者！"
-			]);
+			$self->response->throwJson(["code" => 0, "data" => "抓取失败！请联系作者！"]);
 		}
 	} else {
-		$self->response->throwJson([
-			"code" => 0,
-			"data" => "后台苹果CMS API未填写！"
-		]);
+		$self->response->throwJson(["code" => 0, "data" => "后台苹果CMS API未填写！"]);
 	}
 }
 
@@ -532,15 +497,9 @@ function _getHuyaList($self)
 	$json = \network\http\get("https://www.huya.com/cache.php?m=LiveList&do=getLiveListByPage&gameId={$gameId}&tagAll=0&page={$page}");
 	$res = json_decode($json, TRUE);
 	if ($res['status'] === 200) {
-		$self->response->throwJson([
-			"code" => 1,
-			"data" => $res['data'],
-		]);
+		$self->response->throwJson(["code" => 1, "data" => $res['data'],]);
 	} else {
-		$self->response->throwJson([
-			"code" => 0,
-			"data" => "抓取失败！请联系作者！"
-		]);
+		$self->response->throwJson(["code" => 0, "data" => "抓取失败！请联系作者！"]);
 	}
 }
 
@@ -551,14 +510,8 @@ function _getServerStatus($self)
 
 	$api_panel = Helper::options()->JBTPanel;
 	$api_sk = Helper::options()->JBTKey;
-	if (!$api_panel) return $self->response->throwJson([
-		"code" => 0,
-		"data" => "宝塔面板地址未填写！"
-	]);
-	if (!$api_sk) return $self->response->throwJson([
-		"code" => 0,
-		"data" => "宝塔接口密钥未填写！"
-	]);
+	if (!$api_panel) return $self->response->throwJson(["code" => 0, "data" => "宝塔面板地址未填写！"]);
+	if (!$api_sk) return $self->response->throwJson(["code" => 0, "data" => "宝塔接口密钥未填写！"]);
 	$request_time = time();
 	$request_token = md5($request_time . '' . md5($api_sk));
 	$ch = curl_init();
@@ -614,10 +567,7 @@ function _getCommentLately($self)
 		$categories[] = $date;
 		$series[] = $count;
 	}
-	$self->response->throwJson([
-		"categories" => $categories,
-		"series" => $series,
-	]);
+	$self->response->throwJson(["categories" => $categories, "series" => $series]);
 }
 
 /* 获取文章归档 */
@@ -679,20 +629,11 @@ function _friendSubmit($self)
 	$self->response->setStatus(200);
 
 	$captcha = $self->request->captcha;
-	if (empty($captcha)) $self->response->throwJson([
-		'code' => 0,
-		'msg' => '请输入验证码！'
-	]);
-	if (empty($_SESSION['joe_captcha'])) $self->response->throwJson([
-		'code' => 0,
-		'msg' => '验证码过期，请重新获取验证码'
-	]);
+	if (empty($captcha)) $self->response->throwJson(['code' => 0, 'msg' => '请输入验证码！']);
+	if (empty($_SESSION['joe_captcha'])) $self->response->throwJson(['code' => 0, 'msg' => '验证码过期，请重新获取验证码']);
 	if ($_SESSION['joe_captcha'] != $captcha) {
 		unset($_SESSION['joe_captcha']);
-		$self->response->throwJson([
-			'code' => 0,
-			'msg' => '验证码错误'
-		]);
+		$self->response->throwJson(['code' => 0, 'msg' => '验证码错误']);
 	}
 	unset($_SESSION['joe_captcha']);
 
@@ -702,30 +643,15 @@ function _friendSubmit($self)
 	$logo = $self->request->logo;
 	$email = $self->request->email;
 
-	if (empty($title) || empty($url) || empty($email)) $self->response->throwJson([
-		'code' => 0,
-		'msg' => '必填项不能为空'
-	]);
-	if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) $self->response->throwJson([
-		'code' => 0,
-		'msg' => '联系邮箱错误！'
-	]);
-	if (!preg_match('/^http[s]?:\/\/[^\s]*/', $url)) $self->response->throwJson([
-		'code' => 0,
-		'msg' => '网站地址错误！'
-	]);
+	if (empty($title) || empty($url) || empty($email)) $self->response->throwJson(['code' => 0, 'msg' => '必填项不能为空']);
+	if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) $self->response->throwJson(['code' => 0, 'msg' => '联系邮箱错误！']);
+	if (!preg_match('/^http[s]?:\/\/[^\s]*/', $url)) $self->response->throwJson(['code' => 0, 'msg' => '网站地址错误！']);
 	if (empty($logo)) $logo = Helper::options()->themeUrl . '/assets/images/avatar-default.png';
-	if (!preg_match('/^http[s]?:\/\/[^\s]*/', $logo)) $self->response->throwJson([
-		'code' => 0,
-		'msg' => '网站LOGO地址错误！'
-	]);
+	if (!preg_match('/^http[s]?:\/\/[^\s]*/', $logo)) $self->response->throwJson(['code' => 0, 'msg' => '网站LOGO地址错误！']);
 
 	$db = Typecho_Db::get();
 	$value = $db->fetchRow($db->select('status')->from('table.friends')->where('url = ?', $url));
-	if (is_array($value) && isset($value['status'])) $self->response->throwJson([
-		'code' => 0,
-		'msg' => ($value['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')
-	]);
+	if (is_array($value) && isset($value['status'])) $self->response->throwJson(['code' => 0, 'msg' => ($value['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')]);
 
 	$sql = $db->insert('table.friends')->rows([
 		'title' => $title,
@@ -735,44 +661,27 @@ function _friendSubmit($self)
 		'email' => $email,
 		'position' => 'single'
 	]);
-	if ($db->query($sql)) {
-		if (Helper::options()->JFriendEmail == 'on') {
-			$EmailTitle = '友链申请';
-			$subtitle = $title . ' 向您提交了友链申请';
-			$content = "<p>站点标题：$title</p><p>站点链接：$url</p><p>站点图标：$logo</p><p>站点描述：$description</p><p>对方邮箱：$email</p>";
-			$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
-			if ($SendEmail !== true) $self->response->throwJson(['code' => 0, 'msg' => '提交失败，' . $SendEmail]);
-		}
-		$self->response->throwJson([
-			'code' => 200,
-			'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待'
-		]);
-	} else {
-		$self->response->throwJson([
-			'code' => 0,
-			'msg' => '提交失败，请联系本站点管理员进行处理'
-		]);
+	if (!$db->query($sql)) $self->response->throwJson(['code' => 0, 'msg' => '提交失败，请联系本站点管理员进行处理']);
+	if (Helper::options()->JFriendEmail == 'on') {
+		$EmailTitle = '友链申请';
+		$subtitle = $title . ' 向您提交了友链申请';
+		$content = "<p>站点标题：$title</p><p>站点链接：$url</p><p>站点图标：$logo</p><p>站点描述：$description</p><p>对方邮箱：$email</p>";
+		$SendEmail = joe\send_email($EmailTitle, $subtitle, $content);
+		if ($SendEmail !== true) $self->response->throwJson(['code' => 0, 'msg' => '提交失败，' . $SendEmail]);
 	}
+	$self->response->throwJson(['code' => 200, 'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待']);
 }
 
 function _Meting($self)
 {
+	if (empty($_REQUEST['server']) || empty($_REQUEST['type']) || empty($_REQUEST['id'])) $self->response->setStatus(404);
+	$self->response->setStatus(200);
 	$extension = ['bcmath', 'curl', 'openssl'];
 	foreach ($extension as  $value) {
-		if (!extension_loaded($value)) {
-			$self->response->setStatus(200);
-			$self->response->throwJson([
-				'code' => 0,
-				'msg' => '请开启PHP的' . $value . '扩展！'
-			]);
-		}
-	}
-	if (empty($_REQUEST['server']) || empty($_REQUEST['type']) || empty($_REQUEST['id'])) {
-		$self->response->setStatus(404);
+		if (!extension_loaded($value)) $self->response->throwJson(['code' => 0, 'msg' => '请开启PHP的' . $value . '扩展！']);
 	}
 	$api = new Meting($_REQUEST['server']);
 	$type = $_REQUEST['type'];
-	$self->response->setStatus(200);
 	if ($type == 'playlist') {
 		if ($_REQUEST['server'] == 'kugou' && str_starts_with($_REQUEST['id'], 'http')) {
 			$headers = [
@@ -885,28 +794,15 @@ function _Meting($self)
 
 function _payCashierModal($self)
 {
-	if (!is_numeric($self->request->cid)) {
-		$self->response->setStatus(404);
-		return;
-	}
+	if (!is_numeric($self->request->cid)) $self->response->setStatus(404);
 	$self->response->setStatus(200);
 
-	if (empty(Helper::options()->JYiPayApi)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
-		return;
-	}
-	if (empty(Helper::options()->JYiPayID)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
-		return;
-	}
-	if (empty(Helper::options()->JYiPayKey)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
-		return;
-	}
+	if (empty(Helper::options()->JYiPayApi)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
+	if (empty(Helper::options()->JYiPayID)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
+	if (empty(Helper::options()->JYiPayKey)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
 
 	if (Helper::options()->JWeChatPay != 'on' && Helper::options()->JAlipayPay != 'on' && Helper::options()->JQQPay != 'on') {
 		$self->response->throwJson(['code' => 503, 'message' => '暂无可用的支付方式!']);
-		return;
 	}
 
 	$cid = trim($self->request->cid);
@@ -916,10 +812,7 @@ function _payCashierModal($self)
 
 	$price = $item->fields->price;
 
-	if (!is_numeric($price) || round($price, 2) <= 0) {
-		$self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
-		return;
-	}
+	if (!is_numeric($price) || round($price, 2) <= 0) $self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
 
 	$price = round($price, 2);
 ?>
@@ -1109,10 +1002,7 @@ function _initiatePay($self)
 
 function _checkPay($self)
 {
-	if (!is_numeric($self->request->trade_no)) {
-		$self->response->setStatus(404);
-		return;
-	}
+	if (!is_numeric($self->request->trade_no)) $self->response->setStatus(404);
 
 	$self->response->setStatus(200);
 
@@ -1120,27 +1010,16 @@ function _checkPay($self)
 
 	$epay_config = [];
 
-	if (empty(Helper::options()->JYiPayApi)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
-		return;
-	}
+	if (empty(Helper::options()->JYiPayApi)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
 	$epay_config['apiurl'] = trim(Helper::options()->JYiPayApi);
 
-	if (empty(Helper::options()->JYiPayID)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
-		return;
-	}
+	if (empty(Helper::options()->JYiPayID)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
 	$epay_config['partner'] = trim(Helper::options()->JYiPayID);
 
-	if (empty(Helper::options()->JYiPayKey)) {
-		$self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
-		return;
-	}
+	if (empty(Helper::options()->JYiPayKey)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
 	$epay_config['key'] = trim(Helper::options()->JYiPayKey);
 
-	if (!empty(Helper::options()->JYiPayMapiUrl)) {
-		$epay_config['mapi_url'] = trim(Helper::options()->JYiPayMapiUrl);
-	}
+	if (!empty(Helper::options()->JYiPayMapiUrl)) $epay_config['mapi_url'] = trim(Helper::options()->JYiPayMapiUrl);
 
 	$db = Typecho_Db::get();
 	$row = $db->fetchRow($db->select()->from('table.orders')->where('trade_no = ?', $trade_no)->limit(1));

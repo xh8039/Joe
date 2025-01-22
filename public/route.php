@@ -784,6 +784,7 @@ function _Meting($self)
 			];
 			$url = 'https://wwwapi.kugou.com/share/zlist.html?listid=2&type=0&uid=1240782090&share_type=collect&from=pcCode&_t=790853954&global_collection_id=collection_3_1240782090_2_0&sign=3d227af0fc84a14a2a19d4a492274910&chain=2d5zl69ElV3';
 			$response = (new \network\http\Client())->header($headers)->get($url)->body();
+			echo $response;
 			if (!strpos($response, 'dataFromSmarty')) $self->response->throwJson([]);
 			$data = preg_match('/dataFromSmarty \= \[\{(.*)\}\]/', $response, $response_match);
 			$data = json_decode('[{' . $response_match[1] . '}]', true);

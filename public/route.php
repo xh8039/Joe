@@ -780,7 +780,7 @@ function _Meting($self)
 				'accept-encoding' => 'gzip, deflate, br, zstd',
 				'accept-language' => 'zh-CN,zh;q=0.9',
 				'cache-control' => 'no-cache',
-				// 'cookie' => Helper::options()->JMusicCookie,
+				'cookie' => Helper::options()->JMusicCookie,
 				'pragma' => 'no-cache',
 				'priority' => 'u=0, i',
 				'sec-ch-ua' => '"Not A(Brand";v="8", "Chromium";v="132", "Microsoft Edge";v="132"',

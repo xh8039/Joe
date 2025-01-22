@@ -191,8 +191,8 @@ class MusicPlayer {
 			}
 		}
 		let reserve = {
-			name: 'Audio name',
-			artist: 'Audio artist',
+			name: '占位音频',
+			artist: '解决 APlayer 缺少最后两个音频的BUG',
 			url: '',
 			cover: '',
 			lrc: '[00:00.000] 暂无歌词',

@@ -221,7 +221,7 @@ function themeFields($layout)
 
 	$hide = new \Typecho\Widget\Helper\Form\Element\Select(
 		'hide',
-		['' => '默认模式（不占数据）', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
+		['' => '默认评论可见（不占数据）', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
 		NULL,
 		'隐藏内容模式',
 		'可将隐藏内容设置为评论可见、付费可见、登录可见'
@@ -344,7 +344,7 @@ function themeFields($layout)
 		'max_image_height',
 		NULL,
 		NULL,
-		'PC端图片极限高度',
+		'PC端图片极限高度（非必填）',
 		'介绍：用于设置当前页的图片最高高度 <br />
 		 例如：30vh、300px、unset <br />
 		 注意：填写 unset 即可使用自动高度 <br />

@@ -79,13 +79,14 @@ window.Joe.checkUrl = (string) => {
 
 window.Joe.scrollTo = (selector) => {
 	const $header = document.querySelector('.joe_header');
+	var top;
 	if (/^\d+$/.test(selector)) {
-		let top = selector - $header.offsetHeight - 15;
+		top = selector - $header.offsetHeight - 15;
 		if (top < 0) top = 0;
 	} else {
 		const $selector = document.querySelector(selector);
 		if (!$selector) return;
-		let top = $selector.offsetTop - $header.offsetHeight - 15;
+		top = $selector.offsetTop - $header.offsetHeight - 15;
 	}
 	console.log(top);
 	window.scrollTo({ top: top, behavior: 'smooth' });

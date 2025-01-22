@@ -24,10 +24,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '" data-turbolinks-permanent></script>';
 	}
 	$this->need('module/head.php');
+	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/joe.index.css') . '">';
 	if ($this->options->JListAnimate != 'off') echo '<script src="' . joe\cdn('wow/1.1.2/wow.min.js') . '" data-turbolinks-permanent></script>';
+	echo '<script src="' . joe\theme_url('assets/js/joe.index.js') . '"></script>';
 	?>
-	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.index.css'); ?>">
-	<script src="<?= joe\theme_url('assets/js/joe.index.js'); ?>"></script>
 </head>
 
 <body>
@@ -55,21 +55,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
                         <span class="hi de-sm mr6 jump-text">跳转</span>
                         <i class="jump-icon fa fa-angle-double-right em12"></i>
                     </a>';
-					$this->pageNav(
-						'<i class="fa fa-angle-left em12"></i><span class="hide-sm ml6">上一页</span>',
-						'<span class="hide-sm mr6">下一页</span><i class="fa fa-angle-right em12"></i>',
-						1,
-						'...',
-						array(
-							'wrapTag' => 'ul',
-							'wrapClass' => 'joe_pagination',
-							'itemTag' => 'li',
-							'textTag' => 'a',
-							'currentClass' => 'active',
-							'prevClass' => 'prev',
-							'nextClass' => 'next'
-						)
-					);
+					$this->pageNav('<i class="fa fa-angle-left em12"></i><span class="hide-sm ml6">上一页</span>', '<span class="hide-sm mr6">下一页</span><i class="fa fa-angle-right em12"></i>', 1, '...', [
+						'wrapTag' => 'ul',
+						'wrapClass' => 'joe_pagination',
+						'itemTag' => 'li',
+						'textTag' => 'a',
+						'currentClass' => 'active',
+						'prevClass' => 'prev',
+						'nextClass' => 'next'
+					]);
 				}
 				?>
 			</div>

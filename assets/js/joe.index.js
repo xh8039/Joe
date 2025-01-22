@@ -12,39 +12,36 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 				autoplay: true,
 				mousewheel: false, // 允许使用鼠标滚轮在幻灯片中导航
 				speed: 1000, // 控制过渡时间为1000毫秒，即1秒
-				autoplay: {
-					delay: 1500, // 控制自动播放之间的延迟为1.5秒
-				},
+				autoplay: { delay: 2000 }, // 控制自动播放之间的延迟为2秒
 				pagination: { el: '.swiper-pagination' }, // 具有分页参数的对象或布尔值，以使用默认设置启用。
 				// 具有导航参数的对象或布尔值，以使用默认设置启用。
-				navigation: {
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev'
-				}
+				navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
 			});
 		}
 	}
 
 	/* 初始化首页列表功能 */
-	if (Joe.options.IndexAjaxList == 'on') {
-		const getTags = (data) => {
-			let tagsHtml = '';
-			if (data.fields.hide == 'pay' && data.fields.pay_tag_background != 'none') {
-				tagsHtml += `<a rel="nofollow" href="${data.permalink}?scroll=pay-box" class="meta-pay but jb-${data.fields.pay_tag_background}">${data.fields.price > 0 ? ('付费阅读<span class="em09 ml3">￥</span>' + data.fields.price) : '免费资源'}</a>`;
-			}
-			var color = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
-			data.category.forEach((element, index) => {
-				tagsHtml += `<a target="${data.target}" class="but ${color[index]}" title="查看此分类更多文章" href="${element.permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${element.name}</a>`;
-			});
-			data.tags.forEach(tag => {
-				tagsHtml += `<a target="${data.target}" class="but" title="查看此标签更多文章" href="${tag.permalink}"># ${tag.name}</a>`
-			});
-			return tagsHtml;
-		}
+	{
+		if (Joe.options.IndexAjaxList == 'on') {
 
-		const getListMode = _ => {
-			if (_.mode === 'default') {
-				return `
+			const getTags = (data) => {
+				let tagsHtml = '';
+				if (data.fields.hide == 'pay' && data.fields.pay_tag_background != 'none') {
+					tagsHtml += `<a rel="nofollow" href="${data.permalink}?scroll=pay-box" class="meta-pay but jb-${data.fields.pay_tag_background}">${data.fields.price > 0 ? ('付费阅读<span class="em09 ml3">￥</span>' + data.fields.price) : '免费资源'}</a>`;
+				}
+				var color = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
+				data.category.forEach((element, index) => {
+					tagsHtml += `<a target="${data.target}" class="but ${color[index]}" title="查看此分类更多文章" href="${element.permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${element.name}</a>`;
+				});
+				data.tags.forEach(tag => {
+					tagsHtml += `<a target="${data.target}" class="but" title="查看此标签更多文章" href="${tag.permalink}"># ${tag.name}</a>`
+				});
+				return tagsHtml;
+			}
+
+			const getListMode = _ => {
+				if (_.mode === 'default') {
+					return `
 					<li class="joe_list__item wow default">
 						<div class="line"></div>
 						<a href="${_.permalink}" class="thumbnail" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
@@ -95,8 +92,8 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 						</div>
 					</li>
 				`;
-			} else if (_.mode === 'single') {
-				return `
+				} else if (_.mode === 'single') {
+					return `
 					<li class="joe_list__item wow single">
 						<div class="line"></div>
 						<div class="information">
@@ -149,8 +146,8 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 						</div>
 					</li>
 				`;
-			} else if (_.mode === 'multiple') {
-				return `
+				} else if (_.mode === 'multiple') {
+					return `
 					<li class="joe_list__item wow multiple">
 						<div class="line"></div>
 						<div class="information">
@@ -161,12 +158,12 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 						</div>
 						<a href="${_.permalink}" class="thumbnail" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
 							${_.image
-						.map((item, index) => {
-							if (index < 3) {
-								return `<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="lazyload error-thumbnail" src="${_.lazyload}" data-src="${item}" alt="${_.title}" />`;
-							}
-						})
-						.join('')}
+							.map((item, index) => {
+								if (index < 3) {
+									return `<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="lazyload error-thumbnail" src="${_.lazyload}" data-src="${item}" alt="${_.title}" />`;
+								}
+							})
+							.join('')}
 						</a>
 						<div class="meta">
 							<div class="item-tags scroll-x no-scrollbar mb6">
@@ -205,8 +202,8 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 						</div>
 					</li>
 				`;
-			} else {
-				return `
+				} else {
+					return `
 					<li class="joe_list__item wow none">
 						<div class="line"></div>
 						<div class="information">
@@ -252,67 +249,78 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 						</div>
 					</li>
 				`;
-			}
-		};
-		let queryData = { page: 1, pageSize: window.Joe.PAGE_SIZE, type: 'created' };
-		const initDom = () => {
-			$('.joe_index__list .joe_list').html('');
-			$('.joe_load').show();
-			let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]');
-			activeItem.addClass('active').siblings().removeClass('active');
-		};
-		const pushDom = () => {
-			return new Promise((reslove, reject) => {
-				$('.joe_load').attr('loading', true);
-				$('.joe_load').html('loading...');
-				$('.joe_index__list .joe_list__loading').show();
-				$.ajax({
-					url: Joe.BASE_API,
-					type: 'POST',
-					dataType: 'json',
-					data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
-					beforeSend() {
-						$('.joe_index__title-title .item').css({ 'pointer-events': 'none', 'cursor': 'not-allowed' });
-					},
-					success(res) {
-						$('.joe_index__title-title .item').css({ 'pointer-events': '', 'cursor': '' });
-						if (res.data.length === 0) {
+				}
+			};
+			let queryData = { page: 1, pageSize: window.Joe.PAGE_SIZE, type: 'created' };
+			const initDom = () => {
+				$('.joe_index__list .joe_list').html('');
+				$('.joe_load').show();
+				let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]');
+				activeItem.addClass('active').siblings().removeClass('active');
+			};
+			const pushDom = () => {
+				return new Promise((reslove, reject) => {
+					$('.joe_load').attr('loading', true);
+					$('.joe_load').html('loading...');
+					$('.joe_index__list .joe_list__loading').show();
+					$.ajax({
+						url: Joe.BASE_API,
+						type: 'POST',
+						dataType: 'json',
+						data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
+						beforeSend() {
+							$('.joe_index__title-title .item').css({ 'pointer-events': 'none', 'cursor': 'not-allowed' });
+						},
+						success(res) {
+							$('.joe_index__title-title .item').css({ 'pointer-events': '', 'cursor': '' });
+							if (res.data.length === 0) {
+								$('.joe_load').removeAttr('loading');
+								$('.joe_index__list .joe_list__loading').hide(500);
+								$('.joe_load').hide();
+								$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
+								return autolog.log('没有更多内容了', 'warn');
+							}
+							res.data.forEach(data => $('.joe_index__list .joe_list').append(getListMode(data)));
+							if (window.Joe.tooltip) window.Joe.tooltip('.joe_index__list');
 							$('.joe_load').removeAttr('loading');
-							$('.joe_index__list .joe_list__loading').hide(500);
-							$('.joe_load').hide();
 							$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
-							return autolog.log('没有更多内容了', 'warn');
+							$('.joe_index__list .joe_list__loading').hide();
+							reslove(res.data.length > 0 ? res.data.length - 1 : 0);
+						},
+						error() {
+							$('.joe_index__title-title .item').css({ 'pointer-events': '', 'cursor': '' });
 						}
-						res.data.forEach(data => $('.joe_index__list .joe_list').append(getListMode(data)));
-						if (window.Joe.tooltip) window.Joe.tooltip('.joe_index__list');
-						$('.joe_load').removeAttr('loading');
-						$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
-						$('.joe_index__list .joe_list__loading').hide();
-						reslove(res.data.length > 0 ? res.data.length - 1 : 0);
-					},
-					error() {
-						$('.joe_index__title-title .item').css({ 'pointer-events': '', 'cursor': '' });
-					}
+					});
 				});
-			});
-		};
-		initDom();
-		pushDom();
-		$('.joe_index__title-title .item').on('click', async function () {
-			if ($(this).attr('data-type') === queryData.type) return;
-			queryData = { page: 1, pageSize: window.Joe.PAGE_SIZE, type: $(this).attr('data-type') };
+			};
 			initDom();
 			pushDom();
-		});
-		$('.joe_load').on('click', async function () {
-			if ($(this).attr('loading')) return;
-			queryData.page++;
-			let length = await pushDom();
-			length = $('.joe_index__list .joe_list .joe_list__item').length - length;
-			const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`;
-			const offset = $(queryElement).offset().top - $('.joe_header').height();
-			window.scrollTo({ top: offset - 15, behavior: 'smooth' });
-		});
+			$('.joe_index__title-title .item').on('click', async function () {
+				if ($(this).attr('data-type') === queryData.type) return;
+				queryData = { page: 1, pageSize: window.Joe.PAGE_SIZE, type: $(this).attr('data-type') };
+				initDom();
+				pushDom();
+			});
+			$('.joe_load').on('click', async function () {
+				if ($(this).attr('loading')) return;
+				queryData.page++;
+				let length = await pushDom();
+				length = $('.joe_index__list .joe_list .joe_list__item').length - length;
+				const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`;
+				const offset = $(queryElement).offset().top - $('.joe_header').height();
+				window.scrollTo({ top: offset - 15, behavior: 'smooth' });
+			});
+		} else {
+			Joe.pjax('.joe_pagination>li>a[href]', ['title', '.joe_index__list', '.joe_pagination'], {
+				beforeSend() {
+					$('.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
+				},
+				replace() {
+					$('.joe_pagination>li>a[href]').attr('ajax-replace', 'true');
+				},
+				scrollTo: '.joe_index__list'
+			});
+		}
 	}
 
 	/* 激活列表特效 */

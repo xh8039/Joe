@@ -775,7 +775,12 @@ function _Meting($self)
 	$self->response->setStatus(200);
 	if ($type == 'playlist') {
 		if ($_REQUEST['server'] == 'kugou' && !is_numeric($_REQUEST['id'])) {
-			echo \network\http\get('https://t1.kugou.com/' . $_REQUEST['id']);
+			$response = \network\http\get('https://t1.kugou.com/' . $_REQUEST['id'])->body();
+			if (!strpos($response, 'dataFromSmarty')) $self->response->throwJson([]);
+			$data = preg_match('/dataFromSmarty \= \[\{(.*)\}\]/', $response, $response_match);
+			$data = json_decode('[{' . $response_match[1] . '}]', true);
+			print_r($data);
+			$self->response->throwJson($data);
 		}
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->playlist($_REQUEST['id']);
 		$data = json_decode($data, true);

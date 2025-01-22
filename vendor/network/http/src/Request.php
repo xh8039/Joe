@@ -108,6 +108,7 @@ trait Request
 	private function _initialize()
 	{
 		$this->_initMethod();
+		print_r($this->_initHeaders());
 		curl_setopt($this->ch, CURLOPT_HTTPHEADER, $this->_initHeaders());  //设置请求头
 		curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, $this->options->connectTime); //在发起连接前等待的时间，如果设置为0，则无限等待
 		curl_setopt($this->ch, CURLOPT_TIMEOUT, intval($this->options->timeout)); //设置 cURL 允许执行的最长秒数

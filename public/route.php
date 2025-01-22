@@ -777,10 +777,19 @@ function _Meting($self)
 		if ($_REQUEST['server'] == 'kugou' && !is_numeric($_REQUEST['id'])) {
 			$headers = [
 				'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-				'upgrade-insecure-requests' => '1',
-				'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0',
+				'accept-encoding' => 'gzip, deflate, br, zstd',
 				'accept-language' => 'zh-CN,zh;q=0.9',
 				'cookie' => Helper::options()->JMusicCookie,
+				'priority' => 'u=0, i',
+				'sec-ch-ua' => '"Not A(Brand";v="8", "Chromium";v="132", "Microsoft Edge";v="132"',
+				'sec-ch-ua-mobile' => '?0',
+				'sec-ch-ua-platform' => '"Windows"',
+				'sec-fetch-dest' => 'document',
+				'sec-fetch-mode' => 'navigate',
+				'sec-fetch-site' => 'none',
+				'sec-fetch-user' => '?1',
+				'upgrade-insecure-requests' => '1',
+				'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0',
 			];
 			$url = 'https://wwwapi.kugou.com/share/zlist.html?listid=2&type=0&uid=1240782090&share_type=collect&from=pcCode&_t=790853954&global_collection_id=collection_3_1240782090_2_0&sign=3d227af0fc84a14a2a19d4a492274910&chain=2d5zl69ElV3';
 			$response = (new \network\http\Client())->header($headers)->get($url)->body();

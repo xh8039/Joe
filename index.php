@@ -13,6 +13,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
+if ($this->options->IndexAjaxList != 'on') $this->need('module/index/pjax.php');
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -49,22 +50,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php
 				if ($this->options->IndexAjaxList == 'on') {
 					echo '<div class="joe_load_box"><a href="javascript:;" class="joe_load"><i class="fa fa-angle-right"></i>加载更多</a></div>';
-				} else if ($this->have()) {
-					'<a class="pag-jump page-numbers" href="javascript:;">
-                        <input autocomplete="off" max="147" current="1" base="https://www.juzia.cn/page/%#%" type="text" class="form-control jump-input" name="pag-go">
-                        <span class="hi de-sm mr6 jump-text">跳转</span>
-                        <i class="jump-icon fa fa-angle-double-right em12"></i>
-                    </a>';
-					$this->pageNav('<i class="fa fa-angle-left em12"></i><span class="hide-sm ml6">上一页</span>', '<span class="hide-sm mr6">下一页</span><i class="fa fa-angle-right em12"></i>', 1, '...', [
-						'wrapTag' => 'ul',
-						'wrapClass' => 'joe_pagination',
-						'itemTag' => 'li',
-						'textTag' => 'a',
-						'currentClass' => 'active',
-						'prevClass' => 'prev',
-						'nextClass' => 'next'
-					]);
-				}
+				} else if ($this->have()) $this->need('module/index/page.php');
 				?>
 			</div>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>

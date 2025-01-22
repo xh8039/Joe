@@ -27,6 +27,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 				url: url,
 				dataType: "html",
 				beforeSend(xhr) {
+					xhr.setRequestHeader('x-ajax', 'true');
 					xhr.setRequestHeader('x-ajax-selectors', JSON.stringify(selectors));
 					if (options.beforeSend) options.beforeSend(xhr);
 				},

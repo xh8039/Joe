@@ -42,7 +42,7 @@ function _getPost($self)
 			if ($item->next()) {
 				$result[] = array(
 					"cid" => $item->cid,
-					"mode" => $item->fields->mode ? $item->fields->mode : 'default',
+					"mode" => empty($item->fields->mode) ? 'default' : $item->fields->mode,
 					"image" => joe\getThumbnails($item),
 					"time" => date('Y-m-d', $item->created),
 					'date_time' => date('Y-m-d H:i:s', $item->created),

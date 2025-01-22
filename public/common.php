@@ -217,7 +217,7 @@ function themeFields($layout)
 			'multiple' => '三图模式',
 			'none' => '无图模式'
 		),
-		'default',
+		NULL,
 		'文章显示方式',
 		'介绍：用于设置当前文章在首页和搜索页的显示方式 <br />
 		 注意：独立页面该功能不会生效'
@@ -236,7 +236,7 @@ function themeFields($layout)
 	$price = new \Typecho\Widget\Helper\Form\Element\Text(
 		'price',
 		NULL,
-		'0.00',
+		'0',
 		'隐藏内容付费金额',
 		'设置为 0 则是免费资源，付费可见功能需要在 [主题设置=>付费设置] 处配置好您的支付信息后可用'
 	);
@@ -254,8 +254,8 @@ function themeFields($layout)
 
 	$pay_tag_background = new \Typecho\Widget\Helper\Form\Element\Select(
 		'pay_tag_background',
-		['yellow' => '渐变黄', 'blue' => '渐变蓝', 'cyan' => '渐变青', 'green' => '渐变绿', 'purple' => '渐变紫', 'red' => '渐变红', 'pink' => '渐变粉', 'vip1' => '豪华VIP', 'vip2' => '轻奢VIP', 'none' => '不显示'],
-		'yellow',
+		['' => '默认颜色', 'yellow' => '渐变黄', 'blue' => '渐变蓝', 'cyan' => '渐变青', 'green' => '渐变绿', 'purple' => '渐变紫', 'red' => '渐变红', 'pink' => '渐变粉', 'vip1' => '豪华VIP', 'vip2' => '轻奢VIP', 'none' => '不显示'],
+		NULL,
 		'付费阅读标签背景颜色',
 		'<script>
 			const payPriceInput = document.querySelector(\'input[name="fields[price]"]\').parentElement.parentElement.parentElement;
@@ -360,10 +360,7 @@ function themeFields($layout)
 	if (Helper::options()->JPost_Record_Detection == 'on') {
 		$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(
 			'baidu_push',
-			array(
-				'no' => '未推送',
-				'yes' => '已推送',
-			),
+			array('no' => '未推送', 'yes' => '已推送'),
 			'no',
 			'百度收录推送状态',
 		);
@@ -372,8 +369,8 @@ function themeFields($layout)
 
 	$global_advert = new \Typecho\Widget\Helper\Form\Element\Select(
 		'global_advert',
-		['display' => '显示', 'hide' => '隐藏'],
-		'display',
+		['' => '默认', 'display' => '显示', 'hide' => '隐藏'],
+		NULL,
 		'是否显示全局广告',
 	);
 	$layout->addItem($global_advert);

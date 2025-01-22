@@ -443,10 +443,7 @@ class JoeEditor extends JoeAction {
 			let selects = document.querySelectorAll('#custom-field tbody select');
 			let fields = [...inputs, ...textareas, ...selects];
 			fields.forEach(field => {
-				if (field.value == '') {
-					console.log(field.name);
-					field.remove();
-				}
+				if (field.value == '' || field.value == '0') field.remove();
 			});
 		});
 	}

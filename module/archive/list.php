@@ -12,7 +12,7 @@ while ($this->next()) :
 		}
 		if (array_intersect($categorize_slug_list, $index_hide_categorize_list)) continue;
 	}
-	if ($this->fields->mode == "default" || empty($this->fields->mode)) : ?>
+	if ($this->fields->mode == "default" || !$this->fields->mode) : ?>
 		<li class="joe_list__item wow default">
 			<div class="line"></div>
 			<a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>" target="<?php $this->options->Jsearch_target() ?>" rel="noopener noreferrer">
@@ -63,7 +63,7 @@ while ($this->next()) :
 				</div>
 			</div>
 		</li>
-	<?php elseif ($this->fields->mode === "single") : ?>
+	<?php elseif ($this->fields->mode == "single") : ?>
 		<li class="joe_list__item wow single">
 			<div class="line"></div>
 			<div class="information">
@@ -117,7 +117,7 @@ while ($this->next()) :
 				<a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php joe\getAbstract($this) ?></a>
 			</div>
 		</li>
-	<?php elseif ($this->fields->mode === "multiple") : ?>
+	<?php elseif ($this->fields->mode == "multiple") : ?>
 		<li class="joe_list__item wow multiple">
 			<div class="line"></div>
 			<div class="information">

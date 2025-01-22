@@ -42,7 +42,7 @@ function _getPost($self)
 			if ($item->next()) {
 				$result[] = array(
 					"cid" => $item->cid,
-					"mode" => empty($item->fields->mode) ? 'default' : $item->fields->mode,
+					"mode" => $item->fields->mode ? $item->fields->mode : 'default',
 					"image" => joe\getThumbnails($item),
 					"time" => date('Y-m-d', $item->created),
 					'date_time' => date('Y-m-d H:i:s', $item->created),
@@ -76,7 +76,7 @@ function _getPost($self)
 		if (in_array($item->cid, $hide_post_list)) continue;
 		$result[] = [
 			"cid" => $item->cid,
-			"mode" => empty($item->fields->mode) ? 'default' : $item->fields->mode,
+			"mode" => $item->fields->mode ? $item->fields->mode : 'default',
 			"image" => joe\getThumbnails($item),
 			"time" => date('Y-m-d', $item->created),
 			'date_time' => date('Y-m-d H:i:s', $item->created),
@@ -809,8 +809,7 @@ function _payCashierModal($self)
 
 	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 	$item->next();
-	if (empty($item->fields->price)) $item->fields->price = 0;
-	$price = $item->fields->price;
+	$price = $item->fields->price ? $item->fields->price : 0;
 
 	if (!is_numeric($price) || round($price, 2) <= 0) $self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
 
@@ -926,8 +925,7 @@ function _initiatePay($self)
 
 	$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 	$item->next();
-	if (empty($item->fields->price)) $item->fields->price = 0;
-	$price = $item->fields->price;
+	$price = $item->fields->price ? $item->fields->price : 0;
 	if (!is_numeric($price) || round($price, 2) <= 0) $self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
 	$price = round($price, 2);
 	$out_trade_no = date("YmdHis") . mt_rand(100, 999);

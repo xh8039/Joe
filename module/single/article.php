@@ -15,7 +15,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	if ($this->hidden) {
 		$this->need('module/single/password.php');
 	} else {
-		if (!empty($this->fields->video)) $this->need('module/single/video.php');
+		if ($this->fields->video) $this->need('module/single/video.php');
 		echo _parseContent($this);
 	}
 	?>

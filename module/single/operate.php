@@ -20,7 +20,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<div class="zib-widget hover-show-con share-button dropdown-menu">
 			<div>
 				<?php
-				$description = isset($this->fields->description) ? $this->fields->description : joe\markdown_filter($this->description);
+				$description = $this->fields->description ? $this->fields->description : joe\markdown_filter($this->description);
 				$description = urlencode($description);
 				$pic = urlencode(joe\getThumbnails($this)[0]);
 				$title = urlencode($this->title . ' - ' . $this->options->title);

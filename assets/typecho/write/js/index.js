@@ -1,4 +1,4 @@
-class Joe extends JoeAction {
+class JoeEditor extends JoeAction {
 	constructor() {
 		super();
 		this.plugins = [CodeMirror.classHighlightStyle, CodeMirror.history(), CodeMirror.bracketMatching(), CodeMirror.closeBrackets(), CodeMirror.drawSelection(), CodeMirror.highlightActiveLine(), CodeMirror.lineNumbers(), CodeMirror.highlightActiveLineGutter(), CodeMirror.highlightSelectionMatches()];
@@ -537,4 +537,4 @@ class Joe extends JoeAction {
 	}
 }
 
-document.addEventListener('DOMContentLoaded', () => new Joe());
+document.addEventListener('DOMContentLoaded', () => new JoeEditor());

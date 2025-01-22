@@ -774,7 +774,7 @@ function _Meting($self)
 	$type = $_REQUEST['type'];
 	$self->response->setStatus(200);
 	if ($type == 'playlist') {
-		if ($_REQUEST['server'] == 'kugou' && !is_numeric($_REQUEST['id'])) {
+		if ($_REQUEST['server'] == 'kugou' && str_starts_with($_REQUEST['id'], 'http')) {
 			$headers = [
 				'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
 				'accept-encoding' => 'gzip, deflate, br, zstd',
@@ -793,21 +793,38 @@ function _Meting($self)
 				'upgrade-insecure-requests' => '1',
 				'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0',
 			];
-			$url = 'https://wwwapi.kugou.com/share/zlist.html?listid=2&type=0&uid=1240782090&share_type=collect&from=pcCode&_t=790853954&global_collection_id=collection_3_1240782090_2_0&sign=3d227af0fc84a14a2a19d4a492274910&chain=2d5zl69ElV3';
-			$response = (new \network\http\Client())->header($headers)->get($url)->body();
-			if (!strpos($response, 'dataFromSmarty')) $self->response->throwJson([]);
-			$data = preg_match('/dataFromSmarty \= \[\{(.*)\}\]/', $response, $response_match);
-			$data = json_decode('[{' . $response_match[1] . '}]', true);
-			foreach ($data as $key => $value) {
-				unset($data[$key]);
-				$data[$key]['author'] = is_array($value['author_name']) ? implode(' / ', $value['author_name']) : $value['author_name'];
-				$data[$key]['title'] = $value['song_name'];
-				$base_url = Helper::options()->index . '/joe/api?routeType=meting';
-				$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['hash'] . '&time=' . time();
-				$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['hash'];
-				$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['hash'];
+			$response = (new \network\http\Client())->header($headers)->get($_REQUEST['id'])->body();
+			if (strpos($response, 'dataFromSmarty')) {
+				$data = preg_match('/dataFromSmarty \= \[\{(.*)\}\]/', $response, $response_match);
+				$data = json_decode('[{' . $response_match[1] . '}]', true);
+				foreach ($data as $key => $value) {
+					unset($data[$key]);
+					$data[$key]['author'] = is_array($value['author_name']) ? implode(' / ', $value['author_name']) : $value['author_name'];
+					$data[$key]['title'] = $value['song_name'];
+					$base_url = Helper::options()->index . '/joe/api?routeType=meting';
+					$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['hash'] . '&time=' . time();
+					$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['hash'];
+					$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['hash'];
+				}
+				$self->response->throwJson($data);
 			}
-			$self->response->throwJson($data);
+			if (strpos($response, 'window.$output')) {
+				$data = preg_match('/window\.\$output \= \{(.*)\};/', $response, $response_match);
+				$data = json_decode('{' . $response_match[1] . '}', true);
+				print_r($data);
+				$self->response->throwJson($data);
+				foreach ($data as $key => $value) {
+					unset($data[$key]);
+					$data[$key]['author'] = is_array($value['author_name']) ? implode(' / ', $value['author_name']) : $value['author_name'];
+					$data[$key]['title'] = $value['song_name'];
+					$base_url = Helper::options()->index . '/joe/api?routeType=meting';
+					$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['hash'] . '&time=' . time();
+					$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['hash'];
+					$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['hash'];
+				}
+				$self->response->throwJson($data);
+			}
+			$self->response->throwJson([]);
 		}
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->playlist($_REQUEST['id']);
 		$data = json_decode($data, true);

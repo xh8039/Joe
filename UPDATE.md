@@ -312,6 +312,7 @@
 - 新增首页隐藏指定热门文章功能
 - 新增友情链接可自定义展示位置
 - 新增TurboLinks单页模式
+- 新增发布文章时自定义字段可选择默认不占数据模式
 - PC端侧栏位置新增列表标签云模块
 - 优化archive页面的分页功能为Pjax加载
 - 优化评论模块发送评论和分页功能为Pjax加载
@@ -329,10 +330,27 @@
 - 本次更新后请手动执行以下MySQL语句
 
 ```sql
+-- 必须执行
 ALTER TABLE `typecho_friends` ADD `position` VARCHAR(255) NULL DEFAULT NULL AFTER `email`;
 UPDATE `typecho_friends` SET `position`='single';
 RENAME TABLE `typecho_joe_pay` to `typecho_orders`;
 ALTER TABLE `typecho_orders` CHANGE `ip` `ip` VARCHAR(128);
+
+-- 清理主题自定义字段大量多余数据（最少可清理几百行，一般可清理几千行）
+DELETE FROM `blog_fields` WHERE `name` = 'mode' AND `str_value` = 'default';
+DELETE FROM `blog_fields` WHERE `name` = 'hide' AND `str_value` = 'comment';
+DELETE FROM `blog_fields` WHERE `name` = 'price' AND `str_value` = '0.00';
+DELETE FROM `blog_fields` WHERE `name` = 'price' AND `str_value` = '0';
+DELETE FROM `blog_fields` WHERE `name` = 'pay_box_position' AND `str_value` = 'top';
+DELETE FROM `blog_fields` WHERE `name` = 'pay_tag_background' AND `str_value` = 'yellow';
+DELETE FROM `blog_fields` WHERE `name` = 'keywords' AND `str_value` = '';
+DELETE FROM `blog_fields` WHERE `name` = 'description' AND `str_value` = '';
+DELETE FROM `blog_fields` WHERE `name` = 'thumb' AND `str_value` = '';
+DELETE FROM `blog_fields` WHERE `name` = 'abstract' AND `str_value` = '';
+DELETE FROM `blog_fields` WHERE `name` = 'video' AND `str_value` = '';
+DELETE FROM `blog_fields` WHERE `name` = 'max_image_height' AND `str_value` = '';
+DELETE FROM `blog_fields` WHERE `name` = 'baidu_push' AND `str_value` = 'no';
+DELETE FROM `blog_fields` WHERE `name` = 'global_advert' AND `str_value` = 'display';
 ```
 
 ![phpMyAdmin执行SQL语句教程](https://shp.qpic.cn/collector/2136118039/dec4ad69-6461-4d0e-a49e-97440627940d/0)

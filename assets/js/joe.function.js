@@ -87,6 +87,7 @@ window.Joe.scrollTo = (selector) => {
 		if (!$selector) return;
 		let top = $selector.offsetTop - $header.offsetHeight - 15;
 	}
+	console.log(top);
 	window.scrollTo({ top: top, behavior: 'smooth' });
 }
 

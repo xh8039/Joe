@@ -255,7 +255,6 @@ $JCursorEffects = new \Typecho\Widget\Helper\Form\Element\Select(
 	[
 		'off' => '关闭（默认）',
 		'cursor3.js' => '点击文字',
-		'firework.js' => '点击烟花',
 		'cursor1.js' => '点击爆开-小',
 		'cursor2.js' => '点击爆开-大',
 		'cursor4.js' => '点击爱心-随机',

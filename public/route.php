@@ -389,7 +389,7 @@ function _pushRecord($self)
 			'site error' => '站点未在站长平台验证',
 			'empty content' => 'post内容为空',
 			'only 2000 urls are allowed once' => '每次最多只能提交2000条链接',
-			'over quota' => '超过每日配额了，超配额后再提交都是无效的',
+			'over quota' => '已超过每日配额',
 			'token is not valid' => 'token错误',
 			'not found' => '接口地址填写错误',
 			'internal error, please try later' => '服务器偶然异常，通常重试就会成功'

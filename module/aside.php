@@ -114,7 +114,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<li class="item">
 							<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
 								<i class="sort"><?php echo $index; ?></i>
-								<img width="100%" height="130" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?php echo joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
+								<img width="100%" height="130" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
 								<div class="describe">
 									<h6><?php $item->title(); ?></h6>
 									<span><?php $item->views(); ?> 阅读 - <?php $item->date('m/d'); ?></span>

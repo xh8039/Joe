@@ -240,7 +240,7 @@ function getThumbnails($item)
 	$patternMDfoot = '/\[.*?\]:\s*(http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i';
 	/* 如果填写了自定义缩略图，则优先显示填写的缩略图 */
 	if ($item->fields->thumb) {
-		$fields_thumb_arr = explode("\r\n", $item->fields->thumb);
+		$fields_thumb_arr = explode('||', $item->fields->thumb);
 		foreach ($fields_thumb_arr as $list) $result[] = $list;
 	}
 	if (!is_string($item->content)) $item->content = '';
@@ -273,7 +273,7 @@ function getThumbnails($item)
 			}
 		}
 	}
-	return $result;
+	return array_map('trim', $result);
 }
 
 /* 获取父级评论 */
@@ -982,7 +982,6 @@ function get_archive_tags($item)
 	$tags = '';
 	$pay_tag_background = $item->fields->pay_tag_background ? $item->fields->pay_tag_background : 'yellow';
 	if ($item->fields->hide == 'pay' && $pay_tag_background != 'none') {
-		$item->fields->price = $item->fields->price ? $item->fields->price : 0;
 		$tags .= '<a rel="nofollow" href="' . $item->permalink . '?scroll=pay-box" class="meta-pay but jb-' . $pay_tag_background . '">' . ($item->fields->price > 0 ? '付费阅读<span class="em09 ml3">￥</span>' . $item->fields->price : '免费资源') . '</a>';
 	}
 	foreach ($item->categories as $key => $value) {
@@ -1201,7 +1200,6 @@ function markdown_hide_($content, $post, $login)
 			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 			$content = _payPurchased($post, $pay) . $content;
 		} else {
-			$post->fields->price = $post->fields->price ? $post->fields->price : 0;
 			if ($post->fields->price > 0) {
 				$pay_box_position = _payBox($post);
 			} else {
@@ -1230,7 +1228,7 @@ function markdown_hide_($content, $post, $login)
 					$pay_box_position = _payFreeResources($post);
 				}
 			}
-			if ($post->fields->pay_box_position == 'top' && !detectSpider()) {
+			if ((!$post->fields->pay_box_position || $post->fields->pay_box_position == 'top') && !detectSpider()) {
 				$content = $pay_box_position . $content;
 			}
 			if ($post->fields->pay_box_position == 'bottom' && !detectSpider()) {
@@ -1273,7 +1271,6 @@ function markdown_hide($content, $post, $login)
 		$userEmail = $login ? $GLOBALS['JOE_USER']->mail : $post->remember('mail', true);
 		// 查询评论信息
 		$comment = $db->fetchRow($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $userEmail)->limit(1));
-		$post->fields->price = $post->fields->price ? $post->fields->price : 0;
 		if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
 			// 查询支付信息
 			$payment = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
@@ -1298,7 +1295,6 @@ function markdown_hide($content, $post, $login)
 
 	// 处理付费内容显示逻辑 非爬虫才显示付费框
 	if ($post->fields->hide == 'pay' && !detectSpider()) {
-		$post->fields->price = $post->fields->price ? $post->fields->price : 0;
 		if ($post->fields->price > 0) {
 			$pay_box_position = $showContent ? _payPurchased($post, $payment) : _payBox($post); // 付费资源
 		} else {
@@ -1306,7 +1302,7 @@ function markdown_hide($content, $post, $login)
 		}
 
 		// 根据设置在顶部或底部显示付费框
-		if ($post->fields->pay_box_position == 'top') $content = $pay_box_position . $content;
+		if (!$post->fields->pay_box_position || $post->fields->pay_box_position == 'top') $content = $pay_box_position . $content;
 		if ($post->fields->pay_box_position == 'bottom') $content = $content . $pay_box_position;
 	}
 

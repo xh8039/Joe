@@ -189,7 +189,6 @@ function _payFreeResources($post, $comment)
 		</div>';
 	}
 	$login_comment = (!is_numeric(USER_ID) && Helper::options()->JcommentLogin == 'on') ? true : false;
-	$post->fields->price = $post->fields->price ? $post->fields->price : 0;
 	return '
 	<div class="zib-widget pay-box" id="posts-pay">
 		<div class="flex pay-flexbox">
@@ -206,7 +205,7 @@ function _payFreeResources($post, $comment)
 					<div class="price-box">
 						<div class="c-red">
 							<b class="em3x">
-								<span class="pay-mark">￥</span>' . round($post->fields->price, 2) . '
+								<span class="pay-mark">￥</span>' . round(($post->fields->price ? $post->fields->price : 0), 2) . '
 							</b>
 						</div>
 					</div>
@@ -229,7 +228,6 @@ function _payBox($post)
 {
 	$db = Typecho_Db::get();
 	$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
-	$post->fields->price = $post->fields->price ? $post->fields->price : 0;
 	return '
 	<div class="zib-widget pay-box" id="posts-pay">
 		<div class="flex pay-flexbox">
@@ -246,7 +244,7 @@ function _payBox($post)
 					<div class="price-box">
 						<div class="c-red">
 							<b class="em3x">
-								<span class="pay-mark">￥</span>' . round($post->fields->price, 2) . '
+								<span class="pay-mark">￥</span>' . round(($post->fields->price ? $post->fields->price : 0), 2) . '
 							</b>
 						</div>
 					</div>

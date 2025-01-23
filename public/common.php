@@ -292,7 +292,7 @@ function themeFields($layout)
 	);
 	$layout->addItem($keywords);
 
-	$description = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	$description = new \Typecho\Widget\Helper\Form\Element\Text(
 		'description',
 		NULL,
 		NULL,
@@ -303,7 +303,7 @@ function themeFields($layout)
 	);
 	$layout->addItem($description);
 
-	$thumb = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	$thumb = new \Typecho\Widget\Helper\Form\Element\Text(
 		'thumb',
 		NULL,
 		NULL,
@@ -313,11 +313,11 @@ function themeFields($layout)
 			1、若文章有图片则取文章内图片 <br>
 			2、若文章无图片，并且外观设置里未填写·自定义缩略图·选项，则取模板自带图片 <br>
 			3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片 <br>
-		 注意：多个缩略图时换行填写，一行一个（仅在三图模式下生效）'
+		 注意：多个缩略图时使用 || 分割填写（仅在三图模式下生效）'
 	);
 	$layout->addItem($thumb);
 
-	$abstract = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	$abstract = new \Typecho\Widget\Helper\Form\Element\Text(
 		'abstract',
 		NULL,
 		NULL,

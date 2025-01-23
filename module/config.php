@@ -3,45 +3,40 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-if ($this->request->getHeader('x-pjax') == 'true') {
-	if ($this->options->commentsAntiSpam && $this->is('single')) echo '<script>window.Joe.options.commentsAntiSpam = ' . Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())) . ';window.Joe.respondId = `' . $this->respondId . '`;</script>';
-	return;
-}
-$fields = $this->fields->toArray();
+$commentsAntiSpam = ($this->options->commentsAntiSpam && $this->is('single')) ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null';
+?>
+<script>
+	window.Joe = window.Joe || {};
+	Joe.options.commentsAntiSpam = <?= $commentsAntiSpam ?>;
+	Joe.respondId = `<?= $this->respondId ?>`;
+	Joe.CONTENT.cid = <?= isset($this->cid) ? $this->cid : 'null' ?>;
+	Joe.CONTENT.cover = `<?= $this->is('single') ? joe\getThumbnails($this)[0] : null ?>`;
+	Joe.CONTENT.fields = <?= json_encode($this->fields->toArray(), JSON_UNESCAPED_SLASHES) ?>;
+</script>
+<?php
+if ($this->request->getHeader('x-pjax') == 'true') return;
 $options = [];
-foreach (['themeUrl', 'IndexAjaxList', 'BaiduPushToken', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'NProgressJS', 'title', 'Turbolinks'] as $value) {
+foreach (['themeUrl', 'IndexAjaxList', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'NProgressJS', 'title', 'Turbolinks'] as $value) {
 	$options[$value] = $this->options->$value;
 }
 $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 ?>
 <script>
-	window.Joe = Object.assign(window?.Joe ? window.Joe : {}, {
-		THEME_URL: `<?= joe\theme_url('', false) ?>`,
-		BASE_API: `<?= joe\index('joe/api', '//') ?>`,
-		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
-		LAZY_LOAD: `<?php joe\getLazyload() ?>`,
-		MOTTO: `<?php joe\getAsideAuthorMotto() ?>`,
-		PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`,
-		VERSION: `<?= JOE_VERSION ?>`,
-		respondId: `<?= $this->respondId ?>`,
-		CONTENT: {
-			cid: <?= isset($this->cid) ? $this->cid : 'null' ?>,
-			cover: `<?= $this->is('single') ? joe\getThumbnails($this)[0] : null ?>`,
-			fields: {
-				hide: `<?= isset($fields['hide']) ? $fields['hide'] : null ?>`,
-				price: `<?= isset($fields['price']) ? round($fields['price'], 2) : null ?>`,
-			}
-		},
-		CDN: (path) => {
-			return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
-		},
-		startTime: performance.now(),
-		DOMContentLoaded: window.Joe?.DOMContentLoaded ? window.Joe.DOMContentLoaded : {},
-		options: <?= $options ?>,
-	});
+	Joe.startTime = performance.now();
+	Joe.DOMContentLoaded = Joe.DOMContentLoaded ? Joe.DOMContentLoaded : {};
+	Joe.THEME_URL = `<?= joe\theme_url('', false) ?>`;
+	Joe.BASE_API = `<?= joe\index('joe/api', '//') ?>`;
+	Joe.IS_MOBILE = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
+	Joe.LAZY_LOAD = `<?php joe\getLazyload() ?>`;
+	Joe.MOTTO = `<?php joe\getAsideAuthorMotto() ?>`;
+	Joe.PAGE_SIZE = `<?php $this->parameter->pageSize() ?>`;
+	Joe.VERSION = `<?= JOE_VERSION ?>`;
+	Joe.options = <?= $options ?>;
 	Joe.options.BaiduPush = <?= empty($this->options->BaiduPushToken) ? 'false' : 'true' ?>;
 	Joe.options.BingPush = <?= empty($this->options->BingPushToken) ? 'false' : 'true' ?>;
-	Joe.options.commentsAntiSpam = <?= $this->options->commentsAntiSpam && $this->is('single') ? trim(Typecho\Common::shuffleScriptVar($this->security->getToken($this->request->getRequestUrl())), ';') : 'null' ?>;
+	Joe.CDN = (path) => {
+		return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
+	};
 
 	// 19:00 PM - 6:00 AM 是黑夜
 	if (Joe.options.JThemeMode == 'auto' && ((new Date()).getHours() >= 19 || (new Date()).getHours() < 6)) {

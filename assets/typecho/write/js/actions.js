@@ -166,14 +166,18 @@ class JoeAction {
 					parser: parser,
 					plugins: prettierPlugins,
 				});
-				if (formattedCode && formattedCode != code) {
-					cm.dispatch({ changes: { from: 0, to: cm.state.doc.length, insert: formattedCode } });
-					cm.focus();
+				if (formattedCode) {
+					if (formattedCode == code) {
+						layer.msg('无需格式化');
+					} else {
+						cm.dispatch({ changes: { from: 0, to: cm.state.doc.length, insert: formattedCode } });
+						cm.focus();
+					}
 				} else {
-					layer.msg('prettier格式化失败');
+					layer.alert('prettier格式化失败');
 				}
 			} catch (error) {
-				layer.msg('格式化失败');
+				layer.alert('格式化失败');
 				console.error("Prettier formatting error:", error.message); // 使用 console.error 来记录错误
 			}
 		});

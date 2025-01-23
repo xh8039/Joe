@@ -190,9 +190,8 @@ class JoeAction {
 
 		// 只添加尚未加载的文件
 		fileUrls.forEach(fileUrl => {
-			if (!isScriptLoaded(fileUrl)) { // isScriptLoaded 函数（实现未显示）检查脚本是否已加载。
-				fileLoader.add(fileUrl);
-			}
+			// 检查脚本是否已加载
+			if (!FileLoader.isScriptLoaded(fileUrl)) fileLoader.add(fileUrl);
 		});
 
 		// 返回一个 Promise，在所有文件加载完成后解析
@@ -1099,6 +1098,10 @@ class JoeAction {
 class FileLoader {
 	static scriptsLoaded = [];
 	promises = [];
+
+	static isScriptLoaded(_0x1bdc9a) {
+		return FileLoader.scriptsLoaded.indexOf(_0x1bdc9a.split("/").pop()) > -1 ? true : false;
+	}
 
 	/**
 	 * 将文件添加到加载队列。

@@ -144,7 +144,7 @@ class JoeAction {
 		cm.focus();
 	}
 	handleFormat(cm) {
-		this.beautifyCode(cm, code, 'markdown');
+		this.beautifyCode(cm, 'markdown');
 	}
 	/**
 	* 使用Prettier美化代码。

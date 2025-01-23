@@ -413,6 +413,7 @@
 	display: flex;
 	align-items: center;
 	margin-left: auto;
+	padding-left: 10px;
 }
 
 .joe_index__title-notice svg {

@@ -386,12 +386,12 @@ class JoeEditor extends JoeAction {
 			}
 		});
 		window.Joe.tooltip();
-		document.addEventListener('keydown', function (event) {
+		document.addEventListener('keydown', (event) => {
 			if (event.shiftKey && event.altKey && event.key.toLowerCase() === 'f') {
 				event.preventDefault();
 				// 你的代码在这里...
 				console.log("Shift + Alt + F 按下！");
-				this.handleFormat(this.cm);
+				super.handleFormat(this.cm);
 			}
 		});
 	}

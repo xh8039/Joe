@@ -661,57 +661,6 @@ function _Meting($self)
 	$api = new Meting($_REQUEST['server']);
 	$type = $_REQUEST['type'];
 	if ($type == 'playlist') {
-		if ($_REQUEST['server'] == 'kugou' && str_starts_with($_REQUEST['id'], 'http')) {
-			$headers = [
-				'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-				'accept-encoding' => 'gzip, deflate, br, zstd',
-				'accept-language' => 'zh-CN,zh;q=0.9',
-				'cache-control' => 'no-cache',
-				'cookie' => Helper::options()->JMusicCookie,
-				'pragma' => 'no-cache',
-				'priority' => 'u=0, i',
-				'sec-ch-ua' => '"Not A(Brand";v="8", "Chromium";v="132", "Microsoft Edge";v="132"',
-				'sec-ch-ua-mobile' => '?0',
-				'sec-ch-ua-platform' => '"Windows"',
-				'sec-fetch-dest' => 'document',
-				'sec-fetch-mode' => 'navigate',
-				'sec-fetch-site' => 'none',
-				'sec-fetch-user' => '?1',
-				'upgrade-insecure-requests' => '1',
-				'user-agent' => 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36 EdgA/129.0.0.0 Edg/130.0.0.0',
-			];
-			$response = (new \network\http\Client())->header($headers)->get($_REQUEST['id'])->body();
-			if (strpos($response, 'dataFromSmarty')) {
-				$data = preg_match('/dataFromSmarty \= \[\{(.*)\}\]/', $response, $response_match);
-				$data = json_decode('[{' . $response_match[1] . '}]', true);
-				foreach ($data as $key => $value) {
-					unset($data[$key]);
-					$data[$key]['author'] = is_array($value['author_name']) ? implode(' / ', $value['author_name']) : $value['author_name'];
-					$data[$key]['title'] = $value['song_name'];
-					$base_url = Helper::options()->index . '/joe/api?routeType=meting';
-					$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['hash'] . '&time=' . time();
-					$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['hash'];
-					$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['hash'];
-				}
-				$self->response->throwJson($data);
-			}
-			if (strpos($response, 'window.$output')) {
-				$data = preg_match('/window\.\$output \= \{(.*)\}; \<\/script\>/', $response, $response_match);
-				$data = json_decode('{' . $response_match[1] . '}', true)['info']['songs'];
-				foreach ($data as $key => $value) {
-					unset($data[$key]);
-					$name = explode('-', $value['name']);
-					$data[$key]['author'] = trim($name[0]);
-					$data[$key]['title'] = trim($name[1]);
-					$base_url = Helper::options()->index . '/joe/api?routeType=meting';
-					$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['hash'] . '&time=' . time();
-					$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['hash'];
-					$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['hash'];
-				}
-				$self->response->throwJson($data);
-			}
-			$self->response->throwJson([]);
-		}
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->playlist($_REQUEST['id']);
 		$data = json_decode($data, true);
 		if (!empty($data['error'])) $self->response->throwJson($data);

@@ -218,47 +218,7 @@ function themeFields($layout)
 	$price->setAttribute('style', 'display:none');
 	$layout->addItem($price);
 
-	$pay_box_position = new \Typecho\Widget\Helper\Form\Element\Select(
-		'pay_box_position',
-		['' => '默认位置（不占数据）', 'top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'],
-		NULL,
-		'付费阅读模块显示位置',
-		'在文章页面中购买模块的显示位置'
-	);
-	$layout->addItem($pay_box_position);
 
-	$pay_tag_background = new \Typecho\Widget\Helper\Form\Element\Select(
-		'pay_tag_background',
-		['' => '默认颜色（不占数据）', 'yellow' => '渐变黄', 'blue' => '渐变蓝', 'cyan' => '渐变青', 'green' => '渐变绿', 'purple' => '渐变紫', 'red' => '渐变红', 'pink' => '渐变粉', 'vip1' => '豪华VIP', 'vip2' => '轻奢VIP', 'none' => '不显示'],
-		NULL,
-		'付费阅读标签背景颜色',
-		'<script>
-			const payPriceInput = document.querySelector(\'input[name="fields[price]"]\').parentElement.parentElement.parentElement;
-			const pay_box_position = document.querySelector(\'select[name="fields[pay_box_position]"]\').parentElement.parentElement.parentElement;
-			const pay_tag_background = document.querySelector(\'select[name="fields[pay_tag_background]"]\').parentElement.parentElement.parentElement;
-			if (document.querySelector(\'select[name="fields[hide]"]\').value === "pay") {
-				pay_box_position.style.display = "table-row";
-				pay_tag_background.style.display = "table-row";
-				payPriceInput.style.display = "table-row";
-			} else {
-			 	pay_box_position.style.display = "none";
-				pay_tag_background.style.display = "none";
-				payPriceInput.style.display = "none";
-			}
-			document.querySelector(\'select[name="fields[hide]"]\').addEventListener("change", () => {
-				if (document.querySelector(\'select[name="fields[hide]"]\').value === "pay") {
-					pay_box_position.style.display = "table-row";
-					pay_tag_background.style.display = "table-row";
-					payPriceInput.style.display = "table-row";
-				} else {
-				 	pay_box_position.style.display = "none";
-					pay_tag_background.style.display = "none";
-					payPriceInput.style.display = "none";
-				}
-			});
-		</script>'
-	);
-	$layout->addItem($pay_tag_background);
 
 	$keywords = new \Typecho\Widget\Helper\Form\Element\Text(
 		'keywords',
@@ -350,6 +310,48 @@ function themeFields($layout)
 		 注意：独立页面该功能不会生效'
 	);
 	$layout->addItem($mode);
+
+	$pay_box_position = new \Typecho\Widget\Helper\Form\Element\Select(
+		'pay_box_position',
+		['' => '默认位置（不占数据）', 'top' => '文章内容顶部', 'bottom' => '文章内容底部', 'none' => '不显示'],
+		NULL,
+		'付费阅读模块显示位置',
+		'在文章页面中购买模块的显示位置'
+	);
+	$layout->addItem($pay_box_position);
+
+	$pay_tag_background = new \Typecho\Widget\Helper\Form\Element\Select(
+		'pay_tag_background',
+		['' => '默认颜色（不占数据）', 'yellow' => '渐变黄', 'blue' => '渐变蓝', 'cyan' => '渐变青', 'green' => '渐变绿', 'purple' => '渐变紫', 'red' => '渐变红', 'pink' => '渐变粉', 'vip1' => '豪华VIP', 'vip2' => '轻奢VIP', 'none' => '不显示'],
+		NULL,
+		'付费阅读标签背景颜色',
+		'<script>
+			const payPriceInput = document.querySelector(\'input[name="fields[price]"]\').parentElement.parentElement.parentElement;
+			const pay_box_position = document.querySelector(\'select[name="fields[pay_box_position]"]\').parentElement.parentElement.parentElement;
+			const pay_tag_background = document.querySelector(\'select[name="fields[pay_tag_background]"]\').parentElement.parentElement.parentElement;
+			if (document.querySelector(\'select[name="fields[hide]"]\').value === "pay") {
+				pay_box_position.style.display = "table-row";
+				pay_tag_background.style.display = "table-row";
+				payPriceInput.style.display = "table-row";
+			} else {
+			 	pay_box_position.style.display = "none";
+				pay_tag_background.style.display = "none";
+				payPriceInput.style.display = "none";
+			}
+			document.querySelector(\'select[name="fields[hide]"]\').addEventListener("change", () => {
+				if (document.querySelector(\'select[name="fields[hide]"]\').value === "pay") {
+					pay_box_position.style.display = "table-row";
+					pay_tag_background.style.display = "table-row";
+					payPriceInput.style.display = "table-row";
+				} else {
+				 	pay_box_position.style.display = "none";
+					pay_tag_background.style.display = "none";
+					payPriceInput.style.display = "none";
+				}
+			});
+		</script>'
+	);
+	$layout->addItem($pay_tag_background);
 
 	if (Helper::options()->JPost_Record_Detection == 'on') {
 		$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(

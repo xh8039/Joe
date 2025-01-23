@@ -284,7 +284,7 @@ function themeFields($layout)
 		'keywords',
 		NULL,
 		NULL,
-		'SEO关键词（非常重要！）',
+		'SEO关键词',
 		'介绍：用于设置当前页SEO关键词 <br />
 		 注意：多个关键词使用英文逗号进行隔开 <br />
 		 例如：Typecho,Typecho主题,Typecho模板 <br />
@@ -296,7 +296,7 @@ function themeFields($layout)
 		'description',
 		NULL,
 		NULL,
-		'SEO描述语（非常重要！）',
+		'SEO描述语',
 		'介绍：用于设置当前页SEO描述语 <br />
 		 注意：SEO描述语不应当过长也不应当过少 <br />
 		 其他：如果不填写此项，则默认截取文章片段'
@@ -307,7 +307,7 @@ function themeFields($layout)
 		'thumb',
 		NULL,
 		NULL,
-		'自定义缩略图（非必填）',
+		'自定义缩略图',
 		'填写时：将会显示填写的文章缩略图 <br>
 		 不填写时：<br>
 			1、若文章有图片则取文章内图片 <br>
@@ -321,7 +321,7 @@ function themeFields($layout)
 		'abstract',
 		NULL,
 		NULL,
-		'自定义摘要（非必填）',
+		'自定义摘要',
 		'填写时：将会显示填写的摘要 <br>
 		 不填写时：默认取文章里的内容'
 	);
@@ -331,7 +331,7 @@ function themeFields($layout)
 		'video',
 		NULL,
 		NULL,
-		'M3U8或MP4地址（非必填）',
+		'M3U8或MP4地址',
 		'填写后，文章会插入一个视频模板 <br>
 		 格式：[视频名称--视频介绍](视频地址)。如果有多个，换行写即可 <br>
 		 例如：<br>
@@ -344,9 +344,9 @@ function themeFields($layout)
 		'max_image_height',
 		NULL,
 		NULL,
-		'PC端图片极限高度（非必填）',
+		'PC端图片极限高度',
 		'介绍：用于设置当前页的图片最高高度 <br />
-		 例如：30vh、300px、unset <br />
+		 例如：40vh、300px、unset <br />
 		 注意：填写 unset 即可使用自动高度 <br />
 		 其他：如果不填写此项，则默认为40vh'
 	);

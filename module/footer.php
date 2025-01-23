@@ -273,7 +273,7 @@ if (!empty($footer_tabbar)) {
 	}
 </style>
 <?php if ($this->options->JAside_3DTag == 'on') : ?>
-	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js'); ?>"></script>
+	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js', null); ?>"></script>
 <?php endif; ?>
 <?php if (!empty($this->options->NewYearLantern)) : ?>
 	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/yihang/china-lantern.min.js', ['text' => $this->options->NewYearLantern]); ?>"></script>
@@ -281,7 +281,7 @@ if (!empty($footer_tabbar)) {
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects != 'off') : ?>
 	<script data-turbolinks-permanent src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects) ?>"></script>
 <?php endif; ?>
-<script data-turbolinks-permanent src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
+<script data-turbolinks-permanent src="<?= joe\theme_url('assets/js/svg.icon.js', null) ?>"></script>
 
 <!-- 自定义JavaScript -->
 <script>

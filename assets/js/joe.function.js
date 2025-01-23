@@ -4,7 +4,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 	if (url instanceof Object) {
 		options = url;
 	} else {
-		if (options.url.startsWith('/') || options.url.startsWith('http')) {
+		if (url.startsWith('/') || url.startsWith('http')) {
 			options.url = url;
 		} else {
 			options.element = url;

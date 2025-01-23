@@ -208,16 +208,6 @@ function themeInit($self)
 /* 增加自定义字段 */
 function themeFields($layout)
 {
-	$price = new \Typecho\Widget\Helper\Form\Element\Text(
-		'price',
-		NULL,
-		NULL,
-		'隐藏内容付费金额',
-		'设置为 0 则是免费资源，付费可见功能需要在 [主题设置=>付费设置] 处配置好您的支付信息后可用'
-	);
-	$price->setAttribute('style', 'display:none');
-	$layout->addItem($price);
-
 
 
 	$keywords = new \Typecho\Widget\Helper\Form\Element\Text(
@@ -228,7 +218,7 @@ function themeFields($layout)
 		'介绍：用于设置当前页SEO关键词 <br />
 		 注意：多个关键词使用英文逗号进行隔开 <br />
 		 例如：Typecho,Typecho主题,Typecho模板 <br />
-		 其他：如果不填写此项，则默认取文章标签'
+		 其他：如果不填写此项，则默认取文章标签，不占用数据库空间'
 	);
 	$layout->addItem($keywords);
 
@@ -239,7 +229,7 @@ function themeFields($layout)
 		'SEO描述语',
 		'介绍：用于设置当前页SEO描述语 <br />
 		 注意：SEO描述语不应当过长也不应当过少 <br />
-		 其他：如果不填写此项，则默认截取文章片段'
+		 其他：如果不填写此项，则默认截取文章片段，不占用数据库空间'
 	);
 	$layout->addItem($description);
 
@@ -253,6 +243,7 @@ function themeFields($layout)
 			1、若文章有图片则取文章内图片 <br>
 			2、若文章无图片，并且外观设置里未填写·自定义缩略图·选项，则取模板自带图片 <br>
 			3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片 <br>
+			4、不占用数据库空间
 		 注意：多个缩略图时使用 || 分割填写（仅在三图模式下生效）'
 	);
 	$layout->addItem($thumb);
@@ -263,7 +254,7 @@ function themeFields($layout)
 		NULL,
 		'自定义摘要',
 		'填写时：将会显示填写的摘要 <br>
-		 不填写时：默认取文章里的内容'
+		 不填写时：默认取文章里的内容，不占用数据库空间'
 	);
 	$layout->addItem($abstract);
 
@@ -288,18 +279,9 @@ function themeFields($layout)
 		'介绍：用于设置当前页的图片最高高度 <br />
 		 例如：40vh、300px、unset <br />
 		 注意：填写 unset 即可使用自动高度 <br />
-		 其他：如果不填写此项，则默认为40vh'
+		 其他：如果不填写此项，则默认为40vh，不占用数据库空间'
 	);
 	$layout->addItem($max_image_height);
-
-	$hide = new \Typecho\Widget\Helper\Form\Element\Select(
-		'hide',
-		['' => '默认评论可见（不占数据）', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
-		NULL,
-		'隐藏内容模式',
-		'可将隐藏内容设置为评论可见、付费可见、登录可见'
-	);
-	$layout->addItem($hide);
 
 	$mode = new \Typecho\Widget\Helper\Form\Element\Select(
 		'mode',
@@ -310,6 +292,25 @@ function themeFields($layout)
 		 注意：独立页面该功能不会生效'
 	);
 	$layout->addItem($mode);
+
+	$hide = new \Typecho\Widget\Helper\Form\Element\Select(
+		'hide',
+		['' => '默认评论可见（不占数据）', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
+		NULL,
+		'隐藏内容模式',
+		'可将隐藏内容设置为评论可见、付费可见、登录可见'
+	);
+	$layout->addItem($hide);
+
+	$price = new \Typecho\Widget\Helper\Form\Element\Text(
+		'price',
+		NULL,
+		NULL,
+		'隐藏内容付费金额',
+		'设置为 0 则是免费资源，付费可见功能需要在 [主题设置=>付费设置] 处配置好您的支付信息后可用'
+	);
+	$price->setAttribute('style', 'display:none');
+	$layout->addItem($price);
 
 	$pay_box_position = new \Typecho\Widget\Helper\Form\Element\Select(
 		'pay_box_position',

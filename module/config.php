@@ -7,9 +7,10 @@ $commentsAntiSpam = ($this->options->commentsAntiSpam && $this->is('single')) ? 
 ?>
 <script>
 	window.Joe = window.Joe || {};
+	Joe.options = Joe.options || {};
+	Joe.CONTENT = {};
 	Joe.options.commentsAntiSpam = <?= $commentsAntiSpam ?>;
 	Joe.respondId = `<?= $this->respondId ?>`;
-	Joe.CONTENT = {};
 	Joe.CONTENT.cid = <?= isset($this->cid) ? $this->cid : 'null' ?>;
 	Joe.CONTENT.cover = `<?= $this->is('single') ? joe\getThumbnails($this)[0] : null ?>`;
 	Joe.CONTENT.fields = <?= json_encode($this->fields->toArray(), JSON_UNESCAPED_SLASHES) ?>;

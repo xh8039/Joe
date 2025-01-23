@@ -10,8 +10,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-/* 判断是否是手机 */
+function header_cache($time)
+{
+	// 设置缓存控制头部
+	header("Cache-Control: max-age=$time, public");
+	header('Expires: ' . gmdate('D, d M Y H:i:s', time() + $time) . ' GMT');
+}
 
+/* 判断是否是手机 */
 function isMobile()
 {
 	if (isset($_SERVER['HTTP_X_WAP_PROFILE']))

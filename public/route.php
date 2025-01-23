@@ -673,6 +673,7 @@ function _Meting($self)
 			$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
 			$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
 		}
+		joe\header_cache(24 * 60 * 60);
 		$self->response->throwJson($data);
 	}
 	if ($type == 'url') {
@@ -693,18 +694,13 @@ function _Meting($self)
 	}
 	if ($type == 'lrc') {
 		$data = json_decode($api->format(true)->cookie(Helper::options()->JMusicCookie)->lyric($_REQUEST['id']), true);
-		// 计算180天后的日期
-		$expireTime = gmdate('D, d M Y H:i:s', time() + (180 * 24 * 60 * 60)) . ' GMT';
-		// 设置缓存控制头部
-		header("Cache-Control: max-age=" . (180 * 24 * 60 * 60) . ", public");
-		header("Expires: $expireTime");
+		joe\header_cache(180 * 24 * 60 * 60); // 缓存180天
 		header("Content-Type: text/plain; charset=utf-8");
 		if (empty($data['tlyric'])) {
-			echo $data['lyric'];
+			$self->response->throwContent($data['lyric']);
 		} else {
-			echo $data['tlyric'];
+			$self->response->throwContent($data['tlyric']);
 		}
-		exit;
 	}
 	if ($type == 'song') {
 		$data = $api->format(true)->cookie(Helper::options()->JMusicCookie)->song($_REQUEST['id']);

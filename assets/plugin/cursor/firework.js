@@ -1,4 +1,5 @@
 
+jQuery.ajaxSetup({ cache: true });
 $.getScript(Joe.CDN_URL + 'EaselJS/1.0.2/easeljs.min.js', function () {
 	var Fireworks, GRAVITY, K, SPEED, ToRadian, canvas, context, ctx, fireBoss, repeat, stage;
 	canvas = document.createElement('canvas');

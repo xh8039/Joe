@@ -2,9 +2,6 @@
 
 namespace joe;
 
-use \Helper;
-use \Typecho_Db;
-
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
@@ -800,7 +797,7 @@ function panel_exists(string $fileName): bool
 
 function update_sql()
 {
-	$DB = Typecho_Db::get();
+	$DB = \Typecho_Db::get();
 	$adapter = $DB->getAdapterName();
 	$adapter = ltrim($adapter, 'Pdo_');
 	if ($adapter == 'Mysqli') $adapter = 'Mysql';
@@ -821,7 +818,7 @@ function update_sql()
 
 function install_sql()
 {
-	$DB = Typecho_Db::get();
+	$DB = \Typecho_Db::get();
 	$adapter = $DB->getAdapterName();
 	$adapter = ltrim($adapter, 'Pdo_');
 	if ($adapter == 'Mysqli') $adapter = 'Mysql';
@@ -839,7 +836,7 @@ function install()
 
 	if (\Typecho\Common::VERSION < 1.2) throw new \Typecho\Exception('请使用 Typecho 1.2.0 及以上版本！');
 
-	$DB = Typecho_Db::get();
+	$DB = \Typecho_Db::get();
 	if ((float) $DB->getVersion() < 5.6) throw new \Typecho\Exception('请使用 MySql 5.6 及以上版本！');
 
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
@@ -851,12 +848,12 @@ function install()
 	if ($install_value) {
 		if (is_string($install_value) && $install_value != THEME_NAME) {
 			// 删除更改主题目录名后的重复注册面板沉淀
-			Helper::removePanel(3, '../themes/' . $install_value . '/admin/orders.php');
-			Helper::removePanel(3, '../themes/' . $install_value . '/admin/friends.php');
+			\Helper::removePanel(3, '../themes/' . $install_value . '/admin/orders.php');
+			\Helper::removePanel(3, '../themes/' . $install_value . '/admin/friends.php');
 
 			// 重新注册新的面板
-			if (!panel_exists($orders_url)) Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
-			if (!panel_exists($friends_url)) Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
+			if (!panel_exists($orders_url)) \Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
+			if (!panel_exists($friends_url)) \Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
 
 			$theme_name_update = $DB->update('table.options')->rows(array('value' => THEME_NAME))->where('name = ?', $install_field);
 			if ($DB->query($theme_name_update)) {
@@ -869,14 +866,14 @@ function install()
 	}
 
 	// 删除某些特殊情况下的重复注册沉淀
-	Helper::removePanel(3, $orders_url);
-	Helper::removePanel(3, $friends_url);
+	\Helper::removePanel(3, $orders_url);
+	\Helper::removePanel(3, $friends_url);
 
 	// 注册后台订单页面
-	if (!panel_exists($orders_url)) Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
+	if (!panel_exists($orders_url)) \Helper::addPanel(3, $orders_url, '订单', '订单管理', 'administrator');
 
 	// 注册后台友链页面
-	if (!panel_exists($friends_url)) Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
+	if (!panel_exists($friends_url)) \Helper::addPanel(3, $friends_url, '友链', '友情链接', 'administrator');
 
 	try {
 		$install_list = install_sql();
@@ -1018,7 +1015,7 @@ function custom_navs()
 {
 	static $custom_navs = null;
 	if (is_null($custom_navs)) {
-		$custom_navs_text = Helper::options()->JCustomNavs;
+		$custom_navs_text = \Helper::options()->JCustomNavs;
 		$custom_navs_block = optionMulti($custom_navs_text, "\r\n\r\n", false);
 		$custom_navs = [];
 		foreach ($custom_navs_block as $key => $value) {
@@ -1053,7 +1050,7 @@ function custom_navs_title($title)
  */
 function author_post_field_sum($id, $field)
 {
-	$db = Typecho_Db::get();
+	$db = \Typecho_Db::get();
 	$postnum = $db->fetchRow($db->select(array('SUM(' . $field . ')' => 'field'))->from('table.contents')->where('table.contents.authorId=?', $id)->where('table.contents.type=?', 'post'));
 	return $postnum['field'];
 }

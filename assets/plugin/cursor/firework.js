@@ -36,6 +36,9 @@ var canvas = document.createElement('canvas'),
 // set canvas dimensions
 canvas.width = cw;
 canvas.height = ch;
+canvas.style.position = 'fixed';
+canvas.style.top = '0px';
+canvas.style.left = '0px';
 document.body.appendChild(canvas);
 
 // now we are going to setup our function placeholders for the entire demo

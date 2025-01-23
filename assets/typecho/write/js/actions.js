@@ -143,6 +143,64 @@ class JoeAction {
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
+	handleFormat(cm) {
+		this.beautifyCode(cm, code, 'markdown');
+	}
+	/**
+	* 使用Prettier美化代码。
+	*
+	* @param {string} parser parser 要使用的解析器 (例如，"javascript"，"php")。默认为与 language 参数相同的值。
+	* @param {string} language language 用于构建附加插件 URL 的语言 (可选，默认为 parser)。
+	*/
+	beautifyCode(cm, parser, language = null) {
+		language = language || parser;
+		const code = cm.state.doc.toString();
+		if (!code || code.trim().length === 0) return;
+
+		let pluginUrl = "https://unpkg.com/prettier@2.2.1/parser-" + language + ".js";
+		if (parser == "php") pluginUrl = "https://unpkg.com/@prettier/plugin-php@0.15.1/standalone.js";
+
+		this.loadFiles(["https://unpkg.com/prettier@2.2.1/standalone.js", pluginUrl]).then(() => {
+			try {
+				let formattedCode = prettier.format(code, {
+					parser: parser,
+					plugins: prettierPlugins,
+				});
+				if (formattedCode && formattedCode != code) {
+					cm.dispatch({ changes: { from: 0, to: cm.state.doc.length, insert: formattedCode } });
+					cm.focus();
+				} else {
+					layer.msg('prettier格式化失败');
+				}
+			} catch (error) {
+				layer.msg('格式化失败');
+				console.error("Prettier formatting error:", error.message); // 使用 console.error 来记录错误
+			}
+		});
+	}
+	/**
+	 * 并发加载多个文件。处理 .js 和其他文件类型（可能是通过链接标签加载的 CSS）。
+	 * @param {string[]} fileUrls 要加载的文件 URL 数组。
+	 * @returns {Promise<void>} 所有文件加载完成后解析的 Promise。
+	 */
+	loadFiles(fileUrls) {
+		const loading = layer.load(2, { shade: 0.3 });
+
+		const fileLoader = new FileLoader();
+
+		// 只添加尚未加载的文件
+		fileUrls.forEach(fileUrl => {
+			if (!isScriptLoaded(fileUrl)) { // isScriptLoaded 函数（实现未显示）检查脚本是否已加载。
+				fileLoader.add(fileUrl);
+			}
+		});
+
+		// 返回一个 Promise，在所有文件加载完成后解析
+		return fileLoader.loaded().then(() => {
+			console.log("加载完成");
+			layer.close(loading);
+		});
+	}
 	handleClean(cm) {
 		if (!window.confirm('确定要清屏吗？')) return;
 		cm.dispatch({ changes: { from: 0, to: cm.state.doc.length, insert: '' } });
@@ -1032,5 +1090,61 @@ class JoeAction {
 				cm.focus();
 			}
 		});
+	}
+}
+
+/**
+ * 用于异步加载文件的类。处理 JS 和 CSS 文件。
+ */
+class FileLoader {
+	static scriptsLoaded = [];
+	promises = [];
+
+	/**
+	 * 将文件添加到加载队列。
+	 * @param {string} fileUrl 要加载的文件的 URL。
+	 */
+	add(fileUrl) {
+		const promise = new Promise((resolve, reject) => {
+			const element = fileUrl.endsWith(".js") ? getScriptElm(fileUrl) : getLinkElm(fileUrl); // 根据扩展名确定元素类型
+
+			element.addEventListener("load", () => {
+				const filename = element.src.split("/").pop() || element.href.split("/").pop(); // 从 src 或 href 中提取文件名
+				FileLoader.scriptsLoaded.push(filename);
+				console.log(`文件已加载: ${filename}`);
+				resolve(element); // 使用已加载的元素解析 Promise
+			});
+
+			element.addEventListener("error", () => {
+				console.error(`加载失败: ${fileUrl}`); // 更具信息性的错误消息
+				reject(fileUrl); // 使用失败的 URL 拒绝 Promise
+			});
+		});
+		this.promises.push(promise);
+	}
+
+	/**
+	 * 返回一个 Promise，在添加的所有文件加载完成后解析。
+	 * @returns {Promise<any[]>} 解析为已加载元素数组的 Promise。
+	 */
+	loaded() {
+		return Promise.all(this.promises);
+	}
+
+	getScriptElm(url) {
+		var script = document.createElement("script");
+		script.type = "text/javascript";
+		script.src = url;
+		document.getElementsByTagName("head")[0].appendChild(script);
+		return script;
+	}
+
+	getLinkElm(url) {
+		var link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.type = "text/css";
+		link.href = url;
+		document.getElementsByTagName("HEAD")[0].appendChild(link);
+		return link;
 	}
 }

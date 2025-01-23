@@ -244,6 +244,9 @@ class JoeEditor extends JoeAction {
 						case 'hr':
 							super.handleHr(this.cm);
 							break;
+						case 'format':
+							super.handleFormat(this.cm);
+							break;
 						case 'clean':
 							super.handleClean(this.cm);
 							break;

@@ -146,9 +146,7 @@ class Editor
 	public static function Edit()
 	{
 ?>
-		<!-- Bootstrap: tooltip.css v3.4.1 -->
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
-
 		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 
 		<!-- Prism.css -->
@@ -188,18 +186,16 @@ class Editor
 		</script>
 		<script src="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js') ?>"></script>
 
-		<!-- Bootstrap: tooltip.js v3.4.1 -->
 		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
-
+		<script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/CodeMirror.js', false) ?>"></script>
-		<script src="<?= joe\theme_url('assets/typecho/write/js/tools.js', false) ?>"></script>
+		<script src="<?= joe\theme_url('assets/typecho/write/js/tools.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/actions.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/create.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/index.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
-		<script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js', false) ?>"></script>
 	<?php
 	}
 

@@ -43,50 +43,7 @@ Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoad
 
 	/* 获取本篇文章百度收录情况 */
 	{
-		if (document.getElementById('Joe_Baidu_Record')) {
-			$.ajax({
-				url: Joe.BASE_API,
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					routeType: 'baidu_record',
-					site: window.location.href,
-					cid: cid
-				},
-				success(res) {
-					if (!res.data) {
-						if (Joe.options.BaiduPush) {
-							$('#Joe_Baidu_Record').html(`<a href="javascript:window.Joe.submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
-							return
-						}
-						const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
-						$('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
-						return
-					}
-					if (res.data == '未收录，已推送') {
-						$('#Joe_Baidu_Record').css('color', 'var(--theme)');
-						$('#Joe_Baidu_Record').html(res.data);
-						return
-					}
-					if (res.data == '已收录') {
-						$('#Joe_Baidu_Record').css('color', '#67C23A');
-						$('#Joe_Baidu_Record').html('已收录');
-						return
-					}
-					/* 如果填写了Token，则自动推送给百度 */
-					if ((res.data == '未收录') && (Joe.options.BaiduPush)) {
-						window.Joe.submit_baidu('未收录，推送中...');
-						return
-					}
-					if (Joe.options.BaiduPush) {
-						$('#Joe_Baidu_Record').html(`<a href="javascript:window.Joe.submit_baidu();" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
-						return
-					}
-					const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
-					$('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
-				}
-			});
-		}
+		window.Joe.get_baidu_record();
 	}
 
 	/* 激活浏览功能 */

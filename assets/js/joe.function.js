@@ -3,22 +3,25 @@ window.Joe.options = window.Joe.options ? window.Joe.options : {};
 window.Joe.pjax = (url, selectors = [], options = {}) => {
 	if (url instanceof Object) {
 		options = url;
-		selectors = options.selectors;
-		url = options.url;
+	} else {
+		if (options.url.startsWith('/') || options.url.startsWith('http')) {
+			options.url = url;
+		} else {
+			options.element = url;
+		}
+		options.selectors = selectors;
 	}
 	console.log(options);
-	return new class JoePjax {
-		constructor(url, selectors, options) {
-			if (/^\//.test(url) || /^http/.test(url) || /^\/\//.test(url)) {
-				this.ajax(url, selectors, options);
-				return;
-			}
-			if (document.querySelector(url)) {
-				$(url).attr('data-turbolinks', 'false');
-				$(url).attr('ajax-replace', 'true');
-				$(document).on('click', url, (event) => {
+	return new class {
+		constructor(options) {
+			if (options.url) this.ajax(options);
+			if (options.element && document.querySelector(options.element)) {
+				$(options.element).attr('data-turbolinks', 'false');
+				$(options.element).attr('ajax-replace', 'true');
+				$(document).on('click', options.element, (event) => {
 					event.preventDefault();
-					this.ajax(event.target.href, selectors, options);
+					options.url = event.target.href;
+					this.ajax(options);
 				});
 			}
 		}
@@ -26,7 +29,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 			let ajax = {
 				type: options.type ? options.type : 'GET',
 				url: url,
-				dataType: "html",
+				dataType: 'html',
 				beforeSend(xhr) {
 					xhr.setRequestHeader('x-ajax', 'true');
 					xhr.setRequestHeader('x-ajax-selectors', JSON.stringify(selectors));
@@ -55,7 +58,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 			if (options.data != undefined) ajax.data = options.data;
 			$.ajax(ajax);
 		}
-	}(url, selectors, options);
+	}(options);
 }
 
 window.Joe.checkUrl = (string) => {
@@ -86,7 +89,7 @@ window.Joe.scrollTo = (selector) => {
 	} else {
 		const $selector = document.querySelector(selector);
 		if (!$selector) return;
-		top = ($selector.getBoundingClientRect().top  + window.scrollY) - $header.offsetHeight - 15;
+		top = ($selector.getBoundingClientRect().top + window.scrollY) - $header.offsetHeight - 15;
 	}
 	console.log(top);
 	window.scrollTo({ top: top, behavior: 'smooth' });

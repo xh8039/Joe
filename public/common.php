@@ -354,7 +354,7 @@ function themeFields($layout)
 	if (Helper::options()->JPost_Record_Detection == 'on') {
 		$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(
 			'baidu_push',
-			['' => '默认未推送（不占数据）', 'no' => '未推送', 'yes' => '已推送'],
+			['' => '默认未推送（不占数据）', '0' => '未推送', '1' => '已推送'],
 			NULL,
 			'百度收录推送状态',
 		);

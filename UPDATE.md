@@ -330,13 +330,17 @@
 - 本次更新后请手动执行以下MySQL语句
 
 ```sql
--- 必须执行
+-- 必须执行的代码
 ALTER TABLE `typecho_friends` ADD `position` VARCHAR(255) NULL DEFAULT NULL AFTER `email`;
 UPDATE `typecho_friends` SET `position`='single';
 RENAME TABLE `typecho_joe_pay` to `typecho_orders`;
 ALTER TABLE `typecho_orders` CHANGE `ip` `ip` VARCHAR(128);
+UPDATE `typecho_fields` SET `str_value`='1' WHERE `name`='baidu_push' AND `str_value`='yes';
 
 -- 清理主题自定义字段大量多余数据（最少可清理几百行，一般可清理几千行）
+-- 没有插件或其他主题的情况下只需执行简洁代码
+SELECT * FROM `blog_fields` WHERE `type`='str' AND `str_value`='';
+-- 其他情况执行以下代码
 DELETE FROM `typecho_fields` WHERE `name` = 'mode' AND `str_value` = 'default';
 DELETE FROM `typecho_fields` WHERE `name` = 'hide' AND `str_value` = 'comment';
 DELETE FROM `typecho_fields` WHERE `name` = 'price' AND `str_value` = '0.00';

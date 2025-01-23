@@ -3,7 +3,9 @@ jQuery.ajaxSetup({ cache: true });
 $.getScript(Joe.CDN_URL + 'EaselJS/1.0.2/easeljs.min.js', function () {
 	var Fireworks, GRAVITY, K, SPEED, ToRadian, canvas, context, ctx, fireBoss, repeat, stage;
 	canvas = document.createElement('canvas');
-	document.body.appendChild(document.createElement('div').appendChild(canvas));
+	let div = document.createElement('div');
+	div.appendChild(canvas);
+	document.body.appendChild(div);
 	context = canvas.getContext("2d");
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;

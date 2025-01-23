@@ -351,6 +351,14 @@ function themeFields($layout)
 	);
 	$layout->addItem($pay_tag_background);
 
+	$global_advert = new \Typecho\Widget\Helper\Form\Element\Select(
+		'global_advert',
+		['' => '默认显示（不占数据）', 'display' => '显示', 'hide' => '隐藏'],
+		NULL,
+		'是否显示全局广告',
+	);
+	$layout->addItem($global_advert);
+
 	if (Helper::options()->JPost_Record_Detection == 'on') {
 		$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(
 			'baidu_push',
@@ -360,12 +368,4 @@ function themeFields($layout)
 		);
 		$layout->addItem($baidu_push);
 	}
-
-	$global_advert = new \Typecho\Widget\Helper\Form\Element\Select(
-		'global_advert',
-		['' => '默认显示（不占数据）', 'display' => '显示', 'hide' => '隐藏'],
-		NULL,
-		'是否显示全局广告',
-	);
-	$layout->addItem($global_advert);
 }

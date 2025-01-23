@@ -12,7 +12,7 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 	<?php
 	if (($is_comment && is_numeric($this->options->JcommentAutoRefresh) && !$login_comment)) {
 	?>
-		<a data-pjax-state href="<?= $this->request->getRequestUrl() ?>" style="display: none;" auto-refresh="<?= $this->options->JcommentAutoRefresh ?>"></a>
+		<a href="<?= $this->request->getRequestUrl() ?>" style="display: none;" auto-refresh="<?= $this->options->JcommentAutoRefresh ?>"></a>
 	<?php
 	}
 	if ($this->hidden) {

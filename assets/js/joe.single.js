@@ -297,7 +297,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 						if (document.visibilityState == "hidden" || document.hidden) return;
 						if (!window.Joe.commentListAutoRefresh) return;
 						if (!isElementInViewport(document.querySelector('.comment-list'))) return;
-						let url = $('#comment_module>.joe_pagination>li.active>a').attr('href');
+						let url = $('#comment_module>.joe_pagination>li.active>a').attr('href') || $('#comment_module a[auto-refresh]').attr('href');
 						window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
 							success() {
 								return window.Joe.commentListAutoRefresh;

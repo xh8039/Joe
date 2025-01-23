@@ -208,26 +208,6 @@ function themeInit($self)
 /* 增加自定义字段 */
 function themeFields($layout)
 {
-
-	$mode = new \Typecho\Widget\Helper\Form\Element\Select(
-		'mode',
-		['' => '默认模式（不占数据）', 'default' => '一图模式', 'single' => '大图模式', 'multiple' => '三图模式', 'none' => '无图模式'],
-		NULL,
-		'文章显示方式',
-		'介绍：用于设置当前文章在首页和搜索页的显示方式 <br />
-		 注意：独立页面该功能不会生效'
-	);
-	$layout->addItem($mode);
-
-	$hide = new \Typecho\Widget\Helper\Form\Element\Select(
-		'hide',
-		['' => '默认评论可见（不占数据）', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
-		NULL,
-		'隐藏内容模式',
-		'可将隐藏内容设置为评论可见、付费可见、登录可见'
-	);
-	$layout->addItem($hide);
-
 	$price = new \Typecho\Widget\Helper\Form\Element\Text(
 		'price',
 		NULL,
@@ -351,6 +331,25 @@ function themeFields($layout)
 		 其他：如果不填写此项，则默认为40vh'
 	);
 	$layout->addItem($max_image_height);
+
+	$hide = new \Typecho\Widget\Helper\Form\Element\Select(
+		'hide',
+		['' => '默认评论可见（不占数据）', 'comment' => '评论可见', 'pay' => '付费可见', 'login' => '登录可见'],
+		NULL,
+		'隐藏内容模式',
+		'可将隐藏内容设置为评论可见、付费可见、登录可见'
+	);
+	$layout->addItem($hide);
+
+	$mode = new \Typecho\Widget\Helper\Form\Element\Select(
+		'mode',
+		['' => '默认模式（不占数据）', 'default' => '一图模式', 'single' => '大图模式', 'multiple' => '三图模式', 'none' => '无图模式'],
+		NULL,
+		'文章显示方式',
+		'介绍：用于设置当前文章在首页和搜索页的显示方式 <br />
+		 注意：独立页面该功能不会生效'
+	);
+	$layout->addItem($mode);
 
 	if (Helper::options()->JPost_Record_Detection == 'on') {
 		$baidu_push = new \Typecho\Widget\Helper\Form\Element\Select(

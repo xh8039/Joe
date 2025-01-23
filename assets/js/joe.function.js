@@ -25,14 +25,14 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 				});
 			}
 		}
-		ajax(url, selectors, options) {
+		ajax(options) {
 			let ajax = {
 				type: options.type ? options.type : 'GET',
-				url: url,
+				url: options.url,
 				dataType: 'html',
 				beforeSend(xhr) {
 					xhr.setRequestHeader('x-ajax', 'true');
-					xhr.setRequestHeader('x-ajax-selectors', JSON.stringify(selectors));
+					xhr.setRequestHeader('x-ajax-selectors', JSON.stringify(options.selectors));
 					if (options.beforeSend) options.beforeSend(xhr);
 				},
 				success: function (response) {
@@ -40,7 +40,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 					let success = options.success ? options.success(response) : true;
 					if (success !== false) {
 						const DocumentParser = (new DOMParser()).parseFromString(response, 'text/html');
-						selectors.forEach(selector => {
+						options.selectors.forEach(selector => {
 							$(selector).html($(DocumentParser).find(selector).html());
 						});
 					}

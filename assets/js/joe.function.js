@@ -86,7 +86,7 @@ window.Joe.scrollTo = (selector) => {
 	} else {
 		const $selector = document.querySelector(selector);
 		if (!$selector) return;
-		top = $selector.offsetTop - $header.offsetHeight - 15;
+		top = ($selector.getBoundingClientRect().top  + window.scrollY) - $header.offsetHeight - 15;
 	}
 	console.log(top);
 	window.scrollTo({ top: top, behavior: 'smooth' });

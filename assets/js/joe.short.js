@@ -541,13 +541,13 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 							});
 						}
 						if (!window.DPlayer) {
-							$.getScript(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), init);
+							$.getScript(window.Joe.CDN_URL + 'dplayer/1.27.0/DPlayer.min.js', init);
 						} else {
 							init();
 						}
 					}
 					if (isM3U8(this.options.src)) {
-						window.Joe.loadJS(window.Joe.CDN('hls.js/1.5.13/hls.min.js'), videoPlayer);
+						window.Joe.loadJS(window.Joe.CDN_URL + 'hls.js/1.5.13/hls.min.js', videoPlayer);
 					} else {
 						videoPlayer();
 					}

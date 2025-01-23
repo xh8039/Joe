@@ -26,6 +26,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 	Joe.startTime = performance.now();
 	Joe.DOMContentLoaded = Joe.DOMContentLoaded ? Joe.DOMContentLoaded : {};
 	Joe.THEME_URL = `<?= joe\theme_url('', false) ?>`;
+	Joe.CDN_URL = `<?= joe\cdn() ?>`;
 	Joe.BASE_API = `<?= joe\index('joe/api', '//') ?>`;
 	Joe.IS_MOBILE = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
 	Joe.LAZY_LOAD = `<?php joe\getLazyload() ?>`;
@@ -35,9 +36,6 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 	Joe.options = <?= $options ?>;
 	Joe.options.BaiduPush = <?= empty($this->options->BaiduPushToken) ? 'false' : 'true' ?>;
 	Joe.options.BingPush = <?= empty($this->options->BingPushToken) ? 'false' : 'true' ?>;
-	Joe.CDN = (path) => {
-		return `<?= joe\cdn('__PATH__') ?>`.replace("__PATH__", path);
-	};
 
 	// 19:00 PM - 6:00 AM 是黑夜
 	if (Joe.options.JThemeMode == 'auto' && ((new Date()).getHours() >= 19 || (new Date()).getHours() < 6)) {

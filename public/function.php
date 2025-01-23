@@ -640,7 +640,7 @@ function send_email($title, $subtitle, $content, $email = '')
  * @param string|null $path 子路径
  * @return string
  */
-function cdn($path)
+function cdn($path = '')
 {
 	$JCdnUrl = empty(\Helper::options()->JCdnUrl) ? theme_url('assets/plugin/', false) : \Helper::options()->JCdnUrl;
 	$JCdnUrl_explode = explode('||', $JCdnUrl, 2);

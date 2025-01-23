@@ -1,4 +1,4 @@
-Prism.plugins.autoloader.languages_path = Joe.CDN(`prism/1.9.0/components/`);
+Prism.plugins.autoloader.languages_path = Joe.CDN_URL + 'prism/1.9.0/components/';
 
 Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded.single : () => {
 	console.log('调用：Joe.DOMContentLoaded.single');
@@ -218,7 +218,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/* 激活文章视频模块 */
 	{
-		if ($('.joe_detail__article-video').length > 0) $.getScript(window.Joe.CDN('dplayer/1.27.0/DPlayer.min.js'), () => {
+		if ($('.joe_detail__article-video').length > 0) $.getScript(window.Joe.CDN_URL + 'dplayer/1.27.0/DPlayer.min.js', () => {
 			window.videoPlayer = new DPlayer({
 				container: document.querySelector('.joe_detail__article-video>.dplayer-video'), // 播放器容器元素
 				autoplay: true, // 视频自动播放

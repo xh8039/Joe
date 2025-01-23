@@ -7,8 +7,13 @@ $(function () {
 
 		self.init = function () {
 			self.canvas = document.createElement('canvas');
+			// self.canvas.width = self.cw = $(window).innerWidth();
+			// self.canvas.height = self.ch = $(window).outerHeight();
 			self.canvas.width = self.cw = $(window).innerWidth();
-			self.canvas.height = self.ch = $(window).innerHeight();
+			self.canvas.height = self.ch = document.documentElement.scrollHeight;
+			self.canvas.style.position = 'fixed';
+			self.canvas.style.top = '0';
+			self.canvas.style.left = '0';
 			self.particles = [];
 			self.partCount = 150;
 			self.fireworks = [];

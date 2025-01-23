@@ -391,7 +391,7 @@ class JoeEditor extends JoeAction {
 				event.preventDefault();
 				// 你的代码在这里...
 				console.log("Shift + Alt + F 按下！");
-				super.handleFormat(this.cm);
+				this.handleFormat(this.cm);
 			}
 		});
 	}

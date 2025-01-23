@@ -269,7 +269,7 @@ function getThumbnails($item)
 				$randomNumber = rand(1, 42);
 				// 将随机数格式化为两位数
 				$formattedNumber = sprintf('%02d', $randomNumber);
-				$result[] = theme_url('assets/images/thumb/' . $formattedNumber . '.jpg');
+				$result[] = theme_url('assets/images/thumb/' . $formattedNumber . '.jpg', null);
 			}
 		}
 	}

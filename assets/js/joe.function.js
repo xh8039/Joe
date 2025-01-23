@@ -33,7 +33,6 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 				},
 				success: function (response) {
 					window.Joe.commentListAutoRefresh = true;
-					console.log('ajax-success');
 					let success = options.success ? options.success(response) : true;
 					if (success !== false) {
 						const DocumentParser = (new DOMParser()).parseFromString(response, 'text/html');
@@ -54,6 +53,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 			if (options.contentType != undefined) ajax.contentType = options.contentType;
 			if (options.data != undefined) ajax.data = options.data;
 			$.ajax(ajax);
+			console.log(options);
 		}
 	}(url, selectors, options);
 }

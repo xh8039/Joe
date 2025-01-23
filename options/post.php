@@ -177,7 +177,7 @@ $form->addInput($JArticle_Guide->multiMode());
 $JOverdue = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JOverdue',
 	NULL,
-	'0',
+	NULL,
 	'是否开启文章更新时间大于多少天提示（仅针对文章有效）',
 	'介绍：开启后如果文章在多少天内无任何修改，则进行提示 <br>
 	填写示例：365'

@@ -218,7 +218,7 @@ function themeFields($layout)
 		'介绍：用于设置当前页SEO关键词 <br />
 		 注意：多个关键词使用英文逗号进行隔开 <br />
 		 例如：Typecho,Typecho主题,Typecho模板 <br />
-		 其他：如果不填写此项，则默认取文章标签，不占用数据库空间'
+		 其他：如果不填写此项，则默认取文章标签，不占用数据库字段空间'
 	);
 	$layout->addItem($keywords);
 
@@ -229,7 +229,7 @@ function themeFields($layout)
 		'SEO描述语',
 		'介绍：用于设置当前页SEO描述语 <br />
 		 注意：SEO描述语不应当过长也不应当过少 <br />
-		 其他：如果不填写此项，则默认截取文章片段，不占用数据库空间'
+		 其他：如果不填写此项，则默认截取文章片段，不占用数据库字段空间'
 	);
 	$layout->addItem($description);
 
@@ -238,12 +238,12 @@ function themeFields($layout)
 		NULL,
 		NULL,
 		'自定义缩略图',
-		'填写时：将会显示填写的文章缩略图 <br>
+		'填写时：将会显示填写的文章缩略图<br>
 		 不填写时：<br>
-			1、若文章有图片则取文章内图片 <br>
-			2、若文章无图片，并且外观设置里未填写·自定义缩略图·选项，则取模板自带图片 <br>
-			3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片 <br>
-			4、不占用数据库空间
+			1、若文章有图片则取文章内图片<br>
+			2、若文章无图片，并且外观设置里未填写·自定义缩略图·选项，则取模板自带图片<br>
+			3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片<br>
+			4、不占用数据库字段空间<br>
 		 注意：多个缩略图时使用 || 分割填写（仅在三图模式下生效）'
 	);
 	$layout->addItem($thumb);
@@ -254,7 +254,7 @@ function themeFields($layout)
 		NULL,
 		'自定义摘要',
 		'填写时：将会显示填写的摘要 <br>
-		 不填写时：默认取文章里的内容，不占用数据库空间'
+		 不填写时：默认取文章里的内容，不占用数据库字段空间'
 	);
 	$layout->addItem($abstract);
 
@@ -263,11 +263,8 @@ function themeFields($layout)
 		NULL,
 		NULL,
 		'M3U8或MP4地址',
-		'填写后，文章会插入一个视频模板 <br>
-		 格式：[视频名称--视频介绍](视频地址)。如果有多个，换行写即可 <br>
-		 例如：<br>
-		 [第01集--凭什么仙家就可以遨游天地，而我等凡人只能做这井底之蛙](https://txmov2.a.kwimgs.com/upic/2022/08/20/07/BMjAyMjA4MjAwNzA5MzJfMTg0NzU1MDY3M184MjI2NDMxMTgyOV8yXzM=_b_Bb964ab3fd8fad18a949ed715402c992b.mp4)<br>
-		 [第02集--韩大哥，没有灵根......真的不能成为修仙者吗](https://alimov2.a.kwimgs.com/upic/2022/07/24/23/BMjAyMjA3MjQyMzU1MzdfMjYxMzE4ODhfODAwNTQ2NzczNDhfMl8z_b_B6e7adb80a3c3cad6f66d318c66c48b68.mp4)'
+		'填写后，文章会插入一个视频模板，不填写则不占用数据库字段空间 <br>
+		 格式：[视频名称--视频介绍](视频地址)。如果有多个，换行写即可'
 	);
 	$layout->addItem($video);
 
@@ -279,7 +276,7 @@ function themeFields($layout)
 		'介绍：用于设置当前页的图片最高高度 <br />
 		 例如：40vh、300px、unset <br />
 		 注意：填写 unset 即可使用自动高度 <br />
-		 其他：如果不填写此项，则默认为40vh，不占用数据库空间'
+		 其他：如果不填写此项，则默认为40vh，不占用数据库字段空间'
 	);
 	$layout->addItem($max_image_height);
 

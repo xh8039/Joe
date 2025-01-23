@@ -15,6 +15,7 @@ function header_cache($time)
 	// 设置缓存控制头部
 	header("Cache-Control: max-age=$time, public");
 	header('Expires: ' . gmdate('D, d M Y H:i:s', time() + $time) . ' GMT');
+	header('Pragma: ' . 'cache');
 }
 
 /* 判断是否是手机 */

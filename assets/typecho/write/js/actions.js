@@ -1109,7 +1109,7 @@ class FileLoader {
 	 */
 	add(fileUrl) {
 		const promise = new Promise((resolve, reject) => {
-			const element = fileUrl.endsWith(".js") ? getScriptElm(fileUrl) : getLinkElm(fileUrl); // 根据扩展名确定元素类型
+			const element = fileUrl.endsWith(".js") ? this.getScriptElm(fileUrl) : this.getLinkElm(fileUrl); // 根据扩展名确定元素类型
 
 			element.addEventListener("load", () => {
 				const filename = element.src.split("/").pop() || element.href.split("/").pop(); // 从 src 或 href 中提取文件名

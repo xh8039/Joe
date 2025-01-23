@@ -386,6 +386,14 @@ class JoeEditor extends JoeAction {
 			}
 		});
 		window.Joe.tooltip();
+		document.addEventListener('keydown', function (event) {
+			if (event.shiftKey && event.altKey && event.key.toLowerCase() === 'f') {
+				event.preventDefault();
+				// 你的代码在这里...
+				console.log("Shift + Alt + F 按下！");
+				super.handleFormat(this.cm);
+			}
+		});
 	}
 
 	/* 已测 √ */

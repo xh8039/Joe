@@ -144,14 +144,6 @@ class JoeAction {
 		cm.focus();
 	}
 	handleFormat(cm) {
-		document.addEventListener('keydown', function (event) {
-			if (event.shiftKey && event.altKey && event.key.toLowerCase() === 'f') {
-				event.preventDefault();
-				// 你的代码在这里...
-				console.log("Shift + Alt + F 按下！");
-				this.beautifyCode(cm, 'markdown');
-			}
-		});
 		this.beautifyCode(cm, 'markdown');
 	}
 	/**

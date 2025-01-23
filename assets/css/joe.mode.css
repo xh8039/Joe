@@ -89,10 +89,10 @@ html[data-night='night'] body {
 }
 
 /* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */
-html[data-night='night'] body::before {
-	/* background: #121212; */
+/* html[data-night='night'] body::before {
+	background: #121212;
 	z-index: -500
-}
+} */
 
 html[data-night='night'] .joe_header__above-logo>.light {
 	display: none;

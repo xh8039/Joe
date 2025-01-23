@@ -45,6 +45,11 @@ body {
 	overflow-x: hidden;
 	line-height: 1.42857143;
 	color: var(--main-color);
+	background: var(--body-bg-color);
+	background-blend-mode: multiply;
+	background-position: center 0;
+	background-repeat: no-repeat;
+	background-size: cover;
 	--mian-max-width: 1200px;
 }
 

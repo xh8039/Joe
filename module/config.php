@@ -51,7 +51,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 		// 移动端自定义背景壁纸
 		if ($this->options->JWallpaper_Background_WAP) {
 			echo 'html .joe_list>li {opacity: 0.85;}';
-			echo 'html body::before {background: url(' . $this->options->JWallpaper_Background_WAP . ')}';
+			echo 'html body {background: url(' . $this->options->JWallpaper_Background_WAP . ')}';
 		}
 	}
 
@@ -60,7 +60,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 		// PC端自定义背景壁纸
 		if ($this->options->JWallpaper_Background_PC) {
 			echo 'html .joe_list>li {opacity: 0.85;}';
-			echo 'html body::before {background: url(' . $this->options->JWallpaper_Background_PC . ')}';
+			echo 'html body {background: url(' . $this->options->JWallpaper_Background_PC . ')}';
 		}
 		if ($this->is('single') && $this->fields->max_image_height) {
 			echo '.joe_detail__article img:not([class]) {max-height: ' . $this->fields->max_image_height . '}';

@@ -261,56 +261,40 @@ function _getRecord($self)
 	if (!preg_match('/^\d+$/',  $cid)) {
 		return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
 	}
-	$baidu_index = baidu_index($self->request->site);
-	if (is_bool($baidu_index['index'])) {
-		if ($baidu_index['index']) {
-			$self->response->throwJson(["data" => "已收录", 'response' => $baidu_index['response']]);
+	$baidu_record = baidu_record($self->request->site);
+	if (is_bool($baidu_record['index'])) {
+		if ($baidu_record['index']) {
+			$self->response->throwJson(["data" => "已收录", 'response' => $baidu_record['response']]);
 		} else {
 			$db = Typecho_Db::get();
 			$sql = $db->select('str_value')->from('table.fields')->where('cid = ?', $cid)->where('name = ?', 'baidu_push');
 			$row = $db->fetchRow($sql);
-			if ($row && $row['str_value'] == 'yes') {
-				$self->response->throwJson(["data" => "未收录，已推送", 'response' => $baidu_index['response']]);
+			if ($row && $row['str_value'] == '1') {
+				$self->response->throwJson(["data" => "未收录，已推送", 'response' => $baidu_record['response']]);
 			} else {
-				$self->response->throwJson(["data" => "未收录", 'response' => $baidu_index['response']]);
+				$self->response->throwJson(["data" => "未收录", 'response' => $baidu_record['response']]);
 			}
 		}
 	} else {
-		$self->response->throwJson(["data" => "检测失败", 'index' => $baidu_index['index'], 'response' => $baidu_index['response']]);
+		$self->response->throwJson(["data" => "检测失败", 'index' => $baidu_record['index'], 'response' => $baidu_record['response']]);
 	}
 }
 
-function baidu_index($url)
+function baidu_record($url)
 {
 	$index = false;
 	$url = preg_replace('/^https?:\/\//', '', $url);
 	$client = new \network\http\Client;
-	$client->param([
-		'wd' => $url,
-		'rn' => 1,
-		'tn' => 'json',
-		'ie' => 'utf-8',
-		'cl' => 3,
-		'f' => 9
-	]);
-	$cookie = empty(Helper::options()->Baidu_Index_Cookie) ? '' : trim(Helper::options()->Baidu_Index_Cookie);
-	$user_agent = empty(Helper::options()->Baidu_Index_User_Agent) ? '' : trim(Helper::options()->Baidu_Index_User_Agent);
+	$client->param(['wd' => $url, 'rn' => 1, 'tn' => 'json', 'ie' => 'utf-8', 'cl' => 3, 'f' => 9]);
+	$cookie = empty(Helper::options()->BaiduRecordCookie) ? '' : trim(Helper::options()->BaiduRecordCookie);
+	$user_agent = empty(Helper::options()->BaiduRecordUserAgent) ? '' : trim(Helper::options()->BaiduRecordUserAgent);
 	$client->header([
 		'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-		// 'accept-encoding' => 'gzip, deflate, br, zstd',
 		'Accept-Language' => 'zh-CN,zh;q=0.9',
 		'cache-control' => 'max-age=0',
 		'Connection' => 'keep-alive',
 		'cookie' => $cookie,
 		'Host' => 'www.baidu.com',
-		// 'sec-ch-ua' => '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
-		// 'sec-ch-ua-mobile' => '?0',
-		// 'sec-ch-ua-platform' => '"Windows"',
-		// 'sec-fetch-dest' => 'document',
-		// 'sec-fetch-mode' => 'navigate',
-		// 'sec-fetch-site' => 'none',
-		// 'sec-fetch-user' => '?1',
-		// 'upgrade-insecure-requests' => '1',
 		'User-Agent' => $user_agent,
 	]);
 	$response = $client->get('http://www.baidu.com/s')->toArray();
@@ -343,10 +327,7 @@ function _pushRecord($self)
 	$db = Typecho_Db::get();
 	$sql = $db->select('str_value')->from('table.fields')->where('cid = ?', $cid)->where('name = ?', 'baidu_push');
 	$row = $db->fetchRow($sql);
-	if ($row && $row['str_value'] == 'yes') {
-		$self->response->throwJson(['already' => true]);
-		return;
-	}
+	if ($row && $row['str_value'] == '1') $self->response->throwJson(['already' => true]);
 
 	$token = trim(Helper::options()->BaiduPushToken);
 	$domain = $self->request->domain;
@@ -368,19 +349,16 @@ function _pushRecord($self)
 	if (empty($result['error'])) {
 		// 存储推送记录到文章或者页面的自定义字段里面
 		$db = Typecho_Db::get();
-		if (isset($row['str_value']) && $row['str_value'] != 'yes') {
+		if (isset($row['str_value']) && $row['str_value'] != '1') {
 			$db->query($db->update('table.fields')
-				->rows(['str_value' => 'yes'])
+				->rows(['str_value' => '1'])
 				->where('cid = ?', $cid)
 				->where('name = ?', 'baidu_push'));
 		} else {
 			$db->query($db->insert('table.fields')->rows([
 				'cid' => $cid,
 				'name' => 'baidu_push',
-				'type' => 'str',
-				'str_value' => 'yes',
-				'int_value' => '0',
-				'float_value' => '0',
+				'str_value' => '1'
 			]));
 		}
 	}

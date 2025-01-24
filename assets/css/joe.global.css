@@ -3373,6 +3373,10 @@ html .line-numbers .line-numbers-rows {
 	padding-left: 25px
 }
 
+.joe_detail__article ol {
+	margin-bottom: 5px;
+}
+
 .joe_detail__article ol li,
 .joe_detail__article ul li {
 	line-height: 26px;

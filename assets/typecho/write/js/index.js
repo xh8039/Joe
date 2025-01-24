@@ -7,7 +7,7 @@ class JoeEditor extends JoeAction {
 				key: 'Tab',
 				run: ({ state, dispatch }) => {
 					if (state.selection.ranges.some(r => !r.empty)) return CodeMirror.indentMore({ state, dispatch });
-					dispatch(state.update(state.replaceSelection('    ')));
+					dispatch(state.update(state.replaceSelection('  ')));
 					return true;
 				},
 				shift: CodeMirror.indentLess

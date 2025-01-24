@@ -515,7 +515,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					function isM3U8(url) {
 						try {
 							// 检查路径是否以 .m3u8 结尾
-							return (new URL(url)).pathname.trim().toLowerCase().endsWith('.m3u8');;
+							return url.trim().toLowerCase().endsWith('.m3u8');;
 						} catch (e) {
 							// 如果创建 URL 失败，返回 false
 							return false;

@@ -727,6 +727,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		});
 		document.addEventListener('turbolinks:load', () => {
 			if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
+		});
+		document.addEventListener('turbolinks:complete', () => {
 			if (window.Joe.loadingEnd) window.Joe.loadingEnd();
 			NProgress.done();
 		});

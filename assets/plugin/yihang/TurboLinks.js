@@ -40,6 +40,13 @@ class TurboLinks {
 		TurboLinks.pjax = new Pjax(options);
 		TurboLinks.pjax.originHandleResponse = TurboLinks.pjax.handleResponse;
 		TurboLinks.pjax.handleResponse = (responseText, request, href, options) => {
+			if (!responseText) {
+				console.log(request);
+				autolog.error('请求失败：'.request.status);
+				document.dispatchEvent(new CustomEvent('turbolinks:complete'));
+				return;
+			}
+
 			TurboLinks.handleResponseParam = { responseText, request, href, options };
 			const responseDOM = (new DOMParser()).parseFromString(responseText, 'text/html');
 
@@ -50,9 +57,6 @@ class TurboLinks {
 
 			// 获取新的CSS文件列表
 			TurboLinks.responseDOMCSSLinkList = {};
-			console.log(responseDOM.body);
-			console.log(responseText);
-			console.log(request)
 			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				TurboLinks.responseDOMCSSLinkList[element.href] = element;
 			});
@@ -94,6 +98,7 @@ class TurboLinks {
 					element.remove();
 				}
 			});
+			document.dispatchEvent(new CustomEvent('turbolinks:complete'));
 		})
 		document.addEventListener('pjax:success', (options) => {
 			if (options.pjax != 'TurboLinks') return;

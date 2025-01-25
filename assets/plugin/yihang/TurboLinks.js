@@ -52,6 +52,7 @@ class TurboLinks {
 			TurboLinks.responseDOMCSSLinkList = {};
 			console.log(responseDOM);
 			console.log(responseText);
+			console.log(request)
 			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				TurboLinks.responseDOMCSSLinkList[element.href] = element;
 			});

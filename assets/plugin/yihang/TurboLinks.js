@@ -93,7 +93,7 @@ class TurboLinks {
 			TurboLinks.documentScriptList = TurboLinks.unique(TurboLinks.documentScriptList);
 			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				if (!TurboLinks.responseDOMCSSLinkList[element.href]) {
+				if (!TurboLinks.responseDOMCSSLinkList[element.href] && !element.getAttribute('data-turbolinks-permanent')) {
 					console.log('删除CSS：' + element.href);
 					element.remove();
 				}

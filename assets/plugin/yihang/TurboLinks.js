@@ -50,6 +50,7 @@ class TurboLinks {
 
 			// 获取新的CSS文件列表
 			TurboLinks.responseDOMCSSLinkList = {};
+			console.log(responseDOM);
 			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				TurboLinks.responseDOMCSSLinkList[element.href] = element;
 			});

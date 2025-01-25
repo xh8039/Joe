@@ -8,7 +8,7 @@ $("#login").click(function () {
 	if (!username) return autolog.log("请输入邮箱/用户名", 'warn');
 	if (!password) return autolog.log("请输入密码", 'warn');
 	$.ajax({
-		url: 'user/api',
+		url: Joe.options.index + '/user/api',
 		type: 'post',
 		dataType: 'json',
 		async: true,

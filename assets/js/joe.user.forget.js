@@ -24,7 +24,7 @@ $("#send").click(function () {
 	let email = $("#email").val();
 	if (!email) return autolog.log("请输入邮箱后发送验证码", 'warn');
 	$.ajax({
-		url: 'user/api',
+		url: Joe.options.index + '/user/api',
 		type: 'post',
 		dataType: 'json',
 		async: true,
@@ -59,7 +59,7 @@ $("#check").click(function () {
 	if (!email) return autolog.log("请输入邮箱", 'warn');
 	if (!code) return autolog.log("请输入验证码", 'warn');
 	$.ajax({
-		url: 'user/api',
+		url: Joe.options.index + '/user/api',
 		type: 'post',
 		dataType: 'json',
 		async: true,
@@ -103,7 +103,7 @@ $("#forget").click(function () {
 	if (!cpassword) return autolog.log("请输入确认密码", 'warn');
 	if (password != cpassword) return autolog.log("两次密码不一致", 'warn');
 	$.ajax({
-		url: 'user/api',
+		url: Joe.options.index + '/user/api',
 		type: 'post',
 		dataType: 'json',
 		async: true,

@@ -85,8 +85,8 @@ $JIndex_Carousel = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JIndex_Carousel',
 	NULL,
 	NULL,
-	'首页轮播图',
-	'介绍：用于显示首页轮播图，支持使用MP4视频，请务必填写正确的格式 <br />
+	'首页轮播图片/视频',
+	'介绍：用于显示首页轮播图，支持使用MP4视频，设置视频后图片必须和视频保持统一比例，请务必填写正确的格式 <br />
 		 格式：图片/视频地址 || 跳转链接 || 标题 （中间使用两个竖杠分隔）<br />
 		 或者填写文章ID，例：99 <br />
 		 其他：一行一个，一行代表一个轮播图 <br />

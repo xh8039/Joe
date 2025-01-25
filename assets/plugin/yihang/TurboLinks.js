@@ -42,7 +42,7 @@ class TurboLinks {
 		TurboLinks.pjax.handleResponse = (responseText, request, href, options) => {
 			if (!responseText) {
 				console.log(request);
-				autolog.error('请求失败：' + request.status);
+				autolog.log('请求失败：' + request.status, 'error');
 				document.dispatchEvent(new CustomEvent('turbolinks:complete'));
 				return;
 			}

@@ -81,15 +81,14 @@ window.Joe.checkUrl = (string) => {
 }
 
 window.Joe.scrollTo = (selector) => {
-	const $header = document.querySelector('.joe_header');
+	const reservedHeight = document.querySelector('.joe_header').offsetHeight - 15;
 	var top;
 	if (/^\d+$/.test(selector)) {
-		top = selector - $header.offsetHeight - 15;
-		if (top < 0) top = 0;
+		top = ((selector - reservedHeight) < 0) ? 0 : (selector - reservedHeight);
 	} else {
-		const $selector = document.querySelector(selector);
+		const $selector = (selector instanceof Element) ? selector : document.querySelector(selector);
 		if (!$selector) return;
-		top = ($selector.getBoundingClientRect().top + window.scrollY) - $header.offsetHeight - 15;
+		top = ($selector.getBoundingClientRect().top + window.scrollY) - reservedHeight;
 	}
 	console.log(top);
 	window.scrollTo({ top: top, behavior: 'smooth' });
@@ -240,6 +239,41 @@ function debounce(callback, delay, immediate) {
 			callback.apply(context, args);
 		}
 	};
+}
+
+/** 文章/页面 浏览功能 */
+window.Joe.article_view = () => {
+	const encryption = str => window.btoa(unescape(encodeURIComponent(str)));
+	const decrypt = str => decodeURIComponent(escape(window.atob(str)));
+	const cid = window.Joe.CONTENT.cid || $('.joe_detail').attr('data-cid');
+	let viewsArr = localStorage.getItem(encryption('views')) ? JSON.parse(decrypt(localStorage.getItem(encryption('views')))) : [];
+	const flag = viewsArr.includes(cid);
+	if (!flag) {
+		$.ajax({
+			url: Joe.BASE_API,
+			type: 'POST',
+			dataType: 'json',
+			data: { routeType: 'handle_views', cid },
+			success(res) {
+				if (res.code !== 1) return;
+				$('#Joe_Article_Views').html(res.data.views);
+				viewsArr.push(cid);
+				const name = encryption('views');
+				const val = encryption(JSON.stringify(viewsArr));
+				localStorage.setItem(name, val);
+			}
+		});
+	}
+}
+
+window.Joe.anchor_scroll = () => {
+	// 检查 referer 是否包含 baidu.com
+	if (document.referrer.includes('baidu.com')) return;
+	/* 判断地址栏是否有锚点链接，有则跳转到对应位置 */
+	const scroll = new URLSearchParams(location.search).get('scroll');
+	if (!scroll) return;
+	let elementEL = document.querySelector('#' + scroll) || document.querySelector('.' + scroll);
+	if (elementEL) window.Joe.scrollTo(elementEL);
 }
 
 window.Joe.submit_baidu = (msg = '推送中...') => {

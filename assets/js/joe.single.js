@@ -53,28 +53,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/* 激活浏览功能 */
 	{
-		let viewsArr = localStorage.getItem(encryption('views')) ? JSON.parse(decrypt(localStorage.getItem(
-			encryption('views')))) : [];
-		const flag = viewsArr.includes(cid);
-		if (!flag) {
-			$.ajax({
-				url: Joe.BASE_API,
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					routeType: 'handle_views',
-					cid
-				},
-				success(res) {
-					if (res.code !== 1) return;
-					$('#Joe_Article_Views').html(res.data.views);
-					viewsArr.push(cid);
-					const name = encryption('views');
-					const val = encryption(JSON.stringify(viewsArr));
-					localStorage.setItem(name, val);
-				}
-			});
-		}
+		window.Joe.article_view();
 	}
 
 	/* 激活文章点赞功能 */
@@ -327,25 +306,4 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.single, { once: true });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
-window.addEventListener('load', function () {
-	// 检查 referer 是否包含 baidu.com
-	if (!document.referrer.includes('baidu.com')) {
-		/* 判断地址栏是否有锚点链接，有则跳转到对应位置 */
-		const scroll = new URLSearchParams(location.search).get('scroll');
-		if (scroll) {
-			let elementEL = null;
-			if ($('#' + scroll).length > 0) {
-				elementEL = $('#' + scroll);
-			} else {
-				elementEL = $('.' + scroll);
-			}
-			if (elementEL && elementEL.length > 0) {
-				const top = elementEL.offset().top - $('.joe_header').height() - 15;
-				window.scrollTo({
-					top,
-					behavior: 'smooth'
-				});
-			}
-		}
-	}
-});
+window.addEventListener('load', window.Joe.anchor_scroll);

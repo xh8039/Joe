@@ -18,6 +18,7 @@ class Api
 	{
 		return [
 			'name' => self::$options->title,
+			'short_name' => self::$options->title,
 			'start_url' => '/',
 			'display' => 'standalone',
 			'icons' => [

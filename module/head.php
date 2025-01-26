@@ -10,6 +10,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <meta name="format-detection" content="telephone=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<link rel="manifest" href="<?= joe\index('joe/api/manifest.json') ?>" />
 <meta itemprop="image" content="<?php $this->options->JShare_QQ_Image() ?>" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
 <link rel="shortcut icon" href="<?php $this->options->JFavicon() ?>" />
@@ -31,8 +32,6 @@ if ($this->options->JLoading != 'off') : ?>
 	<link rel="preload" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>" as="style" />
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>">
 <?php endif; ?>
-
-<link rel="manifest" href="<?= joe\index('joe/api/manifest.json') ?>" />
 
 <!-- 昼夜模式配色表 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">

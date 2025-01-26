@@ -21,8 +21,8 @@ class Api
 			'display' => 'standalone',
 			'icons' => [
 				[
-					'src' => self::$options->JFavicon,
-					'sizes' => "any",
+					'src' => str_starts_with(self::$options->JFavicon, '/') ? (self::$options->index . self::$options->JFavicon) : self::$options->JFavicon,
+					'sizes' => "256x256",
 					'type' => "image/png"
 				]
 			]

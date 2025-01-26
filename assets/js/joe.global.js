@@ -738,27 +738,9 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			TurboLinks.visit(this.href);
 		});
 	}
-
-	/** PWA应用安装提示 */
-	{
-		let isTooSoon = true;
-		window.addEventListener("beforeinstallprompt", function (e) {
-			e.prompt(); // 显示提示
-			return;
-			if (isTooSoon) {
-				e.preventDefault(); // 阻止提示显示
-				// 稍后提示：
-				setTimeout(function () {
-					isTooSoon = false;
-					e.prompt(); // 显示提示
-				}, 10000);
-			}
-
-			// 应我们的要求，活动被重新安排
-		});
-	}
 }
 document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.global, { once: true });
+
 window.addEventListener("beforeinstallprompt", function (e) {
 	console.log("beforeinstallprompt");
 	console.log(e)

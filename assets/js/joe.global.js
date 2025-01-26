@@ -759,3 +759,8 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	}
 }
 document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.global, { once: true });
+window.addEventListener("beforeinstallprompt", function (e) {
+	console.log("beforeinstallprompt");
+	console.log(e)
+	e.prompt(); // 显示提示
+});

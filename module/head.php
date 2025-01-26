@@ -86,9 +86,12 @@ if ($this->options->JLoading != 'off') : ?>
 <script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>" data-turbolinks-permanent></script>
 
+<?php if ($this->is('single') && $this->options->JcommentDraw == 'on') : ?>
+	<script src="<?= joe\cdn('sketchpad/0.1.0/scripts/sketchpad.min.js') ?>"></script>
+<?php endif; ?>
+
 <?php if ($this->is('single')) : ?>
 	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>" data-turbolinks-permanent></script>
-	<script src="<?= joe\cdn('sketchpad/0.1.0/scripts/sketchpad.min.js') ?>"></script>
 	<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" data-turbolinks-permanent></script> -->
 	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" data-turbolinks-permanent></script>

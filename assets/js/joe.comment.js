@@ -25,7 +25,7 @@ window.Joe.initComment = (options = {}) => {
 
 	/* 激活画图功能 */
 	{
-		if (options.draw !== false && $(".joe_comment__respond-form").length && $("#joe_comment_draw").length) {
+		if (window.Sketchpad && options.draw !== false && $(".joe_comment__respond-form").length && $("#joe_comment_draw").length) {
 			/* 激活画板 */
 			window.sketchpad = new Sketchpad({
 				element: "#joe_comment_draw",

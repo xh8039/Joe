@@ -21,7 +21,7 @@ class Api
 			'display' => 'standalone',
 			'icons' => [
 				[
-					'src' => self::$options->Jfavicon,
+					'src' => self::$options->JFavicon,
 					'sizes' => "any",
 					'type' => "image/png"
 				]

@@ -18,12 +18,11 @@ class Api
 	{
 		return [
 			'name' => self::$options->title,
+			'start_url' => '/',
 			'display' => 'standalone',
 			'icons' => [
 				[
 					'src' => str_starts_with(self::$options->JFavicon, '/') ? (self::$options->index . self::$options->JFavicon) : self::$options->JFavicon,
-					'sizes' => "256x256",
-					'type' => "image/png"
 				]
 			]
 		];

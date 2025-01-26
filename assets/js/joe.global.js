@@ -102,7 +102,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					routeType: 'statistics'
+					routeType: 'baidu_statistic'
 				},
 				success(data) {
 					if (data.access_token == 'off') {

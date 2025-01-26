@@ -27,7 +27,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div id="Joe">
 		<div class="joe_container">
 			<div class="joe_main">
-				<?php Typecho_Widget::widget('Widget_Stat')->to($item); ?>
+				<?php Typecho\Widget::widget('Widget_Stat')->to($item); ?>
 				<!-- 基础统计 -->
 				<div class="joe_census__basic">
 					<div class="joe_census__basic-item list">

@@ -8,9 +8,14 @@ class ComposerStaticInit72d12ca78f20e8125a02612c2639f4e8
 {
     public static $files = array (
         '3f25217b295bb6ca58df2f221ad22d51' => __DIR__ . '/..' . '/network/http/src/helper.php',
+        '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        't' => 
+        array (
+            'think\\' => 6,
+        ),
         'n' => 
         array (
             'network\\http\\' => 13,
@@ -22,6 +27,10 @@ class ComposerStaticInit72d12ca78f20e8125a02612c2639f4e8
     );
 
     public static $prefixDirsPsr4 = array (
+        'think\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-helper/src',
+        ),
         'network\\http\\' => 
         array (
             0 => __DIR__ . '/..' . '/network/http/src',

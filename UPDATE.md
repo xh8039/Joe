@@ -296,7 +296,7 @@
 - 升级文章代码内容复制到剪切板的组件 Clipboard.js
 - 升级首页轮播图组件 Swiper.js
 
-## 1.34 公测版
+## 1.34
 
 - 新增评论区内容自动刷新功能
 - 新增文章页面可设置PC端文章内图片极限高度
@@ -328,7 +328,6 @@
 - 修复壁纸模板数量不足以翻页时依然有翻页功能的BUG
 - 修复文章编辑器全屏后代码块和宫格等功能的弹窗不显示的BUG
 - toast 消息提示组件从 [qmsg](https://gitee.com/leisureLXY/qmsg) 更换为 [autolog.js](https://github.com/Auto-Plugin/autolog.js)
-- 正在开发中...
 - 1.33版本更新到本版本后请手动执行以下MySQL语句
 
 ```sql
@@ -363,3 +362,7 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 ```
 
 ![phpMyAdmin执行SQL语句教程](https://shp.qpic.cn/collector/2136118039/dec4ad69-6461-4d0e-a49e-97440627940d/0)
+
+## 1.35 开发版
+
+- 正在开发中...

@@ -143,7 +143,7 @@ switch ($action) {
 			'created' => time(),
 			'group' => empty(Helper::options()->JUser_Register_Group) ? 'contributor' : Helper::options()->JUser_Register_Group
 		);
-		$result = Typecho_Widget::widget('Widget_Abstract_Users')->insert($data);
+		$result = Typecho\Widget::widget('Widget_Abstract_Users')->insert($data);
 		if ($result) {
 			$_SESSION['Gm_Reg_Code'] = null;
 			$_SESSION['Gm_Reg_Email'] = null;

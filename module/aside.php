@@ -13,7 +13,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<a class="link" target="_blank" href="<?php $this->options->JAside_Author_Link() ?>" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>
 			<p class="motto joe_motto mb0"></p>
 		</div>
-		<?php Typecho_Widget::widget('Widget_Stat')->to($item); ?>
+		<?php Typecho\Widget::widget('Widget_Stat')->to($item); ?>
 		<div class="count">
 			<div class="item" title="累计文章数">
 				<span class="num"><?php echo number_format($item->publishedPostsNum); ?></span>
@@ -68,7 +68,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		if ($result instanceof Traversable) {
 			$year = date('Y');
 			foreach ($result as $item) {
-				$item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
+				$item = Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
 				if ($item['year'] == $year) continue;
 				$historyTodaylist[] = array(
 					"title" => htmlspecialchars($item['title']),

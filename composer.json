@@ -1,6 +1,7 @@
 {
     "require": {
         "network/http": "dev-master",
-        "metowolf/meting": "^1.5"
+        "metowolf/meting": "^1.5",
+        "topthink/think-helper": "^3.1"
     }
 }

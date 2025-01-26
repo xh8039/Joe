@@ -18,7 +18,7 @@ define('JOE_ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('THEME_NAME', basename(JOE_ROOT));
 define('TYPECHO_ADMIN_ROOT', __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__);
 
-$options = Typecho_Widget::widget('Widget_Options');
+$options = Typecho\Widget::widget('Widget_Options');
 $action = empty($_REQUEST['action']) ? 'index' : $_REQUEST['action'];
 
 function alert($content)

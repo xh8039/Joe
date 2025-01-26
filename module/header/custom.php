@@ -137,7 +137,7 @@ $custom_navs = joe\custom_navs();
 													</a>
 												</div>
 												<?php
-												Typecho_Widget::widget('Widget_Stat')->to($stat);
+												Typecho\Widget::widget('Widget_Stat')->to($stat);
 												$PostsNum = joe\number_word($stat->myPublishedPostsNum);
 												$CommentsNum = joe\number_word($stat->myPublishedCommentsNum);
 												?>

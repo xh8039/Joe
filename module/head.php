@@ -32,6 +32,8 @@ if ($this->options->JLoading != 'off') : ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/loading/' . $this->options->JLoading . '.css') ?>">
 <?php endif; ?>
 
+<link rel="manifest" href="<?= joe\index('joe/api/manifest.json') ?>" />
+
 <!-- 昼夜模式配色表 -->
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>">

@@ -232,7 +232,7 @@ class Editor
 			<label for="token-input-tags" class="typecho-label"><?php _e('标签选择'); ?></label>
 			<ul class="tagshelper">
 				<?php
-				Typecho_Widget::widget('Widget_Metas_Tag_Cloud')->to($tags);
+				Typecho\Widget::widget('Widget_Metas_Tag_Cloud')->to($tags);
 				if ($tags->have()) {
 					$i = 0;
 					while ($tags->next()) {

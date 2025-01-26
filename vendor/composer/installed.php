@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '8cc599a4a61ecf07789ab56a7761adf7fc5e2eca',
+        'reference' => 'c2ca7d1a9f57b74d26d6a8b92628486cea3c1ce5',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '8cc599a4a61ecf07789ab56a7761adf7fc5e2eca',
+            'reference' => 'c2ca7d1a9f57b74d26d6a8b92628486cea3c1ce5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -37,6 +37,15 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
+            'dev_requirement' => false,
+        ),
+        'topthink/think-helper' => array(
+            'pretty_version' => 'v3.1.10',
+            'version' => '3.1.10.0',
+            'reference' => 'ac66cc0859a12cd5d73258f50f338aadc95e9b46',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../topthink/think-helper',
+            'aliases' => array(),
             'dev_requirement' => false,
         ),
     ),

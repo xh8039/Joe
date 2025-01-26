@@ -2,7 +2,7 @@
 require_once TYPECHO_ADMIN_ROOT . 'header.php';
 require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 require_once __DIR__ . '/widget.php';
-$orders = Typecho_Widget::widget('JoeOrders_Widget');
+$orders = Typecho\Widget::widget('JoeOrders_Widget');
 ?>
 <style>
 	.typecho-list-table td {

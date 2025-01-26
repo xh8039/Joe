@@ -302,7 +302,7 @@ function getAsideAuthorNav()
 		$result = $db->query($sql);
 		if ($result instanceof \Traversable) {
 			foreach ($result as $item) {
-				$item = \Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
+				$item = \Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
 				$title = htmlspecialchars($item['title']);
 				$permalink = $item['permalink'];
 				echo "<li class='item'><a class='link' href='{$permalink}' title='{$title}'>{$title}</a><svg class='svg' aria-hidden='true'><use xlink:href='#icon-copy-color'></use></svg></li>";
@@ -489,7 +489,7 @@ function html_tags_filter(string $content, array $tags): string
 function user_login($uid, $expire = 30243600)
 {
 	$db = \Typecho_Db::get();
-	\Typecho_Widget::widget('Widget_User')->simpleLogin($uid);
+	\Typecho\Widget::widget('Widget_User')->simpleLogin($uid);
 	$authCode = function_exists('openssl_random_pseudo_bytes') ? bin2hex(openssl_random_pseudo_bytes(16)) : sha1(\Typecho_Common::randString(20));
 	\Typecho_Cookie::set('__typecho_uid', $uid, time() + $expire);
 	\Typecho_Cookie::set('__typecho_authCode', \Typecho_Common::hash($authCode), time() + $expire);

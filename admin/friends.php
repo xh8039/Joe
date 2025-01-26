@@ -19,7 +19,7 @@ define('THEME_NAME', basename(JOE_ROOT));
 define('TYPECHO_ADMIN_ROOT', __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__);
 require_once JOE_ROOT . 'public/function.php';
 
-$options = Typecho_Widget::widget('Widget_Options');
+$options = Typecho\Widget::widget('Widget_Options');
 $action = empty($_REQUEST['action']) ? 'index' : $_REQUEST['action'];
 $db = Typecho_Db::get();
 

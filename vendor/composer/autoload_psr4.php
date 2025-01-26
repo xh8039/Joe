@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'think\\' => array($vendorDir . '/topthink/think-helper/src'),
     'network\\http\\' => array($vendorDir . '/network/http/src'),
     'Metowolf\\' => array($vendorDir . '/metowolf/meting/src'),
 );

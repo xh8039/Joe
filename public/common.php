@@ -37,7 +37,7 @@ require_once(JOE_ROOT . 'public/function.php');
 require_once(JOE_ROOT . 'public/parse.php');
 
 /* 主题内置开放API */
-require_once(JOE_ROOT . 'public/route.php');
+require_once(JOE_ROOT . 'public/api.php');
 
 /* 插件方法 */
 require_once(JOE_ROOT . 'public/factory.php');
@@ -68,7 +68,7 @@ function themeInit($self)
 	if (!joe\is_session_started()) session_start();
 
 	if (!isset($GLOBALS['JOE_USER'])) {
-		Typecho_Widget::widget('Widget_User')->to($user);
+		Typecho\Widget::widget('Widget_User')->to($user);
 		$GLOBALS['JOE_USER'] = $user;
 		if ($user->hasLogin()) {
 			if (!defined('USER_ID')) define('USER_ID', $user->uid);
@@ -84,67 +84,23 @@ function themeInit($self)
 
 	/* 主题开放API 路由规则 */
 	if (strpos($self->request->getPathInfo(), "/joe/api") === 0) {
-		switch ($self->request->routeType) {
-			case 'publish_list':
-				_getPost($self);
-				break;
-			case 'baidu_record':
-				_getRecord($self);
-				break;
-			case 'baidu_push':
-				_pushRecord($self);
-				break;
-			case 'bing_push':
-				_pushBing($self);
-				break;
-			case 'handle_views':
-				_handleViews($self);
-				break;
-			case 'handle_agree':
-				_handleAgree($self);
-				break;
-			case 'wallpaper_type':
-				_getWallpaperType($self);
-				break;
-			case 'wallpaper_list':
-				_getWallpaperList($self);
-				break;
-			case 'maccms_list':
-				_getMaccmsList($self);
-				break;
-			case 'huya_list':
-				_getHuyaList($self);
-				break;
-			case 'server_status':
-				_getServerStatus($self);
-				break;
-			case 'comment_lately':
-				_getCommentLately($self);
-				break;
-			case 'article_filing':
-				_getArticleFiling($self);
-				break;
-				// 提交友链
-			case 'friend_submit':
-				_friendSubmit($self);
-				break;
-			case 'statistics':
-				_getstatistics($self);
-				break;
-			case 'meting':
-				_Meting($self);
-				break;
-			case 'pay_cashier_modal':
-				_payCashierModal($self);
-				break;
-			case 'initiate_pay':
-				_initiatePay($self);
-			case 'user_rewards_modal':
-				_userRewardsModal($self);
-			case 'check_pay':
-				_checkPay($self);
-				break;
-		};
+		$path_info_explode = explode('/', $self->request->getPathInfo());
+		$route = empty($path_info_explode[3]) ? $self->request->routeType : $path_info_explode[3];
+		if ($route && !is_numeric($route)) {
+			if (str_ends_with($route, '.json')) $route = substr($route, 0, -5);
+			$method = think\helper\Str::camel($route);
+			$method_exists = method_exists(joe\Api::class, $method);
+			if (!$method_exists) $self->response->throwJson(['code' => 404, 'message' => '接口不存在']);
+			joe\Api::$self = $self;
+			joe\Api::$options = Helper::options();
+			$api = joe\Api::$method($self);
+			if (is_array($api) || is_object($api)) {
+				$self->response->setStatus(200);
+				$self->response->throwJson($api);
+			}
+		} else {
+			$self->response->throwJson(['code' => 404, 'message' => '未调用接口']);
+		}
 	}
 
 	if (strpos($self->request->getPathInfo(), '/goto') === 0 && Helper::options()->JPostLinkRedirect == 'on') {
@@ -206,8 +162,6 @@ function themeInit($self)
 /* 增加自定义字段 */
 function themeFields($layout)
 {
-
-
 	$keywords = new \Typecho\Widget\Helper\Form\Element\Text(
 		'keywords',
 		NULL,

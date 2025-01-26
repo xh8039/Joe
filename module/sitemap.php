@@ -1,7 +1,7 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 $db = Typecho_Db::get();
-$options = Typecho_Widget::widget('Widget_Options');
+$options = Typecho\Widget::widget('Widget_Options');
 $limit = Helper::options()->JSiteMap;
 $pages = $db->fetchAll(
 	$db->select()->from('table.contents')

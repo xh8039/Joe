@@ -743,7 +743,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		const registerServiceWorker = async () => {
 			if ('serviceWorker' in navigator) {
 				try {
-					const registration = await navigator.serviceWorker.register(Joe.THEME_URL + 'assets/js/joe.service.worker.js');
+					const registration = await navigator.serviceWorker.register(Joe.options.themeUrl + '/assets/js/joe.service.worker.js');
 					if (registration.installing) {
 						console.log("正在安装 Service worker");
 					} else if (registration.waiting) {

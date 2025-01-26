@@ -333,11 +333,11 @@
 
 ```sql
 -- 必须执行的代码
+UPDATE `typecho_fields` SET `str_value`='1' WHERE `name`='baidu_push' AND `str_value`='yes';
 ALTER TABLE `typecho_friends` ADD `position` VARCHAR(255) NULL DEFAULT NULL AFTER `email`;
 UPDATE `typecho_friends` SET `position`='single';
+ALTER TABLE `typecho_joe_pay` CHANGE `ip` `ip` VARCHAR(128);
 RENAME TABLE `typecho_joe_pay` to `typecho_orders`;
-ALTER TABLE `typecho_orders` CHANGE `ip` `ip` VARCHAR(128);
-UPDATE `typecho_fields` SET `str_value`='1' WHERE `name`='baidu_push' AND `str_value`='yes';
 
 -- 清理主题自定义字段大量多余数据（最少可清理几百行，一般可清理几千行）
 -- 没有插件或其他主题的情况下只需执行简洁代码

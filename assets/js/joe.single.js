@@ -46,6 +46,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/* 激活图片预览功能 */
 	{
+		if ($.fancybox) $.fancybox.defaults.hash = false;
 		$('.joe_detail__article img:not(img.owo_image)[fancybox!="false"]').each(function () {
 			$(this).wrap($(`<span style="display: block;" data-fancybox="Joe" href="${$(this).attr('src')}"></span>`));
 		});

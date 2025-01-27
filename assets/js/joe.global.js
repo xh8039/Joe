@@ -623,8 +623,10 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
 	{
 		document.addEventListener("error", function (event) {
+			console.log(event);
 			var element = event.target;
 			if (element.tagName.toLowerCase() == 'img' && element.classList.contains('error-thumbnail') && !element.dataset.thumbnailLoaded) {
+				console.log(element);
 				// 生成一个 1 到 42 之间的随机整数
 				const randomNumber = Math.floor(Math.random() * 41) + 1;
 				// 将随机数格式化为两位数

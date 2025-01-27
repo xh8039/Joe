@@ -15,7 +15,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 	}
 
 	/* 激活代码高亮 */
-	{
+	if (window.Prism) {
 		Prism.highlightAll();
 		$("pre[class*='language-']").each(function (index, item) {
 			let text = $(item).find("code[class*='language-']").text().replace(/    /g, '	');

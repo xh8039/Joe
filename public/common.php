@@ -21,8 +21,7 @@ define('THEME_NAME', basename(JOE_ROOT));
 // 通过 siteUrl 获取域名
 define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
 
-header('Generator: YiHang');
-header('Author: YiHang');
+header('Yihang-Typecho-Joe: true');
 
 /* 继承方法函数 */
 require_once(JOE_ROOT . 'public/widget.php');

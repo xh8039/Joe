@@ -312,7 +312,7 @@ function getAsideAuthorNav()
 			foreach ($result as $item) {
 				$item = \Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
 				$title = htmlspecialchars($item['title']);
-				$permalink = joe\permalink($item['permalink']);
+				$permalink = \joe\permalink($item['permalink']);
 				echo "<li class='item'><a class='link' href='{$permalink}' title='{$title}'>{$title}</a><svg class='svg' aria-hidden='true'><use xlink:href='#icon-copy-color'></use></svg></li>";
 			}
 		}

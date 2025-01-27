@@ -11,7 +11,7 @@ $this->need('module/single/pjax.php');
 <head>
 	<?php
 	$this->need('module/head.php');
-	$this->need('module/single/prism.php');
+	if (\think\helper\Str::contains($this->content, '<code class="lang-')) $this->need('module/single/prism.php');
 	?>
 	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>

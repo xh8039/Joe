@@ -622,7 +622,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	/** 文章列表缩略图加载失败自动使用主题自带缩略图 */
 	{
-		window.addEventListener("error", function (event) {
+		document.body.addEventListener("error", function (event) {
 			console.log(event);
 			var element = event.target;
 			if (element.tagName.toLowerCase() == 'img' && element.classList.contains('error-thumbnail') && !element.dataset.thumbnailLoaded) {

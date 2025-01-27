@@ -75,7 +75,7 @@ class Api
 						"views" => \joe\getViews($item, false),
 						"commentsNum" => number_format($item->commentsNum),
 						"agree" => \joe\getAgree($item, false),
-						"permalink" => $item->permalink,
+						"permalink" => str_replace(self::$options->siteUrl, '/', $item->permalink),
 						"lazyload" => \joe\getLazyload(false),
 						"type" => '置顶',
 						'target' => self::$options->Jessay_target,

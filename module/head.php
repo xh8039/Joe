@@ -56,20 +56,15 @@ if ($this->options->JLoading != 'off') : ?>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>" data-turbolinks-permanent></script>
-<?php if ($this->options->Turbolinks == 'on' || $this->is('single') || $this->is('archive') || $this->options->IndexAjaxList == 'off') : ?>
-	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>" data-turbolinks-permanent></script>
-<?php endif; ?>
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/autolog.js/autolog.js'); ?>" data-turbolinks-permanent></script>
 
-<?php if ($this->is('single') || $this->options->JMusic == 'on') : ?>
+<?php if ($this->options->JMusic == 'on') : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
 	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>" data-turbolinks-permanent></script>
-	<?php if ($this->options->JMusic == 'on') : ?>
-		<script src="<?= joe\theme_url('assets/plugin/yihang/Meting.js', false) ?>" data-turbolinks-permanent></script>
-	<?php endif; ?>
+	<script src="<?= joe\theme_url('assets/plugin/yihang/Meting.js', false) ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js', false); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 
@@ -79,6 +74,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <?php if ($this->options->Turbolinks == 'on') : ?>
+	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/plugin/yihang/TurboLinks.js') ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 

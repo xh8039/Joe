@@ -41,7 +41,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		render() {
 			if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
 			this.innerHTML = '<span style="display: block" class="_content"></span>';
-			window.Joe.APlayer({
+			new MusicPlayer({
 				container: getChildren(this, '_content'),
 				theme: this.options.theme,
 				autoplay: this.options.autoplay,
@@ -81,7 +81,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			this.innerHTML = '<span style="display: block" class="_content"></span>';
 			fetch(`${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
-				window.Joe.APlayer({
+				new MusicPlayer({
 					container: getChildren(this, '_content'),
 					lrcType: 1,
 					theme: this.options.color,
@@ -115,7 +115,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			this.innerHTML = '<span style="display: block" class="_content"></span>';
 			fetch(`${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
-				window.Joe.APlayer({
+				new MusicPlayer({
 					container: getChildren(this, '_content'),
 					lrcType: 3,
 					theme: this.options.color,

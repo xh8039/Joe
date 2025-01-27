@@ -59,7 +59,7 @@ if ($this->options->JLoading != 'off') : ?>
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/autolog.js/autolog.js'); ?>" data-turbolinks-permanent></script>
 
-<?php if ($this->options->JMusic == 'on') : ?>
+<?php if ($this->options->JMusic == 'on' || ($this->is('single') && \think\helper\Str::contains($this->content, ['{music', '{mp3']))) : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/aplayer/1.10.1/APlayerNight.css') ?>">
 	<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>" data-turbolinks-permanent></script>
@@ -88,6 +88,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <?php if ($this->is('single')) : ?>
+	<?php if (\think\helper\Str::contains($this->content, '<code class="lang-')) $this->need('module/single/prism.php'); ?>
 	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>" data-turbolinks-permanent></script>
 	<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" data-turbolinks-permanent></script> -->
 	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>

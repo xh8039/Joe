@@ -17,10 +17,7 @@ $this->need('module/single/pjax.php');
 <html lang="zh-CN">
 
 <head>
-	<?php
-	$this->need('module/head.php');
-	if (\think\helper\Str::contains($this->content, '<code class="lang-')) $this->need('module/single/prism.php');
-	?>
+	<?php $this->need('module/head.php') ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.friend.css') ?>">
 	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>

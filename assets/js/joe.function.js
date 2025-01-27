@@ -75,37 +75,6 @@ window.Joe.clipboard = (content, success, error = () => { autolog.log('复制失
 	}
 }
 
-window.Joe.loadScript = (url) => {
-	return new Promise((resolve, reject) => {
-		$.getScript(url, resolve).fail(reject);
-	});
-}
-
-window.Joe.loadCSS = (url) => {
-	return new Promise((resolve, reject) => {
-		let link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.href = url;
-		link.onload = resolve;
-		link.onerror = reject;
-		document.head.appendChild(link);
-	});
-}
-
-window.Joe.APlayer = (options) => {
-	Promise.all([
-		!window.APlayer && Joe.loadCSS(Joe.CDN_URL + 'aplayer/1.10.1/APlayer.min.css'),
-		!window.APlayer && Joe.loadCSS(Joe.THEME_URL + 'assets/plugin/aplayer/1.10.1/APlayerNight.css'),
-		!window.APlayer && Joe.loadScript(Joe.CDN_URL + 'aplayer/1.10.1/APlayer.min.js'),
-		!window.ColorThief && Joe.loadScript(Joe.CDN_URL + 'color-thief/2.3.2/color-thief.min.js'),
-		!window.MusicPlayer && Joe.loadScript(Joe.THEME_URL + 'assets/plugin/yihang/MusicPlayer.js'),
-	]).then(() => {
-		new MusicPlayer(options);
-	}).catch(error => {
-		console.error("加载JS脚本时出错：", error);
-	});
-}
-
 window.Joe.checkUrl = (string) => {
 	try {
 		if (string instanceof Element) {

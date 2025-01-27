@@ -541,6 +541,7 @@ function user_url($action, $from = true)
 			$url = \Typecho_Common::url('user/forget', \Helper::options()->index) . $url;
 			break;
 	}
+	$url = str_starts_replace(\Helper::options()->siteUrl, '/', $url);
 	return $url;
 }
 

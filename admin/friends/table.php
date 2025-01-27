@@ -102,7 +102,7 @@ $waiting_count = waiting_count();
 											</td>
 											<td><a target="_blank" href="<?php $orders->url() ?>"><?php $orders->url() ?></a></td>
 											<td><?php $orders->description() ?></td>
-											<td><img referrerpolicy="no-referrer" rel="noreferrer" width="50px" height="50px" src="<?php $orders->logo() ?>"></td>
+											<td><img onerror="<?php $options->themeUrl('assets/images/avatar-default.png') ?>" referrerpolicy="no-referrer" rel="noreferrer" width="50px" height="50px" src="<?php $orders->logo() ?>"></td>
 											<td><?php $orders->position(); ?></td>
 											<td><?php $orders->order(); ?></td>
 											<td><?php $orders->status(); ?></td>

@@ -52,12 +52,6 @@ if ($this->options->JLoading != 'off') : ?>
 <?php $this->need('module/config.php'); ?>
 
 <script src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>" data-turbolinks-permanent></script>
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>" data-turbolinks-permanent></script>
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>" data-turbolinks-permanent></script>
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>" data-turbolinks-permanent></script>
-<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>" data-turbolinks-permanent></script>
-<script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent></script>
-<script src="<?= joe\theme_url('assets/plugin/autolog.js/autolog.js'); ?>" data-turbolinks-permanent></script>
 
 <?php if ($this->options->JMusic == 'on' || ($this->is('single') && \think\helper\Str::contains($this->content, ['{music', '{mp3']))) : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
@@ -94,6 +88,13 @@ if ($this->options->JLoading != 'off') : ?>
 	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
+
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>" data-turbolinks-permanent></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/modal.js', false); ?>" data-turbolinks-permanent></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>" data-turbolinks-permanent></script>
+<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>" data-turbolinks-permanent></script>
+<script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent></script>
+<script src="<?= joe\theme_url('assets/plugin/autolog.js/autolog.js'); ?>" data-turbolinks-permanent></script>
 
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.main.js'); ?>"></script>

@@ -172,7 +172,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>" class="link">主题设置</a>
 						<?php } ?>
 						<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>" class="link">进入后台</a>
-						<a href="<?php $this->options->logoutUrl(); ?>" class="link">退出登录</a>
+						<a href="<?= joe\permalink($this->options->logoutUrl) ?>" class="link">退出登录</a>
 					</li>
 				</ul>
 			</li>

@@ -177,7 +177,7 @@ $custom_navs = joe\custom_navs();
 															<div class="badg mb6 toggle-radius c-green"><i style="transform: translate(1px, -50%)" class="fa fa-fw fa-pencil-square-o"></i></div>
 															<div class="c-green">发布文章</div>
 														</a>
-														<a href="<?php $this->options->logoutUrl(); ?>">
+														<a href="<?= joe\permalink($this->options->logoutUrl) ?>">
 															<div class="badg mb6 toggle-radius c-red"><svg class="icon svg" aria-hidden="true">
 																	<use xlink:href="#icon-signout"></use>
 																</svg></div>

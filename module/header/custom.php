@@ -65,7 +65,7 @@ $custom_navs = joe\custom_navs();
 												<div>
 													<?php
 													while ($hots->next()) {
-														echo '<a class="search_keywords text-ellipsis muted-2-color but em09 mr6 mb6" href="' . $hots->permalink . '">' . $hots->title . '</a>';
+														echo '<a class="search_keywords text-ellipsis muted-2-color but em09 mr6 mb6" href="' . joe\permalink($hots->permalink) . '">' . $hots->title . '</a>';
 													}
 													?>
 												</div>
@@ -80,7 +80,7 @@ $custom_navs = joe\custom_navs();
 												<div>
 													<?php
 													while ($tags->next()) {
-														echo '<a class="search_keywords text-ellipsis muted-2-color but em09 mr6 mb6" href="' . $tags->permalink . '">' . $tags->name . '</a>';
+														echo '<a class="search_keywords text-ellipsis muted-2-color but em09 mr6 mb6" href="' . joe\permalink($tags->permalink) . '">' . $tags->name . '</a>';
 													}
 													?>
 												</div>
@@ -115,7 +115,7 @@ $custom_navs = joe\custom_navs();
 										<div class="padding-10">
 											<div class="sub-user-box">
 												<div class="user-info flex ac relative">
-													<a href="<?= $this->user->permalink ?>">
+													<a href="<?= joe\permalink($this->user->permalink) ?>">
 														<span class="avatar-img">
 															<img alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="lazyload avatar avatar-id-1">
 														</span>
@@ -124,7 +124,7 @@ $custom_navs = joe\custom_navs();
 														<div class="flex1" style="max-width: calc(100% - 40px);">
 															<b>
 																<name class="flex ac flex1">
-																	<a class="display-name text-ellipsis" href="<?= $this->user->permalink ?>"><?= $this->user->screenName ?></a>
+																	<a class="display-name text-ellipsis" href="<?= joe\permalink($this->user->permalink) ?>"><?= $this->user->screenName ?></a>
 																</name>
 															</b>
 															<div class="px12 muted-2-color text-ellipsis">这家伙很懒，什么都没有写...</div>
@@ -142,7 +142,7 @@ $custom_navs = joe\custom_navs();
 												$CommentsNum = joe\number_word($stat->myPublishedCommentsNum);
 												?>
 												<div class="em09 author-tag mb10 mt6 flex jc">
-													<a class="but c-blue tag-posts" data-toggle="tooltip" title="共<?= $PostsNum ?>篇文章" href="<?php $this->user->permalink() ?>">
+													<a class="but c-blue tag-posts" data-toggle="tooltip" title="共<?= $PostsNum ?>篇文章" href="<?= joe\permalink($this->user->permalink) ?>">
 														<svg class="icon svg" aria-hidden="true">
 															<use xlink:href="#icon-post"></use>
 														</svg><?= $PostsNum ?>

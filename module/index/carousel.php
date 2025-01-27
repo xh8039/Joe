@@ -19,7 +19,7 @@ if ($carousel_text) {
 			if (is_numeric($carousel_arr[$i])) {
 				$this->widget('Widget_Contents_Post@' . $carousel_arr[$i], 'cid=' . $carousel_arr[$i])->to($item);
 				$img = trim(joe\getThumbnails($item)[0]);
-				$url = $item->permalink;
+				$url = joe\permalink($item->permalink);
 				$title = $item->title;
 			} else {
 				$img = trim(explode("||", $carousel_arr[$i])[0] ?? '');

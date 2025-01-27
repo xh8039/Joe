@@ -75,12 +75,12 @@ class Api
 						"views" => \joe\getViews($item, false),
 						"commentsNum" => number_format($item->commentsNum),
 						"agree" => \joe\getAgree($item, false),
-						"permalink" => str_starts_replace(self::$options->siteUrl, '/', $item->permalink),
+						"permalink" => \joe\permalink($item->permalink),
 						"lazyload" => \joe\getLazyload(false),
 						"type" => '置顶',
 						'target' => self::$options->Jessay_target,
 						'author_screenName' => $item->author->screenName,
-						'author_permalink' => str_starts_replace(self::$options->siteUrl, '/', $item->author->permalink),
+						'author_permalink' => \joe\permalink($item->author->permalink),
 						'author_avatar' => \joe\getAvatarByMail($item->author->mail, false),
 						'tags' => $item->tags,
 						'fields' => $item->fields->toArray()
@@ -109,12 +109,12 @@ class Api
 				"views" => number_format($item->views),
 				"commentsNum" => number_format($item->commentsNum),
 				"agree" => number_format($item->agree),
-				"permalink" => $item->permalink,
+				"permalink" => \joe\permalink($item->permalink),
 				"lazyload" => \joe\getLazyload(false),
 				"type" => 'normal',
 				'target' => self::$options->Jessay_target,
 				'author_screenName' => $item->author->screenName,
-				'author_permalink' => $item->author->permalink,
+				'author_permalink' => \joe\permalink($item->author->permalink),
 				'author_avatar' => \joe\getAvatarByMail($item->author->mail, false),
 				'tags' => $item->tags,
 				'fields' => $item->fields->toArray()
@@ -614,7 +614,7 @@ class Api
 				$_item['permalink'] = \Typecho\Common::url($_item['pathinfo'], $options->index);
 				$list[] = array(
 					"title" => date('m/d', $_item['created']) . '：' . $_item['title'],
-					"permalink" => $_item['permalink'],
+					"permalink" => \joe\permalink($_item['permalink']),
 				);
 			}
 			$result[] = array("date" => $date, "list" => $list);

@@ -65,7 +65,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					]; ?>
 					<?php while ($tags->next()) : ?>
 						<li class="item">
-							<a style="background: <?php echo $colors[mt_rand(0, count($colors) - 1)] ?>" href="<?php $tags->permalink(); ?>"><?php $tags->name(); ?></a>
+							<a style="background: <?php echo $colors[mt_rand(0, count($colors) - 1)] ?>" href="<?= joe\permalink($tags->permalink); ?>"><?php $tags->name(); ?></a>
 						</li>
 					<?php endwhile; ?>
 				</ul>

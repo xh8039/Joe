@@ -24,7 +24,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				$description = urlencode($description);
 				$pic = urlencode(joe\getThumbnails($this)[0]);
 				$title = urlencode($this->title . ' - ' . $this->options->title);
-				$permalink = urlencode($this->permalink);
+				$permalink = urlencode(joe\permalink($this->permalink));
 				?>
 				<a rel="nofollow" class="share-btn qzone" target="_blank" title="QQ空间" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?= $permalink ?>&title=<?= $title ?>&pics=<?= $pic ?>&summary=<?= $description ?>">
 					<icon><svg class="icon" aria-hidden="true">
@@ -51,7 +51,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<text>海报分享<text></text></text>
 				</a> -->
 				<!-- 如果你有海报插件，将下面的注释解开，通过点击下方的图标调用生成海报 -->
-				<a rel="nofollow" class="share-btn copy" data-clipboard-text="<?php $this->permalink() ?>" data-clipboard-tag="链接" title="复制链接" href="javascript:;">
+				<a rel="nofollow" class="share-btn copy" data-clipboard-text="<?= joe\permalink($this->permalink) ?>" data-clipboard-tag="链接" title="复制链接" href="javascript:;">
 					<icon>
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-copy-color"></use>

@@ -72,7 +72,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				if ($item['year'] == $year) continue;
 				$historyTodaylist[] = array(
 					"title" => htmlspecialchars($item['title']),
-					"permalink" => $item['permalink'],
+					"permalink" => joe\permalink($item['permalink']),
 					"date" => $item['year'] . ' ' . $item['month'] . '/' . $item['day']
 				);
 			}
@@ -89,9 +89,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<div class="tail"></div>
 							<div class="head"></div>
 							<div class="desc">
-								<time datetime="<?php echo $item['date'] ?>"><?php echo $item['date'] ?></time>
-								<a href="<?php echo $item['permalink'] ?>" title="<?php echo $item['title'] ?>">
-									<?php echo $item['title'] ?>
+								<time datetime="<?= $item['date'] ?>"><?= $item['date'] ?></time>
+								<a href="<?= joe\permalink($item['permalink']) ?>" title="<?= $item['title'] ?>">
+									<?= $item['title'] ?>
 								</a>
 							</div>
 						</li>
@@ -112,7 +112,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php $index = 1; ?>
 					<?php while ($item->next()) : ?>
 						<li class="item">
-							<a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
+							<a class="link" href="<?= joe\permalink($item->permalink); ?>" title="<?php $item->title(); ?>">
 								<i class="sort"><?php echo $index; ?></i>
 								<img width="100%" height="130" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
 								<div class="describe">
@@ -147,7 +147,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 								</div>
 							</div>
 							<div class="reply">
-								<a class="link" href="<?php _parseAsideLink($item->permalink); ?>">
+								<a class="link" href="<?php _parseAsideLink(joe\permalink($item->permalink)); ?>">
 									<?php _parseAsideReply($item->content); ?>
 								</a>
 							</div>
@@ -180,7 +180,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<div class="tag"></div>
 					<ul class="list" style="display: none;">
 						<?php while ($tags->next()) : ?>
-							<li data-url="<?php $tags->permalink(); ?>" data-label="<?php $tags->name(); ?>"></li>
+							<li data-url="<?php joe\permalink($tags->permalink); ?>" data-label="<?php $tags->name(); ?>"></li>
 						<?php endwhile; ?>
 					</ul>
 				<?php else : ?>
@@ -202,7 +202,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					while ($tags->next()) {
 						$color_index = array_rand($color_list);
 						$color_class = $color_list[$color_index];
-						echo "<a href=\"{$tags->permalink}\" class=\"text-ellipsis but {$color_class}\">{$tags->name}</a>";
+						$permalink = joe\permalink($tags->permalink);
+						echo "<a href=\"{$permalink}\" class=\"text-ellipsis but {$color_class}\">{$tags->name}</a>";
 					}
 				} else {
 					echo '<div class="empty">暂无标签</div>';

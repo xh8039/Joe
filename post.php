@@ -16,7 +16,7 @@ $this->need('module/single/pjax.php');
 		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '" data-turbolinks-permanent></script>';
 	}
 	$this->need('module/head.php');
-	$this->need('module/single/prism.php');
+	if (\think\helper\Str::contains($this->content, '<code class="lang-')) $this->need('module/single/prism.php');
 	if (!empty($this->options->JPostMetaReferrer)) echo '<meta name="referrer" content="' . $this->options->JPostMetaReferrer . '">';
 	?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">

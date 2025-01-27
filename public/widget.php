@@ -30,6 +30,23 @@ if (!function_exists('str_ends_with')) {
 	}
 }
 
+if (!function_exists('str_starts_replace')) {
+	/**
+	 * 替换字符串开头
+	 * @param string $search 要被替换的字符串
+	 * @param string $replace 替换的字符串
+	 * @param string $subject 被替换的字符串
+	 * @return string
+	 */
+	function str_starts_replace(string $search, string $replace, string $subject)
+	{
+		if (strpos($subject, $search) === 0) { // 检查$search是否在$string开头
+			return substr_replace($subject, $replace, 0, strlen($search));
+		}
+		return $subject; // 如果$search不在开头，则返回原字符串
+	}
+}
+
 class Widget_Contents_Hot extends Widget_Abstract_Contents
 {
 	public function execute()

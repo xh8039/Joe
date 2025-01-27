@@ -85,8 +85,6 @@ if ($this->options->JLoading != 'off') : ?>
 	<?php if (\think\helper\Str::contains($this->content, '<code class="lang-')) $this->need('module/single/prism.php'); ?>
 	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>" data-turbolinks-permanent></script>
 	<!-- <script src="<?= joe\theme_url('assets/js/joe.smooth.js'); ?>" data-turbolinks-permanent></script> -->
-	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
-	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/transition.js', false); ?>" data-turbolinks-permanent></script>
@@ -96,6 +94,10 @@ if ($this->options->JLoading != 'off') : ?>
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/autolog.js/autolog.js'); ?>" data-turbolinks-permanent></script>
 
+<?php if ($this->is('single')) : ?>
+	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
+	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" data-turbolinks-permanent></script>
+<?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.main.js'); ?>"></script>
 

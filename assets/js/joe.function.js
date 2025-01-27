@@ -61,6 +61,20 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 	}(options);
 }
 
+window.Joe.clipboard = (content, success, error = () => { autolog.log('复制失败！', 'error') }) => {
+	if (location.protocol == 'https:' && 'clipboard' in navigator) {
+		navigator.clipboard.writeText(content).then(success, error);
+	} else {
+		let aux = document.createElement("input");
+		aux.setAttribute("value", content);
+		document.body.appendChild(aux);
+		aux.select();
+		document.execCommand("copy");
+		document.body.removeChild(aux);
+		success();
+	}
+}
+
 window.Joe.checkUrl = (string) => {
 	try {
 		if (string instanceof Element) {

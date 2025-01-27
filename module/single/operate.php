@@ -51,7 +51,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<text>海报分享<text></text></text>
 				</a> -->
 				<!-- 如果你有海报插件，将下面的注释解开，通过点击下方的图标调用生成海报 -->
-				<a rel="nofollow" class="share-btn copy" data-clipboard-text="<?= joe\permalink($this->permalink) ?>" data-clipboard-tag="链接" title="复制链接" href="javascript:;">
+				<a rel="nofollow" class="share-btn copy" data-clipboard-text="<?= $this->permalink ?>" data-clipboard-tag="链接" title="复制链接" href="javascript:;">
 					<icon>
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-copy-color"></use>

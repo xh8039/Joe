@@ -28,10 +28,10 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 					$(this).tooltip('hide');
 				});
 			}
-			new ClipboardJS(span[0], {
-				text: () => text
-			}).on('success', () => {
-				autolog.log(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
+			span.click(() => {
+				Joe.clipboard(text, () => {
+					autolog.log(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
+				});
 			});
 			$(item).append(span);
 		});
@@ -206,16 +206,11 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/* 复制链接 */
 	if (document.querySelector('.share-btn.copy')) {
-		let clipboard = new ClipboardJS('.share-btn.copy');
-		clipboard.on('success', function (e) {
-			//注销对象
-			e.clearSelection();
-			autolog.log('链接已复制！', 'success');
-		});
-		clipboard.on('error', function (e) {
-			//注销对象
-			e.clearSelection();
-			autolog.log('链接复制失败！', 'error');
+		let button = document.querySelector('.share-btn.copy');
+		button.addEventListener('click', () => {
+			window.Joe.clipboard(button.dataset.clipboardText, () => {
+				autolog.log('链接已复制！', 'success');
+			});
 		});
 	}
 

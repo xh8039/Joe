@@ -22,7 +22,6 @@ $this->need('module/single/pjax.php');
 	$this->need('module/single/prism.php');
 	?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.friend.css') ?>">
-	<script src="<?= joe\cdn('clipboard.js/2.0.11/clipboard.min.js') ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>
 

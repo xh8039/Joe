@@ -80,7 +80,7 @@ class Api
 						"type" => '置顶',
 						'target' => self::$options->Jessay_target,
 						'author_screenName' => $item->author->screenName,
-						'author_permalink' => $item->author->permalink,
+						'author_permalink' => str_replace(self::$options->siteUrl, '', $item->author->permalink),
 						'author_avatar' => \joe\getAvatarByMail($item->author->mail, false),
 						'tags' => $item->tags,
 						'fields' => $item->fields->toArray()

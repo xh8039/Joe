@@ -42,7 +42,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 		ajax(options) {
 			let ajax = {
 				type: options.type ? options.type : 'GET',
-				url: options.url,
+				url: options.url.replace(/^https?:/i, location.protocol),
 				dataType: 'html',
 				beforeSend(xhr) {
 					xhr.setRequestHeader('x-ajax', 'true');

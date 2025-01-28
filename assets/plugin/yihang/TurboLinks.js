@@ -120,9 +120,7 @@ class TurboLinks {
 	}
 
 	static visit(url) {
-		console.log(url);
 		url = url.replace(/^https?:/i, location.protocol);
-		console.log(url);
 		return TurboLinks.pjax.loadUrl(url);
 	}
 

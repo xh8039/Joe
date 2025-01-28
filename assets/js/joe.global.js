@@ -712,7 +712,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 }
 
-document.addEventListener('error', function (event) {
+document.body.addEventListener('error', function (event) {
 	var element = event.target;
 	if (element.tagName.toLowerCase() != 'img') return;
 	// 文章列表缩略图加载失败自动使用主题自带缩略图

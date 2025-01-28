@@ -22,7 +22,7 @@ if ((is_numeric($this->options->JIndex_Hot)) && ($this->options->JIndex_Hot >= 1
 					<a class="link" href="<?= joe\permalink($item->permalink); ?>" title="<?php $item->title(); ?>">
 						<figure class="inner">
 							<span class="views"><?= number_format($item->views); ?> ℃</span>
-							<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload error-thumbnail" onerror="Joe.thumbnailError()" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
+							<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload error-thumbnail" onerror="Joe.thumbnailError(this)" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
 						</figure>
 					</a>
 					<div class="item-body">

@@ -22,6 +22,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 	{
 		document.body.addEventListener('error', function (event) {
 			var element = event.target;
+			alert(element.src);
 			if (element.tagName.toLowerCase() != 'img') return;
 			// 文章列表缩略图加载失败自动使用主题自带缩略图
 			if (element.classList.contains('error-thumbnail') && !element.dataset.thumbnailLoaded) {

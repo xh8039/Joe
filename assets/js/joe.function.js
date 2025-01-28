@@ -9,7 +9,7 @@ window.Joe.thumbnailError = (element) => {
 	// 将随机数格式化为两位数
 	const formattedNumber = ("0" + randomNumber).slice(-2);
 	const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
-	$(element).attr('data-src', thumb);
+	element.dataset.src = thumb;
 	element.src = thumb;
 	element.dataset.thumbnailLoaded = true;
 }

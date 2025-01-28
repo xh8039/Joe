@@ -625,7 +625,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		document.body.addEventListener('error', function (event) {
 			var element = event.target;
 			if (element.tagName.toLowerCase() == 'img' && element.classList.contains('error-thumbnail') && !element.dataset.thumbnailLoaded) {
-				console.log('缩略图加载失败', element);
+				console.log('缩略图加载失败', element, element.src);
 				// 生成一个 1 到 42 之间的随机整数
 				const randomNumber = Math.floor(Math.random() * 41) + 1;
 				// 将随机数格式化为两位数

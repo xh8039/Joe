@@ -738,8 +738,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 }
 
-
-
 document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.global, { once: true });
 
 window.addEventListener("beforeinstallprompt", function (e) {

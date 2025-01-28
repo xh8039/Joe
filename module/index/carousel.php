@@ -47,7 +47,7 @@ if ($video) echo '<style>html .joe_index__banner>.swiper-container .item, html .
 							<?php
 							} else {
 							?>
-								<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="100%" class="thumbnail lazyload error-thumbnail" src="<?php joe\getLazyload() ?>" data-src="<?= $item['img'] ?>" alt="<?= $item['title'] ?>" />
+								<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" width="100%" height="100%" class="thumbnail lazyload" src="<?php joe\getLazyload() ?>" data-src="<?= $item['img'] ?>" alt="<?= $item['title'] ?>" />
 							<?php
 							}
 							?>

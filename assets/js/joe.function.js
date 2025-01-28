@@ -2,7 +2,17 @@ if (!window.Joe) window.Joe = {};
 window.Joe.options = window.Joe.options ? window.Joe.options : {};
 
 window.Joe.thumbnailError = (event) => {
-	console.log(event);
+	console.log(element);
+	if (element.dataset.thumbnailLoaded) return true
+	console.log('缩略图加载失败', element, element.src);
+	// 生成一个 1 到 42 之间的随机整数
+	const randomNumber = Math.floor(Math.random() * 41) + 1;
+	// 将随机数格式化为两位数
+	const formattedNumber = ("0" + randomNumber).slice(-2);
+	const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
+	$(element).attr('data-src', thumb);
+	element.src = thumb;
+	element.dataset.thumbnailLoaded = true;
 }
 
 window.Joe.pjax = (url, selectors = [], options = {}) => {

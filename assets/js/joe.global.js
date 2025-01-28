@@ -42,7 +42,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 				element.setAttribute('src', Joe.THEME_URL + 'assets/images/avatar-default.png');
 				element.dataset.defaultAvatarLoaded = true;
 			}
-		});
+		}, true);
 	}
 
 	/* 设置$.getScript()方法缓存 */

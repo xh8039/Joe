@@ -79,7 +79,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		render() {
 			if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
 			this.innerHTML = '<span style="display: block" class="_content"></span>';
-			fetch(`${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
+			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				new MusicPlayer({
 					container: getChildren(this, '_content'),
@@ -113,7 +113,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		render() {
 			if (!this.options.id) return (this.innerHTML = '网易云歌单ID未填写！');
 			this.innerHTML = '<span style="display: block" class="_content"></span>';
-			fetch(`${Joe.BASE_API}/joe/api?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
+			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				new MusicPlayer({
 					container: getChildren(this, '_content'),

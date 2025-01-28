@@ -23,18 +23,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		document.body.addEventListener('error', function (event) {
 			var element = event.target;
 			if (element.tagName.toLowerCase() != 'img') return;
-			// 文章列表缩略图加载失败自动使用主题自带缩略图
-			if (element.classList.contains('error-thumbnail') && !element.dataset.thumbnailLoaded) {
-				console.log('缩略图加载失败', element, element.src);
-				// 生成一个 1 到 42 之间的随机整数
-				const randomNumber = Math.floor(Math.random() * 41) + 1;
-				// 将随机数格式化为两位数
-				const formattedNumber = ("0" + randomNumber).slice(-2);
-				const thumb = `${Joe.THEME_URL}assets/images/thumb/${formattedNumber}.jpg`;
-				$(element).attr('data-src', thumb);
-				element.src = thumb;
-				element.dataset.thumbnailLoaded = true;
-			}
 			// 头像加载失败代替
 			if (element.classList.contains('avatar') && !element.dataset.defaultAvatarLoaded) {
 				element.setAttribute('data-src', Joe.THEME_URL + 'assets/images/avatar-default.png');

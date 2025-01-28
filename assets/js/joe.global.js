@@ -20,7 +20,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 
 	/** 捕获图像加载失败 */
 	{
-		document.querySelector('.joe_index__hot-list').addEventListener('error', function (event) {
+		document.body.addEventListener('error', function (event) {
 			var element = event.target;
 			alert(element.src);
 			if (element.tagName.toLowerCase() != 'img') return;

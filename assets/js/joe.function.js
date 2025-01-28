@@ -2,7 +2,6 @@ if (!window.Joe) window.Joe = {};
 window.Joe.options = window.Joe.options ? window.Joe.options : {};
 
 window.Joe.thumbnailError = (element) => {
-	console.log(element);
 	if (element.dataset.thumbnailLoaded) return true
 	console.log('缩略图加载失败', element, element.src);
 	// 生成一个 1 到 42 之间的随机整数

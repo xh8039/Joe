@@ -60,7 +60,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 						});
 					}
 					if (window.Joe.tooltip) window.Joe.tooltip();
-					$(".comment-list [data-toggle='popover']").popover();
+					$(".comment-list [data-toggle='popover']").popover({ html: true });
 					if (options.replace) options.replace(response);
 					if (options.scrollTo != undefined) Joe.scrollTo(options.scrollTo);
 				},

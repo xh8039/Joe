@@ -168,7 +168,7 @@ function threadedComments($comments, $options)
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
 			<div class="term">
 				<?php
-				$mobile_handle = joe\isMobile() ? 'data-placement="right" data-trigger="hover" data-content="' . ($comments->authorId == $comments->ownerId ? '作者&nbsp;·&nbsp;' : '') . str_replace('"', '\'', joe\comment_author($comments)) . '&nbsp;·&nbsp;' . joe\getAgentOS($comments->agent) . '&nbsp;·&nbsp;' . joe\getAgentBrowser($comments->agent) . '&nbsp;·&nbsp;' . joe\dateWord($comments->dateWord) . '" data-toggle="popover"' : '';
+				$mobile_handle = joe\isMobile() ? 'data-placement="right" data-trigger="hover" data-content="' . ($comments->authorId == $comments->ownerId ? '作者&nbsp;·&nbsp;' : '') . htmlentities(joe\comment_author($comments)) . '&nbsp;·&nbsp;' . joe\getAgentOS($comments->agent) . '&nbsp;·&nbsp;' . joe\getAgentBrowser($comments->agent) . '&nbsp;·&nbsp;' . joe\dateWord($comments->dateWord) . '" data-toggle="popover"' : '';
 				if ($comments->authorId == $comments->ownerId && joe\isMobile()) $mobile_handle .= ' style="border-color: var(--theme);"';
 				if ($comments->request->getHeader('x-requested-with')) {
 				?>

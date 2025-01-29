@@ -274,7 +274,7 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 		// tooltip.js
 		window.Joe.tooltip();
 		// popover.js
-		$("[data-toggle='popover']").popover({ html: false });
+		$("[data-toggle='popover']").popover({ html: true });
 	}
 }
 document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.main, { once: true });

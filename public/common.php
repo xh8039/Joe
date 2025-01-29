@@ -81,9 +81,11 @@ function themeInit($self)
 		}
 	}
 
+	$path_info = $self->request->getPathInfo();
+
 	/* 主题开放API 路由规则 */
-	if (strpos($self->request->getPathInfo(), "/joe/api") === 0) {
-		$path_info_explode = explode('/', $self->request->getPathInfo());
+	if (str_starts_with($path_info, '/joe/api')) {
+		$path_info_explode = explode('/', $path_info);
 		$route = empty($path_info_explode[3]) ? $self->request->routeType : $path_info_explode[3];
 		if ($route && !is_numeric($route)) {
 			if (str_ends_with($route, '.json')) $route = substr($route, 0, -5);
@@ -102,7 +104,7 @@ function themeInit($self)
 		}
 	}
 
-	if (strpos($self->request->getPathInfo(), '/goto') === 0 && Helper::options()->JPostLinkRedirect == 'on') {
+	if (str_starts_with($path_info, '/goto') && Helper::options()->JPostLinkRedirect == 'on') {
 		(function () use ($self) {
 			$self->response->setStatus(200);
 			$url = base64_decode($self->request->url);
@@ -125,24 +127,26 @@ function themeInit($self)
 		})();
 	}
 
+	$request_uri = $self->request->getRequestUri();
+
 	if (Helper::options()->JUser_Switch == 'on') {
 		// 增加自定义登录页面
-		if (strpos($self->request->getRequestUri(), '/user/login') === 0) {
+		if (str_starts_with($request_uri, '/user/login')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/login.php');
 		}
 		// 增加自定义注册页面
-		if (Helper::options()->allowRegister && strpos($self->request->getRequestUri(), '/user/register') === 0) {
+		if (Helper::options()->allowRegister && str_starts_with($request_uri, '/user/register')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/register.php');
 		}
 		// 增加用户找回密码页面
-		if (Helper::options()->JUser_Forget == 'on' && strpos($self->request->getRequestUri(), '/user/forget') === 0) {
+		if (Helper::options()->JUser_Forget == 'on' && str_starts_with($request_uri, '/user/forget')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/forget.php');
 		}
 		// 增加自定义登录注册页面API
-		if (strpos($self->request->getRequestUri(), '/user/api') === 0) {
+		if (str_starts_with($request_uri, '/user/api')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/api.php');
 		}
@@ -150,7 +154,7 @@ function themeInit($self)
 
 	/* 增加自定义SiteMap功能 */
 	if (Helper::options()->JSiteMap && Helper::options()->JSiteMap !== 'off') {
-		if (strpos($self->request->getRequestUri(), '/sitemap.xml') === 0) {
+		if (str_starts_with($request_uri, '/sitemap.xml')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile("module/sitemap.php");
 		}

@@ -9,9 +9,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 function comment_author($comment)
 {
-	if ($comment->url) {
+	if (preg_match('/^https?:\/\/[^\s]*/i', $comment->url)) {
 		$url = \Typecho\Common::safeUrl($comment->url);
-		if (\Helper::options()->JPostLinkRedirect == 'on') {
+		$domain = parse_url($url, PHP_URL_HOST);
+		if ($domain != JOE_DOMAIN && \Helper::options()->JPostLinkRedirect == 'on') {
 			$url = \Helper::options()->index . '/goto?url=' . base64_encode($url);
 			$url = permalink($url);
 		}

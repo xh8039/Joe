@@ -5941,3 +5941,7 @@ html #nprogress .spinner-icon {
 	border-top-color: var(--theme);
 	border-left-color: var(--theme);
 }
+
+.comment-list .popover-content a {
+	color: var(--theme);
+}

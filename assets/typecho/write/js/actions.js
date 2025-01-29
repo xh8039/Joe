@@ -209,7 +209,13 @@ class JoeAction {
 		if (!code || code.trim().length === 0) return;
 		this.loadFiles([JoeConfig.CDN_URL + 'turndown/7.2.0/turndown.min.js']).then(() => {
 			try {
-				let HtmlToMarkdown = (new TurndownService()).turndown(code);
+				let HtmlToMarkdown = (new TurndownService({
+					headingStyle: 'atx', // 标题样式
+					hr: '---', // hr样式
+					bulletListMarker: '-', // 无序列表样式
+					codeBlockStyle: 'fenced', // 代码块样式
+					emDelimiter: '*', // 斜体样式
+				})).turndown(code);
 				if (HtmlToMarkdown) {
 					if (HtmlToMarkdown == code) {
 						layer.msg('无需转换');

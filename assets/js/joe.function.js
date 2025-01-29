@@ -56,8 +56,6 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 						const DocumentParser = (new DOMParser()).parseFromString(response, 'text/html');
 						options.selectors.forEach(selector => {
 							let responseHTML = $(DocumentParser).find(selector).prop('outerHTML');
-							// console.log(responseHTML);
-							console.log($(selector));
 							$(selector).replaceWith(responseHTML);
 						});
 					}

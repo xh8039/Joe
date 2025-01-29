@@ -174,7 +174,7 @@ class JoeAction {
 						cm.focus();
 					}
 				} else {
-					layer.alert('prettier格式化失败');
+					layer.alert('格式化后的结果为空');
 				}
 			} catch (error) {
 				layer.alert('格式化失败');
@@ -202,6 +202,28 @@ class JoeAction {
 		return fileLoader.loaded().then(() => {
 			console.log("加载完成");
 			layer.close(loading);
+		});
+	}
+	handleHtmlToMarkdown(CodeMirror) {
+		const code = CodeMirror.state.doc.toString();
+		if (!code || code.trim().length === 0) return;
+		this.loadFiles([JoeConfig.CDN_URL + 'turndown/7.2.0/turndown.min.js']).then(() => {
+			try {
+				let HtmlToMarkdown = (new TurndownService()).turndown(code);
+				if (HtmlToMarkdown) {
+					if (HtmlToMarkdown == code) {
+						layer.msg('无需转换');
+					} else {
+						CodeMirror.dispatch({ changes: { from: 0, to: CodeMirror.state.doc.length, insert: HtmlToMarkdown } });
+						CodeMirror.focus();
+					}
+				} else {
+					layer.alert('HTML 转 Markdown 的结果未空');
+				}
+			} catch (error) {
+				layer.alert('HTML 转 Markdown 失败');
+				console.error("HTML 转 Markdown 错误：", error.message); // 使用 console.error 来记录错误
+			}
 		});
 	}
 	handleClean(cm) {

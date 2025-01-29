@@ -171,6 +171,7 @@ class Editor
 				playerAPI: `<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>`,
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
+				CDN_URL: `<?= joe\cdn() ?>`,
 				JOwOAssetsUrl: `<?= empty(Helper::options()->JOwOAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				JStaticAssetsUrl: `<?= empty(Helper::options()->JStaticAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				canPreview: false

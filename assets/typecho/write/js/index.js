@@ -247,6 +247,9 @@ class JoeEditor extends JoeAction {
 						case 'format':
 							super.handleFormat(this.cm);
 							break;
+						case 'turndown':
+							super.handleHtmlToMarkdown(this.cm);
+							break;
 						case 'clean':
 							super.handleClean(this.cm);
 							break;

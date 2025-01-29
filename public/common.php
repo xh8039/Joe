@@ -127,34 +127,30 @@ function themeInit($self)
 
 	if (Helper::options()->JUser_Switch == 'on') {
 		// 增加自定义登录页面
-		if (strpos($self->request->getRequestUri(), 'user/login') !== false) {
+		if (strpos($self->request->getRequestUri(), '/user/login') === 0) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/login.php');
 		}
 		// 增加自定义注册页面
-		if (Helper::options()->allowRegister) {
-			if (strpos($self->request->getRequestUri(), 'user/register') !== false) {
-				$self->response->setStatus(200);
-				$self->setThemeFile('user/register.php');
-			}
-		}
-		// 增加自定义登录注册页面API
-		if (strpos($self->request->getRequestUri(), 'user/api') !== false) {
+		if (Helper::options()->allowRegister && strpos($self->request->getRequestUri(), '/user/register') === 0) {
 			$self->response->setStatus(200);
-			$self->setThemeFile('user/api.php');
+			$self->setThemeFile('user/register.php');
 		}
 		// 增加用户找回密码页面
-		if (Helper::options()->JUser_Forget == 'on') {
-			if (strpos($self->request->getRequestUri(), 'user/forget') !== false) {
-				$self->response->setStatus(200);
-				$self->setThemeFile('user/forget.php');
-			}
+		if (Helper::options()->JUser_Forget == 'on' && strpos($self->request->getRequestUri(), '/user/forget') === 0) {
+			$self->response->setStatus(200);
+			$self->setThemeFile('user/forget.php');
+		}
+		// 增加自定义登录注册页面API
+		if (strpos($self->request->getRequestUri(), '/user/api') === 0) {
+			$self->response->setStatus(200);
+			$self->setThemeFile('user/api.php');
 		}
 	}
 
 	/* 增加自定义SiteMap功能 */
 	if (Helper::options()->JSiteMap && Helper::options()->JSiteMap !== 'off') {
-		if (strpos($self->request->getRequestUri(), 'sitemap.xml') !== false) {
+		if (strpos($self->request->getRequestUri(), '/sitemap.xml') === 0) {
 			$self->response->setStatus(200);
 			$self->setThemeFile("module/sitemap.php");
 		}

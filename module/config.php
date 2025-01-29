@@ -36,6 +36,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 	Joe.options = <?= $options ?>;
 	Joe.options.BaiduPush = <?= empty($this->options->BaiduPushToken) ? 'false' : 'true' ?>;
 	Joe.options.BingPush = <?= empty($this->options->BingPushToken) ? 'false' : 'true' ?>;
+	Joe.options.index = Joe.options.index.replace(/^https?:/i, location.protocol);
 
 	// 19:00 PM - 6:00 AM 是黑夜
 	if (Joe.options.JThemeMode == 'auto' && ((new Date()).getHours() >= 19 || (new Date()).getHours() < 6)) {

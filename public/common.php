@@ -105,20 +105,23 @@ function themeInit($self)
 	if (strpos($self->request->getPathInfo(), '/goto') === 0 && Helper::options()->JPostLinkRedirect == 'on') {
 		(function () use ($self) {
 			$self->response->setStatus(200);
-			$location = Helper::options()->siteUrl;
-			$link = base64_decode($self->request->url);
-			$cid = $self->request->cid;
-			if (is_numeric($cid)) {
-				$db = Typecho_Db::get();
-				$post = $db->fetchRow($db->select('text')->from('table.contents')->where('cid = ?', $cid));
-				if (!empty($post['text']) && strpos($post['text'], $link) !== false) $location = $link;
+			// $location = Helper::options()->siteUrl;
+			$url = base64_decode($self->request->url);
+			if (!preg_match('/^https?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?$/i', $url)) {
+				$self->response->throwContent('<script>alert("链接非法，已返回");window.location.href="' . Helper::options()->siteUrl . '"</script>');
 			}
-			if ($location == Helper::options()->siteUrl) {
-				echo '<script>alert("链接非法，已返回");window.location.href="' . $location . '"</script>';
-			} else {
-				require_once JOE_ROOT . '/module/goto.php';
-			}
-			$self->response->throwContent('');
+			$self->setThemeFile('module/goto.php');
+			// $cid = $self->request->cid;
+			// if (is_numeric($cid)) {
+			// 	$db = Typecho_Db::get();
+			// 	$post = $db->fetchRow($db->select('text')->from('table.contents')->where('cid = ?', $cid));
+			// 	if (!empty($post['text']) && strpos($post['text'], $link) !== false) $location = $link;
+			// }
+			// if ($location == Helper::options()->siteUrl) {
+			// 	$self->response->throwContent('<script>alert("链接非法，已返回");window.location.href="' . $location . '"</script>');
+			// } else {
+			// 	$self->setThemeFile('module/goto.php');
+			// }
 		})();
 	}
 

@@ -215,7 +215,6 @@ class JoeAction {
 					bulletListMarker: '-', // 无序列表样式
 					codeBlockStyle: 'fenced', // 代码块样式
 					emDelimiter: '*', // 斜体样式
-					preformattedCode: true, // 代码块是否需要空行
 				})).turndown(code);
 				if (HtmlToMarkdown) {
 					if (HtmlToMarkdown == code) {

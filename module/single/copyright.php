@@ -40,7 +40,7 @@ if ($this->options->JArticle_Bottom_Text) {
 				<path d="M576.491 630.355L460.028 746.818a129.565 129.565 0 0 1-182.555 0l-2.038-2.038a128.983 128.983 0 0 1 0-182.264l81.233-81.233a179.644 179.644 0 0 0 13.102 70.46l-52.7 52.408a69.878 69.878 0 0 0 0 98.703l2.038 2.038a70.169 70.169 0 0 0 98.703 0l116.463-116.463a69.878 69.878 0 0 0 0-98.703l-2.039-2.038a69.587 69.587 0 0 0-13.975-10.772l42.509-42.51a128.11 128.11 0 0 1 13.102 11.356l2.038 2.038a129.274 129.274 0 0 1 0 182.264z" fill="#FFF" />
 				<path d="M746.236 460.902l-81.233 81.233a179.353 179.353 0 0 0-13.102-70.46l52.7-52.409a69.878 69.878 0 0 0 0-98.702l-2.039-2.038a69.878 69.878 0 0 0-98.702 0L487.397 434.989a69.878 69.878 0 0 0 0 98.702l2.038 2.038a68.422 68.422 0 0 0 13.976 10.773l-42.51 42.51a136.553 136.553 0 0 1-13.101-11.356l-2.038-2.038a128.983 128.983 0 0 1 0-182.265l116.463-116.462a129.565 129.565 0 0 1 182.555 0l2.038 2.038a128.983 128.983 0 0 1 0 182.264z" fill="#FFF" />
 			</svg>
-			<span>本文链接：</span><span class="text"><a class="link" href="<?= joe\permalink($this->permalink) ?>" target="_blank" rel="noopener noreferrer nofollow"><?= joe\permalink($this->permalink) ?></a></span>
+			<span>本文链接：</span><span class="text"><a class="link" href="<?= joe\permalink($this->permalink) ?>" target="_blank" rel="noopener noreferrer nofollow"><?= $this->permalink ?></a></span>
 		</div>
 		<div class="item">
 			<svg class="icon" width="20" height="20" viewBox="0 0 1024 1024">

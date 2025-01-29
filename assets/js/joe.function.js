@@ -55,8 +55,10 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 					if (success !== false) {
 						const DocumentParser = (new DOMParser()).parseFromString(response, 'text/html');
 						options.selectors.forEach(selector => {
-							console.log($(DocumentParser).find(selector).prop('outerHTML'));
-							$(selector).replaceAll($(DocumentParser).find(selector).prop('outerHTML'));
+							let responseHTML = $(DocumentParser).find(selector).prop('outerHTML');
+							// console.log(responseHTML);
+							console.log($(selector));
+							$(selector).replaceAll(responseHTML);
 						});
 					}
 					if (window.Joe.tooltip) window.Joe.tooltip();

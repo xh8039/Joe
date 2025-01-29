@@ -109,7 +109,7 @@ window.Joe.checkUrl = (string) => {
 }
 
 window.Joe.scrollTo = (selector) => {
-	const reservedHeight = document.querySelector('.joe_header').offsetHeight - 15;
+	const reservedHeight = document.querySelector('.joe_header').offsetHeight + 15;
 	var top;
 	if (/^\d+$/.test(selector)) {
 		top = ((selector - reservedHeight) < 0) ? 0 : (selector - reservedHeight);

@@ -7,6 +7,19 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+function comment_author($comment)
+{
+	if ($comment->url) {
+		$url = \Typecho\Common::safeUrl($comment->url);
+		if (\Helper::options()->JPostLinkRedirect == 'on') {
+			$url = \Helper::options()->index . '/goto?url=' . base64_encode($url);
+			$url = permalink($url);
+		}
+		return '<a href="' . $url . '" target="_blank" rel="external nofollow">' . $comment->author . '</a>';
+	}
+	return $comment->author;
+}
+
 /**
  * 获取去掉网站协议和域名的绝对路径
  */
@@ -78,6 +91,17 @@ function getAgentBrowser($agent)
 		$outputer = 'Google Chrome';
 	}
 	return $outputer;
+}
+
+function getAgentBrowserIcon($AgentBrowser)
+{
+	$browser_svg = str_replace(' ', '-', $AgentBrowser);
+	if (file_exists(JOE_ROOT . 'assets/images/agent/' . $browser_svg . '.svg')) {
+		$browser_url =  \joe\theme_url('assets/images/agent/' . $browser_svg . '.svg', false);
+	} else {
+		$browser_url =  \joe\theme_url('assets/images/agent/' . $browser_svg . '.png', false);
+	}
+	return $browser_url;
 }
 
 /* 根据评论agent获取设备类型 */

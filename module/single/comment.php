@@ -186,7 +186,7 @@ function threadedComments($comments, $options)
 					?>
 						<div class="user">
 							<div class="nickname">
-								<span class="author"><?php $comments->author(); ?></span>
+								<span class="author"><?= joe\comment_author($comments); ?></span>
 								<?= $comments->authorId == $comments->ownerId ? '<i class="owner">作者</i>' : null ?>
 							</div>
 							<span>&nbsp;·&nbsp;</span>
@@ -196,12 +196,7 @@ function threadedComments($comments, $options)
 								$os_svg_url =  joe\theme_url('assets/images/agent/' . $os_svg, false);
 
 								$AgentBrowser = joe\getAgentBrowser($comments->agent);
-								$browser_svg = str_replace(' ', '-', $AgentBrowser);
-								if (file_exists(JOE_ROOT . 'assets/images/agent/' . $browser_svg . '.svg')) {
-									$browser_url =  joe\theme_url('assets/images/agent/' . $browser_svg . '.svg', false);
-								} else {
-									$browser_url =  joe\theme_url('assets/images/agent/' . $browser_svg . '.png', false);
-								}
+								$browser_url = joe\getAgentBrowserIcon($AgentBrowser);
 								?>
 								<img src="<?= $os_svg_url ?>" title="<?= joe\getAgentOS($comments->agent) ?>" data-toggle="tooltip">
 								<img src="<?= $browser_url ?>" title="<?= $AgentBrowser ?>" data-toggle="tooltip">

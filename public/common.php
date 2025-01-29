@@ -105,12 +105,12 @@ function themeInit($self)
 	if (strpos($self->request->getPathInfo(), '/goto') === 0 && Helper::options()->JPostLinkRedirect == 'on') {
 		(function () use ($self) {
 			$self->response->setStatus(200);
-			// $location = Helper::options()->siteUrl;
 			$url = base64_decode($self->request->url);
-			if (!preg_match('/^https?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?$/i', $url)) {
+			if (!preg_match('/^https?:\/\/[^\s]*/i', $url)) {
 				$self->response->throwContent('<script>alert("链接非法，已返回");window.location.href="' . Helper::options()->siteUrl . '"</script>');
 			}
 			$self->setThemeFile('module/goto.php');
+			// $location = Helper::options()->siteUrl;
 			// $cid = $self->request->cid;
 			// if (is_numeric($cid)) {
 			// 	$db = Typecho_Db::get();

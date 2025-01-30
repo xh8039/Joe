@@ -3164,12 +3164,12 @@
 	padding-top: unset;
 }
 
-.joe_detail__article h1+p>code,
+/* .joe_detail__article h1+p>code,
 .joe_detail__article h2+p>code,
 .joe_detail__article h3+p>code,
 .joe_detail__article h4+p>code,
 .joe_detail__article h5+p>code,
-.joe_detail__article h6+p>code,
+.joe_detail__article h6+p>code, */
 
 .joe_detail__article h1+p>br,
 .joe_detail__article h2+p>br,
@@ -3279,7 +3279,7 @@
 	border-radius: var(--radius-inner);
 	background: #ecf5ff;
 	color: #409eff;
-	padding: 1px 4px;
+	padding: 0.0625rem 4px;
 	font-family: "SFMono-Regular", consolas, "Liberation Mono", menlo, courier, monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	word-break: break-word;
 	font-weight: normal;

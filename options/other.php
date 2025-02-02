@@ -35,8 +35,8 @@ $JCustomPlayer = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'自定义视频播放器（非必填）',
 	'介绍：用于修改主题自带的默认播放器 <br />
-		 例如：' . Helper::options()->themeUrl . '/module/player.php?url= <br />
-		 注意：主题自带的播放器可以解析MP4、WEBM、OGG、H265、HEVC、M3U8、MPD、FLV、磁力链接（BT种子）格式的视频'
+		 示例：' . Helper::options()->themeUrl . '/module/player.php?url=<br />
+		 注意：示例可用，为主题自带播放器。主题自带的播放器可以解析MP4、WEBM、OGG、H265、HEVC、M3U8、MPD、FLV、磁力链接（BT种子）格式的视频'
 );
 $JCustomPlayer->setAttribute('class', 'joe_content joe_other');
 $form->addInput($JCustomPlayer);

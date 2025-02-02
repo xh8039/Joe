@@ -127,26 +127,24 @@ function themeInit($self)
 		})();
 	}
 
-	$request_uri = $self->request->getRequestUri();
-
 	if (Helper::options()->JUser_Switch == 'on') {
 		// 增加自定义登录页面
-		if (str_starts_with($request_uri, '/user/login')) {
+		if (str_starts_with($path_info, '/user/login')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/login.php');
 		}
 		// 增加自定义注册页面
-		if (Helper::options()->allowRegister && str_starts_with($request_uri, '/user/register')) {
+		if (Helper::options()->allowRegister && str_starts_with($path_info, '/user/register')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/register.php');
 		}
 		// 增加用户找回密码页面
-		if (Helper::options()->JUser_Forget == 'on' && str_starts_with($request_uri, '/user/forget')) {
+		if (Helper::options()->JUser_Forget == 'on' && str_starts_with($path_info, '/user/forget')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/forget.php');
 		}
 		// 增加自定义登录注册页面API
-		if (str_starts_with($request_uri, '/user/api')) {
+		if (str_starts_with($path_info, '/user/api')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('user/api.php');
 		}
@@ -154,7 +152,7 @@ function themeInit($self)
 
 	/* 增加自定义SiteMap功能 */
 	if (Helper::options()->JSiteMap && Helper::options()->JSiteMap !== 'off') {
-		if (str_starts_with($request_uri, '/sitemap.xml')) {
+		if (str_starts_with($self->request->getRequestUri(), '/sitemap.xml')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile("module/sitemap.php");
 		}

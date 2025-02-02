@@ -1,20 +1,7 @@
 <?php
-// if (empty($_GET['cid'])) exit('未指定文章！');
-// $cid = $_GET['cid'];
-/* sql注入校验 */
-// if (!preg_match('/^\d+$/',  $cid)) exit('非法请求！已屏蔽！');
 require_once dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'config.inc.php';
-/** 初始化组件 */
 \Widget\Init::alloc();
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'function.php';
-// if (!empty(Helper::options()->JCustomPlayer)) exit('已使用第三方视频播放器！');
-// $db = Typecho_Db::get();
-// $row = $db->fetchRow($db->select('text,title')->from('table.contents')->where('cid = ?', $cid));
-// if (sizeof($row) > 0) {
-// 	if (!stripos($row['text'], $_GET['url'])) exit('视频不存在！');
-// } else {
-// 	exit('视频不存在！');
-// }
 
 $autoplay = $_GET['autoplay'] ? 'true' : 'false';
 $theme = $_GET['theme'] ? $_GET['theme'] : '#409eff';

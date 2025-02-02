@@ -7,7 +7,7 @@ require_once dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR .
 /** 初始化组件 */
 \Widget\Init::alloc();
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'function.php';
-if (!empty(Helper::options()->JCustomPlayer)) exit('已使用第三方视频播放器！');
+// if (!empty(Helper::options()->JCustomPlayer)) exit('已使用第三方视频播放器！');
 // $db = Typecho_Db::get();
 // $row = $db->fetchRow($db->select('text,title')->from('table.contents')->where('cid = ?', $cid));
 // if (sizeof($row) > 0) {

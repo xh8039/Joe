@@ -436,7 +436,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					const color = item.getAttribute('color') || '#19be6b';
 					item.style.borderColor = color;
 				});
-			}, 100);
+			}, 1000);
 		}
 	});
 

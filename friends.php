@@ -51,7 +51,7 @@ $this->need('module/single/pjax.php');
 										<span class="title"><?= $item['title'] ?></span>
 										<div class="content">
 											<div class="desc"><?= $item['description'] ?></div>
-											<img referrerpolicy="no-referrer" rel="noreferrer" width="40" height="40" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?= $item['logo'] ?>" alt="<?= $item['title'] ?>" />
+											<img referrerpolicy="no-referrer" rel="noreferrer" width="40" height="40" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?= $item['logo'] ?>" alt="<?= $item['title'] ?>" />
 										</div>
 									</a>
 								</li>

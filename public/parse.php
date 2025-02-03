@@ -194,7 +194,7 @@ function _payFreeResources($post, $comment)
 		<div class="flex pay-flexbox">
 			<div class="flex0 relative mr20 hide-sm pay-thumb">
 				<div class="graphic">
-					<img src="' . joe\getLazyload(false) . '" data-src="' . joe\getThumbnails($post)[0] . '" alt="' . $post->title . ' - ' . Helper::options()->title . '" onerror="Joe.thumbnailError(this)" class="lazyload fit-cover" fancybox="false">
+					<img src="' . joe\getLazyload() . '" data-src="' . joe\getThumbnails($post)[0] . '" alt="' . $post->title . ' - ' . Helper::options()->title . '" onerror="Joe.thumbnailError(this)" class="lazyload fit-cover" fancybox="false">
 					<div class="abs-center text-center left-bottom"></div>
 				</div>
 			</div>
@@ -233,7 +233,7 @@ function _payBox($post)
 		<div class="flex pay-flexbox">
 			<div class="flex0 relative mr20 hide-sm pay-thumb">
 				<div class="graphic">
-					<img src="' . joe\getLazyload(false) . '" data-src="' . joe\getThumbnails($post)[0] . '" alt="' . $post->title . ' - ' . Helper::options()->title . '" onerror="Joe.thumbnailError(this)" class="lazyload fit-cover" fancybox="false">
+					<img src="' . joe\getLazyload() . '" data-src="' . joe\getThumbnails($post)[0] . '" alt="' . $post->title . ' - ' . Helper::options()->title . '" onerror="Joe.thumbnailError(this)" class="lazyload fit-cover" fancybox="false">
 					<div class="abs-center text-center left-bottom"></div>
 				</div>
 			</div>

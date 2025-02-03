@@ -109,7 +109,7 @@ $custom_navs = joe\custom_navs();
 							<ul class="list-inline splitters relative">
 								<li>
 									<a href="javascript:;" class="navbar-avatar">
-										<img alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="lazyload avatar avatar-id-1">
+										<img alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="lazyload avatar avatar-id-1">
 									</a>
 									<ul class="sub-menu">
 										<div class="padding-10">
@@ -117,7 +117,7 @@ $custom_navs = joe\custom_navs();
 												<div class="user-info flex ac relative">
 													<a href="<?= joe\permalink($this->user->permalink) ?>">
 														<span class="avatar-img">
-															<img alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="lazyload avatar avatar-id-1">
+															<img alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="lazyload avatar avatar-id-1">
 														</span>
 													</a>
 													<div class="user-right flex flex1 ac jsb ml10">

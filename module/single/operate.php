@@ -11,7 +11,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<use xlink:href="#icon-like"></use>
 		</svg>
 		<text>点赞</text>
-		<count><?php joe\getAgree($this) ?></count>
+		<count><?= joe\getAgree($this) ?></count>
 	</a>
 	<span class="hover-show dropup action action-share">
 		<svg class="icon" aria-hidden="true">

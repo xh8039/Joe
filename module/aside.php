@@ -9,7 +9,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<section class="joe_aside__item author">
 		<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/aside_author_image.jpg'); ?>" alt="博主栏壁纸" />
 		<div class="user">
-			<img width="75" height="75" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主头像" />
+			<img width="75" height="75" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主头像" />
 			<a class="link" target="_blank" href="<?php $this->options->JAside_Author_Link() ?>" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>
 			<p class="motto joe_motto mb0"></p>
 		</div>
@@ -114,7 +114,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<li class="item">
 							<a class="link" href="<?= joe\permalink($item->permalink); ?>" title="<?php $item->title(); ?>">
 								<i class="sort"><?php echo $index; ?></i>
-								<img width="100%" height="130" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
+								<img width="100%" height="130" class="image lazyload" src="<?= joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
 								<div class="describe">
 									<h6><?php $item->title(); ?></h6>
 									<span><?php $item->views(); ?> 阅读 - <?php $item->date('m/d'); ?></span>
@@ -140,7 +140,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php while ($item->next()) : ?>
 						<li class="item">
 							<div class="user">
-								<img width="40" height="40" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->mail) ?>" alt="<?php $item->author(false) ?>" />
+								<img width="40" height="40" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->mail) ?>" alt="<?php $item->author(false) ?>" />
 								<div class="info">
 									<div class="author"><?php $item->author(false) ?></div>
 									<span class="date"><?php $item->date('Y-m-d'); ?></span>
@@ -214,7 +214,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php endif; ?>
 	<?php if ($this->options->JADContent) : ?>
 		<a class="joe_aside__item advert" target="_blank" rel="noopener noreferrer nofollow" href="<?php echo explode("||", $this->options->JADContent)[1] ?? ''; ?>" title="广告">
-			<img class="lazyload" width="100%" src="<?php joe\getLazyload() ?>" data-src="<?php echo explode("||", $this->options->JADContent)[0] ?? ''; ?>" alt="广告" />
+			<img class="lazyload" width="100%" src="<?= joe\getLazyload() ?>" data-src="<?php echo explode("||", $this->options->JADContent)[0] ?? ''; ?>" alt="广告" />
 			<span class="icon">广告</span>
 		</a>
 	<?php endif; ?>

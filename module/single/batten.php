@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <div class="joe_detail__count">
 	<div class="joe_detail__count-information">
 		<a href="<?= joe\permalink($this->author->permalink); ?>">
-			<img width="38" height="38" class="avatar lazyload" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author(); ?>" />
+			<img width="38" height="38" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author(); ?>" />
 		</a>
 		<div class="meta ml10">
 			<div class="author">
@@ -35,13 +35,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<svg class="icon" aria-hidden="true">
 					<use xlink:href="#icon-view"></use>
 				</svg>
-				<span id="Joe_Article_Views"><?php joe\getViews($this); ?></span>
+				<span id="Joe_Article_Views"><?= joe\getViews($this); ?></span>
 			</item>
 			<item class="meta-like">
 				<svg class="icon" aria-hidden="true">
 					<use xlink:href="#icon-like"></use>
 				</svg>
-				<?php joe\getAgree($this) ?>
+				<?= joe\getAgree($this) ?>
 			</item>
 		</div>
 		<div class="clearfix ml6">

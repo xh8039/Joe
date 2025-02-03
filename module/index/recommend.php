@@ -28,7 +28,7 @@ if (!empty($recommend)) {
 			?>
 				<figure class="item">
 					<a class="thumbnail" href="<?= joe\permalink($item->permalink) ?>" title="<?php $item->title() ?>">
-						<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" width="100%" height="100%" class="lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
+						<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" width="100%" height="100%" class="lazyload" src="<?= joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />
 					</a>
 					<span class="type">推荐</span>
 					<figcaption class="information">
@@ -57,7 +57,7 @@ if (!empty($recommend)) {
 						<a class="link" href="<?= joe\permalink($item->permalink); ?>" title="<?php $item->title(); ?>">
 							<figure class="inner">
 								<span class="type">推荐</span>
-								<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" width="100%" height="120" class="image lazyload" src="<?php joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
+								<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" width="100%" height="120" class="image lazyload" src="<?= joe\getLazyload(); ?>" data-src="<?= joe\getThumbnails($item)[0]; ?>" alt="<?php $item->title(); ?>" />
 							</figure>
 						</a>
 						<div class="item-body">
@@ -78,7 +78,7 @@ if (!empty($recommend)) {
 							<div class="item-meta muted-2-color flex jsb ac">
 								<item class="meta-author flex ac">
 									<a href="<?= joe\permalink($item->author->permalink) ?>"><span class="avatar-mini">
-											<img alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?php joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-1 ls-is-cached lazyload"></span></a>
+											<img alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-1 ls-is-cached lazyload"></span></a>
 									<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= joe\dateWord($item->dateWord) ?></span>
 								</item>
 								<div class="meta-right">

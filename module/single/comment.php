@@ -176,7 +176,7 @@ function threadedComments($comments, $options)
 				<?php
 				} else {
 				?>
-					<img <?= $mobile_handle ?> width="48" height="48" class="avatar lazyload" src="<?php joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
+					<img <?= $mobile_handle ?> width="48" height="48" class="avatar lazyload" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
 				<?php
 				}
 				?>

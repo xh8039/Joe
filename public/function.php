@@ -188,39 +188,35 @@ function getAgentOS($agent)
 }
 
 /* 获取全局懒加载图 */
-function getLazyload($type = true)
+function getLazyload()
 {
-	$JLazyload = empty(\Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.gif', false) : \Helper::options()->JLazyload;
-	if ($type) echo $JLazyload;
-	else return $JLazyload;
+	$JLazyload = empty(\Helper::options()->JLazyload) ? theme_url('assets/images/lazyload.gif', null) : \Helper::options()->JLazyload;
+	return $JLazyload;
 }
 
 /**
  * 获取头像懒加载图
  */
-function getAvatarLazyload($type = true)
+function getAvatarLazyload()
 {
-	$str = theme_url('assets/images/avatar-default.png');
-	if ($type) echo $str;
-	else return $str;
+	$str = theme_url('assets/images/avatar-default.png', null);
+	return $str;
 }
 
 /* 查询文章浏览量 */
-function getViews($item, $type = true)
+function getViews($item)
 {
 	$db = \Typecho_Db::get();
 	$result = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $item->cid))['views'];
-	if ($type) echo number_format($result);
-	else return number_format($result);
+	return number_format($result);
 }
 
 /* 查询文章点赞量 */
-function getAgree($item, $type = true)
+function getAgree($item)
 {
 	$db = \Typecho_Db::get();
 	$result = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $item->cid))['agree'];
-	if ($type) echo number_format($result);
-	else return number_format($result);
+	return number_format($result);
 }
 
 /* 通过邮箱生成头像地址 */

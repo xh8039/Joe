@@ -14,7 +14,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<div class="swiper-slide mr10">
 							<a href="<?= joe\permalink($relatedPosts->permalink); ?>" title="<?php $relatedPosts->title(); ?>">
 								<div class="graphic hover-zoom-img mb10 style-3" style="padding-bottom: 70%!important;">
-									<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" class="fit-cover lazyload" data-src="<?= joe\getThumbnails($relatedPosts)[0]; ?>" src="<?php joe\getLazyload(); ?>" alt="<?php $relatedPosts->title(); ?>">
+									<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" class="fit-cover lazyload" data-src="<?= joe\getThumbnails($relatedPosts)[0]; ?>" src="<?= joe\getLazyload(); ?>" alt="<?php $relatedPosts->title(); ?>">
 									<div class="abs-center left-bottom graphic-text text-ellipsis"><?php $relatedPosts->title(); ?></div>
 									<div class="abs-center left-bottom graphic-text">
 										<div class="em09 opacity8"><?php $relatedPosts->title(); ?></div>
@@ -24,7 +24,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 												<svg class="icon svg" aria-hidden="true">
 													<use xlink:href="#icon-view"></use>
 												</svg>
-												<?php joe\getViews($relatedPosts) ?>
+												<?= joe\getViews($relatedPosts) ?>
 											</item>
 										</div>
 									</div>

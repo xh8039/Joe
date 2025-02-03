@@ -289,7 +289,7 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 
 	/** 锚点丝滑滚动 */
 	{
-		setTimeout(window.Joe.anchor_scroll, 1000);
+		setTimeout(window.Joe.anchor_scroll, 500);
 	}
 
 	/* 分享 */

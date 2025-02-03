@@ -70,6 +70,7 @@ function createPreviewHtml(str) {
 		str = str.replace(/{cloud([^}]*)\/}/g, '<joe-cloud $1></joe-cloud>');
 	}
 	if (str.indexOf('{hide') !== -1) {
+		console.log(str);
 		str = str.replace(/{hide[^}]*}([\s\S]*?){\/hide}/g, '<joe-hide></joe-hide>');
 	}
 	if (str.indexOf('{card-default') !== -1) {

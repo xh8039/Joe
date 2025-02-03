@@ -334,7 +334,7 @@ class JoeAction {
 				</div>
 			`,
 			confirm: () => {
-				const title = $(".cm-modal input[name='title']").val() || 'Test';
+				const title = $(".cm-modal input[name='title']").val() || '链接标题';
 				const url = $(".cm-modal input[name='url']").val() || 'http://';
 				this._replaceSelection(cm, `[${title}](${url})`);
 				cm.focus();
@@ -355,7 +355,7 @@ class JoeAction {
 				</div>
 			`,
 			confirm: () => {
-				const title = $(".cm-modal input[name='title']").val() || 'Test';
+				const title = $(".cm-modal input[name='title']").val() || '图片';
 				const url = $(".cm-modal input[name='url']").val() || 'http://';
 				this._replaceSelection(cm, `![${title}](${url})`);
 				cm.focus();

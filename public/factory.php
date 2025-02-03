@@ -178,6 +178,8 @@ class Editor
 				JStaticAssetsUrl: `<?= empty(Helper::options()->JStaticAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				canPreview: false
 			}
+			window.Joe = window.Joe || {};
+			window.Joe.BASE_API = `<?= joe\permalink(joe\index('joe/api')) ?>`;
 		</script>
 		<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js', false); ?>"></script>

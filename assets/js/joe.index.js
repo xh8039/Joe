@@ -9,7 +9,7 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 				loop: true,
 				autoplay: true,
 				mousewheel: false, // 允许使用鼠标滚轮在幻灯片中导航
-				speed: 800, // 控制过渡时间为800毫秒
+				speed: 500, // 控制过渡时间为800毫秒
 				autoplay: { delay: 2000 }, // 控制自动播放之间的延迟为2秒
 				pagination: { el: '.swiper-pagination' }, // 具有分页参数的对象或布尔值，以使用默认设置启用。
 				// 具有导航参数的对象或布尔值，以使用默认设置启用。

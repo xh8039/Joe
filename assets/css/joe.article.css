@@ -122,7 +122,7 @@
 	width: 100%;
 }
 
-.joe_detail__article p {
+.joe_detail__article p:not([align]) {
 	margin-bottom: 16px;
 	line-height: 26px;
 	text-align: justify;
@@ -152,6 +152,7 @@
 }
 
 .joe_detail__article blockquote {
+	margin: 0;
 	line-height: 26px;
 	margin-bottom: 18px;
 	background: #ecf8ff;
@@ -259,6 +260,8 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_detail__article table {
+	border-collapse: collapse;
+	border-spacing: 0;
 	width: 100%;
 	max-width: 100%;
 	color: var(--minor);
@@ -1146,6 +1149,7 @@ html .line-numbers .line-numbers-rows {
 }
 
 @keyframes lamp-background {
+
 	0%,
 	24.9% {
 		background-color: #54b5db

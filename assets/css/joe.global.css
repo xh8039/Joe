@@ -3031,7 +3031,7 @@
 	font-family: inherit;
 	line-height: 1.1;
 	color: inherit;
-	padding-bottom: 8px;
+	padding-bottom: 5px;
 }
 
 .joe_detail__article h1::before,
@@ -3046,7 +3046,7 @@
 	height: 3px;
 	background: var(--theme);
 	left: 0;
-	bottom: 3px;
+	bottom: 0;
 	border-radius: 5px;
 	box-shadow: 1px 1px 3px -1px var(--theme);
 }

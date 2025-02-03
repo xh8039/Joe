@@ -156,6 +156,7 @@ class Editor
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.article.css') ?>">
+		<link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
 
 		<!-- 自定义CSS样式 -->
 		<style>

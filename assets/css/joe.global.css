@@ -3131,8 +3131,6 @@
 }
 
 .joe_detail__article p:has(> code) {
-	margin-bottom: 16px;
-	line-height: 26px;
 	text-align: start;
 }
 

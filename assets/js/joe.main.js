@@ -272,7 +272,6 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 
 	{
 		$('a[href]').each(function () {
-			console.log(this, Joe.internalUrl(this));
 			if (!Joe.internalUrl(this)) $(this).attr('target', '_blank').attr('rel', 'noopener noreferrer nofollow');
 		});
 	}

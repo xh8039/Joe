@@ -207,7 +207,7 @@ class JoeAction {
 	handleHtmlToMarkdown(CodeMirror) {
 		const code = CodeMirror.state.doc.toString();
 		if (!code || code.trim().length === 0) return;
-		this.loadFiles([JoeConfig.CDN_URL + 'turndown/7.2.0/turndown.min.js']).then(() => {
+		this.loadFiles([Joe.CDN_URL + 'turndown/7.2.0/turndown.min.js']).then(() => {
 			try {
 				let HtmlToMarkdown = (new TurndownService({
 					headingStyle: 'atx', // 标题样式

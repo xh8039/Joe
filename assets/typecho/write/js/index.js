@@ -381,20 +381,20 @@ class JoeEditor extends JoeAction {
 							if (el.hasClass('active')) {
 								window.JoeConfig.canPreview = true;
 								this.loadFiles([
-									JoeConfig.THEME_URL + 'assets/css/joe.mode.css',
-									JoeConfig.THEME_URL + 'assets/css/joe.article.css',
-									JoeConfig.CDN_URL + 'font-awesome/4.7.0/css/font-awesome.css',
-									JoeConfig.CDN_URL + 'aplayer/1.10.1/APlayer.min.css',
-									JoeConfig.CDN_URL + 'aplayer/1.10.1/APlayer.min.js',
-									JoeConfig.CDN_URL + 'color-thief/2.3.2/color-thief.min.js',
-									JoeConfig.THEME_URL + 'assets/plugin/yihang/MusicPlayer.js',
-									JoeConfig.CDN_URL + 'prism-themes/1.9.0/' + JoeConfig.JPrismTheme,
-									JoeConfig.CDN_URL + 'prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.css',
-									JoeConfig.CDN_URL + 'prism/1.9.0/prism.min.js',
-									JoeConfig.CDN_URL + 'prism/1.9.0/plugins/autoloader/prism-autoloader.min.js',
-									JoeConfig.CDN_URL + 'prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js',
+									Joe.THEME_URL + 'assets/css/joe.mode.css',
+									Joe.THEME_URL + 'assets/css/joe.article.css',
+									Joe.CDN_URL + 'font-awesome/4.7.0/css/font-awesome.css',
+									Joe.CDN_URL + 'aplayer/1.10.1/APlayer.min.css',
+									Joe.CDN_URL + 'aplayer/1.10.1/APlayer.min.js',
+									Joe.CDN_URL + 'color-thief/2.3.2/color-thief.min.js',
+									Joe.THEME_URL + 'assets/plugin/yihang/MusicPlayer.js',
+									Joe.CDN_URL + 'prism-themes/1.9.0/' + JoeConfig.JPrismTheme,
+									Joe.CDN_URL + 'prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.css',
+									Joe.CDN_URL + 'prism/1.9.0/prism.min.js',
+									Joe.CDN_URL + 'prism/1.9.0/plugins/autoloader/prism-autoloader.min.js',
+									Joe.CDN_URL + 'prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js',
 								]).then(() => {
-									Prism.plugins.autoloader.languages_path = JoeConfig.THEME_URL + 'assets/plugin/prism/1.9.0/components/';
+									Prism.plugins.autoloader.languages_path = Joe.THEME_URL + 'assets/plugin/prism/1.9.0/components/';
 									createPreviewHtml(this.cm.state.doc.toString());
 									super._updateScroller(document.querySelector('.cm-scroller'), document.querySelector('.cm-preview'));
 								});

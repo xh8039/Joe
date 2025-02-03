@@ -164,8 +164,6 @@ class Editor
 				playerAPI: `<?php empty(Helper::options()->JCustomPlayer) ? 'false' : Helper::options()->JCustomPlayer; ?>`,
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
-				THEME_URL: `<?= joe\theme_url('', false) ?>`,
-				CDN_URL: `<?= joe\cdn() ?>`,
 				JPrismTheme: `<?= Helper::options()->JPrismTheme ?>`,
 				JOwOAssetsUrl: `<?= empty(Helper::options()->JOwOAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				JStaticAssetsUrl: `<?= empty(Helper::options()->JStaticAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
@@ -173,6 +171,8 @@ class Editor
 			}
 			window.Joe = window.Joe || {};
 			window.Joe.BASE_API = `<?= joe\permalink(joe\index('joe/api')) ?>`;
+			window.Joe.CDN_URL = `<?= joe\cdn() ?>`;
+			window.Joe.THEME_URL = `<?= joe\theme_url('', false) ?>`;
 		</script>
 
 		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>

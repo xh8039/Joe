@@ -97,6 +97,9 @@ window.Joe.internalUrl = (string) => {
 			if ($element.attr('target') == '_blank') return false;
 			if ($element.attr('ajax-replace') != undefined) return false;
 			if ($element.attr('data-pjax-state') != undefined) return false;
+			if (string.className == 'joe_hide__button') {
+				console.log(string)
+			}
 			string = string.href;
 		}
 		if (string.startsWith('/')) return true;
@@ -105,6 +108,7 @@ window.Joe.internalUrl = (string) => {
 		if (url.protocol == 'javascript:') return false;
 		// console.log(url);
 	} catch (error) {
+		console.log(error);
 		return false;
 	}
 	return true;

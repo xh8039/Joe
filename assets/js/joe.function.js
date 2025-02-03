@@ -90,28 +90,42 @@ window.Joe.clipboard = (content, success, error = () => { autolog.log('复制失
 	}
 }
 
-window.Joe.internalUrl = (string) => {
+window.Joe.internalForwardUrl = (string) => {
 	try {
 		if (string instanceof Element) {
 			let $element = $(string);
 			if ($element.attr('target') == '_blank') return false;
 			if ($element.attr('ajax-replace') != undefined) return false;
 			if ($element.attr('data-pjax-state') != undefined) return false;
-			if (string.className == 'joe_hide__button') {
-				console.log(string)
-			}
 			string = string.href;
 		}
 		if (string.startsWith('/')) return true;
 		let url = new URL(string);
 		if (url.host != location.host) return false;
 		if (url.protocol == 'javascript:') return false;
-		// console.log(url);
+		console.log(url);
 	} catch (error) {
 		console.log(error);
 		return false;
 	}
 	return true;
+}
+
+window.Joe.internalUrl = (string) => {
+	try {
+		if (string instanceof Element) {
+			let $element = $(string);
+			if ($element.attr('target') == '_blank') return false;
+			string = string.href;
+		}
+		if (string.startsWith('/')) return true;
+		let url = new URL(string);
+		if (url.protocol == 'javascript:') return true;
+		if (url.host == location.host) return true;
+	} catch (error) {
+		console.log(error);
+	}
+	return false;
 }
 
 window.Joe.scrollTo = (selector) => {

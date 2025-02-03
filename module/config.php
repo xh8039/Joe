@@ -101,8 +101,8 @@ if ($this->options->JIndex_Link_Active == 'on') {
 	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/post-list-active.css') . '">';
 }
 // 首页文章双栏
-if (($this->is('index') || $this->is('archive')) && $this->options->JIndex_Article_Double_Column == 'on') {
-	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/index-article-double-column.css') . '">';
+if (($this->is('index') || $this->is('archive')) && $this->options->JArticle_Double_Column == 'on') {
+	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/article-double-column.css') . '">';
 }
 if (joe\isMobile()) {
 	// 部分背景壁纸适配优化

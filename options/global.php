@@ -119,6 +119,15 @@ $JCustomNavs = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JCustomNavs->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomNavs);
 
+$JArticle_Double_Column = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JArticle_Double_Column',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
+	'文章双栏排版并隐藏侧边栏（仅在屏幕分辨率大于1400px下生效）'
+);
+$JArticle_Double_Column->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JArticle_Double_Column->multiMode());
+
 $JCustomFont = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCustomFont',
 	NULL,

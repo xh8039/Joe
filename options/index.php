@@ -58,18 +58,6 @@ $JIndex_Hide_Categorize = new \Typecho\Widget\Helper\Form\Element\Text(
 $JIndex_Hide_Categorize->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Hide_Categorize);
 
-$JIndex_Article_Double_Column = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JIndex_Article_Double_Column',
-	array(
-		'off' => '关闭（默认）',
-		'on' => '开启'
-	),
-	'off',
-	'首页文章双栏排版并隐藏侧边栏（仅在屏幕分辨率大于1400px下生效）'
-);
-$JIndex_Article_Double_Column->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Article_Double_Column->multiMode());
-
 $JIndex_Header_Img = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Header_Img',
 	NULL,

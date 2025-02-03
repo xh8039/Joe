@@ -511,7 +511,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		}
 		render() {
 			if (this.options.src) {
-				if (this.options.player == 'false') {
+				if (this.options.player == 'false' || !this.options.player) {
 					function isM3U8(url) {
 						try {
 							// 检查路径是否以 .m3u8 结尾

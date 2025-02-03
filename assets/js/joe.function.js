@@ -102,7 +102,6 @@ window.Joe.internalUrl = (string) => {
 		if (string.startsWith('/')) return true;
 		let url = new URL(string);
 		if (url.host != location.host) return false;
-		console.log(url.protocol)
 		if (url.protocol == 'javascript:') return false;
 		// console.log(url);
 	} catch (error) {

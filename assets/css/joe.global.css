@@ -3147,7 +3147,7 @@
 	padding-top: 6px;
 } */
 
-.joe_detail__article h1+p .joe_abtn,
+/* .joe_detail__article h1+p .joe_abtn,
 .joe_detail__article h2+p .joe_abtn,
 .joe_detail__article h3+p .joe_abtn,
 .joe_detail__article h4+p .joe_abtn,
@@ -3161,16 +3161,16 @@
 .joe_detail__article h5+p .joe_anote,
 .joe_detail__article h6+p .joe_anote {
 	margin-top: 6px;
-}
+} */
 
-.joe_detail__article h1+p>.owo_image,
+/* .joe_detail__article h1+p>.owo_image,
 .joe_detail__article h2+p>.owo_image,
 .joe_detail__article h3+p>.owo_image,
 .joe_detail__article h4+p>.owo_image,
 .joe_detail__article h5+p>.owo_image,
 .joe_detail__article h6+p>.owo_image {
 	padding-top: unset;
-}
+} */
 
 /* .joe_detail__article h1+p>code,
 .joe_detail__article h2+p>code,

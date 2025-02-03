@@ -154,6 +154,7 @@ class MusicPlayer {
 	 * 音乐播放器自动主题色
 	 */
 	autoTheme(index) {
+		if (!window.ColorThief) return;
 		if (!this.PLAYER.list.audios[index]) return;
 		if (this.PLAYER.list.audios[index].theme) return;
 		let xhr = new XMLHttpRequest()

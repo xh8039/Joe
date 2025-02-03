@@ -261,10 +261,6 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			if (getChildren(this, '_content')) {
 				getChildren(this, '_content').innerHTML = htmlStr;
 			} else {
-				// const div = document.createElement('div');
-				// div.style.display = 'block';
-				// div.className = '_content';
-				// div.innerHTML = htmlStr;
 				this.outerHTML = htmlStr;
 			}
 		}
@@ -321,12 +317,13 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			if (getChildren(this, '_content')) {
 				getChildren(this, '_content').innerHTML = htmlStr;
 			} else {
-				const span = document.createElement('span');
-				span.style.display = 'block';
-				span.className = '_content';
-				span.innerHTML = htmlStr;
-				this.appendChild(span);
-				this.remove();
+				this.outerHTML = htmlStr;
+				// const span = document.createElement('span');
+				// span.style.display = 'block';
+				// span.className = '_content';
+				// span.innerHTML = htmlStr;
+				// this.appendChild(span);
+				// this.remove();
 			}
 		}
 	});

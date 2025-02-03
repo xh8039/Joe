@@ -147,16 +147,7 @@ class Editor
 	{
 ?>
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
-		<!-- <link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>"> -->
-
-		<!-- Prism.css -->
-		<!-- <link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . Helper::options()->JPrismTheme) ?>"> -->
-		<!-- <link href="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.css') ?>" rel="stylesheet"> -->
-
-		<!-- <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>"> -->
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css') ?>">
-		<!-- <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.article.css') ?>"> -->
-		<!-- <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>"> -->
 
 		<!-- 自定义CSS样式 -->
 		<style>
@@ -183,17 +174,6 @@ class Editor
 			window.Joe = window.Joe || {};
 			window.Joe.BASE_API = `<?= joe\permalink(joe\index('joe/api')) ?>`;
 		</script>
-		<!-- <script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script> -->
-		<!-- <script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script> -->
-		<!-- <script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js', false); ?>"></script> -->
-
-		<!-- Prism.js -->
-		<!-- <script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script> -->
-		<!-- <script src="<?= joe\cdn('prism/1.9.0/plugins/autoloader/prism-autoloader.min.js') ?>"></script> -->
-		<!-- <script>
-			Prism.plugins.autoloader.languages_path = '<?php Helper::options()->themeUrl('assets/plugin/prism/1.9.0/components/') ?>';
-		</script> -->
-		<!-- <script src="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js') ?>"></script> -->
 
 		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
 		<script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js', false) ?>"></script>

@@ -86,6 +86,15 @@ $JIndex_Carousel = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JIndex_Carousel->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Carousel);
 
+$JIndexCarouselDirection = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JIndexCarouselDirection',
+	['horizontal' => '水平', 'vertical' => '垂直'],
+	'horizontal',
+	'首页轮播图滚动方向',
+);
+$JIndexCarouselDirection->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndexCarouselDirection->multiMode());
+
 $JIndex_Carousel_Target = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JIndex_Carousel_Target',
 	array(

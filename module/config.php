@@ -17,7 +17,7 @@ $commentsAntiSpam = ($this->options->commentsAntiSpam && $this->is('single')) ? 
 <?php
 if ($this->request->getHeader('x-pjax') == 'true') return;
 $options = [];
-foreach (['themeUrl', 'IndexAjaxList', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'NProgressJS', 'title', 'Turbolinks', 'index'] as $value) {
+foreach (['themeUrl', 'IndexAjaxList', 'DynamicBackground', 'JLive2d', 'JDocumentTitle', 'JBirthDay', 'JThemeMode', 'JLoading', 'FirstLoading', 'NProgressJS', 'title', 'Turbolinks', 'index', 'JIndexCarouselDirection'] as $value) {
 	$options[$value] = $this->options->$value;
 }
 $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

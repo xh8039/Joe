@@ -3,15 +3,13 @@ Joe.DOMContentLoaded.index = Joe.DOMContentLoaded.index ? Joe.DOMContentLoaded.i
 	/* 激活轮播图功能 */
 	{
 		if ($('.joe_index__banner .swiper').length !== 0) {
-			let direction = 'horizontal';
-			if (!Joe.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical';
 			new Swiper('.swiper', {
 				keyboard: false, // 使用键盘在幻灯片中导航
-				direction, // '水平' |'垂直'
+				direction: Joe.options.JIndexCarouselDirection || 'horizontal',
 				loop: true,
 				autoplay: true,
 				mousewheel: false, // 允许使用鼠标滚轮在幻灯片中导航
-				speed: 1000, // 控制过渡时间为1000毫秒，即1秒
+				speed: 800, // 控制过渡时间为800毫秒
 				autoplay: { delay: 2000 }, // 控制自动播放之间的延迟为2秒
 				pagination: { el: '.swiper-pagination' }, // 具有分页参数的对象或布尔值，以使用默认设置启用。
 				// 具有导航参数的对象或布尔值，以使用默认设置启用。

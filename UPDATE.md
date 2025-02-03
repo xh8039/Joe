@@ -369,4 +369,5 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 ## 1.35 开发版
 
 - 文章编辑器新增一键 HTML 转 Markdown 功能
+- 新增首页轮播图滚动方向功能
 - 正在开发中...

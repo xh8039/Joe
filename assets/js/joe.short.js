@@ -325,8 +325,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				span.style.display = 'block';
 				span.className = '_content';
 				span.innerHTML = htmlStr;
-				this.outerHTML = span;
-				// this.appendChild(span);
+				this.appendChild(span);
+				this.remove();
 			}
 		}
 	});
@@ -375,8 +375,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				span.className = '_content';
 				span.style.display = 'block';
 				span.innerHTML = htmlStr;
-				this.outerHTML = span;
-				// this.appendChild(span);
+				this.appendChild(span);
+				this.remove();
 			}
 		}
 	});

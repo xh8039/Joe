@@ -115,6 +115,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			this.outerHTML = '<div class="_content"></div>';
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
+				console.log(this);
 				new MusicPlayer({
 					container: this,
 					lrcType: 3,

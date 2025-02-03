@@ -376,7 +376,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				span.style.display = 'block';
 				span.innerHTML = htmlStr;
 				this.appendChild(span);
-				this.remove();
+				// this.remove();
 			}
 		}
 	});

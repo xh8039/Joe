@@ -380,7 +380,7 @@ class JoeEditor extends JoeAction {
 							el.toggleClass('active');
 							if (el.hasClass('active')) {
 								window.JoeConfig.canPreview = true;
-								JoeAction.loadFiles([
+								this.loadFiles([
 									JoeConfig.CDN_URL + 'aplayer/1.10.1/APlayer.min.js',
 									JoeConfig.CDN_URL + 'color-thief/2.3.2/color-thief.min.js',
 									JoeConfig.THEME_URL + 'assets/plugin/yihang/MusicPlayer.js',

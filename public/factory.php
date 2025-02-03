@@ -161,7 +161,7 @@ class Editor
 				emojiAPI: `<?php Helper::options()->themeUrl('assets/typecho/write/json/emoji.json') ?>`,
 				expressionAPI: `<?php Helper::options()->themeUrl('assets/json/joe.owo.json') ?>`,
 				characterAPI: `<?php Helper::options()->themeUrl('assets/typecho/write/json/character.json') ?>`,
-				playerAPI: `<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>`,
+				playerAPI: `<?php empty(Helper::options()->JCustomPlayer) ? 'false' : Helper::options()->JCustomPlayer; ?>`,
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
 				THEME_URL: `<?= joe\theme_url('', false) ?>`,

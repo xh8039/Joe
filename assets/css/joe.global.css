@@ -3026,7 +3026,6 @@
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 24px;
-	/* margin-bottom: 8px; */
 	margin-bottom: 14px;
 	position: relative;
 	font-family: inherit;
@@ -3131,51 +3130,6 @@
 	text-align: start;
 }
 
-/* .joe_detail__article h2+p {
-	padding-top: 6px;
-} */
-
-/* .joe_detail__article h1+p>*:first-child,
-.joe_detail__article h2+p>*:first-child,
-.joe_detail__article h3+p>*:first-child,
-.joe_detail__article h4+p>*:first-child,
-.joe_detail__article h5+p>*:first-child,
-.joe_detail__article h6+p>*:first-child {
-	padding-top: 6px;
-} */
-
-/* .joe_detail__article h1+p .joe_abtn,
-.joe_detail__article h2+p .joe_abtn,
-.joe_detail__article h3+p .joe_abtn,
-.joe_detail__article h4+p .joe_abtn,
-.joe_detail__article h5+p .joe_abtn,
-.joe_detail__article h6+p .joe_abtn,
-
-.joe_detail__article h1+p .joe_anote,
-.joe_detail__article h2+p .joe_anote,
-.joe_detail__article h3+p .joe_anote,
-.joe_detail__article h4+p .joe_anote,
-.joe_detail__article h5+p .joe_anote,
-.joe_detail__article h6+p .joe_anote {
-	margin-top: 6px;
-} */
-
-/* .joe_detail__article h1+p>.owo_image,
-.joe_detail__article h2+p>.owo_image,
-.joe_detail__article h3+p>.owo_image,
-.joe_detail__article h4+p>.owo_image,
-.joe_detail__article h5+p>.owo_image,
-.joe_detail__article h6+p>.owo_image {
-	padding-top: unset;
-} */
-
-/* .joe_detail__article h1+p>code,
-.joe_detail__article h2+p>code,
-.joe_detail__article h3+p>code,
-.joe_detail__article h4+p>code,
-.joe_detail__article h5+p>code,
-.joe_detail__article h6+p>code, */
-
 .joe_detail__article h1+p>br,
 .joe_detail__article h2+p>br,
 .joe_detail__article h3+p>br,
@@ -3183,36 +3137,6 @@
 .joe_detail__article h5+p>br,
 .joe_detail__article h6+p>br {
 	padding-top: 0px !important;
-}
-
-.joe_detail__article h1+table,
-.joe_detail__article h2+table,
-.joe_detail__article h3+table,
-.joe_detail__article h4+table,
-.joe_detail__article h5+table,
-.joe_detail__article h6+table,
-
-.joe_detail__article h1+pre,
-.joe_detail__article h2+pre,
-.joe_detail__article h3+pre,
-.joe_detail__article h4+pre,
-.joe_detail__article h5+pre,
-.joe_detail__article h6+pre,
-
-.joe_detail__article h1+section,
-.joe_detail__article h2+section,
-.joe_detail__article h3+section,
-.joe_detail__article h4+section,
-.joe_detail__article h5+section,
-.joe_detail__article h6+section,
-
-.joe_detail__article h1+blockquote,
-.joe_detail__article h2+blockquote,
-.joe_detail__article h3+blockquote,
-.joe_detail__article h4+blockquote,
-.joe_detail__article h5+blockquote,
-.joe_detail__article h6+blockquote {
-	margin-top: 14px !important;
 }
 
 .joe_detail__article h1+p>joe-message:first-child,

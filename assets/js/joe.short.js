@@ -418,16 +418,17 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				`;
 			});
 			let htmlStr = `<div class="joe_timeline">${content}</div>`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				this.outerHTML = htmlStr;
-				// const span = document.createElement('span');
-				// span.className = '_content';
-				// span.style.display = 'block';
-				// span.innerHTML = htmlStr;
-				// this.appendChild(span);
-			}
+			this.outerHTML = htmlStr;
+			// if (getChildren(this, '_content')) {
+			// 	getChildren(this, '_content').innerHTML = htmlStr;
+			// } else {
+			// 	this.outerHTML = htmlStr;
+			// 	// const span = document.createElement('span');
+			// 	// span.className = '_content';
+			// 	// span.style.display = 'block';
+			// 	// span.innerHTML = htmlStr;
+			// 	// this.appendChild(span);
+			// }
 			console.log(this);
 			console.log(this.querySelectorAll('.joe_timeline__item-circle'));
 			this.querySelectorAll('.joe_timeline__item-circle').forEach((item, index) => {

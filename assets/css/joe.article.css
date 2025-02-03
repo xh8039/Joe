@@ -1135,7 +1135,7 @@ html .line-numbers .line-numbers-rows {
 
 @keyframes progress-active {
 	0% {
-		opacity: 0.5;
+		opacity: 0.4;
 		width: 0
 	}
 

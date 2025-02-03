@@ -3026,9 +3026,8 @@
 	font-weight: 700;
 	font-size: 18px;
 	line-height: 24px;
-	/* margin-bottom: 10px; */
-	/* margin-bottom: 20px; */
-	margin-bottom: 8px;
+	/* margin-bottom: 8px; */
+	margin-bottom: 14px;
 	position: relative;
 	font-family: inherit;
 	line-height: 1.1;
@@ -3066,8 +3065,6 @@
 .joe_detail__article h4:not(:first-child),
 .joe_detail__article h5:not(:first-child),
 .joe_detail__article h6:not(:first-child) {
-	/* margin-top: 15px; */
-	/* margin-top: 20px; */
 	margin-top: 24px;
 }
 
@@ -3134,9 +3131,9 @@
 	text-align: start;
 }
 
-.joe_detail__article h2+p {
+/* .joe_detail__article h2+p {
 	padding-top: 6px;
-}
+} */
 
 /* .joe_detail__article h1+p>*:first-child,
 .joe_detail__article h2+p>*:first-child,

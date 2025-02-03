@@ -147,16 +147,16 @@ class Editor
 	{
 ?>
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
-		<link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>">
+		<!-- <link rel="stylesheet" href="<?= joe\cdn('aplayer/1.10.1/APlayer.min.css') ?>"> -->
 
 		<!-- Prism.css -->
-		<link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . Helper::options()->JPrismTheme) ?>">
-		<link href="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.css') ?>" rel="stylesheet">
+		<!-- <link rel="stylesheet" href="<?= joe\cdn('prism-themes/1.9.0/'  . Helper::options()->JPrismTheme) ?>"> -->
+		<!-- <link href="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.css') ?>" rel="stylesheet"> -->
 
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>">
+		<!-- <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>"> -->
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css') ?>">
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.article.css') ?>">
-		<link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
+		<!-- <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.article.css') ?>"> -->
+		<!-- <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>"> -->
 
 		<!-- 自定义CSS样式 -->
 		<style>
@@ -175,6 +175,7 @@ class Editor
 				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
 				THEME_URL: `<?= joe\theme_url('', false) ?>`,
 				CDN_URL: `<?= joe\cdn() ?>`,
+				JPrismTheme: `<?= Helper::options()->JPrismTheme ?>`,
 				JOwOAssetsUrl: `<?= empty(Helper::options()->JOwOAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				JStaticAssetsUrl: `<?= empty(Helper::options()->JStaticAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				canPreview: false

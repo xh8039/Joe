@@ -27,7 +27,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 	Joe.DOMContentLoaded = Joe.DOMContentLoaded ? Joe.DOMContentLoaded : {};
 	Joe.THEME_URL = `<?= joe\theme_url('', false) ?>`;
 	Joe.CDN_URL = `<?= joe\cdn() ?>`;
-	Joe.BASE_API = `<?= joe\index('joe/api', '//') ?>`;
+	Joe.BASE_API = `<?= joe\permalink(joe\index('joe/api')) ?>`;
 	Joe.IS_MOBILE = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
 	Joe.LAZY_LOAD = `<?= joe\getLazyload() ?>`;
 	Joe.MOTTO = `<?php joe\getAsideAuthorMotto() ?>`;

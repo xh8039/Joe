@@ -180,6 +180,7 @@ class Editor
 			}
 		</script>
 		<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
+		<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js', false); ?>"></script>
 
 		<!-- Prism.js -->
 		<script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script>

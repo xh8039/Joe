@@ -225,11 +225,11 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			this.render();
 		}
 		render() {
-			if (window.Joe.CONTENT.fields.hide == 'pay') {
+			if (window.Joe?.CONTENT?.fields?.hide == 'pay') {
 				let price = window.Joe.CONTENT.fields.price;
 				let pay = `<i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${price} 元</i>`;
 				this.innerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 ${price > 0 ? pay : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">评论</a>'} 可见</span>`;
-			} else if (window.Joe.CONTENT.fields.hide == 'login') {
+			} else if (window.Joe?.CONTENT?.fields?.hide == 'login') {
 				this.innerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 <i class="joe_hide__button">登录</i> 可见</span>`;
 				this.$button = this.querySelector('.joe_hide__button');
 				const $login = document.querySelector('.header-login');

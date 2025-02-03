@@ -619,10 +619,11 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			if (getChildren(this, '_content')) {
 				getChildren(this, '_content').innerHTML = htmlStr;
 			} else {
-				const div = document.createElement('div');
-				div.className = '_content';
-				div.innerHTML = htmlStr;
-				this.outerHTML = div.outerHTML;
+				const span = document.createElement('span');
+				span.className = '_content';
+				span.style.display = 'block';
+				span.innerHTML = htmlStr;
+				this.appendChild(span);
 			}
 			this.querySelectorAll('.joe_tabs__head-item').forEach((item, index) => {
 				const label = item.getAttribute('label');

@@ -40,11 +40,11 @@ if ($this->options->JLoading != 'off') : ?>
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css', false); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.global.css'); ?>">
-<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
-
 <?php if ($this->is('single')) : ?>
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.article.css') ?>">
 	<link rel="stylesheet" href="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.css') ?>" />
 <?php endif; ?>
+<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
 
 <link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">

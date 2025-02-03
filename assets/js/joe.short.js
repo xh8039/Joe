@@ -40,9 +40,9 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		}
 		render() {
 			if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
-			this.innerHTML = '<span style="display: block" class="_content"></span>';
+			// this.innerHTML = '<span style="display: block" class="_content"></span>';
 			new MusicPlayer({
-				container: getChildren(this, '_content'),
+				container: this,
 				theme: this.options.theme,
 				autoplay: this.options.autoplay,
 				loop: this.options.loop,

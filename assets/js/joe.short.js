@@ -277,7 +277,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				type: /^success$|^info$|^warning$|^error$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'info',
 				content: this.getAttribute('content') || '消息内容'
 			};
-			this.innerHTML = `
+			this.outerHTML = `
 					<span class="joe_message ${this.options.type}">
 						<span class="joe_message__icon"></span>
 						<span class="joe_message__content">${this.options.content}</span>

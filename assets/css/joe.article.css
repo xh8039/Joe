@@ -123,6 +123,7 @@
 }
 
 .joe_detail__article p {
+	margin: 0;
 	margin-bottom: 16px;
 	line-height: 26px;
 }
@@ -317,6 +318,14 @@ html .line-numbers .line-numbers-rows {
 	vertical-align: top
 }
 
+.joe_detail__article a {
+	transition: color .2s, background .3s, opacity .3s, box-shadow .3s, transform .3s;
+}
+
+.joe_detail__article a:hover {
+	text-decoration: none
+}
+
 .joe_detail__article a:not([class]) {
 	display: inline-block;
 	color: var(--theme);
@@ -326,10 +335,6 @@ html .line-numbers .line-numbers-rows {
 
 .joe_detail__article a:not([class]):hover {
 	text-decoration: none;
-}
-
-.joe_detail__article a:hover {
-	text-decoration: none
 }
 
 .joe_detail__article a:not([class])::after {

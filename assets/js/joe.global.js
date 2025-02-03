@@ -640,7 +640,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		if (window.Joe.loadingStart && window.Joe.options.FirstLoading != 'on') {
 			// a标签加载动画
 			$(document).on('click', 'a[href]', function (e) {
-				if (!window.Joe.checkUrl(this)) return true;
+				if (!window.Joe.internalUrl(this)) return true;
 				window.Joe.loadingStart();
 				setTimeout(() => {
 					window.Joe.loadingEnd();
@@ -670,7 +670,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		NProgress.configure({ trickleSpeed: 10 });
 		if (window.Joe.options.NProgressJS == 'on') {
 			$(document).on('click', 'a[href]', function (e) {
-				if (window.Joe.checkUrl(this)) {
+				if (window.Joe.internalUrl(this)) {
 					NProgress.start();
 					window.addEventListener('visibilitychange', function () {
 						if (document.visibilityState === 'hidden') NProgress.done();
@@ -685,20 +685,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			});
 		}
 	}
-
-	// if (window.Turbolinks) {
-	// 	document.addEventListener('turbolinks:request-start', function (event) {
-	// 		event.data.xhr.setRequestHeader('X-Turbolinks', 'true')
-	// 	})
-	// 	$(document).on('click', 'a[href]', function (event) {
-	// 		if (!window.Joe.checkUrl(this)) return true;
-	// 		event.preventDefault(); // 阻止默认行为
-	// 		let url = this.href;
-	// 		if (url.startsWith('/')) url = location.origin + url;
-	// 		NProgress.start();
-	// 		Turbolinks.visit(url);
-	// 	});
-	// }
 
 	if (Joe.options.Turbolinks == 'on') {
 		// window.Joe.loadScriptList = [];
@@ -717,7 +703,7 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 			NProgress.done();
 		});
 		$(document).on('click', 'a[href]', function (event) {
-			if (!window.Joe.checkUrl(this)) return true;
+			if (!window.Joe.internalUrl(this)) return true;
 			if ($(this).attr('data-turbolinks') == 'false') return true;
 			event.preventDefault(); // 阻止默认行为
 			TurboLinks.visit(this.href);

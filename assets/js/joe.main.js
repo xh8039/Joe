@@ -271,6 +271,13 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 	}
 
 	{
+		$('a').each(function () {
+			if (Joe.internalUrl(this)) return;
+			$(this).attr('target', '_blank').attr('rel', 'noopener noreferrer nofollow');
+		});
+	}
+
+	{
 		// tooltip.js
 		window.Joe.tooltip();
 		// popover.js

@@ -90,7 +90,7 @@ window.Joe.clipboard = (content, success, error = () => { autolog.log('复制失
 	}
 }
 
-window.Joe.checkUrl = (string) => {
+window.Joe.internalUrl = (string) => {
 	try {
 		if (string instanceof Element) {
 			if ($(string).attr('target') == '_blank') return false;

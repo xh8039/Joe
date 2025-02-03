@@ -19,6 +19,7 @@ function themeConfig($form)
 	joe\install();
 ?>
 	<link rel="stylesheet" href="<?php Helper::options()->themeUrl('assets/typecho/config/css/joe.config.css') ?>">
+	<link rel="stylesheet" href="<?php Helper::options()->themeUrl('assets/css/joe.article.css') ?>">
 	<script src="<?php $options->adminStaticUrl('js', 'jquery.js'); ?>"></script>
 	<script src="<?php Helper::options()->themeUrl('assets/plugin/autolog.js/autolog.js'); ?>"></script>
 	<script src="<?= Helper::options()->themeUrl('assets/plugin/layer/3.7.0/layer.js') ?>"></script>

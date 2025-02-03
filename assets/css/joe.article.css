@@ -122,9 +122,12 @@
 	width: 100%;
 }
 
-.joe_detail__article p:not([align]) {
+.joe_detail__article p {
 	margin-bottom: 16px;
 	line-height: 26px;
+}
+
+.joe_detail__article p:not([align]) {
 	text-align: justify;
 }
 

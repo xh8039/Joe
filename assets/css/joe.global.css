@@ -3587,27 +3587,12 @@ html .aplayer .aplayer-lrc {
 	}
 }
 
-/* @-webkit-keyframes box_shadow {
-	0% {
-		box-shadow: 0 0 0 0 #f56c6c
-	}
-}
-
+/* 
 @keyframes box_shadow {
 	0% {
 		box-shadow: 0 0 0 0 #f56c6c
 	}
 } */
-
-@-webkit-keyframes progress {
-	0% {
-		background-position: 0 0
-	}
-
-	100% {
-		background-position: 30px 0
-	}
-}
 
 @keyframes progress {
 	0% {
@@ -3616,18 +3601,6 @@ html .aplayer .aplayer-lrc {
 
 	100% {
 		background-position: 30px 0
-	}
-}
-
-@-webkit-keyframes list_thumbnail_loading {
-	0% {
-		-webkit-transform: scale(0.95);
-		transform: scale(0.95)
-	}
-
-	100% {
-		-webkit-transform: scale(1);
-		transform: scale(1)
 	}
 }
 
@@ -3643,16 +3616,6 @@ html .aplayer .aplayer-lrc {
 	}
 }
 
-@-webkit-keyframes list_title_loading {
-	0% {
-		width: 80%
-	}
-
-	100% {
-		width: 95%
-	}
-}
-
 @keyframes list_title_loading {
 	0% {
 		width: 80%
@@ -3660,16 +3623,6 @@ html .aplayer .aplayer-lrc {
 
 	100% {
 		width: 95%
-	}
-}
-
-@-webkit-keyframes list_abstract_loading {
-	0% {
-		width: 60%
-	}
-
-	100% {
-		width: 80%
 	}
 }
 
@@ -3683,27 +3636,9 @@ html .aplayer .aplayer-lrc {
 	}
 }
 
-@-webkit-keyframes profile-color-modes-illu-anim {
-	0% {
-		stroke: #666
-	}
-}
-
 @keyframes profile-color-modes-illu-anim {
 	0% {
 		stroke: #666
-	}
-}
-
-@-webkit-keyframes profile-color-modes-illu-anim-frame-show {
-	0% {
-		opacity: 0;
-		-webkit-animation-timing-function: ease-out;
-		animation-timing-function: ease-out
-	}
-
-	to {
-		opacity: 1
 	}
 }
 
@@ -3719,18 +3654,6 @@ html .aplayer .aplayer-lrc {
 	}
 }
 
-@-webkit-keyframes profile-color-modes-illu-anim-frame-hide {
-	0% {
-		opacity: 1;
-		-webkit-animation-timing-function: ease-in;
-		animation-timing-function: ease-in
-	}
-
-	to {
-		opacity: 0
-	}
-}
-
 @keyframes profile-color-modes-illu-anim-frame-hide {
 	0% {
 		opacity: 1;
@@ -3743,19 +3666,6 @@ html .aplayer .aplayer-lrc {
 	}
 }
 
-
-@-webkit-keyframes overdue {
-	0% {
-		-webkit-clip-path: circle(0 at 0 0);
-		clip-path: circle(0 at 0 0)
-	}
-
-	100% {
-		-webkit-clip-path: circle(100%);
-		clip-path: circle(100%)
-	}
-}
-
 @keyframes overdue {
 	0% {
 		-webkit-clip-path: circle(0 at 0 0);
@@ -3765,20 +3675,6 @@ html .aplayer .aplayer-lrc {
 	100% {
 		-webkit-clip-path: circle(100%);
 		clip-path: circle(100%)
-	}
-}
-
-@-webkit-keyframes showHeaderTitle {
-	0% {
-		opacity: 0.25;
-		-webkit-transform: scale(0.25);
-		transform: scale(0.25)
-	}
-
-	100% {
-		opacity: 1;
-		-webkit-transform: scale(1);
-		transform: scale(1)
 	}
 }
 

@@ -93,9 +93,10 @@ window.Joe.clipboard = (content, success, error = () => { autolog.log('复制失
 window.Joe.internalUrl = (string) => {
 	try {
 		if (string instanceof Element) {
-			if ($(string).attr('target') == '_blank') return false;
-			if ($(string).attr('ajax-replace') != undefined) return false;
-			if ($(string).attr('data-pjax-state') != undefined) return false;
+			let $element = $(string);
+			if ($element.attr('target') == '_blank') return false;
+			if ($element.attr('ajax-replace') != undefined) return false;
+			if ($element.attr('data-pjax-state') != undefined) return false;
 			string = string.href;
 		}
 		if (string.startsWith('/')) return true;

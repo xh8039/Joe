@@ -261,11 +261,11 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			if (getChildren(this, '_content')) {
 				getChildren(this, '_content').innerHTML = htmlStr;
 			} else {
-				const div = document.createElement('div');
-				div.style.display = 'block';
-				div.className = '_content';
-				div.innerHTML = htmlStr;
-				this.outerHTML = div.outerHTML;
+				// const div = document.createElement('div');
+				// div.style.display = 'block';
+				// div.className = '_content';
+				// div.innerHTML = htmlStr;
+				this.outerHTML = htmlStr;
 			}
 		}
 	});

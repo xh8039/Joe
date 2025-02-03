@@ -2200,6 +2200,7 @@
 	border-left-width: 4px;
 	border-left-style: solid;
 	margin-top: 15px;
+	margin-left: 5px;
 	padding: 8px 15px;
 	border-radius: 0 4px 4px 0;
 	line-height: 26px;
@@ -2712,7 +2713,7 @@
 .joe_detail {
 	background: var(--background);
 	border-radius: var(--main-radius);
-	padding: 15px 30px;
+	padding: 15px 20px;
 	box-shadow: 0 0 10px var(--main-shadow);
 	margin-bottom: 15px
 }
@@ -3136,9 +3137,7 @@
 .joe_detail__article h4+p>.joe_message:first-child,
 .joe_detail__article h5+p>.joe_message:first-child,
 .joe_detail__article h6+p>.joe_message:first-child {
-	display: block;
 	margin-top: 20px;
-	padding-top: unset;
 }
 
 .joe_detail__article ul>li>p {

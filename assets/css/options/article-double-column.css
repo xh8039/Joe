@@ -1,4 +1,4 @@
-html .joe_index__hot-list {
+.joe_index__hot-list {
     grid-template-columns: repeat(4, 1fr);
 }
 

@@ -278,10 +278,10 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				content: this.getAttribute('content') || '消息内容'
 			};
 			this.outerHTML = `
-					<span class="joe_message ${this.options.type}">
+					<div class="joe_message ${this.options.type}">
 						<span class="joe_message__icon"></span>
 						<span class="joe_message__content">${this.options.content}</span>
-					</span>
+					</div>
 				`;
 		}
 	});

@@ -3130,12 +3130,12 @@
 	text-align: start;
 }
 
-.joe_detail__article h1+p>joe-message:first-child,
-.joe_detail__article h2+p>joe-message:first-child,
-.joe_detail__article h3+p>joe-message:first-child,
-.joe_detail__article h4+p>joe-message:first-child,
-.joe_detail__article h5+p>joe-message:first-child,
-.joe_detail__article h6+p>joe-message:first-child {
+.joe_detail__article h1+p>.joe_message:first-child,
+.joe_detail__article h2+p>.joe_message:first-child,
+.joe_detail__article h3+p>.joe_message:first-child,
+.joe_detail__article h4+p>.joe_message:first-child,
+.joe_detail__article h5+p>.joe_message:first-child,
+.joe_detail__article h6+p>.joe_message:first-child {
 	display: block;
 	margin-top: 20px;
 	padding-top: unset;

@@ -77,12 +77,12 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			this.render();
 		}
 		render() {
-			if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
-			this.innerHTML = '<span style="display: block" class="_content"></span>';
+			if (!this.options.id) return (this.outerHTML = '网易云歌曲ID未填写！');
+			// this.innerHTML = '<span style="display: block" class="_content"></span>';
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				new MusicPlayer({
-					container: getChildren(this, '_content'),
+					container: this,
 					lrcType: 1,
 					theme: this.options.color,
 					autoplay: this.options.autoplay,
@@ -113,7 +113,6 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		render() {
 			if (!this.options.id) return (this.outerHTML = '网易云歌单ID未填写！');
 			// this.outerHTML = '<div class="_content"></div>';
-			console.log(this.outerHTML);
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				new MusicPlayer({
@@ -176,9 +175,9 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			super();
 			this.startColor = this.getAttribute('startColor') || '#ff6c6c';
 			this.endColor = this.getAttribute('endColor') || '#1989fa';
-			this.style.display = 'block';
-			this.innerHTML = `
-					<span class="joe_dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></span>
+			// this.style.display = 'block';
+			this.outerHTML = `
+					<div class="joe_dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></div>
 				`;
 		}
 	});

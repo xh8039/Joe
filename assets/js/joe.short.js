@@ -111,13 +111,24 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			this.render();
 		}
 		render() {
-			console.log(this);
 			if (!this.options.id) return (this.outerHTML = '网易云歌单ID未填写！');
 			this.outerHTML = '<div class="_content"></div>';
 			console.log(this);
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				console.log(this);
+				console.log({
+					container: this,
+					lrcType: 3,
+					theme: this.options.color,
+					autoplay: this.options.autoplay,
+					autotheme: this.options.autotheme,
+					storage: this.options.id,
+					loop: this.options.loop,
+					order: this.options.order,
+					preload: 'auto',
+					audio
+				});
 				return;
 				new MusicPlayer({
 					container: this,

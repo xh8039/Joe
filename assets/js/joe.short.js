@@ -40,6 +40,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		}
 		render() {
 			if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
+			this.display = 'block';
 			// this.innerHTML = '<span style="display: block" class="_content"></span>';
 			new MusicPlayer({
 				container: this,

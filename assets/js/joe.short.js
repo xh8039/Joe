@@ -375,7 +375,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				div.className = '_content';
 				div.style.display = 'block';
 				div.innerHTML = htmlStr;
-				this.outerHTML = div;
+				this.outerHTML = div.outerHTML;
 				// this.appendChild(div);
 				// _temp.remove();
 			}

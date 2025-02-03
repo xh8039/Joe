@@ -356,31 +356,19 @@ html .line-numbers .line-numbers-rows {
 
 .joe_detail__article a:not([class]) {
 	display: inline-block;
-	line-height: 26px;
 	color: var(--theme);
 	position: relative;
 	text-decoration: none
 }
 
-.joe_detail__article a:not([class]) :hover {
-	text-decoration: none !important
+.joe_detail__article a:not([class]):hover {
+	text-decoration: none;
 }
 
 .joe_detail__article a:hover {
 	text-decoration: none
 }
 
-/* .joe_detail__article a:not([class]) {
-	display: inline;
-	line-height: 21px;
-	color: var(--theme);
-	position: relative
-}
-.joe_detail__article a:not([class]):hover::after {
-	opacity: 1;
-	-webkit-transform: scaleX(1);
-	transform: scaleX(1)
-}
 .joe_detail__article a:not([class])::after {
 	content: '';
 	position: absolute;
@@ -395,7 +383,13 @@ html .line-numbers .line-numbers-rows {
 	transition: opacity 0.35s, -webkit-transform 0.35s;
 	transition: transform 0.35s, opacity 0.35s;
 	transition: transform 0.35s, opacity 0.35s, -webkit-transform 0.35s
-} */
+}
+
+.joe_detail__article a:not([class]):hover::after {
+	opacity: 1;
+	-webkit-transform: scaleX(1);
+	transform: scaleX(1)
+}
 
 .joe_checkbox {
 	appearance: none;

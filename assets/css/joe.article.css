@@ -1135,7 +1135,7 @@ html .line-numbers .line-numbers-rows {
 
 @-webkit-keyframes progress-active {
 	0% {
-		opacity: .3;
+		opacity: 0.3;
 		width: 0
 	}
 
@@ -1147,7 +1147,7 @@ html .line-numbers .line-numbers-rows {
 
 @keyframes progress-active {
 	0% {
-		opacity: .3;
+		opacity: 0.3;
 		width: 0
 	}
 
@@ -1158,7 +1158,6 @@ html .line-numbers .line-numbers-rows {
 }
 
 @-webkit-keyframes lamp-background {
-
 	0%,
 	24.9% {
 		background-color: #54b5db
@@ -1181,7 +1180,6 @@ html .line-numbers .line-numbers-rows {
 }
 
 @keyframes lamp-background {
-
 	0%,
 	24.9% {
 		background-color: #54b5db
@@ -1284,6 +1282,70 @@ html .line-numbers .line-numbers-rows {
 	to {
 		transform: scaleX(0.5);
 		background-color: #409eff
+	}
+}
+
+@-webkit-keyframes wobble-bottom {
+	16.65% {
+		-webkit-transform: skew(-12deg);
+		transform: skew(-12deg)
+	}
+
+	33.3% {
+		-webkit-transform: skew(10deg);
+		transform: skew(10deg)
+	}
+
+	49.95% {
+		-webkit-transform: skew(-6deg);
+		transform: skew(-6deg)
+	}
+
+	66.6% {
+		-webkit-transform: skew(4deg);
+		transform: skew(4deg)
+	}
+
+	83.25% {
+		-webkit-transform: skew(-2deg);
+		transform: skew(-2deg)
+	}
+
+	100% {
+		-webkit-transform: skew(0);
+		transform: skew(0)
+	}
+}
+
+@keyframes wobble-bottom {
+	16.65% {
+		-webkit-transform: skew(-12deg);
+		transform: skew(-12deg)
+	}
+
+	33.3% {
+		-webkit-transform: skew(10deg);
+		transform: skew(10deg)
+	}
+
+	49.95% {
+		-webkit-transform: skew(-6deg);
+		transform: skew(-6deg)
+	}
+
+	66.6% {
+		-webkit-transform: skew(4deg);
+		transform: skew(4deg)
+	}
+
+	83.25% {
+		-webkit-transform: skew(-2deg);
+		transform: skew(-2deg)
+	}
+
+	100% {
+		-webkit-transform: skew(0);
+		transform: skew(0)
 	}
 }
 

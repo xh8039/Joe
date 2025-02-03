@@ -2452,7 +2452,7 @@
 	--this-color: var(--theme);
 }
 
-.joe_detail__agree {
+/* .joe_detail__agree {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -2504,7 +2504,7 @@
 	-webkit-transform: scale(1);
 	transform: scale(1);
 	opacity: 1
-}
+} */
 
 .joe_detail__copyright .content {
 	padding: 15px 0;
@@ -3537,70 +3537,6 @@ html .aplayer .aplayer-lrc {
 	margin-left: 5px;
 }
 
-@-webkit-keyframes wobble-bottom {
-	16.65% {
-		-webkit-transform: skew(-12deg);
-		transform: skew(-12deg)
-	}
-
-	33.3% {
-		-webkit-transform: skew(10deg);
-		transform: skew(10deg)
-	}
-
-	49.95% {
-		-webkit-transform: skew(-6deg);
-		transform: skew(-6deg)
-	}
-
-	66.6% {
-		-webkit-transform: skew(4deg);
-		transform: skew(4deg)
-	}
-
-	83.25% {
-		-webkit-transform: skew(-2deg);
-		transform: skew(-2deg)
-	}
-
-	100% {
-		-webkit-transform: skew(0);
-		transform: skew(0)
-	}
-}
-
-@keyframes wobble-bottom {
-	16.65% {
-		-webkit-transform: skew(-12deg);
-		transform: skew(-12deg)
-	}
-
-	33.3% {
-		-webkit-transform: skew(10deg);
-		transform: skew(10deg)
-	}
-
-	49.95% {
-		-webkit-transform: skew(-6deg);
-		transform: skew(-6deg)
-	}
-
-	66.6% {
-		-webkit-transform: skew(4deg);
-		transform: skew(4deg)
-	}
-
-	83.25% {
-		-webkit-transform: skew(-2deg);
-		transform: skew(-2deg)
-	}
-
-	100% {
-		-webkit-transform: skew(0);
-		transform: skew(0)
-	}
-}
-
 @-webkit-keyframes showComment {
 	0% {
 		opacity: 0;
@@ -3651,7 +3587,7 @@ html .aplayer .aplayer-lrc {
 	}
 }
 
-@-webkit-keyframes box_shadow {
+/* @-webkit-keyframes box_shadow {
 	0% {
 		box-shadow: 0 0 0 0 #f56c6c
 	}
@@ -3661,7 +3597,7 @@ html .aplayer .aplayer-lrc {
 	0% {
 		box-shadow: 0 0 0 0 #f56c6c
 	}
-}
+} */
 
 @-webkit-keyframes progress {
 	0% {
@@ -3829,176 +3765,6 @@ html .aplayer .aplayer-lrc {
 	100% {
 		-webkit-clip-path: circle(100%);
 		clip-path: circle(100%)
-	}
-}
-
-@-webkit-keyframes progress-active {
-	0% {
-		opacity: 0.3;
-		width: 0
-	}
-
-	to {
-		opacity: 0;
-		width: 100%
-	}
-}
-
-@keyframes progress-active {
-	0% {
-		opacity: 0.3;
-		width: 0
-	}
-
-	to {
-		opacity: 0;
-		width: 100%
-	}
-}
-
-@-webkit-keyframes lamp-background {
-
-	0%,
-	24.9% {
-		background-color: #54b5db
-	}
-
-	25%,
-	49.9% {
-		background-color: #da4733
-	}
-
-	50%,
-	74.9% {
-		background-color: #3b78e7
-	}
-
-	75%,
-	to {
-		background-color: #fdba2c
-	}
-}
-
-@keyframes lamp-background {
-
-	0%,
-	24.9% {
-		background-color: #54b5db
-	}
-
-	25%,
-	49.9% {
-		background-color: #da4733
-	}
-
-	50%,
-	74.9% {
-		background-color: #3b78e7
-	}
-
-	75%,
-	to {
-		background-color: #fdba2c
-	}
-}
-
-@-webkit-keyframes lamp-front {
-	0% {
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		background-color: #da4733
-	}
-
-	24.9% {
-		-webkit-transform: scaleX(0.5);
-		transform: scaleX(0.5);
-		background-color: #da4733
-	}
-
-	25% {
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		background-color: #3b78e7
-	}
-
-	49.9% {
-		-webkit-transform: scaleX(0.5);
-		transform: scaleX(0.5);
-		background-color: #3b78e7
-	}
-
-	50% {
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		background-color: #fdba2c
-	}
-
-	74.9% {
-		-webkit-transform: scaleX(0.5);
-		transform: scaleX(0.5);
-		background-color: #fdba2c
-	}
-
-	75% {
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		background-color: #409eff
-	}
-
-	to {
-		-webkit-transform: scaleX(0.5);
-		transform: scaleX(0.5);
-		background-color: #409eff
-	}
-}
-
-@keyframes lamp-front {
-	0% {
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		background-color: #da4733
-	}
-
-	24.9% {
-		-webkit-transform: scaleX(0.5);
-		transform: scaleX(0.5);
-		background-color: #da4733
-	}
-
-	25% {
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		background-color: #3b78e7
-	}
-
-	49.9% {
-		-webkit-transform: scaleX(0.5);
-		transform: scaleX(0.5);
-		background-color: #3b78e7
-	}
-
-	50% {
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		background-color: #fdba2c
-	}
-
-	74.9% {
-		-webkit-transform: scaleX(0.5);
-		transform: scaleX(0.5);
-		background-color: #fdba2c
-	}
-
-	75% {
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		background-color: #409eff
-	}
-
-	to {
-		-webkit-transform: scaleX(0.5);
-		transform: scaleX(0.5);
-		background-color: #409eff
 	}
 }
 

@@ -111,6 +111,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			this.render();
 		}
 		render() {
+			console.log(this);
 			if (!this.options.id) return (this.outerHTML = '网易云歌单ID未填写！');
 			this.outerHTML = '<div class="_content"></div>';
 			console.log(this);

@@ -429,12 +429,14 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			// 	// span.innerHTML = htmlStr;
 			// 	// this.appendChild(span);
 			// }
-			console.log(this);
-			console.log(this.querySelectorAll('.joe_timeline__item-circle'));
-			this.querySelectorAll('.joe_timeline__item-circle').forEach((item, index) => {
-				const color = item.getAttribute('color') || '#19be6b';
-				item.style.borderColor = color;
-			});
+			setTimeout(() => {
+				console.log(this);
+				console.log(this.querySelectorAll('.joe_timeline__item-circle'));
+				this.querySelectorAll('.joe_timeline__item-circle').forEach((item, index) => {
+					const color = item.getAttribute('color') || '#19be6b';
+					item.style.borderColor = color;
+				});
+			}, 100);
 		}
 	});
 

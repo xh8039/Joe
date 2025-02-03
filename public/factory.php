@@ -155,6 +155,7 @@ class Editor
 
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css') ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css', false) ?>">
+		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.article.css') ?>">
 
 		<!-- 自定义CSS样式 -->
 		<style>

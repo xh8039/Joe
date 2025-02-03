@@ -3130,15 +3130,6 @@
 	text-align: start;
 }
 
-.joe_detail__article h1+p>br,
-.joe_detail__article h2+p>br,
-.joe_detail__article h3+p>br,
-.joe_detail__article h4+p>br,
-.joe_detail__article h5+p>br,
-.joe_detail__article h6+p>br {
-	padding-top: 0px !important;
-}
-
 .joe_detail__article h1+p>joe-message:first-child,
 .joe_detail__article h2+p>joe-message:first-child,
 .joe_detail__article h3+p>joe-message:first-child,

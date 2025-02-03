@@ -142,7 +142,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				radius: this.getAttribute('radius') || 'var(--radius-wrap)',
 				content: this.getAttribute('content') || '多彩按钮'
 			};
-			this.innerHTML = `
+			this.outerHTML = `
 					<a class="joe_abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow">
 						<span class="joe_abtn__icon"><i class="${this.options.icon} fa"></i></span>
 						<span class="joe_abtn__content">${this.options.content}</span>
@@ -228,9 +228,9 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			if (window.Joe?.CONTENT?.fields?.hide == 'pay') {
 				let price = window.Joe.CONTENT.fields.price;
 				let pay = `<i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${price} 元</i>`;
-				this.innerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 ${price > 0 ? pay : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">评论</a>'} 可见</span>`;
+				this.outerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 ${price > 0 ? pay : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">评论</a>'} 可见</span>`;
 			} else if (window.Joe?.CONTENT?.fields?.hide == 'login') {
-				this.innerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 <i class="joe_hide__button">登录</i> 可见</span>`;
+				this.outerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 <i class="joe_hide__button">登录</i> 可见</span>`;
 				this.$button = this.querySelector('.joe_hide__button');
 				const $login = document.querySelector('.header-login');
 				if (!$login) return;
@@ -238,7 +238,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					$login.click();
 				});
 			} else {
-				this.innerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 <a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">回复</a> 可见</span>`;
+				this.outerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 <a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">回复</a> 可见</span>`;
 			}
 		}
 	});
@@ -264,7 +264,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				const span = document.createElement('span');
 				span.style.display = 'block';
 				span.className = '_content';
-				span.innerHTML = htmlStr;
+				span.outerHTML = htmlStr;
 				this.appendChild(span);
 			}
 		}
@@ -294,7 +294,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				percentage: /^\d{1,3}%$/.test(this.getAttribute('percentage')) ? this.getAttribute('percentage') : '50%',
 				color: this.getAttribute('color') || '#ff6c6c'
 			};
-			this.innerHTML = `
+			this.outerHTML = `
 				<span class="joe_progress">
 					<div class="joe_progress__strip">
 						<div class="joe_progress__strip-percent" style="width: ${this.options.percentage}; background: ${this.options.color};"></div>
@@ -325,7 +325,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				span.style.display = 'block';
 				span.className = '_content';
 				span.innerHTML = htmlStr;
-				this.appendChild(span);
+				this.outerHTML = span;
+				// this.appendChild(span);
 			}
 		}
 	});
@@ -374,7 +375,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				span.className = '_content';
 				span.style.display = 'block';
 				span.innerHTML = htmlStr;
-				this.appendChild(span);
+				this.outerHTML = span;
+				// this.appendChild(span);
 			}
 		}
 	});

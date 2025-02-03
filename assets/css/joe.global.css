@@ -3134,14 +3134,18 @@
 	text-align: start;
 }
 
-.joe_detail__article h1+p>*:first-child,
+.joe_detail__article h2+p {
+	padding-top: 6px;
+}
+
+/* .joe_detail__article h1+p>*:first-child,
 .joe_detail__article h2+p>*:first-child,
 .joe_detail__article h3+p>*:first-child,
 .joe_detail__article h4+p>*:first-child,
 .joe_detail__article h5+p>*:first-child,
 .joe_detail__article h6+p>*:first-child {
 	padding-top: 6px;
-}
+} */
 
 .joe_detail__article h1+p .joe_abtn,
 .joe_detail__article h2+p .joe_abtn,

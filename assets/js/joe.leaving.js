@@ -54,9 +54,11 @@ Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoad
 	{
 		$('.joe_detail__leaving-list>li>.user>.nickname>a').attr('target', '_blank');
 	}
+
+	/** 锚点丝滑滚动 */
+	{
+		setTimeout(window.Joe.anchor_scroll, 1000);
+	}
 };
 
 document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.leaving, { once: true });
-
-/* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
-window.addEventListener('load', window.Joe.anchor_scroll);

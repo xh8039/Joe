@@ -287,6 +287,11 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 		}
 	}
 
+	/** 锚点丝滑滚动 */
+	{
+		setTimeout(window.Joe.anchor_scroll, 1000);
+	}
+
 	/* 分享 */
 	{
 		// if ($('.joe_detail__operate-share').length) {
@@ -299,7 +304,4 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 	}
 };
 
-document.addEventListener(window.Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.single, { once: true });
-
-/* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
-window.addEventListener('load', window.Joe.anchor_scroll);
+document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.single, { once: true });

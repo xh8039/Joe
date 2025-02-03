@@ -3130,6 +3130,12 @@
 	text-align: justify;
 }
 
+.joe_detail__article p:has(> code) {
+	margin-bottom: 16px;
+	line-height: 26px;
+	text-align: start;
+}
+
 .joe_detail__article h1+p>*:first-child,
 .joe_detail__article h2+p>*:first-child,
 .joe_detail__article h3+p>*:first-child,

@@ -378,10 +378,24 @@ class JoeEditor extends JoeAction {
 							break;
 						case 'preview':
 							el.toggleClass('active');
-							if (el.hasClass('active')) window.JoeConfig.canPreview = true;
-							else window.JoeConfig.canPreview = false;
-							createPreviewHtml(this.cm.state.doc.toString());
-							window.JoeConfig.canPreview && super._updateScroller(document.querySelector('.cm-scroller'), document.querySelector('.cm-preview'));
+							if (el.hasClass('active')) {
+								window.JoeConfig.canPreview = true;
+								JoeAction.loadFiles([
+									JoeConfig.CDN_URL + 'aplayer/1.10.1/APlayer.min.js',
+									JoeConfig.CDN_URL + 'color-thief/2.3.2/color-thief.min.js',
+									JoeConfig.THEME_URL + 'assets/plugin/yihang/MusicPlayer.js',
+									JoeConfig.CDN_URL + 'prism/1.9.0/prism.min.js',
+									JoeConfig.CDN_URL + 'prism/1.9.0/plugins/autoloader/prism-autoloader.min.js',
+									JoeConfig.CDN_URL + 'prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js',
+								]).then(() => {
+									Prism.plugins.autoloader.languages_path = JoeConfig.THEME_URL + 'assets/plugin/prism/1.9.0/components/';
+									createPreviewHtml(this.cm.state.doc.toString());
+									super._updateScroller(document.querySelector('.cm-scroller'), document.querySelector('.cm-preview'));
+								});
+							} else {
+								window.JoeConfig.canPreview = false;
+								createPreviewHtml(this.cm.state.doc.toString());
+							}
 							break;
 					}
 				});

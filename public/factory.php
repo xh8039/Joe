@@ -173,6 +173,7 @@ class Editor
 				playerAPI: `<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>`,
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
+				THEME_URL: `<?= joe\theme_url('', false) ?>`,
 				CDN_URL: `<?= joe\cdn() ?>`,
 				JOwOAssetsUrl: `<?= empty(Helper::options()->JOwOAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				JStaticAssetsUrl: `<?= empty(Helper::options()->JStaticAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
@@ -181,27 +182,27 @@ class Editor
 			window.Joe = window.Joe || {};
 			window.Joe.BASE_API = `<?= joe\permalink(joe\index('joe/api')) ?>`;
 		</script>
-		<script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script>
-		<script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script>
-		<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js', false); ?>"></script>
+		<!-- <script src="<?= joe\cdn('aplayer/1.10.1/APlayer.min.js') ?>"></script> -->
+		<!-- <script src="<?= joe\cdn('color-thief/2.3.2/color-thief.min.js') ?>"></script> -->
+		<!-- <script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js', false); ?>"></script> -->
 
 		<!-- Prism.js -->
-		<script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script>
-		<script src="<?= joe\cdn('prism/1.9.0/plugins/autoloader/prism-autoloader.min.js') ?>"></script>
-		<script>
+		<!-- <script src="<?= joe\cdn('prism/1.9.0/prism.min.js') ?>"></script> -->
+		<!-- <script src="<?= joe\cdn('prism/1.9.0/plugins/autoloader/prism-autoloader.min.js') ?>"></script> -->
+		<!-- <script>
 			Prism.plugins.autoloader.languages_path = '<?php Helper::options()->themeUrl('assets/plugin/prism/1.9.0/components/') ?>';
-		</script>
-		<script src="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js') ?>"></script>
+		</script> -->
+		<!-- <script src="<?= joe\cdn('prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js') ?>"></script> -->
 
 		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>"></script>
 		<script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/parse/parse.min.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/dist/CodeMirror.js', false) ?>"></script>
+		<script src="<?= joe\theme_url('assets/js/joe.function.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/tools.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/actions.js') ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/create.js', false) ?>"></script>
 		<script src="<?= joe\theme_url('assets/typecho/write/js/index.js') ?>"></script>
-		<script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>"></script>
 		<script src="<?= joe\theme_url('assets/js/joe.short.js') ?>"></script>
 	<?php
 	}

@@ -117,7 +117,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				console.log(this);
-				console.log({
+				console.log(new MusicPlayer({
 					container: this,
 					lrcType: 3,
 					theme: this.options.color,
@@ -128,20 +128,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					order: this.options.order,
 					preload: 'auto',
 					audio
-				});
-				return;
-				new MusicPlayer({
-					container: this,
-					lrcType: 3,
-					theme: this.options.color,
-					autoplay: this.options.autoplay,
-					autotheme: this.options.autotheme,
-					storage: this.options.id,
-					loop: this.options.loop,
-					order: this.options.order,
-					preload: 'auto',
-					audio
-				});
+				}));
 			});
 		}
 	});

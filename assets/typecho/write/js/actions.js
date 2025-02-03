@@ -1144,7 +1144,9 @@ class FileLoader {
 			const element = fileUrl.endsWith(".js") ? this.getScriptElm(fileUrl) : this.getLinkElm(fileUrl); // 根据扩展名确定元素类型
 
 			element.addEventListener("load", () => {
-				const filename = element.src.split("/").pop() || element.href.split("/").pop(); // 从 src 或 href 中提取文件名
+				// 从 src 或 href 中提取文件名
+				let url = element.src || element.href;
+				const filename = url.split("/").pop();
 				FileLoader.scriptsLoaded.push(filename);
 				console.log(`文件已加载: ${filename}`);
 				resolve(element); // 使用已加载的元素解析 Promise

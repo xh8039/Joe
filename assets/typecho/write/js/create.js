@@ -70,8 +70,8 @@ function createPreviewHtml(str) {
 		str = str.replace(/{cloud([^}]*)\/}/g, '<joe-cloud $1></joe-cloud>');
 	}
 	if (str.indexOf('{hide') !== -1) {
-		console.log(str);
-		str = str.replace(/{hide[^}]*}([\s\S]*?){\/hide}/g, '<joe-hide></joe-hide>');
+		str = str.replace(/{hide[^}]*}\<br\>([\s\S]*?)\<br\>{\/hide}/g, '<joe-hide style="display:block"></joe-hide>');
+		str = str.replace(/{hide[^}]*}([\s\S]*?){\/hide}/g, '<joe-hide style="display:inline"></joe-hide>');
 	}
 	if (str.indexOf('{card-default') !== -1) {
 		str = str.replace(/{card-default([^}]*)}([\s\S]*?){\/card-default}/g, '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>');

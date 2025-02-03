@@ -3,9 +3,6 @@
 @media (max-width: 1760px) {}
 
 @media (max-width: 1400px) {
-	html .joe_vplayer {
-		height: 450px
-	}
 
 	html .joe_wallpaper__list {
 		grid-template-columns: repeat(3, 1fr)
@@ -55,9 +52,6 @@
 }
 
 @media (max-width: 1200px) {
-	html .joe_vplayer {
-		height: 430px
-	}
 
 	html .joe_detail__friends {
 		grid-template-columns: repeat(2, 1fr)
@@ -188,10 +182,6 @@
 		visibility: hidden
 	}
 
-	html .joe_vplayer {
-		height: 400px
-	}
-
 	html .joe_aside {
 		display: none
 	}
@@ -272,9 +262,6 @@
 }
 
 @media (max-width: 768px) {
-	html .joe_vplayer {
-		height: 225px
-	}
 
 	html .joe_header.active,
 	html .joe_header:target {

@@ -37,7 +37,7 @@ class JoeEditor extends JoeAction {
 						<div class="cm-tools"></div>
 						<div class="cm-mainer">
 								<div class="cm-resize"></div>
-								<div class="cm-preview"><div class="cm-preview-content"></div></div>
+								<div class="cm-preview"><div class="cm-preview-content joe_detail__article"></div></div>
 			<div class="cm-autosave"></div>
 						</div>
 						<div class="cm-progress-left"></div>

@@ -371,12 +371,13 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			if (getChildren(this, '_content')) {
 				getChildren(this, '_content').innerHTML = htmlStr;
 			} else {
-				const span = document.createElement('span');
-				span.className = '_content';
-				span.style.display = 'block';
-				span.innerHTML = htmlStr;
-				this.appendChild(span);
-				_temp.remove();
+				const div = document.createElement('div');
+				div.className = '_content';
+				div.style.display = 'block';
+				div.innerHTML = htmlStr;
+				this.outerHTML = div;
+				// this.appendChild(div);
+				// _temp.remove();
 			}
 		}
 	});

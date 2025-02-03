@@ -147,7 +147,7 @@ window.Joe.initComment = (options = {}) => {
 						$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
 						$(".joe_comment__respond-form .body textarea[name='text']").focus();
 						if ($('joe-hide>.joe_hide>.joe_hide__button').length) {
-							window.Joe.pjax(window.location.href, ['joe-hide']);
+							window.Joe.pjax(window.location.href, ['.joe_detail__article']);
 						}
 					},
 					error(xhr, status, error) {

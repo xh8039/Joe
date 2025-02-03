@@ -18,9 +18,9 @@ function _parseContent($post, $content = null)
 	if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
 		$content = strtr($content, array(
 			// 任务已完成
-			"{x}" => '<input type="checkbox" class="joe_checkbox" checked disabled></input>',
+			"{x}" => '<input type="checkbox" class="joe_checkbox" checked></input>',
 			// 任务未完成
-			"{ }" => '<input type="checkbox" class="joe_checkbox" disabled></input>'
+			"{ }" => '<input type="checkbox" class="joe_checkbox"></input>'
 		));
 	}
 

@@ -132,7 +132,9 @@
 	text-align: justify;
 }
 
-.joe_detail__article p:has(> code) {
+.joe_detail__article p:has(> code),
+.joe_detail__article p:has(> .joe_anote),
+.joe_detail__article p:has(> .joe_abtn) {
 	text-align: start;
 }
 
@@ -434,6 +436,7 @@ html .line-numbers .line-numbers-rows {
 	height: 35px;
 	line-height: 35px;
 	padding: 0 15px;
+	margin-bottom: 5px;
 	-webkit-transform-origin: 100% 0;
 	transform-origin: 100% 0;
 	-webkit-transform: translateZ(0);
@@ -481,6 +484,7 @@ html .line-numbers .line-numbers-rows {
 	color: #fff;
 	height: 35px;
 	line-height: 35px;
+	margin-bottom: 5px;
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 	transition: -webkit-transform 0.35s;

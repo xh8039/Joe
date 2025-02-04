@@ -169,8 +169,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			super();
 			this.startColor = this.getAttribute('startColor') || '#ff6c6c';
 			this.endColor = this.getAttribute('endColor') || '#1989fa';
-			this.className = 'joe_dotted';
-			this.style.backgroundImage = `repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)`;
+			this.style.padding = '5px 0px';
+			this.innerHTML = `<div class="joe_dotted" style="backgroundImage:repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></div>`;
 		}
 	});
 

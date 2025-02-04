@@ -12,7 +12,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		constructor() {
 			super();
 			let title = this.getAttribute('title') || '默认标题';
-			this.outerHTML = `<div class="joe_mtitle"><span class="joe_mtitle__text">${title}</span></div>`;
+			this.className = 'joe_mtitle';
+			this.innerHTML = `<span class="joe_mtitle__text">${title}</span>`;
 		}
 	});
 
@@ -36,7 +37,6 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 		render() {
 			if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
 			this.style.display = 'block';
-			// this.innerHTML = '<span style="display: block" class="_content"></span>';
 			new MusicPlayer({
 				container: this,
 				theme: this.options.theme,
@@ -69,12 +69,11 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				autotheme: this.getAttribute('autotheme'),
 				loop: this.getAttribute('loop')
 			};
-			this.style.display = 'block';
 			this.render();
 		}
 		render() {
-			if (!this.options.id) return (this.outerHTML = '网易云歌曲ID未填写！');
-			// this.innerHTML = '<span style="display: block" class="_content"></span>';
+			if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
+			this.style.display = 'block';
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				new MusicPlayer({
@@ -103,12 +102,11 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				loop: this.getAttribute('loop'),
 				order: this.getAttribute('order')
 			};
-			this.style.display = 'block';
 			this.render();
 		}
 		render() {
-			if (!this.options.id) return (this.outerHTML = '网易云歌单ID未填写！');
-			// this.outerHTML = '<div class="_content"></div>';
+			if (!this.options.id) return (this.innerHTML = '网易云歌单ID未填写！');
+			this.style.display = 'block';
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				new MusicPlayer({
@@ -139,11 +137,11 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				content: this.getAttribute('content') || '多彩按钮'
 			};
 			this.outerHTML = `
-					<a class="joe_abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow">
-						<span class="joe_abtn__icon"><i class="${this.options.icon} fa"></i></span>
-						<span class="joe_abtn__content">${this.options.content}</span>
-					</a>
-				`;
+				<a class="joe_abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow">
+					<span class="joe_abtn__icon"><i class="${this.options.icon} fa"></i></span>
+					<span class="joe_abtn__content">${this.options.content}</span>
+				</a>
+			`;
 		}
 	});
 
@@ -158,11 +156,11 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				content: this.getAttribute('content') || '标签按钮'
 			};
 			this.outerHTML = `
-					<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow">
-						<span class="joe_anote__icon"><i class="fa ${this.options.icon}"></i></span>
-						<span class="joe_anote__content">${this.options.content}</span>
-					</a>
-				`;
+				<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow">
+					<span class="joe_anote__icon"><i class="fa ${this.options.icon}"></i></span>
+					<span class="joe_anote__content">${this.options.content}</span>
+				</a>
+			`;
 		}
 	});
 
@@ -171,10 +169,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			super();
 			this.startColor = this.getAttribute('startColor') || '#ff6c6c';
 			this.endColor = this.getAttribute('endColor') || '#1989fa';
-			// this.style.display = 'block';
-			this.outerHTML = `
-					<div class="joe_dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></div>
-				`;
+			this.className = 'joe_dotted';
+			this.style.backgroundImage = `repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)`;
 		}
 	});
 
@@ -219,20 +215,15 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			this.render();
 		}
 		render() {
+			this.className = `joe_hide joe_hide_${this.style.display}`;
 			if (window.Joe?.CONTENT?.fields?.hide == 'pay') {
 				let price = window.Joe.CONTENT.fields.price;
 				let pay = `<i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${price} 元</i>`;
-				this.outerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 ${price > 0 ? pay : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">评论</a>'} 可见</span>`;
+				this.innerHTML = `此处内容作者设置了 ${price > 0 ? pay : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">评论</a>'} 可见`;
 			} else if (window.Joe?.CONTENT?.fields?.hide == 'login') {
-				this.outerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 <i class="joe_hide__button">登录</i> 可见</span>`;
-				this.$button = this.querySelector('.joe_hide__button');
-				const $login = document.querySelector('.header-login');
-				if (!$login) return;
-				this.$button.addEventListener('click', () => {
-					$login.click();
-				});
+				this.innerHTML = `此处内容作者设置了 <a href="${document.querySelector('.header-login').href}" class="joe_hide__button">登录</a> 可见`;
 			} else {
-				this.outerHTML = `<span class="joe_hide joe_hide_${this.style.display}">此处内容作者设置了 <a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">回复</a> 可见</span>`;
+				this.innerHTML = `此处内容作者设置了 <a href="javascript:window.Joe.scrollTo('.joe_comment');" class="joe_hide__button">回复</a> 可见`;
 			}
 		}
 	});
@@ -246,17 +237,9 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				label: this.getAttribute('label') || '卡片标题',
 				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '卡片内容'
 			};
-			const htmlStr = `
-				<div class="joe_card__default" style="width: ${this.options.width}">
-					<div class="joe_card__default-title">${this.options.label}</div>
-					<div class="joe_card__default-content">${this.options.content}</div>
-				</div>
-			`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				this.outerHTML = htmlStr;
-			}
+			this.className = 'joe_card__default';
+			this.style.width = this.options.width;
+			this.innerHTML = `<div class="joe_card__default-title">${this.options.label}</div><div class="joe_card__default-content">${this.options.content}</div>`;
 		}
 	});
 
@@ -267,31 +250,27 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				type: /^success$|^info$|^warning$|^error$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'info',
 				content: this.getAttribute('content') || '消息内容'
 			};
-			this.outerHTML = `
-					<div class="joe_message ${this.options.type}">
-						<span class="joe_message__icon"></span>
-						<span class="joe_message__content">${this.options.content}</span>
-					</div>
-				`;
+			this.className = 'joe_message ' + this.options.type;
+			this.innerHTML = `
+			<span class="joe_message__icon"></span>
+			<span class="joe_message__content">${this.options.content}</span>
+			`;
 		}
 	});
 
 	if (!customElements.get('joe-progress')) customElements.define('joe-progress', class JoeProgress extends HTMLElement {
 		constructor() {
 			super();
-			this.style.display = 'block';
 			this.options = {
 				percentage: /^\d{1,3}%$/.test(this.getAttribute('percentage')) ? this.getAttribute('percentage') : '50%',
 				color: this.getAttribute('color') || '#ff6c6c'
 			};
-			this.outerHTML = `
-				<span class="joe_progress">
-					<div class="joe_progress__strip">
-						<div class="joe_progress__strip-percent" style="width: ${this.options.percentage}; background: ${this.options.color};"></div>
-					</div>
-					<div class="joe_progress__percentage">${this.options.percentage}</div>
-				</span>
-			`;
+			this.className = 'joe_progress';
+			this.innerHTML = `
+			<div class="joe_progress__strip">
+				<div class="joe_progress__strip-percent" style="width: ${this.options.percentage}; background: ${this.options.color};"></div>
+			</div>
+			<div class="joe_progress__percentage">${this.options.percentage}</div>`;
 		}
 	});
 
@@ -303,22 +282,9 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				color: this.getAttribute('color') || '#f0ad4e',
 				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '标注内容'
 			};
-			const htmlStr = `
-					<div class="joe_callout" style="border-left-color: ${this.options.color};">
-						${this.options.content}
-					</div>
-				`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				this.outerHTML = htmlStr;
-				// const span = document.createElement('span');
-				// span.style.display = 'block';
-				// span.className = '_content';
-				// span.innerHTML = htmlStr;
-				// this.appendChild(span);
-				// this.remove();
-			}
+			this.className = 'joe_callout';
+			this.style.borderLeftColor = this.options.color;
+			this.innerHTML = this.options.content;
 		}
 	});
 
@@ -330,22 +296,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				title: this.getAttribute('title') || '卡片描述',
 				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '卡片内容'
 			};
-			const htmlStr = `
-						<div class="joe_card__describe-title">${this.options.title}</div>
-						<div class="joe_card__describe-content">${this.options.content}</div>
-				`;
 			this.className = 'joe_card__describe';
-			this.innerHTML = htmlStr;
-			// if (getChildren(this, '_content')) {
-			// 	getChildren(this, '_content').innerHTML = htmlStr;
-			// } else {
-			// 	const span = document.createElement('span');
-			// 	span.style.display = 'block';
-			// 	span.style.paddingTop = '8px';
-			// 	span.className = '_content';
-			// 	span.innerHTML = htmlStr;
-			// 	this.appendChild(span);
-			// }
+			this.innerHTML = `<div class="joe_card__describe-title">${this.options.title}</div><div class="joe_card__describe-content">${this.options.content}</div>`;
 		}
 	});
 

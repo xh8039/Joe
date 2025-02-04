@@ -567,6 +567,7 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_card__default {
+	display: block;
 	margin: 0 auto;
 	box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 	border-radius: var(--radius-inner);
@@ -737,6 +738,7 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_callout {
+	display: block;
 	padding: 12px;
 	border: 1px solid var(--classB);
 	border-left-width: 4px;
@@ -1129,7 +1131,8 @@ html .line-numbers .line-numbers-rows {
 	border-radius: var(--radius-inner);
 	line-height: 26px;
 	background: transparent;
-	color: #606266
+	color: #606266;
+	margin-bottom: 10px;
 }
 
 .joe_alert.info {

@@ -292,7 +292,7 @@ class JoeAction {
 	}
 	handleTitle(cm, tool) {
 		const item = $(`
-			<div class="cm-tools-item" data-toggle="tooltip" data-placement="bottom" title="${tool.title}">
+			<div class="cm-tools-item" data-toggle="tooltip" data-placement="auto top" title="${tool.title}">
 				${tool.innerHTML}
 				<div class="cm-tools__dropdown">
 					<div class="cm-tools__dropdown-item" data-text="# "> H1 </div>

@@ -196,7 +196,7 @@ class JoeEditor extends JoeAction {
 			if (item.type === 'title') {
 				super.handleTitle(this.cm, item);
 			} else {
-				const el = $(`<div class="cm-tools-item" data-toggle="tooltip" data-placement="bottom" title="${item.title}">${item.innerHTML}</div>`);
+				const el = $(`<div class="cm-tools-item" data-toggle="tooltip" data-placement="auto top" title="${item.title}">${item.innerHTML}</div>`);
 				el.on('click', e => {
 					e.preventDefault();
 					switch (item.type) {

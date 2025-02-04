@@ -166,8 +166,8 @@ window.Joe.addMeta = (name, content) => {
 	}
 }
 
-window.Joe.tooltip = (selectors = '') => {
-	if (Joe.IS_MOBILE) {
+window.Joe.tooltip = (selectors = '', options = {}) => {
+	if (Joe.IS_MOBILE && options instanceof Object) {
 		// 遍历所有的元素
 		$(selectors + ' [data-toggle="tooltip"]').each(function () {
 			// 获取当前元素的data-original-title属性
@@ -179,10 +179,9 @@ window.Joe.tooltip = (selectors = '') => {
 			});
 		});
 	} else {
-		$(selectors + ' [data-toggle="tooltip"]').tooltip({
-			container: "body"
-		});
-		$(selectors + ' [data-toggle="tooltip"]').on('click', function (event) {
+		if (options instanceof Object) options.container = options.container ? options.container : 'body';
+		$(selectors + ' [data-toggle="tooltip"]').tooltip(options);
+		if (options instanceof Object) $(selectors + ' [data-toggle="tooltip"]').on('click', function (event) {
 			$(this).tooltip('hide');
 		});
 	}

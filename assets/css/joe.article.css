@@ -1124,6 +1124,7 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_alert {
+	display: block;
 	padding: 12px;
 	border-radius: var(--radius-inner);
 	line-height: 26px;

@@ -11,7 +11,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 	if (!customElements.get('joe-mtitle')) customElements.define('joe-mtitle', class JoeMtitle extends HTMLElement {
 		constructor() {
 			super();
-			this.innerHTML = `
+			this.outerHTML = `
 				<span class="joe_mtitle">
 					<span class="joe_mtitle__text">
 						${this.getAttribute('title') || '默认标题'}

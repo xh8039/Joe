@@ -672,10 +672,11 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				showText: this.getAttribute('showText') || '点击复制',
 				copyText: this.getAttribute('copyText') || '默认文本'
 			};
-			this.addEventListener('click', () => {
+			this.innerHTML = `<span class="joe_copy" style="cursor: pointer; user-select: none;">${this.options.showText}</span>`;
+			const button = getChildren(this, 'joe_copy');
+			button.addEventListener('click', () => {
 				Joe.clipboard(this.options.copyText);
 			});
-			this.outerHTML = `<span class="joe_copy" style="cursor: pointer; user-select: none;">${this.options.showText}</span>`;
 		}
 	});
 

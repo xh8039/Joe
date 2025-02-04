@@ -11,13 +11,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 	if (!customElements.get('joe-mtitle')) customElements.define('joe-mtitle', class JoeMtitle extends HTMLElement {
 		constructor() {
 			super();
-			this.outerHTML = `
-				<span class="joe_mtitle">
-					<span class="joe_mtitle__text">
-						${this.getAttribute('title') || '默认标题'}
-					</span>
-				</span>
-			`;
+			let title = this.getAttribute('title') || '默认标题';
+			this.outerHTML = `<div class="joe_mtitle"><span class="joe_mtitle__text">${title}</span></div>`;
 		}
 	});
 
@@ -617,11 +612,12 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			if (getChildren(this, '_content')) {
 				getChildren(this, '_content').innerHTML = htmlStr;
 			} else {
-				const span = document.createElement('span');
-				span.className = '_content';
-				span.style.display = 'block';
-				span.innerHTML = htmlStr;
-				this.appendChild(span);
+				this.innerHTML = htmlStr;
+				// const span = document.createElement('span');
+				// span.className = '_content';
+				// span.style.display = 'block';
+				// span.innerHTML = htmlStr;
+				// this.appendChild(span);
 			}
 			this.querySelectorAll('.joe_tabs__head-item').forEach((item, index) => {
 				const label = item.getAttribute('label');

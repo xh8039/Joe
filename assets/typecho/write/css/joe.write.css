@@ -530,7 +530,7 @@ body.fullscreen {
 }
 
 .cm-modal__wrapper-bodyer .tabbar-item.active {
-	color: var(--theme)
+	color: #409eff
 }
 
 .cm-modal__wrapper-bodyer .lists {
@@ -616,7 +616,7 @@ body.fullscreen {
 
 .cm-modal__wrapper-footer--confirm {
 	color: #fff;
-	background: var(--theme)
+	background: #409eff
 }
 
 .cm-modal.active {

@@ -199,19 +199,17 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				gitee: 'Gitee仓库',
 				lanzou: '蓝奏云网盘',
 			};
-			this.style.display = 'block';
+			this.className = 'joe_cloud';
 			this.innerHTML = `
-					<span class="joe_cloud">
-						<div class="joe_cloud__logo _${this.options.type}"></div>
-						<div class="joe_cloud__describe">
-							<div class="joe_cloud__describe-title">${this.options.title}</div>
-							<div class="joe_cloud__describe-type">来源：${type[this.options.type] || '默认网盘'}${this.options.password ? ' | 提取码：' + this.options.password : ''}</div>
-						</div>
-						<a class="joe_cloud__btn" href="${this.options.url}" target="_blank" rel="noopener noreferrer nofollow">
-							<i class="fa fa-download"></i>
-						</a>
-					</span>
-				`;
+				<div class="joe_cloud__logo _${this.options.type}"></div>
+				<div class="joe_cloud__describe">
+					<div class="joe_cloud__describe-title">${this.options.title}</div>
+					<div class="joe_cloud__describe-type">来源：${type[this.options.type] || '默认网盘'}${this.options.password ? ' | 提取码：' + this.options.password : ''}</div>
+				</div>
+				<a class="joe_cloud__btn" href="${this.options.url}" target="_blank" rel="noopener noreferrer nofollow">
+					<i class="fa fa-download"></i>
+				</a>
+			`;
 		}
 	});
 

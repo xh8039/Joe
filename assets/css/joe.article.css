@@ -774,7 +774,7 @@ html .line-numbers .line-numbers-rows {
 
 .joe_timeline {
 	display: block;
-	line-height: 26px
+	padding-top: 5px;
 }
 
 .joe_timeline__item {
@@ -792,6 +792,7 @@ html .line-numbers .line-numbers-rows {
 
 .joe_timeline__item-circle {
 	position: absolute;
+	top: -0.5px;
 	width: 13px;
 	height: 13px;
 	background-color: var(--background);

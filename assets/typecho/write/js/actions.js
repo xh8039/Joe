@@ -696,7 +696,7 @@ class JoeAction {
 				</div>
 				<div class="fitem">
 					<label>按钮颜色</label>
-					<input autocomplete="off" value="#ff6800" name="color" type="color"/>
+					<input autocomplete="off" name="color" type="color" value="#409eff"/>
 				</div>
 				<div class="fitem">
 					<label>跳转链接</label>
@@ -713,7 +713,7 @@ class JoeAction {
 				</div>
 				<div class="fitem">
 					<label>按钮圆角</label>
-					<input autocomplete="off" name="radius" placeholder="请输入按钮圆角，例：17.5px"/>
+					<input autocomplete="off" name="radius" placeholder="请输入按钮圆角，例：17.5px" value="3.5px"/>
 				</div>
 				<div class="fitem">
 					<label>按钮内容</label>

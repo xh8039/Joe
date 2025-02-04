@@ -602,6 +602,8 @@ html .line-numbers .line-numbers-rows {
 .joe_message {
 	display: block;
 	position: relative;
+	padding-top: 8px;
+	margin-bottom: 8px;
 }
 
 .joe_message:hover .joe_message__icon {
@@ -611,8 +613,8 @@ html .line-numbers .line-numbers-rows {
 
 .joe_message__icon {
 	position: absolute;
-	top: -9px;
-	left: -11px;
+	top: 0;
+	left: 0;
 	width: 18px;
 	height: 18px;
 	border-radius: 50%;
@@ -693,8 +695,8 @@ html .line-numbers .line-numbers-rows {
 	display: block;
 	border-left-width: 4px;
 	border-left-style: solid;
-	margin-top: 15px;
-	margin-left: 5px;
+	/* margin-top: 15px; */
+	margin-left: 8px;
 	padding: 8px 15px;
 	border-radius: 0 4px 4px 0;
 	line-height: 26px;

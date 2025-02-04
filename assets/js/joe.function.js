@@ -76,8 +76,10 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 	}(options);
 }
 
-window.Joe.clipboard = (content, success, error = () => { autolog.log('复制失败！', 'error') }) => {
+window.Joe.clipboard = (content, success = undefined, error = undefined) => {
+	if (success == undefined) success = () => { window.autolog ? autolog.log('复制成功', 'success') : alert('复制成功') };
 	if (location.protocol == 'https:' && 'clipboard' in navigator) {
+		if (error == undefined) error = () => { window.autolog ? autolog.log('复制失败！', 'error') : alert('复制失败！') };
 		navigator.clipboard.writeText(content).then(success, error);
 	} else {
 		let aux = document.createElement("input");

@@ -155,12 +155,7 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				type: /^secondary$|^success$|^warning$|^error$|^info$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'secondary',
 				content: this.getAttribute('content') || '标签按钮'
 			};
-			this.outerHTML = `
-				<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow">
-					<span class="joe_anote__icon"><i class="fa ${this.options.icon}"></i></span>
-					<span class="joe_anote__content">${this.options.content}</span>
-				</a>
-			`;
+			this.outerHTML = `<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="${this.options.target}" rel="noopener noreferrer nofollow"><span class="joe_anote__icon"><i class="fa ${this.options.icon}"></i></span><span class="joe_anote__content">${this.options.content}</span></a>`;
 		}
 	});
 

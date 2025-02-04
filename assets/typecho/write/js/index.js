@@ -495,7 +495,7 @@ class JoeEditor extends JoeAction {
 			var localStorageformData = localStorage.getItem('form-data');
 			if (localStorageformData) {
 				const data = JSON.parse(localStorageformData);
-				let formSlug = document.getElementById('slug').value;
+				let formSlug = document.getElementById('slug')?.value;
 				if (data.slug != formSlug) return;
 				if (isEmptyString(data.text) && isEmptyString(data.title)) return;
 				if (!window.confirm('检测到您于 ' + data.time + ' 有自动存储的未发布文章 [' + data.title + '] 是否为您恢复？')) return;

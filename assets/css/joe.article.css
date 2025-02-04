@@ -132,9 +132,9 @@
 	text-align: justify;
 }
 
-.joe_detail__article p:has(> code),
-.joe_detail__article p:has(> .joe_anote),
-.joe_detail__article p:has(> .joe_abtn) {
+html .joe_detail__article p:has(> code),
+html .joe_detail__article p:has(> .joe_anote),
+html .joe_detail__article p:has(> .joe_abtn) {
 	text-align: start;
 }
 

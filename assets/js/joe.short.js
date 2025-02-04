@@ -604,14 +604,13 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				contents += `<div style="display: none" class="joe_tabs__body-item" ${$1}>${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
 			});
 			let htmlStr = `
-				<div class="joe_tabs">
 					<div class="joe_tabs__head">${navs}</div>
 					<div class="joe_tabs__body">${contents}</div>
-				</div>
 			`;
 			if (getChildren(this, '_content')) {
 				getChildren(this, '_content').innerHTML = htmlStr;
 			} else {
+				this.className = 'joe_tabs';
 				this.innerHTML = htmlStr;
 				// const span = document.createElement('span');
 				// span.className = '_content';

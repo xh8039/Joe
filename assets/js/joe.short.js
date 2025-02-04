@@ -443,16 +443,18 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					</div>
 				`;
 			});
-			let htmlStr = `<div class="joe_collapse">${content}</div>`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				const span = document.createElement('span');
-				span.className = '_content';
-				span.style.display = 'block';
-				span.innerHTML = htmlStr;
-				this.appendChild(span);
-			}
+			// let htmlStr = `<div class="joe_collapse">${content}</div>`;
+			this.className = 'joe_collapse';
+			this.innerHTML = content;
+			// if (getChildren(this, '_content')) {
+			// 	getChildren(this, '_content').innerHTML = htmlStr;
+			// } else {
+			// 	const span = document.createElement('span');
+			// 	span.className = '_content';
+			// 	span.style.display = 'block';
+			// 	span.innerHTML = htmlStr;
+			// 	this.appendChild(span);
+			// }
 			this.querySelectorAll('.joe_collapse__item').forEach(item => {
 				const label = item.getAttribute('label') || '折叠标题';
 				const head = getChildren(item, 'joe_collapse__item-head');

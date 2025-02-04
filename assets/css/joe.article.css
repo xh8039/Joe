@@ -888,14 +888,14 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_card__describe {
+	display: block;
 	position: relative;
-	border: 1px dashed var(--classA);
-	line-height: 26px
+	padding-top: 10px;
 }
 
 .joe_card__describe-title {
 	position: absolute;
-	top: 0;
+	top: 10px;
 	left: 10px;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
@@ -911,7 +911,9 @@ html .line-numbers .line-numbers-rows {
 
 .joe_card__describe-content {
 	color: var(--routine);
-	padding: 18px 15px 15px
+	padding: 18px 15px 15px;
+	border: 1px dashed var(--classA);
+	line-height: 26px;
 }
 
 .joe_card__describe-content *:last-child {
@@ -954,6 +956,7 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_collapse {
+	display: block;
 	line-height: 26px
 }
 

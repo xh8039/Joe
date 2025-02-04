@@ -611,12 +611,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				getChildren(this, '_content').innerHTML = htmlStr;
 			} else {
 				this.className = 'joe_tabs';
+				this.style.display = 'block';
 				this.innerHTML = htmlStr;
-				// const span = document.createElement('span');
-				// span.className = '_content';
-				// span.style.display = 'block';
-				// span.innerHTML = htmlStr;
-				// this.appendChild(span);
 			}
 			this.querySelectorAll('.joe_tabs__head-item').forEach((item, index) => {
 				const label = item.getAttribute('label');

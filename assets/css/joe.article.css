@@ -475,12 +475,15 @@ html .line-numbers .line-numbers-rows {
 	color: #fff;
 	height: 35px;
 	line-height: 35px;
-	margin-bottom: 5px;
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 	transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
 	transition: transform 0.35s, -webkit-transform 0.35s
+}
+
+.joe_anote+.joe_anote {
+	margin-bottom: 5px;
 }
 
 .joe_anote:hover {

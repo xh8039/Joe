@@ -638,16 +638,20 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			_innerHTML.replace(/{gird-item}([\s\S]*?){\/gird-item}/g, function ($0, $1) {
 				contents += `<div class="joe_gird__item">${$1.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
 			});
-			let htmlStr = `<div class="joe_gird" style="gap: ${this.options.gap}px; grid-template-columns: repeat(${this.options.column}, 1fr);">${contents}</div>`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				const span = document.createElement('span');
-				span.className = '_content';
-				span.style.display = 'block';
-				span.innerHTML = htmlStr;
-				this.appendChild(span);
-			}
+			// let htmlStr = `<div class="joe_gird" style="gap: ${this.options.gap}px; grid-template-columns: repeat(${this.options.column}, 1fr);">${contents}</div>`;
+			this.className = 'joe_gird';
+			this.style.gap = this.options.gap + 'px';
+			this.style.gridTemplateColumns = `repeat(${this.options.column}, 1fr)`;
+			this.innerHTML = contents;
+			// if (getChildren(this, '_content')) {
+			// 	getChildren(this, '_content').innerHTML = htmlStr;
+			// } else {
+			// 	const span = document.createElement('span');
+			// 	span.className = '_content';
+			// 	span.style.display = 'block';
+			// 	span.innerHTML = htmlStr;
+			// 	this.appendChild(span);
+			// }
 		}
 	});
 

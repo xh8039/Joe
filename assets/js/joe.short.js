@@ -371,20 +371,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				type: /^success$|^info$|^warning$|^error$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'info',
 				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '警告提示'
 			};
-			const htmlStr = `
-					<div class="joe_alert ${this.options.type}">
-						${this.options.content}
-					</div>
-				`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				const span = document.createElement('span');
-				span.style.display = 'block';
-				span.className = '_content';
-				span.innerHTML = htmlStr;
-				this.appendChild(span);
-			}
+			this.className = 'joe_alert ' + this.options.type;
+			this.innerHTML = this.options.content;
 		}
 	});
 
@@ -403,22 +391,12 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					</div>
 				`;
 			});
-			// let htmlStr = `<div class="joe_timeline">${content}</div>`;
 			this.className = 'joe_timeline';
 			this.innerHTML = content;
-			// if (getChildren(this, '_content')) {
-			// 	getChildren(this, '_content').innerHTML = htmlStr;
-			// } else {
-			// 	const div = document.createElement('div');
-			// 	div.className = '_content';
-			// 	div.innerHTML = htmlStr;
-			// 	this.appendChild(div);
-			// }
 			this.querySelectorAll('.joe_timeline__item-circle').forEach((item, index) => {
 				const color = item.getAttribute('color') || '#19be6b';
 				item.style.borderColor = color;
 			});
-			// this.outerHTML = getChildren(this, '_content').outerHTML;
 		}
 	});
 
@@ -441,18 +419,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					</div>
 				`;
 			});
-			// let htmlStr = `<div class="joe_collapse">${content}</div>`;
 			this.className = 'joe_collapse';
 			this.innerHTML = content;
-			// if (getChildren(this, '_content')) {
-			// 	getChildren(this, '_content').innerHTML = htmlStr;
-			// } else {
-			// 	const span = document.createElement('span');
-			// 	span.className = '_content';
-			// 	span.style.display = 'block';
-			// 	span.innerHTML = htmlStr;
-			// 	this.appendChild(span);
-			// }
 			this.querySelectorAll('.joe_collapse__item').forEach(item => {
 				const label = item.getAttribute('label') || '折叠标题';
 				const head = getChildren(item, 'joe_collapse__item-head');
@@ -598,17 +566,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				navs += `<div class="joe_tabs__head-item" ${$1}></div>`;
 				contents += `<div style="display: none" class="joe_tabs__body-item" ${$1}>${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
 			});
-			let htmlStr = `
-					<div class="joe_tabs__head">${navs}</div>
-					<div class="joe_tabs__body">${contents}</div>
-			`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				this.className = 'joe_tabs';
-				this.style.display = 'block';
-				this.innerHTML = htmlStr;
-			}
+			this.className = 'joe_tabs';
+			this.innerHTML = `<div class="joe_tabs__head">${navs}</div><div class="joe_tabs__body">${contents}</div>`;
 			this.querySelectorAll('.joe_tabs__head-item').forEach((item, index) => {
 				const label = item.getAttribute('label');
 				item.innerHTML = label;
@@ -638,20 +597,10 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			_innerHTML.replace(/{gird-item}([\s\S]*?){\/gird-item}/g, function ($0, $1) {
 				contents += `<div class="joe_gird__item">${$1.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
 			});
-			// let htmlStr = `<div class="joe_gird" style="gap: ${this.options.gap}px; grid-template-columns: repeat(${this.options.column}, 1fr);">${contents}</div>`;
 			this.className = 'joe_gird';
 			this.style.gap = this.options.gap + 'px';
 			this.style.gridTemplateColumns = `repeat(${this.options.column}, 1fr)`;
 			this.innerHTML = contents;
-			// if (getChildren(this, '_content')) {
-			// 	getChildren(this, '_content').innerHTML = htmlStr;
-			// } else {
-			// 	const span = document.createElement('span');
-			// 	span.className = '_content';
-			// 	span.style.display = 'block';
-			// 	span.innerHTML = htmlStr;
-			// 	this.appendChild(span);
-			// }
 		}
 	});
 

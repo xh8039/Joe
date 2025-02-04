@@ -845,6 +845,7 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_tabs {
+	display: block;
 	width: 100%;
 	overflow: hidden;
 	background: var(--background);

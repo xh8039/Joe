@@ -750,6 +750,7 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_card__list {
+	display: block;
 	border: 1px solid var(--classC);
 	border-radius: var(--radius-inner);
 	overflow: hidden;
@@ -770,6 +771,7 @@ html .line-numbers .line-numbers-rows {
 }
 
 .joe_timeline {
+	display: block;
 	line-height: 26px
 }
 
@@ -1143,6 +1145,11 @@ html .line-numbers .line-numbers-rows {
 
 .joe_alert *:last-child {
 	margin-bottom: 0 !important
+}
+
+.joe_copy {
+	cursor: pointer;
+	user-select: none;
 }
 
 @keyframes progress-active {

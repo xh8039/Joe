@@ -333,21 +333,21 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '卡片内容'
 			};
 			const htmlStr = `
-					<div class="joe_card__describe">
 						<div class="joe_card__describe-title">${this.options.title}</div>
 						<div class="joe_card__describe-content">${this.options.content}</div>
-					</div>
 				`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				const span = document.createElement('span');
-				span.style.display = 'block';
-				span.style.paddingTop = '8px';
-				span.className = '_content';
-				span.innerHTML = htmlStr;
-				this.appendChild(span);
-			}
+			this.className = 'joe_card__describe';
+			this.innerHTML = htmlStr;
+			// if (getChildren(this, '_content')) {
+			// 	getChildren(this, '_content').innerHTML = htmlStr;
+			// } else {
+			// 	const span = document.createElement('span');
+			// 	span.style.display = 'block';
+			// 	span.style.paddingTop = '8px';
+			// 	span.className = '_content';
+			// 	span.innerHTML = htmlStr;
+			// 	this.appendChild(span);
+			// }
 		}
 	});
 
@@ -360,16 +360,8 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 			_innerHTML.replace(/{card-list-item}([\s\S]*?){\/card-list-item}/g, function ($0, $1) {
 				content += `<div class="joe_card__list-item">${$1.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
 			});
-			let htmlStr = `<div class="joe_card__list">${content}</div>`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				this.innerHTML = htmlStr;
-				// const div = document.createElement('div');
-				// div.className = '_content';
-				// div.innerHTML = htmlStr;
-				// this.outerHTML = div.outerHTML;
-			}
+			this.className = 'joe_card__list';
+			this.innerHTML = content;
 		}
 	});
 
@@ -413,20 +405,22 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 					</div>
 				`;
 			});
-			let htmlStr = `<div class="joe_timeline">${content}</div>`;
-			if (getChildren(this, '_content')) {
-				getChildren(this, '_content').innerHTML = htmlStr;
-			} else {
-				const div = document.createElement('div');
-				div.className = '_content';
-				div.innerHTML = htmlStr;
-				this.appendChild(div);
-			}
+			// let htmlStr = `<div class="joe_timeline">${content}</div>`;
+			this.className = 'joe_timeline';
+			this.innerHTML = content;
+			// if (getChildren(this, '_content')) {
+			// 	getChildren(this, '_content').innerHTML = htmlStr;
+			// } else {
+			// 	const div = document.createElement('div');
+			// 	div.className = '_content';
+			// 	div.innerHTML = htmlStr;
+			// 	this.appendChild(div);
+			// }
 			this.querySelectorAll('.joe_timeline__item-circle').forEach((item, index) => {
 				const color = item.getAttribute('color') || '#19be6b';
 				item.style.borderColor = color;
 			});
-			this.outerHTML = getChildren(this, '_content').outerHTML;
+			// this.outerHTML = getChildren(this, '_content').outerHTML;
 		}
 	});
 
@@ -664,9 +658,9 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 				showText: this.getAttribute('showText') || '点击复制',
 				copyText: this.getAttribute('copyText') || '默认文本'
 			};
-			this.innerHTML = `<span class="joe_copy" style="cursor: pointer; user-select: none;">${this.options.showText}</span>`;
-			const button = getChildren(this, 'joe_copy');
-			button.addEventListener('click', () => {
+			this.className = 'joe_copy';
+			this.innerHTML = this.options.showText;
+			this.addEventListener('click', () => {
 				Joe.clipboard(this.options.copyText);
 			});
 		}

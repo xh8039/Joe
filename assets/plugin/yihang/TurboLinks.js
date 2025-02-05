@@ -42,7 +42,11 @@ class TurboLinks {
 		TurboLinks.pjax.handleResponse = (responseText, request, href, options) => {
 			if (!responseText) {
 				console.log(request);
-				autolog.log('请求失败：' + request.status, 'error');
+				if (request.status == 0) {
+					autolog.log(`对 '${href}' 的请求已被浏览器的 CORS 策略阻止，${location.protocol} 协议的网页无法请求 ${location.protocol == 'http:' ? 'http:' : 'https:'} 协议的资源，网站管理员真是大傻春`, 'error');
+				} else {
+					autolog.log('请求失败：' + (request.statusText || request.status), 'error');
+				}
 				document.dispatchEvent(new CustomEvent('turbolinks:complete'));
 				return;
 			}

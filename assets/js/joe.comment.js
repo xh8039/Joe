@@ -225,35 +225,42 @@ window.Joe.initComment ||= (options = {}) => {
 				const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr("data-type") + '"]';
 				$(scrollIndx).show().siblings(".scroll").hide();
 			});
-			if (!window.Joe.CommentOwO) {
-				$.ajax({
-					url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
-					dataType: "json",
-					success(res) {
-						Joe.initCommentOwO(res);
-					},
-					error() {
-						$.ajax({
-							url: window.Joe.THEME_URL + "assets/json/joe.owo.php",
-							dataType: "json",
-							success(res) {
-								Joe.initCommentOwO(res);
-							},
-							error() {
-								$.ajax({
-									url: window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
-									dataType: "json",
-									success(res) {
-										Joe.initCommentOwO(res);
-									}
-								});
-							}
-						});
-					}
-				});
-			} else {
+			if (window.Joe.CommentOwO) {
 				Joe.initCommentOwO(window.Joe.CommentOwO);
+			} else {
+				Joe.loadCommentOwOData().then(res => Joe.initCommentOwO(res)).catch(error => {
+					console.error("加载 OwO 数据时出错：", error);
+				});
 			}
+			// if (window.Joe.CommentOwO) {
+			// 	Joe.initCommentOwO(window.Joe.CommentOwO);
+			// } else {
+			// 	$.ajax({
+			// 		url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
+			// 		dataType: "json",
+			// 		success(res) {
+			// 			Joe.initCommentOwO(res);
+			// 		},
+			// 		error() {
+			// 			$.ajax({
+			// 				url: window.Joe.THEME_URL + "assets/json/joe.owo.php",
+			// 				dataType: "json",
+			// 				success(res) {
+			// 					Joe.initCommentOwO(res);
+			// 				},
+			// 				error() {
+			// 					$.ajax({
+			// 						url: window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
+			// 						dataType: "json",
+			// 						success(res) {
+			// 							Joe.initCommentOwO(res);
+			// 						}
+			// 					});
+			// 				}
+			// 			});
+			// 		}
+			// 	});
+			// }
 		}
 	}
 }
@@ -291,4 +298,24 @@ window.Joe.initCommentOwO ||= (res) => {
 	});
 	$(".joe_owo__contain .box .bar .item").first().click();
 	window.Joe.tooltip('.joe_owo__contain .scroll .item');
+}
+window.Joe.loadCommentOwOData ||= () => {
+	const urls = [
+		window.Joe.THEME_URL + "assets/json/joe.owo.json",
+		window.Joe.THEME_URL + "assets/json/joe.owo.php",
+		window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
+	];
+
+	for (const url of urls) {
+		try {
+			const response = fetch(url);
+			if (!response.ok) continue; // 跳过不成功的请求
+			const data = response.json();
+			return data;
+		} catch (error) {
+			console.error("Fetch error:", error);
+			//  可选: 更完善的错误处理
+		}
+	}
+	throw new Error("Failed to load OwO data from all URLs");
 }

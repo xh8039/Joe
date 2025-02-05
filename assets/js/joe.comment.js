@@ -236,19 +236,16 @@ window.Joe.initComment ||= (options = {}) => {
 					];
 
 					for (const url of urls) {
-						try {
-							const response = await fetch(url);
-							if (!response.ok) {
-								throw new Error(`HTTP错误！状态码：${response.status}`);
-							}
-							const res = await response.json();
-							Joe.initCommentOwO(res);
-							return;
-						} catch (error) {
-							console.error(`从${url}加载失败：`, error);
+						const response = await fetch(url);
+						console.log(response.ok);
+						if (!response.ok) {
+							throw new Error(`HTTP错误！状态码：${response.status}`);
 						}
+						const res = await response.json();
+						Joe.initCommentOwO(res);
+						return;
 					}
-					console.warn("所有URL都无法加载joe.owo数据。");
+					console.warn("所有URL都无法加载表情包数据");
 				})();
 			}
 		}

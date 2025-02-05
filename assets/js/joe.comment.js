@@ -244,6 +244,8 @@ window.Joe.initComment ||= (options = {}) => {
 							const res = await response.json();
 							Joe.initCommentOwO(res);
 							return;
+						} catch (error) {
+
 						}
 					}
 					console.warn("所有URL都无法加载表情包数据");

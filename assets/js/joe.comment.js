@@ -228,7 +228,28 @@ window.Joe.initComment ||= (options = {}) => {
 			if (window.Joe.CommentOwO) {
 				Joe.initCommentOwO(window.Joe.CommentOwO);
 			} else {
-				Joe.loadCommentOwOData();
+				(async () => {
+					const urls = [
+						window.Joe.THEME_URL + "assets/json/joe.owo.json",
+						window.Joe.THEME_URL + "assets/json/joe.owo.php",
+						window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
+					];
+
+					for (const url of urls) {
+						try {
+							const response = await fetch(url);
+							if (!response.ok) {
+								throw new Error(`HTTP错误！状态码：${response.status}`);
+							}
+							const res = await response.json();
+							Joe.initCommentOwO(res);
+							return;
+						} catch (error) {
+							console.error(`从${url}加载失败：`, error);
+						}
+					}
+					console.warn("所有URL都无法加载joe.owo数据。");
+				})();
 			}
 		}
 	}
@@ -295,25 +316,3 @@ window.Joe.loadCommentOwOData ||= () => {
 		}
 	});
 }
-window.Joe.loadCommentOwOData = async () => {
-	const urls = [
-		window.Joe.THEME_URL + "assets/json/joe.owo.json",
-		window.Joe.THEME_URL + "assets/json/joe.owo.php",
-		window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
-	];
-
-	for (const url of urls) {
-		try {
-			const response = await fetch(url);
-			if (!response.ok) {
-				throw new Error(`HTTP错误！状态码：${response.status}`);
-			}
-			const res = await response.json();
-			Joe.initCommentOwO(res);
-			return;
-		} catch (error) {
-			console.error(`从${url}加载失败：`, error);
-		}
-	}
-	console.warn("所有URL都无法加载joe.owo数据。");
-};

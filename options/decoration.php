@@ -211,45 +211,6 @@ $JListAnimate = new \Typecho\Widget\Helper\Form\Element\Select(
 $JListAnimate->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JListAnimate->multiMode());
 
-$JLive2d = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JLive2d',
-	array(
-		'off' => '关闭（默认）',
-		'shizuku.model.json' => '志津久(shizuku)',
-		'izumi.model.json' => '泉(izumi)',
-		'haru01.model.json' => '李夏露01(haru01)',
-		'haru02.model.json' => '李夏露02(haru02)',
-		'wanko.model.json' => '王淑玲(wanko)',
-		'hijiki.model.json' => '羊栖菜(hijiki)',
-		'koharu.model.json' => '小春(koharu)',
-		'z16.model.json' => 'z16',
-		'haruto.model.json' => '哈鲁托(haruto)',
-		'tororo.model.json' => '托罗罗(tororo)',
-		'chitose.model.json' => '千岁(chitose)',
-		'miku.model.json' => '米库(miku)',
-		'Epsilon2.1.model.json' => '艾司隆2.1(Epsilon2.1)',
-		'unitychan.model.json' => '陈统一(unitychan)',
-		'nico.model.json' => '尼科(nico)',
-		'rem.model.json' => '雷姆(rem)',
-		'nito.model.json' => 'nito',
-		'nipsilon.model.json' => '尼普西隆(nipsilon)',
-		'ni-j.model.json' => '杰倪(ni-j)',
-		'nietzche.model.json' => '采尼(nietzche)',
-		'platelet.model.json' => '血小板(platelet)',
-		'model.json' => '铃十五(isuzu)',
-		'katou_01.model.json' => '卡图01(katou_01)',
-		'mikoto.model.json' => '米科托(mikoto)',
-		'seifuku.model.json' => '艾福斯(seifuku)',
-		'ichigo.model.json' => '圆脸女孩(ichigo)',
-		'hk416.model.json' => '女枪手(hk416)'
-	),
-	'off',
-	'选择一款喜爱的Live2D动态人物模型（仅在屏幕分辨率大于1400px下显示）',
-	'介绍：开启后会在右下角显示一个小人'
-);
-$JLive2d->setAttribute('class', 'joe_content joe_decoration');
-$form->addInput($JLive2d->multiMode());
-
 $JCursorEffects = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JCursorEffects',
 	[

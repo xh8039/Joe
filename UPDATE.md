@@ -371,4 +371,5 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 - 文章编辑器新增一键 HTML 转 Markdown 功能
 - 新增首页轮播图滚动方向功能
 - 修复文章编辑器全屏状态下，Tooltip提示被页面顶部遮挡导致不显示的BUG
+- 由于Live2d人物特效占用空间高达30MB，所以已经删除该功能，如有需要请使用自定义JS代码功能自行引入
 - 正在开发中...

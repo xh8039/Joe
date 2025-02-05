@@ -1,8 +1,0 @@
-{
-	"type": "Live2D Model Setting",
-	"name": "ichigo",
-	"model": "ichigo.moc",
-	"textures": [
-		"ichigo.1024/texture_00.png"
-	]
-}

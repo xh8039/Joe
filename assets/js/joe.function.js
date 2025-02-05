@@ -214,6 +214,80 @@ window.Joe.loadJS = (url, callback = function () { }) => {
 	}
 }
 
+window.Joe.ResourceLoader = class {
+	static scriptsLoaded = [];
+	promises = [];
+
+	static isScriptLoaded(_0x1bdc9a) {
+		return Joe.ResourceLoader.scriptsLoaded.indexOf(_0x1bdc9a.split("/").pop()) > -1 ? true : false;
+	}
+
+	/**
+	 * 将文件添加到加载队列。
+	 * @param {string} fileUrl 要加载的文件的 URL。
+	 */
+	add(fileUrl) {
+		const promise = new Promise((resolve, reject) => {
+			const element = fileUrl.endsWith(".js") ? this.getScriptElm(fileUrl) : this.getLinkElm(fileUrl); // 根据扩展名确定元素类型
+
+			element.addEventListener("load", () => {
+				// 从 src 或 href 中提取文件名
+				let url = element.src || element.href;
+				const filename = url.split("/").pop();
+				Joe.ResourceLoader.scriptsLoaded.push(filename);
+				console.log(`文件已加载: ${filename}`);
+				resolve(element); // 使用已加载的元素解析 Promise
+			});
+
+			element.addEventListener("error", () => {
+				console.error(`加载失败: ${fileUrl}`); // 更具信息性的错误消息
+				reject(fileUrl); // 使用失败的 URL 拒绝 Promise
+			});
+		});
+		this.promises.push(promise);
+	}
+
+	/**
+	 * 返回一个 Promise，在添加的所有文件加载完成后解析。
+	 * @returns {Promise<any[]>} 解析为已加载元素数组的 Promise。
+	 */
+	loaded() {
+		return Promise.all(this.promises);
+	}
+
+	getScriptElm(url) {
+		var script = document.createElement("script");
+		script.type = "text/javascript";
+		script.src = url;
+		script.async = false;
+		document.getElementsByTagName("head")[0].appendChild(script);
+		return script;
+	}
+
+	getLinkElm(url) {
+		var link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.type = "text/css";
+		link.href = url;
+		document.getElementsByTagName("HEAD")[0].appendChild(link);
+		return link;
+	}
+}
+
+window.Joe.loadResource = () => {
+	const ResourceLoader = new Joe.ResourceLoader();
+
+	// 只添加尚未加载的文件
+	fileUrls.forEach(fileUrl => {
+		if (!Joe.ResourceLoader.isScriptLoaded(fileUrl)) ResourceLoader.add(fileUrl);
+	});
+
+	// 返回一个 Promise，在所有文件加载完成后解析
+	return ResourceLoader.loaded().then(() => {
+		console.log('资源加载完成');
+	});
+}
+
 function isElementInViewport(element) {
 	const rect = element.getBoundingClientRect();
 	const viewportHeight = (window.innerHeight || document.documentElement.clientHeight);

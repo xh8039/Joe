@@ -652,19 +652,6 @@ Joe.DOMContentLoaded.global = Joe.DOMContentLoaded.global ? Joe.DOMContentLoaded
 		}
 	}
 
-	/* 激活Live2d人物 */
-	{
-		if (Joe.options.JLive2d !== "off" && Joe.options.JLive2d) {
-			$.getScript(`${Joe.THEME_URL}assets/plugin/live2d/L2Dwidget.min.js`, () => {
-				L2Dwidget.init({
-					model: { jsonPath: Joe.options.JLive2d, scale: 1 },
-					mobile: { show: true },
-					display: { position: "left", width: 130, height: 170, hOffset: 0, vOffset: 0 },
-				});
-			});
-		}
-	}
-
 	/* NProgress.js */
 	if (window.NProgress) {
 		NProgress.configure({ trickleSpeed: 10 });

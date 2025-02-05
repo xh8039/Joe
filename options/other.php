@@ -5,17 +5,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$WallpaperAPI = new \Typecho\Widget\Helper\Form\Element\Text(
-	'WallpaperAPI',
-	NULL,
-	NULL,
-	'壁纸模板API',
-	'格式：壁纸分类API || 壁纸列表API <br />
-	示例：http://cdn.apc.360.cn/index.php || http://wallpaper.apc.360.cn/index.php'
-);
-$WallpaperAPI->setAttribute('class', 'joe_content joe_other');
-$form->addInput($WallpaperAPI);
-
 $JMaccmsAPI = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JMaccmsAPI',
 	NULL,
@@ -28,6 +17,17 @@ $JMaccmsAPI = new \Typecho\Widget\Helper\Form\Element\Text(
 );
 $JMaccmsAPI->setAttribute('class', 'joe_content joe_other');
 $form->addInput($JMaccmsAPI);
+
+$WallpaperAPI = new \Typecho\Widget\Helper\Form\Element\Text(
+	'WallpaperAPI',
+	NULL,
+	NULL,
+	'壁纸模板API（非必填）',
+	'格式：壁纸分类API || 壁纸列表API <br />
+	示例：http://cdn.apc.360.cn/index.php || http://wallpaper.apc.360.cn/index.php'
+);
+$WallpaperAPI->setAttribute('class', 'joe_content joe_other');
+$form->addInput($WallpaperAPI);
 
 $JCustomPlayer = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCustomPlayer',

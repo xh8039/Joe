@@ -172,14 +172,14 @@ class TurboLinks {
 
 		if (code !== "") {
 			if (code.match("document.write")) {
-				if (console && console.log) console.log("脚本包含document.write。无法正确执行。代码已跳过", element);
+				if (console && console.log) console.log('脚本包含 document.write，无法正确执行，代码已跳过', element);
 				return false;
 			}
 			try {
 				script.appendChild(document.createTextNode(code));
 			} catch (e) {
-				/* istanbul ignore next */
-				// old IEs have funky script nodes
+				/* istanbul 忽视 下一个 */
+				// 旧的 IEs 有新的 script 节点
 				script.text = code;
 			}
 		}
@@ -187,7 +187,7 @@ class TurboLinks {
 		let parent = document.querySelector("head") || document.documentElement;
 		parent.appendChild(script);
 		if (code) console.log('执行JS：' + code);
-		// 仅避免头部或身体标签污染
+		// 仅避免 head 或 body 标签污染
 		if ((parent instanceof HTMLHeadElement || parent instanceof HTMLBodyElement) && parent.contains(script)) {
 			parent.removeChild(script);
 		}

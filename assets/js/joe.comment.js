@@ -228,13 +228,20 @@ window.Joe.initComment ||= (options = {}) => {
 			if (window.Joe.CommentOwO) {
 				Joe.initCommentOwO(window.Joe.CommentOwO);
 			} else {
-				Joe.loadCommentOwOData().then((response) => {
-					console.log(response.ok);
-					if (!response.ok) return;
-					Joe.initCommentOwO(response.json());
-				}).catch(error => {
-					console.error("加载 OwO 数据时出错：", error);
-				});
+				const urls = [
+					window.Joe.THEME_URL + "assets/json/joe.owo.json",
+					window.Joe.THEME_URL + "assets/json/joe.owo.php",
+					window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
+				];
+				for (const url of urls) {
+					fetch(url).then(async response => {
+						console.log(await response.ok);
+						if (!await response.ok) return;
+						if (!window.Joe.CommentOwO) Joe.initCommentOwO(await response.json());
+					}).catch(error => {
+						console.error("加载 OwO 数据时出错：", error);
+					});
+				}
 			}
 			// if (window.Joe.CommentOwO) {
 			// 	Joe.initCommentOwO(window.Joe.CommentOwO);
@@ -303,14 +310,8 @@ window.Joe.initCommentOwO ||= (res) => {
 	$(".joe_owo__contain .box .bar .item").first().click();
 	window.Joe.tooltip('.joe_owo__contain .scroll .item');
 }
-window.Joe.loadCommentOwOData ||= () => {
-	const urls = [
-		window.Joe.THEME_URL + "assets/json/joe.owo.json",
-		window.Joe.THEME_URL + "assets/json/joe.owo.php",
-		window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
-	];
+window.Joe.loadCommentOwOData ||= async () => {
 
-	for (const url of urls) {
-		return fetch(url);
-	}
+
+
 }

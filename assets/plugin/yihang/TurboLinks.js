@@ -135,7 +135,7 @@ class TurboLinks {
 	static JsLoaded(element) {
 		TurboLinks.documentScriptList.push(element.src);
 		if (TurboLinks.loadJSIndex == TurboLinks.loadJSList.length) {
-			console.log('所有JavaScript文件都已加载！');
+			console.log('TurboLinks：所有JavaScript文件都已加载');
 			TurboLinks.loadJSList = [];
 			TurboLinks.loadJSIndex = 1;
 			return TurboLinks.pjax.originHandleResponse(TurboLinks.handleResponseParam.responseText, TurboLinks.handleResponseParam.request, TurboLinks.handleResponseParam.href, TurboLinks.handleResponseParam.options);

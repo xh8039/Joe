@@ -57,7 +57,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>">修改外观</a>
 						<?php endif; ?>
 						<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>">进入后台</a>
-						<a href="<?= joe\permalink($this->options->logoutUrl) ?>">退出登录</a>
+						<a data-turbolinks="false" href="<?= joe\permalink($this->options->logoutUrl) ?>">退出登录</a>
 					</nav>
 				</div>
 			<?php else : ?>

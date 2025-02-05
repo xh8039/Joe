@@ -295,7 +295,7 @@ window.Joe.loadCommentOwOData ||= () => {
 		}
 	});
 }
-window.Joe.loadCommentOwOData ||= (async function () {
+window.Joe.loadCommentOwOData = (async function () {
 	const urls = [
 		window.Joe.THEME_URL + "assets/json/joe.owo.json",
 		window.Joe.THEME_URL + "assets/json/joe.owo.php",

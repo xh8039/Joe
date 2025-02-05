@@ -309,7 +309,7 @@ window.Joe.loadCommentOwOData ||= () => {
 	for (const url of urls) {
 		try {
 			const response = fetch(url);
-			console.log(response);
+			console.log(response, response.ok);
 			if (!response.ok) continue; // 跳过不成功的请求
 			const data = response.json();
 			return data;

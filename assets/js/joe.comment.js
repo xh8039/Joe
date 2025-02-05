@@ -228,50 +228,8 @@ window.Joe.initComment ||= (options = {}) => {
 			if (window.Joe.CommentOwO) {
 				Joe.initCommentOwO(window.Joe.CommentOwO);
 			} else {
-				const urls = [
-					window.Joe.THEME_URL + "assets/json/joe.owo.json",
-					window.Joe.THEME_URL + "assets/json/joe.owo.php",
-					window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
-				];
-				for (const url of urls) {
-					fetch(url).then(async response => {
-						console.log(await response.ok);
-						if (!await response.ok) return;
-						if (!window.Joe.CommentOwO) Joe.initCommentOwO(await response.json());
-					}).catch(error => {
-						console.error("加载 OwO 数据时出错：", error);
-					});
-				}
+				Joe.loadCommentOwOData();
 			}
-			// if (window.Joe.CommentOwO) {
-			// 	Joe.initCommentOwO(window.Joe.CommentOwO);
-			// } else {
-			// 	$.ajax({
-			// 		url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
-			// 		dataType: "json",
-			// 		success(res) {
-			// 			Joe.initCommentOwO(res);
-			// 		},
-			// 		error() {
-			// 			$.ajax({
-			// 				url: window.Joe.THEME_URL + "assets/json/joe.owo.php",
-			// 				dataType: "json",
-			// 				success(res) {
-			// 					Joe.initCommentOwO(res);
-			// 				},
-			// 				error() {
-			// 					$.ajax({
-			// 						url: window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
-			// 						dataType: "json",
-			// 						success(res) {
-			// 							Joe.initCommentOwO(res);
-			// 						}
-			// 					});
-			// 				}
-			// 			});
-			// 		}
-			// 	});
-			// }
 		}
 	}
 }
@@ -310,8 +268,52 @@ window.Joe.initCommentOwO ||= (res) => {
 	$(".joe_owo__contain .box .bar .item").first().click();
 	window.Joe.tooltip('.joe_owo__contain .scroll .item');
 }
-window.Joe.loadCommentOwOData ||= async () => {
-
-
-
+window.Joe.loadCommentOwOData ||= () => {
+	$.ajax({
+		url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
+		dataType: "json",
+		success(res) {
+			Joe.initCommentOwO(res);
+		},
+		error() {
+			$.ajax({
+				url: window.Joe.THEME_URL + "assets/json/joe.owo.php",
+				dataType: "json",
+				success(res) {
+					Joe.initCommentOwO(res);
+				},
+				error() {
+					$.ajax({
+						url: window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
+						dataType: "json",
+						success(res) {
+							Joe.initCommentOwO(res);
+						}
+					});
+				}
+			});
+		}
+	});
 }
+window.Joe.loadCommentOwOData ||= (async function () {
+	const urls = [
+		window.Joe.THEME_URL + "assets/json/joe.owo.json",
+		window.Joe.THEME_URL + "assets/json/joe.owo.php",
+		window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
+	];
+
+	for (const url of urls) {
+		try {
+			const response = await fetch(url);
+			if (!response.ok) {
+				throw new Error(`HTTP错误！状态码：${response.status}`);
+			}
+			const res = await response.json();
+			Joe.initCommentOwO(res);
+			return;
+		} catch (error) {
+			console.error(`从${url}加载失败：`, error);
+		}
+	}
+	console.warn("所有URL都无法加载joe.owo数据。");
+})();

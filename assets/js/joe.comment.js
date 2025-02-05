@@ -214,6 +214,7 @@ window.Joe.initComment ||= (options = {}) => {
 	/* 初始化表情功能 */
 	{
 		if (options.owo !== false && $(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
+			console.log('初始化评论区表情功能');
 			$(document.body).on('click', '.joe_owo__contain .scroll .item', function () {
 				const text = $(this).attr("data-text");
 				$(".joe_owo__target").insertContent(text);
@@ -257,7 +258,6 @@ window.Joe.initComment ||= (options = {}) => {
 	}
 }
 window.Joe.initCommentOwO ||= (res) => {
-	console.log('初始化评论区表情包');
 	window.Joe.OwO = res;
 	var OwOUrl = $('.joe_owo__contain').attr('data-url') || window.Joe.THEME_URL;
 	let barStr = "";

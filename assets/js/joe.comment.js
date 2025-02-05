@@ -237,10 +237,7 @@ window.Joe.initComment ||= (options = {}) => {
 					for (const url of urls) {
 						try {
 							const response = await fetch(url);
-							console.log(response.ok);
-							if (!response.ok) {
-								throw new Error(`HTTP错误！状态码：${response.status}`);
-							}
+							if (!response.ok) throw new Error(`HTTP错误！状态码：${response.status}`);
 							const res = await response.json();
 							Joe.initCommentOwO(res);
 							return;
@@ -288,31 +285,4 @@ window.Joe.initCommentOwO ||= (res) => {
 	});
 	$(".joe_owo__contain .box .bar .item").first().click();
 	window.Joe.tooltip('.joe_owo__contain .scroll .item');
-}
-window.Joe.loadCommentOwOData ||= () => {
-	$.ajax({
-		url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
-		dataType: "json",
-		success(res) {
-			Joe.initCommentOwO(res);
-		},
-		error() {
-			$.ajax({
-				url: window.Joe.THEME_URL + "assets/json/joe.owo.php",
-				dataType: "json",
-				success(res) {
-					Joe.initCommentOwO(res);
-				},
-				error() {
-					$.ajax({
-						url: window.Joe.options.themeUrl + "/assets/json/joe.owo.json",
-						dataType: "json",
-						success(res) {
-							Joe.initCommentOwO(res);
-						}
-					});
-				}
-			});
-		}
-	});
 }

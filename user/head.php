@@ -8,10 +8,10 @@ $referer_parse = parse_url($referer);
 $referer_host = $referer_parse['host'] ?? null;
 $referer_path = $referer_parse['path'] ?? '';
 if ($referer_host == $_SERVER['HTTP_HOST'] || substr($referer_path, 0, 1) == '/') {
-	echo $this->user->hasLogin() ? "<script>window.location.href='{$referer}'</script>" : "<script>window.Joe.referer='{$referer}'</script>";
-	exit;
-} else {
-	?>
-	<link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
-	<?php
+	if ($this->user->hasLogin()) {
+		exit("<script>window.location.href='{$referer}'</script>");
+	} else {
+		echo "<script>window.Joe.referer='{$referer}'</script>";
+		echo '<link href="' . joe\theme_url('assets/css/joe.user.css') . '" rel="stylesheet" type="text/css" />';
+	}
 }

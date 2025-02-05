@@ -3,7 +3,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	outline: none;
-	-webkit-tap-highlight-color: transparent
+	-webkit-tap-highlight-color: transparent;
 }
 
 *,
@@ -50,6 +50,7 @@ body {
 	background-position: center 0;
 	background-repeat: no-repeat;
 	background-size: cover;
+	scroll-behavior: smooth;
 	--mian-max-width: 1200px;
 }
 

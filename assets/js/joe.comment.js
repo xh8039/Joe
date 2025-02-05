@@ -219,6 +219,7 @@ window.Joe.initComment ||= (options = {}) => {
 				$(".joe_owo__target").insertContent(text);
 			});
 			$(document.body).on('.joe_owo__contain .box .bar .item', 'click', function (e) {
+				console.log(this,e);
 				e.stopPropagation();
 				$(this).addClass("active").siblings().removeClass("active");
 				const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr("data-type") + '"]';

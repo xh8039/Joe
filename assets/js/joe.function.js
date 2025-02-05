@@ -592,7 +592,7 @@ $('body').on('zib_ajax.success', '[next-tab]', function (e, n) {
 
 jQuery.fn.extend({
 	insertContent: function (t, n) {
-		var a = e(this)[0];
+		var a = jQuery(this)[0];
 		if (document.selection) {
 			this.focus();
 			var s = document.selection.createRange();

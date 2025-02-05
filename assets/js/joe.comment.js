@@ -214,11 +214,11 @@ window.Joe.initComment ||= (options = {}) => {
 	/* 初始化表情功能 */
 	{
 		if (options.owo !== false && $(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
-			$(document.body).on('.joe_owo__contain .scroll .item', 'click', function () {
+			$(document).on('.joe_owo__contain .scroll .item', 'click', function () {
 				const text = $(this).attr("data-text");
 				$(".joe_owo__target").insertContent(text);
 			});
-			$(document.body).on('.joe_owo__contain .box .bar .item', 'click', function (e) {
+			$(document).on('.joe_owo__contain .box .bar .item', 'click', function (e) {
 				console.log(this,e);
 				e.stopPropagation();
 				$(this).addClass("active").siblings().removeClass("active");

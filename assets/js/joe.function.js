@@ -590,6 +590,27 @@ $('body').on('zib_ajax.success', '[next-tab]', function (e, n) {
 	}
 });
 
+jQuery.fn.extend({
+	insertContent: function (t, n) {
+		var a = e(this)[0];
+		if (document.selection) {
+			this.focus();
+			var s = document.selection.createRange();
+			s.text = t, this.focus(), s.moveStart("character", -i);
+			var c = s.text.length;
+			if (2 == arguments.length) {
+				var i = a.value.length;
+				s.moveEnd("character", c + n), n <= 0 ? s.moveStart("character", c - 2 * n - t.length) : s.moveStart("character", c - n - t.length), s.select()
+			}
+		} else if (a.selectionStart || "0" == a.selectionStart) {
+			var o = a.selectionStart,
+				r = a.selectionEnd,
+				l = a.scrollTop;
+			a.value = a.value.substring(0, o) + t + a.value.substring(r, a.value.length), this.focus(), a.selectionStart = o + t.length, a.selectionEnd = o + t.length, a.scrollTop = l, 2 == arguments.length && (a.setSelectionRange(o - n, a.selectionEnd + n), this.focus())
+		} else this.value += t, this.focus()
+	}
+})
+
 // 滑动手势minitouch
 $.fn.minitouch = function (options) {
 	var is_on = 'minitouch-isload';

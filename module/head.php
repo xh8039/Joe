@@ -73,8 +73,6 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <!-- <script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js') ?>" data-turbolinks-permanent></script> -->
-
-<script src="<?= joe\theme_url('assets/js/joe.extend.min.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>" data-turbolinks-permanent></script>
 
 <?php if ($this->is('single') && $this->options->JcommentDraw == 'on') : ?>

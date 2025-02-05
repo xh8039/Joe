@@ -213,57 +213,53 @@ window.Joe.initComment ||= (options = {}) => {
 
 	/* 初始化表情功能 */
 	{
-		function initOwO(res) {
-			// console.log('初始化表情');
-			window.Joe.OwO = res;
-			let barStr = "";
-			let scrollStr = "";
-			for (let key in res) {
-				const item = res[key];
-				key = key.replace('表情', '');
-				barStr += `<div class="item" data-type="${key}">${key}</div>`;
-				scrollStr += `
-				<ul class="scroll" data-type="${key}">
-					${item.map((_) => {
-					if (key == '颜文字' || key == 'emoji') {
-						return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.icon}">${_.icon}</li>`;
-					} else {
-						let title = /.*?\((.*?)\)/.exec(_.text)[1];
-						return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="${window.Joe.LAZY_LOAD}" data-src="${OwOUrl + _.icon}" title="${title}" alt="${title}"/></li>`;
-					}
-				}).join("")}
-				</ul>`;
-			}
-			$(".joe_owo__contain").html(`
-				<div class="seat">OωO</div>
-				<div class="box">
-					${scrollStr}
-					<div class="bar no-scrollbar">${barStr}</div>
-				</div>
-			`);
-			window.Joe.tooltip();
-			// $(".joe_owo__contain .seat").on("click", function () {
-			// 	$(".joe_owo__contain .box").stop().slideUp("fast");
-			// });
-			$(".joe_owo__contain .seat").on("click", function (e) {
-				e.stopPropagation();
-				$(this).siblings(".box").stop().slideToggle("fast");
-			});
-			$(".joe_owo__contain .box .bar .item").on("click", function (e) {
-				e.stopPropagation();
-				$(this).addClass("active").siblings().removeClass("active");
-				const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(
-					this).attr("data-type") + '"]';
-				$(scrollIndx).show().siblings(".scroll").hide();
-			});
-			$(".joe_owo__contain .scroll .item").on("click", function () {
+		if (options.owo !== false && $(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
+			$(document.body).on('.joe_owo__contain .scroll .item', 'click', function () {
 				const text = $(this).attr("data-text");
 				$(".joe_owo__target").insertContent(text);
 			});
-			$(".joe_owo__contain .box .bar .item").first().click();
-		}
-		if (options.owo !== false && $(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
+			$(document.body).on('.joe_owo__contain .box .bar .item', 'click', function (e) {
+				e.stopPropagation();
+				$(this).addClass("active").siblings().removeClass("active");
+				const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr("data-type") + '"]';
+				$(scrollIndx).show().siblings(".scroll").hide();
+			});
 			var OwOUrl = $('.joe_owo__contain').attr('data-url') || window.Joe.THEME_URL;
+			function initOwO(res) {
+				console.log('初始化评论区表情包');
+				window.Joe.OwO = res;
+				let barStr = "";
+				let scrollStr = "";
+				for (let key in res) {
+					const item = res[key];
+					key = key.replace('表情', '');
+					barStr += `<div class="item" data-type="${key}">${key}</div>`;
+					scrollStr += `
+					<ul class="scroll" data-type="${key}">
+						${item.map((_) => {
+						if (key == '颜文字' || key == 'emoji') {
+							return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.icon}">${_.icon}</li>`;
+						} else {
+							let title = /.*?\((.*?)\)/.exec(_.text)[1];
+							return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="${window.Joe.LAZY_LOAD}" data-src="${OwOUrl + _.icon}" title="${title}" alt="${title}"/></li>`;
+						}
+					}).join("")}
+					</ul>`;
+				}
+				$(".joe_owo__contain").html(`
+					<div class="seat">OωO</div>
+					<div class="box">
+						${scrollStr}
+						<div class="bar no-scrollbar">${barStr}</div>
+					</div>
+				`);
+				$(".joe_owo__contain .seat").on("click", function (e) {
+					e.stopPropagation();
+					$(this).siblings(".box").stop().slideToggle("fast");
+				});
+				$(".joe_owo__contain .box .bar .item").first().click();
+				window.Joe.tooltip('.joe_owo__contain .scroll .item');
+			}
 			if (!window.Joe.OwO) {
 				$.ajax({
 					url: window.Joe.THEME_URL + "assets/json/joe.owo.json",

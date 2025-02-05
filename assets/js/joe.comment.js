@@ -225,7 +225,7 @@ window.Joe.initComment ||= (options = {}) => {
 				const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr("data-type") + '"]';
 				$(scrollIndx).show().siblings(".scroll").hide();
 			});
-			if (!window.Joe.OwO) {
+			if (!window.Joe.CommentOwO) {
 				$.ajax({
 					url: window.Joe.THEME_URL + "assets/json/joe.owo.json",
 					dataType: "json",
@@ -252,13 +252,13 @@ window.Joe.initComment ||= (options = {}) => {
 					}
 				});
 			} else {
-				Joe.initCommentOwO(window.Joe.OwO);
+				Joe.initCommentOwO(window.Joe.CommentOwO);
 			}
 		}
 	}
 }
 window.Joe.initCommentOwO ||= (res) => {
-	window.Joe.OwO = res;
+	window.Joe.CommentOwO = res;
 	var OwOUrl = $('.joe_owo__contain').attr('data-url') || window.Joe.THEME_URL;
 	let barStr = "";
 	let scrollStr = "";

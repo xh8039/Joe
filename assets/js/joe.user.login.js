@@ -1,4 +1,5 @@
 Joe.DOMContentLoaded.userLogin ||= () => {
+	console.log('调用：Joe.DOMContentLoaded.userLogin');
 	var btn = function (obj, msg, code) {
 		obj.html(msg);
 		obj.attr("disabled", code);

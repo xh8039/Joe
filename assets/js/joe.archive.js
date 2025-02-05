@@ -1,5 +1,5 @@
 /* 搜索页面需要用到的JS */
-Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoaded.archive : () => {
+Joe.DOMContentLoaded.archive ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.archive');
 	/* 激活列表特效 */
 	{
@@ -28,4 +28,4 @@ Joe.DOMContentLoaded.archive = Joe.DOMContentLoaded.archive ? Joe.DOMContentLoad
 		});
 	}
 };
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.archive, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.archive, { once: true });

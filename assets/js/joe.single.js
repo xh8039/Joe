@@ -1,6 +1,6 @@
 if (window.Prism) Prism.plugins.autoloader.languages_path = Joe.CDN_URL + 'prism/1.9.0/components/';
 
-Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded.single : () => {
+Joe.DOMContentLoaded.single ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.single');
 	const encryption = str => window.btoa(unescape(encodeURIComponent(str)));
 	const decrypt = str => decodeURIComponent(escape(window.atob(str)));
@@ -304,4 +304,4 @@ Joe.DOMContentLoaded.single = Joe.DOMContentLoaded.single ? Joe.DOMContentLoaded
 	}
 };
 
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.single, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.single, { once: true });

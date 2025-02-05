@@ -1,4 +1,4 @@
-Joe.DOMContentLoaded.live = Joe.DOMContentLoaded.live ? Joe.DOMContentLoaded.live : () => {
+Joe.DOMContentLoaded.live ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.live');
 	const p = new URLSearchParams(window.location.search);
 	if (!p.get('profileRoom')) initLiveList();
@@ -119,4 +119,4 @@ Joe.DOMContentLoaded.live = Joe.DOMContentLoaded.live ? Joe.DOMContentLoaded.liv
 		}
 	}
 }
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.live, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.live, { once: true });

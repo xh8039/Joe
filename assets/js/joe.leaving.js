@@ -1,5 +1,5 @@
 
-Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoaded.leaving : () => {
+Joe.DOMContentLoaded.leaving ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.leaving');
 	window.Joe.leavingListInit = () => {
 		let _index = 100;
@@ -61,4 +61,4 @@ Joe.DOMContentLoaded.leaving = Joe.DOMContentLoaded.leaving ? Joe.DOMContentLoad
 	}
 };
 
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.leaving, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.leaving, { once: true });

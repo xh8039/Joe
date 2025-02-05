@@ -3,8 +3,8 @@ function getChildren(el, className) {
 	for (let item of el.children) if (item.className === className) return item;
 	return null;
 }
-Joe.DOMContentLoaded = Joe.DOMContentLoaded ? Joe.DOMContentLoaded : {};
-Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.short : () => {
+Joe.DOMContentLoaded = Joe.DOMContentLoaded || { event: 'DOMContentLoaded' };
+Joe.DOMContentLoaded.short ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
 
@@ -569,4 +569,4 @@ Joe.DOMContentLoaded.short = Joe.DOMContentLoaded.short ? Joe.DOMContentLoaded.s
 
 	$('.joe_detail__article p:empty').remove();
 }
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.short, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.short, { once: true });

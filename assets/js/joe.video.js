@@ -1,4 +1,4 @@
-Joe.DOMContentLoaded.video = Joe.DOMContentLoaded.video ? Joe.DOMContentLoaded.video : () => {
+Joe.DOMContentLoaded.video ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.video');
 	const p = new URLSearchParams(window.location.search);
 	const vod_id = p.get('vod_id');
@@ -189,4 +189,4 @@ Joe.DOMContentLoaded.video = Joe.DOMContentLoaded.video ? Joe.DOMContentLoaded.v
 		}
 	}
 }
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.video, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.video, { once: true });

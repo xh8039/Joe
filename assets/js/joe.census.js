@@ -1,4 +1,4 @@
-Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded.census : () => {
+Joe.DOMContentLoaded.census ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.census');
 	{
 		/* 转换字节 */
@@ -364,4 +364,4 @@ Joe.DOMContentLoaded.census = Joe.DOMContentLoaded.census ? Joe.DOMContentLoaded
 		});
 	}
 }
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.census, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.census, { once: true });

@@ -1,4 +1,4 @@
-window.Joe.initComment = (options = {}) => {
+window.Joe.initComment ||= (options = {}) => {
 
 	/* 评论框点击切换画图模式和文本模式 */
 	{

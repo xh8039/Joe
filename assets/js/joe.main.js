@@ -1,4 +1,4 @@
-Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.main : () => {
+Joe.DOMContentLoaded.main ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.main');
 
 	{
@@ -283,4 +283,4 @@ Joe.DOMContentLoaded.main = Joe.DOMContentLoaded.main ? Joe.DOMContentLoaded.mai
 		$("[data-toggle='popover']").popover({ html: true });
 	}
 }
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', Joe.DOMContentLoaded.main, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.main, { once: true });

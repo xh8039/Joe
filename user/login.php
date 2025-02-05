@@ -13,6 +13,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php $this->need('module/head.php') ?>
 	<?php $this->need('user/head.php') ?>
 	<link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
+	<script src="<?= joe\theme_url('assets/js/joe.user.login.js') ?>"></script>
 </head>
 
 <body>
@@ -56,7 +57,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>
-		<script src="<?= joe\theme_url('assets/js/joe.user.login.js'); ?>"></script>
 	</div>
 	<?php $this->need('module/footer.php') ?>
 </body>

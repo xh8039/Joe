@@ -295,7 +295,7 @@ window.Joe.loadCommentOwOData ||= () => {
 		}
 	});
 }
-window.Joe.loadCommentOwOData = (async function () {
+window.Joe.loadCommentOwOData = async () => {
 	const urls = [
 		window.Joe.THEME_URL + "assets/json/joe.owo.json",
 		window.Joe.THEME_URL + "assets/json/joe.owo.php",
@@ -316,4 +316,4 @@ window.Joe.loadCommentOwOData = (async function () {
 		}
 	}
 	console.warn("所有URL都无法加载joe.owo数据。");
-})();
+};

@@ -228,7 +228,7 @@ window.Joe.initComment ||= (options = {}) => {
 			if (window.Joe.CommentOwO) {
 				Joe.initCommentOwO(window.Joe.CommentOwO);
 			} else {
-				Joe.loadCommentOwOData().then(res => Joe.initCommentOwO(res)).catch(error => {
+				Joe.loadCommentOwOData().then(data => Joe.initCommentOwO(data)).catch(error => {
 					console.error("加载 OwO 数据时出错：", error);
 				});
 			}
@@ -309,10 +309,8 @@ window.Joe.loadCommentOwOData ||= () => {
 	for (const url of urls) {
 		try {
 			const response = fetch(url);
-			console.log(response, response.ok);
-			if (!response.ok) continue; // 跳过不成功的请求
-			const data = response.json();
-			return data;
+			if (response.PromiseState != 'fulfilled') continue; // 跳过不成功的请求
+			return response.then((response) => response.json());
 		} catch (error) {
 			console.error("Fetch error:", error);
 			//  可选: 更完善的错误处理

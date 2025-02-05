@@ -1,4 +1,5 @@
 Joe.DOMContentLoaded.userRegister ||= () => {
+	console.log('调用：Joe.DOMContentLoaded.userRegister');
 	var btn = function (obj, msg, code) {
 		obj.html(msg);
 		obj.attr("disabled", code);

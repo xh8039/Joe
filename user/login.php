@@ -12,7 +12,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php $this->setArchiveTitle('账号登陆') ?>
 	<?php $this->need('module/head.php') ?>
 	<?php $this->need('user/head.php') ?>
-	<link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
 	<script src="<?= joe\theme_url('assets/js/joe.user.login.js') ?>"></script>
 </head>
 

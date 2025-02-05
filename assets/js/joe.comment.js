@@ -309,6 +309,7 @@ window.Joe.loadCommentOwOData ||= () => {
 	for (const url of urls) {
 		try {
 			const response = fetch(url);
+			console.log(response);
 			if (!response.ok) continue; // 跳过不成功的请求
 			const data = response.json();
 			return data;
@@ -317,5 +318,5 @@ window.Joe.loadCommentOwOData ||= () => {
 			//  可选: 更完善的错误处理
 		}
 	}
-	throw new Error("Failed to load OwO data from all URLs");
+	throw new Error("未能从所有URL加载OwO数据");
 }

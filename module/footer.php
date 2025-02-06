@@ -164,7 +164,7 @@ $joe_action_bottom = 20;
 
 if ($this->options->JMusic == 'on') {
 ?>
-	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.7" autotheme="true" api="<?= empty($this->options->JMusicApi) ? joe\permalink($this->options->index) . 'joe/api/meting?server=:server&type=:type&id=:id' : $this->options->JMusicApi ?>" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" dataId="<?= urlencode($this->options->JMusicId) ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
+	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.7" autotheme="true" api="<?= empty($this->options->JMusicApi) ? joe\permalink($this->options->index) . '/joe/api/meting?server=:server&type=:type&id=:id' : $this->options->JMusicApi ?>" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" dataId="<?= urlencode($this->options->JMusicId) ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
 <?php
 }
 ?>

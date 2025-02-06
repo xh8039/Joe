@@ -1,4 +1,4 @@
-<meta name="referrer" content="no-referrer">
+<meta name="referrer" content="no-referrer" style="display: none;">
 <div class="joe_detail__article-video">
     <h2 class="title" style="margin-top: 0px;">播放预览</h2>
     <div class="dplayer-video" webkit-playsinline="" playsinline=""></div>

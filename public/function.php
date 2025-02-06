@@ -27,7 +27,7 @@ function comment_author($comment)
 function permalink($link)
 {
 	var_dump($link);
-	var_dump(Helper::options()->siteUrl);
+	var_dump(\Helper::options()->siteUrl);
 	return str_starts_replace(\Helper::options()->siteUrl, '/', $link);
 }
 

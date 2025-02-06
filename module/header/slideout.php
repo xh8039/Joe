@@ -14,9 +14,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	}
 	?>
 	<div class="joe_header__slideout-author">
-		<img width="50" height="50" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主昵称" />
+		<img width="50" height="50" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php $this->user->hasLogin() ? joe\getAvatarByMail($this->user->mail) : Joe\theme_url('assets/images/avatar-default.png') ?>" alt="<?= $this->user->hasLogin() ? $this->user->screenName . '的' : '默认' ?>头像 - <?= $this->options->title ?>" />
 		<div class="info">
-			<a class="link" href="<?php $this->options->JAside_Author_Link() ?>" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>
+			<a class="link" href="<?php $this->options->JAside_Author_Link() ?>" rel="noopener noreferrer nofollow"><?= $this->user->hasLogin() ? $this->author->screenName : 'HI！请登录' ?></a>
 			<p class="motto joe_motto mb0"></p>
 		</div>
 	</div>

@@ -6,7 +6,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 ?>
 <aside class="joe_aside">
 	<section class="zib-widget widget user-card">
-		<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyload" src="<?= Joe\theme_url('assets/images/user_t.jpg') ?>" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/user_t.jpg') ?>"></div>
+		<div class="user-cover graphic" style="padding-bottom: 50%;">
+			<img class="fit-cover lazyload" src="<?= Joe\theme_url('assets/images/user_t.jpg') ?>" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/user_t.jpg') ?>">
+		</div>
 		<div class="card-content mt10">
 			<div class="user-content">
 				<?php

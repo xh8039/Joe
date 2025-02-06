@@ -17,28 +17,6 @@ $JAside_Notice = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JAside_Notice->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Notice);
 
-$JAside_Author_Nick = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JAside_Author_Nick',
-	NULL,
-	"易航",
-	'博主栏博主昵称 - PC/WAP',
-	'介绍：用于修改博主栏的博主昵称 <br />
-		 注意：如果不填写时则显示 *个人设置* 里的昵称'
-);
-$JAside_Author_Nick->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Author_Nick);
-
-$JAside_Author_Avatar = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JAside_Author_Avatar',
-	NULL,
-	NULL,
-	'博主栏博主头像URL - PC/WAP',
-	'介绍：用于修改博主栏的博主头像 <br />
-		 注意：如果不填写时则显示 *个人设置* 里的头像'
-);
-$JAside_Author_Avatar->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Author_Avatar);
-
 $JAside_Author_Image = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Author_Image',
 	NULL,
@@ -71,16 +49,6 @@ $JAside_Wap_Image_Height = new \Typecho\Widget\Helper\Form\Element\Text(
 );
 $JAside_Wap_Image_Height->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Wap_Image_Height);
-
-$JAside_Author_Link = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JAside_Author_Link',
-	NULL,
-	"http://blog.bri6.cn",
-	'博主栏昵称跳转地址 - PC/WAP',
-	'介绍：用于修改博主栏点击博主昵称后的跳转地址'
-);
-$JAside_Author_Link->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Author_Link);
 
 $JAside_Author_Motto = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Author_Motto',

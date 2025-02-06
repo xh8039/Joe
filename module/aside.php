@@ -18,7 +18,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		?>
 			<meta name="referrer" content="no-referrer" style="display: none;">
 			<div class="user-cover graphic" style="padding-bottom: 0;"><video width="100%" src="<?= $aside_background ?>" autoplay loop muted preload="none"></video></div>
-			<meta name="referrer" content="referrer" style="display: none;">
 		<?php
 		} else {
 		?>

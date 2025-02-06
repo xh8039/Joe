@@ -11,7 +11,7 @@ Joe.DOMContentLoaded.single ||= () => {
 
 	/* 获取本篇文章百度收录情况 */
 	{
-		Joe.get_baidu_record();
+		Joe.getBaiduRecord();
 	}
 
 	/* 激活代码高亮 */

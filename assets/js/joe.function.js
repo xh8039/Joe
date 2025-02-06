@@ -442,13 +442,13 @@ window.Joe.submit_baidu = (msg = '推送中...') => {
 	});
 }
 
-window.Joe.get_baidu_record = () => {
+window.Joe.getBaiduRecord = () => {
 	if (!document.getElementById('Joe_Baidu_Record')) return;
 	$.ajax({
-		url: Joe.BASE_API,
+		url: Joe.BASE_API + '/baidu-record',
 		type: 'POST',
 		dataType: 'json',
-		data: { routeType: 'baidu_record', site: window.location.href, cid: window.Joe.CONTENT.cid },
+		data: { site: window.location.href, cid: window.Joe.CONTENT.cid },
 		success(res) {
 			if (!res.data) {
 				if (Joe.options.BaiduPush) {

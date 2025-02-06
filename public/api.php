@@ -612,9 +612,10 @@ class Api
 				$routeExists = (NULL != \Typecho\Router::get($type));
 				$_item['pathinfo'] = $routeExists ? \Typecho\Router::url($type, $_item) : '#';
 				$_item['permalink'] = \Typecho\Common::url($_item['pathinfo'], $options->index);
+				$_item['permalink'] = \joe\permalink($_item['permalink']);
 				$list[] = array(
 					"title" => date('m/d', $_item['created']) . '：' . $_item['title'],
-					"permalink" => \joe\permalink($_item['permalink']),
+					"permalink" => $_item['permalink'],
 				);
 			}
 			$result[] = array("date" => $date, "list" => $list);
@@ -689,10 +690,10 @@ class Api
 				unset($data[$key]);
 				$data[$key]['author'] = is_array($value['artist']) ? implode(' / ', $value['artist']) : $value['artist'];
 				$data[$key]['title'] = $value['name'];
-				$base_url = self::$options->index . '/joe/api?routeType=meting';
-				$data[$key]['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'] . '&time=' . time();
-				$data[$key]['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
-				$data[$key]['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
+				$base_url = \joe\permalink(self::$options->index . '/joe/api/meting');
+				$data[$key]['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'] . '&time=' . time();
+				$data[$key]['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
+				$data[$key]['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
 			}
 			\joe\header_cache(24 * 60 * 60);
 			$self->response->throwJson($data);
@@ -728,10 +729,10 @@ class Api
 			$data = array_shift(json_decode($data, true));
 			$data['author'] = is_array($data['artist']) ? implode(' / ', $data['artist']) : $data['artist'];
 			$data['title'] = $data['name'];
-			$base_url = self::$options->index . '/joe/api?routeType=meting';
-			$data['url'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=url&id=' . $data['url_id'] . '&time=' . time();
-			$data['pic'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=pic&id=' . $data['pic_id'];
-			$data['lrc'] = $base_url . '&server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];
+			$base_url = \joe\permalink(self::$options->index . '/joe/api/meting');
+			$data['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $data['url_id'] . '&time=' . time();
+			$data['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $data['pic_id'];
+			$data['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];
 			$self->response->throwJson([$data]);
 		}
 	}

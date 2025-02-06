@@ -112,12 +112,9 @@ Joe.DOMContentLoaded.global ||= () => {
 	{
 		if ($('#statistics').is(':visible')) {
 			$.ajax({
-				url: Joe.BASE_API,
+				url: Joe.BASE_API + '/baidu-statistic',
 				type: 'POST',
 				dataType: 'json',
-				data: {
-					routeType: 'baidu_statistic'
-				},
 				success(data) {
 					if (data.access_token == 'off') {
 						$("#statistics").remove();

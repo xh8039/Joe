@@ -37,7 +37,7 @@ Joe.DOMContentLoaded.leaving ||= () => {
 
 	/* 获取本篇文章百度收录情况 */
 	{
-		window.Joe.get_baidu_record();
+		window.Joe.getBaiduRecord();
 	}
 
 	/* 激活浏览功能 */

@@ -817,11 +817,11 @@
 	font-size: 15px
 }
 
-.joe_header__slideout-author,
-.joe_header__slideout-count {
+.joe_header__slideout-author {
 	background: var(--back-trn-85);
 }
 
+.joe_header__slideout-count,
 .joe_header__slideout-menu {
 	background: var(--back-trn-6);
 }

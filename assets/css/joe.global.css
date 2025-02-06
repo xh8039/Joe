@@ -923,7 +923,8 @@
 	padding: 45px 15px 15px
 }
 
-.joe_aside__item.author::before {
+.joe_aside__item.author::before,
+.user-card .user-cover::before {
 	content: '';
 	position: absolute;
 	top: 90px;
@@ -4377,7 +4378,8 @@ html #nprogress .spinner-icon {
 }
 
 .user-card .user-cover {
-	border-radius: var(--main-radius) var(--main-radius) 0 0
+	border-radius: var(--main-radius) var(--main-radius) 0 0;
+
 }
 
 .user-card .card-content {

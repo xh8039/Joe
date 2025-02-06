@@ -17,16 +17,16 @@ $JAside_Notice = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JAside_Notice->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Notice);
 
-$JAside_Author_Image = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JAside_Author_Image',
+$JAside_Author_Background = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	'JAside_Author_Background',
 	NULL,
 	'//api.bri6.cn/api/wallpaper/pc.php',
 	'博主栏背景壁纸 - PC',
-	'介绍：用于修改PC端博主栏的背景壁纸 <br/>
-		 格式：图片地址 或 Base64地址'
+	'介绍：用于修改PC端博主栏的背景壁纸，一行一个，随机展示 <br/>
+	格式：图片/视频地址 或 Base64地址'
 );
-$JAside_Author_Image->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Author_Image);
+$JAside_Author_Background->setAttribute('class', 'joe_content joe_aside');
+$form->addInput($JAside_Author_Background);
 
 $JAside_Wap_Image = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Wap_Image',

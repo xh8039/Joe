@@ -8,17 +8,19 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<section class="zib-widget widget user-card">
 		<div class="user-cover graphic" style="padding-bottom: 50%;">
 		<?php
-			if (empty($this->options->JAside_Author_Image)) {
+			$aside_background = joe\optionMulti($this->options->JAside_Author_Background, "\r\n", null);
+			$aside_background = empty($aside_background) ? null : $aside_background[array_rand($aside_background)];
+			if (empty($aside_background)) {
 			?>
 				<img class="fit-cover lazyload" src="<?= Joe\theme_url('assets/images/user_t.jpg') ?>">
 			<?php
-			} else if (str_ends_with($this->options->JAside_Author_Image, '.mp4')) {
+			} else if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') {
 			?>
-				<video src="<?= $this->options->JAside_Author_Image ?>" autoplay loop muted></video>
+				<video src="<?= $aside_background ?>" autoplay loop muted></video>
 			<?php
 			} else {
 			?>
-				<img class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/user_t.jpg') ?>">
+				<img class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $aside_background ?>">
 			<?php
 			}
 			?>
@@ -79,7 +81,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	</section>
 
 	<!-- <section class="joe_aside__item author">
-		<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/aside_author_image.jpg'); ?>" alt="博主栏壁纸" />
+		<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Background ?? Joe\theme_url('assets/images/aside_author_image.jpg'); ?>" alt="博主栏壁纸" />
 		<div class="user">
 			<img width="75" height="75" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主头像" />
 			<a class="link" href="<?php $this->options->JAside_Author_Link() ?>" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>

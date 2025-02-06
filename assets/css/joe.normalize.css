@@ -890,6 +890,10 @@ a[href] {
 	height: var(--this-size);
 }
 
+.avatar-lg {
+    --this-size: 80px
+}
+
 .avatar-mini {
 	--this-size: 20px;
 }

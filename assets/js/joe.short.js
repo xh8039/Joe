@@ -56,7 +56,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					}
 				]
 			});
-			document.addEventListener('turbolinks:send', () => {
+			document.addEventListener('turbolinks:load', () => {
 				aplayer.destroy();
 			}, { once: true });
 		}
@@ -90,7 +90,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					preload: 'auto',
 					audio
 				});
-				document.addEventListener('turbolinks:send', () => {
+				document.addEventListener('turbolinks:load', () => {
 					aplayer.destroy();
 				}, { once: true });
 			});
@@ -127,7 +127,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					preload: 'auto',
 					audio
 				});
-				document.addEventListener('turbolinks:send', () => {
+				document.addEventListener('turbolinks:load', () => {
 					aplayer.destroy();
 				}, { once: true });
 			});

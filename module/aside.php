@@ -9,7 +9,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php
 		$aside_background = joe\optionMulti($this->options->JAside_Author_Background, "\r\n", null);
 		$aside_background = empty($aside_background) ? '' : $aside_background[array_rand($aside_background)];
-		if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') {
+		$aside_background_video = false;
+		if (str_starts_with($aside_background, 'mp4://')) {
+			$aside_background = str_starts_replace('mp4://', '', $aside_background);
+			$aside_background_video = true;
+		}
+		if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') $aside_background_video = true;
+		if ($aside_background_video) {
 		?>
 			<div class="user-cover graphic" style="padding-bottom: 0;"><video width="100%" src="<?= $aside_background ?>" autoplay loop muted preload="none"></video></div>
 		<?php

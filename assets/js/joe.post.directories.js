@@ -153,6 +153,7 @@ function section_navs(selector) {
 			}
 		});
 
+		_body.off('click', nav_selector + ' .nav-toggle-collapse');
 		_body.on('click', nav_selector + ' .nav-toggle-collapse', function () {
 			$(this).toggleClass('fa-rotate-90').parent().nextUntil(find_selector).toggleClass('yc');
 		});

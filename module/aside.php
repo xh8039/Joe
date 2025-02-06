@@ -8,18 +8,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<section class="zib-widget widget user-card">
 		<?php
 		$aside_background = joe\optionMulti($this->options->JAside_Author_Background, "\r\n", null);
-		$aside_background = empty($aside_background) ? null : $aside_background[array_rand($aside_background)];
-		if (empty($aside_background)) {
-		?>
-			<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyload" src="<?= Joe\theme_url('assets/images/user_t.jpg') ?>"></div>
-		<?php
-		} else if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') {
+		$aside_background = empty($aside_background) ? '' : $aside_background[array_rand($aside_background)];
+		if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') {
 		?>
 			<div class="user-cover graphic" style="padding-bottom: 0;"><video width="100%" src="<?= $aside_background ?>" autoplay loop muted></video></div>
 		<?php
 		} else {
 		?>
-			<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $aside_background ?>"></div>
+			<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= empty($aside_background) ? Joe\theme_url('assets/images/user_t.jpg') : $aside_background ?>"></div>
 		<?php
 		}
 		?>

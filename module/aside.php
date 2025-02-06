@@ -15,7 +15,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php
 		} else if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') {
 		?>
-			<video width="100%" src="<?= $aside_background ?>" autoplay loop muted></video>
+			<div class="user-cover graphic" style="padding-bottom: 0;"><video width="100%" src="<?= $aside_background ?>" autoplay loop muted></video></div>
 		<?php
 		} else {
 		?>

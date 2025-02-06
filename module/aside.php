@@ -10,8 +10,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		$aside_background = joe\optionMulti($this->options->JAside_Author_Background, "\r\n", null);
 		$aside_background = empty($aside_background) ? '' : $aside_background[array_rand($aside_background)];
 		$aside_background_video = false;
-		if (str_starts_with($aside_background, 'mp4://')) {
-			$aside_background = str_starts_replace('mp4://', '', $aside_background);
+		if (str_starts_with($aside_background, 'video:')) {
+			$aside_background = str_starts_replace('video:', '', $aside_background);
 			$aside_background_video = true;
 		}
 		if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') $aside_background_video = true;

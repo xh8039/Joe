@@ -75,12 +75,12 @@ class Api
 						"views" => \joe\getViews($item, false),
 						"commentsNum" => number_format($item->commentsNum),
 						"agree" => \joe\getAgree($item, false),
-						"permalink" => \joe\permalink($item->permalink),
+						"permalink" => \joe\root_relative_link($item->permalink),
 						"lazyload" => \joe\getLazyload(),
 						"type" => '置顶',
 						'target' => self::$options->Jessay_target,
 						'author_screenName' => $item->author->screenName,
-						'author_permalink' => \joe\permalink($item->author->permalink),
+						'author_permalink' => \joe\root_relative_link($item->author->permalink),
 						'author_avatar' => \joe\getAvatarByMail($item->author->mail, false),
 						'tags' => $item->tags,
 						'fields' => $item->fields->toArray()
@@ -109,12 +109,12 @@ class Api
 				"views" => number_format($item->views),
 				"commentsNum" => number_format($item->commentsNum),
 				"agree" => number_format($item->agree),
-				"permalink" => \joe\permalink($item->permalink),
+				"permalink" => \joe\root_relative_link($item->permalink),
 				"lazyload" => \joe\getLazyload(),
 				"type" => 'normal',
 				'target' => self::$options->Jessay_target,
 				'author_screenName' => $item->author->screenName,
-				'author_permalink' => \joe\permalink($item->author->permalink),
+				'author_permalink' => \joe\root_relative_link($item->author->permalink),
 				'author_avatar' => \joe\getAvatarByMail($item->author->mail, false),
 				'tags' => $item->tags,
 				'fields' => $item->fields->toArray()
@@ -612,7 +612,7 @@ class Api
 				$routeExists = (NULL != \Typecho\Router::get($type));
 				$_item['pathinfo'] = $routeExists ? \Typecho\Router::url($type, $_item) : '#';
 				$_item['permalink'] = \Typecho\Common::url($_item['pathinfo'], $options->index);
-				$_item['permalink'] = \joe\permalink($_item['permalink']);
+				$_item['permalink'] = \joe\root_relative_link($_item['permalink']);
 				$list[] = array(
 					"title" => date('m/d', $_item['created']) . '：' . $_item['title'],
 					"permalink" => $_item['permalink'],
@@ -690,7 +690,7 @@ class Api
 				unset($data[$key]);
 				$data[$key]['author'] = is_array($value['artist']) ? implode(' / ', $value['artist']) : $value['artist'];
 				$data[$key]['title'] = $value['name'];
-				$base_url = \joe\permalink(self::$options->index . '/joe/api/meting');
+				$base_url = \joe\root_relative_link(self::$options->index . '/joe/api/meting');
 				$data[$key]['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $value['url_id'] . '&time=' . time();
 				$data[$key]['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&size=1000&id=' . $value['pic_id'];
 				$data[$key]['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
@@ -729,7 +729,7 @@ class Api
 			$data = array_shift(json_decode($data, true));
 			$data['author'] = is_array($data['artist']) ? implode(' / ', $data['artist']) : $data['artist'];
 			$data['title'] = $data['name'];
-			$base_url = \joe\permalink(self::$options->index . '/joe/api/meting');
+			$base_url = \joe\root_relative_link(self::$options->index . '/joe/api/meting');
 			$data['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $data['url_id'] . '&time=' . time();
 			$data['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $data['pic_id'];
 			$data['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];

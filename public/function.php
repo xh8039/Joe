@@ -14,7 +14,7 @@ function comment_author($comment)
 		$domain = parse_url($url, PHP_URL_HOST);
 		if ($domain != JOE_DOMAIN && \Helper::options()->JPostLinkRedirect == 'on') {
 			$url = \Helper::options()->index . '/goto?url=' . base64_encode($url);
-			$url = permalink($url);
+			$url = \joe\root_relative_link($url);
 		}
 		return '<a href="' . $url . '" target="_blank" rel="external nofollow">' . $comment->author . '</a>';
 	}
@@ -22,9 +22,9 @@ function comment_author($comment)
 }
 
 /**
- * 获取去掉网站协议和域名的绝对路径
+ * 获取去掉网站协议和域名的绝对相对路径
  */
-function permalink($link)
+function root_relative_link($link)
 {
 	return str_starts_replace(\Helper::options()->siteUrl, '/', $link);
 }
@@ -333,7 +333,7 @@ function getAsideAuthorNav()
 			foreach ($result as $item) {
 				$item = \Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
 				$title = htmlspecialchars($item['title']);
-				$permalink = \joe\permalink($item['permalink']);
+				$permalink = \joe\root_relative_link($item['permalink']);
 				echo "<li class='item'><a class='link' href='{$permalink}' title='{$title}'>{$title}</a><svg class='svg' aria-hidden='true'><use xlink:href='#icon-copy-color'></use></svg></li>";
 			}
 		}
@@ -1016,13 +1016,13 @@ function get_archive_tags($item)
 	$tags = '';
 	$pay_tag_background = $item->fields->pay_tag_background ? $item->fields->pay_tag_background : 'yellow';
 	if ($item->fields->hide == 'pay' && $pay_tag_background != 'none') {
-		$tags .= '<a rel="nofollow" href="' . \joe\permalink($item->permalink) . '?scroll=pay-box" class="meta-pay but jb-' . $pay_tag_background . '">' . ($item->fields->price > 0 ? '付费阅读<span class="em09 ml3">￥</span>' . $item->fields->price : '免费资源') . '</a>';
+		$tags .= '<a rel="nofollow" href="' . \joe\root_relative_link($item->permalink) . '?scroll=pay-box" class="meta-pay but jb-' . $pay_tag_background . '">' . ($item->fields->price > 0 ? '付费阅读<span class="em09 ml3">￥</span>' . $item->fields->price : '免费资源') . '</a>';
 	}
 	foreach ($item->categories as $key => $value) {
-		$tags .= '<a class="but ' . $color_array[$key] . '" title="查看此分类更多文章" href="' . \joe\permalink($value['permalink']) . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
+		$tags .= '<a class="but ' . $color_array[$key] . '" title="查看此分类更多文章" href="' . \joe\root_relative_link($value['permalink']) . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
 	}
 	foreach ($item->tags as $key => $value) {
-		$tags .= '<a href="' . \joe\permalink($value['permalink']) . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
+		$tags .= '<a href="' . \joe\root_relative_link($value['permalink']) . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
 	}
 	return $tags;
 }

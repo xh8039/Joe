@@ -7,12 +7,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <h1 class="joe_detail__title"><?php $this->title() ?></h1>
 <div class="joe_detail__count">
 	<div class="joe_detail__count-information">
-		<a href="<?= joe\permalink($this->author->permalink); ?>">
+		<a href="<?= joe\root_relative_link($this->author->permalink); ?>">
 			<img width="38" height="38" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author(); ?>" />
 		</a>
 		<div class="meta ml10">
 			<div class="author">
-				<a class="link" href="<?= joe\permalink($this->author->permalink); ?>" title="<?php $this->author(); ?>"><?php $this->author(); ?></a>
+				<a class="link" href="<?= joe\root_relative_link($this->author->permalink); ?>" title="<?php $this->author(); ?>"><?php $this->author(); ?></a>
 			</div>
 			<div class="item">
 				<span data-toggle="tooltip" data-placement="bottom" title="<?php $this->date('Y年m月d日 H:i') ?> 发布" class="text"><?= joe\dateWord($this->dateWord) ?>发布</span>

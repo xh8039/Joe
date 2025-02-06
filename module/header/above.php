@@ -22,11 +22,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			?>
 			<?php if (count($pages->stack) <= $this->options->JNavMaxNum) : ?>
 				<?php foreach ($pages->stack as $item) : ?>
-					<a class="item <?php echo $this->is('page', $item['slug']) ? 'active' : '' ?>" href="<?= joe\permalink($item['permalink']) ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
+					<a class="item <?php echo $this->is('page', $item['slug']) ? 'active' : '' ?>" href="<?= joe\root_relative_link($item['permalink']) ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
 				<?php endforeach; ?>
 			<?php else : ?>
 				<?php foreach (array_slice($pages->stack, 0, $this->options->JNavMaxNum) as $item) : ?>
-					<a class="item <?php echo $this->is('page', $item['slug']) ? 'active' : '' ?>" href="<?= joe\permalink($item['permalink']) ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
+					<a class="item <?php echo $this->is('page', $item['slug']) ? 'active' : '' ?>" href="<?= joe\root_relative_link($item['permalink']) ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
 				<?php endforeach; ?>
 				<div class="joe_dropdown" trigger="hover" placement="60px" style="margin-right: 15px;">
 					<div class="joe_dropdown__link">
@@ -37,7 +37,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</div>
 					<nav class="joe_dropdown__menu">
 						<?php foreach (array_slice($pages->stack, $this->options->JNavMaxNum) as $item) : ?>
-							<a class="<?php echo $this->is('page', $item['slug']) ? 'active' : '' ?>" href="<?= joe\permalink($item['permalink']) ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
+							<a class="<?php echo $this->is('page', $item['slug']) ? 'active' : '' ?>" href="<?= joe\root_relative_link($item['permalink']) ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
 						<?php endforeach; ?>
 					</nav>
 				</div>
@@ -67,7 +67,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php $this->widget('Widget_Contents_Hot@Search', 'pageSize=5')->to($item); ?>
 				<?php $index = 1; ?>
 				<?php while ($item->next()) : ?>
-					<a href="<?php joe\permalink($item->permalink); ?>" title="<?php $item->title(); ?>" class="item">
+					<a href="<?php joe\root_relative_link($item->permalink); ?>" title="<?php $item->title(); ?>" class="item">
 						<span class="sort"><?php echo $index; ?></span>
 						<span class="text"><?php $item->title(); ?></span>
 						<span class="views"><?php echo number_format($item->views); ?> 阅读</span>

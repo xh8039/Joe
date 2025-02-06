@@ -14,7 +14,7 @@ if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\de
 		if ($friends_page) {
 			$friends_page_pathinfo = Typecho\Router::url('page', $friends_page);
 			$friends_page_url = Typecho\Common::url($friends_page_pathinfo, $this->options->index);
-			$friends_page_url = joe\permalink($friends_page_url);
+			$friends_page_url = joe\root_relative_link($friends_page_url);
 		} else {
 			$friends_page_url = null;
 		}

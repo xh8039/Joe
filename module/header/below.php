@@ -15,11 +15,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php if ($category->levels === 0) : ?>
 					<?php $children = $category->getAllChildren($category->mid); ?>
 					<?php if (empty($children)) : ?>
-						<a class="item <?php echo $this->is('category', $category->slug) ? 'active' : '' ?>" href="<?= joe\permalink($category->permalink); ?>" title="<?= htmlentities($category->name) ?>"><?php $category->name(); ?></a>
+						<a class="item <?php echo $this->is('category', $category->slug) ? 'active' : '' ?>" href="<?= joe\root_relative_link($category->permalink); ?>" title="<?= htmlentities($category->name) ?>"><?php $category->name(); ?></a>
 					<?php else : ?>
 						<div class="joe_dropdown" trigger="hover">
 							<div class="joe_dropdown__link">
-								<a class="item <?php echo $this->is('category', $category->slug) ? 'active' : '' ?>" href="<?= joe\permalink($category->permalink); ?>" title="<?= htmlentities($category->name) ?>"><?php $category->name(); ?></a>
+								<a class="item <?php echo $this->is('category', $category->slug) ? 'active' : '' ?>" href="<?= joe\root_relative_link($category->permalink); ?>" title="<?= htmlentities($category->name) ?>"><?php $category->name(); ?></a>
 								<svg class="joe_dropdown__link-icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="13" height="13">
 									<path d="M561.873 725.165c-11.262 11.262-26.545 21.72-41.025 18.502-14.479 2.413-28.154-8.849-39.415-18.502L133.129 375.252c-17.697-17.696-17.697-46.655 0-64.352s46.655-17.696 64.351 0l324.173 333.021 324.977-333.02c17.696-17.697 46.655-17.697 64.351 0s17.697 46.655 0 64.351L561.873 725.165z" fill="var(--minor)" />
 								</svg>
@@ -27,7 +27,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<nav class="joe_dropdown__menu">
 								<?php foreach ($children as $mid) : ?>
 									<?php $child = $category->getCategory($mid); ?>
-									<a class="<?php echo $this->is('category', $child['slug']) ? 'active' : '' ?>" href="<?= joe\permalink($child['permalink']) ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
+									<a class="<?php echo $this->is('category', $child['slug']) ? 'active' : '' ?>" href="<?= joe\root_relative_link($child['permalink']) ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
 								<?php endforeach; ?>
 							</nav>
 						</div>
@@ -57,7 +57,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>">修改外观</a>
 						<?php endif; ?>
 						<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>">进入后台</a>
-						<a data-turbolinks="false" href="<?= joe\permalink($this->options->logoutUrl) ?>">退出登录</a>
+						<a data-turbolinks="false" href="<?= joe\root_relative_link($this->options->logoutUrl) ?>">退出登录</a>
 					</nav>
 				</div>
 			<?php else : ?>

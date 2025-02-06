@@ -11,7 +11,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
         </li>
         <?php if (sizeof($this->categories) > 0) : ?>
             <li class="item">
-                <a class="link" href="<?= joe\permalink($this->categories[0]['permalink']); ?>" title="<?= $this->categories[0]['name']; ?>"><?= $this->categories[0]['name']; ?></a>
+                <a class="link" href="<?= joe\root_relative_link($this->categories[0]['permalink']); ?>" title="<?= $this->categories[0]['name']; ?>"><?= $this->categories[0]['name']; ?></a>
             </li>
         <?php endif; ?>
         <li class="item"> 正文</li>

@@ -170,7 +170,7 @@ class Editor
 				canPreview: false
 			}
 			window.Joe = window.Joe || {};
-			window.Joe.BASE_API = `<?= joe\permalink(joe\index('joe/api')) ?>`;
+			window.Joe.BASE_API = `<?= joe\root_relative_link(joe\index('joe/api')) ?>`;
 			window.Joe.CDN_URL = `<?= joe\cdn() ?>`;
 			window.Joe.THEME_URL = `<?= joe\theme_url('', false) ?>`;
 		</script>

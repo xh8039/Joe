@@ -61,12 +61,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<?php $children = $category->getAllChildren($category->mid); ?>
 							<?php if (empty($children)) : ?>
 								<li>
-									<a class="link <?php echo $this->is('category', $category->slug) ? 'current' : '' ?>" href="<?= joe\permalink($category->permalink); ?>" title="<?= htmlentities($category->name) ?>"><?php $category->name(); ?></a>
+									<a class="link <?php echo $this->is('category', $category->slug) ? 'current' : '' ?>" href="<?= joe\root_relative_link($category->permalink); ?>" title="<?= htmlentities($category->name) ?>"><?php $category->name(); ?></a>
 								</li>
 							<?php else : ?>
 								<li>
 									<div class="link panel <?php echo $this->is('category', $category->slug) ? 'current' : '' ?>">
-										<a href="<?= joe\permalink($category->permalink); ?>" title="<?= htmlentities($category->name)  ?>"><?php $category->name(); ?></a>
+										<a href="<?= joe\root_relative_link($category->permalink); ?>" title="<?= htmlentities($category->name)  ?>"><?php $category->name(); ?></a>
 										<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="13" height="13">
 											<path d="M624.865 512.247L332.71 220.088c-12.28-12.27-12.28-32.186 0-44.457 12.27-12.28 32.186-12.28 44.457 0l314.388 314.388c12.28 12.27 12.28 32.186 0 44.457L377.167 848.863c-6.136 6.14-14.183 9.211-22.228 9.211s-16.092-3.071-22.228-9.211c-12.28-12.27-12.28-32.186 0-44.457l292.155-292.16z" />
 										</svg>
@@ -75,7 +75,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 										<?php foreach ($children as $mid) : ?>
 											<?php $child = $category->getCategory($mid); ?>
 											<li>
-												<a class="link <?php echo $this->is('category', $child['slug']) ? 'current' : '' ?>" href="<?= joe\permalink($child['permalink']) ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
+												<a class="link <?php echo $this->is('category', $child['slug']) ? 'current' : '' ?>" href="<?= joe\root_relative_link($child['permalink']) ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
 											</li>
 										<?php endforeach; ?>
 									</ul>
@@ -97,7 +97,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
 					<?php foreach ($pages->stack as $item) : ?>
 						<li>
-							<a class="link <?php echo $this->is('page', $item['slug']) ? 'current' : '' ?>" href="<?= joe\permalink($item['permalink']) ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
+							<a class="link <?php echo $this->is('page', $item['slug']) ? 'current' : '' ?>" href="<?= joe\root_relative_link($item['permalink']) ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
 						</li>
 					<?php endforeach; ?>
 				</ul>
@@ -172,7 +172,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>" class="link">主题设置</a>
 						<?php } ?>
 						<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>" class="link">进入后台</a>
-						<a data-turbolinks="false" href="<?= joe\permalink($this->options->logoutUrl) ?>" class="link">退出登录</a>
+						<a data-turbolinks="false" href="<?= joe\root_relative_link($this->options->logoutUrl) ?>" class="link">退出登录</a>
 					</li>
 				</ul>
 			</li>

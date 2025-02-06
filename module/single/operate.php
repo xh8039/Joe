@@ -24,7 +24,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				$description = urlencode($description);
 				$pic = urlencode(joe\getThumbnails($this)[0]);
 				$title = urlencode($this->title . ' - ' . $this->options->title);
-				$permalink = urlencode(joe\permalink($this->permalink));
+				$permalink = urlencode(joe\root_relative_link($this->permalink));
 				?>
 				<a rel="nofollow" class="share-btn qzone" target="_blank" title="QQ空间" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=<?= $permalink ?>&title=<?= $title ?>&pics=<?= $pic ?>&summary=<?= $description ?>">
 					<icon><svg class="icon" aria-hidden="true">
@@ -66,7 +66,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php
 	if ($this->options->JWeChatRewardImg || $this->options->JAlipayRewardImg || $this->options->JQQRewardImg) {
 	?>
-		<a href="javascript:;" data-toggle="RefreshModal" data-target="#rewards-modal-<?= $this->cid ?>" data-remote="<?= joe\permalink($this->options->index . '/joe/api/user_rewards_modal?cid=' . $this->cid) ?>" class="rewards action action-rewards">
+		<a href="javascript:;" data-toggle="RefreshModal" data-target="#rewards-modal-<?= $this->cid ?>" data-remote="<?= joe\root_relative_link($this->options->index . '/joe/api/user_rewards_modal?cid=' . $this->cid) ?>" class="rewards action action-rewards">
 			<svg class="icon" aria-hidden="true">
 				<use xlink:href="#icon-money"></use>
 			</svg>

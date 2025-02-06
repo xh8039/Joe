@@ -12,7 +12,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<div class="swiper-wrapper">
 					<?php while ($relatedPosts->next()) : ?>
 						<div class="swiper-slide mr10">
-							<a href="<?= joe\permalink($relatedPosts->permalink); ?>" title="<?php $relatedPosts->title(); ?>">
+							<a href="<?= joe\root_relative_link($relatedPosts->permalink); ?>" title="<?php $relatedPosts->title(); ?>">
 								<div class="graphic hover-zoom-img mb10 style-3" style="padding-bottom: 70%!important;">
 									<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" class="fit-cover lazyload" data-src="<?= joe\getThumbnails($relatedPosts)[0]; ?>" src="<?= joe\getLazyload(); ?>" alt="<?php $relatedPosts->title(); ?>">
 									<div class="abs-center left-bottom graphic-text text-ellipsis"><?php $relatedPosts->title(); ?></div>

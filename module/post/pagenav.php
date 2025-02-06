@@ -12,7 +12,7 @@ if ($thePrev || $theNext) {
             <!-- 上一篇 -->
             <?php if (!empty($thePrev)) : ?>
                 <div class="box-body">
-                    <a href="<?= joe\permalink($thePrev['permalink']); ?>">
+                    <a href="<?= joe\root_relative_link($thePrev['permalink']); ?>">
                         <p class="muted-2-color"><i class="fa fa-angle-left em12"></i><i class="fa fa-angle-left em12 mr6"></i> 上一篇</p>
                         <div class="text-ellipsis-2"><?= $thePrev['title']; ?></div>
                     </a>
@@ -21,7 +21,7 @@ if ($thePrev || $theNext) {
             <!-- 下一篇 -->
             <?php if (!empty($theNext)) : ?>
                 <div class="box-body">
-                    <a href="<?= joe\permalink($theNext['permalink']); ?>">
+                    <a href="<?= joe\root_relative_link($theNext['permalink']); ?>">
                         <p class="muted-2-color">下一篇 <i class="fa fa-angle-right em12 ml6"></i><i class="fa fa-angle-right em12"></i></p>
                         <div class="text-ellipsis-2"><?= $theNext['title']; ?></div>
                     </a>

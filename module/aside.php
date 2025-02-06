@@ -27,12 +27,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							$PostsNum = joe\number_word($stat->myPublishedPostsNum);
 							$CommentsNum = joe\number_word($stat->myPublishedCommentsNum);
 							?>
-							<a class="but c-blue tag-posts" data-toggle="tooltip" title="共<?= $PostsNum ?>篇文章" href="<?= joe\root_relative_link($this->user->permalink) ?>"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-post"></use></svg><?= $PostsNum ?></a>
-							<a class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?php $this->options->adminUrl('manage-comments.php') ?>"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-comment"></use></svg><?= $CommentsNum ?></a>
+							<a class="but c-blue tag-posts" data-toggle="tooltip" title="共<?= $PostsNum ?>篇文章" href="<?= joe\root_relative_link($this->user->permalink) ?>"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-post"></use></svg><?= $PostsNum ?></a>
+							<a class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?php $this->options->adminUrl('manage-comments.php') ?>"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-comment"></use></svg><?= $CommentsNum ?></a>
 							<?php $agree = joe\number_word(joe\author_post_field_sum($this->user->uid, 'agree')) ?>
 							<span class="but c-yellow tag-follow" data-toggle="tooltip" title="共<?= $agree ?>个点赞"><i class="fa fa-heart em09"></i><?= $agree ?></span>
 							<?php $views = joe\number_word(joe\author_post_field_sum($this->user->uid, 'views')) ?>
-							<span class="badg c-red tag-view" data-toggle="tooltip" title="人气值 <?= $views ?>"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hot"></use></svg><?= $views ?></span>
+							<span class="badg c-red tag-view" data-toggle="tooltip" title="人气值 <?= $views ?>"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-hot"></use></svg><?= $views ?></span>
 						</div>
 						<div class="user-desc mt10 muted-2-color em09 joe_motto">这家伙很懒，什么都没有写...</div>
 						<div class="user-btns mt20">

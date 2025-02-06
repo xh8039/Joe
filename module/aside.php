@@ -22,7 +22,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php
 		} else {
 		?>
-			<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= empty($aside_background) ? Joe\theme_url('assets/images/user_t.jpg') : $aside_background ?>"></div>
+			<div class="user-cover graphic" style="padding-bottom: 50%;"><img referrerpolicy="no-referrer" rel="noreferrer" class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= empty($aside_background) ? Joe\theme_url('assets/images/user_t.jpg') : $aside_background ?>"></div>
 		<?php
 		}
 		?>

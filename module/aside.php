@@ -5,7 +5,23 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 ?>
 <aside class="joe_aside">
-
+	<section class="zib-widget widget user-card">
+		<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyloaded lazyloadafter" src="http://zibll.bri6.cn/wp-content/themes/zibll/img/user_t.jpg" data-src="http://zibll.bri6.cn/wp-content/themes/zibll/img/user_t.jpg"></div>
+		<div class="card-content mt10">
+			<div class="user-content">
+				<div class="user-avatar"><span class="avatar-img avatar-lg"><img alt="默认头像" class="fit-cover avatar" src="http://zibll.bri6.cn/wp-content/themes/zibll/img/avatar-default.png"></span></div>
+				<div class="user-info mt10">
+					<div class="text-center ">
+						<p class="muted-color box-body em12">HI！请登录</p>
+						<p>
+							<a href="javascript:;" class="signin-loader but jb-blue padding-lg"><i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>登录</a>
+							<a href="javascript:;" class="signup-loader ml10 but jb-yellow padding-lg"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-signup"></use></svg>注册</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	<section class="joe_aside__item author">
 		<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/aside_author_image.jpg'); ?>" alt="博主栏壁纸" />
 		<div class="user">

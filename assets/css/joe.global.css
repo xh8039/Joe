@@ -4370,3 +4370,63 @@ html #nprogress .spinner-icon {
 .comment-list .popover-content a {
 	color: var(--theme);
 }
+
+.user-card {
+	padding: 0;
+	overflow: hidden
+}
+
+.user-card .user-cover {
+	border-radius: var(--main-radius) var(--main-radius) 0 0
+}
+
+.user-card .card-content {
+	padding: 15px
+}
+
+.user-card name .display-name {
+	font-size: 1.1em;
+	font-weight: 700
+}
+
+.user-card.widget .user-cover+.card-content {
+	margin-top: -55px
+}
+
+.user-card.widget .user-avatar,
+.user-card.widget .user-info {
+	text-align: center
+}
+
+.user-card.widget .user-name name {
+	justify-content: center
+}
+
+.user-card.widget .more-posts-mini {
+	margin: 20px -5px 0 -5px
+}
+
+.user-card.widget .more-posts {
+	margin-top: 20px
+}
+
+.user-card .more-posts-mini a {
+	display: block;
+	color: var(--muted-2-color);
+	padding: 3px 0
+}
+
+.user-card.author .card-content,
+.user-card.author .user-content {
+	display: flex;
+	align-items: center
+}
+
+.user-card.author .card-content>div {
+	width: 50%
+}
+
+.user-card.author .user-info {
+	margin: 0 20px;
+	overflow: hidden
+}

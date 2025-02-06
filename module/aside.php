@@ -16,7 +16,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		} else if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') $aside_background_video = true;
 		if ($aside_background_video) {
 		?>
+			<meta name="referrer" content="no-referrer">
 			<div class="user-cover graphic" style="padding-bottom: 0;"><video width="100%" src="<?= $aside_background ?>" autoplay loop muted preload="none"></video></div>
+			<meta name="referrer" content="referrer">
 		<?php
 		} else {
 		?>

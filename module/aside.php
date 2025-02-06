@@ -6,25 +6,23 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 ?>
 <aside class="joe_aside">
 	<section class="zib-widget widget user-card">
-		<div class="user-cover graphic" style="padding-bottom: 50%;">
 		<?php
-			$aside_background = joe\optionMulti($this->options->JAside_Author_Background, "\r\n", null);
-			$aside_background = empty($aside_background) ? null : $aside_background[array_rand($aside_background)];
-			if (empty($aside_background)) {
-			?>
-				<img class="fit-cover lazyload" src="<?= Joe\theme_url('assets/images/user_t.jpg') ?>">
-			<?php
-			} else if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') {
-			?>
-				<video src="<?= $aside_background ?>" autoplay loop muted></video>
-			<?php
-			} else {
-			?>
-				<img class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $aside_background ?>">
-			<?php
-			}
-			?>
-		</div>
+		$aside_background = joe\optionMulti($this->options->JAside_Author_Background, "\r\n", null);
+		$aside_background = empty($aside_background) ? null : $aside_background[array_rand($aside_background)];
+		if (empty($aside_background)) {
+		?>
+			<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyload" src="<?= Joe\theme_url('assets/images/user_t.jpg') ?>"></div>
+		<?php
+		} else if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') {
+		?>
+			<video width="100%" src="<?= $aside_background ?>" autoplay loop muted></video>
+		<?php
+		} else {
+		?>
+			<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $aside_background ?>"></div>
+		<?php
+		}
+		?>
 		<div class="card-content mt10">
 			<div class="user-content">
 				<?php

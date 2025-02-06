@@ -6,19 +6,58 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 ?>
 <aside class="joe_aside">
 	<section class="zib-widget widget user-card">
-		<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyloaded lazyloadafter" src="http://zibll.bri6.cn/wp-content/themes/zibll/img/user_t.jpg" data-src="http://zibll.bri6.cn/wp-content/themes/zibll/img/user_t.jpg"></div>
+		<div class="user-cover graphic" style="padding-bottom: 50%;"><img class="fit-cover lazyload" src="<?= Joe\theme_url('assets/images/user_t.jpg') ?>" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/user_t.jpg') ?>"></div>
 		<div class="card-content mt10">
 			<div class="user-content">
-				<div class="user-avatar"><span class="avatar-img avatar-lg"><img alt="默认头像" class="fit-cover avatar" src="http://zibll.bri6.cn/wp-content/themes/zibll/img/avatar-default.png"></span></div>
-				<div class="user-info mt10">
-					<div class="text-center ">
-						<p class="muted-color box-body em12">HI！请登录</p>
-						<p>
-							<a href="javascript:;" class="signin-loader but jb-blue padding-lg"><i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>登录</a>
-							<a href="javascript:;" class="signup-loader ml10 but jb-yellow padding-lg"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-signup"></use></svg>注册</a>
-						</p>
+				<?php
+				if ($this->user->hasLogin()) {
+				?>
+					<div class="user-avatar">
+						<a href="<?= joe\root_relative_link($this->user->permalink) ?>">
+							<span class="avatar-img avatar-lg"><img alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="avatar avatar-id-<?= $this->user->uid ?> ls-is-cached lazyload"></span>
+						</a>
 					</div>
-				</div>
+					<div class="user-info mt20 mb10">
+						<div class="user-name flex jc">
+							<name class="flex1 flex ac"><a class="display-name text-ellipsis " href="<?= joe\root_relative_link($this->user->permalink) ?>">易航</a></name>
+						</div>
+						<div class="author-tag mt10 mini-scrollbar">
+							<?php
+							Typecho\Widget::widget('Widget_Stat')->to($stat);
+							$PostsNum = joe\number_word($stat->myPublishedPostsNum);
+							$CommentsNum = joe\number_word($stat->myPublishedCommentsNum);
+							?>
+							<a class="but c-blue tag-posts" data-toggle="tooltip" title="共<?= $PostsNum ?>篇文章" href="<?= joe\root_relative_link($this->user->permalink) ?>"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-post"></use></svg><?= $PostsNum ?></a>
+							<a class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?php $this->options->adminUrl('manage-comments.php') ?>"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-comment"></use></svg><?= $CommentsNum ?></a>
+							<?php $agree = joe\number_word(joe\author_post_field_sum($this->user->uid, 'agree')) ?>
+							<span class="but c-yellow tag-follow" data-toggle="tooltip" title="共<?= $agree ?>个点赞"><i class="fa fa-heart em09"></i><?= $agree ?></span>
+							<?php $views = joe\number_word(joe\author_post_field_sum($this->user->uid, 'views')) ?>
+							<span class="badg c-red tag-view" data-toggle="tooltip" title="人气值 <?= $views ?>"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hot"></use></svg><?= $views ?></span>
+						</div>
+						<div class="user-desc mt10 muted-2-color em09 joe_motto">这家伙很懒，什么都没有写...</div>
+						<div class="user-btns mt20">
+							<a rel="nofollow" class="newadd-btns but pw-1em mr6 jb-pink btn-newadd" href="<?php $this->options->adminUrl('write-post.php') ?>">发布文章</a>
+							<a rel="nofollow" href="<?php $this->options->adminUrl('profile.php') ?>" class="but pw-1em ml6 jb-blue">用户中心</a>
+						</div>
+					</div>
+				<?php
+				} else {
+				?>
+					<div class="user-avatar"><span class="avatar-img avatar-lg"><img alt="默认头像 - <?= $this->options->title ?>" class="fit-cover avatar" src="<?= Joe\theme_url('assets/images/avatar-default.png') ?>"></span></div>
+					<div class="user-info mt10">
+						<div class="text-center">
+							<p class="muted-color box-body em12">HI！请登录</p>
+							<p>
+								<a href="<?= joe\user_url('login') ?>" class="signin-loader but jb-blue padding-lg"><i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>登录</a>
+								<a href="<?= joe\user_url('register') ?>" class="signup-loader ml10 but jb-yellow padding-lg"><svg class="icon svg" aria-hidden="true">
+										<use xlink:href="#icon-signup"></use>
+									</svg>注册</a>
+							</p>
+						</div>
+					</div>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 	</section>

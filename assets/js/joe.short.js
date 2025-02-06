@@ -37,7 +37,7 @@ Joe.DOMContentLoaded.short ||= () => {
 		render() {
 			if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
 			this.style.display = 'block';
-			new MusicPlayer({
+			const aplayer = new MusicPlayer({
 				container: this,
 				theme: this.options.theme,
 				autoplay: this.options.autoplay,
@@ -56,6 +56,9 @@ Joe.DOMContentLoaded.short ||= () => {
 					}
 				]
 			});
+			document.addEventListener('turbolinks:send', () => {
+				aplayer.destroy();
+			}, { once: true });
 		}
 	});
 
@@ -76,7 +79,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			this.style.display = 'block';
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
-				new MusicPlayer({
+				const aplayer = new MusicPlayer({
 					container: this,
 					lrcType: 1,
 					theme: this.options.color,
@@ -87,6 +90,9 @@ Joe.DOMContentLoaded.short ||= () => {
 					preload: 'auto',
 					audio
 				});
+				document.addEventListener('turbolinks:send', () => {
+					aplayer.destroy();
+				}, { once: true });
 			});
 		}
 	});
@@ -109,7 +115,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			this.style.display = 'block';
 			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
-				new MusicPlayer({
+				const aplayer = new MusicPlayer({
 					container: this,
 					lrcType: 3,
 					theme: this.options.color,
@@ -121,6 +127,9 @@ Joe.DOMContentLoaded.short ||= () => {
 					preload: 'auto',
 					audio
 				});
+				document.addEventListener('turbolinks:send', () => {
+					aplayer.destroy();
+				}, { once: true });
 			});
 		}
 	});

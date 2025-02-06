@@ -13,8 +13,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		if (str_starts_with($aside_background, 'video:')) {
 			$aside_background = str_starts_replace('video:', '', $aside_background);
 			$aside_background_video = true;
-		}
-		if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') $aside_background_video = true;
+		} else if (pathinfo($aside_background, PATHINFO_EXTENSION) == 'mp4') $aside_background_video = true;
 		if ($aside_background_video) {
 		?>
 			<div class="user-cover graphic" style="padding-bottom: 0;"><video width="100%" src="<?= $aside_background ?>" autoplay loop muted preload="none"></video></div>

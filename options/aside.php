@@ -21,7 +21,7 @@ $JAside_Author_Background = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Author_Background',
 	NULL,
 	'//api.bri6.cn/api/wallpaper/pc.php',
-	'博主栏背景壁纸 - PC',
+	'博主栏背景图片/视频 - PC',
 	'介绍：用于修改PC端博主栏的背景壁纸，一行一个，随机展示 <br/>
 	格式：图片/视频地址 或 Base64地址'
 );

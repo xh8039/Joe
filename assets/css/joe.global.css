@@ -4379,7 +4379,11 @@ html #nprogress .spinner-icon {
 
 .user-card .user-cover {
 	border-radius: var(--main-radius) var(--main-radius) 0 0;
+}
 
+.user-card .user-cover::before {
+	top: unset;
+	bottom: 0;
 }
 
 .user-card .card-content {

@@ -43,7 +43,7 @@ if ($video) echo '<style>html .joe_index__banner>.swiper-container .item, html .
 							<?php
 							if (pathinfo($item['img'], PATHINFO_EXTENSION) == 'mp4') {
 							?>
-								<video src="<?= $item['img'] ?>" alt="<?= $item['title'] ?>" autoplay muted loop></video>
+								<video src="<?= $item['img'] ?>" alt="<?= $item['title'] ?>" preload="none" autoplay muted loop></video>
 							<?php
 							} else {
 							?>

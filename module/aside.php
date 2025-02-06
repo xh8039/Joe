@@ -61,7 +61,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</div>
 	</section>
-	<section class="joe_aside__item author">
+
+	<!-- <section class="joe_aside__item author">
 		<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Image ?? Joe\theme_url('assets/images/aside_author_image.jpg'); ?>" alt="博主栏壁纸" />
 		<div class="user">
 			<img width="75" height="75" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主头像" />
@@ -82,7 +83,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php if ($this->options->JAside_Author_Nav !== "off") : ?>
 			<ul class="list"><?php joe\getAsideAuthorNav() ?></ul>
 		<?php endif; ?>
-	</section>
+	</section> -->
 
 	<?= ($this->is('post') && !joe\isMobile() && $this->options->JArticle_Guide == 'on') ? '<section data-affix="true" class="posts-nav-box joe_aside__item" data-title="文章目录"></section>' : null ?>
 

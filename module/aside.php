@@ -36,8 +36,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</div>
 						<div class="user-desc mt10 muted-2-color em09 joe_motto">这家伙很懒，什么都没有写...</div>
 						<div class="user-btns mt20">
-							<a rel="nofollow" class="newadd-btns but pw-1em mr6 jb-pink btn-newadd" href="<?php $this->options->adminUrl('write-post.php') ?>">发布文章</a>
-							<a rel="nofollow" href="<?php $this->options->adminUrl('profile.php') ?>" class="but pw-1em ml6 jb-blue">用户中心</a>
+							<a target="_blank" rel="nofollow" class="newadd-btns but pw-1em mr6 jb-pink btn-newadd" href="<?php $this->options->adminUrl('write-post.php') ?>">发布文章</a>
+							<a target="_blank" rel="nofollow" href="<?php $this->options->adminUrl('profile.php') ?>" class="but pw-1em ml6 jb-blue">用户中心</a>
 						</div>
 					</div>
 				<?php

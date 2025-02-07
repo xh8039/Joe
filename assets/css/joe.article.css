@@ -1286,4 +1286,16 @@ html .line-numbers .line-numbers-rows {
 	html .joe_vplayer {
 		height: 225px
 	}
+
+	html .joe_detail__article {
+		font-size: 15px
+	}
+
+	html .joe_detail__article pre[class*='language-'] {
+		font-size: 13px
+	}
+
+	html .joe_detail__article img:not([class]) {
+		max-height: unset;
+	}
 }

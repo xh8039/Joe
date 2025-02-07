@@ -25,10 +25,6 @@
 		height: 500px
 	}
 
-	/* html .joe_detail__article-video .play .box iframe {
-		min-height: 500px
-	} */
-
 	html .joe_detail__leaving-list {
 		height: 450px
 	}
@@ -56,14 +52,6 @@
 	html .joe_detail__friends {
 		grid-template-columns: repeat(2, 1fr)
 	}
-
-	/* html .joe_detail__article-video .play .box iframe {
-		min-height: 430px
-	} */
-
-	/* html .joe_detail__article-video .episodes .box {
-		grid-template-columns: repeat(5, 1fr)
-	} */
 
 	html .joe_detail__leaving-list {
 		height: 400px
@@ -190,14 +178,6 @@
 	html .joe_live__play-player {
 		height: 400px
 	}
-
-	/* html .joe_detail__article-video .play .box iframe {
-		min-height: 400px
-	} */
-
-	/* html .joe_detail__article-video .episodes .box {
-		grid-template-columns: repeat(5, 1fr)
-	} */
 
 	html .joe_detail__leaving-list {
 		height: 350px
@@ -452,28 +432,6 @@
 		font-size: 13px;
 		padding-left: 0
 	}
-
-	html .joe_detail__article {
-		/* font-size: 14px */
-		font-size: 15px
-	}
-
-	html .joe_detail__article pre[class*='language-'] {
-		font-size: 13px
-	}
-
-	html .joe_detail__article img:not([class]) {
-		max-height: unset;
-	}
-
-	/* html .joe_detail__article-video .play .box iframe {
-		min-height: 225px
-	} */
-
-	/* html .joe_detail__article-video .episodes .box {
-		grid-template-columns: repeat(3, 1fr);
-		gap: 10px
-	} */
 
 	html .joe_detail__leaving-list {
 		height: 300px
@@ -810,10 +768,6 @@
 @media (max-width: 640px) {
 	html .hide-sm {
 		display: none !important;
-	}
-
-	html .joe_detail__article {
-		font-size: 15px;
 	}
 }
 

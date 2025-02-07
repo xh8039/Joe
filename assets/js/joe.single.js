@@ -1,4 +1,4 @@
-if (window.Prism) Prism.plugins.autoloader.languages_path = Joe.CDN_URL + 'prism/1.9.0/components/';
+// if (window.Prism) Prism.plugins.autoloader.languages_path = Joe.CDN_URL + 'prism/1.9.0/components/';
 
 Joe.DOMContentLoaded.single ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.single');

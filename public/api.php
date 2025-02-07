@@ -32,7 +32,7 @@ class Api
 	public static function commentDelete($self)
 	{
 		try {
-			if ($self->user->group != 'administrator') return ['message' => '权限不足'];
+			if ($GLOBALS['JOE_USER']->group != 'administrator') return ['message' => '权限不足'];
 			$DB = \Typecho\Db::get();
 			$coid = $self->request->coid;
 			$comment = $DB->fetchRow($DB->select('text')->from('table.contents')->where('coid = ?', $coid));

@@ -67,7 +67,7 @@ function themeInit($self)
 	if (!joe\is_session_started()) session_start();
 
 	if (!isset($GLOBALS['JOE_USER'])) {
-		Typecho\Widget::widget('Widget_User')->to($user);
+		$user = Typecho\Widget::widget('Widget\User');
 		$GLOBALS['JOE_USER'] = $user;
 		if ($user->hasLogin()) {
 			if (!defined('USER_ID')) define('USER_ID', $user->uid);

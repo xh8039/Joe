@@ -95,7 +95,7 @@ window.Joe.initComment ||= (options = {}) => {
 					if (data.code == 200) {
 						$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
 							$('.comment-list__item[data-coid="' + coid + '"]').remove();
-							autolog.log('删除成功', 'success');
+							autolog.log(`删除评论 ${coid} 成功`, 'success');
 						});
 					} else {
 						autolog.log(data.message, 'error', false);

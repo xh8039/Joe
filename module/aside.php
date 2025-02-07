@@ -37,7 +37,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</div>
 					<div class="user-info mt20 mb10">
 						<div class="user-name flex jc">
-							<name class="flex1 flex ac"><a class="display-name text-ellipsis " href="<?= joe\root_relative_link($this->user->permalink) ?>">易航</a></name>
+							<name class="flex1 flex ac"><a class="display-name text-ellipsis " href="<?= joe\root_relative_link($this->user->permalink) ?>"><?= $this->user->screenName ?></a></name>
 						</div>
 						<div class="author-tag mt10 mini-scrollbar">
 							<?php

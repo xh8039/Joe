@@ -202,9 +202,9 @@ function threadedComments($comments, $options)
 							<div class="handle">
 								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 								<?= ($GLOBALS['JOE_USER']->hasLogin() && $GLOBALS['JOE_USER']->group == 'administrator') ? '
-								<span class="reply joe_comment__operate" status="delete" data-coid="' . $comments->coid . '"><i class="icon fa fa-remove" aria-hidden="true"></i>删除</span>
-								<span class="reply joe_comment__operate" status="waiting" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>审核</span>
-								<span class="reply joe_comment__operate" status="spam" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>垃圾</span>
+								<span class="reply joe_comment__operate ml10" status="delete" data-coid="' . $comments->coid . '"><i class="icon fa fa-remove" aria-hidden="true"></i>删除</span>
+								<span class="reply joe_comment__operate ml10" status="waiting" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>审核</span>
+								<span class="reply joe_comment__operate ml10" status="spam" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>垃圾</span>
 								' : null ?>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply ml10" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
 							</div>

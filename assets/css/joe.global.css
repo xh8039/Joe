@@ -3263,10 +3263,6 @@
 	display: none;
 }
 
-.joe_comment .comment-list__item-contain .term .content .handle .date {
-	margin-right: 10px
-}
-
 .joe_comment .comment-list__item-contain .term .content .handle .reply {
 	display: flex;
 	align-items: center;

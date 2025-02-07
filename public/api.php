@@ -35,7 +35,7 @@ class Api
 			if ($GLOBALS['JOE_USER']->group != 'administrator') return ['message' => '权限不足'];
 			$DB = \Typecho\Db::get();
 			$coid = $self->request->coid;
-			$comment = $DB->fetchRow($DB->select('text')->from('table.contents')->where('coid = ?', $coid));
+			$comment = $DB->fetchRow($DB->select('text')->from('table.comments')->where('coid = ?', $coid));
 			if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
 				$draw_file = '/usr/uploads/draw-comment/' . $matches[1] . '.webp';
 				$draw_root_file = __TYPECHO_ROOT_DIR__ . $draw_file;

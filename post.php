@@ -19,7 +19,6 @@ $this->need('module/single/pjax.php');
 	if (!empty($this->options->JPostMetaReferrer)) echo '<meta name="referrer" content="' . $this->options->JPostMetaReferrer . '">';
 	?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
-	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 	<?php if ($this->options->JArticle_Guide == 'on') : ?>
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
 		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>" data-turbolinks-permanent></script>

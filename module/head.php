@@ -93,6 +93,7 @@ if ($this->options->JLoading != 'off') : ?>
 
 <?php if ($this->is('single')) : ?>
 	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
+	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" data-turbolinks-permanent></script>

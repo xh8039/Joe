@@ -19,7 +19,6 @@ $this->need('module/single/pjax.php');
 <head>
 	<?php $this->need('module/head.php') ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.friend.css') ?>">
-	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>
 
 <body>

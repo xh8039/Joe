@@ -366,6 +366,7 @@ function debounce(callback, delay, immediate) {
 
 /** 文章/页面 浏览功能 */
 window.Joe.article_view = () => {
+	if (!document.querySelector('#Joe_Article_Views')) return;
 	const encryption = str => window.btoa(unescape(encodeURIComponent(str)));
 	const decrypt = str => decodeURIComponent(escape(window.atob(str)));
 	const cid = window.Joe.CONTENT.cid || $('.joe_detail').attr('data-cid');

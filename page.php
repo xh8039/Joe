@@ -10,7 +10,6 @@ $this->need('module/single/pjax.php');
 
 <head>
 	<?php $this->need('module/head.php') ?>
-	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 </head>
 
 <body>

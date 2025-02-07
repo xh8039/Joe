@@ -48,6 +48,7 @@ Joe.DOMContentLoaded.single ||= () => {
 
 	/* 激活代码高亮 */
 	(() => {
+		return;
 		if (!window.Prism || !document.querySelector("code[class*='lang-']")) return;
 		Prism.highlightAll();
 		$("pre[class*='language-']").each(function (index, item) {

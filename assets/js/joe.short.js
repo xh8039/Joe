@@ -576,6 +576,15 @@ Joe.DOMContentLoaded.short ||= () => {
 		}
 	});
 
+	if (!customElements.get('joe-code')) customElements.define('joe-code', class JoeCode extends HTMLElement {
+		constructor() {
+			super();
+			if (!window.Prism || !this.className.includes('lang-')) return;
+			const lang = this.className.replace('lang-', '');
+			Prism.highlight(this.innerText, Prism.languages[lang], lang);
+		}
+	});
+
 	$('.joe_detail__article p:empty').remove();
 }
 document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.short, { once: true });

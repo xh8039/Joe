@@ -156,5 +156,9 @@ function _parseContent($post, $content = null)
 		$content = str_replace('<code class="lang-shell">', '<code class="lang-powershell">', $content);
 	}
 
+	if (strpos($content, '<code class="lang-') !== false) {
+		$content = str_replace('<code class="lang-', '<joe-code class="lang-', $content);
+	}
+
 	return $content;
 }

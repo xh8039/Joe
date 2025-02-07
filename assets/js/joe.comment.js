@@ -110,7 +110,8 @@ window.Joe.initComment ||= (options = {}) => {
 		$(document.body).on('click', '.comment-list__item .content', function () {
 			let html = `<button>回复</button><button>删除</button>`;
 			$(this).tooltip({
-				html: html,
+				html: true,
+				title: html,
 				trigger: 'manual',
 				container: 'body'
 			}).tooltip('show');

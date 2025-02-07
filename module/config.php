@@ -24,7 +24,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 ?>
 <script>
 	Joe.startTime = performance.now();
-	Joe.DOMContentLoaded = Joe.DOMContentLoaded ? Joe.DOMContentLoaded : {};
+	Joe.DOMContentLoaded ||= {};
 	Joe.THEME_URL = `<?= joe\theme_url('', false) ?>`;
 	Joe.CDN_URL = `<?= joe\cdn() ?>`;
 	Joe.BASE_API = `<?= joe\root_relative_link(joe\index('joe/api')) ?>`;

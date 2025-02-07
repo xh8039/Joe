@@ -391,8 +391,8 @@ class JoeEditor extends JoeAction {
 									Joe.CDN_URL + 'prism-themes/1.9.0/' + JoeConfig.JPrismTheme,
 									Joe.CDN_URL + 'prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.css',
 									Joe.CDN_URL + 'prism/1.9.0/prism.min.js',
-									// Joe.CDN_URL + 'prism/1.9.0/plugins/autoloader/prism-autoloader.min.js',
-									// Joe.CDN_URL + 'prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js',
+									Joe.CDN_URL + 'prism/1.9.0/plugins/autoloader/prism-autoloader.min.js',
+									Joe.CDN_URL + 'prism/1.9.0/plugins/line-numbers/prism-line-numbers.min.js',
 									Joe.THEME_URL + 'assets/js/joe.short.js',
 								]).then(() => {
 									createPreviewHtml(this.cm.state.doc.toString());

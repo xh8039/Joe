@@ -579,10 +579,10 @@ Joe.DOMContentLoaded.short ||= () => {
 	if (!customElements.get('joe-code')) customElements.define('joe-code', class JoeCode extends HTMLElement {
 		constructor() {
 			super();
-			console.log(this,this.className.includes('lang-'))
+			console.log(this, this.className.includes('lang-'))
 			if (!window.Prism || !this.className.includes('lang-')) return;
 			const lang = this.className.replace('lang-', '');
-			Prism.highlight(this.innerText, Prism.languages[lang], lang);
+			console.log(Prism.highlight(this.innerText, Prism.languages[lang], lang));
 		}
 	});
 

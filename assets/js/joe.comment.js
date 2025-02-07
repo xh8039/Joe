@@ -110,7 +110,7 @@ window.Joe.initComment ||= (options = {}) => {
 		$(document.body).on('click', '.comment-list__item .content', function () {
 			const coid = $(this).attr('data-coid');
 			const data_id = $(this).attr('data-id');
-			$('.comment-list__item .content').tooltip('destroy');
+			$(`.comment-list__item .content:not([data-id="${data_id}"])`).tooltip('destroy');
 			$(this).tooltip({
 				html: true,
 				title: `<span class="joe_comment__reply" data-id="${data_id}" data-coid="${coid}">回复</span>丨<span class="joe_comment__delete" data-coid="${coid}">删除</span>`,

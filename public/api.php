@@ -45,7 +45,7 @@ class Api
 					return ['message' => '画图文件 [' . $matches[1] . '] 不存在！'];
 				}
 			}
-			$DB->query($DB->delete()->from('table.comments')->where('coid = ?', $coid));
+			$DB->query($DB->delete('table.comments')->where('coid = ?', $coid));
 			return ['code' => 200];
 		} catch (\Throwable $th) {
 			return ['message' => '删除失败：' . $th];

@@ -21,6 +21,7 @@ foreach (['themeUrl', 'IndexAjaxList', 'DynamicBackground', 'JDocumentTitle', 'J
 	$options[$value] = $this->options->$value;
 }
 $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+$user = json_encode($this->user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 ?>
 <script>
 	Joe.startTime = performance.now();
@@ -31,6 +32,7 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 	Joe.IS_MOBILE = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
 	Joe.PAGE_SIZE = `<?php $this->parameter->pageSize() ?>`;
 	Joe.VERSION = `<?= JOE_VERSION ?>`;
+	Joe.user = <?= $options ?>;
 	Joe.options = <?= $options ?>;
 	Joe.options.JLazyload = `<?= joe\getLazyload() ?>`;
 	Joe.options.MOTTO = `<?php joe\getMotto() ?>`;

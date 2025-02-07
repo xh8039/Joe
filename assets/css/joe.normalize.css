@@ -184,6 +184,11 @@ p {
 	white-space: nowrap
 }
 
+.disabled {
+	pointer-events: none;
+	opacity: 0.7;
+}
+
 .box-img,
 .drop-btn,
 .passw,

@@ -86,7 +86,11 @@ window.Joe.initComment ||= (options = {}) => {
 			});
 			/* 评论删除 */
 			$('.joe_comment__delete').click(function () {
-				const coid = $(this).attr('data-coid');
+				const $button = $(this);
+				const coid = $button.attr('data-coid');
+				const button_html = $button.html();
+				$button.html('<i class="loading mr3"></i>删除中...');
+				$button.addClass('disabled');
 				$.get(Joe.BASE_API + '/comment-delete', { coid }, function (data, textStatus, jqXHR) {
 					if (data.code == 200) {
 						$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
@@ -95,6 +99,8 @@ window.Joe.initComment ||= (options = {}) => {
 						});
 					} else {
 						autolog.log(data.message, 'error', false);
+						$button.html(button_html);
+						$button.removeClass('disabled');
 					}
 				}, 'json');
 			});

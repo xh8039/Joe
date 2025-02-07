@@ -579,25 +579,43 @@ Joe.DOMContentLoaded.short ||= () => {
 	if (!customElements.get('joe-code')) customElements.define('joe-code', class JoeCode extends HTMLElement {
 		constructor() {
 			super();
+		}
+		connectedCallback() {
+			// 确保 Prism 已加载
 			if (!window.Prism || !this.className.includes('lang-')) return;
+			// 获取代码内容并格式化
 			const text = $(this).text().replace(/    /g, '	');
-			// this.className = this.className.replace('lang-', 'language-');
+			// 高亮代码
 			Prism.highlightElement(this);
-			const copyButton = $(`<span data-toggle="tooltip" data-placement="top" title="点击复制" class="copy"><i class="fa fa-clone"></i></span>`);
+			// 创建复制按钮
+			const copyButton = document.createElement('span');
+			copyButton.setAttribute('data-toggle', 'tooltip');
+			copyButton.setAttribute('data-placement', 'top');
+			copyButton.setAttribute('title', '点击复制');
+			copyButton.classList.add('copy');
+			// 添加图标
+			const icon = document.createElement('i');
+			icon.classList.add('fa', 'fa-clone');
+			copyButton.appendChild(icon);
+			// 非移动端添加 Tooltip
 			if (!Joe.IS_MOBILE) {
-				copyButton.tooltip({
-					container: "body"
+				$(copyButton).tooltip({
+					container: 'body'
 				});
-				copyButton.on('click', function (event) {
-					$(this).tooltip('hide');
+
+				// 点击时隐藏 Tooltip
+				copyButton.addEventListener('click', () => {
+					$(copyButton).tooltip('hide');
 				});
 			}
-			copyButton.click(() => {
+			// 绑定复制功能
+			copyButton.addEventListener('click', () => {
 				Joe.clipboard(text, () => {
 					autolog.log(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
 				});
 			});
-			$(this).parent().append(copyButton);
+			// 将复制按钮添加到父元素
+			this.parentElement.appendChild(copyButton);
 		}
 	}, { extends: 'code' });
 

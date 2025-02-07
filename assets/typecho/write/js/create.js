@@ -22,7 +22,7 @@ function createPreviewHtml(str) {
 	});
 
 	str = str.replaceAll('<pre>', '<pre class="line-numbers">');
-	str = str.replaceAll('<code class="language-', '<joe-code class="language-');
+	str = str.replaceAll('<code class="language-', '<code is="joe-code" class="language-');
 
 	if (str.indexOf('{lamp') !== -1) {
 		str = str.replace(/{lamp\/}/g, '<span class="joe_lamp"></span>');

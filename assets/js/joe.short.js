@@ -585,21 +585,10 @@ Joe.DOMContentLoaded.short ||= () => {
 			console.log(this.className.includes('language-'));
 			// 确保 Prism 已加载
 			if (!window.Prism || !this.className.includes('language-')) return;
-
-			// 创建一个 code 标签
-			const codeElement = document.createElement('code');
-			codeElement.innerHTML = this.innerHTML; // 将内容移动到 code 标签中
-
-			// 清空 joe-code 的内容
-			this.innerHTML = '';
-
-			// 将 code 标签添加到 joe-code 中
-			this.appendChild(codeElement);
-
 			// 获取代码内容并格式化
-			const text = $(codeElement).text().replace(/    /g, '	');
+			const text = $(this).text().replace(/    /g, '	');
 			// 高亮代码
-			Prism.highlightElement(codeElement);
+			Prism.highlightElement(this);
 			// 创建复制按钮
 			const copyButton = document.createElement('span');
 			copyButton.setAttribute('data-toggle', 'tooltip');
@@ -630,10 +619,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			// 将复制按钮添加到父元素
 			this.parentElement.appendChild(copyButton);
 		}
-		adoptedCallback() {
-			this.connectedCallback();
-		}
-	});
+	}, { extends: 'code' });
 
 	$('.joe_detail__article p:empty').remove();
 }

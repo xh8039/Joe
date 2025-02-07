@@ -108,10 +108,12 @@ window.Joe.initComment ||= (options = {}) => {
 		/* 移动端评论长按回复或删除 */
 		if (!Joe.IS_MOBILE) return;
 		$(document.body).on('click', '.comment-list__item .content', function () {
-			let html = `<span>回复</span>丨<span>删除</span>`;
+			const coid = $(this).attr('data-coid');
+			const data_id = $(this).attr('data-id');
+			$('.comment-list__item .content').tooltip('destroy');
 			$(this).tooltip({
 				html: true,
-				title: html,
+				title: `<span class="joe_comment__reply" data-id="${data_id}" data-coid="${coid}">回复</span>丨<span class="joe_comment__delete" data-coid="${coid}">删除</span>`,
 				trigger: 'manual',
 				container: 'body'
 			}).tooltip('toggle');

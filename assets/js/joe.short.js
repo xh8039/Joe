@@ -580,8 +580,8 @@ Joe.DOMContentLoaded.short ||= () => {
 		constructor() {
 			super();
 			if (!window.Prism || !this.className.includes('lang-')) return;
-			const lang = this.className.replace('lang-', '');
-			console.log(Prism.highlightElement(this, true));
+			this.className = this.className.replace('lang-', 'language-');
+			Prism.highlightElement(this);
 		}
 	});
 

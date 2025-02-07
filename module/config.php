@@ -25,7 +25,7 @@ $user = [];
 foreach (['group'] as $value) {
 	$user[$value] = $this->user->$value;
 }
-$user = json_encode($this->user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+$user = json_encode($user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 ?>
 <script>
 	Joe.startTime = performance.now();

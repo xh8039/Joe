@@ -4,9 +4,47 @@ Joe.DOMContentLoaded.single ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.single');
 
 	/* 获取本篇文章百度收录情况 */
-	{
-		Joe.getBaiduRecord();
-	}
+	(() => {
+		if (!document.getElementById('Joe_Baidu_Record')) return;
+		$.ajax({
+			url: Joe.BASE_API + '/baidu-record',
+			type: 'POST',
+			dataType: 'json',
+			data: { site: window.location.href, cid: window.Joe.CONTENT.cid },
+			success(res) {
+				if (!res.data) {
+					if (Joe.options.BaiduPush) {
+						$('#Joe_Baidu_Record').html(`<a href="javascript:window.Joe.submit_baidu();" style="color: #F56C6C">检测失败，提交收录</a>`);
+						return
+					}
+					const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
+					$('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">检测失败，提交收录</a>`);
+					return
+				}
+				if (res.data == '未收录，已推送') {
+					$('#Joe_Baidu_Record').css('color', 'var(--theme)');
+					$('#Joe_Baidu_Record').html(res.data);
+					return
+				}
+				if (res.data == '已收录') {
+					$('#Joe_Baidu_Record').css('color', '#67C23A');
+					$('#Joe_Baidu_Record').html('已收录');
+					return
+				}
+				/* 如果填写了Token，则自动推送给百度 */
+				if ((res.data == '未收录') && (Joe.options.BaiduPush)) {
+					window.Joe.submit_baidu('未收录，推送中...');
+					return
+				}
+				if (Joe.options.BaiduPush) {
+					$('#Joe_Baidu_Record').html(`<a href="javascript:window.Joe.submit_baidu();" style="color: #F56C6C">${res.data}，提交收录</a>`);
+					return
+				}
+				const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
+				$('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">${res.data}，提交收录</a>`);
+			}
+		});
+	})();
 
 	/* 激活代码高亮 */
 	(() => {
@@ -50,17 +88,34 @@ Joe.DOMContentLoaded.single ||= () => {
 	}
 
 	/* 激活浏览功能 */
-	{
-		window.Joe.article_view();
-	}
+	(() => {
+		if (!document.querySelector('#Joe_Article_Views')) return;
+		const cid = window.Joe.CONTENT.cid || $('.joe_detail').attr('data-cid');
+		let viewsArr = localStorage.getItem(Joe.base64_encode('views')) ? JSON.parse(Joe.base64_decode(localStorage.getItem(Joe.base64_encode('views')))) : [];
+		const flag = viewsArr.includes(cid);
+		if (!flag) {
+			$.ajax({
+				url: Joe.BASE_API,
+				type: 'POST',
+				dataType: 'json',
+				data: { routeType: 'handle_views', cid },
+				success(res) {
+					if (res.code !== 1) return;
+					$('#Joe_Article_Views').html(res.data.views);
+					viewsArr.push(cid);
+					const name = Joe.base64_encode('views');
+					const val = Joe.base64_encode(JSON.stringify(viewsArr));
+					localStorage.setItem(name, val);
+				}
+			});
+		}
+	})();
 
 	/* 激活文章点赞功能 */
 	(() => {
 		if (!document.querySelector('.action-like')) return;
-		const encryption = str => window.btoa(unescape(encodeURIComponent(str)));
-		const decrypt = str => decodeURIComponent(escape(window.atob(str)));
-		let agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage.getItem(
-			encryption('agree')))) : [];
+		let agreeArr = localStorage.getItem(Joe.base64_encode('agree')) ? JSON.parse(Joe.base64_decode(localStorage.getItem(
+			Joe.base64_encode('agree')))) : [];
 		if (agreeArr.includes(Joe.CONTENT.cid)) {
 			$('.action-like').addClass('active');
 			$('.action-like>text').text('已赞');
@@ -72,8 +127,8 @@ Joe.DOMContentLoaded.single ||= () => {
 		$('.action-like').on('click', function () {
 			if (_loading) return;
 			_loading = true;
-			agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage
-				.getItem(encryption('agree')))) : [];
+			agreeArr = localStorage.getItem(Joe.base64_encode('agree')) ? JSON.parse(Joe.base64_decode(localStorage
+				.getItem(Joe.base64_encode('agree')))) : [];
 			let flag = agreeArr.includes(Joe.CONTENT.cid);
 			$.ajax({
 				url: Joe.BASE_API,
@@ -102,8 +157,8 @@ Joe.DOMContentLoaded.single ||= () => {
 						$('.action-like>text').text('已赞');
 						autolog.log('已赞，感谢您的支持！', 'success');
 					}
-					const name = encryption('agree');
-					const val = encryption(JSON.stringify(agreeArr));
+					const name = Joe.base64_encode('agree');
+					const val = Joe.base64_encode(JSON.stringify(agreeArr));
 					localStorage.setItem(name, val);
 					$('.action-like').css('pointer-events', '')
 				},

@@ -126,7 +126,7 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 						if ($login_comment) {
 							echo '<a href="' . joe\user_url('login') . '" rel="nofollow">登录评论</a>';
 						} else {
-							echo '<button type="submit">发送评论</button>';
+							echo '<button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> 发送评论</button>';
 						}
 						?>
 
@@ -201,7 +201,11 @@ function threadedComments($comments, $options)
 							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
 							<div class="handle">
 								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
-								<?= ($GLOBALS['JOE_USER']->hasLogin() && $GLOBALS['JOE_USER']->group == 'administrator') ? '<span class="reply joe_comment__delete" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>删除</span>' : null ?>
+								<?= ($GLOBALS['JOE_USER']->hasLogin() && $GLOBALS['JOE_USER']->group == 'administrator') ? '
+								<span class="reply joe_comment__operate" status="delete" data-coid="' . $comments->coid . '"><i class="icon fa fa-remove" aria-hidden="true"></i>删除</span>
+								<span class="reply joe_comment__operate" status="waiting" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>审核</span>
+								<span class="reply joe_comment__operate" status="spam" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>垃圾</span>
+								' : null ?>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply ml10" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
 							</div>
 						</div>

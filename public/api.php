@@ -29,23 +29,29 @@ class Api
 		];
 	}
 
-	public static function commentDelete($self)
+	public static function commentOperate($self)
 	{
 		try {
 			if ($GLOBALS['JOE_USER']->group != 'administrator') return ['message' => '权限不足'];
 			$DB = \Typecho\Db::get();
 			$coid = $self->request->coid;
-			$comment = $DB->fetchRow($DB->select('text')->from('table.comments')->where('coid = ?', $coid));
-			if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
-				$draw_file = __TYPECHO_ROOT_DIR__ . $matches[1];
-				if (file_exists($draw_file)) {
-					$delete_comment = unlink($draw_file);
-					if ($delete_comment !== true) return ['message' => '删除画图文件失败，请检查文件权限！'];
-				} else {
-					return ['message' => '画图文件 [' . $matches[1] . '] 不存在！'];
+			$status = $self->request->status;
+			if ($status == 'delete') {
+				$comment = $DB->fetchRow($DB->select('text')->from('table.comments')->where('coid = ?', $coid));
+				if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
+					$draw_file = __TYPECHO_ROOT_DIR__ . $matches[1];
+					if (file_exists($draw_file)) {
+						$delete_comment = unlink($draw_file);
+						if ($delete_comment !== true) return ['message' => '删除画图文件失败，请检查文件权限！'];
+					} else {
+						return ['message' => '画图文件 [' . $matches[1] . '] 不存在！'];
+					}
 				}
+				$DB->query($DB->delete('table.comments')->where('coid = ?', $coid));
 			}
-			$DB->query($DB->delete('table.comments')->where('coid = ?', $coid));
+			if (in_array($status, ['waiting', 'spam'])) {
+				$DB->query($DB->update('table.comments')->rows(['status' => $status])->where('coid = ?', $coid));
+			}
 			return ['code' => 200];
 		} catch (\Throwable $th) {
 			return ['message' => '删除失败：' . $th];

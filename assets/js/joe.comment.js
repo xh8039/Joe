@@ -87,18 +87,21 @@ window.Joe.initComment ||= (options = {}) => {
 			window.Joe.commentListAutoRefresh = true;
 		});
 		/* 评论删除 */
-		$(document.body).on('click', '.joe_comment__delete', function () {
+		$(document.body).on('click', '.joe_comment__operate', function () {
 			const $button = $(this);
 			const coid = $button.attr('data-coid');
 			const button_html = $button.html();
-			$button.html('<i class="loading mr3"></i>删除中...');
+			const operate_list = { delete: '删除', waiting: '标记审核', spam: '标记垃圾' };
+			const status = $button.attr('status');
+			const operate = operate_list[status];
+			$button.html(`<i class="loading mr3"></i>${operate}中...`);
 			$button.addClass('disabled');
-			$.get(Joe.BASE_API + '/comment-delete', { coid }, function (data, textStatus, jqXHR) {
+			$.get(Joe.BASE_API + '/comment-operate', { coid, status }, function (data, textStatus, jqXHR) {
 				if (data.code == 200) {
 					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
 						$('.comment-list__item[data-coid="' + coid + '"]').remove();
-						autolog.log(`删除评论 ${coid} 成功`, 'success');
+						autolog.log(`${operate}评论 ${coid} 成功`, 'success');
 					});
 				} else {
 					autolog.log(data.message, 'error', false);
@@ -113,7 +116,7 @@ window.Joe.initComment ||= (options = {}) => {
 			const coid = $(this).attr('data-coid');
 			const data_id = $(this).attr('data-id');
 			let html = `<span class="joe_comment__reply" data-id="${data_id}" data-coid="${coid}">回复</span>`;
-			if (Joe.user.group == 'administrator') html += `丨<span class="joe_comment__delete" data-coid="${coid}">删除</span>`;
+			if (Joe.user.group == 'administrator') html += `丨<span class="joe_comment__operate" status="waiting" data-coid="${coid}">审核</span>丨<span class="joe_comment__operate" status="spam" data-coid="${coid}">垃圾</span>丨<span class="joe_comment__operate" status="delete" data-coid="${coid}">删除</span>`;
 			$(`.comment-list__item .content:not([data-id="${data_id}"])`).tooltip('destroy');
 			$(this).tooltip({
 				html: true,
@@ -132,6 +135,7 @@ window.Joe.initComment ||= (options = {}) => {
 			$(".joe_comment__respond-form").on("submit", function (event) {
 				event.preventDefault();
 				window.Joe.commentListAutoRefresh = false;
+				const submit_html = $(".joe_comment__respond-form .foot .submit button").html();
 				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
 				const type = $(".joe_comment__respond-form").attr("data-type");
 				const parent = $(".joe_comment__respond-form").attr('data-coid') || null;
@@ -184,7 +188,7 @@ window.Joe.initComment ||= (options = {}) => {
 						isSubmit = false;
 						autolog.log('发送成功', 'success');
 						$('textarea.joe_owo__target').val('');
-						$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
+						$(".joe_comment__respond-form .foot .submit button").html(submit_html).blur();
 						$(".joe_comment__respond-form .body textarea[name='text']").focus();
 						if ($('.joe_hide>.joe_hide__button').length) {
 							window.Joe.pjax(window.location.href, ['.joe_detail__article']);
@@ -192,7 +196,7 @@ window.Joe.initComment ||= (options = {}) => {
 					},
 					error(xhr, status, error) {
 						isSubmit = false;
-						$(".joe_comment__respond-form .foot .submit button").html("发送评论").blur();
+						$(".joe_comment__respond-form .foot .submit button").html(submit_html).blur();
 						responseText = xhr.responseText;
 						let match = /<div class="container">\s+(.+)\s+<\/div>/;
 						var msg = responseText.match(match)[1];

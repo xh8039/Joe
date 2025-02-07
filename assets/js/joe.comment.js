@@ -88,7 +88,6 @@ window.Joe.initComment ||= (options = {}) => {
 		});
 		/* 评论删除 */
 		$(document.body).on('click', '.joe_comment__delete', function () {
-			if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 			const $button = $(this);
 			const coid = $button.attr('data-coid');
 			const button_html = $button.html();
@@ -96,6 +95,7 @@ window.Joe.initComment ||= (options = {}) => {
 			$button.addClass('disabled');
 			$.get(Joe.BASE_API + '/comment-delete', { coid }, function (data, textStatus, jqXHR) {
 				if (data.code == 200) {
+					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
 						$('.comment-list__item[data-coid="' + coid + '"]').remove();
 						autolog.log(`删除评论 ${coid} 成功`, 'success');

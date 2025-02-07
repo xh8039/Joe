@@ -102,5 +102,5 @@ function createPreviewHtml(str) {
 	}
 	$('.cm-preview-content').html(str);
 	$('.cm-preview-content p:empty').remove();
-	Prism.highlightAll();
+	// Prism.highlightAll();
 }

@@ -3,6 +3,7 @@ function getChildren(el, className) {
 	for (let item of el.children) if (item.className === className) return item;
 	return null;
 }
+if (window.Prism) Prism.plugins.autoloader.languages_path = Joe.CDN_URL + 'prism/1.9.0/components/';
 Joe.DOMContentLoaded = Joe.DOMContentLoaded || { event: 'DOMContentLoaded' };
 Joe.DOMContentLoaded.short ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.short');

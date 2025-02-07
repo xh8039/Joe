@@ -3,7 +3,7 @@ window.Joe.initComment ||= (options = {}) => {
 	/* 评论框点击切换画图模式和文本模式 */
 	{
 		if (options.draw !== false && $(".joe_comment__respond-form").length) {
-			$(".joe_comment__respond-type .item").on("click", function () {
+			$(".joe_comment__respond-type .item").on('click', function () {
 				$(this).addClass("active").siblings().removeClass("active");
 				if ($(this).attr("data-type") === "draw") {
 					$(".joe_comment__respond-form .body .draw").show().siblings().hide();
@@ -34,16 +34,16 @@ window.Joe.initComment ||= (options = {}) => {
 				color: "303133"
 			});
 			/* 撤销上一步 */
-			$(".joe_comment__respond-form .body .draw .icon-undo").on("click", () => window.sketchpad.undo());
+			$(".joe_comment__respond-form .body .draw .icon-undo").on('click', () => window.sketchpad.undo());
 			/* 动画预览 */
-			$(".joe_comment__respond-form .body .draw .icon-animate").on("click", () => window.sketchpad.animate(10));
+			$(".joe_comment__respond-form .body .draw .icon-animate").on('click', () => window.sketchpad.animate(10));
 			/* 更改画板的线宽 */
-			$(".joe_comment__respond-form .body .draw .line li").on("click", function () {
+			$(".joe_comment__respond-form .body .draw .line li").on('click', function () {
 				window.sketchpad.penSize = $(this).attr("data-line");
 				$(this).addClass("active").siblings().removeClass("active");
 			});
 			/* 更改画板的颜色 */
-			$(".joe_comment__respond-form .body .draw .color li").on("click", function () {
+			$(".joe_comment__respond-form .body .draw .color li").on('click', function () {
 				window.sketchpad.color = $(this).attr("data-color");
 				$(this).addClass("active").siblings().removeClass("active");
 			});
@@ -51,61 +51,71 @@ window.Joe.initComment ||= (options = {}) => {
 	}
 
 	/* 重写评论功能 */
-	{
-		if ($(".joe_comment__respond>.joe_comment__respond-form").length) {
+	(() => {
+		if (options.operate === false || !document.querySelector('.joe_comment__respond>.joe_comment__respond-form')) return;
+		/* 重写回复功能 */
+		$(document.body).on('click', '.joe_comment__reply', function () {
 			const respond = $(".joe_comment__respond");
-			/* 重写回复功能 */
-			$(".joe_comment__reply").on("click", function () {
-				/* 父级ID */
-				const coid = $(this).attr('data-coid');
-				/* 当前的项 */
-				const item = $("#" + $(this).attr("data-id"));
-				/* 添加自定义属性表示父级ID */
-				respond.find(".joe_comment__respond-form").attr('data-coid', coid);
-				item.append(respond);
-				$(".joe_comment__respond-type .item[data-type='text']").click();
-				$(".joe_comment__cancle").show();
-				window.scrollTo({
-					top: item.offset().top - $(".joe_header").height() - 15,
-					behavior: "smooth",
-				});
-				window.Joe.commentListAutoRefresh = false;
+			/* 父级ID */
+			const coid = $(this).attr('data-coid');
+			/* 当前的项 */
+			const item = $("#" + $(this).attr("data-id"));
+			/* 添加自定义属性表示父级ID */
+			respond.find(".joe_comment__respond-form").attr('data-coid', coid);
+			item.append(respond);
+			$(".joe_comment__respond-type .item[data-type='text']").click();
+			$(".joe_comment__cancle").show();
+			window.scrollTo({
+				top: item.offset().top - $(".joe_header").height() - 15,
+				behavior: "smooth",
 			});
-			/* 重写取消回复功能 */
-			$(".joe_comment__cancle").on("click", function () {
-				/* 移除自定义属性父级ID */
-				respond.find(".joe_comment__respond-form").removeAttr('data-coid');
-				$(".joe_comment__cancle").hide();
-				$(".joe_comment>.comment-list").before(respond);
-				$(".joe_comment__respond-type .item[data-type='text']").click();
-				// window.scrollTo({
-				// 	top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,
-				// 	behavior: "smooth",
-				// });
-				window.Joe.commentListAutoRefresh = true;
-			});
-			/* 评论删除 */
-			$('.joe_comment__delete').click(function () {
-				const $button = $(this);
-				const coid = $button.attr('data-coid');
-				const button_html = $button.html();
-				$button.html('<i class="loading mr3"></i>删除中...');
-				$button.addClass('disabled');
-				$.get(Joe.BASE_API + '/comment-delete', { coid }, function (data, textStatus, jqXHR) {
-					if (data.code == 200) {
-						$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
-							$('.comment-list__item[data-coid="' + coid + '"]').remove();
-							autolog.log(`删除评论 ${coid} 成功`, 'success');
-						});
-					} else {
-						autolog.log(data.message, 'error', false);
-						$button.html(button_html);
-						$button.removeClass('disabled');
-					}
-				}, 'json');
-			});
-		}
-	}
+			window.Joe.commentListAutoRefresh = false;
+		});
+		/* 重写取消回复功能 */
+		$(document.body).on('click', '.joe_comment__cancle', function () {
+			const respond = $(".joe_comment__respond");
+			/* 移除自定义属性父级ID */
+			respond.find(".joe_comment__respond-form").removeAttr('data-coid');
+			$(".joe_comment__cancle").hide();
+			$(".joe_comment>.comment-list").before(respond);
+			$(".joe_comment__respond-type .item[data-type='text']").click();
+			// window.scrollTo({
+			// 	top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,
+			// 	behavior: "smooth",
+			// });
+			window.Joe.commentListAutoRefresh = true;
+		});
+		/* 评论删除 */
+		$(document.body).on('click', '.joe_comment__delete', function () {
+			const $button = $(this);
+			const coid = $button.attr('data-coid');
+			const button_html = $button.html();
+			$button.html('<i class="loading mr3"></i>删除中...');
+			$button.addClass('disabled');
+			$.get(Joe.BASE_API + '/comment-delete', { coid }, function (data, textStatus, jqXHR) {
+				if (data.code == 200) {
+					$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
+						$('.comment-list__item[data-coid="' + coid + '"]').remove();
+						autolog.log(`删除评论 ${coid} 成功`, 'success');
+					});
+				} else {
+					autolog.log(data.message, 'error', false);
+					$button.html(button_html);
+					$button.removeClass('disabled');
+				}
+			}, 'json');
+		});
+		/* 移动端评论长按回复或删除 */
+		if (!Joe.IS_MOBILE) return;
+		$(document.body).on('click', '.comment-list__item .content', function () {
+			let html = `<button>回复</button><button>删除</button>`;
+			$(this).tooltip({
+				html: html,
+				trigger: 'manual',
+				container: 'body'
+			}).tooltip('show');
+		});
+	})();
 
 	/* 激活评论提交 */
 	{
@@ -160,7 +170,7 @@ window.Joe.initComment ||= (options = {}) => {
 						$('.joe_comment__cancle').click();
 					},
 					replace() {
-						if (Joe.initComment) Joe.initComment({ draw: false, owo: false, submit: false });
+						if (Joe.initComment) Joe.initComment({ draw: false, owo: false, submit: false, operate: false });
 						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 						isSubmit = false;
 						autolog.log('发送成功', 'success');
@@ -223,7 +233,7 @@ window.Joe.initComment ||= (options = {}) => {
 						$('.joe_comment__cancle').click();
 					},
 					replace() {
-						Joe.initComment({ draw: false, owo: false, submit: false });
+						Joe.initComment({ draw: false, owo: false, submit: false, operate: false });
 						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 						Joe.scrollTo('.comment-list');
 					}
@@ -296,7 +306,7 @@ window.Joe.initCommentOwO ||= (res) => {
 			<div class="bar no-scrollbar">${barStr}</div>
 		</div>
 	`);
-	$(".joe_owo__contain .seat").on("click", function (e) {
+	$(".joe_owo__contain .seat").on('click', function (e) {
 		e.stopPropagation();
 		$(this).siblings(".box").stop().slideToggle("fast");
 	});

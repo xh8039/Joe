@@ -179,11 +179,9 @@ function threadedComments($comments, $options)
 					<img <?= $mobile_handle ?> width="48" height="48" class="avatar lazyload" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
 				<?php
 				}
+				if (joe\isPc()) {
 				?>
-				<div class="content">
-					<?php
-					if (joe\isPc()) {
-					?>
+					<div class="content">
 						<div class="user">
 							<div class="nickname">
 								<span class="author"><?= joe\comment_author($comments); ?></span>
@@ -194,7 +192,6 @@ function threadedComments($comments, $options)
 								<?php
 								$os_svg = joe\getAgentOSIcon($comments->agent) . '.svg';
 								$os_svg_url =  joe\theme_url('assets/images/agent/' . $os_svg, false);
-
 								$AgentBrowser = joe\getAgentBrowser($comments->agent);
 								$browser_url = joe\getAgentBrowserIcon($AgentBrowser);
 								?>
@@ -208,17 +205,22 @@ function threadedComments($comments, $options)
 								<?= ($GLOBALS['JOE_USER']->hasLogin() && $GLOBALS['JOE_USER']->group == 'administrator') ? '<span class="reply joe_comment__delete ml10" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>删除</span>' : null ?>
 							</div>
 						</div>
-					<?php
-					}
-					?>
-					<div class="substance">
-						<?= ($comments->status == "waiting" && joe\isMobile()) ? '<em class="waiting">（评论审核中...）</em>' : null ?>
-						<?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
-						<?php
-						if (joe\isMobile() && !$login_comment) echo '<p class="handle mobile-handle"><span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i></span></p>';
-						?>
+						<div class="substance">
+							<?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
+						</div>
 					</div>
-				</div>
+				<?php
+				} else {
+				?>
+					<div class="content" data-id="<?= $comments->theId ?>" data-coid="<?= $comments->coid ?>">
+						<div class="substance">
+							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
+							<?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
+						</div>
+					</div>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 		<?php if ($comments->children) : ?>

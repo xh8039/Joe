@@ -113,7 +113,8 @@ window.Joe.initComment ||= (options = {}) => {
 			$(`.comment-list__item .content:not([data-id="${data_id}"])`).tooltip('destroy');
 			$(this).tooltip({
 				html: true,
-				title: `<span class="joe_comment__reply" content-id="${data_id}" data-coid="${coid}">回复</span>丨<span class="joe_comment__delete" data-coid="${coid}">删除</span>`,
+				sanitize: false,
+				title: `<span class="joe_comment__reply" data-id="${data_id}" data-coid="${coid}">回复</span>丨<span class="joe_comment__delete" data-coid="${coid}">删除</span>`,
 				trigger: 'manual',
 				container: 'body'
 			}).tooltip('toggle');

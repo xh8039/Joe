@@ -101,7 +101,7 @@ window.Joe.initComment ||= (options = {}) => {
 					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
 						$('.comment-list__item[data-coid="' + coid + '"]').remove();
-						autolog.log(`${operate}评论 ${coid} 成功`, 'success');
+						autolog.log(`评论 ${coid} 已${operate}`, 'success');
 					});
 				} else {
 					autolog.log(data.message, 'error', false);

@@ -141,6 +141,7 @@ window.Joe.initComment ||= (options = {}) => {
 					},
 					replace() {
 						if (Joe.initComment) Joe.initComment({ draw: false, owo: false, submit: false });
+						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 						isSubmit = false;
 						autolog.log('发送成功', 'success');
 						$('textarea.joe_owo__target').val('');

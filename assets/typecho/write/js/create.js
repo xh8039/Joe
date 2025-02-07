@@ -21,8 +21,8 @@ function createPreviewHtml(str) {
 		return `<img class="owo" src="${window.JoeConfig.themeURL}assets/images/owo/aru/${$1}_2x.png" />`;
 	});
 	console.log(str);
-	str = str.replace('<pre>', '<pre class="line-numbers">');
-	str = str.replace('<code class="lang-', '<code is="joe-code" class="lang-');
+	str = str.replaceAll('<pre>', '<pre class="line-numbers">');
+	str = str.replaceAll('<code class="language-', '<code is="joe-code" class="language-');
 
 	if (str.indexOf('{lamp') !== -1) {
 		str = str.replace(/{lamp\/}/g, '<span class="joe_lamp"></span>');

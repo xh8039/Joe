@@ -116,7 +116,7 @@ window.Joe.initComment ||= (options = {}) => {
 			const coid = $(this).attr('data-coid');
 			const data_id = $(this).attr('data-id');
 			let html = `<span class="joe_comment__reply" data-id="${data_id}" data-coid="${coid}">回复</span>`;
-			if (Joe.user.group == 'administrator') html += `丨<span class="joe_comment__operate" status="waiting" data-coid="${coid}">审核</span>丨<span class="joe_comment__operate" status="spam" data-coid="${coid}">垃圾</span>丨<span class="joe_comment__operate" status="delete" data-coid="${coid}">删除</span>`;
+			if (Joe.user.group == 'administrator') html =+ `<span class="joe_comment__operate" status="waiting" data-coid="${coid}">审核</span>丨<span class="joe_comment__operate" status="spam" data-coid="${coid}">垃圾</span>丨<span class="joe_comment__operate" status="delete" data-coid="${coid}">删除</span>丨`;
 			$(`.comment-list__item .content:not([data-id="${data_id}"])`).tooltip('destroy');
 			$(this).tooltip({
 				html: true,

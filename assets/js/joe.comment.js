@@ -176,6 +176,7 @@ window.Joe.initComment ||= (options = {}) => {
 					success() {
 						if (referrer && referrer.content == 'no-referrer') window.Joe.addMeta('referrer', 'no-referrer');
 						$('.joe_comment__cancle').click();
+						if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					},
 					replace() {
 						if (Joe.initComment) Joe.initComment({ draw: false, owo: false, submit: false, operate: false });
@@ -239,6 +240,7 @@ window.Joe.initComment ||= (options = {}) => {
 					},
 					success() {
 						$('.joe_comment__cancle').click();
+						if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					},
 					replace() {
 						Joe.initComment({ draw: false, owo: false, submit: false, operate: false });

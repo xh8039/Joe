@@ -205,7 +205,7 @@ Joe.DOMContentLoaded.single ||= () => {
 
 	/* 复制链接 */
 	(() => {
-		if (document.querySelector('.share-btn.copy')) return;
+		if (!document.querySelector('.share-btn.copy')) return;
 		let button = document.querySelector('.share-btn.copy');
 		button.addEventListener('click', () => {
 			window.Joe.clipboard(button.dataset.clipboardText, () => {

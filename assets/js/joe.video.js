@@ -57,7 +57,7 @@ Joe.DOMContentLoaded.video ||= () => {
 								<a class="item animated bounceIn" href="${window.location.href + '?vod_id=' + _.vod_id}" target="_blank" rel="noopener noreferrer nofollow">
 									<i class="year" style="display: ${_.vod_year && _.vod_year != 0 ? 'block' : 'none'}">${_.vod_year}</i>
 									<div class="thumb">
-										<img width="100%" height="100%" class="pic lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.vod_pic}" alt="${_.vod_name}">
+										<img width="100%" height="100%" class="pic lazyload" src="${Joe.options.JLazyload}" data-src="${_.vod_pic}" alt="${_.vod_name}">
 									</div>    
 									<p class="title">${_.vod_name}</p>
 								</a>`;
@@ -131,7 +131,7 @@ Joe.DOMContentLoaded.video ||= () => {
 				/* 设置视频详情 */
 				$('.joe_video__detail-info').html(`
 					<div class="thumbnail">
-						<img width="100%" height="100%" class="pic lazyload" src="${Joe.LAZY_LOAD}" data-src="${item.vod_pic}" alt="${item.vod_name}">
+						<img width="100%" height="100%" class="pic lazyload" src="${Joe.options.JLazyload}" data-src="${item.vod_pic}" alt="${item.vod_name}">
 						<i class="year" style="display: ${item.vod_year && item.vod_year != 0 ? 'block' : 'none'}">${item.vod_year}</i>
 					</div>
 					<dl class="description">

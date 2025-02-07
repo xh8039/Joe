@@ -263,7 +263,7 @@ window.Joe.initCommentOwO ||= (res) => {
 				return `<li data-toggle="tooltip" data-original-title="${_.text}" class="item" data-text="${_.icon}">${_.icon}</li>`;
 			} else {
 				let title = /.*?\((.*?)\)/.exec(_.text)[1];
-				return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="${window.Joe.LAZY_LOAD}" data-src="${OwOUrl + _.icon}" title="${title}" alt="${title}"/></li>`;
+				return `<li data-toggle="tooltip" data-original-title="${title}" class="item" data-text="${_.text}"><img class="lazyload" src="${window.Joe.options.JLazyload}" data-src="${OwOUrl + _.icon}" title="${title}" alt="${title}"/></li>`;
 			}
 		}).join("")}
 		</ul>`;

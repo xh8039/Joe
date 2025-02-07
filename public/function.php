@@ -242,9 +242,9 @@ function getAvatarByMail($mail, $type = true)
 };
 
 /* 获取侧边栏随机一言 */
-function getAsideAuthorMotto()
+function getMotto()
 {
-	$Motto = isset(\Helper::options()->JAside_Author_Motto) ? \Helper::options()->JAside_Author_Motto : '';
+	$Motto = isset(\Helper::options()->JMotto) ? \Helper::options()->JMotto : '';
 	$JMottoRandom = explode("\r\n", $Motto);
 	echo $JMottoRandom[array_rand($JMottoRandom, 1)];
 }

@@ -46,7 +46,7 @@ Joe.DOMContentLoaded.wallpaper ||= () => {
 				res.data.forEach(_ => {
 					htmlStr += `
 						<a class="item animated bounceIn" data-fancybox="gallery" href="${_.url}">
-							<img width="100%" height="100%" class="lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.img_1024_768 || _.url}" alt="壁纸">
+							<img width="100%" height="100%" class="lazyload" src="${Joe.options.JLazyload}" data-src="${_.img_1024_768 || _.url}" alt="壁纸">
 						</a>`;
 				});
 				$('.joe_wallpaper__list').html(htmlStr);

@@ -29,11 +29,11 @@ $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
 	Joe.CDN_URL = `<?= joe\cdn() ?>`;
 	Joe.BASE_API = `<?= joe\root_relative_link(joe\index('joe/api')) ?>`;
 	Joe.IS_MOBILE = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
-	Joe.LAZY_LOAD = `<?= joe\getLazyload() ?>`;
-	Joe.MOTTO = `<?php joe\getAsideAuthorMotto() ?>`;
 	Joe.PAGE_SIZE = `<?php $this->parameter->pageSize() ?>`;
 	Joe.VERSION = `<?= JOE_VERSION ?>`;
 	Joe.options = <?= $options ?>;
+	Joe.options.JLazyload = `<?= joe\getLazyload() ?>`;
+	Joe.options.MOTTO = `<?php joe\getMotto() ?>`;
 	Joe.options.BaiduPush = <?= empty($this->options->BaiduPushToken) ? 'false' : 'true' ?>;
 	Joe.options.BingPush = <?= empty($this->options->BingPushToken) ? 'false' : 'true' ?>;
 	Joe.options.index = Joe.options.index.replace(/^https?:/i, location.protocol);

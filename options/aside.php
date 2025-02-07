@@ -50,19 +50,19 @@ $JAside_Wap_Image_Height = new \Typecho\Widget\Helper\Form\Element\Text(
 $JAside_Wap_Image_Height->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Wap_Image_Height);
 
-$JAside_Author_Motto = new \Typecho\Widget\Helper\Form\Element\Textarea(
-	'JAside_Author_Motto',
+$JMotto = new \Typecho\Widget\Helper\Form\Element\Textarea(
+	'JMotto',
 	NULL,
 	NULL,
-	'博主栏座右铭（一言）- PC/WAP',
-	'介绍：用于修改博主栏的座右铭（一言） <br />
-		 格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />
-		 其他：API和自定义的座右铭完全可以一起写（换行填写），不会影响 <br />
-		 注意：API需要开启跨域权限才能调取，否则会调取失败！<br />
-		 推荐API：//api.bri6.cn/api/random-talk/'
+	'座右铭（一言）- PC/WAP',
+	'介绍：用于修改博主栏和文章底部的座右铭（一言）<br />
+	格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />
+	其他：API和自定义的座右铭完全可以一起写（换行填写），不会影响 <br />
+	注意：API需要开启跨域权限才能调取，否则会调取失败！<br />
+	推荐API：//api.bri6.cn/api/motto/'
 );
-$JAside_Author_Motto->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Author_Motto);
+$JMotto->setAttribute('class', 'joe_content joe_aside');
+$form->addInput($JMotto);
 
 $JAside_Author_Nav = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Author_Nav',

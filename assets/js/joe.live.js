@@ -59,7 +59,7 @@ Joe.DOMContentLoaded.live ||= () => {
                             <a target="_blank" rel="noopener noreferrer nofollow" class="joe_live__list-item animated bounceIn" href="${window.location.href + '?profileRoom=' + _.profileRoom + '&title=' + _.nick}">
                                 <div class="thumb">
                                     <i class="recommendTagName" style="display: ${_.recommendTagName ? '' : 'none'}">${_.recommendTagName}</i>
-                                    <img width="100%" height="100%" class="screenshot lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.screenshot}" alt="${_.introduction}" />
+                                    <img width="100%" height="100%" class="screenshot lazyload" src="${Joe.options.JLazyload}" data-src="${_.screenshot}" alt="${_.introduction}" />
                                 </div>
                                 <div class="description">
                                     <div class="avatar">

@@ -4,7 +4,7 @@ function getChildren(el, className) {
 	return null;
 }
 if (window.Prism) Prism.plugins.autoloader.languages_path = Joe.CDN_URL + 'prism/1.9.0/components/';
-Joe.DOMContentLoaded = Joe.DOMContentLoaded || { event: 'DOMContentLoaded' };
+Joe.DOMContentLoaded = Joe.DOMContentLoaded || {};
 Joe.DOMContentLoaded.short ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.short');
 	$('.joe_detail__article p:empty').remove();
@@ -624,4 +624,8 @@ Joe.DOMContentLoaded.short ||= () => {
 
 	$('.joe_detail__article p:empty').remove();
 }
-document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.short, { once: true });
+if (Joe.DOMContentLoaded.event) {
+	document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.short, { once: true });
+} else {
+	Joe.DOMContentLoaded.short();
+}

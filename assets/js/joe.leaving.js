@@ -33,31 +33,12 @@ Joe.DOMContentLoaded.leaving ||= () => {
 				$(item).css({ zIndex: _index });
 			});
 		});
-	}
-
-	/* 获取本篇文章百度收录情况 */
-	{
-		window.Joe.getBaiduRecord();
-	}
-
-	/* 激活浏览功能 */
-	{
-		window.Joe.article_view();
+		$('.joe_detail__leaving-list>li>.user>.nickname>a').attr('target', '_blank');
 	}
 
 	/* 激活随机样式 */
 	{
 		window.Joe.leavingListInit();
-	}
-
-	/** 用户留言标签 */
-	{
-		$('.joe_detail__leaving-list>li>.user>.nickname>a').attr('target', '_blank');
-	}
-
-	/** 锚点丝滑滚动 */
-	{
-		setTimeout(window.Joe.anchor_scroll, 500);
 	}
 };
 

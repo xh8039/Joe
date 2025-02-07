@@ -20,7 +20,7 @@ function createPreviewHtml(str) {
 		$1 = encodeURI($1).replace(/%/g, '');
 		return `<img class="owo" src="${window.JoeConfig.themeURL}assets/images/owo/aru/${$1}_2x.png" />`;
 	});
-
+	console.log(str);
 	str = str.replace('<pre>', '<pre class="line-numbers">');
 	str = str.replace('<code class="lang-', '<code is="joe-code" class="lang-');
 

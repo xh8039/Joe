@@ -48,7 +48,7 @@ Joe.DOMContentLoaded.single ||= () => {
 
 	/* 激活代码高亮 */
 	(() => {
-		if (!window.Prism || !document.querySelector("pre[class*='language-']")) return;
+		if (!window.Prism || !document.querySelector("code[class*='lang-']")) return;
 		Prism.highlightAll();
 		$("pre[class*='language-']").each(function (index, item) {
 			let text = $(item).find("code[class*='language-']").text().replace(/    /g, '	');

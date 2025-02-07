@@ -55,6 +55,7 @@ window.Joe.initComment ||= (options = {}) => {
 		if (options.operate === false || !document.querySelector('.joe_comment__respond>.joe_comment__respond-form')) return;
 		/* 重写回复功能 */
 		$(document.body).on('click', '.joe_comment__reply', function () {
+			$(`.comment-list__item .content`).tooltip('destroy');
 			const respond = $(".joe_comment__respond");
 			/* 父级ID */
 			const coid = $(this).attr('data-coid');

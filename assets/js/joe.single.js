@@ -314,7 +314,7 @@ Joe.DOMContentLoaded.single ||= () => {
 
 	/** 初始化评论 */
 	{
-		if (window.Joe.initComment) window.Joe.initComment();
+		if (Joe.DOMContentLoaded.comment) Joe.DOMContentLoaded.comment();
 	}
 
 	/** 评论区内容实时刷新 */
@@ -336,7 +336,7 @@ Joe.DOMContentLoaded.single ||= () => {
 					return window.Joe.commentListAutoRefresh;
 				},
 				replace() {
-					Joe.initComment({ draw: false, owo: false, submit: false, pagination: false, operate: false });
+					Joe.DOMContentLoaded.comment({ owo: false, submit: false, pagination: false });
 				}
 			});
 		}, time * 1000);

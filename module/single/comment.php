@@ -119,7 +119,10 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 					?>
 				</div>
 				<div class="foot">
-					<div class="owo joe_owo__contain" data-url="<?= empty($this->options->JOwOAssetsUrl) ? '' : rtrim($this->options->JOwOAssetsUrl, ' /') . '/' ?>"></div>
+					<div class="owo joe_owo__contain" data-url="<?= empty($this->options->JOwOAssetsUrl) ? '' : rtrim($this->options->JOwOAssetsUrl, ' /') . '/' ?>">
+						<div class="seat">OωO</div>
+						<div class="box"></div>
+					</div>
 					<div class="submit">
 						<span class="cancle joe_comment__cancle">取消</span>
 						<?php

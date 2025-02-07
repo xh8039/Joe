@@ -1,27 +1,28 @@
-window.Joe.initComment ||= (options = {}) => {
-
+Joe.DOMContentLoaded.commentInit ||= {};
+Joe.DOMContentLoaded.comment ||= (options = {}) => {
+	console.log('调用：Joe.DOMContentLoaded.comment');
 	/* 评论框点击切换画图模式和文本模式 */
-	{
-		if (options.draw !== false && $(".joe_comment__respond-form").length) {
-			$(".joe_comment__respond-type .item").on('click', function () {
-				$(this).addClass("active").siblings().removeClass("active");
-				if ($(this).attr("data-type") === "draw") {
-					$(".joe_comment__respond-form .body .draw").show().siblings().hide();
-					$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
-					/* 设置表单格式为画图模式 */
-					$(".joe_comment__respond-form").attr("data-type", "draw");
-					/** 隐藏表情包功能 */
-					$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
-				} else {
-					$(".joe_comment__respond-form .body .text").show().siblings().hide();
-					/* 设置表单格式为文字模式 */
-					$(".joe_comment__respond-form").attr("data-type", "text");
-					/** 显示表情包功能 */
-					$('.joe_comment__respond-form .foot .owo').css('opacity', '1');
-				}
-			});
-		}
-	}
+	(() => {
+		if (Joe.DOMContentLoaded.commentInit.draw == true || document.querySelector('.joe_comment__respond-form')) return;
+		$(document.body).on('click', '.joe_comment__respond-type .item', function () {
+			$(this).addClass("active").siblings().removeClass("active");
+			if ($(this).attr("data-type") === "draw") {
+				$(".joe_comment__respond-form .body .draw").show().siblings().hide();
+				$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
+				/* 设置表单格式为画图模式 */
+				$(".joe_comment__respond-form").attr("data-type", "draw");
+				/** 隐藏表情包功能 */
+				$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
+			} else {
+				$(".joe_comment__respond-form .body .text").show().siblings().hide();
+				/* 设置表单格式为文字模式 */
+				$(".joe_comment__respond-form").attr("data-type", "text");
+				/** 显示表情包功能 */
+				$('.joe_comment__respond-form .foot .owo').css('opacity', '1');
+			}
+		});
+		Joe.DOMContentLoaded.commentInit.draw = true;
+	})();
 
 	/* 激活画图功能 */
 	{
@@ -52,8 +53,8 @@ window.Joe.initComment ||= (options = {}) => {
 
 	/* 重写评论功能 */
 	(() => {
-		console.log(options.operate)
-		if (options.operate === false || !document.querySelector('.joe_comment__respond>.joe_comment__respond-form')) return;
+		if (Joe.DOMContentLoaded.commentInit.operate === true || !document.querySelector('.joe_comment__respond>.joe_comment__respond-form')) return;
+		Joe.DOMContentLoaded.commentInit.operate = true;
 		/* 重写回复功能 */
 		$(document.body).on('click', '.joe_comment__reply', function () {
 			if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
@@ -184,7 +185,7 @@ window.Joe.initComment ||= (options = {}) => {
 						if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					},
 					replace() {
-						if (Joe.initComment) Joe.initComment({ draw: false, owo: false, submit: false, operate: false });
+						if (Joe.DOMContentLoaded.comment) Joe.DOMContentLoaded.comment({ owo: false, submit: false });
 						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 						isSubmit = false;
 						autolog.log('发送成功', 'success');
@@ -248,7 +249,7 @@ window.Joe.initComment ||= (options = {}) => {
 						if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					},
 					replace() {
-						Joe.initComment({ draw: false, owo: false, submit: false, operate: false });
+						Joe.DOMContentLoaded.comment({ owo: false, submit: false });
 						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 						Joe.scrollTo('.comment-list');
 					}
@@ -258,22 +259,20 @@ window.Joe.initComment ||= (options = {}) => {
 	}
 
 	/* 初始化表情功能 */
-	{
-		if (options.owo !== false && $(".joe_owo__contain").length && $(".joe_owo__target").length && !$('.joe_owo__target').attr('disabled')) {
-			console.log('初始化评论区表情功能');
-			$(document.body).on('click', '.joe_owo__contain .scroll .item', function () {
-				const text = $(this).attr("data-text");
-				$(".joe_owo__target").insertContent(text);
-			});
-			$(document.body).on('click', '.joe_owo__contain .box .bar .item', function (e) {
-				e.stopPropagation();
-				$(this).addClass("active").siblings().removeClass("active");
-				const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr("data-type") + '"]';
-				$(scrollIndx).show().siblings(".scroll").hide();
-			});
-			if (window.Joe.CommentOwO) {
-				Joe.initCommentOwO(window.Joe.CommentOwO);
+	(() => {
+		if (Joe.DOMContentLoaded.commentInit.emote == true || !document.querySelector('.joe_owo__contain')) return;
+		if (!$(".joe_owo__target").length || $('.joe_owo__target').attr('disabled')) return $('.joe_owo__contain .seat').remove();
+		console.log('初始化评论区表情功能');
+		Joe.DOMContentLoaded.commentInit.emote = true;
+		$(document.body).on('click', '.joe_owo__contain .seat', function (e) {
+			e.stopPropagation();
+			const emoteStorage = localStorage.getItem('comment-emote') ? JSON.parse(localStorage.getItem('comment-emote')) : null;
+			if (emoteStorage) {
+				Joe.DOMContentLoaded.commentOwO(emoteStorage);
 			} else {
+				var button_html = $(this).html();
+				$(this).html('<i class="loading mr3"></i>');
+				$(this).addClass('disabled');
 				(async () => {
 					const urls = [
 						window.Joe.THEME_URL + "assets/json/joe.owo.json",
@@ -284,17 +283,33 @@ window.Joe.initComment ||= (options = {}) => {
 						const response = await fetch(url);
 						if (!response.ok) throw new Error(`HTTP错误！状态码：${response.status}`);
 						const res = await response.json();
-						Joe.initCommentOwO(res);
+						$(this).html(button_html);
+						$(this).removeClass('disabled');
+						localStorage.setItem('comment-emote', JSON.stringify(res));
+						Joe.DOMContentLoaded.commentOwO(res);
 						return;
 					} catch (error) { };
 					console.warn("所有URL都无法加载表情包数据");
 				})();
 			}
-		}
-	}
+		});
+		$(document.body).on('click', '.joe_owo__contain .scroll .item', function () {
+			const text = $(this).attr("data-text");
+			$(".joe_owo__target").insertContent(text);
+		});
+		$(document.body).on('click', '.joe_owo__contain .box .bar .item', function (e) {
+			e.stopPropagation();
+			$(this).addClass("active").siblings().removeClass("active");
+			const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr("data-type") + '"]';
+			$(scrollIndx).show().siblings(".scroll").hide();
+		});
+	})();
+
 }
-window.Joe.initCommentOwO ||= (res) => {
-	window.Joe.CommentOwO = res;
+Joe.DOMContentLoaded.commentOwO ||= (res) => {
+	if (document.querySelector('.joe_owo__contain .box .bar .item')) {
+		return $('.joe_owo__contain .seat').siblings(".box").stop().slideToggle("fast");
+	}
 	var OwOUrl = $('.joe_owo__contain').attr('data-url') || window.Joe.THEME_URL;
 	let barStr = "";
 	let scrollStr = "";
@@ -314,17 +329,8 @@ window.Joe.initCommentOwO ||= (res) => {
 		}).join("")}
 		</ul>`;
 	}
-	$(".joe_owo__contain").html(`
-		<div class="seat">OωO</div>
-		<div class="box">
-			${scrollStr}
-			<div class="bar no-scrollbar">${barStr}</div>
-		</div>
-	`);
-	$(".joe_owo__contain .seat").on('click', function (e) {
-		e.stopPropagation();
-		$(this).siblings(".box").stop().slideToggle("fast");
-	});
+	$(".joe_owo__contain .box").html(`${scrollStr}<div class="bar no-scrollbar">${barStr}</div>`);
+	$('.joe_owo__contain .seat').siblings(".box").stop().slideToggle("fast");
 	$(".joe_owo__contain .box .bar .item").first().click();
 	window.Joe.tooltip('.joe_owo__contain .scroll .item');
 }

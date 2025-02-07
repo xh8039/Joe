@@ -55,7 +55,7 @@ window.Joe.initComment ||= (options = {}) => {
 		if (options.operate === false || !document.querySelector('.joe_comment__respond>.joe_comment__respond-form')) return;
 		/* 重写回复功能 */
 		$(document.body).on('click', '.joe_comment__reply', function () {
-			$(`.comment-list__item .content`).tooltip('destroy');
+			if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 			const respond = $(".joe_comment__respond");
 			/* 父级ID */
 			const coid = $(this).attr('data-coid');
@@ -88,6 +88,7 @@ window.Joe.initComment ||= (options = {}) => {
 		});
 		/* 评论删除 */
 		$(document.body).on('click', '.joe_comment__delete', function () {
+			if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 			const $button = $(this);
 			const coid = $button.attr('data-coid');
 			const button_html = $button.html();

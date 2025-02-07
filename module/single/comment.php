@@ -205,7 +205,7 @@ function threadedComments($comments, $options)
 							<div class="handle">
 								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
-								<?= ($GLOBALS['JOE_USER']->hasLogin() && $GLOBALS['JOE_USER']->group == 'administrator') ? '<span class="reply joe_comment__delete" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>删除</span>' : null ?>
+								<?= ($GLOBALS['JOE_USER']->hasLogin() && $GLOBALS['JOE_USER']->group == 'administrator') ? '<span class="reply joe_comment__delete" style="margin-left:10px" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-trash" aria-hidden="true"></i>删除</span>' : null ?>
 							</div>
 						</div>
 					<?php

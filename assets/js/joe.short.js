@@ -580,9 +580,9 @@ Joe.DOMContentLoaded.short ||= () => {
 	if (!customElements.get('joe-code')) customElements.define('joe-code', class JoeCode extends HTMLElement {
 		constructor() {
 			super();
-			this.render();
 		}
-		render() {
+		connectedCallback() {
+			console.log(this.className.includes('language-'));
 			// 确保 Prism 已加载
 			if (!window.Prism || !this.className.includes('language-')) return;
 
@@ -629,6 +629,9 @@ Joe.DOMContentLoaded.short ||= () => {
 			});
 			// 将复制按钮添加到父元素
 			this.parentElement.appendChild(copyButton);
+		}
+		adoptedCallback() {
+			this.connectedCallback();
 		}
 	});
 

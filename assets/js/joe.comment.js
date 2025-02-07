@@ -52,6 +52,7 @@ window.Joe.initComment ||= (options = {}) => {
 
 	/* 重写评论功能 */
 	(() => {
+		console.log(options.operate)
 		if (options.operate === false || !document.querySelector('.joe_comment__respond>.joe_comment__respond-form')) return;
 		/* 重写回复功能 */
 		$(document.body).on('click', '.joe_comment__reply', function () {

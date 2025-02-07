@@ -577,6 +577,7 @@ Joe.DOMContentLoaded.short ||= () => {
 		}
 	});
 
+	console.log(customElements.get('joe-code'));
 	if (!customElements.get('joe-code')) customElements.define('joe-code', class JoeCode extends HTMLElement {
 		constructor() {
 			super();

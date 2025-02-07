@@ -580,8 +580,24 @@ Joe.DOMContentLoaded.short ||= () => {
 		constructor() {
 			super();
 			if (!window.Prism || !this.className.includes('lang-')) return;
+			const text = $(this).text().replace(/    /g, '	');
 			// this.className = this.className.replace('lang-', 'language-');
 			Prism.highlightElement(this);
+			const copyButton = $(`<span data-toggle="tooltip" data-placement="top" title="点击复制" class="copy"><i class="fa fa-clone"></i></span>`);
+			if (!Joe.IS_MOBILE) {
+				copyButton.tooltip({
+					container: "body"
+				});
+				copyButton.on('click', function (event) {
+					$(this).tooltip('hide');
+				});
+			}
+			copyButton.click(() => {
+				Joe.clipboard(text, () => {
+					autolog.log(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
+				});
+			});
+			$(this).parent().append(copyButton);
 		}
 	});
 

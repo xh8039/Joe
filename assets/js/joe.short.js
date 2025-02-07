@@ -583,7 +583,6 @@ Joe.DOMContentLoaded.short ||= () => {
 			super();
 		}
 		connectedCallback() {
-			console.log(this.className.includes('language-'));
 			// 确保 Prism 已加载
 			if (!window.Prism || !this.className.includes('language-')) return;
 			// 获取代码内容并格式化

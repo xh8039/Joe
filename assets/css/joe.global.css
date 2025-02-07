@@ -3122,7 +3122,7 @@
 }
 
 .joe_comment__respond-form .foot .submit a {
-	display: block;
+	display: inline-block;
 	line-height: 32px;
 	font-family: unset;
 }

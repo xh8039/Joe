@@ -599,7 +599,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			});
 			$(this).parent().append(copyButton);
 		}
-	});
+	}, { extends: 'code' });
 
 	$('.joe_detail__article p:empty').remove();
 }

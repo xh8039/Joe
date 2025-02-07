@@ -157,7 +157,7 @@ function _parseContent($post, $content = null)
 	}
 
 	if (strpos($content, '<code class="lang-') !== false) {
-		$content = str_replace('<code class="lang-', '<joe-code class="lang-', $content);
+		$content = str_replace('<code class="lang-', '<code is="joe-code" class="lang-', $content);
 	}
 
 	return $content;

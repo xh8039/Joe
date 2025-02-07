@@ -37,13 +37,12 @@ class Api
 			$coid = $self->request->coid;
 			$comment = $DB->fetchRow($DB->select('text')->from('table.comments')->where('coid = ?', $coid));
 			if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
-				$draw_file = '/usr/uploads/draw-comment/' . $matches[1] . '.webp';
-				$draw_root_file = __TYPECHO_ROOT_DIR__ . $draw_file;
-				if (file_exists($draw_root_file)) {
-					$delete_comment = unlink($draw_root_file);
+				$draw_file = __TYPECHO_ROOT_DIR__ . $matches[1];
+				if (file_exists($draw_file)) {
+					$delete_comment = unlink($draw_file);
 					if ($delete_comment !== true) return ['message' => '删除画图文件失败，请检查文件权限！'];
 				} else {
-					return ['message' => '画图文件 [' . $draw_file . '] 不存在！'];
+					return ['message' => '画图文件 [' . $matches[1] . '] 不存在！'];
 				}
 			}
 			$DB->delete($DB->from('table.comments')->where('coid = ?', $coid));

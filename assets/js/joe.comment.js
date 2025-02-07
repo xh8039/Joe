@@ -94,7 +94,7 @@ window.Joe.initComment ||= (options = {}) => {
 							autolog.log('删除成功', 'success');
 						});
 					} else {
-						autolog.log(data.message, 'error');
+						autolog.log(data.message, 'error', false);
 					}
 				}, 'json');
 			});

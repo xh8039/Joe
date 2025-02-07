@@ -262,7 +262,6 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 	(() => {
 		if (Joe.DOMContentLoaded.commentInit.emote == true || !document.querySelector('.joe_owo__contain')) return;
 		if (!$(".joe_owo__target").length || $('.joe_owo__target').attr('disabled')) return $('.joe_owo__contain .seat').remove();
-		console.log('初始化评论区表情功能');
 		Joe.DOMContentLoaded.commentInit.emote = true;
 		$(document.body).on('click', '.joe_owo__contain .seat', function (e) {
 			e.stopPropagation();
@@ -283,6 +282,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 						const response = await fetch(url);
 						if (!response.ok) throw new Error(`HTTP错误！状态码：${response.status}`);
 						const res = await response.json();
+						console.log('初始化评论区表情功能');
 						$(this).html(button_html);
 						$(this).removeClass('disabled');
 						localStorage.setItem('comment-emote', JSON.stringify(res));

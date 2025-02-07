@@ -21,6 +21,10 @@ foreach (['themeUrl', 'IndexAjaxList', 'DynamicBackground', 'JDocumentTitle', 'J
 	$options[$value] = $this->options->$value;
 }
 $options = json_encode($options, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+$user = [];
+foreach (['group'] as $value) {
+	$user[$value] = $this->user->$value;
+}
 $user = json_encode($this->user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 ?>
 <script>

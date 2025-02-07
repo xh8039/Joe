@@ -31,10 +31,22 @@ class Api
 
 	public static function commentDelete($self)
 	{
-		if (self::$options->user->group != 'administrator') return ['message' => '权限不足'];
-		$DB = \Typecho\Db::get();
 		try {
-			$DB->delete($DB->from('table.comments')->where('coid = ?', $_POST['coid']));
+			if ($self->user->group != 'administrator') return ['message' => '权限不足'];
+			$DB = \Typecho\Db::get();
+			$coid = $self->request->coid;
+			$comment = $DB->fetchRow($DB->select('text')->from('table.contents')->where('coid = ?', $coid));
+			if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
+				$draw_file = '/usr/uploads/draw-comment/' . $matches[1] . '.webp';
+				$draw_root_file = __TYPECHO_ROOT_DIR__ . $draw_file;
+				if (file_exists($draw_root_file)) {
+					$delete_comment = unlink($draw_root_file);
+					if ($delete_comment !== true) return ['message' => '删除画图文件失败，请检查文件权限！'];
+				} else {
+					return ['message' => '画图文件 [' . $draw_file . '] 不存在！'];
+				}
+			}
+			$DB->delete($DB->from('table.comments')->where('coid = ?', $coid));
 			return ['code' => 200];
 		} catch (\Throwable $th) {
 			return ['message' => '删除失败：' . $th];

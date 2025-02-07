@@ -108,13 +108,13 @@ window.Joe.initComment ||= (options = {}) => {
 		/* 移动端评论长按回复或删除 */
 		if (!Joe.IS_MOBILE) return;
 		$(document.body).on('click', '.comment-list__item .content', function () {
-			let html = `<button>回复</button><button>删除</button>`;
+			let html = `<span>回复</span><span>删除</span>`;
 			$(this).tooltip({
 				html: true,
 				title: html,
 				trigger: 'manual',
 				container: 'body'
-			}).tooltip('show');
+			}).tooltip('toggle');
 		});
 	})();
 

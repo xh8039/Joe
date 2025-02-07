@@ -630,7 +630,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			// 将复制按钮添加到父元素
 			this.parentElement.appendChild(copyButton);
 		}
-	}, { extends: 'code' });
+	});
 
 	$('.joe_detail__article p:empty').remove();
 }

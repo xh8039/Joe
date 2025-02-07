@@ -336,7 +336,7 @@ Joe.DOMContentLoaded.single ||= () => {
 					return window.Joe.commentListAutoRefresh;
 				},
 				replace() {
-					Joe.DOMContentLoaded.comment({ owo: false, submit: false, pagination: false });
+					Joe.DOMContentLoaded.comment({ submit: false, pagination: false });
 				}
 			});
 		}, time * 1000);

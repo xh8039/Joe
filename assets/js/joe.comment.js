@@ -185,7 +185,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 						if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					},
 					replace() {
-						if (Joe.DOMContentLoaded.comment) Joe.DOMContentLoaded.comment({ owo: false, submit: false });
+						if (Joe.DOMContentLoaded.comment) Joe.DOMContentLoaded.comment({ submit: false });
 						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 						isSubmit = false;
 						autolog.log('发送成功', 'success');
@@ -249,7 +249,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 						if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 					},
 					replace() {
-						Joe.DOMContentLoaded.comment({ owo: false, submit: false });
+						Joe.DOMContentLoaded.comment({ submit: false });
 						if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 						Joe.scrollTo('.comment-list');
 					}

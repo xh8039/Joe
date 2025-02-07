@@ -57,11 +57,11 @@ window.Joe.initComment ||= (options = {}) => {
 			/* 重写回复功能 */
 			$(".joe_comment__reply").on("click", function () {
 				/* 父级ID */
-				const coid = $(this).attr("data-coid");
+				const coid = $(this).attr('data-coid');
 				/* 当前的项 */
 				const item = $("#" + $(this).attr("data-id"));
 				/* 添加自定义属性表示父级ID */
-				respond.find(".joe_comment__respond-form").attr("data-coid", coid);
+				respond.find(".joe_comment__respond-form").attr('data-coid', coid);
 				item.append(respond);
 				$(".joe_comment__respond-type .item[data-type='text']").click();
 				$(".joe_comment__cancle").show();
@@ -74,7 +74,7 @@ window.Joe.initComment ||= (options = {}) => {
 			/* 重写取消回复功能 */
 			$(".joe_comment__cancle").on("click", function () {
 				/* 移除自定义属性父级ID */
-				respond.find(".joe_comment__respond-form").removeAttr("data-coid");
+				respond.find(".joe_comment__respond-form").removeAttr('data-coid');
 				$(".joe_comment__cancle").hide();
 				$(".joe_comment>.comment-list").before(respond);
 				$(".joe_comment__respond-type .item[data-type='text']").click();
@@ -83,6 +83,20 @@ window.Joe.initComment ||= (options = {}) => {
 				// 	behavior: "smooth",
 				// });
 				window.Joe.commentListAutoRefresh = true;
+			});
+			/* 评论删除 */
+			$('.joe_comment__delete').click(function () {
+				const coid = $(this).attr('data-coid');
+				$.get(Joe.BASE_API + '/comment-delete', { coid }, function (data, textStatus, jqXHR) {
+					if (data.code == 200) {
+						$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
+							$('.comment-list__item[data-coid="' + coid + '"]').remove();
+							autolog.log('删除成功', 'success');
+						});
+					} else {
+						autolog.log(data.message, 'error');
+					}
+				}, 'json');
 			});
 		}
 	}
@@ -96,7 +110,7 @@ window.Joe.initComment ||= (options = {}) => {
 				window.Joe.commentListAutoRefresh = false;
 				const action = $(".joe_comment__respond-form").attr("action") + "?time=" + +new Date();
 				const type = $(".joe_comment__respond-form").attr("data-type");
-				const parent = $(".joe_comment__respond-form").attr("data-coid") || null;
+				const parent = $(".joe_comment__respond-form").attr('data-coid') || null;
 				const author = $(".joe_comment__respond-form .head input[name='author']").val();
 				const _ = $(".joe_comment__respond-form input[name='_']").val();
 				const mail = $(".joe_comment__respond-form .head input[name='mail']").val();

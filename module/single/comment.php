@@ -164,7 +164,7 @@ function threadedComments($comments, $options)
 {
 	$login_comment = Helper::options()->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 ?>
-	<li class="comment-list__item" <?= $comments->status == 'waiting' ? 'style="opacity: 0.8;"' : null ?>>
+	<li data-coid="<?= $comments->coid ?>" class="comment-list__item" <?= $comments->status == 'waiting' ? 'style="opacity: 0.8;"' : null ?>>
 		<div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
 			<div class="term">
 				<?php
@@ -205,6 +205,7 @@ function threadedComments($comments, $options)
 							<div class="handle">
 								<time class="date" data-toggle="tooltip" title="<?php $comments->date('Y-m-d H:i:s'); ?>" datetime="<?php $comments->date('Y-m-d H:i:s'); ?>"><?= joe\dateWord($comments->dateWord); ?></time>
 								<?= !$login_comment ? '<span class="reply joe_comment__reply" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>回复</span>' : null ?>
+								<?= ($GLOBALS['JOE_USER']->hasLogin() && $GLOBALS['JOE_USER']->group == 'administrator') ? '<span class="reply joe_comment__delete" data-id="' . $comments->theId . '" data-coid="' . $comments->coid . '"><i class="icon fa fa-pencil" aria-hidden="true"></i>删除</span>' : null ?>
 							</div>
 						</div>
 					<?php

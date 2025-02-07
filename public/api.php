@@ -29,6 +29,18 @@ class Api
 		];
 	}
 
+	public static function commentDelete($self)
+	{
+		if (self::$options->user->group != 'administrator') return ['message' => '权限不足'];
+		$DB = \Typecho\Db::get();
+		try {
+			$DB->delete($DB->from('table.comments')->where('coid = ?', $_POST['coid']));
+			return ['code' => 200];
+		} catch (\Throwable $th) {
+			return ['message' => '删除失败：' . $th];
+		}
+	}
+
 	/* 获取文章列表 已测试 √  */
 	public static function publishList($self)
 	{

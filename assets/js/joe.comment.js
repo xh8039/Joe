@@ -275,7 +275,115 @@ Joe.DOMContentLoaded.comment ||= () => {
 	};
 
 	/* 激活评论提交 */
+	{
+		// 提取公共元素缓存
+		const $form = $('.joe_comment__respond-form');
+		const $submitBtn = $form.find('.foot .submit button');
+		const $textarea = $form.find('textarea[name="text"]');
+		const initialHTML = $submitBtn.html();
+
+		// 事件监听
+		$(document.body).on('keydown', '.joe_comment__respond-form textarea', function (event) {
+			if (event.key == 'Enter') {
+				event.preventDefault();
+				$(".joe_comment__respond-form").trigger('submit');
+			}
+		});
+
+		// 表单验证函数
+		function validateForm(author, mail, text, type) {
+			if (!author.trim()) return autolog.log("请输入昵称！", 'info');
+			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return autolog.log("请输入正确的邮箱！", 'info');
+			if (type == 'text' && !text.trim()) return autolog.log("请输入评论内容！", 'info');
+			return true;
+		}
+
+		// 提取提交数据准备
+		function prepareData(type) {
+			const coid = $form.attr('data-coid');
+			const data = new FormData();
+			const text = type == "draw" ? `{!{${document.getElementById('joe_comment_draw').toDataURL("image/webp", 0.1)}}!}` : $textarea.val();
+
+			data.append('author', $form.find('input[name="author"]').val());
+			data.append('mail', $form.find('input[name="mail"]').val());
+			data.append('url', $form.find('input[name="url"]').val());
+			data.append('_', $form.find('input[name="_"]').val());
+			data.append('text', text);
+
+			if (coid) data.append('parent', coid);
+
+			return data;
+		}
+
+		$(document.body).on('submit', '.joe_comment__respond-form', async function (event) {
+			event.preventDefault();
+
+			// 防止重复提交
+			if ($submitBtn.hasClass('disabled')) return;
+
+			// 收集数据
+			const type = $form.attr("data-type");
+			const action = `${$form.attr("action")}?time=${Date.now()}`;
+			const author = $form.find('input[name="author"]').val();
+			const mail = $form.find('input[name="mail"]').val();
+
+			// 验证数据
+			if (validateForm(author, mail, $textarea.val(), type) !== true) return;
+
+			// 准备提交
+			window.Joe.commentListAutoRefresh = false;
+			$submitBtn.html('<i class="loading mr6"></i>发送中...');
+			$submitBtn.addClass('disabled');
+			$(".joe_owo__contain .box").stop().slideUp("fast");
+
+			Joe.pjax({
+				type: "POST",
+				url: action,
+				data: prepareData(type),
+				processData: false,
+				contentType: false,
+				selectors: ["#comment_module>.comment-list", '.joe_comment__title>small', '#comment_module>.joe_pagination'],
+				beforeSend() {
+					const referrer = document.querySelector('meta[name="referrer"]:last-of-type');
+					if (referrer?.content == 'no-referrer') {
+						referrer.remove();
+						window.Joe.addMeta('referrer', 'unsafe-url');
+					}
+					$('#comment_module>.joe_pagination').html(`<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>`);
+				},
+				complete(xhr, status) {
+					isSubmit = false;
+					window.Joe.commentListAutoRefresh = true;
+					$submitBtn.removeClass('disabled').html(initialHTML).blur();
+					const referrer = document.querySelector('meta[name="referrer"]:last-of-type');
+					if (referrer?.content == 'unsafe-url') {
+						referrer.remove();
+						window.Joe.addMeta('referrer', 'no-referrer');
+					}
+				},
+				success() {
+					autolog.log('发送成功', 'success');
+					$('.joe_comment__cancle').trigger('click');
+					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
+				},
+				replace() {
+					if (window.Joe.leavingListInit) window.Joe.leavingListInit();
+					$textarea.val('');
+					$textarea.focus();
+					if (document.querySelector('.joe_hide>.joe_hide__button')) window.Joe.pjax(window.location.href, ['.joe_detail__article']);
+				},
+				error(xhr, status, error) {
+					const responseText = xhr.responseText;
+					const msg = responseText.match(/<div class="container">\s+(.+)\s+<\/div>/)?.[1];
+					autolog.log(msg || '发送失败！请刷新重试！', 'warn');
+				}
+			});
+		});
+	}
+
+	/* 激活评论提交 */
 	(() => {
+		return;
 		$(document.body).on('keydown', '.joe_comment__respond-form textarea', function (event) {
 			if (event.keyCode === 13) {
 				event.preventDefault();
@@ -361,7 +469,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 	})();
 
 	/* 评论分页 Ajax 切换 */
-	(() => {
+	{
 		$(document.body).on('click', '#comment_module>.joe_pagination a[href]', function (event) {
 			event.preventDefault();
 			let selectors = ["#comment_module>.comment-list", '#comment_module>.joe_pagination'];
@@ -381,7 +489,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 				}
 			});
 		});
-	})();
+	}
 
 	/** 评论区内容实时刷新 */
 	(() => {

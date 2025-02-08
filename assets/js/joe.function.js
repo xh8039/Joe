@@ -65,11 +65,14 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 					}
 					if (window.Joe.tooltip) window.Joe.tooltip();
 					$(".comment-list [data-toggle='popover']").popover({ html: true });
-					if (options.replace) options.replace(response);
+					options?.replace(response);
 					if (options.scrollTo != undefined) Joe.scrollTo(options.scrollTo);
 				},
 				error(xhr, status, error) {
-					options.error(xhr, status, error);
+					options?.error(xhr, status, error);
+				},
+				complete(xhr, status) {
+					options?.complete(xhr, status);
 				}
 			};
 			if (options.processData != undefined) ajax.processData = options.processData;

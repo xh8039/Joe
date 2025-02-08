@@ -60,13 +60,12 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 
 	/* 评论框点击切换画图模式和文本模式 */
 	(() => {
-		if (Joe.DOMContentLoaded.commentInit.draw || document.querySelector('.joe_comment__respond-form')) return;
+		if (Joe.DOMContentLoaded.commentInit.draw || !document.querySelector('.joe_comment__respond-form')) return;
 
 		const $drawArea = $('#joe_comment_draw');
-		const switchMode = type => {
-			const isDraw = type === 'draw';
+		const switchMode = (type) => {
 			$('.joe_comment__respond-form').attr('data-type', type).find(`.body .${type}`).show().siblings().hide();
-			$('.joe_comment__respond-form .foot .owo').css('opacity', isDraw ? 0 : 1);
+			$('.joe_comment__respond-form .foot .owo').css('opacity', type == 'draw' ? 0 : 1);
 		};
 
 		const initSketchpad = () => {
@@ -93,7 +92,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 			const $this = $(this);
 			const type = $this.addClass('active').siblings().removeClass('active').end().data('type');
 
-			if (type === 'draw') {
+			if (type == 'draw') {
 				window.Sketchpad ? initSketchpad() : loadSketchpad();
 			}
 			switchMode(type);

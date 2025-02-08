@@ -10,11 +10,6 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 <div class="joe_comment__title title-theme">评论 <small><?= $is_comment ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
 <div class="joe_comment" id="comment_module">
 	<?php
-	if (($is_comment && is_numeric($this->options->JcommentAutoRefresh) && !$login_comment)) {
-	?>
-		<a href="<?= $this->request->getRequestUrl() ?>" style="display: none;" auto-refresh="<?= $this->options->JcommentAutoRefresh ?>"></a>
-	<?php
-	}
 	if ($this->hidden) {
 	?>
 		<div class="joe_comment__close">

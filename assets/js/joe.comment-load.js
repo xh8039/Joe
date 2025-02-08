@@ -6,34 +6,16 @@ Joe.DOMContentLoaded.initComment ||= (options = {}) => {
 		if (!$(".joe_owo__target").length || $('.joe_owo__target').attr('disabled')) return $('.joe_owo__contain .seat').remove();
 	})();
 
-	/** 评论区内容实时刷新 */
-	(() => {
-		if (window.Joe.commentListSetInterval !== undefined) return;
-		let RefreshDOM = '#comment_module a[auto-refresh]';
-		if (!document.querySelector(RefreshDOM)) return;
-		let time = Number($(RefreshDOM).attr('auto-refresh'));
-		if (!time || !Number.isInteger(time)) return;
-		window.Joe.commentListAutoRefresh = true;
-		window.Joe.commentListSetInterval = setInterval(() => {
-			if (!document.querySelector(RefreshDOM)) return;
-			if (document.visibilityState == "hidden" || document.hidden) return;
-			if (!window.Joe.commentListAutoRefresh) return;
-			if (!isElementInViewport(document.querySelector('.comment-list'))) return;
-			let url = $('#comment_module>.joe_pagination>li.active>a').attr('href') || $(RefreshDOM).attr('href');
-			window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
-				success() {
-					return window.Joe.commentListAutoRefresh;
-				},
-				replace() {
-					Joe.DOMContentLoaded.initComment({ submit: false, pagination: false });
-				}
-			});
-		}, time * 1000);
-	})();
-
 	/* 激活评论提交 */
 	(() => {
 		if (options.submit === false || !document.querySelector('.joe_comment__respond-form')) return;
+		document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				$(".joe_comment__respond-form").submit();
+			}
+		});
+		return;
 		var isSubmit = false;
 		$(".joe_comment__respond-form").on("submit", function (event) {
 			event.preventDefault();
@@ -111,43 +93,13 @@ Joe.DOMContentLoaded.initComment ||= (options = {}) => {
 				}
 			});
 		});
-		document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {
-			if (event.keyCode === 13) {
-				event.preventDefault();
-				$(".joe_comment__respond-form").submit();
-			}
-		});
 	})();
 
 	/* 格式化评论分页的hash值 */
 	(() => {
-		if (options.pagination === false || !document.querySelector('#comment_module>.joe_pagination a')) return;
-		$(".joe_comment .joe_pagination a").each((index, item) => {
-			const href = $(item).attr("href");
-			if (href && href.includes("#")) {
-				$(item).attr("href", href.replace("#comments", "#comment_module"));
-			}
+		if (options.pagination === false || !document.querySelector('#comment_module>.joe_pagination a[href]')) return;
+		$("#comment_module>.joe_pagination a[href]").each((index, item) => {
 			$(item).attr('ajax-replace', true);
-		});
-		let selectors = ["#comment_module>.comment-list", '#comment_module>.joe_pagination'];
-		if (document.querySelector('.joe_detail__leaving')) selectors.push('.joe_detail__leaving');
-		$('#comment_module>.joe_pagination a[href]').click(function (event) {
-			event.preventDefault();
-			window.Joe.pjax(this.href, selectors, {
-				beforeSend() {
-					window.Joe.commentListAutoRefresh = false;
-					$('#comment_module>.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
-				},
-				success() {
-					$('.joe_comment__cancle').click();
-					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
-				},
-				replace() {
-					Joe.DOMContentLoaded.initComment({ submit: false });
-					if (window.Joe.leavingListInit) window.Joe.leavingListInit();
-					Joe.scrollTo('.comment-list');
-				}
-			});
 		});
 	})();
 }

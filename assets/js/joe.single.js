@@ -316,6 +316,18 @@ Joe.DOMContentLoaded.single ||= () => {
 		setTimeout(window.Joe.anchor_scroll, 500);
 	}
 
+	/** 评论区禁止评论删除表情包功能 */
+	{
+		if (!$(".joe_owo__target").length || $('.joe_owo__target').attr('disabled')) $('.joe_owo__contain .seat').remove();
+	}
+
+	/* 评论分页标记ajax加载 */
+	{
+		$("#comment_module>.joe_pagination a[href]").each((index, item) => {
+			$(item).attr('ajax-replace', true);
+		});
+	}
+
 	/* 分享 */
 	{
 		// if ($('.joe_detail__operate-share').length) {

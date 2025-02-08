@@ -334,7 +334,6 @@ Joe.DOMContentLoaded.comment ||= () => {
 					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 				},
 				replace() {
-					if (Joe.DOMContentLoaded.initComment) Joe.DOMContentLoaded.initComment({ submit: false });
 					if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 					isSubmit = false;
 					autolog.log('发送成功', 'success');
@@ -377,7 +376,6 @@ Joe.DOMContentLoaded.comment ||= () => {
 					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
 				},
 				replace() {
-					Joe.DOMContentLoaded.initComment({ submit: false });
 					if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 					Joe.scrollTo('.comment-list');
 				}
@@ -402,7 +400,9 @@ Joe.DOMContentLoaded.comment ||= () => {
 					return window.Joe.commentListAutoRefresh;
 				},
 				replace() {
-					Joe.DOMContentLoaded.initComment({ submit: false, pagination: false });
+					$("#comment_module>.joe_pagination a[href]").each((index, item) => {
+						$(item).attr('ajax-replace', true);
+					});
 				}
 			});
 		}, time * 1000);

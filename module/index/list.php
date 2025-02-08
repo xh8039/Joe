@@ -38,7 +38,7 @@ if ($this->options->IndexAjaxList == 'on') {
 				<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
 					<use xlink:href="#icon-joe-index-notice"></use>
 				</svg>
-				<a href="<?= $index_notice['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?= $index_notice['text'] ?></a>
+				<a href="<?= $index_notice['url'] ?>" target="_blank" rel="external nofollow"><?= $index_notice['text'] ?></a>
 			</div>
 		<?php endif; ?>
 	</div>

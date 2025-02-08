@@ -53,7 +53,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</div>
 					<nav class="joe_dropdown__menu">
 						<?php foreach ($JMoreNavs as $item) : ?>
-							<a href="<?= $item[1] ?>" target="_blank" rel="noopener noreferrer nofollow"><?= $item[0] ?></a>
+							<a href="<?= $item[1] ?>" target="_blank" rel="nofollow"><?= $item[0] ?></a>
 						<?php endforeach; ?>
 					</nav>
 				</div>

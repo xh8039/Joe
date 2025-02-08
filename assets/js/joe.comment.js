@@ -4,7 +4,9 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 
 	/* 评论框点击切换画图模式和文本模式 */
 	(() => {
-		if (Joe.DOMContentLoaded.commentInit.draw || !document.querySelector('.joe_comment__respond-form')) return;
+		if (Joe.DOMContentLoaded.commentInit.draw) return;
+		if (!document.querySelector('.joe_comment__respond-form')) return;
+		if (!document.getElementById('joe_comment_draw')) return;
 
 		const $drawArea = $('#joe_comment_draw');
 		const switchMode = (type) => {
@@ -53,13 +55,6 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 
 		Joe.DOMContentLoaded.commentInit.draw = true;
 	})();
-
-	/* 激活画图功能 */
-	{
-		if (window.Sketchpad && options.draw !== false && $(".joe_comment__respond-form").length && $("#joe_comment_draw").length) {
-
-		}
-	}
 
 	/* 重写评论功能 */
 	(() => {
@@ -228,12 +223,6 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 				}
 			});
 		}
-	}
-
-	/* 设置评论回复网址为新窗口打开 */
-	{
-		$(".comment-list__item .term .content .user .author a").each((index, item) => $(item).attr("target",
-			"_blank"));
 	}
 
 	/* 格式化评论分页的hash值 */

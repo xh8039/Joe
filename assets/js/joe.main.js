@@ -272,7 +272,7 @@ Joe.DOMContentLoaded.main ||= () => {
 
 	{
 		$('a[href]').each(function () {
-			if (!Joe.internalUrl(this)) $(this).attr('target', '_blank').attr('rel', 'noopener noreferrer nofollow');
+			if (!Joe.internalUrl(this)) $(this).attr('target', '_blank').attr('rel', 'external nofollow');
 		});
 	}
 

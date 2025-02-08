@@ -12,7 +12,10 @@ function comment_author($comment)
 	if (preg_match('/^https?:\/\/[^\s]*/i', $comment->url)) {
 		$url = \Typecho\Common::safeUrl($comment->url);
 		$domain = parse_url($url, PHP_URL_HOST);
-		if ($domain != JOE_DOMAIN && \Helper::options()->JPostLinkRedirect == 'on') {
+		if ($domain == JOE_DOMAIN) {
+			return '<a href="' . $url . '" rel="nofollow">' . $comment->author . '</a>';
+		}
+		if (\Helper::options()->JPostLinkRedirect == 'on') {
 			$url = \Helper::options()->index . '/goto?url=' . base64_encode($url);
 			$url = \joe\root_relative_link($url);
 		}

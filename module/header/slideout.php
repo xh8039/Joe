@@ -16,7 +16,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div class="joe_header__slideout-author">
 		<img width="50" height="50" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php $this->user->hasLogin() ? joe\getAvatarByMail($this->user->mail) : Joe\theme_url('assets/images/avatar-default.png') ?>" alt="<?= $this->user->hasLogin() ? $this->user->screenName . '的' : '默认' ?>头像 - <?= $this->options->title ?>" />
 		<div class="info">
-			<a class="link" href="<?= $this->user->hasLogin() ? joe\root_relative_link($this->user->permalink) : 'javascript:;' ?>" rel="noopener noreferrer nofollow"><?= $this->user->hasLogin() ? $this->user->screenName : 'HI！请登录' ?></a>
+			<a class="link" href="<?= $this->user->hasLogin() ? joe\root_relative_link($this->user->permalink) : 'javascript:;' ?>" rel="nofollow"><?= $this->user->hasLogin() ? $this->user->screenName : 'HI！请登录' ?></a>
 			<p class="motto joe_motto mb0"></p>
 		</div>
 	</div>
@@ -114,7 +114,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<ul class="slides panel-body">
 						<?php foreach ($JMoreNavs as $item) : ?>
 							<li>
-								<a class="link" href="<?= $item[1] ?>" target="_blank" rel="noopener noreferrer nofollow"><?= $item[0] ?></a>
+								<a class="link" href="<?= $item[1] ?>" target="_blank" rel="nofollow"><?= $item[0] ?></a>
 							</li>
 						<?php endforeach; ?>
 					</ul>
@@ -158,15 +158,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<ul class="slides panel-body">
 					<li>
 						<?php if ($this->user->group == 'administrator' || $this->user->group == 'editor' || $this->user->group == 'contributor') { ?>
-							<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl("manage-posts.php"); ?>" class="link">管理文章</a>
+							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("manage-posts.php"); ?>" class="link">管理文章</a>
 						<?php } ?>
 						<?php if ($this->user->group == 'administrator' || $this->user->group == 'editor') { ?>
-							<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl("manage-comments.php"); ?>" class="link">管理评论</a>
+							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("manage-comments.php"); ?>" class="link">管理评论</a>
 						<?php } ?>
 						<?php if ($this->user->group == 'administrator') { ?>
-							<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>" class="link">主题设置</a>
+							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>" class="link">主题设置</a>
 						<?php } ?>
-						<a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>" class="link">进入后台</a>
+						<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>" class="link">进入后台</a>
 						<a data-turbolinks="false" href="<?= joe\root_relative_link($this->options->logoutUrl) ?>" class="link">退出登录</a>
 					</li>
 				</ul>
@@ -185,9 +185,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				</a>
 				<ul class="slides panel-body">
 					<li>
-						<a class="link header-login" href="<?= joe\user_url('login'); ?>" rel="noopener noreferrer nofollow">登录</a>
+						<a class="link header-login" href="<?= joe\user_url('login'); ?>" rel="nofollow">登录</a>
 						<?php if ($this->options->allowRegister) : ?>
-							<a class="link header-register" href="<?= joe\user_url('register'); ?>" rel="noopener noreferrer nofollow">注册</a>
+							<a class="link header-register" href="<?= joe\user_url('register'); ?>" rel="nofollow">注册</a>
 						<?php endif; ?>
 					</li>
 				</ul>

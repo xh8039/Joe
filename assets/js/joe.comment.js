@@ -3,16 +3,34 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 	console.log('调用：Joe.DOMContentLoaded.comment');
 	/* 评论框点击切换画图模式和文本模式 */
 	(() => {
+		return;
 		if (Joe.DOMContentLoaded.commentInit.draw == true || document.querySelector('.joe_comment__respond-form')) return;
 		$(document.body).on('click', '.joe_comment__respond-type .item', function () {
-			$(this).addClass("active").siblings().removeClass("active");
+			$(this).addClass('active').siblings().removeClass('active');
 			if ($(this).attr("data-type") === "draw") {
-				$(".joe_comment__respond-form .body .draw").show().siblings().hide();
-				$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
-				/* 设置表单格式为画图模式 */
-				$(".joe_comment__respond-form").attr("data-type", "draw");
-				/** 隐藏表情包功能 */
-				$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
+				const draw = () => {
+					if (!document.getElementById('joe_comment_draw').dataset.sketchpad) {
+						/* 激活画板 */
+						window.Joe.sketchpad = new Sketchpad({
+							element: "#joe_comment_draw",
+							height: 300,
+							penSize: 5,
+							color: "303133"
+						});
+						document.getElementById('joe_comment_draw').dataset.sketchpad = true;
+					}
+					$(".joe_comment__respond-form .body .draw").show().siblings().hide();
+					$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
+					/* 设置表单格式为画图模式 */
+					$(".joe_comment__respond-form").attr("data-type", "draw");
+					/** 隐藏表情包功能 */
+					$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
+				};
+				if (!window.Sketchpad) {
+					$.getScript(Joe.CDN_URL + 'sketchpad/0.1.0/scripts/sketchpad.min.js', draw);
+				} else {
+					draw();
+				}
 			} else {
 				$(".joe_comment__respond-form .body .text").show().siblings().hide();
 				/* 设置表单格式为文字模式 */
@@ -22,32 +40,89 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 			}
 		});
 		Joe.DOMContentLoaded.commentInit.draw = true;
+		if (Joe.options.JcommentDraw != 'on') return;
+		/* 撤销上一步 */
+		$(document.body).on('click', '.joe_comment__respond-form .body .draw .icon-undo', () => Joe.sketchpad.undo());
+		/* 动画预览 */
+		$(document.body).on('click', '.joe_comment__respond-form .body .draw .icon-animate', () => Joe.sketchpad.animate(10));
+		/* 更改画板的线宽 */
+		$(document.body).on('click', '.joe_comment__respond-form .body .draw .line li', function () {
+			Joe.sketchpad.penSize = $(this).attr("data-line");
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+		/* 更改画板的颜色 */
+		$(document.body).on('click', '.joe_comment__respond-form .body .draw .color li', function () {
+			Joe.sketchpad.color = $(this).attr("data-color");
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+	})();
+
+
+	/* 评论框点击切换画图模式和文本模式 */
+	(() => {
+		if (Joe.DOMContentLoaded.commentInit.draw || document.querySelector('.joe_comment__respond-form')) return;
+
+		const $drawArea = $('#joe_comment_draw');
+		const switchMode = type => {
+			const isDraw = type === 'draw';
+			$('.joe_comment__respond-form').attr('data-type', type).find(`.body .${type}`).show().siblings().hide();
+			$('.joe_comment__respond-form .foot .owo').css('opacity', isDraw ? 0 : 1);
+		};
+
+		const initSketchpad = () => {
+			if (!$drawArea[0].dataset.sketchpad) {
+				const { width } = $('.joe_comment__respond-form .body').get(0).getBoundingClientRect();
+				$drawArea.prop('width', width);
+
+				Joe.sketchpad = new Sketchpad({
+					element: '#joe_comment_draw',
+					height: 300,
+					penSize: 5,
+					color: "303133"
+				});
+				$drawArea[0].dataset.sketchpad = true;
+			}
+		};
+
+		const loadSketchpad = () => {
+			const scriptUrl = `${Joe.CDN_URL}sketchpad/0.1.0/scripts/sketchpad.min.js`;
+			$.getScript(scriptUrl).done(initSketchpad).fail(console.error);
+		};
+
+		document.$body.on('click', '.joe_comment__respond-type .item', function () {
+			const $this = $(this);
+			const type = $this.addClass('active').siblings().removeClass('active').end().data('type');
+
+			if (type === 'draw') {
+				window.Sketchpad ? initSketchpad() : loadSketchpad();
+			}
+			switchMode(type);
+		});
+
+		const handleDrawAction = (selector, callback) => {
+			document.$body.on('click', `.joe_comment__respond-form .body .draw ${selector}`, callback);
+		};
+
+		if (Joe.options.JcommentDraw === 'on') {
+			handleDrawAction('.icon-undo', () => Joe.sketchpad?.undo());
+			handleDrawAction('.icon-animate', () => Joe.sketchpad?.animate(10));
+			handleDrawAction('.line li', function () {
+				const size = $(this).addClass('active').siblings().removeClass('active').end().data('line');
+				Joe.sketchpad.penSize = size;
+			});
+			handleDrawAction('.color li', function () {
+				const color = $(this).addClass('active').siblings().removeClass('active').end().data('color');
+				Joe.sketchpad.color = color;
+			});
+		}
+
+		Joe.DOMContentLoaded.commentInit.draw = true;
 	})();
 
 	/* 激活画图功能 */
 	{
 		if (window.Sketchpad && options.draw !== false && $(".joe_comment__respond-form").length && $("#joe_comment_draw").length) {
-			/* 激活画板 */
-			window.sketchpad = new Sketchpad({
-				element: "#joe_comment_draw",
-				height: 300,
-				penSize: 5,
-				color: "303133"
-			});
-			/* 撤销上一步 */
-			$(".joe_comment__respond-form .body .draw .icon-undo").on('click', () => window.sketchpad.undo());
-			/* 动画预览 */
-			$(".joe_comment__respond-form .body .draw .icon-animate").on('click', () => window.sketchpad.animate(10));
-			/* 更改画板的线宽 */
-			$(".joe_comment__respond-form .body .draw .line li").on('click', function () {
-				window.sketchpad.penSize = $(this).attr("data-line");
-				$(this).addClass("active").siblings().removeClass("active");
-			});
-			/* 更改画板的颜色 */
-			$(".joe_comment__respond-form .body .draw .color li").on('click', function () {
-				window.sketchpad.color = $(this).attr("data-color");
-				$(this).addClass("active").siblings().removeClass("active");
-			});
+
 		}
 	}
 
@@ -88,7 +163,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 			// });
 			window.Joe.commentListAutoRefresh = true;
 		});
-		/* 评论删除 */
+		/* 评论操作 */
 		$(document.body).on('click', '.joe_comment__operate', function () {
 			const $button = $(this);
 			const coid = $button.attr('data-coid');
@@ -101,6 +176,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 			$.get(Joe.BASE_API + '/comment-operate', { coid, status }, function (data, textStatus, jqXHR) {
 				if (data.code == 200) {
 					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
+					$('.joe_comment__title small').html(`共${data.commentsNum}条`);
 					$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
 						$('.comment-list__item[data-coid="' + coid + '"]').remove();
 						autolog.log(`评论 ${coid} 已${operate}`, 'success');
@@ -299,7 +375,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 		});
 		$(document.body).on('click', '.joe_owo__contain .box .bar .item', function (e) {
 			e.stopPropagation();
-			$(this).addClass("active").siblings().removeClass("active");
+			$(this).addClass('active').siblings().removeClass('active');
 			const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr("data-type") + '"]';
 			$(scrollIndx).show().siblings(".scroll").hide();
 		});

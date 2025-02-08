@@ -54,7 +54,7 @@ class Api
 			}
 			$commentsNum = Db::name('comments')->where(['cid' => $comment['cid'], 'status' => 'approved'])->count();
 			Db::name('contents')->where('cid', $comment['cid'])->update(['commentsNum' => $commentsNum]);
-			return ['code' => 200];
+			return ['code' => 200, 'commentsNum' => $commentsNum];
 		} catch (\Throwable $th) {
 			return ['message' => '删除失败：' . $th];
 		}

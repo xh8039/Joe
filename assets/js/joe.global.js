@@ -1,5 +1,10 @@
 Joe.DOMContentLoaded.global ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.global');
+
+	{
+		document.$body = $(document.body);
+	}
+
 	/* 检测IE */
 	{
 		function detectIE() {

@@ -1,62 +1,6 @@
 Joe.DOMContentLoaded.commentInit ||= {};
 Joe.DOMContentLoaded.comment ||= (options = {}) => {
 	console.log('调用：Joe.DOMContentLoaded.comment');
-	/* 评论框点击切换画图模式和文本模式 */
-	(() => {
-		return;
-		if (Joe.DOMContentLoaded.commentInit.draw == true || document.querySelector('.joe_comment__respond-form')) return;
-		$(document.body).on('click', '.joe_comment__respond-type .item', function () {
-			$(this).addClass('active').siblings().removeClass('active');
-			if ($(this).attr("data-type") === "draw") {
-				const draw = () => {
-					if (!document.getElementById('joe_comment_draw').dataset.sketchpad) {
-						/* 激活画板 */
-						window.Joe.sketchpad = new Sketchpad({
-							element: "#joe_comment_draw",
-							height: 300,
-							penSize: 5,
-							color: "303133"
-						});
-						document.getElementById('joe_comment_draw').dataset.sketchpad = true;
-					}
-					$(".joe_comment__respond-form .body .draw").show().siblings().hide();
-					$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
-					/* 设置表单格式为画图模式 */
-					$(".joe_comment__respond-form").attr("data-type", "draw");
-					/** 隐藏表情包功能 */
-					$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
-				};
-				if (!window.Sketchpad) {
-					$.getScript(Joe.CDN_URL + 'sketchpad/0.1.0/scripts/sketchpad.min.js', draw);
-				} else {
-					draw();
-				}
-			} else {
-				$(".joe_comment__respond-form .body .text").show().siblings().hide();
-				/* 设置表单格式为文字模式 */
-				$(".joe_comment__respond-form").attr("data-type", "text");
-				/** 显示表情包功能 */
-				$('.joe_comment__respond-form .foot .owo').css('opacity', '1');
-			}
-		});
-		Joe.DOMContentLoaded.commentInit.draw = true;
-		if (Joe.options.JcommentDraw != 'on') return;
-		/* 撤销上一步 */
-		$(document.body).on('click', '.joe_comment__respond-form .body .draw .icon-undo', () => Joe.sketchpad.undo());
-		/* 动画预览 */
-		$(document.body).on('click', '.joe_comment__respond-form .body .draw .icon-animate', () => Joe.sketchpad.animate(10));
-		/* 更改画板的线宽 */
-		$(document.body).on('click', '.joe_comment__respond-form .body .draw .line li', function () {
-			Joe.sketchpad.penSize = $(this).attr("data-line");
-			$(this).addClass('active').siblings().removeClass('active');
-		});
-		/* 更改画板的颜色 */
-		$(document.body).on('click', '.joe_comment__respond-form .body .draw .color li', function () {
-			Joe.sketchpad.color = $(this).attr("data-color");
-			$(this).addClass('active').siblings().removeClass('active');
-		});
-	})();
-
 
 	/* 评论框点击切换画图模式和文本模式 */
 	(() => {
@@ -71,15 +15,12 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 		const initSketchpad = () => {
 			if (!$drawArea[0].dataset.sketchpad) {
 				const width = $('.joe_comment__respond-form .body').width();
-				// console.log(width);
-				// $drawArea.attr('width', width);
-
 				Joe.sketchpad = new Sketchpad({
 					element: '#joe_comment_draw',
 					height: 300,
 					width: width,
 					penSize: 5,
-					color: "303133"
+					color: '303133'
 				});
 				$drawArea[0].dataset.sketchpad = true;
 			}
@@ -91,29 +32,22 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 		};
 
 		document.$body.on('click', '.joe_comment__respond-type .item', function () {
-			const $this = $(this);
-			const type = $this.addClass('active').siblings().removeClass('active').end().data('type');
-
-			if (type == 'draw') {
-				window.Sketchpad ? initSketchpad() : loadSketchpad();
-			}
+			const type = $(this).addClass('active').siblings().removeClass('active').end().data('type');
+			if (type == 'draw') window.Sketchpad ? initSketchpad() : loadSketchpad();
 			switchMode(type);
 		});
 
-		const handleDrawAction = (selector, callback) => {
-			document.$body.on('click', `.joe_comment__respond-form .body .draw ${selector}`, callback);
-		};
-
 		if (Joe.options.JcommentDraw === 'on') {
+			const handleDrawAction = (selector, callback) => {
+				document.$body.on('click', `.joe_comment__respond-form .body .draw ${selector}`, callback);
+			};
 			handleDrawAction('.icon-undo', () => Joe.sketchpad?.undo());
 			handleDrawAction('.icon-animate', () => Joe.sketchpad?.animate(10));
 			handleDrawAction('.line li', function () {
-				const size = $(this).addClass('active').siblings().removeClass('active').end().data('line');
-				Joe.sketchpad.penSize = size;
+				Joe.sketchpad.penSize = $(this).addClass('active').siblings().removeClass('active').end().data('line');
 			});
 			handleDrawAction('.color li', function () {
-				const color = $(this).addClass('active').siblings().removeClass('active').end().data('color');
-				Joe.sketchpad.color = color;
+				Joe.sketchpad.color = $(this).addClass('active').siblings().removeClass('active').end().data('color');
 			});
 		}
 
@@ -379,6 +313,62 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 			$(this).addClass('active').siblings().removeClass('active');
 			const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr("data-type") + '"]';
 			$(scrollIndx).show().siblings(".scroll").hide();
+		});
+	})();
+
+	/* 评论框点击切换画图模式和文本模式 */
+	(() => {
+		return;
+		if (Joe.DOMContentLoaded.commentInit.draw == true || document.querySelector('.joe_comment__respond-form')) return;
+		$(document.body).on('click', '.joe_comment__respond-type .item', function () {
+			$(this).addClass('active').siblings().removeClass('active');
+			if ($(this).attr("data-type") === "draw") {
+				const draw = () => {
+					if (!document.getElementById('joe_comment_draw').dataset.sketchpad) {
+						/* 激活画板 */
+						window.Joe.sketchpad = new Sketchpad({
+							element: "#joe_comment_draw",
+							height: 300,
+							penSize: 5,
+							color: "303133"
+						});
+						document.getElementById('joe_comment_draw').dataset.sketchpad = true;
+					}
+					$(".joe_comment__respond-form .body .draw").show().siblings().hide();
+					$("#joe_comment_draw").prop("width", $(".joe_comment__respond-form .body").width());
+					/* 设置表单格式为画图模式 */
+					$(".joe_comment__respond-form").attr("data-type", "draw");
+					/** 隐藏表情包功能 */
+					$('.joe_comment__respond-form .foot .owo').css('opacity', '0');
+				};
+				if (!window.Sketchpad) {
+					$.getScript(Joe.CDN_URL + 'sketchpad/0.1.0/scripts/sketchpad.min.js', draw);
+				} else {
+					draw();
+				}
+			} else {
+				$(".joe_comment__respond-form .body .text").show().siblings().hide();
+				/* 设置表单格式为文字模式 */
+				$(".joe_comment__respond-form").attr("data-type", "text");
+				/** 显示表情包功能 */
+				$('.joe_comment__respond-form .foot .owo').css('opacity', '1');
+			}
+		});
+		Joe.DOMContentLoaded.commentInit.draw = true;
+		if (Joe.options.JcommentDraw != 'on') return;
+		/* 撤销上一步 */
+		$(document.body).on('click', '.joe_comment__respond-form .body .draw .icon-undo', () => Joe.sketchpad.undo());
+		/* 动画预览 */
+		$(document.body).on('click', '.joe_comment__respond-form .body .draw .icon-animate', () => Joe.sketchpad.animate(10));
+		/* 更改画板的线宽 */
+		$(document.body).on('click', '.joe_comment__respond-form .body .draw .line li', function () {
+			Joe.sketchpad.penSize = $(this).attr("data-line");
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+		/* 更改画板的颜色 */
+		$(document.body).on('click', '.joe_comment__respond-form .body .draw .color li', function () {
+			Joe.sketchpad.color = $(this).attr("data-color");
+			$(this).addClass('active').siblings().removeClass('active');
 		});
 	})();
 

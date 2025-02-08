@@ -206,7 +206,7 @@ function getAvatarLazyload()
 /* 查询文章浏览量 */
 function getViews($item)
 {
-	$db = \Typecho_Db::get();
+	$db = \Typecho\Db::get();
 	$result = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $item->cid))['views'];
 	return number_format($result);
 }
@@ -214,7 +214,7 @@ function getViews($item)
 /* 查询文章点赞量 */
 function getAgree($item)
 {
-	$db = \Typecho_Db::get();
+	$db = \Typecho\Db::get();
 	$result = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $item->cid))['agree'];
 	return number_format($result);
 }
@@ -223,7 +223,7 @@ function getAgree($item)
 function getAvatarByMail($mail, $type = true)
 {
 	if (empty($mail)) {
-		$db = \Typecho_Db::get();
+		$db = \Typecho\Db::get();
 		$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
 		$mail = $authoInfo['mail'];
 	}
@@ -313,7 +313,7 @@ function getThumbnails($item)
 function getParentReply($parent)
 {
 	if ($parent != "0") {
-		$db = \Typecho_Db::get();
+		$db = \Typecho\Db::get();
 		$commentInfo = $db->fetchRow($db->select('author')->from('table.comments')->where('coid = ?', $parent));
 		if (empty($commentInfo['author'])) return;
 		echo '<p class="parent">@' . $commentInfo['author'] . '</p> ';
@@ -325,7 +325,7 @@ function getAsideAuthorNav()
 {
 	if (\Helper::options()->JAside_Author_Nav && \Helper::options()->JAside_Author_Nav !== "off") {
 		$limit = \Helper::options()->JAside_Author_Nav;
-		$db = \Typecho_Db::get();
+		$db = \Typecho\Db::get();
 		$prefix = $db->getPrefix();
 		$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT floor( RAND() * ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";
 		$result = $db->query($sql);
@@ -517,7 +517,7 @@ function html_tags_filter(string $content, array $tags): string
 
 function user_login($uid, $expire = 30243600)
 {
-	$db = \Typecho_Db::get();
+	$db = \Typecho\Db::get();
 	\Typecho\Widget::widget('Widget_User')->simpleLogin($uid);
 	$authCode = function_exists('openssl_random_pseudo_bytes') ? bin2hex(openssl_random_pseudo_bytes(16)) : sha1(\Typecho_Common::randString(20));
 	\Typecho_Cookie::set('__typecho_uid', $uid, time() + $expire);
@@ -608,7 +608,7 @@ function send_email($title, $subtitle, $content, $email = '')
 {
 	if (!email_config()) return false;
 	if (empty($email)) {
-		$db = \Typecho_Db::get();
+		$db = \Typecho\Db::get();
 		$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
 		if (empty($authoInfo['mail'])) {
 			$email = \Helper::options()->JCommentMailAccount;
@@ -708,7 +708,7 @@ function strstrs(string $haystack, array $needles): bool
  */
 function thePrev($widget, $default = NULL)
 {
-	$db = \Typecho_Db::get();
+	$db = \Typecho\Db::get();
 	$content = $db->fetchRow($widget->select()->where('table.contents.created < ?', $widget->created)
 		->where('table.contents.status = ?', 'publish')
 		->where('table.contents.type = ?', $widget->type)
@@ -731,7 +731,7 @@ function thePrev($widget, $default = NULL)
  */
 function theNext($widget, $default = NULL)
 {
-	$db = \Typecho_Db::get();
+	$db = \Typecho\Db::get();
 	$content = $db->fetchRow($widget->select()->where(
 		'table.contents.created > ? AND table.contents.created < ?',
 		$widget->created,
@@ -827,7 +827,7 @@ function panel_exists(string $fileName): bool
 
 function update_sql()
 {
-	$DB = \Typecho_Db::get();
+	$DB = \Typecho\Db::get();
 	$adapter = $DB->getAdapterName();
 	$adapter = ltrim($adapter, 'Pdo_');
 	if ($adapter == 'Mysqli') $adapter = 'Mysql';
@@ -848,7 +848,7 @@ function update_sql()
 
 function install_sql()
 {
-	$DB = \Typecho_Db::get();
+	$DB = \Typecho\Db::get();
 	$adapter = $DB->getAdapterName();
 	$adapter = ltrim($adapter, 'Pdo_');
 	if ($adapter == 'Mysqli') $adapter = 'Mysql';
@@ -866,7 +866,7 @@ function install()
 
 	if (\Typecho\Common::VERSION < 1.2) throw new \Typecho\Exception('请使用 Typecho 1.2.0 及以上版本！');
 
-	$DB = \Typecho_Db::get();
+	$DB = \Typecho\Db::get();
 	if ((float) $DB->getVersion() < 5.6) throw new \Typecho\Exception('请使用 MySql 5.6 及以上版本！');
 
 	$orders_url = '../themes/' . THEME_NAME . '/admin/orders.php';
@@ -1080,7 +1080,7 @@ function custom_navs_title($title)
  */
 function author_post_field_sum($id, $field)
 {
-	$db = \Typecho_Db::get();
+	$db = \Typecho\Db::get();
 	$postnum = $db->fetchRow($db->select(array('SUM(' . $field . ')' => 'field'))->from('table.contents')->where('table.contents.authorId=?', $id)->where('table.contents.type=?', 'post'));
 	return $postnum['field'];
 }
@@ -1226,7 +1226,7 @@ function markdown_hide_($content, $post, $login)
 {
 	if (strpos($content, '{hide') === false) return $content;
 	if ($post->fields->hide == 'pay') {
-		$db = \Typecho_Db::get();
+		$db = \Typecho\Db::get();
 		$pay = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
 		// '<a rel="nofollow" target="_blank" href="https://bri6.cn/user/order" class="">' . $pay['trade_no'] . '</a>';
 		if (!empty($pay)) {
@@ -1273,7 +1273,7 @@ function markdown_hide_($content, $post, $login)
 		$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
 		$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
 	} else {
-		$db = \Typecho_Db::get();
+		$db = \Typecho\Db::get();
 		if ($login) {
 			$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
 		} else {
@@ -1294,7 +1294,7 @@ function markdown_hide($content, $post, $login)
 	// 如果内容中不存在 {hide} 标签，直接返回原内容
 	if (strpos($content, '{hide') === false) return $content;
 
-	$db = \Typecho_Db::get();
+	$db = \Typecho\Db::get();
 
 	// 判断是否显示隐藏内容
 	$showContent = false;

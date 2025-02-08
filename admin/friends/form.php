@@ -73,7 +73,7 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 
 				if (isset($request->id) && 'create' != $action) {
 					/** 更新模式 */
-					$db = Typecho_Db::get();
+					$db = Typecho\Db::get();
 					$prefix = $db->getPrefix();
 					$link = $db->fetchRow($db->select()->from($prefix . 'friends')->where('id = ?', $request->id));
 					if (!$link) {

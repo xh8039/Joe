@@ -54,7 +54,7 @@ $verify_result = $EpayCore->verifyNotify();  //签名验证
 if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 	// 验证成功
 	// 本地订单处理
-	$db = Typecho_Db::get();
+	$db = Typecho\Db::get();
 	$row = $db->fetchRow($db->select()->from('table.orders')->where('trade_no = ?', $_GET['out_trade_no'])->limit(1));
 	if (sizeof($row) > 0) {
 		require_once $public_root . 'phpmailer.php';

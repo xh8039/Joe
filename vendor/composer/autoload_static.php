@@ -7,8 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit72d12ca78f20e8125a02612c2639f4e8
 {
     public static $files = array (
-        '3f25217b295bb6ca58df2f221ad22d51' => __DIR__ . '/..' . '/network/http/src/helper.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
+        '3f25217b295bb6ca58df2f221ad22d51' => __DIR__ . '/..' . '/network/http/src/helper.php',
+        '7448f3465e10b5f033e4babb31eb0b06' => __DIR__ . '/..' . '/topthink/think-orm/src/helper.php',
+        '35fab96057f1bf5e7aba31a8a6d5fdde' => __DIR__ . '/..' . '/topthink/think-orm/stubs/load_stubs.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -20,6 +22,11 @@ class ComposerStaticInit72d12ca78f20e8125a02612c2639f4e8
         array (
             'network\\http\\' => 13,
         ),
+        'P' => 
+        array (
+            'Psr\\SimpleCache\\' => 16,
+            'Psr\\Log\\' => 8,
+        ),
         'M' => 
         array (
             'Metowolf\\' => 9,
@@ -30,10 +37,19 @@ class ComposerStaticInit72d12ca78f20e8125a02612c2639f4e8
         'think\\' => 
         array (
             0 => __DIR__ . '/..' . '/topthink/think-helper/src',
+            1 => __DIR__ . '/..' . '/topthink/think-orm/src',
         ),
         'network\\http\\' => 
         array (
             0 => __DIR__ . '/..' . '/network/http/src',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
         ),
         'Metowolf\\' => 
         array (

@@ -68,7 +68,7 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 				->where('table.contents.created <= ?', time())
 				->where('table.contents.type = ?', 'post')
 				->limit($this->parameter->pageSize)
-				->order('table.contents.views', Typecho_Db::SORT_DESC),
+				->order('table.contents.views', Typecho\Db::SORT_DESC),
 			array($this, 'push')
 		);
 	}
@@ -103,7 +103,7 @@ class Widget_Contents_Sort extends Widget_Abstract_Contents
 			->where('table.contents.created < ?', time())
 			->limit($this->parameter->pageSize)
 			->offset($offset)
-			->order($this->parameter->type, Typecho_Db::SORT_DESC);
+			->order($this->parameter->type, Typecho\Db::SORT_DESC);
 		$this->db->fetchAll($select, array($this, 'push'));
 	}
 }

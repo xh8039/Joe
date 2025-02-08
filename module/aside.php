@@ -134,7 +134,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php
 		$time = time();
 		$todayDate = date('m/d', $time);
-		$db = Typecho_Db::get();
+		$db = Typecho\Db::get();
 		$prefix = $db->getPrefix();
 		$sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} and FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}' and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";
 		$result = $db->query($sql);

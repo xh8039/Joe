@@ -89,7 +89,7 @@ class Email
 		if ($comment->authorId == $comment->ownerId) {
 			/* 发表的评论是回复别人 */
 			if ($comment->parent != 0) {
-				$db = Typecho_Db::get();
+				$db = Typecho\Db::get();
 				$parentInfo = $db->fetchRow($db->select('mail')->from('table.comments')->where('coid = ?', $comment->parent));
 				$parentMail = $parentInfo['mail'];
 				/* 被回复的人不是自己时，发送邮件 */
@@ -103,7 +103,7 @@ class Email
 		} else {
 			/* 如果是直接发表的评论，不是回复别人，那么发送邮件给博主 */
 			if ($comment->parent == 0) {
-				$db = Typecho_Db::get();
+				$db = Typecho\Db::get();
 				$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', $comment->ownerId));
 				$authorMail = $authoInfo['mail'];
 				if ($authorMail) {
@@ -113,7 +113,7 @@ class Email
 				}
 				/* 如果发表的评论是回复别人 */
 			} else {
-				$db = Typecho_Db::get();
+				$db = Typecho\Db::get();
 				$parentInfo = $db->fetchRow($db->select('mail')->from('table.comments')->where('coid = ?', $comment->parent));
 				$parentMail = $parentInfo['mail'];
 				/* 被回复的人不是自己时，发送邮件 */

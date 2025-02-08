@@ -3,6 +3,7 @@
 namespace joe;
 
 use Metowolf\Meting;
+use think\facade\Db;
 
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
@@ -33,11 +34,10 @@ class Api
 	{
 		try {
 			if ($GLOBALS['JOE_USER']->group != 'administrator') return ['message' => '权限不足'];
-			$DB = \Typecho\Db::get();
 			$coid = $self->request->coid;
 			$status = $self->request->status;
+			$comment = Db::name('comments')->where('coid', $coid)->find();
 			if ($status == 'delete') {
-				$comment = $DB->fetchRow($DB->select('text')->from('table.comments')->where('coid = ?', $coid));
 				if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
 					$draw_file = __TYPECHO_ROOT_DIR__ . $matches[1];
 					if (file_exists($draw_file)) {
@@ -47,11 +47,13 @@ class Api
 						return ['message' => '画图文件 [' . $matches[1] . '] 不存在！'];
 					}
 				}
-				$DB->query($DB->delete('table.comments')->where('coid = ?', $coid));
+				Db::name('comments')->where('coid', $coid)->delete();
 			}
 			if (in_array($status, ['waiting', 'spam'])) {
-				$DB->query($DB->update('table.comments')->rows(['status' => $status])->where('coid = ?', $coid));
+				Db::name('comments')->where('coid', $coid)->update(['status' => $status]);
 			}
+			$commentsNum = Db::name('comments')->where(['cid' => $comment['cid'], 'status' => 'approved'])->count();
+			Db::name('contents')->where('cid', $comment['cid'])->update(['commentsNum' => $commentsNum]);
 			return ['code' => 200];
 		} catch (\Throwable $th) {
 			return ['message' => '删除失败：' . $th];

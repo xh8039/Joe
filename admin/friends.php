@@ -21,7 +21,7 @@ require_once JOE_ROOT . 'public/function.php';
 
 $options = Typecho\Widget::widget('Widget_Options');
 $action = empty($_REQUEST['action']) ? 'index' : $_REQUEST['action'];
-$db = Typecho_Db::get();
+$db = Typecho\Db::get();
 
 function alert($content)
 {
@@ -39,14 +39,14 @@ function location()
 }
 function LinkExists($id)
 {
-	$db = Typecho_Db::get();
+	$db = Typecho\Db::get();
 	$link = $db->fetchRow($db->select()->from('table.friends')->where('id = ?', $id)->limit(1));
 	return $link ? true : false;
 }
 function getFriends(array $id)
 {
 	if (empty($id)) return [];
-	$db = Typecho_Db::get();
+	$db = Typecho\Db::get();
 	$link = $db->fetchAll($db->select()->from('table.friends')->where('id in?', $id));
 	if (!is_array($link)) return [];
 	return $link;

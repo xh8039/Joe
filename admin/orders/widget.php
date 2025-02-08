@@ -86,7 +86,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		parent::__construct($request, $response, $params);
 
 		/** 初始化数据库 */
-		$this->db = Typecho_Db::get();
+		$this->db = Typecho\Db::get();
 
 		/** 初始化常用组件 */
 		// $this->options = $this->widget('Widget_Options');
@@ -150,7 +150,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		$this->_countSql = clone $select;
 
 		/** 提交查询 */
-		$select->order('id', Typecho_Db::SORT_DESC)
+		$select->order('id', Typecho\Db::SORT_DESC)
 			->page($this->_currentPage, $this->parameter->pageSize);
 
 		$this->db->fetchAll($select, array($this, 'push'));

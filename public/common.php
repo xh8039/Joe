@@ -26,7 +26,10 @@ header('Yihang-Typecho-Joe: true');
 /* 继承方法函数 */
 require_once(JOE_ROOT . 'public/widget.php');
 
-/* Composer自动加载 */
+/* Composer 自动加载 */
+require_once(JOE_ROOT . 'vendor/autoload.php');
+
+/* ThinkORM 数据库配置 */
 require_once(JOE_ROOT . 'vendor/autoload.php');
 
 /* 公用函数 */
@@ -115,7 +118,7 @@ function themeInit($self)
 			// $location = Helper::options()->siteUrl;
 			// $cid = $self->request->cid;
 			// if (is_numeric($cid)) {
-			// 	$db = Typecho_Db::get();
+			// 	$db = Typecho\Db::get();
 			// 	$post = $db->fetchRow($db->select('text')->from('table.contents')->where('cid = ?', $cid));
 			// 	if (!empty($post['text']) && strpos($post['text'], $link) !== false) $location = $link;
 			// }

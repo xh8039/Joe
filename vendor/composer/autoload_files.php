@@ -6,6 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    '3f25217b295bb6ca58df2f221ad22d51' => $vendorDir . '/network/http/src/helper.php',
     '9b552a3cc426e3287cc811caefa3cf53' => $vendorDir . '/topthink/think-helper/src/helper.php',
+    '3f25217b295bb6ca58df2f221ad22d51' => $vendorDir . '/network/http/src/helper.php',
+    '7448f3465e10b5f033e4babb31eb0b06' => $vendorDir . '/topthink/think-orm/src/helper.php',
+    '35fab96057f1bf5e7aba31a8a6d5fdde' => $vendorDir . '/topthink/think-orm/stubs/load_stubs.php',
 );

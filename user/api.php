@@ -21,7 +21,7 @@ switch ($action) {
 			'msg' => '请输入密码'
 		]);
 		sleep(1);
-		$db = Typecho_Db::get();
+		$db = Typecho\Db::get();
 		$user = $db->select('uid', 'name', 'password')->from('table.users')->where('name = ?', $username)->limit(1);
 		$mail = $db->select('uid', 'mail', 'password')->from('table.users')->where('mail = ?', $username)->limit(1);
 		if (!$result = $db->fetchAll($user)) {
@@ -107,7 +107,7 @@ switch ($action) {
 			'msg' => '密码不能少于6位'
 		]);
 		sleep(1);
-		$db = Typecho_Db::get();
+		$db = Typecho\Db::get();
 		if ($db->fetchAll($db->select('uid')->from('table.users')->where('screenName = ?', $nickname)->limit(1))) {
 			$this->response->throwJson([
 				'code' => 0,
@@ -185,7 +185,7 @@ switch ($action) {
 			'msg' => '密码不能少于6位'
 		]);
 		sleep(1);
-		$db = Typecho_Db::get();
+		$db = Typecho\Db::get();
 		if (!$_SESSION["Gm_Forget_state"] || $_SESSION["Gm_Forget_state"] != $state) {
 			$this->response->throwJson([
 				'code' => 0,
@@ -237,7 +237,7 @@ switch ($action) {
 			'msg' => '请输入邮箱'
 		]);
 		sleep(1);
-		$db = Typecho_Db::get();
+		$db = Typecho\Db::get();
 		if (!$user = $db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) {
 			$this->response->throwJson([
 				'code' => 0,
@@ -271,7 +271,7 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱后发送验证码'
 		]);
-		$db = Typecho_Db::get();
+		$db = Typecho\Db::get();
 		if ($db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '你输入的邮箱已经注册账号'
@@ -306,7 +306,7 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱后发送验证码'
 		]);
-		$db = Typecho_Db::get();
+		$db = Typecho\Db::get();
 		if (!$db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '你输入的邮箱未注册账号'

@@ -1,7 +1,7 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 $name = THEME_NAME;
-$db = Typecho_Db::get();
+$db = Typecho\Db::get();
 if (isset($_POST['type'])) {
 	if ($_POST["type"] == "备份设置") {
 		$value = $db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . $name))['value'];

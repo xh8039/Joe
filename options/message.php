@@ -5,7 +5,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$db = \Typecho_Db::get();
+$db = \Typecho\Db::get();
 $authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
 if (empty($authoInfo['mail'])) {
 	$email = \Helper::options()->JCommentMailAccount;

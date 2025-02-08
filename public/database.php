@@ -1,4 +1,7 @@
 <?php
+
+use think\facade\Db;
+
 (function () {
 	$DB = Typecho\Db::get();
 	$adapter = $DB->getAdapter()->getDriver();
@@ -31,4 +34,4 @@
 			],
 		],
 	]);
-});
+})();

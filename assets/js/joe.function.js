@@ -137,7 +137,7 @@ window.Joe.internalUrl = (string) => {
 window.Joe.scrollTo = (selector) => {
 	const reservedHeight = document.querySelector('.joe_header').offsetHeight + 15;
 	var top;
-	if (/^\d+$/.test(selector)) {
+	if (isFinite(selector)) {
 		top = ((selector - reservedHeight) < 0) ? 0 : (selector - reservedHeight);
 	} else {
 		const $selector = (selector instanceof Element) ? selector : document.querySelector(selector);

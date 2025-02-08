@@ -282,7 +282,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 		toggleBox() {
 			this.$seat.siblings('.box').stop().slideToggle("fast");
 		}
-	};
+	}();
 
 	/* 初始化表情功能 */
 	(() => {

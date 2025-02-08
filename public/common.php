@@ -30,7 +30,7 @@ require_once(JOE_ROOT . 'public/widget.php');
 require_once(JOE_ROOT . 'vendor/autoload.php');
 
 /* ThinkORM 数据库配置 */
-require_once(JOE_ROOT . 'vendor/autoload.php');
+require_once(JOE_ROOT . 'vendor/database.php');
 
 /* 公用函数 */
 require_once(JOE_ROOT . 'public/function.php');

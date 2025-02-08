@@ -72,7 +72,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 			if (!$drawArea[0].dataset.sketchpad) {
 				const width = $('.joe_comment__respond-form .body').width();
 				console.log(width);
-				$drawArea.prop('width', width);
+				$drawArea.attr('width', width);
 
 				Joe.sketchpad = new Sketchpad({
 					element: '#joe_comment_draw',

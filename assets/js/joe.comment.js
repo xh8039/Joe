@@ -70,7 +70,8 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 
 		const initSketchpad = () => {
 			if (!$drawArea[0].dataset.sketchpad) {
-				const width = document.querySelector('.joe_comment__respond-form .body').getBoundingClientRect().width;
+				const width = $('.joe_comment__respond-form .body').width();
+				console.log(width);
 				$drawArea.prop('width', width);
 
 				Joe.sketchpad = new Sketchpad({
@@ -91,7 +92,7 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 		document.$body.on('click', '.joe_comment__respond-type .item', function () {
 			const $this = $(this);
 			const type = $this.addClass('active').siblings().removeClass('active').end().data('type');
-			console.log(type);
+
 			if (type == 'draw') {
 				window.Sketchpad ? initSketchpad() : loadSketchpad();
 			}

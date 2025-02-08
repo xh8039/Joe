@@ -66,7 +66,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 			item.append(respond);
 			$(".joe_comment__respond-type .item[data-type='text']").click();
 			$(".joe_comment__cancle").show();
-			Joe.scrollTo(window.scrollY + item.height(), item.offset().top);
+			Joe.scrollTo(item.offset().top);
 			window.Joe.commentListAutoRefresh = false;
 		});
 		/* 重写取消回复功能 */
@@ -77,10 +77,6 @@ Joe.DOMContentLoaded.comment ||= () => {
 			$(".joe_comment__cancle").hide();
 			$(".joe_comment>.comment-list").before(respond);
 			$(".joe_comment__respond-type .item[data-type='text']").click();
-			// window.scrollTo({
-			// 	top: $(".joe_comment").offset().top - $(".joe_header").height() - 15,
-			// 	behavior: "smooth",
-			// });
 			window.Joe.commentListAutoRefresh = true;
 		});
 		/* 评论操作 */

@@ -360,6 +360,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 }
 
 Joe.DOMContentLoaded.initComment ||= (options = {}) => {
+	console.log('调用：Joe.DOMContentLoaded.initComment');
 
 	/** 评论区禁止评论删除表情包功能 */
 	(() => {

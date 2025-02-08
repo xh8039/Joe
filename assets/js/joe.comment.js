@@ -66,10 +66,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 			item.append(respond);
 			$(".joe_comment__respond-type .item[data-type='text']").click();
 			$(".joe_comment__cancle").show();
-			// window.scrollTo({
-			// 	top: item.offset().top - $(".joe_header").height() - 15,
-			// 	behavior: "smooth",
-			// });
+			Joe.scrollTo(item.offset().top);
 			window.Joe.commentListAutoRefresh = false;
 		});
 		/* 重写取消回复功能 */

@@ -75,10 +75,6 @@ if ($this->options->JLoading != 'off') : ?>
 <!-- <script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js') ?>" data-turbolinks-permanent></script> -->
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>" data-turbolinks-permanent></script>
 
-<?php if ($this->is('single') && $this->options->JcommentDraw == 'on') : ?>
-	<script src="<?= joe\cdn('sketchpad/0.1.0/scripts/sketchpad.min.js') ?>"></script>
-<?php endif; ?>
-
 <?php if ($this->is('single')) : ?>
 	<?php if (\think\helper\Str::contains($this->content, '<code class="lang-')) $this->need('module/single/prism.php'); ?>
 	<script src="<?= joe\cdn('fancybox/3.5.7/jquery.fancybox.min.js') ?>" data-turbolinks-permanent></script>

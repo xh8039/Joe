@@ -1,7 +1,9 @@
 if (!window.Joe) window.Joe = {};
 window.Joe.options = window.Joe.options ? window.Joe.options : {};
 
-window.Joe.$body = $(document.body);
+document.addEventListener('DOMContentLoaded', () => {
+	window.Joe.$body = $(document.body);
+});
 
 window.Joe.thumbnailError = (element) => {
 	if (element.dataset.thumbnailLoaded) return true

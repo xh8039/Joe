@@ -276,6 +276,12 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 	/* 激活评论提交 */
 	(() => {
+		$(document.body).on('keydown', '.joe_comment__respond-form textarea', function (event) {
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				$(".joe_comment__respond-form").submit();
+			}
+		});
 		$(document.body).on('submit', '.joe_comment__respond-form', function (event) {
 			event.preventDefault();
 			window.Joe.commentListAutoRefresh = false;
@@ -352,12 +358,6 @@ Joe.DOMContentLoaded.comment ||= () => {
 					}
 				}
 			});
-		});
-		document.querySelector(".joe_comment__respond-form").addEventListener("keydown", function (event) {
-			if (event.keyCode === 13) {
-				event.preventDefault();
-				$(".joe_comment__respond-form").submit();
-			}
 		});
 	})();
 

@@ -71,12 +71,13 @@ Joe.DOMContentLoaded.comment ||= (options = {}) => {
 		const initSketchpad = () => {
 			if (!$drawArea[0].dataset.sketchpad) {
 				const width = $('.joe_comment__respond-form .body').width();
-				console.log(width);
-				$drawArea.attr('width', width);
+				// console.log(width);
+				// $drawArea.attr('width', width);
 
 				Joe.sketchpad = new Sketchpad({
 					element: '#joe_comment_draw',
 					height: 300,
+					width: width,
 					penSize: 5,
 					color: "303133"
 				});

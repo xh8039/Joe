@@ -311,36 +311,6 @@ Joe.DOMContentLoaded.single ||= () => {
 		});
 	})();
 
-	/** 初始化评论 */
-	{
-		if (Joe.DOMContentLoaded.comment) Joe.DOMContentLoaded.comment();
-	}
-
-	/** 评论区内容实时刷新 */
-	(() => {
-		if (window.Joe.commentListSetInterval !== undefined) return;
-		let RefreshDOM = '#comment_module a[auto-refresh]';
-		if (!document.querySelector(RefreshDOM)) return;
-		let time = Number($(RefreshDOM).attr('auto-refresh'));
-		if (!time || !Number.isInteger(time)) return;
-		window.Joe.commentListAutoRefresh = true;
-		window.Joe.commentListSetInterval = setInterval(() => {
-			if (!document.querySelector(RefreshDOM)) return;
-			if (document.visibilityState == "hidden" || document.hidden) return;
-			if (!window.Joe.commentListAutoRefresh) return;
-			if (!isElementInViewport(document.querySelector('.comment-list'))) return;
-			let url = $('#comment_module>.joe_pagination>li.active>a').attr('href') || $(RefreshDOM).attr('href');
-			window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
-				success() {
-					return window.Joe.commentListAutoRefresh;
-				},
-				replace() {
-					Joe.DOMContentLoaded.comment({ submit: false, pagination: false });
-				}
-			});
-		}, time * 1000);
-	})();
-
 	/** 锚点丝滑滚动 */
 	{
 		setTimeout(window.Joe.anchor_scroll, 500);

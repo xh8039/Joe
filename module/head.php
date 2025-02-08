@@ -88,12 +88,14 @@ if ($this->options->JLoading != 'off') : ?>
 <script src="<?= joe\theme_url('assets/plugin/autolog.js/autolog.js'); ?>" data-turbolinks-permanent></script>
 
 <?php if ($this->is('single')) : ?>
-	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
-	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.main.js'); ?>"></script>
+<?php if ($this->is('single')) : ?>
+	<script src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
+<?php endif; ?>
 
 <!-- 自定义头部HTML代码 -->
 

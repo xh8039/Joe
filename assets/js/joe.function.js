@@ -1,6 +1,8 @@
 if (!window.Joe) window.Joe = {};
 window.Joe.options = window.Joe.options ? window.Joe.options : {};
 
+window.Joe.$body = $(document.body);
+
 window.Joe.thumbnailError = (element) => {
 	if (element.dataset.thumbnailLoaded) return true
 	console.log('缩略图加载失败', element, element.src);

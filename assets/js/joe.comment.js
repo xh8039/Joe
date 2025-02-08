@@ -167,7 +167,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 					console.warn("无法加载表情包数据")
 				}).finally(() => {
 					// 无论成功失败都重置按钮状态
-					this.$seat.html('表情').removeClass('disabled')
+					this.$seat.html('OωO').removeClass('disabled')
 				});
 			});
 

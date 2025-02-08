@@ -137,6 +137,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 		/** 初始化时缓存DOM元素并绑定事件 */
 		constructor() {
+			console.log('初始化评论表情功能')
 			this.cacheElements();
 			this.initEvents();
 		}

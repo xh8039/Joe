@@ -518,4 +518,4 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 }
 
-document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.comment, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.comment, { once: true });

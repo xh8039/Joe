@@ -233,7 +233,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 			this.toggleBox(); // 显示容器
 			this.$container.find('.bar .item').first().trigger('click'); // 触发默认分类
-			window.Joe.tooltip('.joe_owo__contain .scroll .item'); // 初始化工具提示
+			setTimeout(() => Joe.tooltip('.joe_owo__contain'), 500);
 		}
 
 		/** 生成内容结构（分离逻辑与视图） */

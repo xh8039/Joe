@@ -222,7 +222,7 @@ $custom_navs = joe\custom_navs();
 					?>
 						<div class="navbar-form navbar-right navbar-text">
 							<ul class="list-inline splitters relative">
-								<li><a href="<?= joe\user_url('login'); ?>" class="signin-loader">登录</a></li><?= $this->options->allowRegister ? '<li><a href="' . joe\user_url('register') . '" class="signup-loader">注册</a></li>' : null ?>
+								<li><a href="<?= joe\user_url('login'); ?>" class="signin-loader header-login">登录</a></li><?= $this->options->allowRegister ? '<li><a href="' . joe\user_url('register') . '" class="signup-loader">注册</a></li>' : null ?>
 							</ul>
 						</div>
 					<?php

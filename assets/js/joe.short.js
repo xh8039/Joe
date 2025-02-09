@@ -222,14 +222,12 @@ Joe.DOMContentLoaded.short ||= () => {
 		}
 		render() {
 			this.className = `joe_hide joe_hide_${this.style.display}`;
-			if (window.Joe?.CONTENT?.fields?.hide == 'pay') {
-				let price = window.Joe.CONTENT.fields.price;
-				let pay = `<i mobile-bottom="true" data-height="300" data-remote="${window.Joe.BASE_API}?routeType=pay_cashier_modal&cid=${window.Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${price} 元</i>`;
-				this.innerHTML = `此处内容作者设置了 ${price > 0 ? pay : '<a href="javascript:window.Joe.scrollTo(\'.joe_comment\');" class="joe_hide__button">评论</a>'} 可见`;
-			} else if (window.Joe?.CONTENT?.fields?.hide == 'login') {
+			if (Joe.CONTENT?.fields?.hide == 'pay' && Joe.CONTENT?.fields?.price > 0) {
+				this.innerHTML = `此处内容作者设置了 <i mobile-bottom="true" data-height="300" data-remote="${Joe.BASE_API}?routeType=pay_cashier_modal&cid=${Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${Joe.CONTENT.fields.price} 元</i> 可见`;
+			} else if (Joe.CONTENT?.fields?.hide == 'login') {
 				this.innerHTML = `此处内容作者设置了 <a href="${document.querySelector('.header-login').href}" class="joe_hide__button">登录</a> 可见`;
 			} else {
-				this.innerHTML = `此处内容作者设置了 <a href="javascript:window.Joe.scrollTo('.joe_comment');" class="joe_hide__button">回复</a> 可见`;
+				this.innerHTML = `此处内容作者设置了 <a href="javascript:Joe.scrollTo('.joe_comment');" class="joe_hide__button">评论</a> 可见`;
 			}
 		}
 	});

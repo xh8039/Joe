@@ -685,7 +685,7 @@ Joe.DOMContentLoaded.global ||= () => {
 		document.addEventListener('turbolinks:complete', () => {
 			if (window.Joe.loadingEnd) window.Joe.loadingEnd();
 			NProgress.done();
-			Joe.tooltip('body', 'destroy');
+			Joe.tooltip('', 'destroy');
 		});
 		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.internalForwardUrl(this)) return true;

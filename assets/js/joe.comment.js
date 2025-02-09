@@ -120,6 +120,9 @@ Joe.DOMContentLoaded.comment ||= () => {
 				container: 'body'
 			}).tooltip('toggle');
 		});
+		document.addEventListener('turbolinks:complete', () => {
+			$('.comment-list__item .content').tooltip('destroy');
+		});
 	})();
 
 	/**

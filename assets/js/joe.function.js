@@ -34,8 +34,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 		constructor(options) {
 			if (options.url) this.ajax(options);
 			if (options.element && document.querySelector(options.element)) {
-				$(options.element).attr('data-turbolinks', 'false');
-				$(options.element).attr('ajax-replace', 'true');
+				$(options.element).attr('data-turbolinks', 'false').attr('ajax-replace', 'true');
 				$(document).on('click', options.element, (event) => {
 					event.preventDefault();
 					options.url = event.target.href;
@@ -66,6 +65,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 					if (window.Joe.tooltip) window.Joe.tooltip();
 					$(".comment-list [data-toggle='popover']").popover({ html: true });
 					options?.replace(response);
+					if (options.element && document.querySelector(options.element)) $(options.element).attr('data-turbolinks', 'false').attr('ajax-replace', 'true');
 					if (options.scrollTo != undefined) Joe.scrollTo(options.scrollTo);
 				},
 				error(xhr, status, error) {

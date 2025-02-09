@@ -55,7 +55,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 	(() => {
 		/* 重写回复功能 */
 		$(document.body).on('click', '.joe_comment__reply', function () {
-			if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
+			if (Joe.IS_MOBILE) $('.comment-list__item .content').tooltip('destroy');
 			const respond = $(".joe_comment__respond");
 			/* 父级ID */
 			const coid = $(this).attr('data-coid');
@@ -91,7 +91,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 			$button.addClass('disabled');
 			$.get(Joe.BASE_API + '/comment-operate', { coid, status }, function (data, textStatus, jqXHR) {
 				if (data.code == 200) {
-					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
+					if (Joe.IS_MOBILE) $('.comment-list__item .content').tooltip('destroy');
 					$('.joe_comment__title small').html(`共${data.commentsNum}条`);
 					$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
 						$('.comment-list__item[data-coid="' + coid + '"]').remove();
@@ -120,7 +120,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 				container: 'body'
 			}).tooltip('toggle');
 		});
-		document.addEventListener('turbolinks:send', () => {
+		if (Joe.IS_MOBILE) document.addEventListener('turbolinks:send', () => {
 			$('.comment-list__item .content').tooltip('destroy');
 		});
 	})();
@@ -368,7 +368,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 				success() {
 					autolog.log('发送成功', 'success');
 					$('.joe_comment__cancle').trigger('click');
-					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
+					if (Joe.IS_MOBILE) $('.comment-list__item .content').tooltip('destroy');
 				},
 				replace() {
 					if (window.Joe.leavingListInit) window.Joe.leavingListInit();
@@ -392,16 +392,16 @@ Joe.DOMContentLoaded.comment ||= () => {
 			let selectors = ["#comment_module>.comment-list", '#comment_module>.joe_pagination'];
 			if (document.querySelector('.joe_detail__leaving')) selectors.push('.joe_detail__leaving');
 			window.Joe.pjax(this.href, selectors, {
+				scrollTo: '.comment-list',
 				beforeSend() {
 					window.Joe.commentListAutoRefresh = false;
 					$('#comment_module>.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
 				},
 				success() {
 					$('.joe_comment__cancle').click();
-					if (Joe.IS_MOBILE) $(`.comment-list__item .content`).tooltip('destroy');
+					if (Joe.IS_MOBILE) $('.comment-list__item .content').tooltip('destroy');
 				},
 				replace() {
-					Joe.scrollTo('.comment-list');
 					if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 				}
 			});

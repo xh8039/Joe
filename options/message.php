@@ -74,11 +74,11 @@ if (!empty(\Helper::options()->JMailApi)) {
 	$JMailApiOptions = '<br>
 	<span style="color:#409eff">
 	现在的配置<br>
-	对接地址：' . $JMailApi['url'] . '<br>
-	标题字段：' . $JMailApi['title'] . '<br>
+	邮箱对接地址：' . $JMailApi['url'] . '<br>
+	发送标题字段：' . $JMailApi['title'] . '<br>
 	发件昵称字段：' . $JMailApi['name'] . '<br>
-	内容字段：' . $JMailApi['content'] . '<br>
-	发送邮箱字段：' . $JMailApi['email'] . '<br>
+	发送内容字段：' . $JMailApi['content'] . '<br>
+	收件邮箱字段：' . $JMailApi['email'] . '<br>
 	响应成功字段：' . $JMailApi['code'] . '<br>
 	响应成功内容：' . $JMailApi['200'] . '<br>
 	响应失败内容字段：' . $JMailApi['message'] . '</span>

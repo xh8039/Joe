@@ -323,9 +323,7 @@ Joe.DOMContentLoaded.single ||= () => {
 
 	/* 评论分页标记ajax加载 */
 	{
-		$("#comment_module>.joe_pagination a[href]").each((index, item) => {
-			$(item).attr('ajax-replace', true);
-		});
+		$("#comment_module>.joe_pagination a[href]").each((index, item) => $(item).attr('ajax-replace', true));
 	}
 
 	/* 分享 */

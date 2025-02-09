@@ -146,7 +146,7 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 				'wrapTag' => 'ul',
 				'wrapClass' => 'joe_pagination',
 				'itemTag' => 'li',
-				'textTag' => 'a',
+				'textTag' => 'ajax',
 				'currentClass' => 'active',
 				'prevClass' => 'prev',
 				'nextClass' => 'next'

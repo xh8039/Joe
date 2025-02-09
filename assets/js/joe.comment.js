@@ -131,16 +131,8 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 		/** 初始化时缓存DOM元素并绑定事件 */
 		constructor() {
-			console.log('初始化评论表情功能')
-			this.cacheElements();
+			console.log('初始化评论表情功能');
 			this.initEvents();
-		}
-
-		/** 缓存常用DOM元素，减少重复查询 */
-		cacheElements() {
-			this.$container = $('.joe_owo__contain');
-			this.$box = this.$container.find('.box');
-			this.$seat = this.$container.find('.seat');
 		}
 
 		/** 事件委托：统一管理所有交互事件 */
@@ -148,6 +140,11 @@ Joe.DOMContentLoaded.comment ||= () => {
 			// 点击触发按钮
 			Joe.$body.on('click', '.joe_owo__contain .seat', (event) => {
 				event.stopPropagation();
+
+				// 缓存常用DOM元素，减少重复查询
+				this.$container = $('.joe_owo__contain');
+				this.$box = this.$container.find('.box');
+				this.$seat = this.$container.find('.seat');
 
 				// 检查本地缓存，有缓存直接渲染;
 				var localEmo;

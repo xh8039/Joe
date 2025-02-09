@@ -5,6 +5,7 @@
 	outline: none;
 	-webkit-tap-highlight-color: transparent;
 	scroll-behavior: smooth;
+	scroll-padding-top: 70px;
 }
 
 *,
@@ -35,10 +36,6 @@
 ::selection {
 	color: #fff;
 	background: var(--theme)
-}
-
-html {
-	scroll-padding-top: 70px;
 }
 
 body {

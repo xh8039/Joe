@@ -63,9 +63,9 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 						});
 					}
 					if (window.Joe.tooltip) window.Joe.tooltip();
-					$(".comment-list [data-toggle='popover']").popover({ html: true });
 					options?.replace(response);
 					if (options.element && document.querySelector(options.element)) $(options.element).attr('data-turbolinks', 'false').attr('ajax-replace', 'true');
+					console.log(options.element);
 					if (options.scrollTo != undefined) Joe.scrollTo(options.scrollTo);
 				},
 				error(xhr, status, error) {

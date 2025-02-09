@@ -372,6 +372,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 					if (window.Joe.leavingListInit) window.Joe.leavingListInit();
 					$textarea.val('');
 					$textarea.focus();
+					if (Joe.IS_MOBILE) $(".comment-list [data-toggle='popover']").popover({ html: true });
 					if (document.querySelector('.joe_hide>.joe_hide__button')) window.Joe.pjax(window.location.href, ['.joe_detail__article']);
 				},
 				error(xhr, status, error) {
@@ -401,6 +402,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 				},
 				replace() {
 					if (window.Joe.leavingListInit) window.Joe.leavingListInit();
+					if (Joe.IS_MOBILE) $(".comment-list [data-toggle='popover']").popover({ html: true });
 				}
 			});
 		});
@@ -421,6 +423,9 @@ Joe.DOMContentLoaded.comment ||= () => {
 			window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
 				success() {
 					return window.Joe.commentListAutoRefresh;
+				},
+				replace() {
+					if (Joe.IS_MOBILE) $(".comment-list [data-toggle='popover']").popover({ html: true });
 				}
 			});
 		}, time * 1000);

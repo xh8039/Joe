@@ -80,29 +80,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		</div>
 	</section>
 
-	<!-- <section class="joe_aside__item author">
-		<img referrerpolicy="no-referrer" rel="noreferrer" width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $this->options->JAside_Author_Background ?? Joe\theme_url('assets/images/aside_author_image.jpg'); ?>" alt="博主栏壁纸" />
-		<div class="user">
-			<img width="75" height="75" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : joe\getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主头像" />
-			<a class="link" href="<?php $this->options->JAside_Author_Link() ?>" rel="nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>
-			<p class="motto joe_motto mb0"></p>
-		</div>
-		<?php Typecho\Widget::widget('Widget_Stat')->to($item); ?>
-		<div class="count">
-			<div class="item" title="累计文章数">
-				<span class="num"><?php echo number_format($item->publishedPostsNum); ?></span>
-				<span>文章数</span>
-			</div>
-			<div class="item" title="累计评论数">
-				<span class="num"><?php echo number_format($item->publishedCommentsNum); ?></span>
-				<span>评论量</span>
-			</div>
-		</div>
-		<?php if ($this->options->JAside_Author_Nav !== "off") : ?>
-			<ul class="list"><?php joe\getAsideAuthorNav() ?></ul>
-		<?php endif; ?>
-	</section> -->
-
 	<?= ($this->is('post') && !joe\isMobile() && $this->options->JArticle_Guide == 'on') ? '<section data-affix="true" class="posts-nav-box joe_aside__item" data-title="文章目录"></section>' : null ?>
 
 	<?php if (!empty($this->options->JAside_Notice) && !joe\detectSpider()) : ?>

@@ -63,16 +63,16 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 						});
 					}
 					if (window.Joe.tooltip) window.Joe.tooltip();
-					options?.replace(response);
+					if (options.replace) options.replace(response);
 					if (options.element && document.querySelector(options.element)) $(options.element).attr('data-turbolinks', 'false').attr('ajax-replace', 'true');
 					console.log(options.element);
 					if (options.scrollTo != undefined) Joe.scrollTo(options.scrollTo);
 				},
 				error(xhr, status, error) {
-					options?.error(xhr, status, error);
+					if (options.error) options.error(xhr, status, error);
 				},
 				complete(xhr, status) {
-					options?.complete(xhr, status);
+					if (options.complete) options.complete(xhr, status);
 				}
 			};
 			if (options.processData != undefined) ajax.processData = options.processData;

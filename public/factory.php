@@ -129,7 +129,7 @@ class Email
 
 function CommentLink($text, $link, $type)
 {
-	$text = $text . '<br><a style="display:block;color: #12addb;text-decoration: none;text-align:right;" href="' . $link . '" target="_blank">查看' . $type . '</a>';
+	$text = $text . '<br><a style="display:block;color: #12addb;text-decoration: none;text-align:right;" href="' . str_replace('#', '?scroll=', $link) . '" target="_blank">查看' . $type . '</a>';
 	return $text;
 }
 

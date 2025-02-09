@@ -4,8 +4,8 @@
 	box-sizing: border-box;
 	outline: none;
 	-webkit-tap-highlight-color: transparent;
-	scroll-behavior: smooth;
-	scroll-padding-top: 70px;
+	/* scroll-behavior: smooth;
+	scroll-padding-top: 70px; */
 }
 
 *,

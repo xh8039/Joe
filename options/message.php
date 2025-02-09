@@ -111,7 +111,7 @@ $form->addInput($JCommentMailHost->multiMode());
 
 $JCommentSMTPSecure = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JCommentSMTPSecure',
-	array('ssl' => 'ssl（默认）', 'tsl' => 'tsl'),
+	array('ssl' => 'SSL（默认）', 'TSL' => 'tsl'),
 	'ssl',
 	'加密方式',
 	'介绍：用于选择登录鉴权加密方式'

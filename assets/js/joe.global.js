@@ -677,6 +677,7 @@ Joe.DOMContentLoaded.global ||= () => {
 		document.addEventListener('turbolinks:send', () => {
 			NProgress.done();
 			NProgress.start();
+			Joe.tooltip('body', 'destroy');
 			if (Joe.IS_MOBILE) $('.joe_action>.posts-nav-box').remove();
 		});
 		document.addEventListener('turbolinks:load', () => {
@@ -685,7 +686,6 @@ Joe.DOMContentLoaded.global ||= () => {
 		document.addEventListener('turbolinks:complete', () => {
 			if (window.Joe.loadingEnd) window.Joe.loadingEnd();
 			NProgress.done();
-			Joe.tooltip('body', 'destroy');
 		});
 		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.internalForwardUrl(this)) return true;

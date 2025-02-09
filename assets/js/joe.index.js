@@ -67,7 +67,7 @@ Joe.DOMContentLoaded.index ||= () => {
 									</item>
 									<div class="meta-right">
 										<item class="meta-comm">
-											<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+											<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}#comment_module">
 												<svg class="icon svg" aria-hidden="true">
 													<use xlink:href="#icon-comment"></use>
 												</svg>${_.commentsNum}
@@ -114,7 +114,7 @@ Joe.DOMContentLoaded.index ||= () => {
 									</item>
 									<div class="meta-right">
 										<item class="meta-comm">
-											<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+											<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}#comment_module">
 												<svg class="icon svg" aria-hidden="true">
 													<use xlink:href="#icon-comment"></use>
 												</svg>${_.commentsNum}
@@ -179,7 +179,7 @@ Joe.DOMContentLoaded.index ||= () => {
 								</item>
 								<div class="meta-right">
 									<item class="meta-comm">
-										<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+										<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}#comment_module">
 											<svg class="icon svg" aria-hidden="true">
 												<use xlink:href="#icon-comment"></use>
 											</svg>${_.commentsNum}
@@ -225,7 +225,7 @@ Joe.DOMContentLoaded.index ||= () => {
 									</item>
 									<div class="meta-right">
 										<item class="meta-comm">
-											<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}?scroll=comment_module">
+											<a rel="nofollow" data-toggle="tooltip" title="去评论" href="${_.permalink}#comment_module">
 												<svg class="icon svg" aria-hidden="true">
 													<use xlink:href="#icon-comment"></use>
 												</svg>${_.commentsNum}

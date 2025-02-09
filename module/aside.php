@@ -198,7 +198,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 								</div>
 							</div>
 							<div class="reply">
-								<a class="link" href="<?php _parseAsideLink(joe\root_relative_link($item->permalink)); ?>">
+								<a class="link" href="<?= joe\root_relative_link($item->permalink) ?>">
 									<?php _parseAsideReply($item->content); ?>
 								</a>
 							</div>

@@ -587,7 +587,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			// 获取代码内容并格式化
 			const text = $(this).text().replace(/    /g, '	');
 			// 高亮代码
-			Prism.highlightElement(this, window.CodeMirror ? false : true);
+			Prism.highlightElement(this);
 			// 创建复制按钮
 			const copyButton = document.createElement('span');
 			copyButton.setAttribute('data-toggle', 'tooltip');

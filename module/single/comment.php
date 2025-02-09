@@ -137,6 +137,8 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 		} else {
 			echo '<ol class="comment-list" style="display: none;"></ol>';
 		}
+		// 开始输出缓冲
+		ob_start();
 		$comments->pageNav(
 			'<i class="fa fa-angle-left em12"></i><span class="hide-sm ml6">上一页</span>',
 			'<span class="hide-sm mr6">下一页</span><i class="fa fa-angle-right em12"></i>',
@@ -146,12 +148,18 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 				'wrapTag' => 'ul',
 				'wrapClass' => 'joe_pagination',
 				'itemTag' => 'li',
-				'textTag' => 'ajax',
+				'textTag' => 'a',
 				'currentClass' => 'active',
 				'prevClass' => 'prev',
 				'nextClass' => 'next'
 			)
 		);
+		// 获取缓冲区的内容并存储到变量中
+		$comments_page = ob_get_contents();
+		// 清空缓冲区并关闭输出缓冲
+		ob_end_clean();
+		// 评论分页标记ajax加载
+		echo str_replace('<a', '<a ajax-replace="true"', $comments_page);
 	}
 	?>
 </div>

@@ -321,11 +321,6 @@ Joe.DOMContentLoaded.single ||= () => {
 		if (!$(".joe_owo__target").length || $('.joe_owo__target').attr('disabled')) $('.joe_owo__contain .seat').remove();
 	}
 
-	/* 评论分页标记ajax加载 */
-	{
-		$("#comment_module>.joe_pagination a[href]").each((index, item) => $(item).attr('ajax-replace', true));
-	}
-
 	/* 分享 */
 	{
 		// if ($('.joe_detail__operate-share').length) {

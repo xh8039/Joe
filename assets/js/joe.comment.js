@@ -387,7 +387,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 	/* 评论分页 Ajax 切换 */
 	{
-		$(document.body).on('click', '#comment_module>.joe_pagination ajax[href]', function (event) {
+		$(document.body).on('click', '#comment_module>.joe_pagination a[href]', function (event) {
 			event.preventDefault();
 			let selectors = ["#comment_module>.comment-list", '#comment_module>.joe_pagination'];
 			if (document.querySelector('.joe_detail__leaving')) selectors.push('.joe_detail__leaving');

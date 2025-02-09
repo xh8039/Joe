@@ -279,11 +279,6 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 	/* 激活评论提交 */
 	{
-		// 提取公共元素缓存
-		const $form = $('.joe_comment__respond-form');
-		const $submitBtn = $form.find('.foot .submit button');
-		const $textarea = $form.find('textarea[name="text"]');
-		const initialHTML = $submitBtn.html();
 
 		// 事件监听
 		$(document.body).on('keydown', '.joe_comment__respond-form textarea', function (event) {
@@ -302,7 +297,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 		}
 
 		// 提取提交数据准备
-		function prepareData(type) {
+		function prepareData($form, type) {
 			const coid = $form.attr('data-coid');
 			const data = new FormData();
 			const text = type == "draw" ? `{!{${document.getElementById('joe_comment_draw').toDataURL("image/webp", 0.1)}}!}` : $textarea.val();
@@ -320,6 +315,12 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 		$(document.body).on('submit', '.joe_comment__respond-form', async function (event) {
 			event.preventDefault();
+
+			// 提取公共元素缓存
+			const $form = $('.joe_comment__respond-form');
+			const $submitBtn = $form.find('.foot .submit button');
+			const $textarea = $form.find('textarea[name="text"]');
+			const initialHTML = $submitBtn.html();
 
 			// 防止重复提交
 			if ($submitBtn.hasClass('disabled')) return;
@@ -342,7 +343,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 			Joe.pjax({
 				type: "POST",
 				url: action,
-				data: prepareData(type),
+				data: prepareData($form, type),
 				processData: false,
 				contentType: false,
 				selectors: ["#comment_module>.comment-list", '.joe_comment__title>small', '#comment_module>.joe_pagination'],

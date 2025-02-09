@@ -120,9 +120,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 				container: 'body'
 			}).tooltip('toggle');
 		});
-		if (Joe.IS_MOBILE) document.addEventListener('turbolinks:send', () => {
-			$('.comment-list__item .content').tooltip('destroy');
-		});
+		document.addEventListener('turbolinks:send', () => $('.comment-list__item .content').tooltip('destroy'));
 	})();
 
 	/**

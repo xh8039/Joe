@@ -29,10 +29,10 @@ Joe.DOMContentLoaded.index ||= () => {
 				}
 				var color = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 				data.category.forEach((element, index) => {
-					tagsHtml += `<a target="${data.target}" class="but ${color[index]}" title="查看此分类更多文章" href="${element.permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${element.name}</a>`;
+					tagsHtml += `<a class="but ${color[index]}" title="查看此分类更多文章" href="${element.permalink}"><i class="fa fa-folder-open-o" aria-hidden="true"></i>${element.name}</a>`;
 				});
 				data.tags.forEach(tag => {
-					tagsHtml += `<a target="${data.target}" class="but" title="查看此标签更多文章" href="${tag.permalink}"># ${tag.name}</a>`
+					tagsHtml += `<a class="but" title="查看此标签更多文章" href="${tag.permalink}"># ${tag.name}</a>`
 				});
 				return tagsHtml;
 			}
@@ -42,15 +42,15 @@ Joe.DOMContentLoaded.index ||= () => {
 					return `
 					<li class="joe_list__item wow default">
 						<div class="line"></div>
-						<a href="${_.permalink}" class="thumbnail" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
+						<a href="${_.permalink}" class="thumbnail" title="${_.title}">
 							${!_.type || _.type == 'normal' ? '' : '<badge class="img-badge left jb-red">' + _.type + '</badge>'}
 							<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" width="100%" height="100%" class="lazyload" src="${_.lazyload}" data-src="${_.image[0]}" alt="${_.title}" />
 							<time datetime="${_.time}">${_.time}</time>
 							<svg width="20" height="20"><use xlink:href="#icon-joe-article-thumbnail"></use></svg>
 						</a>
 						<div class="information">
-							<a href="${_.permalink}" class="title" title="${_.title}" target="${_.target}" rel="noopener noreferrer">${_.title}</a>
-							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
+							<a href="${_.permalink}" class="title" title="${_.title}">${_.title}</a>
+							<a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
 							<div class="meta">
 								<div class="item-tags scroll-x no-scrollbar mb6">
 									${getTags(_)}
@@ -95,7 +95,7 @@ Joe.DOMContentLoaded.index ||= () => {
 					<li class="joe_list__item wow single">
 						<div class="line"></div>
 						<div class="information">
-							<a href="${_.permalink}" class="title" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
+							<a href="${_.permalink}" class="title" title="${_.title}">
 								${!_.type || _.type == 'normal' ? '' : '<span class="badge">' + _.type + '</span>'}${_.title}
 							</a>
 							<div class="meta">
@@ -134,13 +134,13 @@ Joe.DOMContentLoaded.index ||= () => {
 								</div>
 							</div>
 						</div>
-						<a href="${_.permalink}" class="thumbnail" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
+						<a href="${_.permalink}" class="thumbnail" title="${_.title}">
 							<img referrerpolicy="no-referrer" rel="noreferrer" onerror="Joe.thumbnailError(this)" width="100%" height="100%" class="lazyload" src="${_.lazyload}" data-src="${_.image[0]}" alt="${_.title}" />
 							<time datetime="${_.time}">${_.time}</time>
 							<svg width="20" height="20"><use xlink:href="#icon-joe-article-thumbnail"></use></svg>
 						</a>
 						<div class="information" style="margin-bottom: 0;">
-							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
+							<a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
 						</div>
 					</li>
 				`;
@@ -149,12 +149,12 @@ Joe.DOMContentLoaded.index ||= () => {
 					<li class="joe_list__item wow multiple">
 						<div class="line"></div>
 						<div class="information">
-							<a href="${_.permalink}" class="title" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
+							<a href="${_.permalink}" class="title" title="${_.title}">
 								${!_.type || _.type == 'normal' ? '' : '<span class="badge">' + _.type + '</span>'}${_.title}
 							</a>
-							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
+							<a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
 						</div>
-						<a href="${_.permalink}" class="thumbnail" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
+						<a href="${_.permalink}" class="thumbnail" title="${_.title}">
 							${_.image
 							.map((item, index) => {
 								if (index < 3) {
@@ -205,10 +205,10 @@ Joe.DOMContentLoaded.index ||= () => {
 					<li class="joe_list__item wow none">
 						<div class="line"></div>
 						<div class="information">
-							<a href="${_.permalink}" class="title" title="${_.title}" target="${_.target}" rel="noopener noreferrer">
+							<a href="${_.permalink}" class="title" title="${_.title}">
 								${!_.type || _.type == 'normal' ? '' : '<span class="badge">' + _.type + '</span>'}${_.title}
 							</a>
-							<a class="abstract" href="${_.permalink}" title="文章摘要" target="${_.target}" rel="noopener noreferrer">${_.abstract}</a>
+							<a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
 							<div class="meta">
 								<div class="item-tags scroll-x no-scrollbar mb6">
 									${getTags(_)}

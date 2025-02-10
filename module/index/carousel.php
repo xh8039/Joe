@@ -39,7 +39,7 @@ if ($video) echo '<style>html .joe_index__banner>.swiper-container .item, html .
 			<div class="swiper-wrapper">
 				<?php foreach ($carousel as $item) : ?>
 					<div class="swiper-slide">
-						<a class="item" href="<?= $item['url'] ?>" target="<?php $this->options->JIndex_Carousel_Target() ?>" rel="nofollow">
+						<a class="item" href="<?= $item['url'] ?>" rel="nofollow">
 							<?php
 							if (pathinfo($item['img'], PATHINFO_EXTENSION) == 'mp4') {
 							?>

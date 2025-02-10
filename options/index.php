@@ -75,13 +75,13 @@ $JIndex_Carousel = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	'首页轮播图片/视频',
 	'介绍：用于显示首页轮播图，支持使用MP4视频，设置视频后图片必须和视频保持统一比例，请务必填写正确的格式 <br />
-		 格式：图片/视频地址 || 跳转链接 || 标题 （中间使用两个竖杠分隔）<br />
-		 或者填写文章ID，例：99 <br />
-		 其他：一行一个，一行代表一个轮播图 <br />
-		 例如：<br />
-			https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || https://baidu.com || 百度一下 <br />
-			https://puui.qpic.cn/tv/0/1223447268_1680580/0 || https://v.qq.com || 腾讯视频
-		 '
+	格式：图片/视频地址 || 跳转链接 || 标题<br />
+	或者填写文章ID，例：99 <br />
+	其他：一行一个，一行代表一个轮播图 <br />
+	例如：<br />
+	https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || https://baidu.com || 百度一下 <br />
+	https://puui.qpic.cn/tv/0/1223447268_1680580/0 || https://v.qq.com || 腾讯视频
+	'
 );
 $JIndex_Carousel->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Carousel);
@@ -94,34 +94,6 @@ $JIndexCarouselDirection = new \Typecho\Widget\Helper\Form\Element\Select(
 );
 $JIndexCarouselDirection->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndexCarouselDirection->multiMode());
-
-$JIndex_Carousel_Target = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JIndex_Carousel_Target',
-	array(
-		'_self' => '_self（默认，在与点击相同的框架中打开链接的文档）',
-		'_blank' => '_blank（在新窗口或选项卡中打开链接文档）',
-		'_parent' => '_parent（在父框架中打开链接文档）',
-		'_top' => '_top（在窗口的整个主体中打开链接的文档）',
-	),
-	'_self',
-	'首页轮播图打开窗口方式',
-);
-$JIndex_Carousel_Target->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Carousel_Target->multiMode());
-
-$Jessay_target = new \Typecho\Widget\Helper\Form\Element\Select(
-	'Jessay_target',
-	array(
-		'_self' => '_self（默认，在与点击相同的框架中打开链接的文档）',
-		'_blank' => '_blank（在新窗口或选项卡中打开链接文档）',
-		'_parent' => '_parent（在父框架中打开链接文档）',
-		'_top' => '_top（在窗口的整个主体中打开链接的文档）',
-	),
-	'_self',
-	'首页文章列表打开方式',
-);
-$Jessay_target->setAttribute('class', 'joe_content joe_index');
-$form->addInput($Jessay_target->multiMode());
 
 $JIndex_Recommend = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JIndex_Recommend',

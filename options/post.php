@@ -147,20 +147,6 @@ $BingPushToken = new \Typecho\Widget\Helper\Form\Element\Text(
 $BingPushToken->setAttribute('class', 'joe_content joe_post');
 $form->addInput($BingPushToken);
 
-$Jsearch_target = new \Typecho\Widget\Helper\Form\Element\Select(
-	'Jsearch_target',
-	array(
-		'_self' => '_self（默认，在与点击相同的框架中打开链接的文档）',
-		'_blank' => '_blank（在新窗口或选项卡中打开链接文档）',
-		'_parent' => '_parent（在父框架中打开链接文档）',
-		'_top' => '_top（在窗口的整个主体中打开链接的文档）',
-	),
-	'_blank',
-	'其他页面文章列表打开方式',
-);
-$Jsearch_target->setAttribute('class', 'joe_content joe_post');
-$form->addInput($Jsearch_target->multiMode());
-
 $JArticle_Guide = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JArticle_Guide',
 	array(

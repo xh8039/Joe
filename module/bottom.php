@@ -1,15 +1,17 @@
 <?php
 
+use think\facade\Db;
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
 
 if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\detectSpider())) {
-	$friends = think\facade\Db::name('friends')->where('status', 1)->whereRaw("FIND_IN_SET('index_bottom',`position`)")->order('order', 'desc')->select()->toArray();
+	$friends = Db::name('friends')->where('status', 1)->whereRaw("FIND_IN_SET('index_bottom',`position`)")->order('order', 'desc')->select()->toArray();
 	if (sizeof($friends) > 0) : ?>
 		<?php
-		$friends_page = $db->fetchRow($db->select()->from('table.contents')->where('type = ?', 'page')->where('template = ?', 'friends.php')->where('status = ?', 'publish')->limit(1));
+		$friends_page = Db::name('contents')->where(['type' => 'page', 'template' => 'friends.php', 'status' => 'publish'])->find();
 		if ($friends_page) {
 			$friends_page_pathinfo = Typecho\Router::url('page', $friends_page);
 			$friends_page_url = Typecho\Common::url($friends_page_pathinfo, $this->options->index);

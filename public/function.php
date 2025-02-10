@@ -707,7 +707,7 @@ function thePrev($widget, $default = NULL)
 		->where('type', $widget->type)
 		->whereNull('password')
 		->whereOr('password', '')
-		->order('created','desc')
+		->order('created', 'desc')
 		->find();
 	// $content = $db->fetchRow($widget->select()->where('table.contents.created < ?', $widget->created)
 	// 	->where('table.contents.status = ?', 'publish')
@@ -718,6 +718,10 @@ function thePrev($widget, $default = NULL)
 
 	if ($content) {
 		// $content = $widget->filter($content);
+		$routeExists = (null != \Typecho\Router::get($content['type']));
+		$content['pathinfo'] = $routeExists ? \Typecho\Router::url($content['type'], $content) : '#';
+		/** 生成静态链接 */
+		$content['url'] = $content['permalink'] = \Typecho\Common::url($content['pathinfo'], \Helper::options()->index);
 		return $content;
 	} else {
 		return $default;

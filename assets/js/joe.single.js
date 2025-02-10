@@ -100,7 +100,7 @@ Joe.DOMContentLoaded.single ||= () => {
 				data: { cid },
 				success(res) {
 					if (res.code != 1) return;
-					const views = $('#Joe_Article_Views').text();
+					const views = Number($('#Joe_Article_Views').text());
 					$('#Joe_Article_Views').html(views + 1);
 					viewsArr.push(cid);
 					const name = Joe.base64_encode('views');
@@ -143,7 +143,7 @@ Joe.DOMContentLoaded.single ||= () => {
 				},
 				success(res) {
 					if (res.code != 1) return;
-					const count = $('.action-like>count').text();
+					const count = Number($('.action-like>count').text());
 					if (flag) {
 						$('.action-like>count').html(count - 1);
 						const index = agreeArr.findIndex(_ => _ === Joe.CONTENT.cid);

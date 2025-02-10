@@ -97,7 +97,7 @@ class Api
 						"category" => $item->categories,
 						"views" => number_format($item->views),
 						"commentsNum" => number_format($item->commentsNum),
-						"agree" => \joe\getAgree($item, false),
+						"agree" => number_format($item->agree),
 						"permalink" => \joe\root_relative_link($item->permalink),
 						"lazyload" => \joe\getLazyload(),
 						"type" => '置顶',

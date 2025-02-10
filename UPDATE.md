@@ -370,7 +370,7 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 
 - 文章编辑器新增一键 HTML 转 Markdown 功能
 - 新增首页轮播图滚动方向功能
-- 新增文章浏览页面评论删除功能
+- 新增管理员前台删除评论功能
 - 全新PC端侧栏博主栏
 - 修复文章编辑器全屏状态下，Tooltip提示被页面顶部遮挡导致不显示的BUG
 - 修复留言页面无法Ajax评论的BUG

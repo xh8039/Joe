@@ -326,20 +326,18 @@ function getParentReply($parent)
 /* 获取侧边栏作者随机文章 */
 function getAsideAuthorNav()
 {
-	if (\Helper::options()->JAside_Author_Nav && \Helper::options()->JAside_Author_Nav !== "off") {
-		$limit = \Helper::options()->JAside_Author_Nav;
-		$db = \Typecho\Db::get();
-		$prefix = $db->getPrefix();
-		$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT floor( RAND() * ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";
-		$result = $db->query($sql);
-		if ($result instanceof \Traversable) {
-			foreach ($result as $item) {
-				$item = \Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
-				$title = htmlspecialchars($item['title']);
-				$permalink = \joe\root_relative_link($item['permalink']);
-				echo "<li class='item'><a class='link' href='{$permalink}' title='{$title}'>{$title}</a><svg class='svg' aria-hidden='true'><use xlink:href='#icon-copy-color'></use></svg></li>";
-			}
-		}
+	if (empty(\Helper::options()->JAside_Author_Nav) || \Helper::options()->JAside_Author_Nav == "off") return;
+	$limit = \Helper::options()->JAside_Author_Nav;
+	$db = \Typecho\Db::get();
+	$prefix = $db->getPrefix();
+	$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT floor( RAND() * ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";
+	$result = $db->query($sql);
+	if (!$result instanceof \Traversable) return;
+	foreach ($result as $item) {
+		$item = \Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
+		$title = htmlspecialchars($item['title']);
+		$permalink = \joe\root_relative_link($item['permalink']);
+		echo "<li class='item'><a class='link' href='{$permalink}' title='{$title}'>{$title}</a><svg class='svg' aria-hidden='true'><use xlink:href='#icon-copy-color'></use></svg></li>";
 	}
 }
 

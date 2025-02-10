@@ -64,26 +64,6 @@ $JMotto = new \Typecho\Widget\Helper\Form\Element\Textarea(
 $JMotto->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JMotto);
 
-$JAside_Author_Nav = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JAside_Author_Nav',
-	array(
-		'off' => '关闭（默认）',
-		'3' => '开启，并显示3条最新文章',
-		'4' => '开启，并显示4条最新文章',
-		'5' => '开启，并显示5条最新文章',
-		'6' => '开启，并显示6条最新文章',
-		'7' => '开启，并显示7条最新文章',
-		'8' => '开启，并显示8条最新文章',
-		'9' => '开启，并显示9条最新文章',
-		'10' => '开启，并显示10条最新文章'
-	),
-	'off',
-	'博主栏下方随机文章条目 - PC',
-	NULL
-);
-$JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Author_Nav->multiMode());
-
 $JAside_Timelife_Status = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Timelife_Status',
 	array(

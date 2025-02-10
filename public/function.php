@@ -706,7 +706,12 @@ function thePrev($widget, $default = NULL)
 		->where('status', 'publish')
 		->where('type', $widget->type)
 		// ->whereNull('password')
-		->whereOr(['password' => '', 'password' => 'null'])
+		->whereOr(
+			[
+				['password', 'null'],
+				['password' => ''],
+			]
+		)
 		->order('created', 'desc')
 		->find();
 	// $content = $db->fetchRow($widget->select()->where('table.contents.created < ?', $widget->created)

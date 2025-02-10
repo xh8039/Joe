@@ -122,8 +122,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 		});
 		$(document.body).on('blur', '.comment-list__item .content', function () {
 			$(this).tooltip('destroy');
-		})
-		document.addEventListener('turbolinks:send', () => $('.comment-list__item .content').tooltip('destroy'));
+		});
 	})();
 
 	/**

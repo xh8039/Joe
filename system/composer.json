@@ -1,0 +1,9 @@
+{
+    "require": {
+        "network/http": "dev-master",
+        "metowolf/meting": "^1.5",
+        "topthink/think-helper": "^3.1",
+        "topthink/think-orm": "^4.0",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

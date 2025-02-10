@@ -24,7 +24,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php
 		} else {
 		?>
-			<div class="user-cover graphic" style="padding-bottom: 50%;"><img referrerpolicy="no-referrer" rel="noreferrer" class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= empty($aside_background) ? Joe\theme_url('assets/images/user_t.jpg') : $aside_background ?>"></div>
+			<div class="user-cover graphic" style="padding-bottom: 50%;"><img referrerpolicy="no-referrer" rel="noreferrer" class="fit-cover lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= empty($aside_background) ? joe\theme_url('assets/images/user_t.jpg') : $aside_background ?>"></div>
 		<?php
 		}
 		?>
@@ -70,7 +70,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php
 				} else {
 				?>
-					<div class="user-avatar"><span class="avatar-img avatar-lg"><img alt="默认头像 - <?= $this->options->title ?>" class="fit-cover avatar" src="<?= Joe\theme_url('assets/images/avatar-default.png') ?>"></span></div>
+					<div class="user-avatar"><span class="avatar-img avatar-lg"><img alt="默认头像 - <?= $this->options->title ?>" class="fit-cover avatar" src="<?= joe\theme_url('assets/images/avatar-default.png') ?>"></span></div>
 					<div class="user-info mt10">
 						<div class="text-center">
 							<p class="muted-color box-body em12">HI！请登录</p>

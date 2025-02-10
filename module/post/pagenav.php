@@ -3,8 +3,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-$thePrev = Joe\thePrev($this);
-$theNext = Joe\theNext($this);
+$thePrev = joe\thePrev($this);
+$theNext = joe\theNext($this);
 if ($thePrev || $theNext) {
 ?>
     <div style="height:99px;margin-bottom: 20px;">

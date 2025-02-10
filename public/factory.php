@@ -7,9 +7,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-require_once JOE_ROOT . 'public/phpmailer.php';
-require_once JOE_ROOT . 'public/smtp.php';
-
 /* 加强评论拦截功能 */
 Typecho_Plugin::factory('Widget_Feedback')->comment = array('Intercept', 'message');
 class Intercept

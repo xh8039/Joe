@@ -376,4 +376,5 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 - 修复留言页面无法Ajax评论的BUG
 - 由于Live2d人物特效占用空间高达30MB，所以已经删除该功能，如有需要请使用自定义JS代码功能自行引入
 - 主题全局SQL驱动器更换为ThinkORM
+- 优化主题目录结构
 - 正在开发中...

@@ -26,25 +26,25 @@ define('JOE_DOMAIN', parse_url(Helper::options()->siteUrl, PHP_URL_HOST));
 header('Yihang-Typecho-Joe: true');
 
 /* 继承方法函数 */
-require_once(JOE_ROOT . 'public/widget.php');
+require_once JOE_ROOT . 'public/widget.php';
 
 /* Composer 自动加载 */
-require_once(JOE_ROOT . 'vendor/autoload.php');
+require_once JOE_ROOT . 'system/vendor/autoload.php';
 
 /* ThinkORM 数据库配置 */
-require_once(JOE_ROOT . 'public/database.php');
+require_once JOE_ROOT . 'public/database.php';
 
 /* 公用函数 */
-require_once(JOE_ROOT . 'public/function.php');
+require_once JOE_ROOT . 'public/function.php';
 
 /* 过滤内容函数 */
-require_once(JOE_ROOT . 'public/parse.php');
+require_once JOE_ROOT . 'public/parse.php';
 
 /* 主题内置开放API */
-require_once(JOE_ROOT . 'public/api.php');
+require_once JOE_ROOT . 'public/api.php';
 
 /* 插件方法 */
-require_once(JOE_ROOT . 'public/factory.php');
+require_once JOE_ROOT . 'public/factory.php';
 
 /* 主题初始化 */
 function themeInit($self)

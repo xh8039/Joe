@@ -9,7 +9,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-if (Joe\isMobile()) $this->options->JIndex_Hot = $this->options->JIndex_Mobile_Hot;
+if (joe\isMobile()) $this->options->JIndex_Hot = $this->options->JIndex_Mobile_Hot;
 if ((is_numeric($this->options->JIndex_Hot)) && ($this->options->JIndex_Hot >= 1)) : ?>
 	<?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=' . $this->options->JIndex_Hot)->to($item); ?>
 	<div class="box-body notop">

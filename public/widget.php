@@ -58,7 +58,7 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 {
 	public function execute()
 	{
-		$recommend_text = Joe\isMobile() ? Helper::options()->JIndex_Mobile_Recommend : Helper::options()->JIndex_Recommend;
+		$recommend_text = joe\isMobile() ? Helper::options()->JIndex_Mobile_Recommend : Helper::options()->JIndex_Recommend;
 		$recommend = joe\optionMulti($recommend_text, '||', null);
 		$JIndexSticky = joe\optionMulti(Helper::options()->JIndexSticky, '||', null);
 		$IndexHotHidePost = joe\optionMulti(Helper::options()->IndexHotHidePost, '||', null);

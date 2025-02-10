@@ -10,7 +10,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 $recommend = [];
-$recommend_text = Joe\isMobile() ? $this->options->JIndex_Mobile_Recommend : $this->options->JIndex_Recommend;
+$recommend_text = joe\isMobile() ? $this->options->JIndex_Mobile_Recommend : $this->options->JIndex_Recommend;
 if ($recommend_text) {
 	$recommend = joe\optionMulti($recommend_text, '||', false);
 }

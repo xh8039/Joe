@@ -605,6 +605,7 @@ function email_config()
 function send_email($title, $subtitle, $content, $email = '')
 {
 	if (!email_config()) return false;
+	require_once dirname(__DIR__) . '/system/vendor/autoload.php';
 	if (empty($email)) {
 		$mail = Db::name('users')->where('uid', 1)->value('mail');
 		$email = $mail ? $mail : \Helper::options()->JCommentMailAccount;
@@ -622,7 +623,6 @@ function send_email($title, $subtitle, $content, $email = '')
 	$FromName = empty(\Helper::options()->JCommentMailFromName) ? \Helper::options()->title : \Helper::options()->JCommentMailFromName;
 	if (!empty(\Helper::options()->JMailApi)) {
 		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'name', 'content', 'email', 'code', '200', 'message']);
-		require_once dirname(__DIR__) . '/vendor/autoload.php';
 		$send_email = \network\http\post($JMailApi['url'], [
 			$JMailApi['title'] => $title,
 			$JMailApi['name'] => $FromName,
@@ -639,26 +639,26 @@ function send_email($title, $subtitle, $content, $email = '')
 			return $send_email;
 		}
 	}
-	if (!class_exists('\PHPMailer', false)) {
-		require_once JOE_ROOT . 'public/phpmailer.php';
-		require_once JOE_ROOT . 'public/smtp.php';
+	try {
+		$mail = new \PHPMailer\PHPMailer\PHPMailer();
+		$mail->isSMTP();
+		$mail->SMTPAuth = true;
+		$mail->CharSet = 'UTF-8';
+		$mail->SMTPSecure = \Helper::options()->JCommentSMTPSecure;
+		$mail->Host = \Helper::options()->JCommentMailHost;
+		$mail->Port = \Helper::options()->JCommentMailPort;
+		$mail->FromName = $FromName;
+		$mail->Username = \Helper::options()->JCommentMailAccount;
+		$mail->From = \Helper::options()->JCommentMailAccount;
+		$mail->Password = \Helper::options()->JCommentMailPassword;
+		$mail->isHTML(true);
+		$mail->Body = $html;
+		$mail->addAddress($email);
+		$mail->Subject = $title . ' - ' . \Helper::options()->title;
+		return $mail->send() ? true : $mail->ErrorInfo;
+	} catch (\PHPMailer\PHPMailer\Exception $e) {
+		return '邮件发送失败: ' . $mail->ErrorInfo;
 	}
-	$mail = new \PHPMailer();
-	$mail->isSMTP();
-	$mail->SMTPAuth = true;
-	$mail->CharSet = 'UTF-8';
-	$mail->SMTPSecure = \Helper::options()->JCommentSMTPSecure;
-	$mail->Host = \Helper::options()->JCommentMailHost;
-	$mail->Port = \Helper::options()->JCommentMailPort;
-	$mail->FromName = $FromName;
-	$mail->Username = \Helper::options()->JCommentMailAccount;
-	$mail->From = \Helper::options()->JCommentMailAccount;
-	$mail->Password = \Helper::options()->JCommentMailPassword;
-	$mail->isHTML(true);
-	$mail->Body = $html;
-	$mail->addAddress($email);
-	$mail->Subject = $title . ' - ' . \Helper::options()->title;
-	return $mail->send() ? true : $mail->ErrorInfo;
 }
 
 /**
@@ -800,7 +800,7 @@ function install_sql()
 {
 	$DB = \Typecho\Db::get();
 	$adapter = $DB->getAdapter()->getDriver();
-	$SQLFile = JOE_ROOT . 'install/' . $adapter . '.sql';
+	$SQLFile = JOE_ROOT . 'module/install/' . $adapter . '.sql';
 	if (!file_exists($SQLFile)) return '暂不兼容 [' . $adapter . '] 数据库适配器！';
 	$SQL = trim(file_get_contents($SQLFile), ';');
 	$SQL = str_replace(['prefix_', 'typecho_'], $DB->getPrefix(), $SQL);

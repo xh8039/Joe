@@ -791,8 +791,8 @@ class Api
 		$parameter = array(
 			'pid' => $epay_config['partner'],
 			"type" => $self->request->payment_method,
-			"notify_url" => self::$options->themeUrl . '/library/pay/callback.php',
-			"return_url" => self::$options->themeUrl . '/library/pay/callback.php?redirect_url=' . urlencode($self->request->return_url),
+			"notify_url" => self::$options->themeUrl . '/system/pay/callback.php',
+			"return_url" => self::$options->themeUrl . '/system/pay/callback.php?redirect_url=' . urlencode($self->request->return_url),
 			"out_trade_no" => $out_trade_no,
 			"name" =>  self::$options->title . ' - 付费阅读',
 			"money"	=> $price,
@@ -800,8 +800,8 @@ class Api
 		);
 
 		//建立请求
-		require_once JOE_ROOT . 'library/pay/EpayCore.php';
-		$epay = new \Joe\library\pay\EpayCore($epay_config);
+		require_once JOE_ROOT . 'system/pay/EpayCore.php';
+		$epay = new \joe\pay\EpayCore($epay_config);
 		$clientip = $self->request->getIp();
 
 		$insert = Db::name('orders')->insert([
@@ -836,7 +836,7 @@ class Api
 				'order_price' => isset($data['price']) ? $data['price'] : (isset($data['money']) ? $data['money'] : $price),
 				'payment_method' => $self->request->payment_method,
 				'price' => $price,
-				'return_url' => self::$options->themeUrl . '/library/pay/callback.php',
+				'return_url' => self::$options->themeUrl . '/system/pay/callback.php',
 				'api_trade_no' => $data['trade_no'],
 				'user_id' => USER_ID,
 			];
@@ -877,8 +877,8 @@ class Api
 		$row = Db::name('orders')->where('trade_no', $trade_no)->find();
 		if ($row) {
 			//建立请求
-			require_once JOE_ROOT . 'library/pay/EpayCore.php';
-			$epay = new \Joe\library\pay\EpayCore($epay_config);
+			require_once JOE_ROOT . 'system/pay/EpayCore.php';
+			$epay = new \joe\pay\EpayCore($epay_config);
 			$data = $epay->queryOrder($trade_no, $row['api_trade_no']);
 			$status = isset($data['status']) ? $data['status'] : 0;
 			$msg = empty($data['msg']) ? '支付失败，订单失效！' : $data['msg'];

@@ -1,7 +1,7 @@
 <?php
 require_once dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'config.inc.php';
 \Widget\Init::alloc();
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'function.php';
+require_once dirname(__DIR__) . '/public/function.php';
 
 $autoplay = $_GET['autoplay'] ? 'true' : 'false';
 $theme = $_GET['theme'] ? $_GET['theme'] : '#409eff';

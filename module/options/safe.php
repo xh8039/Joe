@@ -14,13 +14,3 @@ $JPrevent = new \Typecho\Widget\Helper\Form\Element\Select(
 );
 $JPrevent->setAttribute('class', 'joe_content joe_safe');
 $form->addInput($JPrevent->multiMode());
-
-$JShieldScan = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JShieldScan',
-	['off' => '关闭（默认）', 'on' => '开启'],
-	'off',
-	'屏蔽扫描',
-	'介绍：用于屏蔽垃圾机器人扫描、腾讯电脑管家网址安全检测、国外用户（不会屏蔽各大搜索引擎蜘蛛）'
-);
-$JShieldScan->setAttribute('class', 'joe_content joe_safe');
-$form->addInput($JShieldScan->multiMode());

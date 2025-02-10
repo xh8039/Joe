@@ -60,9 +60,6 @@ function themeInit($self)
 	/* 强制回复楼层最高999层 */
 	Helper::options()->commentsMaxNestingLevels = 999;
 
-	/** 屏蔽垃圾机器人 */
-	if (Helper::options()->JShieldScan != 'off') require_once JOE_ROOT . 'public/tencent_protect.php';
-
 	if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
 		// 我就不信这次腾讯会再给封了！！！
 		require JOE_ROOT . 'module/jump.php';

@@ -50,7 +50,7 @@ while ($this->next()) :
 							<item class="meta-view">
 								<svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-view"></use>
-								</svg><?= joe\getViews($this) ?>
+								</svg><?= number_format($this->views) ?>
 							</item>
 							<item class="meta-like">
 								<svg class="icon svg" aria-hidden="true">

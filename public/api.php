@@ -82,7 +82,7 @@ class Api
 			$sticky_arr = explode("||", $sticky_text);
 			foreach ($sticky_arr as $cid) {
 				$cid = trim($cid);
-				$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
+				$item = $self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid);
 				if ($item->next()) {
 					$result[] = array(
 						"cid" => $item->cid,

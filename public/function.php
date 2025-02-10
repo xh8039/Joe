@@ -1072,11 +1072,8 @@ function custom_navs_title($title)
  */
 function author_post_field_sum($id, $field)
 {
-	$db = \Typecho\Db::get();
-	$postnum = $db->fetchRow($db->select(['SUM(' . $field . ')' => 'field'])->from('table.contents')->where('table.contents.authorId=?', $id)->where('table.contents.type=?', 'post'));
 	$sum = Db::name('contents')->where(['authorId' => $id, 'type' => 'post'])->sum($field);
-	var_dump($sum);
-	return $postnum['field'];
+	return $sum;
 }
 
 /**

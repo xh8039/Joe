@@ -2,7 +2,6 @@
 <html lang="zh-cn">
 
 <head>
-	<title>Document</title>
 	<?php $this->need('module/head.php') ?>
 </head>
 

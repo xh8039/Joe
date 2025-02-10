@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\detectSpider())) {
-	$friends = Db::name('friends')->where('status', 1)->whereRaw("FIND_IN_SET('index_bottom',`position`)")->order('order', 'desc')->select()->toArray();
+	$friends = Db::name('friends')->where('status', 1)->whereFindInSet('position', 'index_bottom')->order('order', 'desc')->select()->toArray();
 	if (sizeof($friends) > 0) : ?>
 		<?php
 		$friends_page = Db::name('contents')->where(['type' => 'page', 'template' => 'friends.php', 'status' => 'publish'])->find();

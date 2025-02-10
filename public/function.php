@@ -709,7 +709,7 @@ function thePrev($widget, $default = NULL)
 		->whereOr(
 			[
 				['password', 'null'],
-				['password' => ''],
+				['password', ''],
 			]
 		)
 		->order('created', 'desc')

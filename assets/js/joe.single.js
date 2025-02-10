@@ -144,7 +144,7 @@ Joe.DOMContentLoaded.single ||= () => {
 				},
 				success(res) {
 					if (res.code != 1) return;
-					count = flag ? count-- : count++;
+					count = flag ? count - 1 : count + 1;
 					if (count < 0) count = 0;
 					console.log(count);
 					if (flag) {

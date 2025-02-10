@@ -106,7 +106,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 		});
 		/* 移动端评论长按回复或删除 */
 		if (!Joe.IS_MOBILE) return;
-		$(document.body).on('click', '.comment-list__item .content', function () {
+		$(document.body).on('focus', '.comment-list__item .content', function () {
 			const coid = $(this).attr('data-coid');
 			const data_id = $(this).attr('data-id');
 			let html = `<span class="joe_comment__reply" data-id="${data_id}" data-coid="${coid}">回复</span>`;

@@ -146,7 +146,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		$historyTodaylist = [];
 		$year = date('Y');
 		foreach ($result as $item) {
-			if ($item['year'] == $year) continue;
+			if (date('Y', $item['created']) == $year) continue;
 			$historyTodaylist[] = [
 				"title" => htmlspecialchars($item['title']),
 				"permalink" => joe\root_relative_link(joe\permalink($item)),

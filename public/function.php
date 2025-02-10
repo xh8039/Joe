@@ -701,23 +701,14 @@ function strstrs(string $haystack, array $needles): bool
  */
 function thePrev($widget, $default = NULL)
 {
-	// $db = \Typecho\Db::get();
 	$content = Db::name('contents')->where('created', '<', $widget->created)
 		->where(['status' => 'publish', 'type' => $widget->type])
 		->order('created', 'desc')
 		->find();
-	// $content = $db->fetchRow($widget->select()->where('table.contents.created < ?', $widget->created)
-	// 	->where('table.contents.status = ?', 'publish')
-	// 	->where('table.contents.type = ?', $widget->type)
-	// 	->where("table.contents.password IS NULL OR table.contents.password = ''")
-	// 	->order('table.contents.created', \Typecho\Db::SORT_DESC)
-	// 	->limit(1));
-
 	if ($content) {
 		// $content = $widget->filter($content);
 		$routeExists = (null != \Typecho\Router::get($content['type']));
 		$content['pathinfo'] = $routeExists ? \Typecho\Router::url($content['type'], $content) : '#';
-		/** 生成静态链接 */
 		$content['url'] = $content['permalink'] = \Typecho\Common::url($content['pathinfo'], \Helper::options()->index);
 		return $content;
 	} else {
@@ -1082,7 +1073,9 @@ function custom_navs_title($title)
 function author_post_field_sum($id, $field)
 {
 	$db = \Typecho\Db::get();
-	$postnum = $db->fetchRow($db->select(array('SUM(' . $field . ')' => 'field'))->from('table.contents')->where('table.contents.authorId=?', $id)->where('table.contents.type=?', 'post'));
+	$postnum = $db->fetchRow($db->select(['SUM(' . $field . ')' => 'field'])->from('table.contents')->where('table.contents.authorId=?', $id)->where('table.contents.type=?', 'post'));
+	$sum = Db::name('contents')->where(['authorId' => $id, 'type' => 'post'])->sum($field);
+	var_dump($sum);
 	return $postnum['field'];
 }
 

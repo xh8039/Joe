@@ -60,10 +60,10 @@ function themeInit($self)
 	/* 强制回复楼层最高999层 */
 	Helper::options()->commentsMaxNestingLevels = 999;
 
-	if (Helper::options()->JPrevent == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
+	if (Helper::options()->JForceBrowser == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false)) {
 		// 我就不信这次腾讯会再给封了！！！
-		require JOE_ROOT . 'module/jump.php';
-		exit;
+		$self->response->setStatus(200);
+		$self->setThemeFile('module/browser.php');
 	}
 
 	if (!joe\is_session_started()) session_start();

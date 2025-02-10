@@ -511,39 +511,22 @@ class Api
 	public static function articleFiling($self)
 	{
 		$page = $self->request->page;
-		$pageSize = 8;
+		if (!$page) $page = 1;
 		if (!preg_match('/^\d+$/', $page)) return ['data' => '非法请求！已屏蔽！'];
-		if ($page == 0) $page = 1;
-		$offset = $pageSize * ($page - 1);
-		// $time = time();
-		// $prefix = \Typecho\Db::get()->getPrefix();
 		$result = [];
-		// $sql_version = Db::query('select VERSION()')[0]['VERSION()'];
-		// if ($sql_version >= 8) {
-		// 	$sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') LIMIT {$pageSize} OFFSET {$offset}";
-		// } else {
-		// 	$sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') DESC LIMIT {$pageSize} OFFSET {$offset}";
-		// }
 
 		$select = Db::name('contents')
 			->fieldRaw("FROM_UNIXTIME(created, '%Y 年 %m 月') as date")
-			// ->where('created', '<', $time)
-			->where('status', 'publish')
-			->where('type', 'post')
-			->group("FROM_UNIXTIME(created, '%Y 年 %m 月')")
-			// ->orderRaw("date DESC")
-			->order('date', 'desc')
+			->where(['status' => 'publish', 'type' => 'post'])
+			->group("FROM_UNIXTIME(`created`, '%Y 年 %m 月')")
+			->order('created', 'desc')
 			->page($page, 8)
-			// ->offset($offset)
 			->select();
 
-		// $temp = Db::query($sql);
-		// $options = \Typecho\Widget::widget('Widget\Options');
 		foreach ($select as $item) {
 			$date = $item['date'];
 			$list = [];
 			$contents_select = Db::name('contents')
-				// ->where('created', '<', $time)
 				->where(['status' => 'publish', 'type' => 'post'])
 				->whereRaw("FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}'")
 				->order('created', 'desc')

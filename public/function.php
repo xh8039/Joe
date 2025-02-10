@@ -211,14 +211,14 @@ function getAvatarLazyload()
 /* 查询文章浏览量 */
 function getViews($item)
 {
-	$result = Db::name('contents')->where('cid', $item->cid)->value('views');
+	$result = Db::name('contents')->where('cid', $item->cid)->cache(true)->value('views');
 	return number_format($result);
 }
 
 /* 查询文章点赞量 */
 function getAgree($item)
 {
-	$result = Db::name('contents')->where('cid', $item->cid)->value('agree');
+	$result = Db::name('contents')->where('cid', $item->cid)->cache(true)->value('agree');
 	return number_format($result);
 }
 

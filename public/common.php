@@ -102,7 +102,13 @@ function themeInit($self)
 			joe\Api::$options = Helper::options();
 			$api = joe\Api::$method($self);
 			if (is_array($api) || is_object($api)) {
-				if (is_array($api)) $api['fetchSql'] = DbLog::list();
+				if (is_array($api)) {
+					if (array_is_list($api)) {
+						$api[array_key_last($api)]['fetchSql'] = DbLog::list();
+					} else {
+						$api['fetchSql'] = DbLog::list();
+					}
+				}
 				if (is_object($api)) $api->fetchSql = DbLog::list();
 				$self->response->throwJson($api);
 			}

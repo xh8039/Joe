@@ -4432,3 +4432,7 @@ html #nprogress .spinner-icon {
 	margin: 0 20px;
 	overflow: hidden
 }
+
+html .tooltip {
+	z-index: 99;
+}

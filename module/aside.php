@@ -180,36 +180,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</ol>
 		</section>
 	<?php endif; ?>
-	<?php if ($this->options->JAside_Newreply_Status === 'on' && $this->options->JCommentStatus !== 'off') : ?>
-		<section class="joe_aside__item newreply">
-			<div class="joe_aside__item-title">
-				<div class="text">最新回复</div>
-			</div>
-			<?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true&pageSize=3')->to($item); ?>
-			<ul class="joe_aside__item-contain">
-				<?php if ($item->have()) : ?>
-					<?php while ($item->next()) : ?>
-						<li class="item">
-							<div class="user">
-								<img width="40" height="40" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->mail) ?>" alt="<?php $item->author(false) ?>" />
-								<div class="info">
-									<div class="author"><?php $item->author(false) ?></div>
-									<span class="date"><?php $item->date('Y-m-d'); ?></span>
-								</div>
-							</div>
-							<div class="reply">
-								<a class="link" href="<?= _parseAsideLink(joe\root_relative_link($item->permalink)); ?>">
-									<?php _parseAsideReply($item->content); ?>
-								</a>
-							</div>
-						</li>
-					<?php endwhile; ?>
-				<?php else : ?>
-					<li class="empty">人气很差！一条回复没有！</li>
-				<?php endif; ?>
-			</ul>
-		</section>
-	<?php endif; ?>
 	<?php if ($this->options->JAside_Weather_Key) : ?>
 		<section class="joe_aside__item weather" data-key="<?php $this->options->JAside_Weather_Key() ?>" data-style="<?php $this->options->JAside_Weather_Style() ?>">
 			<div class="joe_aside__item-title">
@@ -261,6 +231,36 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				}
 				?>
 			</div>
+		</section>
+	<?php endif; ?>
+	<?php if ($this->options->JAside_Newreply_Status === 'on' && $this->options->JCommentStatus !== 'off') : ?>
+		<section class="joe_aside__item newreply">
+			<div class="joe_aside__item-title">
+				<div class="text">最新回复</div>
+			</div>
+			<?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true&pageSize=3')->to($item); ?>
+			<ul class="joe_aside__item-contain">
+				<?php if ($item->have()) : ?>
+					<?php while ($item->next()) : ?>
+						<li class="item">
+							<div class="user">
+								<img width="40" height="40" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->mail) ?>" alt="<?php $item->author(false) ?>" />
+								<div class="info">
+									<div class="author"><?php $item->author(false) ?></div>
+									<span class="date"><?php $item->date('Y-m-d'); ?></span>
+								</div>
+							</div>
+							<div class="reply">
+								<a class="link" href="<?= _parseAsideLink(joe\root_relative_link($item->permalink)); ?>">
+									<?php _parseAsideReply($item->content); ?>
+								</a>
+							</div>
+						</li>
+					<?php endwhile; ?>
+				<?php else : ?>
+					<li class="empty">人气很差！一条回复没有！</li>
+				<?php endif; ?>
+			</ul>
 		</section>
 	<?php endif; ?>
 	<?php if ($this->options->JADContent) : ?>

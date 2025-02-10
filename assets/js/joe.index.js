@@ -262,10 +262,10 @@ Joe.DOMContentLoaded.index ||= () => {
 					$('.joe_load').html('loading...');
 					$('.joe_index__list .joe_list__loading').show();
 					$.ajax({
-						url: Joe.BASE_API,
+						url: Joe.BASE_API + '/publish-list',
 						type: 'POST',
 						dataType: 'json',
-						data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
+						data: { page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
 						beforeSend() {
 							$('.joe_index__title-title .item').css({ 'pointer-events': 'none', 'cursor': 'not-allowed' });
 						},

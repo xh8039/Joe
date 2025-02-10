@@ -63,26 +63,18 @@ class Api
 	/* 获取文章列表 已测试 √  */
 	public static function publishList($self)
 	{
-
 		$page = $self->request->page;
 		$pageSize = $self->request->pageSize;
 		$type = $self->request->type;
 
 		/* sql注入校验 */
-		if (!preg_match('/^\d+$/', $page)) {
-			return (array('data' => '非法请求！已屏蔽！'));
-		}
-		if (!preg_match('/^\d+$/', $pageSize)) {
-			return (array('data' => '非法请求！已屏蔽！'));
-		}
-		if (!preg_match('/^[created|views|commentsNum|agree]+$/', $type)) {
-			return (array('data' => '非法请求！已屏蔽！'));
-		}
+		if (!preg_match('/^\d+$/', $page)) return ['data' => '非法请求！已屏蔽！'];
+		if (!preg_match('/^\d+$/', $pageSize)) return ['data' => '非法请求！已屏蔽！'];
+		if (!preg_match('/^[created|views|commentsNum|agree]+$/', $type)) return ['data' => '非法请求！已屏蔽！'];
 
 		/* 如果传入0，强制赋值1 */
 		if ($page == 0) $page = 1;
 		$result = [];
-
 
 		/* 增加置顶文章功能，通过JS判断（如果你想添加其他标签的话，请先看置顶如何实现的） */
 		$sticky_text = self::$options->JIndexSticky;
@@ -103,7 +95,7 @@ class Api
 						"title" => $item->title,
 						"abstract" => \joe\getAbstract($item, false),
 						"category" => $item->categories,
-						"views" => \joe\getViews($item, false),
+						"views" => number_format($item->views),
 						"commentsNum" => number_format($item->commentsNum),
 						"agree" => \joe\getAgree($item, false),
 						"permalink" => \joe\root_relative_link($item->permalink),
@@ -520,7 +512,7 @@ class Api
 	{
 		$page = $self->request->page;
 		$pageSize = 8;
-		if (!preg_match('/^\d+$/', $page)) return (array('data' => '非法请求！已屏蔽！'));
+		if (!preg_match('/^\d+$/', $page)) return ['data' => '非法请求！已屏蔽！'];
 		if ($page == 0) $page = 1;
 		$offset = $pageSize * ($page - 1);
 		$time = time();

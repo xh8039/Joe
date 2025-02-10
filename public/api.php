@@ -530,7 +530,7 @@ class Api
 			// ->where('created', '<', $time)
 			->where('status', 'publish')
 			->where('type', 'post')
-			->groupRaw("FROM_UNIXTIME(created, '%Y 年 %m 月')")
+			->group("FROM_UNIXTIME(created, '%Y 年 %m 月')")
 			// ->orderRaw("date DESC")
 			->order('date', 'desc')
 			->limit($pageSize)

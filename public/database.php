@@ -4,11 +4,7 @@ namespace think\facade;
 
 class DbLog
 {
-	private static $logs = [];
-	public function log($type, $log)
-	{
-		self::$logs[] = $log;
-	}
+	public static $logs = [];
 	public static function list(): array
 	{
 		return self::$logs;
@@ -49,5 +45,7 @@ class DbLog
 			],
 		],
 	]);
-	\think\facade\Db::setLog(new DbLog);
+	\think\facade\Db::setLog(function ($type, $log) {
+		DbLog::$logs[] = $log;
+	});
 })();

@@ -143,17 +143,19 @@ Joe.DOMContentLoaded.single ||= () => {
 				},
 				success(res) {
 					if (res.code != 1) return;
-					const count = Number($('.action-like>count').text());
-					console.log(count, count - 1);
+					var count = Number($('.action-like>count').text());
+					count = flag ? count - 1 : count + 1;
+					if (count < 0) count = 0;
+					console.log(count);
 					if (flag) {
-						$('.action-like>count').html(count - 1);
+						$('.action-like>count').html(count);
 						const index = agreeArr.findIndex(_ => _ === Joe.CONTENT.cid);
 						agreeArr.splice(index, 1);
 						$('.action-like').removeClass('active');
 						$('.action-like>text').text('点赞');
 						autolog.log('取消点赞', 'info');
 					} else {
-						$('.action-like>count').html(count + 1);
+						$('.action-like>count').html(count);
 						agreeArr.push(Joe.CONTENT.cid);
 						$('.action-like').addClass('active');
 						$('.action-like>text').text('已赞');

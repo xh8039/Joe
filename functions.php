@@ -62,7 +62,7 @@ function themeConfig($form)
 				<script>
 					document.querySelector('.operate>a:last-child').target = '_blank';
 				</script>
-				<?php require_once JOE_ROOT . 'public/backup.php'; ?>
+				<?php require_once JOE_ROOT . 'module/options/backup.php'; ?>
 			</div>
 		</div>
 		<div class="joe_config__notice">请求数据中...</div>

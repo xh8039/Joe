@@ -741,10 +741,10 @@ function theNext($widget, $default = NULL)
 	// 	->limit(1));
 
 	$content = Db::name('contents')
-		->where(
+		->where([
 			['created', '>', $widget->created],
 			['created', '<', \Helper::options()->time],
-		)
+		])
 		->where(['status' => 'publish', 'type' => $widget->type])
 		->order('created', 'asc')
 		->find();

@@ -1,5 +1,7 @@
 <?php
 
+use think\facade\Db;
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
@@ -89,9 +91,7 @@ class Email
 		if ($comment->authorId == $comment->ownerId) {
 			/* 发表的评论是回复别人 */
 			if ($comment->parent != 0) {
-				$db = Typecho\Db::get();
-				$parentInfo = $db->fetchRow($db->select('mail')->from('table.comments')->where('coid = ?', $comment->parent));
-				$parentMail = $parentInfo['mail'];
+				$parentMail = Db::name('comments')->where('coid', $comment->parent)->value('mail');
 				/* 被回复的人不是自己时，发送邮件 */
 				if ($parentMail != $comment->mail) {
 					$text = CommentLink($text, $comment->permalink, '回复');
@@ -103,9 +103,7 @@ class Email
 		} else {
 			/* 如果是直接发表的评论，不是回复别人，那么发送邮件给博主 */
 			if ($comment->parent == 0) {
-				$db = Typecho\Db::get();
-				$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', $comment->ownerId));
-				$authorMail = $authoInfo['mail'];
+				$authorMail = Db::name('users')->where('uid', $comment->ownerId)->value('mail');
 				if ($authorMail) {
 					$text = CommentLink($text, $comment->permalink, '评论');
 					joe\send_email('您的文章 [' . $comment->title . '] 收到一条新的评论！', $comment->author . ' [' . $comment->ip . '] 在您的《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上发表评论:', $text, $authorMail);
@@ -113,9 +111,7 @@ class Email
 				}
 				/* 如果发表的评论是回复别人 */
 			} else {
-				$db = Typecho\Db::get();
-				$parentInfo = $db->fetchRow($db->select('mail')->from('table.comments')->where('coid = ?', $comment->parent));
-				$parentMail = $parentInfo['mail'];
+				$parentMail = Db::name('comments')->where('coid', $comment->parent)->value('mail');
 				/* 被回复的人不是自己时，发送邮件 */
 				if ($parentMail != $comment->mail) {
 					$text = CommentLink($text, $comment->permalink, '回复');

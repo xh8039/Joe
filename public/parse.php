@@ -1,5 +1,7 @@
 <?php
 
+use think\facade\Db;
+
 require_once JOE_ROOT . 'public/short.php';
 
 /* 过滤短代码 */
@@ -130,8 +132,8 @@ function _parseAsideLink($link)
 
 function _payPurchased($post, $pay)
 {
-	$db = Typecho\Db::get();
-	$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
+	// $count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
+	$count = Db::name('orders')->where(['content_cid' => $post->cid, 'status' => 1])->count();
 	return '
 	<div class="zib-widget pay-box paid-box" id="posts-pay">
 		<div class="flex ac jb-green padding-10 em09">
@@ -172,7 +174,7 @@ function _payPurchased($post, $pay)
 	';
 }
 
-function _payFreeResources($post, $comment)
+function _payFreeResources($post, $comment = false)
 {
 	if (!empty($comment)) {
 		return '
@@ -226,8 +228,8 @@ function _payFreeResources($post, $comment)
 
 function _payBox($post)
 {
-	$db = Typecho\Db::get();
-	$count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
+	// $count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
+	$count = Db::name('orders')->where(['content_cid' => $post->cid, 'status' => 1])->count();
 	return '
 	<div class="zib-widget pay-box" id="posts-pay">
 		<div class="flex pay-flexbox">

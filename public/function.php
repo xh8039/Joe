@@ -728,7 +728,6 @@ function thePrev($widget, $default = NULL)
  */
 function theNext($widget, $default = NULL)
 {
-	// $db = \Typecho\Db::get();
 	// $content = $db->fetchRow($widget->select()->where(
 	// 	'table.contents.created > ? AND table.contents.created < ?',
 	// 	$widget->created,
@@ -831,33 +830,10 @@ function panel_exists(string $fileName): bool
 	return in_array($fileName, $panelTable['file']);
 }
 
-function update_sql()
-{
-	$DB = \Typecho\Db::get();
-	$adapter = $DB->getAdapterName();
-	$adapter = ltrim($adapter, 'Pdo_');
-	if ($adapter == 'Mysqli') $adapter = 'Mysql';
-	$version_file = JOE_ROOT . 'install/version';
-	$version = file_get_contents($version_file);
-	$SQLFile = JOE_ROOT . 'install/' . $adapter . '_' . $version . '.sql';
-	if (!file_exists($SQLFile)) return null;
-	$SQL = file_get_contents($SQLFile);
-	$SQL = str_replace(['prefix_', 'typecho_'], $DB->getPrefix(), $SQL);
-	$SQL = explode(';', $SQL);
-	try {
-		foreach ($SQL as $value) $DB->query($value);
-		file_put_contents($version_file, $version + 1);
-	} catch (\Exception $e) {
-		throw new \Typecho\Exception($e);
-	}
-}
-
 function install_sql()
 {
 	$DB = \Typecho\Db::get();
-	$adapter = $DB->getAdapterName();
-	$adapter = ltrim($adapter, 'Pdo_');
-	if ($adapter == 'Mysqli') $adapter = 'Mysql';
+	$adapter = $DB->getAdapter()->getDriver();
 	$SQLFile = JOE_ROOT . 'install/' . $adapter . '.sql';
 	if (!file_exists($SQLFile)) return '暂不兼容 [' . $adapter . '] 数据库适配器！';
 	$SQL = trim(file_get_contents($SQLFile), ';');
@@ -1227,79 +1203,10 @@ function commentsAntiSpam($respondId)
 	return '';
 }
 
-function markdown_hide_($content, $post, $login)
-{
-	if (strpos($content, '{hide') === false) return $content;
-	if ($post->fields->hide == 'pay') {
-		$db = \Typecho\Db::get();
-		$pay = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
-		// '<a rel="nofollow" target="_blank" href="https://bri6.cn/user/order" class="">' . $pay['trade_no'] . '</a>';
-		if (!empty($pay)) {
-			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-			$content = _payPurchased($post, $pay) . $content;
-		} else {
-			if ($post->fields->price > 0) {
-				$pay_box_position = _payBox($post);
-			} else {
-				if ($login) {
-					$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
-				} else {
-					$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
-				}
-				$hasComment = $db->fetchRow($comment_sql);
-				if (!empty($hasComment)) {
-					$pay_box_position = '
-					<div class="pay-box zib-widget paid-box" id="posts-pay">
-						<div class="box-body relative">
-							<div>
-								<span class="badg c-red hollow badg-sm mr6"><i class="fa fa-download mr3"></i>免费资源</span>
-								<b>' . $post->title . '</b>
-							</div>
-							<div class="mt10">
-								<a href="javascript:window.Joe.scrollTo(\'joe-cloud\');" class="but jb-blue padding-lg btn-block"><i class="fa fa-download fa-fw" aria-hidden="true"></i>资源下载</a>
-							</div>
-						</div>
-					</div>';
-					$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-					$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-				} else {
-					$pay_box_position = _payFreeResources($post);
-				}
-			}
-			if ((!$post->fields->pay_box_position || $post->fields->pay_box_position == 'top') && !detectSpider()) {
-				$content = $pay_box_position . $content;
-			}
-			if ($post->fields->pay_box_position == 'bottom' && !detectSpider()) {
-				$content = $content . $pay_box_position;
-			}
-		}
-	} else if ($post->fields->hide == 'login' && $login) {
-		$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-		$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-	} else {
-		$db = \Typecho\Db::get();
-		if ($login) {
-			$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $GLOBALS['JOE_USER']->mail)->limit(1);
-		} else {
-			$comment_sql = $db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1);
-		}
-		$hasComment = $db->fetchRow($comment_sql);
-		if (!empty($hasComment)) {
-			$content = strtr($content, array("{hide}<br>" => NULL, "<br>{/hide}" => NULL));
-			$content = strtr($content, array("{hide}" => NULL, "{/hide}" => NULL));
-		}
-	}
-	$content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
-	return $content;
-}
-
 function markdown_hide($content, $post, $login)
 {
 	// 如果内容中不存在 {hide} 标签，直接返回原内容
 	if (strpos($content, '{hide') === false) return $content;
-
-	$db = \Typecho\Db::get();
 
 	// 判断是否显示隐藏内容
 	$showContent = false;
@@ -1309,10 +1216,12 @@ function markdown_hide($content, $post, $login)
 		// 获取用户邮箱地址，登录用户使用全局变量，未登录用户使用文章记住的邮箱
 		$userEmail = $login ? $GLOBALS['JOE_USER']->mail : $post->remember('mail', true);
 		// 查询评论信息
-		$comment = $db->fetchRow($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $userEmail)->limit(1));
+		// $comment = $db->fetchRow($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $userEmail)->limit(1));
+		$comment = Db::name('comments')->where(['cid' => $post->cid, 'mail' => $userEmail])->find();
 		if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
 			// 查询支付信息
-			$payment = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
+			// $payment = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
+			$payment = Db::name('orders')->where(['user_id' => USER_ID, 'status' => 1, 'content_cid' => $post->cid])->find();
 			$showContent = !empty($payment); // 是否已支付决定是否显示内容
 		} else {
 			$showContent = !empty($comment); // 是否已评论决定是否显示内容

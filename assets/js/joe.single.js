@@ -94,13 +94,14 @@ Joe.DOMContentLoaded.single ||= () => {
 		const flag = viewsArr.includes(cid);
 		if (!flag) {
 			$.ajax({
-				url: Joe.BASE_API,
+				url: Joe.BASE_API + '/handle-views',
 				type: 'POST',
 				dataType: 'json',
-				data: { routeType: 'handle_views', cid },
+				data: { cid },
 				success(res) {
-					if (res.code !== 1) return;
-					$('#Joe_Article_Views').html(res.data.views);
+					if (res.code != 1) return;
+					const views = $('#Joe_Article_Views').text();
+					$('#Joe_Article_Views').html(views + 1);
 					viewsArr.push(cid);
 					const name = Joe.base64_encode('views');
 					const val = Joe.base64_encode(JSON.stringify(viewsArr));
@@ -130,11 +131,10 @@ Joe.DOMContentLoaded.single ||= () => {
 				.getItem(Joe.base64_encode('agree')))) : [];
 			let flag = agreeArr.includes(Joe.CONTENT.cid);
 			$.ajax({
-				url: Joe.BASE_API,
+				url: Joe.BASE_API + '/handle-agree',
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					routeType: 'handle_agree',
 					cid: Joe.CONTENT.cid,
 					type: flag ? 'disagree' : 'agree'
 				},
@@ -142,15 +142,17 @@ Joe.DOMContentLoaded.single ||= () => {
 					$('.action-like').css('pointer-events', 'none').find('count').html('<i class="loading zts"></i>');
 				},
 				success(res) {
-					if (res.code !== 1) return;
-					$('.action-like>count').html(res.data.agree);
+					if (res.code != 1) return;
+					const count = $('.action-like>count').text();
 					if (flag) {
+						$('.action-like>count').html(count - 1);
 						const index = agreeArr.findIndex(_ => _ === Joe.CONTENT.cid);
 						agreeArr.splice(index, 1);
 						$('.action-like').removeClass('active');
 						$('.action-like>text').text('点赞');
 						autolog.log('取消点赞', 'info');
 					} else {
+						$('.action-like>count').html(count + 1);
 						agreeArr.push(Joe.CONTENT.cid);
 						$('.action-like').addClass('active');
 						$('.action-like>text').text('已赞');

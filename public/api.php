@@ -63,20 +63,20 @@ class Api
 	/* 获取文章列表 已测试 √  */
 	public static function publishList($self)
 	{
-		$self->response->setStatus(200);
+
 		$page = $self->request->page;
 		$pageSize = $self->request->pageSize;
 		$type = $self->request->type;
 
 		/* sql注入校验 */
 		if (!preg_match('/^\d+$/', $page)) {
-			return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+			return (array('data' => '非法请求！已屏蔽！'));
 		}
 		if (!preg_match('/^\d+$/', $pageSize)) {
-			return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+			return (array('data' => '非法请求！已屏蔽！'));
 		}
 		if (!preg_match('/^[created|views|commentsNum|agree]+$/', $type)) {
-			return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+			return (array('data' => '非法请求！已屏蔽！'));
 		}
 
 		/* 如果传入0，强制赋值1 */
@@ -149,19 +149,19 @@ class Api
 				'fields' => $item->fields->toArray()
 			];
 		};
-		$self->response->throwJson(array("data" => $result));
+		return (array('data' => $result));
 	}
 
 	// 百度统计展示
 	public static function baiduStatistic($self)
 	{
-		$self->response->setStatus(200);
+
 		$statistics_config = \joe\baidu_statistic_config();
 		if (!is_array($statistics_config)) {
-			$self->response->throwJson(array('access_token' => 'off'));
+			return (array('access_token' => 'off'));
 		}
 		if (empty($statistics_config['access_token'])) {
-			$self->response->throwJson(array('access_token' => 'off'));
+			return (array('access_token' => 'off'));
 		}
 		// 获取站点列表
 		$baidu_list = function () use ($statistics_config, $self) {
@@ -177,17 +177,14 @@ class Api
 					])->toArray();
 					if (is_array($refresh_token)) {
 						$theme_options = self::$options->__get('theme:' . THEME_NAME);
-						if (empty($theme_options)) {
-							$self->response->throwJson(['msg' => '请更新您的 access_token']);
-							return;
-						}
-						$db = \Typecho\Db::get();
-						if ($db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . THEME_NAME . '_backup'))) {
-							$db->query($db->update('table.options')->rows(array('value' => $theme_options))->where('name = ?', 'theme:' . THEME_NAME . '_backup'));
+						if (empty($theme_options)) return (['msg' => '请更新您的 access_token']);
+						$backup_field = 'theme:' . THEME_NAME . '_backup';
+						$backup = Db::name('options')->where('name', $backup_field)->find();
+						if ($backup) {
+							Db::name('options')->where('name', $backup_field)->update(['value' => $theme_options]);
 						} else {
-							$db->query($db->insert('table.options')->rows(array('name' => 'theme:' . THEME_NAME . '_backup', 'user' => '0', 'value' => $theme_options)));
+							Db::name('options')->where('name', $backup_field)->insert(['user' => '0', 'name' => $backup_field, 'value' => $theme_options]);
 						}
-
 						$theme_options = unserialize($theme_options);
 						$theme_options['baidu_statistics'] =
 							trim($refresh_token['access_token']) . "\r\n" .
@@ -195,17 +192,17 @@ class Api
 							$statistics_config['client_id'] . "\r\n" . // API Key
 							$statistics_config['client_secret']; // Secret Key
 
-						$options_update = $db->update('table.options')->rows(['value' => serialize($theme_options)])->where('name = ?', 'theme:' . THEME_NAME);
-						if ($db->query($options_update)) {
-							$self->response->throwJson(['code' => 200, 'msg' => 'access_token 已更新']);
+						$options_update = Db::name('options')->where('name', 'theme:' . THEME_NAME)->update(['value' => serialize($theme_options)]);
+						if ($options_update) {
+							return (['code' => 200, 'msg' => 'access_token 已更新']);
 						} else {
-							$self->response->throwJson(['msg' => 'access_token 更新失败！']);
+							return (['msg' => 'access_token 更新失败！']);
 						}
 					} else {
-						$self->response->throwJson(['msg' => '请更新您的 access_token']);
+						return (['msg' => '请更新您的 access_token']);
 					}
 				}
-				$self->response->throwJson($data);
+				return ($data);
 			}
 			return $data['list'];
 		};
@@ -233,7 +230,7 @@ class Api
 			$data = array(
 				'msg' => '没有当前站点'
 			);
-			$self->response->throwJson($data);
+			return ($data);
 		}
 		$today = $web_metrics($list, date('Ymd'), date('Ymd'));
 		$yesterday = $web_metrics($list, date('Ymd', strtotime("-1 days")), date('Ymd', strtotime("-1 days")));
@@ -244,89 +241,47 @@ class Api
 			'yesterday' => $yesterday,
 			'month' => $moon
 		);
-		$self->response->throwJson($data);
+		return ($data);
 	}
 
 	/* 增加浏览量 已测试 √ */
 	public static function handleViews($self)
 	{
-		$self->response->setStatus(200);
 		$cid = $self->request->cid;
-		/* sql注入校验 */
-		if (!preg_match('/^\d+$/',  $cid)) {
-			return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
-		}
-		$db = \Typecho\Db::get();
-		$row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
-		if (sizeof($row) > 0) {
-			$db->query($db->update('table.contents')->rows(array('views' => (int)$row['views'] + 1))->where('cid = ?', $cid));
-			$self->response->throwJson(array(
-				"code" => 1,
-				"data" => array('views' => number_format($db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid))['views']))
-			));
-		} else {
-			$self->response->throwJson(array("code" => 0, "data" => null));
-		}
+		if (!preg_match('/^\d+$/',  $cid)) return ['code' => 0, 'data' => '非法请求！已屏蔽！'];
+		$update = Db::name('contents')->where('cid = ?', $cid)->inc('views')->update();
+		return ['code' => $update];
 	}
 
 	/* 点赞和取消点赞 已测试 √ */
 	public static function handleAgree($self)
 	{
-		$self->response->setStatus(200);
 		$cid = $self->request->cid;
 		$type = $self->request->type;
-		/* sql注入校验 */
-		if (!preg_match('/^\d+$/',  $cid)) {
-			return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
-		}
-		/* sql注入校验 */
-		if (!preg_match('/^[agree|disagree]+$/', $type)) {
-			return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
-		}
-		$db = \Typecho\Db::get();
-		$row = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid));
-		if (sizeof($row) > 0) {
-			if ($type === "agree") {
-				$db->query($db->update('table.contents')->rows(array('agree' => (int)$row['agree'] + 1))->where('cid = ?', $cid));
-			} else {
-				if (intval($row['agree']) - 1 >= 0) {
-					$db->query($db->update('table.contents')->rows(array('agree' => (int)$row['agree'] - 1))->where('cid = ?', $cid));
-				}
-			}
-			$self->response->throwJson(array(
-				"code" => 1,
-				"data" => array('agree' => number_format($db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid))['agree']))
-			));
-		} else {
-			$self->response->throwJson(array("code" => 0, "data" => null));
-		}
+		if (!preg_match('/^\d+$/',  $cid)) return ['code' => 0, 'data' => '非法请求！已屏蔽！'];
+
+		$update = Db::name('contents')->where('cid', $cid);
+		if ($type == 'agree') $update->inc('agree');
+		if ($type == 'disagree') $update->dec('agree');
+		return ['code' => $update->update()];
 	}
 
 	/* 查询是否收录 已测试 √ */
 	public static function baiduRecord($self)
 	{
-		$self->response->setStatus(200);
 		$cid = $self->request->cid;
 		/* sql注入校验 */
-		if (!preg_match('/^\d+$/',  $cid)) {
-			return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
-		}
+		if (!preg_match('/^\d+$/',  $cid)) return ['code' => 0, 'data' => '非法请求！已屏蔽！'];
 		$baidu_record = self::baidu_record($self->request->site);
 		if (is_bool($baidu_record['index'])) {
 			if ($baidu_record['index']) {
-				$self->response->throwJson(["data" => "已收录", 'response' => $baidu_record['response']]);
+				return ['data' => "已收录", 'response' => $baidu_record['response']];
 			} else {
-				$db = \Typecho\Db::get();
-				$sql = $db->select('str_value')->from('table.fields')->where('cid = ?', $cid)->where('name = ?', 'baidu_push');
-				$row = $db->fetchRow($sql);
-				if ($row && $row['str_value'] == '1') {
-					$self->response->throwJson(["data" => "未收录，已推送", 'response' => $baidu_record['response']]);
-				} else {
-					$self->response->throwJson(["data" => "未收录", 'response' => $baidu_record['response']]);
-				}
+				$baidu_push = Db::name('fields')->where(['cid' => $cid, 'name' => 'baidu_push'])->value('str_value');
+				return ['data' => $baidu_push ? '未收录，已推送' : '未收录', 'response' => $baidu_record['response']];
 			}
 		} else {
-			$self->response->throwJson(["data" => "检测失败", 'index' => $baidu_record['index'], 'response' => $baidu_record['response']]);
+			return ['data' => "检测失败", 'index' => $baidu_record['index'], 'response' => $baidu_record['response']];
 		}
 	}
 
@@ -356,28 +311,19 @@ class Api
 		} else {
 			$index = null;
 		}
-		return [
-			'index' => $index,
-			'response' => $response
-		];
+		return ['index' => $index, 'response' => $response];
 	}
 
 	/* 主动推送到百度收录 已测试 √ */
 	public static function baiduPush($self)
 	{
-		$self->response->setStatus(200);
-
 		$cid = $self->request->cid;
 
 		/* sql注入校验 */
-		if (!preg_match('/^\d+$/',  $cid)) {
-			return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
-		}
+		if (!preg_match('/^\d+$/',  $cid)) return ['code' => 0, 'data' => '非法请求！已屏蔽！'];
 
-		$db = \Typecho\Db::get();
-		$sql = $db->select('str_value')->from('table.fields')->where('cid = ?', $cid)->where('name = ?', 'baidu_push');
-		$row = $db->fetchRow($sql);
-		if ($row && $row['str_value'] == '1') $self->response->throwJson(['already' => true]);
+		$baidu_push = Db::name('fields')->where(['cid' => $cid, 'name' => 'baidu_push'])->value('str_value');
+		if ($baidu_push) return ['already' => true];
 
 		$token = trim(self::$options->BaiduPushToken);
 		$domain = $self->request->domain;
@@ -398,18 +344,10 @@ class Api
 		$result = json_decode($result, true);
 		if (empty($result['error'])) {
 			// 存储推送记录到文章或者页面的自定义字段里面
-			$db = \Typecho\Db::get();
-			if (isset($row['str_value']) && $row['str_value'] != '1') {
-				$db->query($db->update('table.fields')
-					->rows(['str_value' => '1'])
-					->where('cid = ?', $cid)
-					->where('name = ?', 'baidu_push'));
+			if (isset($baidu_push) && $baidu_push != '1') {
+				Db::name('fields')->where(['cid' => $cid, 'name' => 'baidu_push'])->update(['str_value' => '1']);
 			} else {
-				$db->query($db->insert('table.fields')->rows([
-					'cid' => $cid,
-					'name' => 'baidu_push',
-					'str_value' => '1'
-				]));
+				Db::name('fields')->insert(['cid' => $cid, 'name' => 'baidu_push', 'str_value' => '1']);
 			}
 		}
 		if (!empty($result['message'])) {
@@ -426,17 +364,13 @@ class Api
 				if ($result['message'] == $key) $result['message'] = $value;
 			}
 		}
-		$self->response->throwJson([
-			'domain' => $domain,
-			'url' => $url,
-			'data' => $result
-		]);
+		return ['domain' => $domain, 'url' => $url, 'data' => $result];
 	}
 
 	// 主动推送到必应收录
 	public static function bingPush($self)
 	{
-		$self->response->setStatus(200);
+
 		$token = self::$options->BingPushToken;
 		if (empty($token)) exit;
 		$domain = $self->request->domain;  //网站域名
@@ -455,30 +389,24 @@ class Api
 		curl_setopt_array($ch, $options);
 		$result = curl_exec($ch);
 		curl_close($ch);
-		$self->response->throwJson(array(
-			'domain' => $domain,
-			'url' => $url,
-			'data' => json_decode($result, TRUE)
-		));
+		return ['domain' => $domain, 'url' => $url, 'data' => json_decode($result, true)];
 	}
 
 	/* 获取壁纸分类 已测试 √ */
 	public static function wallpaperType($self)
 	{
-		$self->response->setStatus(200);
 		$WallpaperAPI = \joe\optionMulti(self::$options->WallpaperAPI, '||', null, ['type', 'list']);
 		$api = $WallpaperAPI['type'] ?? 'http://cdn.apc.360.cn/index.php';
 		$res = \network\http\get($api . "?c=WallPaper&a=getAllCategoriesV2&from=360chrome")->toArray();
 		if (is_array($res) && $res['errno'] == 0) {
-			$self->response->throwJson(["code" => 1, "data" => $res['data']]);
+			return (['code' => 1, 'data' => $res['data']]);
 		}
-		$self->response->throwJson(["code" => 0, "data" => null, 'res' => $res]);
+		return ['code' => 0, 'data' => null, 'res' => $res];
 	}
 
 	/* 获取壁纸列表 已测试 √ */
 	public static function wallpaperList($self)
 	{
-		$self->response->setStatus(200);
 		$cid = $self->request->cid;
 		$start = $self->request->start;
 		$count = $self->request->count;
@@ -486,16 +414,14 @@ class Api
 		$api = $WallpaperAPI['list'] ?? 'http://wallpaper.apc.360.cn/index.php';
 		$res = \network\http\get($api . "?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome")->toArray();
 		if (is_array($res) && $res['errno'] == 0) {
-			$self->response->throwJson(["code" => 1, "data" => $res['data'], "total" => $res['total']]);
+			return array('code' => 1, 'data' => $res['data'], "total" => $res['total']);
 		}
-		$self->response->throwJson(["code" => 0, "data" => null, 'res' => $res]);
+		return ['code' => 0, 'data' => null, 'res' => $res];
 	}
 
 	/* 抓取苹果CMS视频分类 已测试 √ */
 	public static function maccmsList($self)
 	{
-		$self->response->setStatus(200);
-
 		$cms_api = self::$options->JMaccmsAPI;
 		$ac = $self->request->ac ? $self->request->ac : '';
 		$ids = $self->request->ids ? $self->request->ids : '';
@@ -506,40 +432,36 @@ class Api
 			$json = \network\http\get("{$cms_api}?ac={$ac}&ids={$ids}&t={$t}&pg={$pg}&wd={$wd}");
 			$res = json_decode($json, TRUE);
 			if ($res['code'] === 1) {
-				$self->response->throwJson(["code" => 1, "data" => $res,]);
+				return ['code' => 1, 'data' => $res];
 			} else {
-				$self->response->throwJson(["code" => 0, "data" => "抓取失败！请联系作者！"]);
+				return ['code' => 0, 'data' => '抓取失败！请联系作者！'];
 			}
 		} else {
-			$self->response->throwJson(["code" => 0, "data" => "后台苹果CMS API未填写！"]);
+			return ['code' => 0, 'data' => '后台苹果CMS API未填写！'];
 		}
 	}
 
 	/* 获取虎牙视频列表 已测试 √ */
 	public static function huyaList($self)
 	{
-		$self->response->setStatus(200);
-
 		$gameId = $self->request->gameId;
 		$page = $self->request->page;
 		$json = \network\http\get("https://www.huya.com/cache.php?m=LiveList&do=getLiveListByPage&gameId={$gameId}&tagAll=0&page={$page}");
 		$res = json_decode($json, TRUE);
 		if ($res['status'] === 200) {
-			$self->response->throwJson(["code" => 1, "data" => $res['data'],]);
+			return ['code' => 1, 'data' => $res['data']];
 		} else {
-			$self->response->throwJson(["code" => 0, "data" => "抓取失败！请联系作者！"]);
+			return ['code' => 0, 'data' => '抓取失败！请联系作者！'];
 		}
 	}
 
 	/* 获取服务器状态 */
 	public static function serverStatus($self)
 	{
-		$self->response->setStatus(200);
-
 		$api_panel = self::$options->JBTPanel;
 		$api_sk = self::$options->JBTKey;
-		if (!$api_panel) return $self->response->throwJson(["code" => 0, "data" => "宝塔面板地址未填写！"]);
-		if (!$api_sk) return $self->response->throwJson(["code" => 0, "data" => "宝塔接口密钥未填写！"]);
+		if (!$api_panel) return (['code' => 0, 'data' => '宝塔面板地址未填写！']);
+		if (!$api_sk) return (['code' => 0, 'data' => '宝塔接口密钥未填写！']);
 		$request_time = time();
 		$request_token = md5($request_time . '' . md5($api_sk));
 		$ch = curl_init();
@@ -555,7 +477,7 @@ class Api
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$response  = json_decode(curl_exec($ch), true);
 		curl_close($ch);
-		$self->response->throwJson(array(
+		return [
 			/* 状态 */
 			"status" => $response ? true : false,
 			/* 信息提示 */
@@ -573,96 +495,90 @@ class Api
 			/* CPU */
 			"cpu" => isset($response["cpu"]) ? $response["cpu"] : [0, 0, [0], 0, 0, 0],
 			/* 系统负载 */
-			"load" => isset($response["load"]) ? $response["load"] : ["fifteen" => 0, "five" => 0, "limit" => 0, "max" => 0, "one" => 0, "safe" => 0],
-		));
+			"load" => isset($response["load"]) ? $response["load"] : ["fifteen" => 0, "five" => 0, "limit" => 0, "max" => 0, "one" => 0, "safe" => 0]
+		];
 	}
 
 	/* 获取最近评论 */
 	public static function commentLately($self)
 	{
-		$self->response->setStatus(200);
-
 		$time = time();
 		$num = 7;
 		$categories = [];
 		$series = [];
-		$db = \Typecho\Db::get();
-		$prefix = $db->getPrefix();
 		for ($i = ($num - 1); $i >= 0; $i--) {
 			$date = date("Y/m/d", $time - ($i * 24 * 60 * 60));
-			$sql = "SELECT coid FROM `{$prefix}comments` WHERE FROM_UNIXTIME(created, '%Y/%m/%d') = '{$date}' limit 100";
-			$count = count($db->fetchAll($sql));
+			$count = Db::name('comments')->whereRaw("FROM_UNIXTIME(created, '%Y/%m/%d') = '{$date}'")->limit(100)->count();
 			$categories[] = $date;
 			$series[] = $count;
 		}
-		$self->response->throwJson(["categories" => $categories, "series" => $series]);
+		return ["categories" => $categories, "series" => $series];
 	}
 
 	/* 获取文章归档 */
 	public static function articleFiling($self)
 	{
-		$self->response->setStatus(200);
-
 		$page = $self->request->page;
 		$pageSize = 8;
-		if (!preg_match('/^\d+$/', $page)) return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+		if (!preg_match('/^\d+$/', $page)) return (array('data' => '非法请求！已屏蔽！'));
 		if ($page == 0) $page = 1;
 		$offset = $pageSize * ($page - 1);
 		$time = time();
-		$db = \Typecho\Db::get();
-		$prefix = $db->getPrefix();
+		$prefix = \Typecho\Db::get()->getPrefix();
 		$result = [];
-		$sql_version = $db->fetchAll('select VERSION()')[0]['VERSION()'];
+		$sql_version = Db::query('select VERSION()')[0]['VERSION()'];
 		if ($sql_version >= 8) {
 			$sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') LIMIT {$pageSize} OFFSET {$offset}";
 		} else {
 			$sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') DESC LIMIT {$pageSize} OFFSET {$offset}";
 		}
-		$temp = $db->fetchAll($sql);
-		$options = \Typecho\Widget::widget('Widget_Options');
+		$temp = Db::query($sql);
+		// $options = \Typecho\Widget::widget('Widget\Options');
 		foreach ($temp as $item) {
 			$date = $item['date'];
 			$list = [];
-			$sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}' ORDER BY created DESC LIMIT 100";
-			$_list = $db->fetchAll($sql);
-			foreach ($_list as $_item) {
-				$type = $_item['type'];
-				$_item['categories'] = $db->fetchAll($db->select()->from('table.metas')
-					->join('table.relationships', 'table.relationships.mid = table.metas.mid')
-					->where('table.relationships.cid = ?', $_item['cid'])
-					->where('table.metas.type = ?', 'category')
-					->order('table.metas.order', \Typecho\Db::SORT_ASC));
-				$_item['category'] = urlencode(current(\Typecho\Common::arrayFlatten($_item['categories'], 'slug')));
-				$_item['slug'] = urlencode($_item['slug']);
-				$_item['date'] = new \Typecho\Date($_item['created']);
-				$_item['year'] = $_item['date']->year;
-				$_item['month'] = $_item['date']->month;
-				$_item['day'] = $_item['date']->day;
-				$routeExists = (NULL != \Typecho\Router::get($type));
-				$_item['pathinfo'] = $routeExists ? \Typecho\Router::url($type, $_item) : '#';
-				$_item['permalink'] = \Typecho\Common::url($_item['pathinfo'], $options->index);
-				$_item['permalink'] = \joe\root_relative_link($_item['permalink']);
-				$list[] = array(
-					"title" => date('m/d', $_item['created']) . '：' . $_item['title'],
-					"permalink" => $_item['permalink'],
-				);
+			$contents_select = Db::name('contents')->where('created', '<', $time)
+				->where(['status' => 'publish', 'type' => 'post'])
+				->whereRaw("FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}'")
+				->order('created', 'desc')
+				->limit(100)
+				->select();
+			foreach ($contents_select as $content) {
+				// $type = $_item['type'];
+				// $_item['categories'] = $db->fetchAll($db->select()->from('table.metas')
+				// 	->join('table.relationships', 'table.relationships.mid = table.metas.mid')
+				// 	->where('table.relationships.cid = ?', $_item['cid'])
+				// 	->where('table.metas.type = ?', 'category')
+				// 	->order('table.metas.order', \Typecho\Db::SORT_ASC));
+				// $_item['category'] = urlencode(current(\Typecho\Common::arrayFlatten($_item['categories'], 'slug')));
+				// $_item['slug'] = urlencode($_item['slug']);
+				// $_item['date'] = new \Typecho\Date($_item['created']);
+				// $_item['year'] = $_item['date']->year;
+				// $_item['month'] = $_item['date']->month;
+				// $_item['day'] = $_item['date']->day;
+				// $routeExists = (NULL != \Typecho\Router::get($type));
+				// $_item['pathinfo'] = $routeExists ? \Typecho\Router::url($type, $_item) : '#';
+				// $_item['permalink'] = \Typecho\Common::url($_item['pathinfo'], $options->index);
+				// $_item['permalink'] = \joe\root_relative_link($_item['permalink']);
+				$list[] = [
+					"title" => date('m/d', $content['created']) . '：' . $content['title'],
+					"permalink" => \joe\permalink($content),
+				];
 			}
-			$result[] = array("date" => $date, "list" => $list);
+			$result[] = array('date' => $date, 'list' => $list);
 		}
-		$self->response->throwJson($result);
+		return $result;
 	}
 
 	// 提交友情链接
 	public static function friendSubmit($self)
 	{
-		$self->response->setStatus(200);
-
 		$captcha = $self->request->captcha;
-		if (empty($captcha)) $self->response->throwJson(['code' => 0, 'msg' => '请输入验证码！']);
-		if (empty($_SESSION['joe_captcha'])) $self->response->throwJson(['code' => 0, 'msg' => '验证码过期，请重新获取验证码']);
+		if (empty($captcha)) return (['code' => 0, 'msg' => '请输入验证码！']);
+		if (empty($_SESSION['joe_captcha'])) return (['code' => 0, 'msg' => '验证码过期，请重新获取验证码']);
 		if ($_SESSION['joe_captcha'] != $captcha) {
 			unset($_SESSION['joe_captcha']);
-			$self->response->throwJson(['code' => 0, 'msg' => '验证码错误']);
+			return ['code' => 0, 'msg' => '验证码错误'];
 		}
 		unset($_SESSION['joe_captcha']);
 
@@ -672,17 +588,16 @@ class Api
 		$logo = $self->request->logo;
 		$email = $self->request->email;
 
-		if (empty($title) || empty($url) || empty($email)) $self->response->throwJson(['code' => 0, 'msg' => '必填项不能为空']);
-		if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) $self->response->throwJson(['code' => 0, 'msg' => '联系邮箱错误！']);
-		if (!preg_match('/^http[s]?:\/\/[^\s]*/', $url)) $self->response->throwJson(['code' => 0, 'msg' => '网站地址错误！']);
+		if (empty($title) || empty($url) || empty($email)) return (['code' => 0, 'msg' => '必填项不能为空']);
+		if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) return (['code' => 0, 'msg' => '联系邮箱错误！']);
+		if (!preg_match('/^http[s]?:\/\/[^\s]*/', $url)) return (['code' => 0, 'msg' => '网站地址错误！']);
 		if (empty($logo)) $logo = self::$options->themeUrl . '/assets/images/avatar-default.png';
-		if (!preg_match('/^http[s]?:\/\/[^\s]*/', $logo)) $self->response->throwJson(['code' => 0, 'msg' => '网站LOGO地址错误！']);
+		if (!preg_match('/^http[s]?:\/\/[^\s]*/', $logo)) return (['code' => 0, 'msg' => '网站LOGO地址错误！']);
 
-		$db = \Typecho\Db::get();
-		$value = $db->fetchRow($db->select('status')->from('table.friends')->where('url = ?', $url));
-		if (is_array($value) && isset($value['status'])) $self->response->throwJson(['code' => 0, 'msg' => ($value['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')]);
+		$friend = Db::name('friends')->where('url')->find();
+		if ($friend) return ['code' => 0, 'msg' => ($friend['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')];
 
-		$sql = $db->insert('table.friends')->rows([
+		$insert = Db::name('friends')->insert([
 			'title' => $title,
 			'url' =>  $url,
 			'logo' =>  $logo,
@@ -690,31 +605,32 @@ class Api
 			'email' => $email,
 			'position' => 'single'
 		]);
-		if (!$db->query($sql)) $self->response->throwJson(['code' => 0, 'msg' => '提交失败，请联系本站点管理员进行处理']);
+
+		if (!$insert) return ['code' => 0, 'msg' => '提交失败，请联系本站点管理员进行处理'];
 		if (self::$options->JFriendEmail == 'on') {
 			$EmailTitle = '友链申请';
 			$subtitle = $title . ' 向您提交了友链申请';
 			$content = "<p>站点标题：$title</p><p>站点链接：$url</p><p>站点图标：$logo</p><p>站点描述：$description</p><p>对方邮箱：$email</p>";
 			$SendEmail = \joe\send_email($EmailTitle, $subtitle, $content);
-			if ($SendEmail !== true) $self->response->throwJson(['code' => 0, 'msg' => '提交失败，' . $SendEmail]);
+			if ($SendEmail !== true) return (['code' => 0, 'msg' => '提交失败，' . $SendEmail]);
 		}
-		$self->response->throwJson(['code' => 200, 'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待']);
+		return ['code' => 200, 'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待'];
 	}
 
 	public static function meting($self)
 	{
 		if (empty($_REQUEST['server']) || empty($_REQUEST['type']) || empty($_REQUEST['id'])) $self->response->setStatus(404);
-		$self->response->setStatus(200);
+
 		$extension = ['bcmath', 'curl', 'openssl'];
 		foreach ($extension as  $value) {
-			if (!extension_loaded($value)) $self->response->throwJson(['code' => 0, 'msg' => '请开启PHP的' . $value . '扩展！']);
+			if (!extension_loaded($value)) return (['code' => 0, 'msg' => '请开启PHP的' . $value . '扩展！']);
 		}
 		$api = new Meting($_REQUEST['server']);
 		$type = $_REQUEST['type'];
 		if ($type == 'playlist') {
 			$data = $api->format(true)->cookie(self::$options->JMusicCookie)->playlist($_REQUEST['id']);
 			$data = json_decode($data, true);
-			if (!empty($data['error'])) $self->response->throwJson($data);
+			if (!empty($data['error'])) return ($data);
 			foreach ($data as $key => $value) {
 				unset($data[$key]);
 				$data[$key]['author'] = is_array($value['artist']) ? implode(' / ', $value['artist']) : $value['artist'];
@@ -725,11 +641,11 @@ class Api
 				$data[$key]['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $value['lyric_id'];
 			}
 			\joe\header_cache(24 * 60 * 60);
-			$self->response->throwJson($data);
+			return $data;
 		}
 		if ($type == 'url') {
 			$data = json_decode($api->format(true)->cookie(self::$options->JMusicCookie)->url($_REQUEST['id']), true);
-			if (empty($data['url'])) $self->response->throwJson(['code' => 0, 'msg' => '音频URL获取失败！']);
+			if (empty($data['url'])) return (['code' => 0, 'msg' => '音频URL获取失败！']);
 			$url = $data['url'];
 			$self->response->setStatus(302);
 			header("Location: $url");
@@ -738,7 +654,7 @@ class Api
 		if ($type == 'pic') {
 			$data = json_decode($api->format(true)->cookie(self::$options->JMusicCookie)->pic($_REQUEST['id'], ($_REQUEST['size'] ?? 300)), true);
 			$url = $data['url'];
-			if (empty($data['url'])) $self->response->throwJson(['code' => 0, 'msg' => '封面URL获取失败！']);
+			if (empty($data['url'])) return (['code' => 0, 'msg' => '封面URL获取失败！']);
 			$self->response->setStatus(302);
 			header("Location: $url");
 			exit;
@@ -747,11 +663,7 @@ class Api
 			$data = json_decode($api->format(true)->cookie(self::$options->JMusicCookie)->lyric($_REQUEST['id']), true);
 			\joe\header_cache(180 * 24 * 60 * 60); // 缓存180天
 			header("Content-Type: text/plain; charset=utf-8");
-			if (empty($data['tlyric'])) {
-				$self->response->throwContent($data['lyric']);
-			} else {
-				$self->response->throwContent($data['tlyric']);
-			}
+			return empty($data['tlyric']) ? $data['lyric'] : $data['tlyric'];
 		}
 		if ($type == 'song') {
 			$data = $api->format(true)->cookie(self::$options->JMusicCookie)->song($_REQUEST['id']);
@@ -762,21 +674,20 @@ class Api
 			$data['url'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=url&id=' . $data['url_id'] . '&time=' . time();
 			$data['pic'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=pic&id=' . $data['pic_id'];
 			$data['lrc'] = $base_url . '?server=' . $_REQUEST['server'] . '&type=lrc&id=' . $data['lyric_id'];
-			$self->response->throwJson([$data]);
+			return $data;
 		}
 	}
 
 	public static function payCashierModal($self)
 	{
 		if (!is_numeric($self->request->cid)) $self->response->setStatus(404);
-		$self->response->setStatus(200);
 
-		if (empty(self::$options->JYiPayApi)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
-		if (empty(self::$options->JYiPayID)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
-		if (empty(self::$options->JYiPayKey)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
+		if (empty(self::$options->JYiPayApi)) return (['code' => 503, 'message' => '未配置易支付接口！']);
+		if (empty(self::$options->JYiPayID)) return (['code' => 503, 'message' => '未配置易支付商户号！']);
+		if (empty(self::$options->JYiPayKey)) return (['code' => 503, 'message' => '未配置易支付商户密钥！']);
 
 		if (self::$options->JWeChatPay != 'on' && self::$options->JAlipayPay != 'on' && self::$options->JQQPay != 'on') {
-			$self->response->throwJson(['code' => 503, 'message' => '暂无可用的支付方式!']);
+			return (['code' => 503, 'message' => '暂无可用的支付方式!']);
 		}
 
 		$cid = trim($self->request->cid);
@@ -785,7 +696,7 @@ class Api
 		$item->next();
 		$price = $item->fields->price ? $item->fields->price : 0;
 
-		if (!is_numeric($price) || round($price, 2) <= 0) $self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
+		if (!is_numeric($price) || round($price, 2) <= 0) return (['code' => 503, 'message' => '金额设置错误！']);
 
 		$price = round($price, 2);
 ?>
@@ -875,7 +786,7 @@ class Api
 		</form>
 		<script src="<?= \joe\theme_url('assets/js/joe.pay.js'); ?>"></script>
 	<?php
-		$self->response->throwContent('');
+		return true;
 	}
 
 	public static function initiatePay($self)
@@ -886,13 +797,13 @@ class Api
 
 		$epay_config = [];
 
-		if (empty(self::$options->JYiPayApi)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
+		if (empty(self::$options->JYiPayApi)) return (['code' => 503, 'message' => '未配置易支付接口！']);
 		$epay_config['apiurl'] = trim(self::$options->JYiPayApi);
 
-		if (empty(self::$options->JYiPayID)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
+		if (empty(self::$options->JYiPayID)) return (['code' => 503, 'message' => '未配置易支付商户号！']);
 		$epay_config['partner'] = trim(self::$options->JYiPayID);
 
-		if (empty(self::$options->JYiPayKey)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
+		if (empty(self::$options->JYiPayKey)) return (['code' => 503, 'message' => '未配置易支付商户密钥！']);
 		$epay_config['key'] = trim(self::$options->JYiPayKey);
 
 		if (!empty(self::$options->JYiPayMapiUrl)) $epay_config['mapi_url'] = trim(self::$options->JYiPayMapiUrl);
@@ -900,7 +811,7 @@ class Api
 		$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
 		$item->next();
 		$price = $item->fields->price ? $item->fields->price : 0;
-		if (!is_numeric($price) || round($price, 2) <= 0) $self->response->throwJson(['code' => 503, 'message' => '金额设置错误！']);
+		if (!is_numeric($price) || round($price, 2) <= 0) return (['code' => 503, 'message' => '金额设置错误！']);
 		$price = round($price, 2);
 		$out_trade_no = date("YmdHis") . mt_rand(100, 999);
 		//构造要请求的参数数组，无需改动
@@ -920,10 +831,7 @@ class Api
 		$epay = new \Joe\library\pay\EpayCore($epay_config);
 		$clientip = $self->request->getIp();
 
-		$self->response->setStatus(200);
-
-		$db = \Typecho\Db::get();
-		$sql = $db->insert('table.orders')->rows([
+		$insert = Db::name('orders')->insert([
 			'trade_no' => $out_trade_no,
 			"name" =>  self::$options->title . ' - 付费阅读',
 			'content_title' => $item->title,
@@ -933,17 +841,18 @@ class Api
 			'ip' => $clientip,
 			'user_id' => USER_ID
 		]);
-
-		if (!$db->query($sql)) $self->response->throwJson(['code' => 500, 'msg' => '订单创建失败！']);
+		if (!$insert) return ['code' => 500, 'msg' => '订单创建失败！'];
 		if (self::$options->JYiPayMapi == 'on') {
 			$parameter['clientip'] = $clientip;
 			$data = $epay->apiPay($parameter);
-			if ($data['code'] != 1) $self->response->throwJson(['code' => 500, 'msg' => $data['msg']]);
+			if ($data['code'] != 1) return (['code' => 500, 'msg' => $data['msg']]);
 			$data['trade_no'] = isset($data['trade_no']) ? $data['trade_no'] : $data['orderid'];
-			if (empty($data['trade_no'])) $self->response->throwJson(['code' => 500, 'msg' => '获取支付接口订单号失败！']);
+			if (empty($data['trade_no'])) return (['code' => 500, 'msg' => '获取支付接口订单号失败！']);
 			// 更新订单状态
-			$order_update_sql = $db->update('table.orders')->rows(['api_trade_no' =>  $data['trade_no']])->where('trade_no = ?', $out_trade_no);
-			if (!$db->query($order_update_sql)) $self->response->throwJson(['code' => 500, 'msg' => '更新支付接口订单号失败！']);
+			$order_update = Db::name('orders')->where('trade_no', $out_trade_no)->update([
+				'api_trade_no' => $data['trade_no']
+			]);
+			if (!$order_update) return ['code' => 500, 'msg' => '更新支付接口订单号失败！'];
 			$result = [
 				'check_sdk' => 'epay',
 				'code' => 1,
@@ -966,10 +875,10 @@ class Api
 				$result['open_url'] = true;
 				$result['url'] = $data['payurl'];
 			}
-			$self->response->throwJson($result);
+			return ($result);
 		} else {
 			$html_text = $epay->pagePay($parameter);
-			$self->response->throwJson(['code' => 200, 'form_html' => $html_text]);
+			return (['code' => 200, 'form_html' => $html_text]);
 		}
 	}
 
@@ -977,41 +886,37 @@ class Api
 	{
 		if (!is_numeric($self->request->trade_no)) $self->response->setStatus(404);
 
-		$self->response->setStatus(200);
-
 		$trade_no = trim($self->request->trade_no);
 
 		$epay_config = [];
 
-		if (empty(self::$options->JYiPayApi)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付接口！']);
+		if (empty(self::$options->JYiPayApi)) return (['code' => 503, 'message' => '未配置易支付接口！']);
 		$epay_config['apiurl'] = trim(self::$options->JYiPayApi);
 
-		if (empty(self::$options->JYiPayID)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户号！']);
+		if (empty(self::$options->JYiPayID)) return (['code' => 503, 'message' => '未配置易支付商户号！']);
 		$epay_config['partner'] = trim(self::$options->JYiPayID);
 
-		if (empty(self::$options->JYiPayKey)) $self->response->throwJson(['code' => 503, 'message' => '未配置易支付商户密钥！']);
+		if (empty(self::$options->JYiPayKey)) return (['code' => 503, 'message' => '未配置易支付商户密钥！']);
 		$epay_config['key'] = trim(self::$options->JYiPayKey);
 
 		if (!empty(self::$options->JYiPayMapiUrl)) $epay_config['mapi_url'] = trim(self::$options->JYiPayMapiUrl);
 
-		$db = \Typecho\Db::get();
-		$row = $db->fetchRow($db->select()->from('table.orders')->where('trade_no = ?', $trade_no)->limit(1));
-		if (sizeof($row) > 0) {
+		$row = Db::name('orders')->where('trade_no', $trade_no)->find();
+		if ($row) {
 			//建立请求
 			require_once JOE_ROOT . 'library/pay/EpayCore.php';
 			$epay = new \Joe\library\pay\EpayCore($epay_config);
 			$data = $epay->queryOrder($trade_no, $row['api_trade_no']);
 			$status = isset($data['status']) ? $data['status'] : 0;
 			$msg = empty($data['msg']) ? '支付失败，订单失效！' : $data['msg'];
-			$self->response->throwJson(['status' => $status, 'msg' => $msg]);
+			return (['status' => $status, 'msg' => $msg]);
 		} else {
-			$self->response->throwJson(['code' => 500, 'msg' => '订单不存在！']);
+			return (['code' => 500, 'msg' => '订单不存在！']);
 		}
 	}
 
 	public static function userRewardsModal($self)
 	{
-		$self->response->setStatus(200);
 	?>
 		<style>
 			.rewards-img {
@@ -1073,6 +978,6 @@ class Api
 			?>
 		</ul>
 <?php
-		$self->response->throwContent('');
+		return true;
 	}
 }

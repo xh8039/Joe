@@ -1,5 +1,7 @@
 <?php
 
+use think\facade\DbLog;
+
 if (!defined('__TYPECHO_ROOT_DIR__') || empty($_SERVER['HTTP_HOST'])) {
 	http_response_code(404);
 	exit;
@@ -95,13 +97,17 @@ function themeInit($self)
 			$method = think\helper\Str::camel($route);
 			$method_exists = method_exists(joe\Api::class, $method);
 			if (!$method_exists) $self->response->throwJson(['code' => 404, 'message' => '接口不存在']);
+			$self->response->setStatus(200);
 			joe\Api::$self = $self;
 			joe\Api::$options = Helper::options();
 			$api = joe\Api::$method($self);
 			if (is_array($api) || is_object($api)) {
-				$self->response->setStatus(200);
+				if (is_array($api)) $api['fetchSql'] = DbLog::list();
+				if (is_object($api)) $api->fetchSql = DbLog::list();
 				$self->response->throwJson($api);
 			}
+			if (is_string($api)) $self->response->throwContent($api);
+			if ($api === true) $self->response->throwContent('');
 		} else {
 			$self->response->throwJson(['code' => 404, 'message' => '未调用接口']);
 		}
@@ -115,18 +121,6 @@ function themeInit($self)
 				$self->response->throwContent('<script>alert("链接非法，已返回");window.location.href="' . Helper::options()->siteUrl . '"</script>');
 			}
 			$self->setThemeFile('module/goto.php');
-			// $location = Helper::options()->siteUrl;
-			// $cid = $self->request->cid;
-			// if (is_numeric($cid)) {
-			// 	$db = Typecho\Db::get();
-			// 	$post = $db->fetchRow($db->select('text')->from('table.contents')->where('cid = ?', $cid));
-			// 	if (!empty($post['text']) && strpos($post['text'], $link) !== false) $location = $link;
-			// }
-			// if ($location == Helper::options()->siteUrl) {
-			// 	$self->response->throwContent('<script>alert("链接非法，已返回");window.location.href="' . $location . '"</script>');
-			// } else {
-			// 	$self->setThemeFile('module/goto.php');
-			// }
 		})();
 	}
 

@@ -1,4 +1,7 @@
 <?php
+
+use think\facade\Db;
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
@@ -45,12 +48,18 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							$PostsNum = joe\number_word($stat->myPublishedPostsNum);
 							$CommentsNum = joe\number_word($stat->myPublishedCommentsNum);
 							?>
-							<a class="but c-blue tag-posts" data-toggle="tooltip" title="共<?= $PostsNum ?>篇文章" href="<?= joe\root_relative_link($this->user->permalink) ?>"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-post"></use></svg><?= $PostsNum ?></a>
-							<a target="_blank" class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?php $this->options->adminUrl('manage-comments.php') ?>"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-comment"></use></svg><?= $CommentsNum ?></a>
+							<a class="but c-blue tag-posts" data-toggle="tooltip" title="共<?= $PostsNum ?>篇文章" href="<?= joe\root_relative_link($this->user->permalink) ?>"><svg class="icon svg" aria-hidden="true">
+									<use xlink:href="#icon-post"></use>
+								</svg><?= $PostsNum ?></a>
+							<a target="_blank" class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?php $this->options->adminUrl('manage-comments.php') ?>"><svg class="icon svg" aria-hidden="true">
+									<use xlink:href="#icon-comment"></use>
+								</svg><?= $CommentsNum ?></a>
 							<?php $agree = joe\number_word(joe\author_post_field_sum($this->user->uid, 'agree')) ?>
 							<span class="but c-yellow tag-follow" data-toggle="tooltip" title="共<?= $agree ?>个点赞"><i class="fa fa-heart em09"></i><?= $agree ?></span>
 							<?php $views = joe\number_word(joe\author_post_field_sum($this->user->uid, 'views')) ?>
-							<span class="badg c-red tag-view" data-toggle="tooltip" title="人气值 <?= $views ?>"><svg class="icon svg" aria-hidden="true"><use xlink:href="#icon-hot"></use></svg><?= $views ?></span>
+							<span class="badg c-red tag-view" data-toggle="tooltip" title="人气值 <?= $views ?>"><svg class="icon svg" aria-hidden="true">
+									<use xlink:href="#icon-hot"></use>
+								</svg><?= $views ?></span>
 						</div>
 						<div class="user-desc mt10 muted-2-color em09 joe_motto">这家伙很懒，什么都没有写...</div>
 						<div class="user-btns mt20">
@@ -111,22 +120,38 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php
 		$time = time();
 		$todayDate = date('m/d', $time);
-		$db = Typecho\Db::get();
-		$prefix = $db->getPrefix();
-		$sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} and FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}' and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";
-		$result = $db->query($sql);
+		// $prefix = $db->getPrefix();
+		// $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} and FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}' and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";
+		// $result = $db->query($sql);
+		// $historyTodaylist = [];
+		// if ($result instanceof Traversable) {
+		// 	$year = date('Y');
+		// 	foreach ($result as $item) {
+		// 		$item = Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
+		// 		if ($item['year'] == $year) continue;
+		// 		$historyTodaylist[] = array(
+		// 			"title" => htmlspecialchars($item['title']),
+		// 			"permalink" => joe\root_relative_link($item['permalink']),
+		// 			"date" => $item['year'] . ' ' . $item['month'] . '/' . $item['day']
+		// 		);
+		// 	}
+		// }
+
+		$result = Db::name('contents')
+			->where('created', '<', $time)
+			->whereRaw("FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}'")
+			->where(['type' => 'post', 'status' => 'publish'])
+			->limit(10)
+			->select();
 		$historyTodaylist = [];
-		if ($result instanceof Traversable) {
-			$year = date('Y');
-			foreach ($result as $item) {
-				$item = Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
-				if ($item['year'] == $year) continue;
-				$historyTodaylist[] = array(
-					"title" => htmlspecialchars($item['title']),
-					"permalink" => joe\root_relative_link($item['permalink']),
-					"date" => $item['year'] . ' ' . $item['month'] . '/' . $item['day']
-				);
-			}
+		$year = date('Y');
+		foreach ($result as $item) {
+			if ($item['year'] == $year) continue;
+			$historyTodaylist[] = [
+				"title" => htmlspecialchars($item['title']),
+				"permalink" => joe\root_relative_link(joe\permalink($item)),
+				'date' => date('Y m/d'),
+			];
 		}
 		?>
 		<?php if (count($historyTodaylist) > 0) : ?>

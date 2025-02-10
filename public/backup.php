@@ -1,59 +1,51 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
-$name = THEME_NAME;
-$db = Typecho\Db::get();
+
+use think\facade\Db;
+
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
+
+function joe_backup_location($message)
+{
+	$url = Helper::options()->adminUrl('options-theme.php');
+	echo '<script>alert("' . $message . '");window.location.href = "' . $url . '"</script>';
+}
+
 if (isset($_POST['type'])) {
+	$theme_field = 'theme:' . THEME_NAME;
+	$backup_field = $theme_field . '_backup';
 	if ($_POST["type"] == "备份设置") {
-		$value = $db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . $name))['value'];
-		if ($db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . $name . '_backup'))) {
-			$db->query($db->update('table.options')->rows(array('value' => $value))->where('name = ?', 'theme:' . $name . '_backup')); ?>
-			<script>
-				alert("备份更新成功！");
-				window.location.href = '<?php Helper::options()->adminUrl('options-theme.php'); ?>'
-			</script>
-		<?php } else { ?>
-			<?php
-			if ($value) {
-				$db->query($db->insert('table.options')->rows(array('name' => 'theme:' . $name . '_backup', 'user' => '0', 'value' => $value)));
-			?>
-				<script>
-					alert("备份成功！");
-					window.location.href = '<?php Helper::options()->adminUrl('options-theme.php'); ?>'
-				</script>
-			<?php }
+		$backup_value = Db::name('options')->where('name', $theme_field)->value('value');
+		if (Db::name('options')->where('name', $backup_field)->find()) {
+			Db::name('options')->where('name', $backup_field)->update(['value' => $value]);
+			joe_backup_location('备份更新成功！');
+		} else if ($value) {
+			Db::name('options')->insert(['name' => $backup_field, 'user' => '0', 'value' => $value]);
+			joe_backup_location('备份成功！');
 		}
 	}
 	if ($_POST["type"] == "还原备份") {
-		if ($db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . $name . '_backup'))) {
-			$_value = $db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . $name . '_backup'))['value'];
-			$db->query($db->update('table.options')->rows(array('value' => $_value))->where('name = ?', 'theme:' . $name)); ?>
-			<script>
-				alert("还原成功！");
-				window.location.href = '<?php Helper::options()->adminUrl('options-theme.php'); ?>'
-			</script>
-		<?php } else { ?>
-			<script>
-				alert("未备份过数据，无法恢复！");
-				window.location.href = '<?php Helper::options()->adminUrl('options-theme.php'); ?>'
-			</script>
-		<?php } ?>
-	<?php } ?>
-	<?php if ($_POST["type"] == "删除备份") {
-		if ($db->fetchRow($db->select()->from('table.options')->where('name = ?', 'theme:' . $name . '_backup'))) {
-			$db->query($db->delete('table.options')->where('name = ?', 'theme:' . $name . '_backup')); ?>
-			<script>
-				alert("删除成功");
-				window.location.href = '<?php Helper::options()->adminUrl('options-theme.php'); ?>'
-			</script>
-		<?php } else { ?>
-			<script>
-				alert("没有备份内容，无法删除！");
-				window.location.href = '<?php Helper::options()->adminUrl('options-theme.php'); ?>'
-			</script>
-		<?php } ?>
-	<?php }
-	?>
-<?php } ?>
+		$backup_value = Db::name('options')->where('name', $backup_field)->value('value');
+		if ($backup_value) {
+			Db::name('options')->where('name', $theme_field)->update('value', $backup_value);
+			joe_backup_location('还原成功！');
+		} else {
+			joe_backup_location('未备份过数据，无法恢复！');
+		}
+	}
+	if ($_POST["type"] == "删除备份") {
+		$backup_delete = Db::name('options')->where('name', $backup_field)->delete();
+		if ($backup_delete) {
+			joe_backup_location('删除成功！');
+		} else {
+			joe_backup_location('没有备份内容，无法删除！');
+		}
+	}
+}
+
+?>
 <form class="backup" action="?Joe_backup" method="post">
 	<input type="button" id="update" value="检测更新">
 	<input type="submit" name="type" value="备份设置" />

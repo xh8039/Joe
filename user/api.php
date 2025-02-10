@@ -1,4 +1,7 @@
 <?php
+
+use think\facade\Db;
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
@@ -20,27 +23,20 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入密码'
 		]);
-		sleep(1);
-		$db = Typecho\Db::get();
-		$user = $db->select('uid', 'name', 'password')->from('table.users')->where('name = ?', $username)->limit(1);
-		$mail = $db->select('uid', 'mail', 'password')->from('table.users')->where('mail = ?', $username)->limit(1);
-		if (!$result = $db->fetchAll($user)) {
-			if (!$result = $db->fetchAll($mail)) {
-				$this->response->throwJson([
-					'code' => 0,
-					'msg' => '账户或密码错误'
-				]);
-			}
-		}
-		if ('$P$' == substr($result[0]['password'], 0, 3)) {
+		$user = Db::name('users')->where('name|mail', $username)->find();
+		if (empty($user)) $this->response->throwJson([
+			'code' => 0,
+			'msg' => '账户或密码错误'
+		]);
+		if ('$P$' == substr($user['password'], 0, 3)) {
 			$hasher = new PasswordHash(8, true);
-			$hashValidate = $hasher->CheckPassword($password, $result[0]['password']);
+			$hashValidate = $hasher->CheckPassword($password, $user['password']);
 		} else {
-			$hashValidate = Typecho_Common::hashValidate($password, $result[0]['password']);
+			$hashValidate = Typecho_Common::hashValidate($password, $user['password']);
 		}
 
 		if ($hashValidate) {
-			joe\user_login($result[0]['uid']);
+			joe\user_login($user['uid']);
 			$this->response->throwJson([
 				'code' => 1,
 				'msg' => '登录成功'
@@ -106,21 +102,19 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '密码不能少于6位'
 		]);
-		sleep(1);
-		$db = Typecho\Db::get();
-		if ($db->fetchAll($db->select('uid')->from('table.users')->where('screenName = ?', $nickname)->limit(1))) {
+		if (Db::name('users')->where('screenName', $nickname)->find()) {
 			$this->response->throwJson([
 				'code' => 0,
 				'msg' => '昵称已被其它小伙伴使用'
 			]);
 		}
-		if ($db->fetchAll($db->select('uid')->from('table.users')->where('name = ?', $username)->limit(1))) {
+		if (Db::name('users')->where('name', $username)->find()) {
 			$this->response->throwJson([
 				'code' => 0,
 				'msg' => '你输入的用户名已经被注册'
 			]);
 		}
-		if ($db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) {
+		if (Db::name('users')->where('mail', $email)->find()) {
 			$this->response->throwJson([
 				'code' => 0,
 				'msg' => '你输入的邮箱已经注册账号'
@@ -184,8 +178,6 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '密码不能少于6位'
 		]);
-		sleep(1);
-		$db = Typecho\Db::get();
 		if (!$_SESSION["Gm_Forget_state"] || $_SESSION["Gm_Forget_state"] != $state) {
 			$this->response->throwJson([
 				'code' => 0,
@@ -197,7 +189,7 @@ switch ($action) {
 				'code' => 0,
 				'msg' => '验证已失效'
 			]);
-		} else if (!$db->fetchAll($db->select('uid')->from('table.users')->where('uid = ?', $uid)->limit(1))) {
+		} else if (!Db::name('users')->where('uid', $uid)->find()) {
 			$_SESSION['Gm_Forget_state'] = null;
 			$this->response->throwJson([
 				'code' => 0,
@@ -205,10 +197,7 @@ switch ($action) {
 			]);
 		} else {
 			$hasher = new PasswordHash(8, true);
-			$update = $db->update('table.users')->rows([
-				'password' => $hasher->HashPassword($password)
-			])->where('uid=?', $uid);
-			$updateRows = $db->query($update);
+			$updateRows = Db::name('users')->where('uid', $uid)->update('password', $hasher->HashPassword($password));
 			if ($updateRows) {
 				$_SESSION[$state] = null;
 				joe\user_login($uid);
@@ -236,14 +225,10 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱'
 		]);
-		sleep(1);
-		$db = Typecho\Db::get();
-		if (!$user = $db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) {
-			$this->response->throwJson([
-				'code' => 0,
-				'msg' => '你输入的邮箱未注册账号'
-			]);
-		}
+		if (!Db::name('users')->where('mail = ?', $email)->find()) $this->response->throwJson([
+			'code' => 0,
+			'msg' => '你输入的邮箱未注册账号'
+		]);
 		if ($_SESSION["Gm_Forget_Code"] != $code || $_SESSION["Gm_Forget_email"] != $email) {
 			$_SESSION['Gm_Forget_Code'] = null;
 			$_SESSION['Gm_Forget_email'] = null;
@@ -271,8 +256,7 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱后发送验证码'
 		]);
-		$db = Typecho\Db::get();
-		if ($db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) $this->response->throwJson([
+		if (Db::name('users')->where('mail', $email)->find()) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '你输入的邮箱已经注册账号'
 		]);
@@ -306,8 +290,7 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱后发送验证码'
 		]);
-		$db = Typecho\Db::get();
-		if (!$db->fetchAll($db->select('uid')->from('table.users')->where('mail = ?', $email)->limit(1))) $this->response->throwJson([
+		if (!Db::name('users')->where('mail', $email)->find()) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '你输入的邮箱未注册账号'
 		]);

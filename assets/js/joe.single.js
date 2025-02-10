@@ -130,6 +130,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			agreeArr = localStorage.getItem(Joe.base64_encode('agree')) ? JSON.parse(Joe.base64_decode(localStorage
 				.getItem(Joe.base64_encode('agree')))) : [];
 			let flag = agreeArr.includes(Joe.CONTENT.cid);
+			var count = Number($('.action-like>count').text());
 			$.ajax({
 				url: Joe.BASE_API + '/handle-agree',
 				type: 'POST',
@@ -143,11 +144,9 @@ Joe.DOMContentLoaded.single ||= () => {
 				},
 				success(res) {
 					if (res.code != 1) return;
-					var count = Number($('.action-like>count').text());
-					console.log(count);
 					count = flag ? count-- : count++;
-					console.log(count);
 					if (count < 0) count = 0;
+					console.log(count);
 					if (flag) {
 						$('.action-like>count').html(count);
 						const index = agreeArr.findIndex(_ => _ === Joe.CONTENT.cid);

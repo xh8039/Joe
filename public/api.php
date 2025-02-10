@@ -923,7 +923,7 @@ class Api
 				<li>
 					<p class="muted-2-color" style="margin-bottom: 10px;">微信扫一扫</p>
 					<div class="rewards-img">
-						<img class="fit-cover" src="<?= self::$options->JWeChatRewardImg ?>">
+						<img class="fit-cover" referrerpolicy="no-referrer" rel="noreferrer" src="<?= self::$options->JWeChatRewardImg ?>">
 					</div>
 				</li>
 			<?php
@@ -933,7 +933,7 @@ class Api
 				<li>
 					<p class="muted-2-color" style="margin-bottom: 10px;">支付宝扫一扫</p>
 					<div class="rewards-img">
-						<img class="fit-cover" src="<?= self::$options->JAlipayRewardImg ?>">
+						<img class="fit-cover" referrerpolicy="no-referrer" rel="noreferrer"  src="<?= self::$options->JAlipayRewardImg ?>">
 					</div>
 				</li>
 			<?php
@@ -943,7 +943,7 @@ class Api
 				<li>
 					<p class="muted-2-color" style="margin-bottom: 10px;">QQ扫一扫</p>
 					<div class="rewards-img">
-						<img class="fit-cover" src="<?= self::$options->JQQRewardImg ?>">
+						<img class="fit-cover" referrerpolicy="no-referrer" rel="noreferrer"  src="<?= self::$options->JQQRewardImg ?>">
 					</div>
 				</li>
 			<?php

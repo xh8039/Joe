@@ -728,22 +728,8 @@ function thePrev($widget, $default = NULL)
  */
 function theNext($widget, $default = NULL)
 {
-	// $content = $db->fetchRow($widget->select()->where(
-	// 	'table.contents.created > ? AND table.contents.created < ?',
-	// 	$widget->created,
-	// 	\Helper::options()->time
-	// )
-	// 	->where('table.contents.status = ?', 'publish')
-	// 	->where('table.contents.type = ?', $widget->type)
-	// 	->where("table.contents.password IS NULL OR table.contents.password = ''")
-	// 	->order('table.contents.created', \Typecho\Db::SORT_ASC)
-	// 	->limit(1));
-
 	$content = Db::name('contents')
-		->where([
-			['created', '>', $widget->created],
-			['created', '<', \Helper::options()->time],
-		])
+		->where('created', '>', $widget->created)
 		->where(['status' => 'publish', 'type' => $widget->type])
 		->order('created', 'asc')
 		->find();
@@ -793,26 +779,6 @@ function optionMulti($string, string $line = "\r\n", $separator = '||', array $k
 			$optionMulti[$value] = isset($optionMulti[$index]) ? $optionMulti[$index] : null;
 		}
 	}
-	// foreach ($customArr as $index => $value) {
-	// 	if (is_string($separator)) {
-	// 		$option = array_map('trim', explode($separator, $value));
-	// 		foreach ($key as $i => $val) {
-	// 			$option[$val] = isset($option[$i]) ? $option[$i] : null;
-	// 		}
-	// 		$optionMulti[$index] = $option;
-	// 	} else {
-	// 		$optionMulti[$index] = trim($value);
-	// 	}
-	// 	$option = is_string($separator) ? array_map('trim', explode($separator, $value)) : trim($value);
-	// 	foreach ($key as $i => $val) {
-	// 		if (is_string($separator)) $option[$val] = isset($option[$i]) ? $option[$i] : null;
-	// 	}
-	// 	if (!is_string($separator) && isset($key[$index])) {
-	// 		$optionMulti[$key[$index]] = $option;
-	// 	} else {
-	// 		$optionMulti[] = $option;
-	// 	}
-	// }
 	return $optionMulti;
 }
 

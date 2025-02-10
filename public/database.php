@@ -1,10 +1,26 @@
 <?php
+
+namespace think\facade;
+
+class DbLog
+{
+	private static $logs = [];
+	public function log($type, $log)
+	{
+		self::$logs[] = $log;
+	}
+	public static function list(): array
+	{
+		return self::$logs;
+	}
+}
+
 (function () {
-	$DB = Typecho\Db::get();
+	$DB = \Typecho\Db::get();
 	$adapter = $DB->getAdapter()->getDriver();
 	$config = $DB->getConfig(1);
 	// 数据库配置信息设置（全局有效）
-	think\facade\Db::setConfig([
+	\think\facade\Db::setConfig([
 		// 默认数据连接标识
 		'default'     => $adapter,
 		// 数据库连接信息
@@ -33,4 +49,5 @@
 			],
 		],
 	]);
+	\think\facade\Db::setLog(new DbLog);
 })();

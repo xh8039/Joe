@@ -624,7 +624,7 @@ class JoeAction {
 							return `<div data-toggle="tooltip" class="lists-item" data-text="${item.icon}" title="${item.text}">${item.icon}</div>`;
 						}
 						let title = /.*?\((.*?)\)/.exec(item.text)[1];
-						return `<div data-toggle="tooltip" class="lists-item" data-text="${item.text}" title="${title}"><img src="${(window.JoeConfig.JOwOAssetsUrl || window.JoeConfig.JStaticAssetsUrl || window.JoeConfig.themeURL) + item.icon}"></div>`;
+						return `<div data-toggle="tooltip" class="lists-item" data-text="${item.text}" title="${title}"><img src="${window.Joe.THEME_URL + item.icon}"></div>`;
 					}).join(' ')
 						}</div>`;
 				}

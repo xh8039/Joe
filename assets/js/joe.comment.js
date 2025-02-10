@@ -235,13 +235,12 @@ Joe.DOMContentLoaded.comment ||= () => {
 		generateContent(data) {
 			let barHTML = [];  // 分类标签
 			let scrollHTML = []; // 表情列表
-			const OwOUrl = this.$container.data('url') || window.Joe.THEME_URL;
 
 			// 遍历数据生成结构
 			for (const [rawKey, items] of Object.entries(data)) {
 				const key = rawKey.replace('表情', '');
 				barHTML.push(`<div class="item" data-type="${key}">${key}</div>`);
-				scrollHTML.push(this.generateScrollItems(key, items, OwOUrl));
+				scrollHTML.push(this.generateScrollItems(key, items));
 			}
 
 			return {
@@ -251,7 +250,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 		}
 
 		/** 生成单个分类的表情项 */
-		generateScrollItems(key, items, OwOUrl) {
+		generateScrollItems(key, items) {
 			const isTextType = ['颜文字', 'emoji'].includes(key);
 			const itemsHTML = items.map(item => {
 				// 文本类型表情（颜文字/emoji）
@@ -260,7 +259,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 				// 图片类型表情
 				const titleMatch = item.text.match(/\((.*?)\)/);
 				const title = titleMatch ? titleMatch[1] : item.text;  // 增强容错处理
-				return `<li data-toggle="tooltip" title="${title}" class="item" data-text="${item.text}"><img class="lazyload" src="${window.Joe.options.JLazyload}" data-src="${OwOUrl + item.icon}" title="${title}" alt="${title}"/></li>`;
+				return `<li data-toggle="tooltip" title="${title}" class="item" data-text="${item.text}"><img class="lazyload" src="${window.Joe.options.JLazyload}" data-src="${Joe.THEME_URL + item.icon}" title="${title}" alt="${title}"/></li>`;
 			}).join('');
 
 			return `<ul class="scroll" data-type="${key}">${itemsHTML}</ul>`;

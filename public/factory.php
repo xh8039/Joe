@@ -165,8 +165,6 @@ class Editor
 				autoSave: <?php Helper::options()->autoSave(); ?>,
 				themeURL: `<?php Helper::options()->themeUrl(); ?>`,
 				JPrismTheme: `<?= Helper::options()->JPrismTheme ?>`,
-				JOwOAssetsUrl: `<?= empty(Helper::options()->JOwOAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
-				JStaticAssetsUrl: `<?= empty(Helper::options()->JStaticAssetsUrl) ? '' : (Helper::options()->JOwOAssetsUrl . '/') ?>`,
 				canPreview: false
 			}
 			window.Joe = window.Joe || {};

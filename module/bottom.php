@@ -6,8 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 if ($this->is('index') && ($this->options->JFriendsSpiderHide != 'on' || !joe\detectSpider())) {
-	$db = Typecho\Db::get();
-	$friends = $db->fetchAll($db->select()->from('table.friends')->where('status = ?', 1)->where("FIND_IN_SET('index_bottom',position)")->order('order', Typecho\Db::SORT_DESC));
+	$friends = think\facade\Db::name('friends')->where('status', 1)->whereRaw("FIND_IN_SET('index_bottom',`position`)")->order('order', 'desc')->select()->toArray();
 	if (sizeof($friends) > 0) : ?>
 		<?php
 		$friends_page = $db->fetchRow($db->select()->from('table.contents')->where('type = ?', 'page')->where('template = ?', 'friends.php')->where('status = ?', 'publish')->limit(1));

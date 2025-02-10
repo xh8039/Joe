@@ -2,6 +2,8 @@
 
 namespace joe;
 
+use think\facade\Db;
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
@@ -209,16 +211,14 @@ function getAvatarLazyload()
 /* 查询文章浏览量 */
 function getViews($item)
 {
-	$db = \Typecho\Db::get();
-	$result = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $item->cid))['views'];
+	$result = Db::name('contents')->where('cid', $item->cid)->value('views');
 	return number_format($result);
 }
 
 /* 查询文章点赞量 */
 function getAgree($item)
 {
-	$db = \Typecho\Db::get();
-	$result = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $item->cid))['agree'];
+	$result = Db::name('contents')->where('cid', $item->cid)->value('agree');
 	return number_format($result);
 }
 
@@ -226,9 +226,7 @@ function getAgree($item)
 function getAvatarByMail($mail, $type = true)
 {
 	if (empty($mail)) {
-		$db = \Typecho\Db::get();
-		$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
-		$mail = $authoInfo['mail'];
+		$mail = Db::name('users')->where('uid', 1)->value('mail');
 	}
 	$gravatarsUrl = \Helper::options()->JCustomAvatarSource ? \Helper::options()->JCustomAvatarSource : 'https://gravatar.helingqi.com/wavatar/';
 	$mailLower = strtolower($mail);
@@ -315,11 +313,10 @@ function getThumbnails($item)
 /* 获取父级评论 */
 function getParentReply($parent)
 {
-	if ($parent != "0") {
-		$db = \Typecho\Db::get();
-		$commentInfo = $db->fetchRow($db->select('author')->from('table.comments')->where('coid = ?', $parent));
-		if (empty($commentInfo['author'])) return;
-		echo '<p class="parent">@' . $commentInfo['author'] . '</p> ';
+	if ($parent != '0') {
+		$author = Db::name('comments')->where('coid', $parent)->value('author');
+		if (empty($author)) return;
+		echo '<p class="parent">@' . $author . '</p> ';
 	}
 }
 
@@ -609,13 +606,8 @@ function send_email($title, $subtitle, $content, $email = '')
 {
 	if (!email_config()) return false;
 	if (empty($email)) {
-		$db = \Typecho\Db::get();
-		$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
-		if (empty($authoInfo['mail'])) {
-			$email = \Helper::options()->JCommentMailAccount;
-		} else {
-			$email = $authoInfo['mail'];
-		}
+		$mail = Db::name('users')->where('uid', 1)->value('mail');
+		$email = $mail ? $mail : \Helper::options()->JCommentMailAccount;
 	}
 	if (empty($subtitle)) $subtitle = '';
 	$html = '<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"><meta name="viewport"content="width=device-width, initial-scale=1.0"></head><body><style>.container{width:95%;margin:0 auto;border-radius:8px;font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);word-break:break-all}.title{color:#ffffff;background:linear-gradient(-45deg,rgba(9,69,138,0.2),rgba(68,155,255,0.7),rgba(117,113,251,0.7),rgba(68,155,255,0.7),rgba(9,69,138,0.2));background-size:400% 400%;background-position:50% 100%;padding:15px;font-size:15px;line-height:1.5}</style><div class="container"><div class="title">{title}</div><div style="background: #fff;padding: 20px;font-size: 13px;color: #666;">{subtitle}<div style="padding: 15px;margin-bottom: 20px;line-height: 1.5;background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);">{content}</div><div style="line-height: 2">请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div></div></div></body></html>';
@@ -709,16 +701,23 @@ function strstrs(string $haystack, array $needles): bool
  */
 function thePrev($widget, $default = NULL)
 {
-	$db = \Typecho\Db::get();
-	$content = $db->fetchRow($widget->select()->where('table.contents.created < ?', $widget->created)
-		->where('table.contents.status = ?', 'publish')
-		->where('table.contents.type = ?', $widget->type)
-		->where("table.contents.password IS NULL OR table.contents.password = ''")
-		->order('table.contents.created', \Typecho\Db::SORT_DESC)
-		->limit(1));
+	// $db = \Typecho\Db::get();
+	$content = Db::name('contents')->where('created', '<', $widget->created)
+		->where('status', 'publish')
+		->where('type', $widget->type)
+		->whereNull('password')
+		->whereOr('password', '')
+		->order('created','desc')
+		->find();
+	// $content = $db->fetchRow($widget->select()->where('table.contents.created < ?', $widget->created)
+	// 	->where('table.contents.status = ?', 'publish')
+	// 	->where('table.contents.type = ?', $widget->type)
+	// 	->where("table.contents.password IS NULL OR table.contents.password = ''")
+	// 	->order('table.contents.created', \Typecho\Db::SORT_DESC)
+	// 	->limit(1));
 
 	if ($content) {
-		$content = $widget->filter($content);
+		// $content = $widget->filter($content);
 		return $content;
 	} else {
 		return $default;

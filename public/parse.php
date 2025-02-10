@@ -125,7 +125,7 @@ function _parseAsideReply($text, $type = true)
 /* 过滤侧边栏最新回复的跳转链接 */
 function _parseAsideLink($link)
 {
-	echo str_replace("#", "?scroll=", $link);
+	return str_replace(["#", '/comment-page-1'], ['?scroll=', ''], $link);
 }
 
 function _payPurchased($post, $pay)

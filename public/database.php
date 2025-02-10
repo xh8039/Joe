@@ -41,10 +41,11 @@ class DbLog
 				// 数据库调试模式
 				'debug'    => true,
 				// SQL监听（日志）
-				'trigger_sql' => true,
+				'trigger_sql' => \Helper::options()->JoeDeBug == 'on',
 			],
 		],
 	]);
+	if (\Helper::options()->JoeDeBug != 'on') return;
 	\think\facade\Db::setLog(function ($type, $log) {
 		DbLog::$logs[] = $log;
 	});

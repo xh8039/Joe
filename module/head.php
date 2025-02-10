@@ -62,12 +62,12 @@ if ($this->options->JLoading != 'off') : ?>
 	<script src="<?= joe\theme_url('assets/plugin/yihang/MusicPlayer.js', false); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 
-<?php if ($this->options->NProgressJS == 'on' || $this->options->Turbolinks == 'on') : ?>
+<?php if ($this->options->NProgressJS == 'on' || $this->options->JTurbolinks == 'on') : ?>
 	<link rel="stylesheet" href="<?= joe\cdn('nprogress/0.2.0/nprogress.min.css') ?>">
 	<script src="<?= joe\cdn('nprogress/0.2.0/nprogress.min.js') ?>" data-turbolinks-permanent></script>
 <?php endif; ?>
 
-<?php if ($this->options->Turbolinks == 'on') : ?>
+<?php if ($this->options->JTurbolinks == 'on') : ?>
 	<script src="<?= joe\cdn('pjax/0.2.8/pjax.min.js') ?>" data-turbolinks-permanent></script>
 	<script src="<?= joe\theme_url('assets/plugin/yihang/TurboLinks.js') ?>" data-turbolinks-permanent></script>
 <?php endif; ?>

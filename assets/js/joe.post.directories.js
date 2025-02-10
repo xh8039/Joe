@@ -170,7 +170,7 @@ function section_navs(selector) {
 
 }
 
-document.addEventListener(Joe.options.Turbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded', () => {
+document.addEventListener(Joe.DOMContentLoaded.event, () => {
 	console.log('加载文章目录');
 	$('.posts-nav-switcher>.zib-widget').remove();
 	section_navs('[data-nav]');

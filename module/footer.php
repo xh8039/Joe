@@ -317,6 +317,6 @@ if (!empty($footer_tabbar)) {
 	});
 </script>
 
-<?php $this->need('module/trace.php') ?>
+<?php Helper::options()->JoeDeBug == 'on' ? $this->need('module/trace.php') : null ?>
 
 <?php $this->footer(); ?>

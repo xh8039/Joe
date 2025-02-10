@@ -665,7 +665,7 @@ class Api
 
 		$cid = trim($self->request->cid);
 
-		$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
+		$item = $self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid);
 		$item->next();
 		$price = $item->fields->price ? $item->fields->price : 0;
 
@@ -781,7 +781,7 @@ class Api
 
 		if (!empty(self::$options->JYiPayMapiUrl)) $epay_config['mapi_url'] = trim(self::$options->JYiPayMapiUrl);
 
-		$self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
+		$item = $self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid);
 		$item->next();
 		$price = $item->fields->price ? $item->fields->price : 0;
 		if (!is_numeric($price) || round($price, 2) <= 0) return (['code' => 503, 'message' => '金额设置错误！']);

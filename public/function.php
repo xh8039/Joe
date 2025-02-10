@@ -844,7 +844,7 @@ function install_sql()
 
 function install()
 {
-	if (PHP_VERSION < 7.4) throw new \Typecho\Exception('请使用 PHP 7.4 及以上版本！');
+	if (PHP_VERSION < 8) throw new \Typecho\Exception('请使用 PHP 8 及以上版本！');
 
 	if (\Typecho\Common::VERSION < 1.2) throw new \Typecho\Exception('请使用 Typecho 1.2.0 及以上版本！');
 

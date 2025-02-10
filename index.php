@@ -1,7 +1,7 @@
 <?php
 
 /**
- * <b>开源不代表可以肆意的修改版权链接，尊重开源精神，谢谢🌹</b><br>环境要求：<br>PHP 7.4+<br>Typecho 1.2+<br>如果主题启用失败可 <a href="https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes" target="_blank">联系易航</a> 解决<br><font color="green">主题官方通知群：<a target="_blank" href="https://qm.qq.com/q/CtGxRbvHdm">782778569</a></font>
+ * <b>开源不代表可以肆意的修改版权链接，尊重开源精神，谢谢🌹</b><br>环境要求：<br>PHP 8+<br>Typecho 1.2+<br>如果主题启用失败可 <a href="https://wpa.qq.com/msgrd?v=3&uin=2136118039&site=qq&menu=yes" target="_blank">联系易航</a> 解决<br><font color="green">主题官方通知群：<a target="_blank" href="https://qm.qq.com/q/CtGxRbvHdm">782778569</a></font>
  * 
  * @package Joe再续前缘
  * @author 易航

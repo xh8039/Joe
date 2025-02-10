@@ -47,6 +47,13 @@ if (!function_exists('str_starts_replace')) {
 	}
 }
 
+if (!function_exists('array_is_list')) {
+	function array_is_list(array $array): bool
+	{
+		return array_keys($array) === range(0, count($array) - 1);
+	}
+}
+
 class Widget_Contents_Hot extends Widget_Abstract_Contents
 {
 	public function execute()

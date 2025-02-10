@@ -257,12 +257,9 @@ Joe.DOMContentLoaded.census ||= () => {
 		const latelyDom = document.querySelector('#lately');
 		const latelyChart = echarts.init(latelyDom);
 		$.ajax({
-			url: Joe.BASE_API,
+			url: Joe.BASE_API + '/comment-lately',
 			type: 'POST',
 			dataType: 'json',
-			data: {
-				routeType: 'comment_lately'
-			},
 			success(res) {
 				latelyChart.setOption({
 					title: {
@@ -320,11 +317,10 @@ Joe.DOMContentLoaded.census ||= () => {
 		function initFiling() {
 			if ($('.joe_census__filing .button').html() === 'loading...') return;
 			$.ajax({
-				url: Joe.BASE_API,
+				url: Joe.BASE_API + '/article-filing',
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					routeType: 'article_filing',
 					page: ++page
 				},
 				success(res) {

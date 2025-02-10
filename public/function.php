@@ -694,6 +694,13 @@ function strstrs(string $haystack, array $needles): bool
 	return false;
 }
 
+function permalink(array $content)
+{
+	$routeExists = (null != \Typecho\Router::get($content['type']));
+	$content['pathinfo'] = $routeExists ? \Typecho\Router::url($content['type'], $content) : '#';
+	return \Typecho\Common::url($content['pathinfo'], \Helper::options()->index);
+}
+
 /**
  * 显示上一篇
  *
@@ -707,9 +714,7 @@ function thePrev($widget, $default = NULL)
 		->find();
 	if ($content) {
 		// $content = $widget->filter($content);
-		$routeExists = (null != \Typecho\Router::get($content['type']));
-		$content['pathinfo'] = $routeExists ? \Typecho\Router::url($content['type'], $content) : '#';
-		$content['url'] = $content['permalink'] = \Typecho\Common::url($content['pathinfo'], \Helper::options()->index);
+		$content['permalink'] = permalink($content);
 		return $content;
 	} else {
 		return $default;
@@ -723,20 +728,29 @@ function thePrev($widget, $default = NULL)
  */
 function theNext($widget, $default = NULL)
 {
-	$db = \Typecho\Db::get();
-	$content = $db->fetchRow($widget->select()->where(
-		'table.contents.created > ? AND table.contents.created < ?',
-		$widget->created,
-		\Helper::options()->time
-	)
-		->where('table.contents.status = ?', 'publish')
-		->where('table.contents.type = ?', $widget->type)
-		->where("table.contents.password IS NULL OR table.contents.password = ''")
-		->order('table.contents.created', \Typecho\Db::SORT_ASC)
-		->limit(1));
+	// $db = \Typecho\Db::get();
+	// $content = $db->fetchRow($widget->select()->where(
+	// 	'table.contents.created > ? AND table.contents.created < ?',
+	// 	$widget->created,
+	// 	\Helper::options()->time
+	// )
+	// 	->where('table.contents.status = ?', 'publish')
+	// 	->where('table.contents.type = ?', $widget->type)
+	// 	->where("table.contents.password IS NULL OR table.contents.password = ''")
+	// 	->order('table.contents.created', \Typecho\Db::SORT_ASC)
+	// 	->limit(1));
+
+	$content = Db::name('contents')
+		->where(
+			['created', '>', $widget->created],
+			['created', '<', \Helper::options()->time],
+		)
+		->where(['status' => 'publish', 'type' => $widget->type])
+		->order('created', 'asc')
+		->find();
 
 	if ($content) {
-		$content = $widget->filter($content);
+		$content['permalink'] = permalink($content);
 		return $content;
 	} else {
 		return $default;

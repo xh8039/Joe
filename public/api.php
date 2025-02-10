@@ -526,7 +526,7 @@ class Api
 		// }
 
 		$select = Db::name('contents')
-			->fieldRaw(["FROM_UNIXTIME(`created`, '%Y 年 %m 月')" => 'date'])
+			->fieldRaw("FROM_UNIXTIME(created, '%Y 年 %m 月') as date")
 			// ->where('created', '<', $time)
 			->where('status', 'publish')
 			->where('type', 'post')

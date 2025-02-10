@@ -139,7 +139,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 		$result = Db::name('contents')
 			->where('created', '<', $time)
-			->whereRaw("FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}'")
+			->whereRaw("FROM_UNIXTIME(`created`, '%m/%d') = '{$todayDate}'")
 			->where(['type' => 'post', 'status' => 'publish'])
 			->limit(10)
 			->select();

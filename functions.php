@@ -69,55 +69,55 @@ function themeConfig($form)
 	<?php
 
 	// 全局设置
-	require_once JOE_ROOT . 'options/global.php';
+	require_once JOE_ROOT . 'module/options/global.php';
 
 	// 安全设置
-	require_once JOE_ROOT . 'options/safe.php';
+	require_once JOE_ROOT . 'module/options/safe.php';
 
 	// 图片设置
-	require_once JOE_ROOT . 'options/image.php';
+	require_once JOE_ROOT . 'module/options/image.php';
 
 	// 文章设置
-	require_once JOE_ROOT . 'options/post.php';
+	require_once JOE_ROOT . 'module/options/post.php';
 
 	// 侧栏设置
-	require_once JOE_ROOT . 'options/aside.php';
+	require_once JOE_ROOT . 'module/options/aside.php';
 
 	// 首页设置
-	require_once JOE_ROOT . 'options/index.php';
+	require_once JOE_ROOT . 'module/options/index.php';
 
 	// 特效设置
-	require_once JOE_ROOT . 'options/decoration.php';
+	require_once JOE_ROOT . 'module/options/decoration.php';
 
 	// 登录设置
-	require_once JOE_ROOT . 'options/user.php';
+	require_once JOE_ROOT . 'module/options/user.php';
 
 	// 音乐设置
-	require_once JOE_ROOT . 'options/music.php';
+	require_once JOE_ROOT . 'module/options/music.php';
 
 	// 友链设置
-	require_once JOE_ROOT . 'options/friend.php';
+	require_once JOE_ROOT . 'module/options/friend.php';
 
 	// 评论设置
-	require_once JOE_ROOT . 'options/comment.php';
+	require_once JOE_ROOT . 'module/options/comment.php';
 
 	// 统计设置
-	require_once JOE_ROOT . 'options/statistic.php';
+	require_once JOE_ROOT . 'module/options/statistic.php';
 
 	// 消息推送
-	require_once JOE_ROOT . 'options/message.php';
+	require_once JOE_ROOT . 'module/options/message.php';
 
 	// 底栏设置
-	require_once JOE_ROOT . 'options/footer.php';
+	require_once JOE_ROOT . 'module/options/footer.php';
 
 	// 付费设置
-	require_once JOE_ROOT . 'options/pay.php';
+	require_once JOE_ROOT . 'module/options/pay.php';
 
 	// 自定义代码
-	require_once JOE_ROOT . 'options/code.php';
+	require_once JOE_ROOT . 'module/options/code.php';
 
 	// 其他设置
-	require_once JOE_ROOT . 'options/other.php';
+	require_once JOE_ROOT . 'module/options/other.php';
 }
 
 if (!empty(Helper::options()->JCustomFunctionsCode)) {

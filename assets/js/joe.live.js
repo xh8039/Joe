@@ -43,11 +43,10 @@ Joe.DOMContentLoaded.live ||= () => {
 			queryData.isLoading = true;
 			$('.joe_live__list').html('');
 			$.ajax({
-				url: Joe.BASE_API,
+				url: Joe.BASE_API + '/huya-list',
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					routeType: 'huya_list',
 					page: queryData.page,
 					gameId: queryData.gameId
 				},

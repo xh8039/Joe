@@ -78,7 +78,7 @@ Joe.DOMContentLoaded.short ||= () => {
 		render() {
 			if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
 			this.style.display = 'block';
-			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=song&id=${this.options.id}`).then(async response => {
+			fetch(`${Joe.BASE_API}/meting?server=netease&type=song&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				const aplayer = new MusicPlayer({
 					container: this,
@@ -114,7 +114,7 @@ Joe.DOMContentLoaded.short ||= () => {
 		render() {
 			if (!this.options.id) return (this.innerHTML = '网易云歌单ID未填写！');
 			this.style.display = 'block';
-			fetch(`${Joe.BASE_API}?routeType=meting&server=netease&type=playlist&id=${this.options.id}`).then(async response => {
+			fetch(`${Joe.BASE_API}/meting?server=netease&type=playlist&id=${this.options.id}`).then(async response => {
 				const audio = await response.json();
 				const aplayer = new MusicPlayer({
 					container: this,
@@ -223,7 +223,7 @@ Joe.DOMContentLoaded.short ||= () => {
 		render() {
 			this.className = `joe_hide joe_hide_${this.style.display}`;
 			if (Joe.CONTENT?.fields?.hide == 'pay' && Joe.CONTENT?.fields?.price > 0) {
-				this.innerHTML = `此处内容作者设置了 <i mobile-bottom="true" data-height="300" data-remote="${Joe.BASE_API}?routeType=pay_cashier_modal&cid=${Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${Joe.CONTENT.fields.price} 元</i> 可见`;
+				this.innerHTML = `此处内容作者设置了 <i mobile-bottom="true" data-height="300" data-remote="${Joe.BASE_API}/pay-cashier-modal?cid=${Joe.CONTENT.cid}" data-toggle="RefreshModal" class="joe_hide__button">付费 ${Joe.CONTENT.fields.price} 元</i> 可见`;
 			} else if (Joe.CONTENT?.fields?.hide == 'login') {
 				this.innerHTML = `此处内容作者设置了 <a href="${document.querySelector('.header-login').href}" class="joe_hide__button">登录</a> 可见`;
 			} else {

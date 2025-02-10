@@ -4,10 +4,9 @@ Joe.DOMContentLoaded.wallpaper ||= () => {
 	let queryData = { cid: -999, start: -999, count: 48 };
 	let total = -999;
 	$.ajax({
-		url: Joe.BASE_API,
+		url: Joe.BASE_API + '/wallpaper-type',
 		type: 'POST',
 		dataType: 'json',
-		data: { routeType: 'wallpaper_type' },
 		success(res) {
 			if (res.code !== 1) return $('.joe_wallpaper__type-list').html('<li class="error">壁纸抓取失败！请联系作者！</li>');
 			if (!res.data.length) return $('.joe_wallpaper__type-list').html(`<li class="error">暂无数据！</li>`);
@@ -30,11 +29,10 @@ Joe.DOMContentLoaded.wallpaper ||= () => {
 		$('.joe_wallpaper__list').html('');
 		isLoading = true;
 		$.ajax({
-			url: Joe.BASE_API,
+			url: Joe.BASE_API + 'wallpaper-list',
 			type: 'POST',
 			dataType: 'json',
 			data: {
-				routeType: 'wallpaper_list',
 				cid: queryData.cid,
 				start: queryData.start,
 				count: queryData.count

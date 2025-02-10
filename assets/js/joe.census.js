@@ -24,12 +24,9 @@ Joe.DOMContentLoaded.census ||= () => {
 		if (flowDom && workDom) initChart();
 		function initChart() {
 			$.ajax({
-				url: Joe.BASE_API,
+				url: Joe.BASE_API + '/server-status',
 				type: 'POST',
 				dataType: 'json',
-				data: {
-					routeType: 'server_status'
-				},
 				success(res) {
 					if (!res.status) {
 						autolog.log('服务器接口异常！', 'warn');

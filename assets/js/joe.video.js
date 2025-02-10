@@ -14,10 +14,9 @@ Joe.DOMContentLoaded.video ||= () => {
 		let pagecount = '';
 		let isLoading = false;
 		$.ajax({
-			url: Joe.BASE_API,
+			url: Joe.BASE_API + '/maccms-list',
 			type: 'POST',
 			dataType: 'json',
-			data: { routeType: 'maccms_list' },
 			success(res) {
 				if (res.code !== 1) return $('.joe_video__type-list').html(`<li class="error">${res.data}</li>`);
 				if (!res.data.class.length) return $('.joe_video__type-list').html(`<li class="error">暂无数据！</li>`);
@@ -42,10 +41,10 @@ Joe.DOMContentLoaded.video ||= () => {
 			$('.joe_video__list-item').css('display', '').html('');
 			isLoading = true;
 			$.ajax({
-				url: Joe.BASE_API,
+				url: Joe.BASE_API + '/maccms-list',
 				type: 'POST',
 				dataType: 'json',
-				data: { routeType: 'maccms_list', ac: 'videolist', t: queryData.t, pg: queryData.pg, wd: queryData.wd },
+				data: { ac: 'videolist', t: queryData.t, pg: queryData.pg, wd: queryData.wd },
 				success(res) {
 					if (res.code !== 1) return $('.joe_video__list-item').css('display', 'block').html('<p class="error">数据加载失败！请检查！</p>');
 					if (!res.data.list.length) {
@@ -116,11 +115,10 @@ Joe.DOMContentLoaded.video ||= () => {
 	function initVideoDetail() {
 		const player = $('.joe_video__player-play').attr('data-player');
 		$.ajax({
-			url: Joe.BASE_API,
+			url: Joe.BASE_API + '/maccms-list',
 			type: 'POST',
 			dataType: 'json',
 			data: {
-				routeType: 'maccms_list',
 				ac: 'detail',
 				ids: vod_id
 			},

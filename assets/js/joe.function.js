@@ -387,11 +387,10 @@ window.Joe.anchor_scroll = () => {
 window.Joe.submit_baidu = (msg = '推送中...') => {
 	$('#Joe_Baidu_Record').html(`<span style="color: #E6A23C">${msg}</span>`);
 	$.ajax({
-		url: Joe.BASE_API,
+		url: Joe.BASE_API + '/baidu-push',
 		type: 'POST',
 		dataType: 'json',
 		data: {
-			routeType: 'baidu_push',
 			domain: window.location.protocol + '//' + window.location.hostname,
 			url: encodeURI(window.location.href),
 			cid: window.Joe.CONTENT.cid
@@ -416,11 +415,10 @@ window.Joe.submit_baidu = (msg = '推送中...') => {
 	// 	顺便推送URL到必应
 	if (!Joe.options.BingPush) return;
 	$.ajax({
-		url: Joe.BASE_API,
+		url: Joe.BASE_API + '/bing-push',
 		type: 'POST',
 		dataType: 'json',
 		data: {
-			routeType: 'bing_push',
 			domain: window.location.protocol + '//' + window.location.hostname,
 			url: encodeURI(window.location.href)
 		}

@@ -229,9 +229,8 @@
 		if (order_result.trade_no) {
 			$.ajax({
 				type: 'POST',
-				url: pay_ajax_url,
+				url: pay_ajax_url + '/check-pay',
 				data: {
-					routeType: 'check_pay',
 					trade_no: order_result.trade_no,
 					check_sdk: order_result.check_sdk,
 				},

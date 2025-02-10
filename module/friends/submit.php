@@ -6,7 +6,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 ?>
 <form class="friend_submit">
 	<h2>在线提交</h2>
-	<input type="hidden" name="routeType" value="friend_submit">
 	<div class="input">
 		<label class="input-label">网站标题</label>
 		<input type="text" placeholder="请输入您的网站标题" name="title">
@@ -49,7 +48,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	$(".friend_submit").submit(function(event) {
 		event.preventDefault();
 		$.ajax({
-			url: Joe.BASE_API,
+			url: Joe.BASE_API + '/friend-submit',
 			type: 'POST',
 			data: $(this).serialize(),
 			dataType: 'json',

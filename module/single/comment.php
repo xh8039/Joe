@@ -222,7 +222,7 @@ function threadedComments($comments, $options)
 				} else {
 				?>
 					<div class="content" data-id="<?= $comments->theId ?>" data-coid="<?= $comments->coid ?>">
-						<div class="substance">
+						<div class="substance" tabindex="0">
 							<?= $comments->status == "waiting" ? '<em class="waiting">（评论审核中...）</em>' : null ?>
 							<?php joe\getParentReply($comments->parent) ?><?= _parseCommentReply($comments->content); ?>
 						</div>

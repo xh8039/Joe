@@ -114,7 +114,6 @@ if ($this->options->JFooterMode == 'commercial') {
 			}
 			?>
 		</div>
-
 	</footer>
 	<?php
 	if ($this->options->JFooter_Fish == 'on') {

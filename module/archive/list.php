@@ -4,7 +4,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 if ($this->is('index')) $index_hide_categorize_list = joe\optionMulti(Helper::options()->JIndex_Hide_Categorize, '||', false);
-while ($this->next()) :
+while ($article = $this->next()) :
 	if ($this->is('index')) {
 		$categorize_slug_list = [];
 		foreach ($this->categories as $key => $value) {
@@ -50,12 +50,12 @@ while ($this->next()) :
 							<item class="meta-view">
 								<svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-view"></use>
-								</svg><?= joe\getViews($this) ?>
+								</svg><?= isset($article['views']) ? number_format($article['views']) : joe\getViews($this) ?>
 							</item>
 							<item class="meta-like">
 								<svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-like"></use>
-								</svg><?= joe\getAgree($this) ?>
+								</svg><?= isset($article['agree']) ? number_format($article['agree']) : joe\getAgree($this) ?>
 							</item>
 						</div>
 					</div>
@@ -92,12 +92,12 @@ while ($this->next()) :
 							<item class="meta-view">
 								<svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-view"></use>
-								</svg><?= joe\getViews($this) ?>
+								</svg><?= isset($article['views']) ? number_format($article['views']) : joe\getViews($this) ?>
 							</item>
 							<item class="meta-like">
 								<svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-like"></use>
-								</svg><?= joe\getAgree($this) ?>
+								</svg><?= isset($article['agree']) ? number_format($article['agree']) : joe\getAgree($this) ?>
 							</item>
 						</div>
 					</div>
@@ -153,12 +153,12 @@ while ($this->next()) :
 						<item class="meta-view">
 							<svg class="icon svg" aria-hidden="true">
 								<use xlink:href="#icon-view"></use>
-							</svg><?= joe\getViews($this) ?>
+							</svg><?= isset($article['views']) ? number_format($article['views']) : joe\getViews($this) ?>
 						</item>
 						<item class="meta-like">
 							<svg class="icon svg" aria-hidden="true">
 								<use xlink:href="#icon-like"></use>
-							</svg><?= joe\getAgree($this) ?>
+							</svg><?= isset($article['agree']) ? number_format($article['agree']) : joe\getAgree($this) ?>
 						</item>
 					</div>
 				</div>
@@ -196,12 +196,12 @@ while ($this->next()) :
 							<item class="meta-view">
 								<svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-view"></use>
-								</svg><?= joe\getViews($this) ?>
+								</svg><?= isset($article['views']) ? number_format($article['views']) : joe\getViews($this) ?>
 							</item>
 							<item class="meta-like">
 								<svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-like"></use>
-								</svg><?= joe\getAgree($this) ?>
+								</svg><?= isset($article['agree']) ? number_format($article['agree']) : joe\getAgree($this) ?>
 							</item>
 						</div>
 					</div>

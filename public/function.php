@@ -877,6 +877,22 @@ function install()
 		return;
 	}
 
+	if (\Typecho\Common::VERSION <= '1.2.1') {
+		/* 修复typecho用户登陆后审核状态的评论不显示的BUG */
+		$typecho_comments_archive_file = __TYPECHO_ROOT_DIR__ . '/var/Widget/Comments/Archive.php';
+		if (!is_writable($typecho_comments_archive_file)) throw new \Typecho\Exception('请先给予主题目录读写权限！');
+		$typecho_comments_archive_content = file_get_contents($typecho_comments_archive_file);
+		$typecho_comments_archive_content = str_replace(['$commentsAuthor = Cookie::get(\'__typecho_remember_author\');', '$commentsMail = Cookie::get(\'__typecho_remember_mail\');'], ['$commentsAuthor = $this->user->hasLogin() ? $this->user->screenName : Cookie::get(\'__typecho_remember_author\');', '$commentsMail = $this->user->hasLogin() ? $this->user->mail : Cookie::get(\'__typecho_remember_mail\');'], $typecho_comments_archive_content);
+		file_put_contents($typecho_comments_archive_file, $typecho_comments_archive_content);
+
+		/** 替换typecho的人才查询 */
+		$typecho_widget_base_contents_file = __TYPECHO_ROOT_DIR__ . '/var/Widget/Base/Contents.php';
+		if (!is_writable($typecho_widget_base_contents_file)) throw new \Typecho\Exception('请先给予主题目录读写权限！');
+		$typecho_widget_base_contents_file_content = file_get_contents($typecho_widget_base_contents_file);
+		$typecho_widget_base_contents_file_content = preg_replace('/return \$this\-\>db\-\>select\(.*?\)\-\>from\(\'table\.contents\'\);/is', 'return $this->db->select()->from(\'table.contents\');', $typecho_widget_base_contents_file_content);
+		file_put_contents($typecho_widget_base_contents_file, $typecho_widget_base_contents_file_content);
+	}
+
 	// 删除某些特殊情况下的重复注册沉淀
 	\Helper::removePanel(3, $orders_url);
 	\Helper::removePanel(3, $friends_url);
@@ -924,14 +940,6 @@ function install()
 	$typecho_admin_root = __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__;
 	if (file_exists($typecho_admin_root . 'themes.php')) {
 		file_put_contents($typecho_admin_root . 'themes.php', '<?php echo base64_decode("PHNjcmlwdD4KCSQoZG9jdW1lbnQpLnJlYWR5KHNldFRpbWVvdXQoKCkgPT4gewoJCSQoJ3Rib2R5PnRyPnRkPnA+YS5hY3RpdmF0ZScpLmF0dHIoJ2hyZWYnLCAnamF2YXNjcmlwdDphbGVydCgi5ZCv55So5aSx6LSl77yB6K+35qOA5p+lVHlwZWNob+aPkuS7tuWGsueqgSIpJyk7Cgl9LCAxMDApKTsKPC9zY3JpcHQ+"); ?>', FILE_APPEND | LOCK_EX);
-	}
-
-	/* 修复typecho用户登陆后审核状态的评论不显示的BUG */
-	$typecho_comments_archive_file = __TYPECHO_ROOT_DIR__ . '/var/Widget/Comments/Archive.php';
-	if (\Typecho\Common::VERSION <= '1.2.1' && is_writable($typecho_comments_archive_file)) {
-		$typecho_comments_archive_content = file_get_contents($typecho_comments_archive_file);
-		$typecho_comments_archive_content = str_replace(['$commentsAuthor = Cookie::get(\'__typecho_remember_author\');', '$commentsMail = Cookie::get(\'__typecho_remember_mail\');'], ['$commentsAuthor = $this->user->hasLogin() ? $this->user->screenName : Cookie::get(\'__typecho_remember_author\');', '$commentsMail = $this->user->hasLogin() ? $this->user->mail : Cookie::get(\'__typecho_remember_mail\');'], $typecho_comments_archive_content);
-		file_put_contents($typecho_comments_archive_file, $typecho_comments_archive_content);
 	}
 
 	echo '<script>alert("主题首次启用安装成功！");</script>';
@@ -1060,7 +1068,7 @@ function custom_navs_title($title)
 /**
  * 输出作者指定字段总数，可以指定
  */
-function author_post_field_sum($id, $field)
+function author_content_field_sum($id, $field)
 {
 	$sum = Db::name('contents')->where(['authorId' => $id, 'type' => 'post'])->sum($field);
 	return $sum;

@@ -1070,7 +1070,7 @@ function custom_navs_title($title)
  */
 function author_content_field_sum($id, $field)
 {
-	$sum = Db::name('contents')->where(['authorId' => $id, 'type' => 'post'])->sum($field);
+	$sum = Db::name('contents')->where(['authorId' => $id, 'type' => 'post'])->cache(true)->sum($field);
 	return $sum;
 }
 

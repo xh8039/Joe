@@ -1264,10 +1264,7 @@ function global_count($name, $start = 0)
 	return $count[$name];
 }
 
-/**
- * @return bool
- */
-function is_session_started()
+function is_session_started(): bool
 {
 	if (php_sapi_name() !== 'cli') {
 		if (version_compare(phpversion(), '5.4.0', '>=')) {

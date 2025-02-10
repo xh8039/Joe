@@ -146,7 +146,6 @@ Joe.DOMContentLoaded.single ||= () => {
 					if (res.code != 1) return;
 					count = flag ? count - 1 : count + 1;
 					if (count < 0) count = 0;
-					console.log(count);
 					if (flag) {
 						$('.action-like>count').html(count);
 						const index = agreeArr.findIndex(_ => _ === Joe.CONTENT.cid);

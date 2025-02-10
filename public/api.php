@@ -533,8 +533,8 @@ class Api
 			->group("FROM_UNIXTIME(created, '%Y 年 %m 月')")
 			// ->orderRaw("date DESC")
 			->order('date', 'desc')
-			->limit($pageSize)
-			->offset($offset)
+			->page($page, 8)
+			// ->offset($offset)
 			->select();
 
 		// $temp = Db::query($sql);

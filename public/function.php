@@ -703,8 +703,7 @@ function thePrev($widget, $default = NULL)
 {
 	// $db = \Typecho\Db::get();
 	$content = Db::name('contents')->where('created', '<', $widget->created)
-		->where('status', 'publish')
-		->where('type', $widget->type)
+		->where(['status' => 'publish', 'type' => $widget->type])
 		->order('created', 'desc')
 		->find();
 	// $content = $db->fetchRow($widget->select()->where('table.contents.created < ?', $widget->created)

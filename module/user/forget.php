@@ -10,7 +10,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
 	<?php $this->setArchiveTitle('重置密码') ?>
 	<?php $this->need('module/head.php') ?>
-	<?php $this->need('user/head.php') ?>
+	<?php $this->need('module/user/head.php') ?>
 	<script src="<?= joe\theme_url('assets/js/joe.user.forget.js'); ?>"></script>
 </head>
 

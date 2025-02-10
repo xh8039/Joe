@@ -134,22 +134,22 @@ function themeInit($self)
 		// 增加自定义登录页面
 		if (str_starts_with($path_info, '/user/login')) {
 			$self->response->setStatus(200);
-			$self->setThemeFile('user/login.php');
+			$self->setThemeFile('module/user/login.php');
 		}
 		// 增加自定义注册页面
 		if (Helper::options()->allowRegister && str_starts_with($path_info, '/user/register')) {
 			$self->response->setStatus(200);
-			$self->setThemeFile('user/register.php');
+			$self->setThemeFile('module/user/register.php');
 		}
 		// 增加用户找回密码页面
 		if (Helper::options()->JUser_Forget == 'on' && str_starts_with($path_info, '/user/forget')) {
 			$self->response->setStatus(200);
-			$self->setThemeFile('user/forget.php');
+			$self->setThemeFile('module/user/forget.php');
 		}
 		// 增加自定义登录注册页面API
 		if (str_starts_with($path_info, '/user/api')) {
 			$self->response->setStatus(200);
-			$self->setThemeFile('user/api.php');
+			$self->setThemeFile('module/user/api.php');
 		}
 	}
 

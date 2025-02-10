@@ -28,6 +28,8 @@
 				'prefix'   => $DB->getPrefix(),
 				// 数据库调试模式
 				'debug'    => true,
+				// SQL监听（日志）
+				'trigger_sql' => true,
 			],
 		],
 	]);

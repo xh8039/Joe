@@ -22,9 +22,6 @@
 				<ol style="padding: 0; margin:0">
 					<?php
 					// 获取所有已加载的文件列表
-
-use think\facade\Db;
-
 					$loaded_files = get_included_files();
 					foreach ($loaded_files as $key => $value) {
 						// 获取文件大小，单位为字节
@@ -35,7 +32,7 @@ use think\facade\Db;
 						$size = round($file_size_kb, 2);
 						$loaded_files[$key] .= " ( $size KB )";
 					}
-					$DbLog = Db::getDbLog();
+					$DbLog = think\facade\Db::getDbLog();
 					// 获取当前时间
 					$timestamp = date('Y-m-d H:i:s');
 					// 获取 HTTP 请求方法

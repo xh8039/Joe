@@ -131,7 +131,7 @@ class Api
 			'密码' => $self->request->password,
 		], $self->request->email, 0);
 
-		$message = '注册成功，' . ($login ? '以为您自动登录' : '请前往登录');
+		$message = '注册成功，' . ($login ? '已自动为您登录' : '请前往登录');
 
 		return (['code' => 200, 'message' => $message, 'location' => $login ? true : false]);
 	}

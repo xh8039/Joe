@@ -31,7 +31,7 @@ Joe.DOMContentLoaded.userLogin ||= () => {
 			},
 			success: function (res) {
 				if (res.code == 200) {
-					autolog.log("登录成功", 'success');
+					autolog.log('登录成功', 'success');
 					setTimeout(function () {
 						window.location.href = window.Joe.referer;
 					}, 1000);

@@ -15,12 +15,12 @@ switch ($action) {
 	case 'login':
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		if (!isset($username)) $this->response->throwJson(['message' => '请输入账号/邮箱']);
-		if (!isset($password)) $this->response->throwJson(['message' => '请输入密码']);
+		if (empty($username)) $this->response->throwJson(['message' => '请输入账号/邮箱']);
+		if (empty($password)) $this->response->throwJson(['message' => '请输入密码']);
 		// $login = $user_widget->login($username, $password);
 		$login = $this->user->login($username, $password);
 		if ($login) {
-			$this->response->throwJson(['code' => 200, 'message' => '登录成功']);
+			$this->response->throwJson(['code' => 200]);
 		} else {
 			$this->response->throwJson(['message' => '账号或密码错误']);
 		}

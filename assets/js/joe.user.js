@@ -41,7 +41,7 @@ Joe.DOMContentLoaded.user ||= () => {
 			ajax({
 				url: $(this).attr('action'),
 				data: $(this).serialize(),
-				operate: this.operate,
+				operate: $(this).attr('operate'),
 				button: '#user-form button[type=submit]'
 			});
 		});

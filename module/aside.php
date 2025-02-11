@@ -120,23 +120,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<?php
 		$time = time();
 		$todayDate = date('m/d', $time);
-		// $prefix = $db->getPrefix();
-		// $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} and FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}' and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";
-		// $result = $db->query($sql);
-		// $historyTodaylist = [];
-		// if ($result instanceof Traversable) {
-		// 	$year = date('Y');
-		// 	foreach ($result as $item) {
-		// 		$item = Typecho\Widget::widget('Widget_Abstract_Contents')->push($item);
-		// 		if ($item['year'] == $year) continue;
-		// 		$historyTodaylist[] = array(
-		// 			"title" => htmlspecialchars($item['title']),
-		// 			"permalink" => joe\root_relative_link($item['permalink']),
-		// 			"date" => $item['year'] . ' ' . $item['month'] . '/' . $item['day']
-		// 		);
-		// 	}
-		// }
-
 		$result = Db::name('contents')
 			->where('created', '<', $time)
 			->whereRaw("FROM_UNIXTIME(`created`, '%m/%d') = '{$todayDate}'")
@@ -246,8 +229,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				if ($tags->have()) {
 					$color_list = array('c-blue', 'c-yellow', 'c-green', 'c-purple', 'c-red', 'c-blue-2', 'c-yellow-2', 'c-green-2', 'c-purple-2', 'c-red-2');
 					while ($tags->next()) {
-						$color_index = array_rand($color_list);
-						$color_class = $color_list[$color_index];
+						$color_class = $color_list[array_rand($color_list)];
 						$permalink = joe\root_relative_link($tags->permalink);
 						echo "<a href=\"{$permalink}\" class=\"text-ellipsis but {$color_class}\">{$tags->name}</a>";
 					}

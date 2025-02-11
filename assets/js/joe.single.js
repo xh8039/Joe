@@ -82,7 +82,14 @@ Joe.DOMContentLoaded.single ||= () => {
 	{
 		if ($.fancybox) $.fancybox.defaults.hash = false;
 		$('.joe_detail__article img:not(img.owo_image)[fancybox!="false"]').each(function () {
-			$(this).wrap($(`<span style="display: block;" data-fancybox="Joe" href="${$(this).attr('src')}"></span>`));
+			const nextSibling = this.nextSibling;
+			if (nextSibling && nextSibling.nodeType === Node.TEXT_NODE && nextSibling.textContent.trim() !== '') {
+				console.log(this, '该标签后面紧贴着文字');
+				this.style.display = 'inline-block';
+			} else {
+				console.log(this, '该标签后面没有紧贴着文字');
+				$(this).wrap($(`<span style="display: block;" data-fancybox="Joe" href="${$(this).attr('src')}"></span>`));
+			}
 		});
 	}
 

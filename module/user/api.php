@@ -160,7 +160,7 @@ switch ($action) {
 		if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱后发送验证码']);
 		if (Db::name('users')->where('mail', $email)->find()) $this->response->throwJson(['message' => '你输入的邮箱已经注册账号']);
 
-		$_SESSION['joe_register_captcha'] = mt_rand(100000, 999999);
+		$_SESSION['joe_register_captcha'] = rand(100000, 999999);
 		$_SESSION['joe_register_email'] = $email;
 		$send_email = joe\send_email('注册验证', '您正在进行注册操作，验证码是：', $_SESSION['joe_register_captcha'], $email, 60);
 		if ($send_email === true) {
@@ -228,7 +228,7 @@ switch ($action) {
 		if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱后发送验证码']);
 		if (!Db::name('users')->where('mail', $email)->find()) $this->response->throwJson(['message' => '你输入的邮箱未注册账号']);
 
-		$_SESSION['joe_retrieve_captcha'] = mt_rand(100000, 999999);
+		$_SESSION['joe_retrieve_captcha'] = rand(100000, 999999);
 		$_SESSION['joe_retrieve_email'] = $email;
 		$send_email = joe\send_email('重置密码', '您正在进行重置密码操作，验证码是：', $_SESSION["joe_retrieve_captcha"], $email, 60);
 		if ($send_email === true) {

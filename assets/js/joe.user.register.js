@@ -66,14 +66,14 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 		let email = $("#email").val();
 		let code = $("#code").val();
 		let password = $("#password").val();
-		let cpassword = $("#cpassword").val();
+		let confirm_password = $("#confirm_password").val();
 		if (!nickname) return autolog.log("请输入昵称", 'warn');
 		if (!username) return autolog.log("请输入用户名", 'warn');
 		if (!email) return autolog.log("请输入邮箱", 'warn');
 		if ($("#code").length > 0 && !code) return autolog.log("请输入验证码", 'warn');
 		if (!password) return autolog.log("请输入密码", 'warn');
-		if (!cpassword) return autolog.log("请输入确认密码", 'warn');
-		if (cpassword != password) return autolog.log("两次密码不一致", 'warn');
+		if (!confirm_password) return autolog.log("请输入确认密码", 'warn');
+		if (confirm_password != password) return autolog.log("两次密码不一致", 'warn');
 		$.ajax({
 			url: Joe.options.index + '/user/api',
 			type: 'post',
@@ -86,7 +86,7 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 				email: email,
 				code: code,
 				password: password,
-				cpassword: cpassword
+				confirm_password: confirm_password
 			},
 			beforeSend: function () {
 				btn($("#register"), '<i class="loading mr6"></i>注册中...', true);

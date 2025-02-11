@@ -7,14 +7,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-// $authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', 1));
 $mail = Db::name('users')->where('uid', 1)->value('mail');
 $email = $mail ? $mail :  \Helper::options()->JCommentMailAccount;
-// if (empty($authoInfo['mail'])) {
-// 	$email = \Helper::options()->JCommentMailAccount;
-// } else {
-// 	$email = $authoInfo['mail'];
-// }
 
 if (joe\email_config()) {
 	$JEmailTestText = '<a href="javascript:document.querySelector(\'.mailtest\').submit();">点击给 ' . $email . ' 发一封测试邮件</a>';

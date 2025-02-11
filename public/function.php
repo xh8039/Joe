@@ -521,7 +521,7 @@ function user_login($uid, $expire = 30243600)
 	\Typecho_Cookie::set('__typecho_uid', $uid, time() + $expire);
 	\Typecho_Cookie::set('__typecho_authCode', \Typecho_Common::hash($authCode), time() + $expire);
 	//更新最后登录时间以及验证码
-	$db->query($db->update('table.users')->expression('logged', 'activated')->rows(array('authCode' => $authCode))->where('uid = ?', $uid));
+	$db->query($db->update('table.users')->expression('logged', 'activated')->rows(['authCode' => $authCode])->where('uid = ?', $uid));
 }
 
 function user_url($action, $from = true)
@@ -1192,11 +1192,9 @@ function markdown_hide($content, $post, $login)
 		// 获取用户邮箱地址，登录用户使用全局变量，未登录用户使用文章记住的邮箱
 		$userEmail = $login ? $GLOBALS['JOE_USER']->mail : $post->remember('mail', true);
 		// 查询评论信息
-		// $comment = $db->fetchRow($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $userEmail)->limit(1));
 		$comment = Db::name('comments')->where(['cid' => $post->cid, 'mail' => $userEmail])->find();
 		if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
 			// 查询支付信息
-			// $payment = $db->fetchRow($db->select()->from('table.orders')->where('user_id = ?', USER_ID)->where('status = ?', '1')->where('content_cid = ?', $post->cid)->limit(1));
 			$payment = Db::name('orders')->where(['user_id' => USER_ID, 'status' => 1, 'content_cid' => $post->cid])->find();
 			$showContent = !empty($payment); // 是否已支付决定是否显示内容
 		} else {

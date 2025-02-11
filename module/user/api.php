@@ -6,8 +6,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-session_start();
 $action = $_POST['action'];
+\Widget\User::alloc()->to($user_widget);
 switch ($action) {
 	case 'code':
 		$this->geetest($_POST['info']);
@@ -23,20 +23,9 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入密码'
 		]);
-		$user = Db::name('users')->where('name|mail', $username)->find();
-		if (empty($user)) $this->response->throwJson([
-			'code' => 0,
-			'msg' => '账户或密码错误'
-		]);
-		if ('$P$' == substr($user['password'], 0, 3)) {
-			$hasher = new PasswordHash(8, true);
-			$hashValidate = $hasher->CheckPassword($password, $user['password']);
-		} else {
-			$hashValidate = Typecho_Common::hashValidate($password, $user['password']);
-		}
-
-		if ($hashValidate) {
-			joe\user_login($user['uid']);
+		// $login = $user_widget->login($username, $password);
+		$login = $this->user->login($username, $password);
+		if ($login) {
 			$this->response->throwJson([
 				'code' => 1,
 				'msg' => '登录成功'
@@ -50,12 +39,94 @@ switch ($action) {
 		break;
 
 	case 'register':
+		/** 如果已经登录 */
+		if ($this->user->hasLogin() || !$this->options->allowRegister) {
+			/** 直接返回 */
+			$this->response->redirect($this->options->index);
+		}
+
+		\Widget\User::alloc()->to($register_widget);
+
+		/** 初始化验证类 */
+		$validator = new Typecho\Validate();
+		$validator->addRule('nickname', 'required', _t('必须填写用户昵称'));
+		$validator->addRule('nickname', 'maxLength', _t('用户名最多包含10个字符'), 10);
+
+		$validator->addRule('username', 'required', _t('必须填写用户名称'));
+		$validator->addRule('username', 'minLength', _t('用户名至少包含2个字符'), 2);
+		$validator->addRule('username', 'maxLength', _t('用户名最多包含32个字符'), 32);
+		$validator->addRule('username', 'xssCheck', _t('请不要在用户名中使用特殊字符'));
+		$validator->addRule('username', [$register_widget, 'nameExists'], _t('用户名已经存在'));
+
+		$validator->addRule('email', 'required', _t('必须填写电子邮箱'));
+		$validator->addRule('email', [$register_widget, 'mailExists'], _t('电子邮箱地址已经存在'));
+		$validator->addRule('email', 'email', _t('电子邮箱格式错误'));
+		$validator->addRule('email', 'maxLength', _t('电子邮箱最多包含64个字符'), 64);
+
+		/** 如果请求中有password */
+		if (array_key_exists('password', $_REQUEST)) {
+			$validator->addRule('password', 'required', _t('必须填写密码'));
+			$validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
+			$validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
+			$validator->addRule('confirm_password', 'confirm_password', _t('两次输入的密码不一致'), 'password');
+		}
+
+		/** 截获验证异常 */
+		if ($error = $validator->run($this->request->from('username', 'password', 'email', 'confirm_password'))) {
+			Typecho\Cookie::set('__typecho_remember_name', $this->request->name);
+			Typecho\Cookie::set('__typecho_remember_mail', $this->request->mail);
+			$this->response->throwJson(['code' => 0, 'msg' => $error]);
+		}
+
+		if (Db::name('users')->where('screenName', $nickname)->find()) $this->response->throwJson([
+			'code' => 0,
+			'msg' => '昵称已被其它小伙伴使用'
+		]);
+
+		if (joe\email_config()) {
+			if ($_SESSION["Gm_Reg_Code"] != $code || $_SESSION["Gm_Reg_Email"] != trim($email)) $this->response->throwJson([
+				'code' => 0,
+				'msg' => '验证码错误或已过期'
+			]);
+		}
+
+		$hasher = new Utils\PasswordHash(8, true);
+		$generatedPassword = Typecho\Common::randString(7);
+		$group = empty($this->options->JUserRegisterGroup) ? 'subscriber' : $this->options->JUserRegisterGroup;
+		$dataStruct = [
+			'name' => $this->request->name,
+			'mail' => $this->request->mail,
+			'screenName' => $this->request->name,
+			'password' => $hasher->hashPassword($generatedPassword),
+			'created' => $this->options->time,
+			'group' => $group
+		];
+		$dataStruct = Widget\Register::pluginHandle()->register($dataStruct);
+
+		$insertId = $register_widget->insert($dataStruct);
+		$this->db->fetchRow($this->select()->where('uid = ?', $insertId)->limit(1), [$register_widget, 'push']);
+
+		Widget\Register::pluginHandle()->finishRegister($register_widget);
+
+		$this->user->login($this->request->name, $generatedPassword);
+
+		Typecho\Cookie::delete('__typecho_first_run');
+		Typecho\Cookie::delete('__typecho_remember_name');
+		Typecho\Cookie::delete('__typecho_remember_mail');
+		$_SESSION['Gm_Reg_Code'] = null;
+		$_SESSION['Gm_Reg_Email'] = null;
+
+		$this->response->throwJson([
+			'code' => 1,
+			'msg' => '注册成功'
+		]);
+
 		$nickname = $_POST['nickname'];
 		$username = $_POST['username'];
 		$email = $_POST['email'];
 		$code = isset($_POST['code']) ? $_POST['code'] : null;
 		$password = $_POST['password'];
-		$cpassword = $_POST['cpassword'];
+		$confirm_password = $_POST['confirm_password'];
 		if (!isset($nickname)) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '请输入昵称'
@@ -78,11 +149,11 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入密码'
 		]);
-		if (!isset($cpassword)) $this->response->throwJson([
+		if (!isset($confirm_password)) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '请输入确认密码'
 		]);
-		if ($cpassword != $password) $this->response->throwJson([
+		if ($confirm_password != $password) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '两次密码不一致'
 		]);
@@ -135,7 +206,7 @@ switch ($action) {
 			'mail' => $email,
 			'password' => $hasher->HashPassword($password),
 			'created' => time(),
-			'group' => empty(Helper::options()->JUser_Register_Group) ? 'contributor' : Helper::options()->JUser_Register_Group
+			'group' => empty(Helper::options()->JUserRegisterGroup) ? 'contributor' : Helper::options()->JUserRegisterGroup
 		);
 		$result = Typecho\Widget::widget('Widget_Abstract_Users')->insert($data);
 		if ($result) {
@@ -156,7 +227,7 @@ switch ($action) {
 
 	case 'forget':
 		$password = $_POST['password'];
-		$cpassword = $_POST['cpassword'];
+		$confirm_password = $_POST['confirm_password'];
 		$state = $_POST['state'];
 		if (!isset($state)) $this->response->throwJson([
 			'code' => 0,
@@ -166,11 +237,11 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入密码'
 		]);
-		if (!isset($cpassword)) $this->response->throwJson([
+		if (!isset($confirm_password)) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '请输入确认密码'
 		]);
-		if ($cpassword != $password) $this->response->throwJson([
+		if ($confirm_password != $password) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '两次密码不一致'
 		]);
@@ -225,7 +296,7 @@ switch ($action) {
 			'code' => 0,
 			'msg' => '请输入邮箱'
 		]);
-		if (!Db::name('users')->where('mail = ?', $email)->find()) $this->response->throwJson([
+		if (!Db::name('users')->where('mail', $email)->find()) $this->response->throwJson([
 			'code' => 0,
 			'msg' => '你输入的邮箱未注册账号'
 		]);

@@ -42,7 +42,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</div>
 					<div class="form-group mb-3" id="new2" style="display:none">
 						<label>确认密码</label>
-						<input class="form-control" type="password" id="cpassword" placeholder="确认密码">
+						<input class="form-control" type="password" id="confirm_password" placeholder="确认密码">
 					</div>
 					<button class="btn btn-light" id="check" type="submit">验 证</button>
 					<button class="btn btn-light" id="forget" type="submit" style="display:none">设置密码</button>

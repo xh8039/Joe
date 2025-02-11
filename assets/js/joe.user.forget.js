@@ -100,10 +100,10 @@ Joe.DOMContentLoaded.userForget ||= () => {
 	});
 	$("#forget").click(function () {
 		let password = $("#password").val();
-		let cpassword = $("#cpassword").val();
+		let confirm_password = $("#confirm_password").val();
 		if (!password) return autolog.log("请输入密码", 'warn');
-		if (!cpassword) return autolog.log("请输入确认密码", 'warn');
-		if (password != cpassword) return autolog.log("两次密码不一致", 'warn');
+		if (!confirm_password) return autolog.log("请输入确认密码", 'warn');
+		if (password != confirm_password) return autolog.log("两次密码不一致", 'warn');
 		$.ajax({
 			url: Joe.options.index + '/user/api',
 			type: 'post',
@@ -113,7 +113,7 @@ Joe.DOMContentLoaded.userForget ||= () => {
 				action: 'forget',
 				state: state,
 				password: password,
-				cpassword: cpassword
+				confirm_password: confirm_password
 			},
 			beforeSend: function () {
 				btn($("#forget"), '<i class="loading mr6"></i>设置中...', true);

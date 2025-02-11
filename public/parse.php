@@ -132,7 +132,6 @@ function _parseAsideLink($link)
 
 function _payPurchased($post, $pay)
 {
-	// $count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
 	$count = Db::name('orders')->where(['content_cid' => $post->cid, 'status' => 1])->count();
 	return '
 	<div class="zib-widget pay-box paid-box" id="posts-pay">
@@ -228,7 +227,6 @@ function _payFreeResources($post, $comment = false)
 
 function _payBox($post)
 {
-	// $count = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.orders')->where('status = ?', '1')->where('content_cid = ?', $post->cid))['count'];
 	$count = Db::name('orders')->where(['content_cid' => $post->cid, 'status' => 1])->count();
 	return '
 	<div class="zib-widget pay-box" id="posts-pay">

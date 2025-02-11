@@ -16,8 +16,8 @@ $JUser_Switch = new \Typecho\Widget\Helper\Form\Element\Select(
 $JUser_Switch->setAttribute('class', 'joe_content joe_user');
 $form->addInput($JUser_Switch->multiMode());
 
-$JUser_Register_Group = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JUser_Register_Group',
+$JUserRegisterGroup = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JUserRegisterGroup',
 	array('subscriber' => '关注者', 'contributor' => '贡献者（默认）', 'editor' => '编辑', 'administrator' => '管理员'),
 	'contributor',
 	'用户注册默认等级',
@@ -28,8 +28,8 @@ $JUser_Register_Group = new \Typecho\Widget\Helper\Form\Element\Select(
 	管理员：和你的权限一样
 	'
 );
-$JUser_Register_Group->setAttribute('class', 'joe_content joe_user');
-$form->addInput($JUser_Register_Group->multiMode());
+$JUserRegisterGroup->setAttribute('class', 'joe_content joe_user');
+$form->addInput($JUserRegisterGroup->multiMode());
 
 $JUser_Forget = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JUser_Forget',

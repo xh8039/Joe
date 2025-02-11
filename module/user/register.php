@@ -3,6 +3,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
+$rememberName = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_name') ?? '');
+$rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail') ?? '');
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -32,12 +34,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 					<div class="form-group mb-3">
 						<label>账号（用于登录）</label>
-						<input class="form-control" type="text" id="username" placeholder="输入账号">
+						<input class="form-control" type="text" id="username" placeholder="输入账号" value="<?= $rememberName ?>">
 					</div>
 
 					<div class="form-group mb-3">
 						<label>邮箱（用于找回密码）</label>
-						<input class="form-control" type="text" id="email" placeholder="邮箱">
+						<input class="form-control" type="text" id="email" placeholder="邮箱" value="<?= $rememberMail ?>">
 					</div>
 					<?php
 					if (joe\email_config()) {
@@ -59,7 +61,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 					<div class="form-group mb-3">
 						<label>确认密码</label>
-						<input class="form-control" type="password" id="cpassword" placeholder="输入确认密码">
+						<input class="form-control" type="password" id="confirm_password" placeholder="输入确认密码">
 					</div>
 					<button class="btn btn-light" id="register">注 册</button>
 				</div>

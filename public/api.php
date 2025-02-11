@@ -207,8 +207,8 @@ class Api
 		$_SESSION['joe_user_retrieve_email'] = null;
 
 		// 更新用户密码
-		$users_update = Db::name('users')->where('uid', $user['uid'])->update('password', $password);
-		if (!$users_update) return ['message' => '服务器异常，请稍后再试'];
+		$user_update = Db::name('users')->where('uid', $user['uid'])->update(['password', $password]);
+		if (!$user_update) return ['message' => '服务器异常，请稍后再试'];
 
 		// 自动帮助用户登录
 		$login = self::$user->simpleLogin($user, false);

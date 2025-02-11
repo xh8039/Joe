@@ -29,7 +29,7 @@ if (isset($_POST['type'])) {
 	if ($_POST["type"] == "还原备份") {
 		$backup_value = Db::name('options')->where('name', $backup_field)->value('value');
 		if ($backup_value) {
-			Db::name('options')->where('name', $theme_field)->update('value', $backup_value);
+			Db::name('options')->where('name', $theme_field)->update(['value', $backup_value]);
 			joe_backup_location('还原成功！');
 		} else {
 			joe_backup_location('未备份过数据，无法恢复！');

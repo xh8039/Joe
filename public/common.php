@@ -142,7 +142,7 @@ function themeInit($self)
 			$self->setThemeFile('module/user/register.php');
 		}
 		// 增加用户找回密码页面
-		if (Helper::options()->JUser_Retrieve == 'on' && str_starts_with($path_info, '/user/retrieve')) {
+		if (Helper::options()->JUserRetrieve == 'on' && str_starts_with($path_info, '/user/retrieve')) {
 			$self->response->setStatus(200);
 			$self->setThemeFile('module/user/retrieve.php');
 		}

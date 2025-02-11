@@ -189,15 +189,18 @@ class Api
 			return (['message' => '验证码错误或已过期']);
 		}
 
+		// 生成新的用户密码
+		$hasher = new \Utils\PasswordHash(8, true);
+		$password = $hasher->hashPassword($self->request->password);
+
+		if ($user['password'] === $password) return (['message' => '新密码不能与旧密码相同']);
+
 		// 清理验证码会话
 		$_SESSION['joe_user_retrieve_captcha'] = null;
 		$_SESSION['joe_user_retrieve_email'] = null;
 
-		// 生成新的用户密码
-		$hasher = new \Utils\PasswordHash(8, true);
 		// 更新用户密码
-		$password = $self->request->password;
-		$users_update = Db::name('users')->where('uid', $user['uid'])->update('password', $hasher->hashPassword($password));
+		$users_update = Db::name('users')->where('uid', $user['uid'])->update('password', $password);
 		if (!$users_update) return ['message' => '服务器异常，请稍后再试'];
 
 		// 自动帮助用户登录

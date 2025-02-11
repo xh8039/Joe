@@ -301,6 +301,10 @@ html .line-numbers .line-numbers-rows {
 	margin: 0 auto
 }
 
+.joe_detail__article li img:not([class]) {
+	margin: 0;
+}
+
 .joe_detail__article img:not([class]):hover {
 	-webkit-transform: translateY(-2px);
 	transform: translateY(-2px);

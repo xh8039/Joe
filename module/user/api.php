@@ -29,8 +29,7 @@ switch ($action) {
 	case 'register':
 		/** 如果已经登录 */
 		if ($this->user->hasLogin() || !$this->options->allowRegister) {
-			/** 直接返回 */
-			$this->response->redirect($this->options->index);
+			$this->response->throwJson(['message' => '已登录或禁止注册']);
 		}
 
 		\Widget\User::alloc()->to($register_widget);
@@ -66,23 +65,25 @@ switch ($action) {
 		if ($nickname_find) $this->response->throwJson(['message' => '昵称已被其它小伙伴使用了']);
 
 		if (joe\email_config()) {
-			if ($_SESSION["joe_register_captcha"] != $this->request->captcha || $_SESSION["Gm_Reg_Email"] != trim($email)) $this->response->throwJson(['message' => '验证码错误或已过期']);
+			if ($_SESSION["joe_register_captcha"] != $this->request->captcha || $_SESSION["joe_register_email"] != trim($email)) $this->response->throwJson(['message' => '验证码错误或已过期']);
 		}
 
 		$hasher = new Utils\PasswordHash(8, true);
 		$group = empty($this->options->JUserRegisterGroup) ? 'subscriber' : $this->options->JUserRegisterGroup;
-		$dataStruct = [
+
+		$dataStruct = Widget\Register::pluginHandle()->register([
 			'name' => $this->request->username,
 			'mail' => $this->request->email,
 			'screenName' => $this->request->nickname,
 			'password' => $hasher->hashPassword($this->request->password),
 			'created' => $this->options->time,
 			'group' => $group
-		];
-		$dataStruct = Widget\Register::pluginHandle()->register($dataStruct);
+		]);
 
 		$insertId = $register_widget->insert($dataStruct);
-		$this->db->fetchRow($this->select()->where('uid = ?', $insertId)->limit(1), [$register_widget, 'push']);
+		if (!$insertId) $this->response->throwJson(['message' => '服务器异常，请稍后重试']);
+
+		$register_widget->push(Db::name('users')->where('uid', $insertId)->find());
 
 		Widget\Register::pluginHandle()->finishRegister($register_widget);
 
@@ -91,70 +92,70 @@ switch ($action) {
 		Typecho\Cookie::delete('__typecho_first_run');
 		Typecho\Cookie::delete('__typecho_remember_name');
 		Typecho\Cookie::delete('__typecho_remember_mail');
-		$_SESSION['Gm_Reg_Code'] = null;
-		$_SESSION['Gm_Reg_Email'] = null;
+		$_SESSION['joe_register_captcha'] = null;
+		$_SESSION['joe_register_email'] = null;
 
 		$this->response->throwJson(['code' => 200, 'message' => '注册成功']);
 
-		$nickname = $_POST['nickname'];
-		$username = $_POST['username'];
-		$email = $_POST['email'];
-		$code = isset($_POST['code']) ? $_POST['code'] : null;
-		$password = $_POST['password'];
-		$confirm_password = $_POST['confirm_password'];
-		if (!isset($nickname)) $this->response->throwJson(['message' => '请输入昵称']);
-		if (!isset($username)) $this->response->throwJson(['message' => '请输入账号']);
-		if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱']);
-		if (joe\email_config()) {
-			if (!isset($code)) $this->response->throwJson([
-				'message' => '请输入验证码'
-			]);
-		}
-		if (!isset($password)) $this->response->throwJson(['message' => '请输入密码']);
-		if (!isset($confirm_password)) $this->response->throwJson(['message' => '请输入确认密码']);
-		if ($confirm_password != $password) $this->response->throwJson(['message' => '两次密码不一致']);
-		if (mb_strlen($nickname, 'UTF-8') > 10) $this->response->throwJson(['message' => '昵称不能超过10个字符']);
-		if (!preg_match('/^[A-Za-z0-9]{4,30}$/i', $username)) $this->response->throwJson(['message' => '账号必须由4-30位字母或数字组成']);
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $this->response->throwJson(['message' => '请输入正确的邮箱地址']);
-		if (mb_strlen($password, 'UTF-8') < 6) $this->response->throwJson(['message' => '密码不能少于6位']);
-		if (Db::name('users')->where('screenName', $nickname)->find()) {
-			$this->response->throwJson([
-				'message' => '昵称已被其它小伙伴使用'
-			]);
-		}
-		if (Db::name('users')->where('name', $username)->find()) {
-			$this->response->throwJson([
-				'message' => '你输入的账号已经被注册'
-			]);
-		}
-		if (Db::name('users')->where('mail', $email)->find()) {
-			$this->response->throwJson([
-				'message' => '你输入的邮箱已经注册账号'
-			]);
-		}
-		if (joe\email_config()) {
-			if ($_SESSION["Gm_Reg_Code"] != $code || $_SESSION["Gm_Reg_Email"] != trim($email)) {
-				$this->response->throwJson(['message' => '验证码错误或已过期']);
-			}
-		}
-		$hasher = new PasswordHash(8, true);
-		$data = array(
-			'name' => $username,
-			'screenName' => $nickname,
-			'mail' => $email,
-			'password' => $hasher->HashPassword($password),
-			'created' => time(),
-			'group' => empty(Helper::options()->JUserRegisterGroup) ? 'contributor' : Helper::options()->JUserRegisterGroup
-		);
-		$result = Typecho\Widget::widget('Widget_Abstract_Users')->insert($data);
-		if ($result) {
-			$_SESSION['Gm_Reg_Code'] = null;
-			$_SESSION['Gm_Reg_Email'] = null;
-			joe\user_login($result);
-			$this->response->throwJson(['code' => 200, 'message' => '注册成功']);
-		} else {
-			$this->response->throwJson(['message' => '服务器异常，请稍后重试']);
-		}
+		// $nickname = $_POST['nickname'];
+		// $username = $_POST['username'];
+		// $email = $_POST['email'];
+		// $code = isset($_POST['code']) ? $_POST['code'] : null;
+		// $password = $_POST['password'];
+		// $confirm_password = $_POST['confirm_password'];
+		// if (!isset($nickname)) $this->response->throwJson(['message' => '请输入昵称']);
+		// if (!isset($username)) $this->response->throwJson(['message' => '请输入账号']);
+		// if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱']);
+		// if (joe\email_config()) {
+		// 	if (!isset($code)) $this->response->throwJson([
+		// 		'message' => '请输入验证码'
+		// 	]);
+		// }
+		// if (!isset($password)) $this->response->throwJson(['message' => '请输入密码']);
+		// if (!isset($confirm_password)) $this->response->throwJson(['message' => '请输入确认密码']);
+		// if ($confirm_password != $password) $this->response->throwJson(['message' => '两次密码不一致']);
+		// if (mb_strlen($nickname, 'UTF-8') > 10) $this->response->throwJson(['message' => '昵称不能超过10个字符']);
+		// if (!preg_match('/^[A-Za-z0-9]{4,30}$/i', $username)) $this->response->throwJson(['message' => '账号必须由4-30位字母或数字组成']);
+		// if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $this->response->throwJson(['message' => '请输入正确的邮箱地址']);
+		// if (mb_strlen($password, 'UTF-8') < 6) $this->response->throwJson(['message' => '密码不能少于6位']);
+		// if (Db::name('users')->where('screenName', $nickname)->find()) {
+		// 	$this->response->throwJson([
+		// 		'message' => '昵称已被其它小伙伴使用'
+		// 	]);
+		// }
+		// if (Db::name('users')->where('name', $username)->find()) {
+		// 	$this->response->throwJson([
+		// 		'message' => '你输入的账号已经被注册'
+		// 	]);
+		// }
+		// if (Db::name('users')->where('mail', $email)->find()) {
+		// 	$this->response->throwJson([
+		// 		'message' => '你输入的邮箱已经注册账号'
+		// 	]);
+		// }
+		// if (joe\email_config()) {
+		// 	if ($_SESSION["joe_register_captcha"] != $code || $_SESSION["joe_register_email"] != trim($email)) {
+		// 		$this->response->throwJson(['message' => '验证码错误或已过期']);
+		// 	}
+		// }
+		// $hasher = new PasswordHash(8, true);
+		// $data = array(
+		// 	'name' => $username,
+		// 	'screenName' => $nickname,
+		// 	'mail' => $email,
+		// 	'password' => $hasher->HashPassword($password),
+		// 	'created' => time(),
+		// 	'group' => empty(Helper::options()->JUserRegisterGroup) ? 'contributor' : Helper::options()->JUserRegisterGroup
+		// );
+		// $result = Typecho\Widget::widget('Widget_Abstract_Users')->insert($data);
+		// if ($result) {
+		// 	$_SESSION['joe_register_captcha'] = null;
+		// 	$_SESSION['joe_register_email'] = null;
+		// 	joe\user_login($result);
+		// 	$this->response->throwJson(['code' => 200, 'message' => '注册成功']);
+		// } else {
+		// 	$this->response->throwJson(['message' => '服务器异常，请稍后重试']);
+		// }
 		break;
 
 	case 'forget':
@@ -218,8 +219,8 @@ switch ($action) {
 		$send_time = time() - (isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0);
 		if (isset($_SESSION['JOE_SEND_MAIL_TIME']) && $send_time <= 60) $this->response->throwJson(['message' => (60 - $send_time) . '秒后重可发验证码']);
 		$code = rand(100000, 999999);
-		$_SESSION["Gm_Reg_Code"] = $code;
-		$_SESSION["Gm_Reg_Email"] = $email;
+		$_SESSION["joe_register_captcha"] = $code;
+		$_SESSION["joe_register_email"] = $email;
 		$send_email = joe\send_email('注册验证', '您正在进行注册操作，验证码是：', $code, $email);
 		if ($send_email === true) {
 			$_SESSION['JOE_SEND_MAIL_TIME'] = time();

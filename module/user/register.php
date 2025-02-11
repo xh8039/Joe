@@ -41,7 +41,7 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 					</div>
 					<div class="form-group mb-3">
 						<label>确认密码</label>
-						<input class="form-control" type="password" id="confirm_password" placeholder="确认您的密码">
+						<input class="form-control" type="password" id="confirm_password" placeholder="请再输入您的密码">
 					</div>
 					<div class="form-group mb-3">
 						<label>邮箱（用于找回密码）</label>

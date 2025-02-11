@@ -69,7 +69,7 @@ function themeInit($self)
 	if (!joe\is_session_started()) session_start();
 
 	if (!isset($GLOBALS['JOE_USER'])) {
-		$user = Typecho\Widget::widget('Widget\User');
+		$user = \Widget\User::alloc();
 		$GLOBALS['JOE_USER'] = $user;
 		if ($user->hasLogin()) {
 			if (!defined('USER_ID')) define('USER_ID', $user->uid);
@@ -97,6 +97,7 @@ function themeInit($self)
 			$self->response->setStatus(200);
 			joe\Api::$self = $self;
 			joe\Api::$options = Helper::options();
+			joe\Api::$user = $GLOBALS['JOE_USER'];
 			$api = joe\Api::$method($self);
 			if (is_array($api) || is_object($api)) {
 				if (Helper::options()->JoeDeBug == 'on') {

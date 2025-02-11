@@ -14,6 +14,7 @@ class Api
 {
 	public static $self;
 	public static $options;
+	public static $user;
 
 	public static function manifest()
 	{
@@ -37,7 +38,7 @@ class Api
 		if (empty($username)) $self->response->throwJson(['message' => '请输入账号/邮箱']);
 		if (empty($password)) $self->response->throwJson(['message' => '请输入密码']);
 		// $login = $user_widget->login($username, $password);
-		$login = $self->user->login($username, $password);
+		$login = self::$user->login($username, $password);
 		if ($login) {
 			$self->response->throwJson(['code' => 200]);
 		} else {
@@ -948,7 +949,7 @@ class Api
 				<li>
 					<p class="muted-2-color" style="margin-bottom: 10px;">支付宝扫一扫</p>
 					<div class="rewards-img">
-						<img class="fit-cover" referrerpolicy="no-referrer" rel="noreferrer"  src="<?= self::$options->JAlipayRewardImg ?>">
+						<img class="fit-cover" referrerpolicy="no-referrer" rel="noreferrer" src="<?= self::$options->JAlipayRewardImg ?>">
 					</div>
 				</li>
 			<?php
@@ -958,7 +959,7 @@ class Api
 				<li>
 					<p class="muted-2-color" style="margin-bottom: 10px;">QQ扫一扫</p>
 					<div class="rewards-img">
-						<img class="fit-cover" referrerpolicy="no-referrer" rel="noreferrer"  src="<?= self::$options->JQQRewardImg ?>">
+						<img class="fit-cover" referrerpolicy="no-referrer" rel="noreferrer" src="<?= self::$options->JQQRewardImg ?>">
 					</div>
 				</li>
 			<?php

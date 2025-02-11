@@ -37,7 +37,7 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 			dataType: 'json',
 			async: true,
 			data: {
-				action: 'reg_code',
+				action: 'register_captcha',
 				email: email
 			},
 			beforeSend: function () {

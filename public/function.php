@@ -556,8 +556,8 @@ function user_url($action, $from = true)
 				$url = \Helper::options()->adminUrl . 'login.php';
 			}
 			break;
-		case 'forget':
-			$url = \Typecho_Common::url('user/forget', \Helper::options()->index) . $url;
+		case 'retrieve':
+			$url = \Typecho_Common::url('user/retrieve', \Helper::options()->index) . $url;
 			break;
 	}
 	$url = root_relative_link($url);
@@ -602,7 +602,7 @@ function email_config()
  * 发送电子邮件
  * @return true|string
  */
-function send_email($title, $subtitle, $content, $email = '')
+function send_email($title, $subtitle, $content, $email = '', $limit_time = 0)
 {
 	if (!email_config()) return false;
 	require_once dirname(__DIR__) . '/system/vendor/autoload.php';
@@ -612,15 +612,19 @@ function send_email($title, $subtitle, $content, $email = '')
 	}
 	if (empty($subtitle)) $subtitle = '';
 	$html = '<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"><meta name="viewport"content="width=device-width, initial-scale=1.0"></head><body><style>.container{width:95%;margin:0 auto;border-radius:8px;font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;box-shadow:0 2px 12px 0 rgba(0,0,0,0.1);word-break:break-all}.title{color:#ffffff;background:linear-gradient(-45deg,rgba(9,69,138,0.2),rgba(68,155,255,0.7),rgba(117,113,251,0.7),rgba(68,155,255,0.7),rgba(9,69,138,0.2));background-size:400% 400%;background-position:50% 100%;padding:15px;font-size:15px;line-height:1.5}</style><div class="container"><div class="title">{title}</div><div style="background: #fff;padding: 20px;font-size: 13px;color: #666;">{subtitle}<div style="padding: 15px;margin-bottom: 20px;line-height: 1.5;background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);">{content}</div><div style="line-height: 2">请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div></div></div></body></html>';
-	$html = strtr(
-		$html,
-		array(
-			"{title}" => $title . ' - ' . \Helper::options()->title,
-			"{subtitle}" => empty($subtitle) ? '' : '<div style="margin-bottom: 20px;line-height: 1.5;">' . $subtitle . '</div>',
-			"{content}" => $content,
-		)
-	);
+	$html = strtr($html, [
+		'{title}' => $title . ' - ' . \Helper::options()->title,
+		'{subtitle}' => empty($subtitle) ? '' : '<div style="margin-bottom: 20px;line-height: 1.5;">' . $subtitle . '</div>',
+		'{content}' => $content,
+	]);
 	$FromName = empty(\Helper::options()->JCommentMailFromName) ? \Helper::options()->title : \Helper::options()->JCommentMailFromName;
+
+	if ($limit_time) {
+		if (!\joe\is_session_started()) session_start();
+		$send_interval_time = time() - ($_SESSION['joe_send_mail_time'] ?? 0);
+		if (isset($_SESSION['joe_send_mail_time']) && $send_interval_time <= $limit_time) return ($limit_time - $send_interval_time) . '秒后可重发';
+	}
+
 	if (!empty(\Helper::options()->JMailApi)) {
 		$JMailApi = optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'name', 'content', 'email', 'code', '200', 'message']);
 		$send_email = \network\http\post($JMailApi['url'], [
@@ -630,15 +634,18 @@ function send_email($title, $subtitle, $content, $email = '')
 			$JMailApi['email'] => $email
 		])->toArray();
 		if (is_array($send_email)) {
+			if (!isset($send_email[$JMailApi['code']])) return 'API对接发件失败！成功字段未返回';
 			if ($send_email[$JMailApi['code']] == $JMailApi['200']) {
+				$_SESSION['joe_send_mail_time'] = time();
 				return true;
 			} else {
-				return isset($send_email[$JMailApi['message']]) ? $send_email[$JMailApi['message']] : 'API对接发件失败！失败消息不存在';
+				return 'API对接发件失败！' . ($send_email[$JMailApi['message']] ?? '失败信息字段未返回');
 			}
 		} else {
 			return $send_email;
 		}
 	}
+
 	try {
 		$mail = new \PHPMailer\PHPMailer\PHPMailer();
 		$language = $PHPMailer->setLanguage('zh_cn');
@@ -657,6 +664,12 @@ function send_email($title, $subtitle, $content, $email = '')
 		$mail->Body = $html;
 		$mail->addAddress($email);
 		$mail->Subject = $title . ' - ' . \Helper::options()->title;
+		if ($mail->send()) {
+			if ($limit_time) $_SESSION['joe_send_mail_time'] = time();
+			return true;
+		} else {
+			return $mail->ErrorInfo;
+		}
 		return $mail->send() ? true : $mail->ErrorInfo;
 	} catch (\PHPMailer\PHPMailer\Exception $e) {
 		return '邮件发送失败: ' . $mail->ErrorInfo;

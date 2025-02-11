@@ -11,7 +11,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php $this->setArchiveTitle('重置密码') ?>
 	<?php $this->need('module/head.php') ?>
 	<?php $this->need('module/user/head.php') ?>
-	<script src="<?= joe\theme_url('assets/js/joe.user.forget.js'); ?>"></script>
+	<script src="<?= joe\theme_url('assets/js/joe.user.retrieve.js'); ?>"></script>
 </head>
 
 <body>
@@ -45,7 +45,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<input class="form-control" type="password" id="confirm_password" placeholder="确认密码">
 					</div>
 					<button class="btn btn-light" id="check" type="submit">验 证</button>
-					<button class="btn btn-light" id="forget" type="submit" style="display:none">设置密码</button>
+					<button class="btn btn-light" id="retrieve" type="submit" style="display:none">设置密码</button>
 				</div>
 				<?php
 				if ($this->options->allowRegister) {

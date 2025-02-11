@@ -1,5 +1,5 @@
-Joe.DOMContentLoaded.userForget ||= () => {
-	console.log('调用：Joe.DOMContentLoaded.userForget');
+Joe.DOMContentLoaded.userRetrieve ||= () => {
+	console.log('调用：Joe.DOMContentLoaded.userRetrieve');
 	var btn = function (obj, msg, code) {
 		obj.html(msg);
 		obj.attr("disabled", code);
@@ -31,7 +31,7 @@ Joe.DOMContentLoaded.userForget ||= () => {
 			dataType: 'json',
 			async: true,
 			data: {
-				action: 'forget_code',
+				action: 'retrieve_captcha',
 				email: email
 			},
 			beforeSend: function () {
@@ -66,7 +66,7 @@ Joe.DOMContentLoaded.userForget ||= () => {
 			dataType: 'json',
 			async: true,
 			data: {
-				action: 'forget_check',
+				action: 'retrieve_check',
 				email: email,
 				code: code
 			},
@@ -89,7 +89,7 @@ Joe.DOMContentLoaded.userForget ||= () => {
 					$("#new1").show(100);
 					$("#new2").show(100);
 					$("#new3").show(100);
-					$('#forget').show();
+					$('#retrieve').show();
 					autolog.log("验证通过，请设置新密码", 'success');
 					state = res.state;
 				} else {
@@ -98,7 +98,7 @@ Joe.DOMContentLoaded.userForget ||= () => {
 			}
 		});
 	});
-	$("#forget").click(function () {
+	$("#retrieve").click(function () {
 		let password = $("#password").val();
 		let confirm_password = $("#confirm_password").val();
 		if (!password) return autolog.log("请输入密码", 'warn');
@@ -110,19 +110,19 @@ Joe.DOMContentLoaded.userForget ||= () => {
 			dataType: 'json',
 			async: true,
 			data: {
-				action: 'forget',
+				action: 'retrieve',
 				state: state,
 				password: password,
 				confirm_password: confirm_password
 			},
 			beforeSend: function () {
-				btn($("#forget"), '<i class="loading mr6"></i>设置中...', true);
+				btn($("#retrieve"), '<i class="loading mr6"></i>设置中...', true);
 			},
 			complete: function () {
-				btn($("#forget"), "设置密码", false);
+				btn($("#retrieve"), "设置密码", false);
 			},
 			error: function () {
-				btn($("#forget"), "设置密码", false);
+				btn($("#retrieve"), "设置密码", false);
 				autolog.log("服务器繁忙", 'error');
 			},
 			success: function (res) {
@@ -138,4 +138,4 @@ Joe.DOMContentLoaded.userForget ||= () => {
 		});
 	});
 }
-document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.userForget, { once: true });
+document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.userRetrieve, { once: true });

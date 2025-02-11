@@ -22,15 +22,13 @@ switch ($action) {
 		if ($login) {
 			$this->response->throwJson(['code' => 200, 'message' => '登录成功']);
 		} else {
-			$this->response->throwJson(['message' => '账户或密码错误']);
+			$this->response->throwJson(['message' => '账号或密码错误']);
 		}
 		break;
 
 	case 'register':
 		/** 如果已经登录 */
-		if ($this->user->hasLogin() || !$this->options->allowRegister) {
-			$this->response->throwJson(['message' => '已登录或禁止注册']);
-		}
+		if (!$this->options->allowRegister) $this->response->throwJson(['message' => '禁止用户注册！']);
 
 		\Widget\User::alloc()->to($register_widget);
 
@@ -94,7 +92,7 @@ switch ($action) {
 		$_SESSION['joe_register_captcha'] = null;
 		$_SESSION['joe_register_email'] = null;
 
-		$this->response->throwJson(['code' => 200, 'message' => '注册成功']);
+		$this->response->throwJson(['code' => 200]);
 
 		// $nickname = $_POST['nickname'];
 		// $username = $_POST['username'];
@@ -157,7 +155,22 @@ switch ($action) {
 		// }
 		break;
 
-	case 'forget':
+	case 'register_captcha':
+		$email = $_POST['email'];
+		if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱后发送验证码']);
+		if (Db::name('users')->where('mail', $email)->find()) $this->response->throwJson(['message' => '你输入的邮箱已经注册账号']);
+
+		$_SESSION['joe_register_captcha'] = mt_rand(100000, 999999);
+		$_SESSION['joe_register_email'] = $email;
+		$send_email = joe\send_email('注册验证', '您正在进行注册操作，验证码是：', $_SESSION['joe_register_captcha'], $email, 60);
+		if ($send_email === true) {
+			$this->response->throwJson(['code' => 200]);
+		} else {
+			$this->response->throwJson(['message' => $send_email]);
+		}
+		break;
+
+	case 'retrieve':
 		$password = $_POST['password'];
 		$confirm_password = $_POST['confirm_password'];
 		$state = $_POST['state'];
@@ -166,15 +179,15 @@ switch ($action) {
 		if (!isset($confirm_password)) $this->response->throwJson(['message' => '请输入确认密码']);
 		if ($confirm_password != $password) $this->response->throwJson(['message' => '两次密码不一致']);
 		if (mb_strlen($password, 'UTF-8') < 6) $this->response->throwJson(['message' => '密码不能少于6位']);
-		if (!$_SESSION["Gm_Forget_state"] || $_SESSION["Gm_Forget_state"] != $state) {
+		if (!$_SESSION['joe_retrieve_state'] || $_SESSION['joe_retrieve_state'] != $state) {
 			$this->response->throwJson([
 				'message' => '验证码错误或已过期'
 			]);
 		} else if (!$uid = $_SESSION[$state]) {
-			$_SESSION['Gm_Forget_state'] = null;
+			$_SESSION['joe_retrieve_state'] = null;
 			$this->response->throwJson(['message' => '验证已失效']);
 		} else if (!Db::name('users')->where('uid', $uid)->find()) {
-			$_SESSION['Gm_Forget_state'] = null;
+			$_SESSION['joe_retrieve_state'] = null;
 			$this->response->throwJson(['message' => '用户不存在' . $uid]);
 		} else {
 			$hasher = new PasswordHash(8, true);
@@ -189,65 +202,43 @@ switch ($action) {
 		}
 		break;
 
-	case 'forget_check':
+	case 'retrieve_check':
 		$code = $_POST['code'];
 		$email = $_POST['email'];
 		if (!isset($code)) $this->response->throwJson(['message' => '请输入验证码']);
 		if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱']);
-		if (!Db::name('users')->where('mail', $email)->find()) $this->response->throwJson(['message' => '你输入的邮箱未注册账号']);
-		if ($_SESSION["Gm_Forget_Code"] != $code || $_SESSION["Gm_Forget_email"] != $email) {
-			$_SESSION['Gm_Forget_Code'] = null;
-			$_SESSION['Gm_Forget_email'] = null;
+		$user = Db::name('users')->where('mail', $email)->find();
+		if (!$user) $this->response->throwJson(['message' => '你输入的邮箱未注册账号']);
+		if ($_SESSION['joe_retrieve_captcha'] != $code || $_SESSION['joe_retrieve_email'] != $email) {
+			$_SESSION['joe_retrieve_captcha'] = null;
+			$_SESSION['joe_retrieve_email'] = null;
 			$this->response->throwJson(['message' => '验证码错误或已过期']);
 		} else {
-			$_SESSION['Gm_Forget_Code'] = null;
-			$_SESSION['Gm_Forget_email'] = null;
+			$_SESSION['joe_retrieve_captcha'] = null;
+			$_SESSION['joe_retrieve_email'] = null;
 			$state = md5(rand(100000, 999999) . time() . rand(100000, 999999));
-			$_SESSION["Gm_Forget_state"] = $state;
-			$_SESSION[$state] = $user[0]['uid'];
-			$this->response->throwJson(['code' => 200, 'message' => '验证码正确', 'state' => $_SESSION["Gm_Forget_state"]]);
+			$_SESSION['joe_retrieve_state'] = $state;
+			$_SESSION[$state] = $user['uid'];
+			$this->response->throwJson(['code' => 200, 'message' => '验证码正确', 'state' => $_SESSION['joe_retrieve_state']]);
 		}
 		break;
 
-	case 'reg_code':
-		$email = $_POST['email'];
-		if (!isset($email)) $this->response->throwJson([
-			'message' => '请输入邮箱后发送验证码'
-		]);
-		if (Db::name('users')->where('mail', $email)->find()) $this->response->throwJson(['message' => '你输入的邮箱已经注册账号']);
-		$send_time = time() - (isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0);
-		if (isset($_SESSION['JOE_SEND_MAIL_TIME']) && $send_time <= 60) $this->response->throwJson(['message' => (60 - $send_time) . '秒后重可发验证码']);
-		$code = rand(100000, 999999);
-		$_SESSION["joe_register_captcha"] = $code;
-		$_SESSION["joe_register_email"] = $email;
-		$send_email = joe\send_email('注册验证', '您正在进行注册操作，验证码是：', $code, $email);
-		if ($send_email === true) {
-			$_SESSION['JOE_SEND_MAIL_TIME'] = time();
-			$this->response->throwJson(['code' => 200, 'message' => '验证码已发送到您的邮箱']);
-		} else {
-			$this->response->throwJson(['message' => $send_email]);
-		}
-
-		break;
-
-	case 'forget_code':
+	case 'retrieve_captcha':
 		$email = $_POST['email'];
 		if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱后发送验证码']);
 		if (!Db::name('users')->where('mail', $email)->find()) $this->response->throwJson(['message' => '你输入的邮箱未注册账号']);
-		$send_time = time() - (isset($_SESSION['JOE_SEND_MAIL_TIME']) ? $_SESSION['JOE_SEND_MAIL_TIME'] : 0);
-		if (isset($_SESSION['JOE_SEND_MAIL_TIME']) && $send_time <= 60) $this->response->throwJson(['message' => (60 - $send_time) . '秒后重可发验证码']);
-		$code = rand(100000, 999999);
-		$_SESSION["Gm_Forget_Code"] = $code;
-		$_SESSION["Gm_Forget_email"] = $email;
-		$send_email = joe\send_email('重置密码', '您正在进行重置密码操作，验证码是：', $code, $email);
+
+		$_SESSION['joe_retrieve_captcha'] = mt_rand(100000, 999999);
+		$_SESSION['joe_retrieve_email'] = $email;
+		$send_email = joe\send_email('重置密码', '您正在进行重置密码操作，验证码是：', $_SESSION["joe_retrieve_captcha"], $email, 60);
 		if ($send_email === true) {
-			$_SESSION['JOE_SEND_MAIL_TIME'] = time();
 			$this->response->throwJson(['code' => 200, 'message' => '验证码已发送到您的邮箱']);
 		} else {
 			$this->response->throwJson(['message' => $send_email]);
 		}
 		break;
+
 	default:
-		$this->response->throwJson(['message' => 'api error']);
+		$this->response->throwJson(['message' => 'API错误']);
 		break;
 }

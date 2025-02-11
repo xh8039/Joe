@@ -31,12 +31,12 @@ $JUserRegisterGroup = new \Typecho\Widget\Helper\Form\Element\Select(
 $JUserRegisterGroup->setAttribute('class', 'joe_content joe_user');
 $form->addInput($JUserRegisterGroup->multiMode());
 
-$JUser_Forget = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JUser_Forget',
+$JUserRetrieve = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JUserRetrieve',
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',
 	'找回密码',
-	'介绍：未配置邮箱无法发送验证码 访问地址：<a target="_blank" href="' . Typecho_Common::url('user/forget', Helper::options()->index) . '">' . Typecho_Common::url('user/forget', Helper::options()->index) . '</a>'
+	'介绍：未配置邮箱无法发送验证码 访问地址：<a target="_blank" href="' . Typecho_Common::url('user/retrieve', Helper::options()->index) . '">' . Typecho_Common::url('user/retrieve', Helper::options()->index) . '</a>'
 );
-$JUser_Forget->setAttribute('class', 'joe_content joe_user');
-$form->addInput($JUser_Forget->multiMode());
+$JUserRetrieve->setAttribute('class', 'joe_content joe_user');
+$form->addInput($JUserRetrieve->multiMode());

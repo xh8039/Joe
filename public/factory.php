@@ -68,8 +68,8 @@ class Intercept
 
 /* 邮件通知 */
 if (Helper::options()->JCommentMail === 'on' && joe\email_config()) {
-	if (isset($_SESSION['JOE_SEND_MAIL_TIME'])) {
-		if (time() - $_SESSION['JOE_SEND_MAIL_TIME'] >= 180) {
+	if (isset($_SESSION['joe_send_mail_time'])) {
+		if (time() - $_SESSION['joe_send_mail_time'] >= 180) {
 			Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
 		}
 	} else {
@@ -93,7 +93,7 @@ class Email
 				if ($parentMail != $comment->mail) {
 					$text = CommentLink($text, $comment->permalink, '回复');
 					joe\send_email('您在 [' . $comment->title . '] 的评论有了新的回复！', '博主：[ ' . $comment->author . ' ] 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您:', $text, $parentMail);
-					$_SESSION['JOE_SEND_MAIL_TIME'] = time();
+					$_SESSION['joe_send_mail_time'] = time();
 				}
 			}
 			/* 如果是游客发的评论 */
@@ -104,7 +104,7 @@ class Email
 				if ($authorMail) {
 					$text = CommentLink($text, $comment->permalink, '评论');
 					joe\send_email('您的文章 [' . $comment->title . '] 收到一条新的评论！', $comment->author . ' [' . $comment->ip . '] 在您的《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上发表评论:', $text, $authorMail);
-					$_SESSION['JOE_SEND_MAIL_TIME'] = time();
+					$_SESSION['joe_send_mail_time'] = time();
 				}
 				/* 如果发表的评论是回复别人 */
 			} else {
@@ -113,7 +113,7 @@ class Email
 				if ($parentMail != $comment->mail) {
 					$text = CommentLink($text, $comment->permalink, '回复');
 					joe\send_email('您在 [' . $comment->title . '] 的评论有了新的回复！', $comment->author . ' 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您:', $text, $parentMail);
-					$_SESSION['JOE_SEND_MAIL_TIME'] = time();
+					$_SESSION['joe_send_mail_time'] = time();
 				}
 			}
 		}

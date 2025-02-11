@@ -141,9 +141,9 @@ function themeInit($self)
 			$self->setThemeFile('module/user/register.php');
 		}
 		// 增加用户找回密码页面
-		if (Helper::options()->JUser_Forget == 'on' && str_starts_with($path_info, '/user/forget')) {
+		if (Helper::options()->JUser_Retrieve == 'on' && str_starts_with($path_info, '/user/retrieve')) {
 			$self->response->setStatus(200);
-			$self->setThemeFile('module/user/forget.php');
+			$self->setThemeFile('module/user/retrieve.php');
 		}
 		// 增加自定义登录注册页面API
 		if (str_starts_with($path_info, '/user/api')) {

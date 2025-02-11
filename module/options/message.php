@@ -123,8 +123,8 @@ $JCommentMailFromName = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailFromName',
 	NULL,
 	NULL,
-	'发件人昵称',
-	'介绍：不填写则使用站点名称'
+	'发件人昵称（非必填）',
+	'介绍：不填写则使用网站名称'
 );
 $JCommentMailFromName->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailFromName->multiMode());

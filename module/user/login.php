@@ -44,7 +44,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							?>
 							<input class="form-control" type="password" name="password" minlength="6" maxlength="18" placeholder="请输入您的密码">
 						</div>
-						<input type="submit" class="btn btn-primary" value="登 录">
+						<button type="submit" class="btn btn-primary">登 录<button>
 					</form>
 				</div>
 				<?php

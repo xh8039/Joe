@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.Joe.$body = $(document.body);
 });
 
+window.Joe.WeakMap = (new WeakMap);
+
 window.Joe.btnLoad = (element, message = null) => {
 	if (message === false) return Joe.btnLoaded(element);
-	(new WeakMap).set(element, element.innerHTML);
+	Joe.WeakMap.set(element, element.innerHTML);
 	element.innerHTML = `<i class="loading ${message ? 'mr6' : null}"></i>` + message;
 	element.disabled = true;
 	element.classList.add('disabled');
@@ -15,7 +17,7 @@ window.Joe.btnLoad = (element, message = null) => {
 }
 
 window.Joe.btnLoaded = (element) => {
-	const html = (new WeakMap).get(element);
+	const html = Joe.WeakMap.get(element);
 	element.innerHTML = html;
 	element.disabled = false;
 	element.classList.remove('disabled');

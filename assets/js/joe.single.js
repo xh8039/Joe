@@ -236,17 +236,23 @@ Joe.DOMContentLoaded.single ||= () => {
 			loop: false, // 视频循环播放
 			screenshot: true, // 开启截图，如果开启，视频和视频封面需要允许跨域
 			airplay: true, // 在 Safari 中开启 AirPlay
-			volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+			// volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
 			playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
 			video: {
 				pic: Joe.CONTENT.cover
 			}
 		});
+		var firstVideo = true;
 		$('.featured-video-episode>.switch-video').on('click', function () {
 			$(this).addClass('active').siblings().removeClass('active');
 			const url = $(this).attr('video-url');
 			let title = $(this).attr('data-original-title');
-			videoPlayer.switchVideo({ url: url });
+			if (firstVideo) {
+				firstVideo = false;
+				videoPlayer.switchVideo({ url: url, pic: Joe.CONTENT.cover });
+			} else {
+				videoPlayer.switchVideo({ url: url });
+			}
 			if (title) $('.joe_detail__article-video>.title').html(title);
 		});
 		$('.featured-video-episode>.switch-video').first().click();

@@ -28,6 +28,11 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 		let QQ = $(this).val();
 		if (/^[1-9][0-9]{4,}$/.test(QQ)) $("#email").val(QQ + '@qq.com');
 	});
+	$("#email").on('input propertychange', function () {
+		// 获取input元素，并实时监听用户输入
+		let QQ = $(this).val();
+		if (/^[1-9][0-9]{4,}$/.test(QQ)) $(this).val(QQ + '@qq.com');
+	});
 	$("#send").click(function () {
 		let email = $("#email").val();
 		if (!email) return autolog.log("请输入邮箱后发送验证码", 'warning');

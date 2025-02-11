@@ -52,12 +52,10 @@ switch ($action) {
 		$validator->addRule('email', 'maxLength', _t('电子邮箱最多包含64个字符'), 64);
 
 		/** 如果请求中有password */
-		if (array_key_exists('password', $_REQUEST)) {
-			$validator->addRule('password', 'required', _t('必须填写密码'));
-			$validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
-			$validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
-			$validator->addRule('confirm_password', 'confirm', _t('两次输入的密码不一致'), 'password');
-		}
+		$validator->addRule('password', 'required', _t('必须填写密码'));
+		$validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
+		$validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
+		$validator->addRule('confirm_password', 'confirm', _t('两次输入的密码不一致'), 'password');
 
 		/** 截获验证异常 */
 		if ($error = $validator->run($this->request->from('username', 'password', 'email', 'confirm_password'))) {
@@ -73,13 +71,12 @@ switch ($action) {
 		}
 
 		$hasher = new Utils\PasswordHash(8, true);
-		$generatedPassword = Typecho\Common::randString(7);
 		$group = empty($this->options->JUserRegisterGroup) ? 'subscriber' : $this->options->JUserRegisterGroup;
 		$dataStruct = [
 			'name' => $this->request->name,
 			'mail' => $this->request->mail,
 			'screenName' => $this->request->name,
-			'password' => $hasher->hashPassword($generatedPassword),
+			'password' => $hasher->hashPassword($this->request->password),
 			'created' => $this->options->time,
 			'group' => $group
 		];
@@ -90,7 +87,7 @@ switch ($action) {
 
 		Widget\Register::pluginHandle()->finishRegister($register_widget);
 
-		$this->user->login($this->request->name, $generatedPassword);
+		$this->user->login($this->request->name, $this->request->password);
 
 		Typecho\Cookie::delete('__typecho_first_run');
 		Typecho\Cookie::delete('__typecho_remember_name');

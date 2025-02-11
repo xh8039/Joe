@@ -431,7 +431,7 @@ class Api
 		$cid = $self->request->cid;
 		if (!preg_match('/^\d+$/',  $cid)) return ['code' => 0, 'data' => '非法请求！已屏蔽！'];
 		$update = Db::name('contents')->where('cid', $cid)->inc('views')->update();
-		return ['code' => $update];
+		return ['code' => $update ? 200 : 0];
 	}
 
 	/* 点赞和取消点赞 已测试 √ */

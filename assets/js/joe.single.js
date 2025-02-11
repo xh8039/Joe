@@ -104,32 +104,27 @@ Joe.DOMContentLoaded.single ||= () => {
 	(() => {
 		if (!document.querySelector('#Joe_Article_Views')) return;
 		const cid = window.Joe.CONTENT.cid || $('.joe_detail').attr('data-cid');
-		let viewsArr = localStorage.getItem(Joe.base64_encode('views')) ? JSON.parse(Joe.base64_decode(localStorage.getItem(Joe.base64_encode('views')))) : [];
+		let viewsArr = localStorage.getItem('content-views') ? JSON.parse(localStorage.getItem('content-views')) : [];
 		const flag = viewsArr.includes(cid);
-		if (!flag) {
-			$.ajax({
-				url: Joe.BASE_API + '/handle-views',
-				type: 'POST',
-				dataType: 'json',
-				data: { cid },
-				success(res) {
-					if (res.code != 1) return;
-					const views = Number($('#Joe_Article_Views').text());
-					$('#Joe_Article_Views').html(views + 1);
-					viewsArr.push(cid);
-					const name = Joe.base64_encode('views');
-					const val = Joe.base64_encode(JSON.stringify(viewsArr));
-					localStorage.setItem(name, val);
-				}
-			});
-		}
+		if (!flag) $.ajax({
+			url: Joe.BASE_API + '/handle-views',
+			type: 'POST',
+			dataType: 'json',
+			data: { cid },
+			success(res) {
+				if (res.code != 200) return;
+				const views = Number($('#Joe_Article_Views').text());
+				$('#Joe_Article_Views').html(views + 1);
+				viewsArr.push(cid);
+				localStorage.setItem('content-views', JSON.stringify(viewsArr));
+			}
+		});
 	})();
 
 	/* 激活文章点赞功能 */
 	(() => {
 		if (!document.querySelector('.action-like')) return;
-		let agreeArr = localStorage.getItem(Joe.base64_encode('agree')) ? JSON.parse(Joe.base64_decode(localStorage.getItem(
-			Joe.base64_encode('agree')))) : [];
+		let agreeArr = localStorage.getItem('content-agree') ? JSON.parse(localStorage.getItem('content-agree')) : [];
 		if (agreeArr.includes(Joe.CONTENT.cid)) {
 			$('.action-like').addClass('active');
 			$('.action-like>text').text('已赞');
@@ -141,8 +136,7 @@ Joe.DOMContentLoaded.single ||= () => {
 		$('.action-like').on('click', function () {
 			if (_loading) return;
 			_loading = true;
-			agreeArr = localStorage.getItem(Joe.base64_encode('agree')) ? JSON.parse(Joe.base64_decode(localStorage
-				.getItem(Joe.base64_encode('agree')))) : [];
+			agreeArr = localStorage.getItem('content-agree') ? JSON.parse(localStorage.getItem('content-agree')) : [];
 			let flag = agreeArr.includes(Joe.CONTENT.cid);
 			var count = Number($('.action-like>count').text());
 			$.ajax({
@@ -174,9 +168,7 @@ Joe.DOMContentLoaded.single ||= () => {
 						$('.action-like>text').text('已赞');
 						autolog.log('已赞，感谢您的支持！', 'success');
 					}
-					const name = Joe.base64_encode('agree');
-					const val = Joe.base64_encode(JSON.stringify(agreeArr));
-					localStorage.setItem(name, val);
+					localStorage.setItem('content-agree', JSON.stringify(agreeArr));
 					$('.action-like').css('pointer-events', '')
 				},
 				complete() {

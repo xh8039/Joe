@@ -15,7 +15,7 @@ if ($this->options->JFooterMode == 'commercial') {
 			<ul class="list-inline">
 				<li class="hidden-xs" style="max-width: 300px;">
 					<p>
-						<a class="footer-logo" href="<?php $this->options->siteUrl(); ?>" title="<?php $this->options->title() ?>">
+						<a class="footer-logo" href="/" title="<?php $this->options->title() ?>">
 							<img referrerpolicy="no-referrer" rel="noreferrer" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?php empty($this->options->JLogo) ? $this->options->themeUrl('assets/images/logo.png') : $this->options->JLogo(); ?>" alt="<?php $this->options->title() ?>" class="lazyload light" style="height: 40px;">
 							<img referrerpolicy="no-referrer" rel="noreferrer" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?php $this->options->JDarkLogo(); ?>" alt="<?php $this->options->title() ?>" class="lazyload dark" style="height: 40px;">
 						</a>

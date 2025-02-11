@@ -7,7 +7,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <div class="joe_container joe_bread">
     <ul class="joe_bread__bread breadcrumb">
         <li class="item">
-            <a href="<?php $this->options->siteUrl(); ?>" class="link" title="首页"><i class="fa fa-map-marker"></i> 首页</a>
+            <a href="/" class="link" title="首页"><i class="fa fa-map-marker"></i> 首页</a>
         </li>
         <?php if (sizeof($this->categories) > 0) : ?>
             <li class="item">

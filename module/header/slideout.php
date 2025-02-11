@@ -45,7 +45,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		if (empty($custom_navs)) {
 		?>
 			<li>
-				<a class="link" href="<?php $this->options->siteUrl(); ?>" title="首页">
+				<a class="link" href="/" title="首页">
 					<span>首页</span>
 				</a>
 			</li>

@@ -70,7 +70,7 @@ Joe.DOMContentLoaded.user ||= () => {
 				captchaCountdown = 60;
 				return;
 			} else {
-				$("#send-captcha").html(captchaCountdown + "秒后重可发");
+				$("#send-captcha").html(captchaCountdown + "秒后可重发");
 				$("#email").attr("disabled", true);
 				$("#send-captcha").attr("disabled", true);
 				captchaCountdown--;

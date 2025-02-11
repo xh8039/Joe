@@ -26,10 +26,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<h4>用户登录</h4>
 						<p>请输入帐号密码进行登录</p>
 					</div>
-					<form id="user-login" action="<?= $this->options->index ?>/user/api" method="post">
+					<form id="user-login" action="<?= $this->options->index ?>/joe/api/user-login" method="post">
 						<div class="form-group">
 							<label>账号/邮箱</label>
-							<input class="form-control" type="text" name="username" minlength="3" maxlength="30" placeholder="请输入您的账号/邮箱">
+							<input class="form-control" type="text" name="username" minlength="3" maxlength="30" required placeholder="请输入您的账号/邮箱">
 						</div>
 						<div class="form-group">
 							<label class="float-left" for="password">密码</label>
@@ -42,7 +42,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<?php
 							}
 							?>
-							<input class="form-control" type="password" name="password" minlength="6" maxlength="18" placeholder="请输入您的密码">
+							<input class="form-control" type="password" name="password" minlength="6" maxlength="18" required placeholder="请输入您的密码">
 						</div>
 						<button type="submit" class="btn btn-primary">登 录</button>
 					</form>

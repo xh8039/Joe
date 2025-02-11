@@ -6,24 +6,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-$action = $_POST['action'] ?? '';
+
+$path_info_explode = explode('/', $self->request->getPathInfo());
+$action = empty($path_info_explode[3]) ? ($_POST['action'] ?? '') : $path_info_explode[3];
+
 \Widget\User::alloc()->to($user_widget);
 switch ($action) {
 	case 'code':
 		$this->geetest($_POST['info']);
-		break;
-	case 'login':
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		if (empty($username)) $this->response->throwJson(['message' => '请输入账号/邮箱']);
-		if (empty($password)) $this->response->throwJson(['message' => '请输入密码']);
-		// $login = $user_widget->login($username, $password);
-		$login = $this->user->login($username, $password);
-		if ($login) {
-			$this->response->throwJson(['code' => 200]);
-		} else {
-			$this->response->throwJson(['message' => '账号或密码错误']);
-		}
 		break;
 
 	case 'register':

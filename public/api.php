@@ -30,6 +30,21 @@ class Api
 		];
 	}
 
+	public static function userLogin(\Widget\Archive $self)
+	{
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		if (empty($username)) $self->response->throwJson(['message' => '请输入账号/邮箱']);
+		if (empty($password)) $self->response->throwJson(['message' => '请输入密码']);
+		// $login = $user_widget->login($username, $password);
+		$login = $self->user->login($username, $password);
+		if ($login) {
+			$self->response->throwJson(['code' => 200]);
+		} else {
+			$self->response->throwJson(['message' => '账号或密码错误']);
+		}
+	}
+
 	public static function commentOperate($self)
 	{
 		try {

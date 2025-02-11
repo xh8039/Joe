@@ -5,6 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.Joe.$body = $(document.body);
 });
 
+window.Joe.btnLoad = (element, message = null) => {
+	if (message === false) return Joe.btnLoaded(element);
+	(new WeakMap).set(element, element.innerHTML);
+	element.innerHTML = `<i class="loading ${message ? 'mr6' : null}"></i>` + message;
+	element.disabled = true;
+	element.classList.add('disabled');
+	return element;
+}
+
+window.Joe.btnLoaded = (element) => {
+	const html = (new WeakMap).get(element).innerHTML;
+	element.innerHTML = html;
+	element.disabled = false;
+	element.classList.remove('disabled');
+	return element;
+}
+
 window.Joe.thumbnailError = (element) => {
 	if (element.dataset.thumbnailLoaded) return true
 	console.log('缩略图加载失败', element, element.src);

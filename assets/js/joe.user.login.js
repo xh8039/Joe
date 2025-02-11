@@ -1,32 +1,21 @@
 Joe.DOMContentLoaded.userLogin ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.userLogin');
-	var btn = function (obj, msg, code) {
-		obj.html(msg);
-		obj.attr("disabled", code);
-	}
-	$("#login").click(function () {
-		let username = $("#username").val();
-		let password = $("#password").val();
-		if (!username) return autolog.log("请输入邮箱/账号", 'warn');
-		if (!password) return autolog.log("请输入密码", 'warn');
+	$("#user-login").submit(function (event) {
+		event.preventDefault();
+		const button = document.querySelector('#user-login button[type=submit]');
 		$.ajax({
-			url: Joe.options.index + '/user/api',
+			url: $(this).attr('action'),
 			type: 'post',
 			dataType: 'json',
-			async: true,
-			data: {
-				action: 'login',
-				username: username,
-				password: password
-			},
+			data: $(this).serialize(),
 			beforeSend: function () {
-				btn($("#login"), '<i class="loading mr6"></i>登录中...', true);
+				Joe.btnLoad(button, '登录中...');
 			},
 			complete: function () {
-				btn($("#login"), '登 录', false);
+				Joe.btnLoad(button, false);
 			},
 			error: function () {
-				$("#login").text('登 录', false);
+				Joe.btnLoad(button, false);
 				autolog.log("服务器繁忙", 'error');
 			},
 			success: function (res) {

@@ -139,8 +139,15 @@ class Api
 	/** 用户重置密码邮箱验证码 */
 	public static function userRetrieveCaptcha(\Widget\Archive $self)
 	{
+		/** 初始化验证类 */
+		$validator = new \Typecho\Validate();
+		$validator->addRule('email', 'required', _t('请输入邮箱后发送验证码'));
+		$validator->addRule('email', 'email', _t('邮箱格式错误'));
+		$validator->addRule('email', 'maxLength', _t('邮箱最多包含64个字符'), 64);
+		$error = $validator->run($self->request->from('email'));
+		if ($error) return ['message' => implode('，', $error)];
+
 		$email = $self->request->email;
-		if (empty($email)) return (['message' => '请输入邮箱后发送验证码']);
 		if (!Db::name('users')->where('mail', $email)->find()) return (['message' => '邮箱未注册']);
 
 		$_SESSION['joe_user_retrieve_captcha'] = rand(100000, 999999);

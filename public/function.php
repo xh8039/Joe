@@ -641,6 +641,8 @@ function send_email($title, $subtitle, $content, $email = '')
 	}
 	try {
 		$mail = new \PHPMailer\PHPMailer\PHPMailer();
+		$language = $PHPMailer->setLanguage('zh_cn');
+		if (!$language) return 'PHPMailer 语言文件 zh_cn 加载失败';
 		$mail->isSMTP();
 		$mail->SMTPAuth = true;
 		$mail->CharSet = 'UTF-8';

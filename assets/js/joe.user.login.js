@@ -30,13 +30,13 @@ Joe.DOMContentLoaded.userLogin ||= () => {
 				autolog.log("服务器繁忙", 'error');
 			},
 			success: function (res) {
-				if (res.code == 1) {
+				if (res.code == 200) {
 					autolog.log("登录成功", 'success');
 					setTimeout(function () {
 						window.location.href = window.Joe.referer;
 					}, 1000);
 				} else {
-					autolog.log(res.msg, 'warning');
+					autolog.log(res.message, 'warning');
 				}
 			}
 		});

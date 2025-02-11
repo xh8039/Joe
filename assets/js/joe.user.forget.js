@@ -45,11 +45,11 @@ Joe.DOMContentLoaded.userForget ||= () => {
 				autolog.log("服务器繁忙", 'error');
 			},
 			success: function (res) {
-				if (res.code == 1) {
+				if (res.code == 200) {
 					setTime();
 					autolog.log("验证码已发送到您的邮箱", 'success');
 				} else {
-					autolog.log(res.msg, 'warn');
+					autolog.log(res.message, 'warn');
 				}
 			}
 		});
@@ -81,7 +81,7 @@ Joe.DOMContentLoaded.userForget ||= () => {
 				autolog.log("服务器繁忙", 'error');
 			},
 			success: function (res) {
-				if (res.code == 1) {
+				if (res.code == 200) {
 					$("#post1").hide(100);
 					$("#post2").hide(100);
 					$("#post3").hide(100);
@@ -93,7 +93,7 @@ Joe.DOMContentLoaded.userForget ||= () => {
 					autolog.log("验证通过，请设置新密码", 'success');
 					state = res.state;
 				} else {
-					autolog.log(res.msg, 'warn');
+					autolog.log(res.message, 'warn');
 				}
 			}
 		});
@@ -126,13 +126,13 @@ Joe.DOMContentLoaded.userForget ||= () => {
 				autolog.log("服务器繁忙", 'error');
 			},
 			success: function (res) {
-				if (res.code == 1) {
+				if (res.code == 200) {
 					autolog.log('密码重置成功', 'success');
 					setTimeout(function () {
 						window.location.href = window.Joe.referer;
 					}, 1500);
 				} else {
-					autolog.log(res.msg, 'warn');
+					autolog.log(res.message, 'warn');
 				}
 			}
 		});

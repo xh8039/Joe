@@ -65,6 +65,7 @@ switch ($action) {
 		}
 
 		if (joe\email_config()) {
+			if (empty($_SESSION['joe_register_captcha'])) $this->response->throwJson(['message' => '请先发送邮箱验证码']);
 			if ($_SESSION['joe_register_captcha'] != $this->request->captcha || $_SESSION['joe_register_email'] != trim($this->request->email)) $this->response->throwJson(['message' => '验证码错误或已过期']);
 		}
 

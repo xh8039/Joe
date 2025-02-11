@@ -33,8 +33,8 @@ $form->addInput($JUserRegisterGroup->multiMode());
 
 $JUserRetrieve = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JUserRetrieve',
-	array('off' => '关闭（默认）', 'on' => '开启'),
-	'off',
+	array('on' => '开启（默认）', 'off' => '关闭'),
+	'on',
 	'找回密码',
 	'介绍：未配置邮箱无法发送验证码 访问地址：<a target="_blank" href="' . Typecho_Common::url('user/retrieve', Helper::options()->index) . '">' . Typecho_Common::url('user/retrieve', Helper::options()->index) . '</a>'
 );

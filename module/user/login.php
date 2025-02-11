@@ -34,7 +34,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<div class="form-group">
 						<label class="float-left" for="password">密码</label>
 						<?php
-						if ($this->options->JUserRetrieve == 'on') {
+						if ($this->options->JUserRetrieve == 'on' && joe\email_config()) {
 						?>
 							<a href="/user/retrieve<?= '?referer=' . $referer ?>" class="text-muted float-right">
 								<small>忘记密码?</small>

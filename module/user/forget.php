@@ -27,25 +27,25 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</div>
 					<div class="form-group mb-3" id="post1">
 						<label>邮箱</label>
-						<input class="form-control" type="text" id="email" placeholder="邮箱">
+						<input class="form-control" type="text" id="email" placeholder="请输入您的邮箱">
 					</div>
 					<div class="form-group" id="post2">
 						<label>验证码</label>
 						<div class="input-group">
-							<input type="text" class="form-control" id="code" placeholder="输入验证码">
+							<input type="text" class="form-control" id="code" placeholder="请输入验证码">
 							<button class="btn" id="send" type="button">获取验证码</button>
 						</div>
 					</div>
 					<div class="form-group mb-3" id="new1" style="display:none">
 						<label>新密码</label>
-						<input class="form-control" type="password" id="password" placeholder="新密码">
+						<input class="form-control" type="password" id="password" placeholder="请输入您的新密码">
 					</div>
 					<div class="form-group mb-3" id="new2" style="display:none">
 						<label>确认密码</label>
-						<input class="form-control" type="password" id="confirm_password" placeholder="确认密码">
+						<input class="form-control" type="password" id="confirm_password" placeholder="请确认您的新密码">
 					</div>
 					<button class="btn btn-light" id="check" type="submit">验 证</button>
-					<button class="btn btn-light" id="retrieve" type="submit" style="display:none">设置密码</button>
+					<button class="btn btn-light" id="retrieve" type="submit" style="display:none">设置新密码</button>
 				</div>
 				<?php
 				if ($this->options->allowRegister) {

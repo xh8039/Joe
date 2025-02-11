@@ -29,23 +29,23 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 					</div>
 					<div class="form-group mb-3">
 						<label>昵称（用于显示）</label>
-						<input class="form-control" type="text" id="nickname" placeholder="输入昵称">
+						<input class="form-control" type="text" id="nickname" placeholder="请输入昵称">
 					</div>
 					<div class="form-group mb-3">
 						<label>账号（用于登录）</label>
-						<input class="form-control" type="text" id="username" placeholder="输入账号" value="<?= $rememberName ?>">
+						<input class="form-control" type="text" id="username" placeholder="请输入账号" value="<?= $rememberName ?>">
 					</div>
 					<div class="form-group mb-3">
 						<label>密码</label>
-						<input class="form-control" type="password" id="password" placeholder="输入密码">
+						<input class="form-control" type="password" id="password" placeholder="请输入密码">
 					</div>
 					<div class="form-group mb-3">
 						<label>确认密码</label>
-						<input class="form-control" type="password" id="confirm_password" placeholder="输入确认密码">
+						<input class="form-control" type="password" id="confirm_password" placeholder="确认您的密码">
 					</div>
 					<div class="form-group mb-3">
 						<label>邮箱（用于找回密码）</label>
-						<input class="form-control" type="text" id="email" placeholder="邮箱" value="<?= $rememberMail ?>">
+						<input class="form-control" type="text" id="email" placeholder="请输入邮箱" value="<?= $rememberMail ?>">
 					</div>
 					<?php
 					if (joe\email_config()) {

@@ -58,9 +58,9 @@ switch ($action) {
 		$validator->addRule('confirm_password', 'confirm', _t('两次输入的密码不一致'), 'password');
 
 		/** 截获验证异常 */
-		if ($error = $validator->run($this->request->from('nickname', 'username', 'email', 'password', 'confirm_password'))) {
-			Typecho\Cookie::set('__typecho_remember_name', $this->request->name);
-			Typecho\Cookie::set('__typecho_remember_mail', $this->request->mail);
+		$error = $validator->run($this->request->from('nickname', 'username', 'email', 'password', 'confirm_password'));
+		var_dump($error);
+		if ($error) {
 			$this->response->throwJson(['message' => $error]);
 		}
 

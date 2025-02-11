@@ -15,7 +15,7 @@ window.Joe.btnLoad = (element, message = null) => {
 }
 
 window.Joe.btnLoaded = (element) => {
-	const html = (new WeakMap).get(element).innerHTML;
+	const html = (new WeakMap).get(element);
 	element.innerHTML = html;
 	element.disabled = false;
 	element.classList.remove('disabled');

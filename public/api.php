@@ -202,15 +202,16 @@ class Api
 
 		if ($user['password'] === $password) return (['message' => '新密码不能与旧密码相同']);
 
+		// 更新用户密码
+		$user_update = Db::name('users')->where('uid', $user['uid'])->update(['password' => $password]);
+		if (!$user_update) return ['message' => '服务器异常，请稍后再试'];
+
 		// 清理验证码会话
 		$_SESSION['joe_user_retrieve_captcha'] = null;
 		$_SESSION['joe_user_retrieve_email'] = null;
 
-		// 更新用户密码
-		$user_update = Db::name('users')->where('uid', $user['uid'])->update(['password', $password]);
-		if (!$user_update) return ['message' => '服务器异常，请稍后再试'];
-
 		// 自动帮助用户登录
+		$user['password'] = $self->request->password;
 		$login = self::$user->simpleLogin($user, false);
 		$message = '新密码设置成功，' . ($login ? '已自动为您登录' : '请重新登录');
 

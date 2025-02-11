@@ -114,7 +114,6 @@ Joe.DOMContentLoaded.single ||= () => {
 			success(res) {
 				if (res.code != 200) return;
 				const views = Number($('#Joe_Article_Views').text().replace(',', ''));
-				console.log(views);
 				$('#Joe_Article_Views').html(views + 1);
 				viewsArr.push(cid);
 				localStorage.setItem('content-views', JSON.stringify(viewsArr));
@@ -139,7 +138,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			_loading = true;
 			agreeArr = localStorage.getItem('content-agree') ? JSON.parse(localStorage.getItem('content-agree')) : [];
 			let flag = agreeArr.includes(Joe.CONTENT.cid);
-			var count = Number($('.action-like>count').text());
+			var count = Number($('.action-like>count').text().replace(',', ''));
 			$.ajax({
 				url: Joe.BASE_API + '/handle-agree',
 				type: 'POST',

@@ -29,7 +29,7 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 					</div>
 					<div class="form-group mb-3">
 						<label>昵称</label>
-						<input class="form-control" type="text" id="nickname" maxlength="10" placeholder="请输入您要展示的名称">
+						<input class="form-control" type="text" id="nickname" maxlength="10" placeholder="请输入您要显示的名称">
 					</div>
 					<div class="form-group mb-3">
 						<label>账号（用于登录）</label>

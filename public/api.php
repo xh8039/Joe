@@ -118,7 +118,8 @@ class Api
 
 		$login = self::$user->login($self->request->username, $self->request->password);
 
-		\Typecho\Cookie::delete('__typecho_first_run');
+		// \Typecho\Cookie::delete('__typecho_first_run');
+		\Typecho\Cookie::set('__typecho_first_run', 1);
 		\Typecho\Cookie::delete('__typecho_remember_name');
 		\Typecho\Cookie::delete('__typecho_remember_mail');
 		$_SESSION['joe_user_register_captcha'] = null;

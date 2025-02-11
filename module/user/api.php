@@ -84,7 +84,7 @@ switch ($action) {
 
 		Widget\Register::pluginHandle()->finishRegister($register_widget);
 
-		$this->user->login($this->request->name, $this->request->password);
+		$this->user->login($this->request->username, $this->request->password);
 
 		Typecho\Cookie::delete('__typecho_first_run');
 		Typecho\Cookie::delete('__typecho_remember_name');

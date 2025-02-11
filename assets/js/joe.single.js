@@ -95,7 +95,6 @@ Joe.DOMContentLoaded.single ||= () => {
 				console.log(this, `该标签${hasTextAfter ? '前' : '后'}面紧贴着文字`);
 				this.style.display = 'inline-block';
 			} else {
-				console.log(this, '该标签前后没有紧贴着文字');
 				$(this).wrap($(`<span style="display: block;" data-fancybox="Joe" href="${$(this).attr('src')}"></span>`));
 			}
 		});

@@ -80,8 +80,8 @@ Joe.DOMContentLoaded.user ||= () => {
 			}, 1000);
 		}
 		$("#send-captcha").click(function () {
-			let email = $("#user-login input[name=email]").val();
-			if (!email) return autolog.log("请输入邮箱后发送验证码", 'warning');
+			let email = $("#user-form input[name=email]").val();
+			if (!email) return autolog.log('请输入邮箱后发送验证码', 'warn');
 			ajax({
 				url: $(this).attr('action'),
 				data: { email: email },

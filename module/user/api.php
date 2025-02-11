@@ -37,10 +37,13 @@ switch ($action) {
 		$validator->addRule('nickname', 'required', _t('必须填写用户昵称'));
 		$validator->addRule('nickname', 'maxLength', _t('昵称最多包含10个字符'), 10);
 
-		$validator->addRule('username', 'required', _t('必须填写账号称'));
-		$validator->addRule('username', 'minLength', _t('账号至少包含2个字符'), 2);
-		$validator->addRule('username', 'maxLength', _t('账号最多包含32个字符'), 32);
+		$validator->addRule('username', 'required', _t('必须填写账号'));
+		$validator->addRule('username', 'minLength', _t('账号至少包含2个字符'), 3);
+		$validator->addRule('username', 'maxLength', _t('账号最多包含32个字符'), 30);
 		$validator->addRule('username', 'xssCheck', _t('请不要在账号中使用特殊字符'));
+		$validator->addRule('username', function (string $username) {
+			return preg_match('/^[A-Za-z0-9]{3,30}$/i', $username);
+		}, _t('账号必须由字母或数字组成'));
 		$validator->addRule('username', [$register_widget, 'nameExists'], _t('账号已经存在'));
 
 		$validator->addRule('email', 'required', _t('必须填写邮箱'));

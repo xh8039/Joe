@@ -29,23 +29,23 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 					</div>
 					<div class="form-group mb-3">
 						<label>昵称（用于显示）</label>
-						<input class="form-control" type="text" id="nickname" placeholder="请输入昵称">
+						<input class="form-control" type="text" id="nickname" maxlength="10" placeholder="请输入昵称">
 					</div>
 					<div class="form-group mb-3">
 						<label>账号（用于登录）</label>
-						<input class="form-control" type="text" id="username" placeholder="请输入账号" value="<?= $rememberName ?>">
+						<input class="form-control" type="text" id="username" value="<?= $rememberName ?>" minlength="3" maxlength="30" placeholder="请输入3到30位数字或字母">
 					</div>
 					<div class="form-group mb-3">
 						<label>密码</label>
-						<input class="form-control" type="password" id="password" placeholder="请输入密码">
+						<input class="form-control" type="password" id="password" minlength="6" maxlength="18" placeholder="请输入6到18位的密码">
 					</div>
 					<div class="form-group mb-3">
 						<label>确认密码</label>
-						<input class="form-control" type="password" id="confirm_password" placeholder="请再输入您的密码">
+						<input class="form-control" type="password" id="confirm_password" minlength="6" maxlength="18" placeholder="请再输入您的密码">
 					</div>
 					<div class="form-group mb-3">
 						<label>邮箱（用于找回密码）</label>
-						<input class="form-control" type="text" id="email" placeholder="请输入邮箱" value="<?= $rememberMail ?>">
+						<input class="form-control" type="text" id="email" value="<?= $rememberMail ?>" placeholder="请输入邮箱" maxlength="64">
 					</div>
 					<?php
 					if (joe\email_config()) {

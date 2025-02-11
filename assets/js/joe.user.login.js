@@ -15,8 +15,7 @@ Joe.DOMContentLoaded.userLogin ||= () => {
 				Joe.btnLoad(button, false);
 			},
 			error: function () {
-				Joe.btnLoad(button, false);
-				autolog.log("服务器繁忙", 'error');
+				autolog.log('服务器繁忙', 'error');
 			},
 			success: function (res) {
 				if (res.code == 200) {

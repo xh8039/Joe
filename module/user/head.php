@@ -13,5 +13,6 @@ if ($referer_host == $_SERVER['HTTP_HOST'] || substr($referer_path, 0, 1) == '/'
 	} else {
 		echo "<script>window.Joe.referer='{$referer}'</script>";
 		echo '<link href="' . joe\theme_url('assets/css/joe.user.css') . '" rel="stylesheet" type="text/css" />';
+		echo '<script src="' . joe\theme_url('assets/js/joe.user.js') . '"></script>';
 	}
 }

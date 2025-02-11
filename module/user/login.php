@@ -12,7 +12,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php $this->setArchiveTitle('账号登陆') ?>
 	<?php $this->need('module/head.php') ?>
 	<?php $this->need('module/user/head.php') ?>
-	<script src="<?= joe\theme_url('assets/js/joe.user.login.js') ?>"></script>
 </head>
 
 <body>
@@ -26,7 +25,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<h4>用户登录</h4>
 						<p>请输入帐号密码进行登录</p>
 					</div>
-					<form id="user-login" action="<?= $this->options->index ?>/joe/api/user-login" method="post">
+					<form id="user-form" operate="登录" action="<?= $this->options->index ?>/joe/api/user-login" method="post">
 						<div class="form-group">
 							<label>账号/邮箱</label>
 							<input class="form-control" type="text" name="username" minlength="3" maxlength="30" required placeholder="请输入您的账号/邮箱">
@@ -44,6 +43,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							?>
 							<input class="form-control" type="password" name="password" minlength="6" maxlength="18" required placeholder="请输入您的密码">
 						</div>
+						<input type="hidden" name="referer" value="<?= $referer ?>">
 						<button type="submit" class="btn btn-primary">登 录</button>
 					</form>
 				</div>

@@ -146,11 +146,6 @@ function themeInit($self)
 			$self->response->setStatus(200);
 			$self->setThemeFile('module/user/retrieve.php');
 		}
-		// 增加自定义登录注册页面API
-		if (str_starts_with($path_info, '/user/api')) {
-			$self->response->setStatus(200);
-			$self->setThemeFile('module/user/api.php');
-		}
 	}
 
 	/* 增加自定义SiteMap功能 */

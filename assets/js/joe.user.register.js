@@ -8,15 +8,15 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 	var countdown = 60;
 	var setTime = function () {
 		if (countdown == 0) {
-			$("#send").html('获取验证码');
-			$("#send").attr("disabled", false);
+			$("#send-captcha").html('获取验证码');
+			$("#send-captcha").attr("disabled", false);
 			$("#email").attr("disabled", false);
 			countdown = 60;
 			return;
 		} else {
-			$("#send").html(countdown + "秒后重可发");
+			$("#send-captcha").html(countdown + "秒后重可发");
 			$("#email").attr("disabled", true);
-			$("#send").attr("disabled", true);
+			$("#send-captcha").attr("disabled", true);
 			countdown--;
 		}
 		setTimeout(function () {
@@ -30,7 +30,7 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 		let QQ = $(this).val();
 		if (/^[1-9][0-9]{4,}$/.test(QQ)) $("#email").val(QQ + '@qq.com');
 	});
-	$("#send").click(function () {
+	$("#send-captcha").click(function () {
 		let email = $("#email").val();
 		if (!email) return autolog.log("请输入邮箱后发送验证码", 'warning');
 		$.ajax({
@@ -43,13 +43,13 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 				email: email
 			},
 			beforeSend: function () {
-				btn($("#send"), '<i class="loading mr6"></i>发送中...', true);
+				btn($("#send-captcha"), '<i class="loading mr6"></i>发送中...', true);
 			},
 			complete: function () {
-				btn($("#send"), "获取验证码", false);
+				btn($("#send-captcha"), "获取验证码", false);
 			},
 			error: function () {
-				btn($("#send"), "获取验证码", false);
+				btn($("#send-captcha"), "获取验证码", false);
 				autolog.log("服务器繁忙", 'error');
 			},
 			success: function (res) {

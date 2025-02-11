@@ -31,19 +31,180 @@ class Api
 		];
 	}
 
-	public static function userLogin(\Widget\Archive $self)
+	/** 用户登录 */
+	public static function userLogin()
 	{
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		if (empty($username)) $self->response->throwJson(['message' => '请输入账号/邮箱']);
-		if (empty($password)) $self->response->throwJson(['message' => '请输入密码']);
-		// $login = $user_widget->login($username, $password);
+		if (empty($username)) return ['message' => '请输入账号/邮箱'];
+		if (empty($password)) return ['message' => '请输入密码'];
 		$login = self::$user->login($username, $password);
-		if ($login) {
-			$self->response->throwJson(['code' => 200]);
-		} else {
-			$self->response->throwJson(['message' => '账号或密码错误']);
+		return $login ? ['code' => 200, 'message' => '登录成功', 'location' => true] : ['message' => '账号或密码错误'];
+	}
+
+	/** 用户注册邮箱验证码 */
+	public static function userRegisterCaptcha(\Widget\Archive $self)
+	{
+		$email = $self->request->email;
+		if (empty($email)) return ['message' => '请输入邮箱后发送验证码'];
+		if (Db::name('users')->where('mail', $email)->find()) return ['message' => '邮箱已经注册'];
+
+		$_SESSION['joe_user_register_captcha'] = rand(100000, 999999);
+		$_SESSION['joe_user_register_email'] = $email;
+		$send_email = \joe\send_email('注册验证', '您正在进行注册操作，验证码是：', $_SESSION['joe_user_register_captcha'], $email, 60);
+		return $send_email === true ? ['code' => 200, 'message' => '验证码已发送到您的邮箱'] : ['message' => $send_email];
+	}
+	/** 用户注册 */
+	public static function userRegister(\Widget\Archive $self)
+	{
+		/** 如果已经登录 */
+		if (!self::$options->allowRegister) return (['message' => '禁止用户注册！']);
+
+		/** 初始化验证类 */
+		$validator = new \Typecho\Validate();
+		$validator->addRule('nickname', 'required', _t('请输入用户昵称'));
+		$validator->addRule('nickname', 'maxLength', _t('昵称最多包含10个字符'), 10);
+
+		$validator->addRule('username', 'required', _t('请输入账号'));
+		$validator->addRule('username', 'minLength', _t('账号至少包含2个字符'), 3);
+		$validator->addRule('username', 'maxLength', _t('账号最多包含32个字符'), 30);
+		$validator->addRule('username', 'xssCheck', _t('请不要在账号中使用特殊字符'));
+		$validator->addRule('username', function (string $username) {
+			return preg_match('/^[A-Za-z0-9]{3,30}$/i', $username);
+		}, _t('账号必须由字母或数字组成'));
+		$validator->addRule('username', [self::$user, 'nameExists'], _t('账号已经存在'));
+
+		$validator->addRule('email', 'required', _t('请输入邮箱'));
+		$validator->addRule('email', [self::$user, 'mailExists'], _t('邮箱已经存在'));
+		$validator->addRule('email', 'email', _t('邮箱格式错误'));
+		$validator->addRule('email', 'maxLength', _t('邮箱最多包含64个字符'), 64);
+
+		$validator->addRule('password', 'required', _t('请输入密码'));
+		$validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
+		$validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
+		$validator->addRule('confirm_password', 'confirm', _t('两次输入的密码不一致'), 'password');
+
+		/** 截获验证异常 */
+		$error = $validator->run($self->request->from('nickname', 'username', 'email', 'password', 'confirm_password'));
+		if ($error) return (['message' => implode('，', $error)]);
+
+		if (Db::name('users')->where('screenName', $self->request->nickname)->find()) {
+			return (['message' => '昵称已被其它小伙伴使用了']);
 		}
+
+		if (\joe\email_config()) {
+			if (empty($_SESSION['joe_user_register_captcha'])) return (['message' => '请先发送邮箱验证码']);
+			if ($_SESSION['joe_user_register_captcha'] != $self->request->captcha || $_SESSION['joe_user_register_email'] != trim($self->request->email)) return (['message' => '验证码错误或已过期']);
+		}
+
+		$hasher = new \Utils\PasswordHash(8, true);
+		$group = empty(self::$options->JUserRegisterGroup) ? 'subscriber' : self::$options->JUserRegisterGroup;
+
+		$dataStruct = \Widget\Register::pluginHandle()->register([
+			'name' => $self->request->username,
+			'mail' => $self->request->email,
+			'screenName' => $self->request->nickname,
+			'password' => $hasher->hashPassword($self->request->password),
+			'created' => self::$options->time,
+			'group' => $group
+		]);
+
+		$insertId = self::$user->insert($dataStruct);
+		if (!$insertId) return (['message' => '服务器异常，请稍后重试']);
+
+		self::$user->push(Db::name('users')->where('uid', $insertId)->find());
+
+		\Widget\Register::pluginHandle()->finishRegister(self::$user);
+
+		$login = self::$user->login($self->request->username, $self->request->password);
+
+		\Typecho\Cookie::delete('__typecho_first_run');
+		\Typecho\Cookie::delete('__typecho_remember_name');
+		\Typecho\Cookie::delete('__typecho_remember_mail');
+		$_SESSION['joe_user_register_captcha'] = null;
+		$_SESSION['joe_user_register_email'] = null;
+
+		\joe\send_email('注册成功', '您已成功注册账号，您的账号信息如下：', [
+			'昵称' => $self->request->nickname,
+			'账号' => $self->request->username,
+			'邮箱' => $self->request->email,
+			'密码' => $self->request->password,
+		], $self->request->email, 0);
+
+		$message = '注册成功，' . ($login ? '以为您自动登录' : '请前往登录');
+
+		return (['code' => 200, 'message' => $message, 'location' => $login ? true : false]);
+	}
+
+	/** 用户重置密码邮箱验证码 */
+	public static function userRetrieveCaptcha(\Widget\Archive $self)
+	{
+		$email = $self->request->email;
+		if (empty($email)) return (['message' => '请输入邮箱后发送验证码']);
+		if (!Db::name('users')->where('mail', $email)->find()) return (['message' => '邮箱未注册']);
+
+		$_SESSION['joe_user_retrieve_captcha'] = rand(100000, 999999);
+		$_SESSION['joe_user_retrieve_email'] = $email;
+		$send_email = \joe\send_email('密码重置', '您正在进行重置密码操作，验证码是：', $_SESSION["joe_user_retrieve_captcha"], $email, 60);
+		if ($send_email === true) {
+			return (['code' => 200, 'message' => '验证码已发送到您的邮箱']);
+		} else {
+			return (['message' => $send_email]);
+		}
+	}
+	/** 用户重置密码 */
+	public static function userRetrieve(\Widget\Archive $self)
+	{
+		/** 初始化验证类 */
+		$validator = new \Typecho\Validate();
+
+		// 检测验证码
+		$validator->addRule('captcha', 'required', _t('请输入验证码'));
+
+		// 检测邮箱
+		$validator->addRule('email', 'required', _t('请输入邮箱'));
+		$validator->addRule('email', 'email', _t('邮箱格式错误'));
+		$validator->addRule('email', 'maxLength', _t('邮箱最多包含64个字符'), 64);
+
+		// 检测密码
+		$validator->addRule('password', 'required', _t('请输入密码'));
+		$validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
+		$validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
+		$validator->addRule('confirm_password', 'confirm', _t('两次输入的密码不一致'), 'password');
+
+		// 截获验证异常
+		$error = $validator->run($self->request->from('captcha', 'email', 'password', 'confirm_password'));
+		if ($error) return ['message' => implode('，', $error)];
+
+		$captcha = $self->request->captcha;
+		$email = $self->request->email;
+
+		// 查询用户
+		$user = Db::name('users')->where('mail', $email)->find();
+		if (!$user) return (['message' => '您输入的邮箱未注册账号']);
+
+		// 检测验证码
+		if (empty($_SESSION['joe_user_retrieve_captcha'])) return (['message' => '请先发送邮箱验证码']);
+		if ($_SESSION['joe_user_retrieve_captcha'] != $captcha || $_SESSION['joe_user_retrieve_email'] != $email) {
+			return (['message' => '验证码错误或已过期']);
+		}
+
+		// 清理验证码会话
+		$_SESSION['joe_user_retrieve_captcha'] = null;
+		$_SESSION['joe_user_retrieve_email'] = null;
+
+		// 生成新的用户密码
+		$hasher = new \Utils\PasswordHash(8, true);
+		// 更新用户密码
+		$password = $self->request->password;
+		$users_update = Db::name('users')->where('uid', $user['uid'])->update('password', $hasher->hashPassword($password));
+		if (!$users_update) return ['message' => '服务器异常，请稍后再试'];
+
+		// 自动帮助用户登录
+		$login = self::$user->simpleLogin($user, false);
+		$message = '新密码设置成功，' . ($login ? '已自动为您登录' : '请重新登录');
+
+		return (['code' => 200, 'message' => $message, 'location' => $login ? true : false]);
 	}
 
 	public static function commentOperate($self)

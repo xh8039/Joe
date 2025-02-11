@@ -57,12 +57,11 @@ switch ($action) {
 
 		/** 截获验证异常 */
 		$error = $validator->run($this->request->from('nickname', 'username', 'email', 'password', 'confirm_password'));
-		if ($error) {
-			$this->response->throwJson(['message' => implode('，', $error)]);
-		}
+		if ($error) $this->response->throwJson(['message' => implode('，', $error)]);
 
-		$nickname_find = Db::name('users')->where('screenName', $_POST['nickname'])->find();
-		if ($nickname_find) $this->response->throwJson(['message' => '昵称已被其它小伙伴使用了']);
+		if (Db::name('users')->where('screenName', $_POST['nickname'])->find()) {
+			$this->response->throwJson(['message' => '昵称已被其它小伙伴使用了']);
+		}
 
 		if (joe\email_config()) {
 			if ($_SESSION["joe_register_captcha"] != $this->request->captcha || $_SESSION["joe_register_email"] != trim($email)) $this->response->throwJson(['message' => '验证码错误或已过期']);

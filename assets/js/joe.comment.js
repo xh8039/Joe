@@ -296,6 +296,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 		function prepareData($form, type) {
 			const coid = $form.attr('data-coid');
 			const data = new FormData();
+			const $textarea = $form.find('textarea[name="text"]');
 			const text = type == "draw" ? `{!{${document.getElementById('joe_comment_draw').toDataURL("image/webp", 0.1)}}!}` : $textarea.val();
 
 			data.append('author', $form.find('input[name="author"]').val());

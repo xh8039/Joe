@@ -59,9 +59,8 @@ switch ($action) {
 
 		/** 截获验证异常 */
 		$error = $validator->run($this->request->from('nickname', 'username', 'email', 'password', 'confirm_password'));
-		var_dump($error);
 		if ($error) {
-			$this->response->throwJson(['message' => $error]);
+			$this->response->throwJson(['message' => implode('，', $error)]);
 		}
 
 		if (Db::name('users')->where('screenName', $_POST['nickname'])->find()) $this->response->throwJson(['message' => '昵称已被其它小伙伴使用']);

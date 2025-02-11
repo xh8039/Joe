@@ -64,13 +64,13 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 		let nickname = $("#nickname").val();
 		let username = $("#username").val();
 		let email = $("#email").val();
-		let code = $("#code").val();
+		let captcha = $("#captcha").val();
 		let password = $("#password").val();
 		let confirm_password = $("#confirm_password").val();
 		if (!nickname) return autolog.log("请输入昵称", 'warn');
 		if (!username) return autolog.log("请输入用户名", 'warn');
 		if (!email) return autolog.log("请输入邮箱", 'warn');
-		if ($("#code").length > 0 && !code) return autolog.log("请输入验证码", 'warn');
+		if ($("#captcha").length > 0 && !captcha) return autolog.log("请输入验证码", 'warn');
 		if (!password) return autolog.log("请输入密码", 'warn');
 		if (!confirm_password) return autolog.log("请输入确认密码", 'warn');
 		if (confirm_password != password) return autolog.log("两次密码不一致", 'warn');
@@ -84,7 +84,7 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 				nickname: nickname,
 				username: username,
 				email: email,
-				code: code,
+				captcha: captcha,
 				password: password,
 				confirm_password: confirm_password
 			},

@@ -31,12 +31,18 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 						<label>昵称（用于显示）</label>
 						<input class="form-control" type="text" id="nickname" placeholder="输入昵称">
 					</div>
-
 					<div class="form-group mb-3">
 						<label>账号（用于登录）</label>
 						<input class="form-control" type="text" id="username" placeholder="输入账号" value="<?= $rememberName ?>">
 					</div>
-
+					<div class="form-group mb-3">
+						<label>密码</label>
+						<input class="form-control" type="password" id="password" placeholder="输入密码">
+					</div>
+					<div class="form-group mb-3">
+						<label>确认密码</label>
+						<input class="form-control" type="password" id="confirm_password" placeholder="输入确认密码">
+					</div>
 					<div class="form-group mb-3">
 						<label>邮箱（用于找回密码）</label>
 						<input class="form-control" type="text" id="email" placeholder="邮箱" value="<?= $rememberMail ?>">
@@ -47,22 +53,13 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 						<div class="form-group">
 							<label>邮箱验证码</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="code" placeholder="请输入邮箱验证码">
+								<input type="text" class="form-control" id="captcha" placeholder="请输入邮箱验证码">
 								<button id="send" class="btn" type="button">获取验证码</button>
 							</div>
 						</div>
 					<?php
 					}
 					?>
-					<div class="form-group mb-3">
-						<label>密码</label>
-						<input class="form-control" type="password" id="password" placeholder="输入密码">
-					</div>
-
-					<div class="form-group mb-3">
-						<label>确认密码</label>
-						<input class="form-control" type="password" id="confirm_password" placeholder="输入确认密码">
-					</div>
 					<button class="btn btn-light" id="register">注 册</button>
 				</div>
 				<?php

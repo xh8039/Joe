@@ -15,7 +15,7 @@ switch ($action) {
 	case 'login':
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		if (!isset($username)) $this->response->throwJson(['message' => '请输入用户名/邮箱']);
+		if (!isset($username)) $this->response->throwJson(['message' => '请输入账号/邮箱']);
 		if (!isset($password)) $this->response->throwJson(['message' => '请输入密码']);
 		// $login = $user_widget->login($username, $password);
 		$login = $this->user->login($username, $password);
@@ -38,20 +38,19 @@ switch ($action) {
 		/** 初始化验证类 */
 		$validator = new Typecho\Validate();
 		$validator->addRule('nickname', 'required', _t('必须填写用户昵称'));
-		$validator->addRule('nickname', 'maxLength', _t('用户名最多包含10个字符'), 10);
+		$validator->addRule('nickname', 'maxLength', _t('昵称最多包含10个字符'), 10);
 
-		$validator->addRule('username', 'required', _t('必须填写用户名称'));
-		$validator->addRule('username', 'minLength', _t('用户名至少包含2个字符'), 2);
-		$validator->addRule('username', 'maxLength', _t('用户名最多包含32个字符'), 32);
-		$validator->addRule('username', 'xssCheck', _t('请不要在用户名中使用特殊字符'));
-		$validator->addRule('username', [$register_widget, 'nameExists'], _t('用户名已经存在'));
+		$validator->addRule('username', 'required', _t('必须填写账号称'));
+		$validator->addRule('username', 'minLength', _t('账号至少包含2个字符'), 2);
+		$validator->addRule('username', 'maxLength', _t('账号最多包含32个字符'), 32);
+		$validator->addRule('username', 'xssCheck', _t('请不要在账号中使用特殊字符'));
+		$validator->addRule('username', [$register_widget, 'nameExists'], _t('账号已经存在'));
 
-		$validator->addRule('email', 'required', _t('必须填写电子邮箱'));
-		$validator->addRule('email', [$register_widget, 'mailExists'], _t('电子邮箱地址已经存在'));
-		$validator->addRule('email', 'email', _t('电子邮箱格式错误'));
-		$validator->addRule('email', 'maxLength', _t('电子邮箱最多包含64个字符'), 64);
+		$validator->addRule('email', 'required', _t('必须填写邮箱'));
+		$validator->addRule('email', [$register_widget, 'mailExists'], _t('邮箱已经存在'));
+		$validator->addRule('email', 'email', _t('邮箱格式错误'));
+		$validator->addRule('email', 'maxLength', _t('邮箱最多包含64个字符'), 64);
 
-		/** 如果请求中有password */
 		$validator->addRule('password', 'required', _t('必须填写密码'));
 		$validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
 		$validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
@@ -63,18 +62,19 @@ switch ($action) {
 			$this->response->throwJson(['message' => implode('，', $error)]);
 		}
 
-		if (Db::name('users')->where('screenName', $_POST['nickname'])->find()) $this->response->throwJson(['message' => '昵称已被其它小伙伴使用']);
+		$nickname_find = Db::name('users')->where('screenName', $_POST['nickname'])->find();
+		if ($nickname_find) $this->response->throwJson(['message' => '昵称已被其它小伙伴使用了']);
 
 		if (joe\email_config()) {
-			if ($_SESSION["Gm_Reg_Code"] != $code || $_SESSION["Gm_Reg_Email"] != trim($email)) $this->response->throwJson(['message' => '验证码错误或已过期']);
+			if ($_SESSION["joe_register_captcha"] != $this->request->captcha || $_SESSION["Gm_Reg_Email"] != trim($email)) $this->response->throwJson(['message' => '验证码错误或已过期']);
 		}
 
 		$hasher = new Utils\PasswordHash(8, true);
 		$group = empty($this->options->JUserRegisterGroup) ? 'subscriber' : $this->options->JUserRegisterGroup;
 		$dataStruct = [
-			'name' => $this->request->name,
-			'mail' => $this->request->mail,
-			'screenName' => $this->request->name,
+			'name' => $this->request->username,
+			'mail' => $this->request->email,
+			'screenName' => $this->request->nickname,
 			'password' => $hasher->hashPassword($this->request->password),
 			'created' => $this->options->time,
 			'group' => $group
@@ -103,7 +103,7 @@ switch ($action) {
 		$password = $_POST['password'];
 		$confirm_password = $_POST['confirm_password'];
 		if (!isset($nickname)) $this->response->throwJson(['message' => '请输入昵称']);
-		if (!isset($username)) $this->response->throwJson(['message' => '请输入用户名']);
+		if (!isset($username)) $this->response->throwJson(['message' => '请输入账号']);
 		if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱']);
 		if (joe\email_config()) {
 			if (!isset($code)) $this->response->throwJson([
@@ -124,7 +124,7 @@ switch ($action) {
 		}
 		if (Db::name('users')->where('name', $username)->find()) {
 			$this->response->throwJson([
-				'message' => '你输入的用户名已经被注册'
+				'message' => '你输入的账号已经被注册'
 			]);
 		}
 		if (Db::name('users')->where('mail', $email)->find()) {

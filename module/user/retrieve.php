@@ -35,7 +35,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</div>
 						<div class="form-group mb-3">
 							<label>确认密码</label>
-							<input class="form-control" type="password" name="confirm_password" minlength="6" maxlength="18" placeholder="请确认您的新密码">
+							<input class="form-control" type="password" name="confirm_password" minlength="6" maxlength="18" placeholder="请再次输入您的新密码">
 						</div>
 						<div class="form-group">
 							<label>验证码</label>

@@ -113,8 +113,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			data: { cid },
 			success(res) {
 				if (res.code != 200) return;
-				console.log($('#Joe_Article_Views').text())
-				const views = Number($('#Joe_Article_Views').text());
+				const views = Number($('#Joe_Article_Views').text().replace(',', ''));
 				console.log(views);
 				$('#Joe_Article_Views').html(views + 1);
 				viewsArr.push(cid);

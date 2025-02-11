@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
-$action = $_POST['action'];
+$action = $_POST['action'] ?? '';
 \Widget\User::alloc()->to($user_widget);
 switch ($action) {
 	case 'code':

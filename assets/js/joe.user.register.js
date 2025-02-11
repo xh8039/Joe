@@ -3,6 +3,7 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 	var btn = function (obj, msg, code) {
 		obj.html(msg);
 		obj.attr("disabled", code);
+		code ? obj.addClass('disabled') : obj.removeClass('disabled');
 	}
 	var countdown = 60;
 	var setTime = function () {

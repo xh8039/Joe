@@ -60,7 +60,7 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 					<?php
 					}
 					?>
-					<button class="btn btn-light" id="register">注 册</button>
+					<button class="btn btn-primary" id="register">注 册</button>
 				</div>
 				<?php
 				if ($this->options->allowRegister) {

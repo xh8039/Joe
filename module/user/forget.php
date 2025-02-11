@@ -44,8 +44,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<label>确认密码</label>
 						<input class="form-control" type="password" id="confirm_password" placeholder="请确认您的新密码">
 					</div>
-					<button class="btn btn-light" id="check" type="submit">验 证</button>
-					<button class="btn btn-light" id="retrieve" type="submit" style="display:none">设置新密码</button>
+					<button class="btn btn-primary" id="check" type="submit">验 证</button>
+					<button class="btn btn-primary" id="retrieve" type="submit" style="display:none">设置新密码</button>
 				</div>
 				<?php
 				if ($this->options->allowRegister) {

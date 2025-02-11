@@ -26,25 +26,26 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<h4>用户登录</h4>
 						<p>请输入帐号密码进行登录</p>
 					</div>
-					<div class="form-group">
-						<label>账号/邮箱</label>
-						<input class="form-control" type="text" id="username" placeholder="请输入您的账号/邮箱">
-					</div>
-
-					<div class="form-group">
-						<label class="float-left" for="password">密码</label>
-						<?php
-						if ($this->options->JUserRetrieve == 'on' && joe\email_config()) {
-						?>
-							<a href="/user/retrieve<?= '?referer=' . $referer ?>" class="text-muted float-right">
-								<small>忘记密码?</small>
-							</a>
-						<?php
-						}
-						?>
-						<input class="form-control" type="password" id="password" placeholder="请输入您的密码">
-					</div>
-					<button class="btn btn-light" id="login">登 录</button>
+					<form id="user-login" action="<?= $this->options->index ?>/user/api" method="post">
+						<div class="form-group">
+							<label>账号/邮箱</label>
+							<input class="form-control" type="text" name="username" minlength="3" maxlength="30" placeholder="请输入您的账号/邮箱">
+						</div>
+						<div class="form-group">
+							<label class="float-left" for="password">密码</label>
+							<?php
+							if ($this->options->JUserRetrieve == 'on' && joe\email_config()) {
+							?>
+								<a href="/user/retrieve<?= '?referer=' . $referer ?>" class="text-muted float-right">
+									<small>忘记密码?</small>
+								</a>
+							<?php
+							}
+							?>
+							<input class="form-control" type="password" name="password" minlength="6" maxlength="18" placeholder="请输入您的密码">
+						</div>
+						<input type="submit" class="btn btn-primary" value="登 录">
+					</form>
 				</div>
 				<?php
 				if ($this->options->allowRegister) {

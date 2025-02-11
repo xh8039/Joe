@@ -89,7 +89,7 @@ textarea {
 	transition: 0.3s;
 }
 
-.container .btn-light {
+.container .btn-primary {
 	display: block;
 	padding: .45rem 1.2rem;
 	line-height: 1.5;
@@ -102,11 +102,11 @@ textarea {
 	border: none;
 }
 
-.container .btn-light:hover {
+.container .btn-primary:hover {
 	opacity: 0.9;
 }
 
-.container .btn-light:active {
+.container .btn-primary:active {
 	opacity: 0.7;
 }
 

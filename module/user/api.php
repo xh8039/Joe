@@ -56,7 +56,7 @@ switch ($action) {
 			$validator->addRule('password', 'required', _t('必须填写密码'));
 			$validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
 			$validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
-			$validator->addRule('confirm_password', 'confirm_password', _t('两次输入的密码不一致'), 'password');
+			$validator->addRule('confirm_password', 'confirm', _t('两次输入的密码不一致'), 'password');
 		}
 
 		/** 截获验证异常 */

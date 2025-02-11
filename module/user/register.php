@@ -53,7 +53,7 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 						<div class="form-group">
 							<label>邮箱验证码</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="captcha" placeholder="请输入邮箱验证码">
+								<input type="text" class="form-control" id="captcha" minlength="6" maxlength="6" placeholder="请输入邮箱验证码">
 								<button id="send" class="btn" type="button">获取验证码</button>
 							</div>
 						</div>

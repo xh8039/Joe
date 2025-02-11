@@ -51,7 +51,6 @@ Joe.DOMContentLoaded.user ||= () => {
 	(() => {
 		if (!input('username') || !input('email')) return;
 		$(input('username')).on('input propertychange', function () {
-			if (input('email').value) return;
 			let value = $(this).val();
 			if (/^[1-9][0-9]{4,}$/.test(value)) input('email').value = value + '@qq.com';
 		});

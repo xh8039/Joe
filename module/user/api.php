@@ -93,66 +93,6 @@ switch ($action) {
 		$_SESSION['joe_register_email'] = null;
 
 		$this->response->throwJson(['code' => 200]);
-
-		// $nickname = $_POST['nickname'];
-		// $username = $_POST['username'];
-		// $email = $_POST['email'];
-		// $code = isset($_POST['code']) ? $_POST['code'] : null;
-		// $password = $_POST['password'];
-		// $confirm_password = $_POST['confirm_password'];
-		// if (!isset($nickname)) $this->response->throwJson(['message' => '请输入昵称']);
-		// if (!isset($username)) $this->response->throwJson(['message' => '请输入账号']);
-		// if (!isset($email)) $this->response->throwJson(['message' => '请输入邮箱']);
-		// if (joe\email_config()) {
-		// 	if (!isset($code)) $this->response->throwJson([
-		// 		'message' => '请输入验证码'
-		// 	]);
-		// }
-		// if (!isset($password)) $this->response->throwJson(['message' => '请输入密码']);
-		// if (!isset($confirm_password)) $this->response->throwJson(['message' => '请输入确认密码']);
-		// if ($confirm_password != $password) $this->response->throwJson(['message' => '两次密码不一致']);
-		// if (mb_strlen($nickname, 'UTF-8') > 10) $this->response->throwJson(['message' => '昵称不能超过10个字符']);
-		// if (!preg_match('/^[A-Za-z0-9]{4,30}$/i', $username)) $this->response->throwJson(['message' => '账号必须由4-30位字母或数字组成']);
-		// if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $this->response->throwJson(['message' => '请输入正确的邮箱地址']);
-		// if (mb_strlen($password, 'UTF-8') < 6) $this->response->throwJson(['message' => '密码不能少于6位']);
-		// if (Db::name('users')->where('screenName', $nickname)->find()) {
-		// 	$this->response->throwJson([
-		// 		'message' => '昵称已被其它小伙伴使用'
-		// 	]);
-		// }
-		// if (Db::name('users')->where('name', $username)->find()) {
-		// 	$this->response->throwJson([
-		// 		'message' => '你输入的账号已经被注册'
-		// 	]);
-		// }
-		// if (Db::name('users')->where('mail', $email)->find()) {
-		// 	$this->response->throwJson([
-		// 		'message' => '你输入的邮箱已经注册账号'
-		// 	]);
-		// }
-		// if (joe\email_config()) {
-		// 	if ($_SESSION["joe_register_captcha"] != $code || $_SESSION["joe_register_email"] != trim($email)) {
-		// 		$this->response->throwJson(['message' => '验证码错误或已过期']);
-		// 	}
-		// }
-		// $hasher = new PasswordHash(8, true);
-		// $data = array(
-		// 	'name' => $username,
-		// 	'screenName' => $nickname,
-		// 	'mail' => $email,
-		// 	'password' => $hasher->HashPassword($password),
-		// 	'created' => time(),
-		// 	'group' => empty(Helper::options()->JUserRegisterGroup) ? 'contributor' : Helper::options()->JUserRegisterGroup
-		// );
-		// $result = Typecho\Widget::widget('Widget_Abstract_Users')->insert($data);
-		// if ($result) {
-		// 	$_SESSION['joe_register_captcha'] = null;
-		// 	$_SESSION['joe_register_email'] = null;
-		// 	joe\user_login($result);
-		// 	$this->response->throwJson(['code' => 200, 'message' => '注册成功']);
-		// } else {
-		// 	$this->response->throwJson(['message' => '服务器异常，请稍后重试']);
-		// }
 		break;
 
 	case 'register_captcha':

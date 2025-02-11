@@ -7,7 +7,7 @@ Joe.DOMContentLoaded.userLogin ||= () => {
 	$("#login").click(function () {
 		let username = $("#username").val();
 		let password = $("#password").val();
-		if (!username) return autolog.log("请输入邮箱/用户名", 'warn');
+		if (!username) return autolog.log("请输入邮箱/账号", 'warn');
 		if (!password) return autolog.log("请输入密码", 'warn');
 		$.ajax({
 			url: Joe.options.index + '/user/api',

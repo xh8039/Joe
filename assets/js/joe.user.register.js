@@ -24,6 +24,7 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 	}
 	// 使用jQuery绑定input和propertychange事件
 	$("#username").on('input propertychange', function () {
+		if ($("#email").val()) return;
 		// 获取input元素，并实时监听用户输入
 		let QQ = $(this).val();
 		if (/^[1-9][0-9]{4,}$/.test(QQ)) $("#email").val(QQ + '@qq.com');
@@ -68,7 +69,7 @@ Joe.DOMContentLoaded.userRegister ||= () => {
 		let password = $("#password").val();
 		let confirm_password = $("#confirm_password").val();
 		if (!nickname) return autolog.log("请输入昵称", 'warn');
-		if (!username) return autolog.log("请输入用户名", 'warn');
+		if (!username) return autolog.log("请输入账号", 'warn');
 		if (!email) return autolog.log("请输入邮箱", 'warn');
 		if ($("#captcha").length > 0 && !captcha) return autolog.log("请输入验证码", 'warn');
 		if (!password) return autolog.log("请输入密码", 'warn');

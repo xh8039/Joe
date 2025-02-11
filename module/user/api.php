@@ -62,7 +62,7 @@ switch ($action) {
 		}
 
 		if (joe\email_config()) {
-			if ($_SESSION["joe_register_captcha"] != $this->request->captcha || $_SESSION["joe_register_email"] != trim($email)) $this->response->throwJson(['message' => '验证码错误或已过期']);
+			if ($_SESSION['joe_register_captcha'] != $this->request->captcha || $_SESSION['joe_register_email'] != trim($this->request->email)) $this->response->throwJson(['message' => '验证码错误或已过期']);
 		}
 
 		$hasher = new Utils\PasswordHash(8, true);

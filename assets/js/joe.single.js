@@ -218,7 +218,9 @@ Joe.DOMContentLoaded.single ||= () => {
 	})();
 
 	/* 激活文章视频模块 */
-	if (document.querySelector('.joe_detail__article-video')) $.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => {
+	(() => {
+		if (!document.querySelector('.joe_detail__article-video')) return;
+		// $.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => { });
 		const DPlayer = new VideoPlayer({
 			cdn: Joe.CDN_URL,
 			container: document.querySelector('.joe_detail__article-video>.dplayer-video'), // 播放器容器元素
@@ -272,7 +274,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			if (!DPlayer.video.error) return;
 			setTimeout(() => next(), 2000);
 		});
-	});
+	})();
 
 	/* 复制链接 */
 	(() => {

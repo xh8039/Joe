@@ -8,9 +8,12 @@
  * @giant DPlayer 基于DPlayer的增强实现
  */
 class VideoPlayer {
-	// 🔥 静态字段（类级别共享）
-	static loadJSList = new Map(); // 脚本加载缓存池（避免重复加载）
-	static PLAYER_INSTANCE = null; // 播放器单例实例
+
+	/** 播放器单例实例 */
+	DPlayer = null;
+
+	/** 脚本加载缓存池（避免重复加载） */
+	static loadJSList = new Map();
 
 	// 🎯 策略模式配置表（视频格式自动检测规则）
 	static formatStrategies = [
@@ -83,6 +86,8 @@ class VideoPlayer {
 
 		// ⏳ 异步初始化引擎（ES8 async/await）
 		this.initEngine().catch(console.error);
+
+		return this.DPlayer;
 	}
 
 	/**
@@ -97,10 +102,7 @@ class VideoPlayer {
 				...Array.from(this.resourceQueue).map(url => this.loadScript(url))
 			]);
 
-			// 🛡️ 单例模式校验（避免重复初始化）
-			if (!VideoPlayer.PLAYER_INSTANCE && window.DPlayer) {
-				VideoPlayer.PLAYER_INSTANCE = new DPlayer(this.options);
-			}
+			if (window.DPlayer) this.DPlayer = new DPlayer(this.options);
 		} catch (e) {
 			console.error('[VideoPlayer] 初始化失败:', e);
 			// 🚑 降级处理（2025年新增WebCodecs回退）

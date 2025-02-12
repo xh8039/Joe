@@ -110,7 +110,6 @@ class VideoPlayer {
 				this.DPlayer.on('play', setTimeout(() => {
 					if (this.DPlayer.video.paused) return;
 					const classList = this.DPlayer.options.container.classList;
-					console.log(classList);
 					if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
 				}, 1000));
 				if (this.options.autoplay) this.DPlayer.on('loadeddata', () => {
@@ -129,8 +128,6 @@ class VideoPlayer {
 	 * @param {boolean} [reloadPlayer=false] - 是否需要重建播放器实例
 	 */
 	async switchVideo(videoConfig, reloadPlayer = false) {
-		console.log(videoConfig)
-
 		// 🛠️ 创建临时资源队列
 		const newResourceQueue = new Set();
 
@@ -155,6 +152,7 @@ class VideoPlayer {
 		// } else {
 		// 🎯 动态更新类型处理器
 		this.updateCustomTypeHandler(videoConfig);
+		console.log(videoConfig);
 		this.DPlayer.switchVideo(videoConfig);
 		// }
 	}

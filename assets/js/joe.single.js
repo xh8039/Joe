@@ -245,9 +245,9 @@ Joe.DOMContentLoaded.single ||= () => {
 			}
 			const item = document.querySelector('.featured-video-episode>.switch-video.active');
 			if (item.nextSibling) item.nextSibling.nextElementSibling.click();
-			const classList = DPlayer.options.container.classList;
-			console.log(classList);
-			if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
+			// const classList = DPlayer.options.container.classList;
+			// console.log(classList);
+			// if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
 		}
 		const player = new VideoPlayer(options, (DPlayer) => {
 			console.log(DPlayer);

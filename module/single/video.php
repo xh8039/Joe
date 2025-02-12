@@ -13,4 +13,3 @@
         <?php endforeach; ?>
     </div>
 </div>
-<script src="<?= joe\theme_url('assets/plugin/yihang/VideoPlayer.js') ?>"></script>

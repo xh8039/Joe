@@ -270,6 +270,14 @@ Joe.DOMContentLoaded.single ||= () => {
 				player.switchVideo({ url: url });
 			}
 			if (title) videoModule.querySelector('.title').innerHTML = title;
+			if ("mediaSession" in navigator) {
+				navigator.mediaSession.metadata = new MediaMetadata({
+					title: title,
+					artist: document.title,
+					album: document.title,
+					artwork: [{ src: Joe.CONTENT.cover }],
+				});
+			}
 		});
 	})();
 

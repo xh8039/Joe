@@ -107,12 +107,15 @@ class VideoPlayer {
 			if (window.DPlayer) {
 				this.DPlayer = new DPlayer(this.options);
 				this.options.callback(this.DPlayer);
+				// 如果视频已经是播放的状态，1秒后检测自动隐藏视频控件
 				this.DPlayer.on('play', setTimeout(() => {
 					if (this.DPlayer.video.paused) return;
 					const classList = this.DPlayer.options.container.classList;
 					if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
 				}, 1000));
+				// 如果开启了自动播放，则强制调用自动播放
 				if (this.options.autoplay) this.DPlayer.on('loadeddata', () => {
+					console.log(navigator.mediaSession);
 					if (this.DPlayer.video.paused) this.DPlayer.video.play();
 				});
 			}

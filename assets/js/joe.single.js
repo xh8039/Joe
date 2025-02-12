@@ -234,6 +234,7 @@ Joe.DOMContentLoaded.single ||= () => {
 				pic: Joe.CONTENT.cover
 			}
 		});
+		console.log(DPlayer);
 		var firstVideo = true;
 		$('.featured-video-episode>.switch-video').on('click', function () {
 			$(this).addClass('active').siblings().removeClass('active');

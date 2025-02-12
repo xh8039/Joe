@@ -137,6 +137,7 @@ class VideoPlayer {
 
 		// 🔄 判断是否需要重建播放器
 		if (reloadPlayer || this.needRecreatePlayer(videoConfig)) {
+			console.log('重建播放器');
 			this.DPlayer.destroy();
 			this.DPlayer = new DPlayer({
 				...this.options,

@@ -221,19 +221,6 @@ Joe.DOMContentLoaded.single ||= () => {
 	(() => {
 		const videoModule = document.querySelector('.joe_detail__article-video');
 		if (!videoModule) return;
-		var firstVideo = true;
-		$('.featured-video-episode>.switch-video').on('click', function () {
-			$(this).addClass('active').siblings().removeClass('active');
-			const url = $(this).attr('video-url');
-			let title = $(this).attr('data-original-title');
-			if (firstVideo) {
-				firstVideo = false;
-				player.switchVideo({ url: url, pic: Joe.CONTENT.cover });
-			} else {
-				player.switchVideo({ url: url });
-			}
-			if (title) videoModule.querySelector('.title').innerHTML = title;
-		});
 		const options = {
 			cdn: Joe.CDN_URL,
 			container: videoModule.querySelector('.dplayer-video'), // 播放器容器元素
@@ -275,6 +262,19 @@ Joe.DOMContentLoaded.single ||= () => {
 				if (!DPlayer.video.error) return;
 				setTimeout(() => next(), 2000);
 			});
+		});
+		var firstVideo = true;
+		$('.featured-video-episode>.switch-video').on('click', function () {
+			$(this).addClass('active').siblings().removeClass('active');
+			const url = $(this).attr('video-url');
+			let title = $(this).attr('data-original-title');
+			if (firstVideo) {
+				firstVideo = false;
+				player.switchVideo({ url: url, pic: Joe.CONTENT.cover });
+			} else {
+				player.switchVideo({ url: url });
+			}
+			if (title) videoModule.querySelector('.title').innerHTML = title;
 		});
 	})();
 

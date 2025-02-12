@@ -136,18 +136,18 @@ class VideoPlayer {
 		}
 
 		// 🔄 判断是否需要重建播放器
-		if (reloadPlayer || this.needRecreatePlayer(videoConfig)) {
-			console.log('重建播放器');
-			this.DPlayer.destroy();
-			this.DPlayer = new DPlayer({
-				...this.options,
-				video: videoConfig
-			});
-		} else {
+		// if (reloadPlayer || this.needRecreatePlayer(videoConfig)) {
+		// 	console.log('重建播放器');
+		// 	this.DPlayer.destroy();
+		// 	this.DPlayer = new DPlayer({
+		// 		...this.options,
+		// 		video: videoConfig
+		// 	});
+		// } else {
 			// 🎯 动态更新类型处理器
 			this.updateCustomTypeHandler(videoConfig);
 			this.DPlayer.switchVideo(videoConfig);
-		}
+		// }
 	}
 
 	/**

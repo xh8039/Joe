@@ -115,7 +115,7 @@ class VideoPlayer {
 				}, 1000));
 				// 如果开启了自动播放，则强制调用自动播放
 				if (this.options.autoplay) this.DPlayer.on('loadeddata', () => {
-					if (this.DPlayer.video.paused && !navigator.mediaSession) this.DPlayer.video.play();
+					if (this.DPlayer.video.paused) this.DPlayer.video.play();
 				});
 			}
 		} catch (e) {

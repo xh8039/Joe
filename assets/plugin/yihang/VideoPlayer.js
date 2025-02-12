@@ -120,6 +120,8 @@ class VideoPlayer {
 	 * @param {boolean} [reloadPlayer=false] - 是否需要重建播放器实例
 	 */
 	async switchVideo(videoConfig, reloadPlayer = false) {
+		console.log(videoConfig)
+
 		// 🛠️ 创建临时资源队列
 		const newResourceQueue = new Set();
 

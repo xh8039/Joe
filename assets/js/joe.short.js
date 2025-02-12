@@ -424,7 +424,7 @@ Joe.DOMContentLoaded.short ||= () => {
 		render() {
 			if (this.options.src) {
 				if (this.options.player == 'false' || !this.options.player) {
-					new VideoPlayer({
+					const options = {
 						cdn: Joe.CDN_URL,
 						container: this, // 播放器容器元素
 						autoplay: this.options.autoplay, // 视频自动播放
@@ -439,7 +439,12 @@ Joe.DOMContentLoaded.short ||= () => {
 							pic: this.options.pic,
 							url: this.options.src
 						}
-					});
+					};
+					if (!window.VideoPlayer) {
+						$.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => new VideoPlayer(options));
+					} else {
+						new VideoPlayer(options);
+					}
 				} else {
 					if (this.options.pic == decodeURIComponent(this.options.pic)) {
 						this.options.pic = encodeURIComponent(this.options.pic);

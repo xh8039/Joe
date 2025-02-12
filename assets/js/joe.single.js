@@ -217,106 +217,10 @@ Joe.DOMContentLoaded.single ||= () => {
 		});
 	})();
 
-	/* 激活文章视频模块（修复版） */
-	(async () => { // ⚡ 使用异步立即执行函数
-		const videoContainer = document.querySelector('.joe_detail__article-video');
-		if (!videoContainer) return;
-
-		// 🔍 等待VideoPlayer依赖加载完成（2025年新增API）
-		try {
-			await VideoPlayer.engineReady(); // 新增静态方法检查引擎状态
-		} catch (e) {
-			console.error('视频引擎初始化失败:', e);
-			return;
-		}
-
-		// 🎯 使用安全初始化模式
-		const DPlayer = new VideoPlayer({
-			cdn: Joe.CDN_URL,
-			container: videoContainer.querySelector('.dplayer-video'),
-			autoplay: navigator.mediaSession ? true : false, // 2025年媒体权限新规范
-			theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(),
-			preload: 'metadata', // 修正为更安全的预加载策略
-			video: {
-				url: '', // 初始化空地址避免预加载冲突
-				pic: Joe.CONTENT.cover,
-				type: 'auto' // 启用自动格式检测
-			},
-			pluginOptions: { // 2025年新增插件配置
-				webtorrent: {
-					maxBufferSize: 50 * 1024 * 1024 // 50MB缓冲区
-				}
-			}
-		});
-
-		// ⚡ 异步等待播放器就绪
-		await DPlayer.readyPromise; // 新增就绪状态Promise
-
-		// 🔄 优化视频切换逻辑
-		let currentVideoIndex = 0;
-		const $switches = $('.featured-video-episode>.switch-video');
-
-		const switchVideo = async (index) => {
-			const target = $switches.eq(index);
-			const url = target.attr('video-url');
-			const title = target.attr('data-original-title');
-
-			try {
-				await DPlayer.switchVideo({
-					url: url,
-					pic: index === 0 ? Joe.CONTENT.cover : undefined,
-					// 2025年新增流媒体优化参数
-					adaptive: {
-						bandwidth: navigator.connection?.downlink * 1e6 || 5e6
-					}
-				});
-
-				$switches.removeClass('active');
-				target.addClass('active');
-				if (title) videoContainer.querySelector('.title').textContent = title;
-			} catch (e) {
-				console.error(`视频切换失败: ${url}`, e);
-				// 2025年新增错误恢复逻辑
-				DPlayer.showNotice('视频加载失败，正在尝试重连...', 3);
-				setTimeout(() => switchVideo(index), 3000);
-			}
-		};
-
-		// 🎮 绑定事件（兼容2025年Pointer Events规范）
-		$switches.on('pointerup', async function () {
-			currentVideoIndex = $(this).index();
-			await switchVideo(currentVideoIndex);
-		});
-
-		// ⏭️ 优化自动下一集逻辑
-		const nextEpisode = async () => {
-			if (currentVideoIndex < $switches.length - 1) {
-				await switchVideo(++currentVideoIndex);
-			} else {
-				DPlayer.showNotice('已经是最后一集', 2);
-			}
-		};
-
-		// 🕹️ 更新事件监听方式（2025年PlayerEvent标准）
-		DPlayer.on('ended', nextEpisode);
-		DPlayer.on('error', (err) => {
-			console.warn('播放错误:', err);
-			DPlayer.showNotice('播放异常，尝试下一集...', 2);
-			setTimeout(nextEpisode, 2000);
-		});
-
-		// 🚀 初始化首视频
-		await switchVideo(0);
-
-		// 📱 2025年新增手势控制支持
-		videoContainer.querySelector('.dplayer-video').addEventListener('swipeleft', nextEpisode);
-	})();
-
 	/* 激活文章视频模块 */
 	(() => {
-		return;
 		if (!document.querySelector('.joe_detail__article-video')) return;
-		const DPlayer = new VideoPlayer({
+		new VideoPlayer({
 			cdn: Joe.CDN_URL,
 			container: document.querySelector('.joe_detail__article-video>.dplayer-video'), // 播放器容器元素
 			autoplay: true, // 视频自动播放
@@ -330,44 +234,45 @@ Joe.DOMContentLoaded.single ||= () => {
 			video: {
 				pic: Joe.CONTENT.cover
 			}
-		});
-		console.log(DPlayer);
-		var firstVideo = true;
-		$('.featured-video-episode>.switch-video').on('click', function () {
-			$(this).addClass('active').siblings().removeClass('active');
-			const url = $(this).attr('video-url');
-			let title = $(this).attr('data-original-title');
-			if (firstVideo) {
-				firstVideo = false;
-				DPlayer.switchVideo({ url: url, pic: Joe.CONTENT.cover });
-			} else {
-				DPlayer.switchVideo({ url: url });
+		}, (DPlayer) => {
+			console.log(DPlayer);
+			var firstVideo = true;
+			$('.featured-video-episode>.switch-video').on('click', function () {
+				$(this).addClass('active').siblings().removeClass('active');
+				const url = $(this).attr('video-url');
+				let title = $(this).attr('data-original-title');
+				if (firstVideo) {
+					firstVideo = false;
+					DPlayer.switchVideo({ url: url, pic: Joe.CONTENT.cover });
+				} else {
+					DPlayer.switchVideo({ url: url });
+				}
+				if (title) $('.joe_detail__article-video>.title').html(title);
+			});
+			$('.featured-video-episode>.switch-video').first().click();
+			const next = () => {
+				const notice = document.querySelector('.joe_detail__article-video .dplayer-notice');
+				if (notice) {
+					notice.classList.add('remove-notice');
+					DPlayer.events.trigger('notice_hide');
+					setTimeout(() => notice.remove(), 3000);
+				}
+				const item = document.querySelector('.featured-video-episode>.switch-video.active');
+				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
+				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
 			}
-			if (title) $('.joe_detail__article-video>.title').html(title);
-		});
-		$('.featured-video-episode>.switch-video').first().click();
-		const next = () => {
-			const notice = document.querySelector('.joe_detail__article-video .dplayer-notice');
-			if (notice) {
-				notice.classList.add('remove-notice');
-				DPlayer.events.trigger('notice_hide');
-				setTimeout(() => notice.remove(), 3000);
-			}
-			const item = document.querySelector('.featured-video-episode>.switch-video.active');
-			if (item.nextSibling) item.nextSibling.nextElementSibling.click();
-			$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
-		}
-		DPlayer.on('play', setTimeout(() => {
-			$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
-		}, 1000));
-		DPlayer.on('ended', () => next());
-		DPlayer.on('loadeddata', () => {
-			if (DPlayer.video.paused) DPlayer.video.play();
-		});
-		DPlayer.on('error', () => {
-			// 不是视频加载错误，可能是海报加载失败
-			if (!DPlayer.video.error) return;
-			setTimeout(() => next(), 2000);
+			DPlayer.on('play', setTimeout(() => {
+				$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
+			}, 1000));
+			DPlayer.on('ended', () => next());
+			DPlayer.on('loadeddata', () => {
+				if (DPlayer.video.paused) DPlayer.video.play();
+			});
+			DPlayer.on('error', () => {
+				// 不是视频加载错误，可能是海报加载失败
+				if (!DPlayer.video.error) return;
+				setTimeout(() => next(), 2000);
+			});
 		});
 	})();
 

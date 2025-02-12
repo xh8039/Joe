@@ -64,7 +64,7 @@ class VideoPlayer {
 	 * @param {Object} options - 配置选项（2025年新增特性）
 	 * @property {string} options.cdn - 资源CDN地址
 	 */
-	constructor(options) {
+	constructor(options, callback = () => { }) {
 
 		// 读取CSS变量
 		const documentTheme = getComputedStyle(document.documentElement).getPropertyValue('--theme').trim();
@@ -75,6 +75,7 @@ class VideoPlayer {
 			playbackSpeed: [0.5, 1, 1.5, 2, 2.5, 3], // 播放速度选项
 			airplay: true,   // AirPlay投屏支持
 			screenshot: true,// 截图功能
+			callback: callback,
 			...options       // 用户自定义配置（覆盖默认值）
 		};
 
@@ -102,7 +103,10 @@ class VideoPlayer {
 				...Array.from(this.resourceQueue).map(url => this.loadScript(url))
 			]);
 
-			if (window.DPlayer) this.DPlayer = new DPlayer(this.options);
+			if (window.DPlayer) {
+				this.DPlayer = new DPlayer(this.options);
+				this.options.callback(this.DPlayer);
+			}
 		} catch (e) {
 			console.error('[VideoPlayer] 初始化失败:', e);
 			// 🚑 降级处理（2025年新增WebCodecs回退）

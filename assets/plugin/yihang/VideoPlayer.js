@@ -107,6 +107,10 @@ class VideoPlayer {
 			if (window.DPlayer) {
 				this.DPlayer = new DPlayer(this.options);
 				this.options.callback(this.DPlayer);
+				this.DPlayer.on('play', setTimeout(() => {
+					const classList = this.DPlayer.options.container.classList;
+					if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
+				}, 1000));
 			}
 		} catch (e) {
 			console.error('[VideoPlayer] 初始化失败:', e);
@@ -144,9 +148,9 @@ class VideoPlayer {
 		// 		video: videoConfig
 		// 	});
 		// } else {
-			// 🎯 动态更新类型处理器
-			this.updateCustomTypeHandler(videoConfig);
-			this.DPlayer.switchVideo(videoConfig);
+		// 🎯 动态更新类型处理器
+		this.updateCustomTypeHandler(videoConfig);
+		this.DPlayer.switchVideo(videoConfig);
 		// }
 	}
 

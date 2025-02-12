@@ -245,14 +245,11 @@ Joe.DOMContentLoaded.single ||= () => {
 			}
 			const item = document.querySelector('.featured-video-episode>.switch-video.active');
 			if (item.nextSibling) item.nextSibling.nextElementSibling.click();
-			videoModule.querySelector('.dplayer-video:not(.dplayer-hide-controller)').classList.add('dplayer-hide-controller');
+			// videoModule.querySelector('.dplayer-video:not(.dplayer-hide-controller)')?.classList.add('dplayer-hide-controller');
 		}
 		const player = new VideoPlayer(options, (DPlayer) => {
 			console.log(DPlayer);
 			$('.featured-video-episode>.switch-video').first().click();
-			DPlayer.on('play', setTimeout(() => {
-				videoModule.querySelector('.dplayer-video:not(.dplayer-hide-controller)').classList.add('dplayer-hide-controller');
-			}, 1000));
 			DPlayer.on('ended', () => next(DPlayer));
 			DPlayer.on('loadeddata', () => {
 				if (DPlayer.video.paused) DPlayer.video.play();

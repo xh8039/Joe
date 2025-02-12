@@ -218,12 +218,12 @@ Joe.DOMContentLoaded.single ||= () => {
 	})();
 
 	/* 激活文章视频模块 */
-	if (document.querySelector('.joe_detail__article-video')) $.getScript(Joe.CDN_URL + 'dplayer/1.27.0/DPlayer.min.js', () => {
-		window.videoPlayer = new DPlayer({
+	if (document.querySelector('.joe_detail__article-video')) $.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => {
+		const DPlayer = new VideoPlayer({
+			cdn: Joe.CDN_URL,
 			container: document.querySelector('.joe_detail__article-video>.dplayer-video'), // 播放器容器元素
 			autoplay: true, // 视频自动播放
 			theme: getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
-			lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
 			preload: 'auto', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 			loop: false, // 视频循环播放
 			screenshot: true, // 开启截图，如果开启，视频和视频封面需要允许跨域
@@ -241,9 +241,9 @@ Joe.DOMContentLoaded.single ||= () => {
 			let title = $(this).attr('data-original-title');
 			if (firstVideo) {
 				firstVideo = false;
-				videoPlayer.switchVideo({ url: url, pic: Joe.CONTENT.cover });
+				DPlayer.switchVideo({ url: url, pic: Joe.CONTENT.cover });
 			} else {
-				videoPlayer.switchVideo({ url: url });
+				DPlayer.switchVideo({ url: url });
 			}
 			if (title) $('.joe_detail__article-video>.title').html(title);
 		});
@@ -252,23 +252,23 @@ Joe.DOMContentLoaded.single ||= () => {
 			const notice = document.querySelector('.joe_detail__article-video .dplayer-notice');
 			if (notice) {
 				notice.classList.add('remove-notice');
-				videoPlayer.events.trigger('notice_hide');
+				DPlayer.events.trigger('notice_hide');
 				setTimeout(() => notice.remove(), 3000);
 			}
 			const item = document.querySelector('.featured-video-episode>.switch-video.active');
 			if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 			$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
 		}
-		videoPlayer.on('play', setTimeout(() => {
+		DPlayer.on('play', setTimeout(() => {
 			$('.joe_detail__article-video>.dplayer-video:not(.dplayer-hide-controller)').addClass('dplayer-hide-controller');
 		}, 1000));
-		videoPlayer.on('ended', () => next());
-		videoPlayer.on('loadeddata', () => {
-			if (videoPlayer.video.paused) videoPlayer.video.play();
+		DPlayer.on('ended', () => next());
+		DPlayer.on('loadeddata', () => {
+			if (DPlayer.video.paused) DPlayer.video.play();
 		});
-		videoPlayer.on('error', () => {
+		DPlayer.on('error', () => {
 			// 不是视频加载错误，可能是海报加载失败
-			if (!videoPlayer.video.error) return;
+			if (!DPlayer.video.error) return;
 			setTimeout(() => next(), 2000);
 		});
 	});

@@ -18,7 +18,7 @@ class Captcha
 	//构造方法初始化
 	public function __construct()
 	{
-		$this->font = dirname(dirname(__DIR__)) . '/assets/fonts/elephant.ttf';
+		$this->font = __DIR__ . '/captcha.ttf';
 	}
 
 	//生成随机码

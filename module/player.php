@@ -99,7 +99,6 @@ $MSE = empty($MSE) ? null : ('<script src="' . $MSE . '"></script>' . PHP_EOL);
 				container: document.getElementById('dplayer'), // 播放器容器元素
 				autoplay: <?= $autoplay ?>, // 视频自动播放
 				theme: '<?= $theme ?>', // 主题色
-				lang: 'zh-cn', // 可选值: 'en', 'zh-cn', 'zh-tw'
 				preload: '<?= $preload ?>', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 				loop: <?= $loop ?>, // 视频循环播放
 				screenshot: <?= $screenshot ?>, // 开启截图，如果开启，视频和视频封面需要允许跨域

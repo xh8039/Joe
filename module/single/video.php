@@ -13,5 +13,3 @@
         <?php endforeach; ?>
     </div>
 </div>
-<script src="<?= joe\cdn('hls.js/1.5.13/hls.min.js') ?>"></script>
-<script src="<?= joe\cdn('dplayer/1.27.0/DPlayer.min.js') ?>"></script>

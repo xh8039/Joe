@@ -236,31 +236,31 @@ Joe.DOMContentLoaded.single ||= () => {
 				pic: Joe.CONTENT.cover
 			}
 		};
+		const next = (DPlayer) => {
+			const notice = videoModule.querySelector('.dplayer-notice');
+			if (notice) {
+				notice.classList.add('remove-notice');
+				DPlayer.events.trigger('notice_hide');
+				setTimeout(() => notice.remove(), 3000);
+			}
+			const item = document.querySelector('.featured-video-episode>.switch-video.active');
+			if (item.nextSibling) item.nextSibling.nextElementSibling.click();
+			videoModule.querySelector('.dplayer-video:not(.dplayer-hide-controller)').classList.add('dplayer-hide-controller');
+		}
 		const player = new VideoPlayer(options, (DPlayer) => {
 			console.log(DPlayer);
 			$('.featured-video-episode>.switch-video').first().click();
-			const next = () => {
-				const notice = videoModule.querySelector('.dplayer-notice');
-				if (notice) {
-					notice.classList.add('remove-notice');
-					DPlayer.events.trigger('notice_hide');
-					setTimeout(() => notice.remove(), 3000);
-				}
-				const item = document.querySelector('.featured-video-episode>.switch-video.active');
-				if (item.nextSibling) item.nextSibling.nextElementSibling.click();
-				videoModule.querySelector('.dplayer-video:not(.dplayer-hide-controller)').classList.add('dplayer-hide-controller');
-			}
 			DPlayer.on('play', setTimeout(() => {
 				videoModule.querySelector('.dplayer-video:not(.dplayer-hide-controller)').classList.add('dplayer-hide-controller');
 			}, 1000));
-			DPlayer.on('ended', () => next());
+			DPlayer.on('ended', () => next(DPlayer));
 			DPlayer.on('loadeddata', () => {
 				if (DPlayer.video.paused) DPlayer.video.play();
 			});
 			DPlayer.on('error', () => {
 				// 不是视频加载错误，可能是海报加载失败
 				if (!DPlayer.video.error) return;
-				setTimeout(() => next(), 2000);
+				setTimeout(() => next(DPlayer), 2000);
 			});
 		});
 		var firstVideo = true;

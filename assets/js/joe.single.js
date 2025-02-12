@@ -249,7 +249,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
 		}
 		const player = new VideoPlayer(options, (DPlayer) => {
-			console.log(DPlayer);
+			console.log(player);
 			$('.featured-video-episode>.switch-video').first().click();
 			DPlayer.on('ended', () => next(DPlayer));
 			DPlayer.on('error', () => {

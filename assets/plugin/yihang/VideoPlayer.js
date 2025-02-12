@@ -253,6 +253,7 @@ class VideoPlayer {
 	 */
 	static parseURL(url) {
 		try {
+			if (url.startsWith('//')) url = window.location.protocol + url;
 			return new URL(url);
 		} catch (error) {
 			console.error('[VideoPlayer] 无效的视频URL:', url, error);

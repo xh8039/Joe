@@ -245,17 +245,14 @@ Joe.DOMContentLoaded.single ||= () => {
 			}
 			const item = document.querySelector('.featured-video-episode>.switch-video.active');
 			if (item.nextSibling) item.nextSibling.nextElementSibling.click();
-			// const classList = DPlayer.options.container.classList;
-			// console.log(classList);
-			// if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
+			const classList = DPlayer.options.container.classList;
+			console.log(classList);
+			if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
 		}
 		const player = new VideoPlayer(options, (DPlayer) => {
 			console.log(DPlayer);
 			$('.featured-video-episode>.switch-video').first().click();
 			DPlayer.on('ended', () => next(DPlayer));
-			DPlayer.on('loadeddata', () => {
-				if (DPlayer.video.paused) DPlayer.video.play();
-			});
 			DPlayer.on('error', () => {
 				// 不是视频加载错误，可能是海报加载失败
 				if (!DPlayer.video.error) return;

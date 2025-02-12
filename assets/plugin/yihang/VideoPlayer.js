@@ -112,11 +112,9 @@ class VideoPlayer {
 					console.log(classList);
 					if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
 				}, 1000));
-				this.DPlayer.on('ended', setTimeout(() => {
-					const classList = this.DPlayer.options.container.classList;
-					console.log(classList);
-					if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
-				}, 1000));
+				if (this.options.autoplay) this.DPlayer.on('loadeddata', () => {
+					if (this.DPlayer.video.paused) this.DPlayer.video.play();
+				});
 			}
 		} catch (e) {
 			console.error('[VideoPlayer] 初始化失败:', e);

@@ -63,6 +63,7 @@ class VideoPlayer {
 	 * 构造函数（使用选项合并模式）
 	 * @param {Object} options - 配置选项（2025年新增特性）
 	 * @property {string} options.cdn - 资源CDN地址
+	 * @param {Function} callback - Dplayer成功初始化后要执行的函数
 	 */
 	constructor(options, callback = () => { }) {
 
@@ -114,6 +115,39 @@ class VideoPlayer {
 	}
 
 	/**
+	 * 动态切换视频（增强版）
+	 * @param {Object} videoConfig - 新视频配置
+	 * @param {boolean} [reloadPlayer=false] - 是否需要重建播放器实例
+	 */
+	async switchVideo(videoConfig, reloadPlayer = false) {
+		// 🛠️ 创建临时资源队列
+		const newResourceQueue = new Set();
+
+		// 🔍 预处理新视频格式
+		this.processVideoFormats(videoConfig, newResourceQueue);
+
+		// ⚡ 加载新增依赖
+		if (newResourceQueue.size > 0) {
+			await Promise.all(
+				Array.from(newResourceQueue).map(url => this.loadScript(url))
+			);
+		}
+
+		// 🔄 判断是否需要重建播放器
+		if (reloadPlayer || this.needRecreatePlayer(videoConfig)) {
+			this.DPlayer.destroy();
+			this.DPlayer = new DPlayer({
+				...this.options,
+				video: videoConfig
+			});
+		} else {
+			// 🎯 动态更新类型处理器
+			this.updateCustomTypeHandler(videoConfig);
+			this.DPlayer.switchVideo(videoConfig);
+		}
+	}
+
+	/**
 	 * 智能加载脚本（带缓存机制）
 	 * @param {string} url - 脚本URL
 	 * @returns {Promise<void>}
@@ -141,9 +175,10 @@ class VideoPlayer {
 
 	/**
 	 * 视频格式处理器（策略模式实现）
-	 * @param {Object} video - 视频配置对象 
+	 * @param {Object} video - 视频配置对象
+	 * @param {Set} queue - 资源队列（支持传入外部队列）
 	 */
-	processVideoFormats(video) {
+	processVideoFormats(video, queue = this.resourceQueue) {
 		// 🛑 安全校验（ES2020可选链）
 		if (!video?.url) return;
 
@@ -156,8 +191,46 @@ class VideoPlayer {
 
 		// ⚙️ 执行策略处理逻辑
 		if (formatHandler) {
-			formatHandler.handle(video, parsedUrl, this.resourceQueue, this.options.cdn);
+			formatHandler.handle(video, parsedUrl, queue, this.options.cdn);
 		}
+	}
+
+	/**
+	* 判断是否需要重建播放器实例
+	*/
+	needRecreatePlayer(newVideoConfig) {
+		const currentType = this.DPlayer.options.video.type;
+		const newType = newVideoConfig.type;
+
+		// 📌 需要重建的情况：
+		// 1. 类型从普通变为流媒体
+		// 2. 使用了不同的自定义处理器
+		return (
+			(currentType === 'auto' && newType !== 'auto') ||
+			(newType === 'shakaDash' && currentType !== 'shakaDash') ||
+			(newType === 'webtorrent' && !window.WebTorrent)
+		);
+	}
+
+	/**
+	* 动态更新自定义类型处理器
+	*/
+	updateCustomTypeHandler(videoConfig) {
+		if (videoConfig.customType) {
+			this.DPlayer.options.video.customType = {
+				...this.DPlayer.options.video.customType,
+				...videoConfig.customType
+			};
+		}
+	}
+
+	// 新增静态方法用于格式检测
+	static detectVideoFormat(url) {
+		const parsedUrl = this.parseURL(url);
+		if (!parsedUrl) return 'auto';
+
+		const strategy = this.formatStrategies.find(s => s.check(parsedUrl));
+		return strategy ? strategy.name : 'auto';
 	}
 
 	/**

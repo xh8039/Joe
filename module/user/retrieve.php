@@ -48,13 +48,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<button class="btn btn-primary" type="submit">设置新密码</button>
 					</form>
 				</div>
-				<?php
-				if ($this->options->allowRegister) {
-				?>
-					<p class="text-muted">返回 <a href="/user/login<?= '?referer=' . $referer ?>" class="text-dark ml-1"><b>登陆</b></a></p>
-				<?php
-				}
-				?>
+				<p class="text-muted">返回 <a href="<?= joe\user_url('login', $referer) ?>" class="text-dark ml-1"><b>登陆</b></a></p>
 			</div>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>

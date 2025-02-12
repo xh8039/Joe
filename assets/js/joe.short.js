@@ -432,9 +432,6 @@ Joe.DOMContentLoaded.short ||= () => {
 						preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 						loop: this.options.loop, // 视频循环播放
 						screenshot: this.options.screenshot, // 开启截图，如果开启，视频和视频封面需要允许跨域
-						airplay: true, // 在 Safari 中开启 AirPlay
-						// volume: 1, // 默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
-						// playbackSpeed: [2.00, 1.75, 1.50, 1.25, 1.00, 0.75, 0.50, 0.25], // 可选的播放速率，可以设置成自定义的数组
 						video: {
 							pic: this.options.pic,
 							url: this.options.src

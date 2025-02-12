@@ -524,9 +524,9 @@ function user_login($uid, $expire = 30243600)
 	$db->query($db->update('table.users')->expression('logged', 'activated')->rows(['authCode' => $authCode])->where('uid = ?', $uid));
 }
 
-function user_url($action, $from = true)
+function user_url($action, $referer = true)
 {
-	if ($from === true) {
+	if ($referer === true) {
 		if (!empty($_GET['referer'])) {
 			$url = '?referer=' . urlencode($_GET['referer']);
 		} else {
@@ -536,29 +536,15 @@ function user_url($action, $from = true)
 			$relate_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $php_self . (isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : $path_info);
 			$url = '?referer=' . urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
 		}
-	} else if (is_string($from)) {
-		$url = '?referer=' . urlencode($from);
+	} else if (is_string($referer)) {
+		$url = '?referer=' . urlencode($referer);
 	} else {
 		$url = '';
 	}
-	switch ($action) {
-		case 'register':
-			if (\Helper::options()->JUser_Switch == 'on') {
-				$url = \Typecho_Common::url('user/register', \Helper::options()->index) . $url;
-			} else {
-				$url = \Helper::options()->adminUrl . 'register.php';
-			}
-			break;
-		case 'login':
-			if (\Helper::options()->JUser_Switch == 'on') {
-				$url = \Typecho_Common::url('user/login', \Helper::options()->index) . $url;
-			} else {
-				$url = \Helper::options()->adminUrl . 'login.php';
-			}
-			break;
-		case 'retrieve':
-			$url = \Typecho_Common::url('user/retrieve', \Helper::options()->index) . $url;
-			break;
+	if (\Helper::options()->JUser_Switch == 'on') {
+		$url = \Typecho_Common::url('user/' . $action, \Helper::options()->index) . $url;
+	} else {
+		$url = \Helper::options()->adminUrl . $action . '.php';
 	}
 	$url = root_relative_link($url);
 	return $url;

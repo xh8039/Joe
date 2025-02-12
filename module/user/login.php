@@ -35,7 +35,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<?php
 							if ($this->options->JUserRetrieve == 'on' && joe\email_config()) {
 							?>
-								<a href="/user/retrieve<?= '?referer=' . $referer ?>" class="text-muted float-right">
+								<a href="<?= joe\user_url('retrieve', $referer) ?>" class="text-muted float-right">
 									<small>忘记密码?</small>
 								</a>
 							<?php
@@ -50,7 +50,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php
 				if ($this->options->allowRegister) {
 				?>
-					<p class="text-muted">没有账号吗？<a href="/user/register<?= '?referer=' . $referer ?>" class="text-dark ml-1"><b>注册</b></a></p>
+					<p class="text-muted">没有账号吗？<a href="<?= joe\user_url('register', $referer) ?>" class="text-dark ml-1"><b>注册</b></a></p>
 				<?php
 				}
 				?>

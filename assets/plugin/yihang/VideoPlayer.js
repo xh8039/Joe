@@ -95,7 +95,11 @@ class VideoPlayer {
 		}).catch(console.error);
 	}
 
-	on(event, handler) {
+	async on(event, handler) {
+		await Promise.all([
+			!window.DPlayer && this.loadScript(this.options.cdn + 'dplayer/1.27.0/DPlayer.min.js'),
+			...Array.from(this.resourceQueue).map(url => this.loadScript(url))
+		]);
 		return this.DPlayer.on(event, handler);
 	}
 

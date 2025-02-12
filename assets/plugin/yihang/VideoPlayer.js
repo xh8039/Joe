@@ -88,28 +88,13 @@ class VideoPlayer {
 		this.initEngine().catch(console.error);
 	}
 
-	switchVideo(video) {
-		this.processVideoFormats(video);
-		this.initEngine(() => {
-			this.DPlayer.switchVideo(video);
-		}).catch(console.error);
-	}
-
-	async on(event, handler) {
-		await Promise.all([
-			!window.DPlayer && this.loadScript(this.options.cdn + 'dplayer/1.27.0/DPlayer.min.js'),
-			...Array.from(this.resourceQueue).map(url => this.loadScript(url))
-		]);
-		return this.DPlayer.on(event, handler);
-	}
-
 	/**
 	 * 异步初始化播放引擎（2025年新增WebGPU支持）
 	 * @async
 	 */
-	async initEngine(callback = () => { }) {
+	async initEngine() {
 		try {
-			if (this.DPlayer) return callback();
+			if (this.DPlayer) return;
 
 			// ⚡ 并行加载核心库+格式依赖（ES6 Promise.all）
 			await Promise.all([

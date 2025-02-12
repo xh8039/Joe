@@ -108,6 +108,7 @@ class VideoPlayer {
 				this.DPlayer = new DPlayer(this.options);
 				this.options.callback(this.DPlayer);
 				this.DPlayer.on('play', setTimeout(() => {
+					if (this.DPlayer.video.paused) return;
 					const classList = this.DPlayer.options.container.classList;
 					console.log(classList);
 					if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');

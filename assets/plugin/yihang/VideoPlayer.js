@@ -121,6 +121,7 @@ class VideoPlayer {
 		} catch (e) {
 			console.error('[VideoPlayer] 初始化失败:', e);
 			// 🚑 降级处理（2025年新增WebCodecs回退）
+			this.options.container.src = this.options.video.url;
 		}
 	}
 

@@ -17,13 +17,15 @@ if (isset($_POST['type'])) {
 	$theme_field = 'theme:' . THEME_NAME;
 	$backup_field = $theme_field . '_backup';
 	if ($_POST["type"] == "备份设置") {
-		$backup_value = Db::name('options')->where('name', $theme_field)->value('value');
+		$theme_options = Db::name('options')->where('name', $theme_field)->value('value');
 		if (Db::name('options')->where('name', $backup_field)->find()) {
 			Db::name('options')->where('name', $backup_field)->update(['value' => $value]);
 			joe_backup_location('备份更新成功！');
-		} else if ($value) {
+		} else if ($theme_options) {
 			Db::name('options')->insert(['name' => $backup_field, 'user' => '0', 'value' => $value]);
 			joe_backup_location('备份成功！');
+		} else {
+			joe_backup_location('备份失败！无法获取主题设置！');
 		}
 	}
 	if ($_POST["type"] == "还原备份") {

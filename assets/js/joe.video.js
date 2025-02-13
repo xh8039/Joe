@@ -119,7 +119,7 @@ Joe.DOMContentLoaded.video ||= () => {
 			const documentTheme = getComputedStyle(document.documentElement).getPropertyValue('--theme').trim();
 			const options = {
 				cdn: Joe.CDN_URL,
-				container: videoModule.querySelector('.joe_video__player-play'), // 播放器容器元素
+				container: document.querySelector('.joe_video__player-play'), // 播放器容器元素
 				autoplay: true, // 视频自动播放
 				theme: documentTheme, // 主题色
 				loop: false, // 视频循环播放

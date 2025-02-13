@@ -59,13 +59,17 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 	if (sizeof($row) > 0) {
 		if (Helper::options()->JPaymentOrderToAdminEmail == 'on' && !$row['admin_email']) {
 			$type = ['alipay' => '支付宝', 'wxpay' => '微信', 'qqpay' => 'QQ'];
-			$admin_email = joe\send_email('有新的订单已支付', '您的网站 [' . Helper::options()->title . '] 有新的订单已支付！', '
-			<p>订单号：' . $_GET['out_trade_no'] . '</p>
-			<p>商品类型：' . trim(end(explode('-', $row['name']))) . '</p>
-			<p>商品：' . $row['content_title'] . '</p>
-			<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
-			<p>付款时间：' . (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time']) . '</p>
-			');
+			$admin_email = joe\send_email(
+				'有新的订单已支付',
+				'您的网站 [' . Helper::options()->title . '] 有新的订单已支付！',
+				[
+					'订单号' => $_GET['out_trade_no'],
+					'商品类型' => trim(end(explode('-', $row['name']))),
+					'商品' => $row['content_title'],
+					'付款明细' => $type[$row['type']] . ' ' . $row['money'],
+					'付款时间' => (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time']),
+				]
+			);
 			if ($admin_email === true) {
 				// 更新订单状态
 				$db->query($db->update('table.orders')->rows(['admin_email' => 1])->where('trade_no = ?', $_GET['out_trade_no']));
@@ -74,13 +78,18 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 		if (Helper::options()->JPaymentOrderEmail == 'on' && is_numeric($row['user_id']) && !$row['user_email']) {
 			$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', $row['user_id']));
 			if (sizeof($authoInfo) > 0) {
-				$user_email = joe\send_email('订单支付成功！', '您好！' . $authoInfo['screenName'] . '，您在 [' . Helper::options()->title . '] 购买的商品已支付成功', '
-				<p>类型：' . trim(end(explode('-', $row['name']))) . '</p>
-				<p>商品：' . $row['content_title'] . '</p>
-				<p>订单号：' . $_GET['out_trade_no'] . '</p>
-				<p>付款明细：' . $type[$row['type']] . ' ' . $row['money'] . '</p>
-				<p>付款时间：' . (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time']) . '</p>
-				', $authoInfo['mail']);
+				$user_email = joe\send_email(
+					'订单支付成功！',
+					'您好！' . $authoInfo['screenName'] . '，您在 [' . Helper::options()->title . '] 购买的商品已支付成功',
+					[
+						'类型' =>  trim(end(explode('-', $row['name']))),
+						'商品' => $row['content_title'],
+						'订单号' =>  $_GET['out_trade_no'],
+						'付款明细' => $type[$row['type']] . ' ' . $row['money'],
+						'付款时间' => (empty($row['update_time']) ? date('Y-m-d H:i:s') : $row['update_time'])
+					],
+					$authoInfo['mail']
+				);
 				if ($user_email === true) {
 					$db->query($db->update('table.orders')->rows(['user_email' => 1])->where('trade_no = ?', $_GET['out_trade_no']));
 				}

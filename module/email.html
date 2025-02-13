@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<title>{$title}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<style>
+		.mail_container {
+			width: 95%;
+			margin: 0 auto;
+			border-radius: 8px;
+			font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+			box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+			word-break: break-all
+		}
+
+		.mail_container_title {
+			color: #ffffff;
+			background: linear-gradient(-45deg, rgba(9, 69, 138, 0.2), rgba(68, 155, 255, 0.7), rgba(117, 113, 251, 0.7), rgba(68, 155, 255, 0.7), rgba(9, 69, 138, 0.2));
+			background-size: 400% 400%;
+			background-position: 50% 100%;
+			padding: 15px;
+			font-size: 15px;
+			line-height: 1.5
+		}
+
+		.mail_container_main {
+			background: #fff;
+			padding: 20px;
+			font-size: 13px;
+			color: #666;
+		}
+
+		.mail_container_main>div {
+			margin-bottom: 20px;
+		}
+
+		.mail_container_content {
+			padding: 15px;
+			margin-bottom: 20px;
+			line-height: 1.5;
+			background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);
+		}
+
+		.mail_container_content>p {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+	</style>
+	<div class="mail_container">
+		<div class="mail_container_title">{$title}</div>
+		<div class="mail_container_main">
+			<div style="line-height: 1.5;">{$subtitle}</div>
+			<div class="mail_container_content">{$content}</div>
+			<div>请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div>
+			<div style="line-height: 2"><a href="{$site_url}" target="_blank">访问网站</a>丨<a>联系站长</a></div>
+		</div>
+	</div>
+</body>
+
+</html>

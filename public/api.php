@@ -795,7 +795,7 @@ class Api
 		if (self::$options->JFriendEmail == 'on') {
 			$EmailTitle = '友链申请';
 			$subtitle = $title . ' 向您提交了友链申请';
-			$content = "<p>站点标题：$title</p><p>站点链接：$url</p><p>站点图标：$logo</p><p>站点描述：$description</p><p>对方邮箱：$email</p>";
+			$content = ['站点标题' => $title, '站点链接' => $url, '站点图标' => $logo, '站点描述' => $description, '对方邮箱' => $email];
 			$SendEmail = \joe\send_email($EmailTitle, $subtitle, $content);
 			if ($SendEmail !== true) return (['code' => 0, 'msg' => '提交失败，' . $SendEmail]);
 		}

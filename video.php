@@ -18,6 +18,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.video.min.css'); ?>">
+	<?php if (empty($this->options->JCustomPlayer)) : ?>
+		<script src="<?= joe\theme_url('assets/plugin/yihang/VideoPlayer.js') ?>" data-turbolinks-permanent></script>
+	<?php endif; ?>
 	<script src="<?= joe\theme_url('assets/js/joe.video.js'); ?>"></script>
 </head>
 

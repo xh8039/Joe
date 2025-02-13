@@ -92,9 +92,6 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.main.js'); ?>"></script>
-<?php if ($this->is('video') && empty($this->options->JCustomPlayer)) : ?>
-	<script src="<?= joe\theme_url('assets/plugin/yihang/VideoPlayer.js') ?>" data-turbolinks-permanent></script>
-<?php endif; ?>
 <?php if ($this->is('single')) : ?>
 	<?php if ($this->fields->video) : ?>
 		<script src="<?= joe\theme_url('assets/plugin/yihang/VideoPlayer.js') ?>" data-turbolinks-permanent></script>

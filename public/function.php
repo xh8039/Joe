@@ -648,32 +648,32 @@ function send_email($mail_title, $subtitle, array|string $content, $email = '', 
 	}
 
 	try {
-		$mail = new \PHPMailer\PHPMailer\PHPMailer();
+		$PHPMailer = new \PHPMailer\PHPMailer\PHPMailer();
 		$language = $PHPMailer->setLanguage('zh_cn');
 		if (!$language) return 'PHPMailer 语言文件 zh_cn 加载失败';
-		$mail->isSMTP();
-		$mail->SMTPAuth = true;
-		$mail->CharSet = 'UTF-8';
-		$mail->SMTPSecure = \Helper::options()->JCommentSMTPSecure;
-		$mail->Host = \Helper::options()->JCommentMailHost;
-		$mail->Port = \Helper::options()->JCommentMailPort;
-		$mail->FromName = $FromName;
-		$mail->Username = \Helper::options()->JCommentMailAccount;
-		$mail->From = \Helper::options()->JCommentMailAccount;
-		$mail->Password = \Helper::options()->JCommentMailPassword;
-		$mail->isHTML(true);
-		$mail->Body = $html;
-		$mail->addAddress($email);
-		$mail->Subject = $mail_title;
-		if ($mail->send()) {
+		$PHPMailer->isSMTP();
+		$PHPMailer->SMTPAuth = true;
+		$PHPMailer->CharSet = 'UTF-8';
+		$PHPMailer->SMTPSecure = \Helper::options()->JCommentSMTPSecure;
+		$PHPMailer->Host = \Helper::options()->JCommentMailHost;
+		$PHPMailer->Port = \Helper::options()->JCommentMailPort;
+		$PHPMailer->FromName = $FromName;
+		$PHPMailer->Username = \Helper::options()->JCommentMailAccount;
+		$PHPMailer->From = \Helper::options()->JCommentMailAccount;
+		$PHPMailer->Password = \Helper::options()->JCommentMailPassword;
+		$PHPMailer->isHTML(true);
+		$PHPMailer->Body = $html;
+		$PHPMailer->addAddress($email);
+		$PHPMailer->Subject = $mail_title;
+		if ($PHPMailer->send()) {
 			if ($limit_time) $_SESSION['joe_send_mail_time'] = time();
 			return true;
 		} else {
-			return $mail->ErrorInfo;
+			return $PHPMailer->ErrorInfo;
 		}
-		return $mail->send() ? true : $mail->ErrorInfo;
+		return $PHPMailer->send() ? true : $PHPMailer->ErrorInfo;
 	} catch (\PHPMailer\PHPMailer\Exception $e) {
-		return '邮件发送失败: ' . $mail->ErrorInfo;
+		return '邮件发送失败: ' . $PHPMailer->ErrorInfo;
 	}
 }
 

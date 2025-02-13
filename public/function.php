@@ -9,6 +9,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+function zibll_color_list(): array
+{
+	return ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
+}
+
 function comment_author($comment)
 {
 	if (preg_match('/^https?:\/\/[^\s]*/i', $comment->url)) {
@@ -984,14 +989,14 @@ function spider_referer()
 
 function get_archive_tags($item)
 {
-	$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
+	$color_list = \joe\zibll_color_list();
 	$tags = '';
 	$pay_tag_background = $item->fields->pay_tag_background ? $item->fields->pay_tag_background : 'yellow';
 	if ($item->fields->hide == 'pay' && $pay_tag_background != 'none') {
 		$tags .= '<a rel="nofollow" href="' . \joe\root_relative_link($item->permalink) . '?scroll=pay-box" class="meta-pay but jb-' . $pay_tag_background . '">' . ($item->fields->price > 0 ? '付费阅读<span class="em09 ml3">￥</span>' . $item->fields->price : '免费资源') . '</a>';
 	}
 	foreach ($item->categories as $key => $value) {
-		$tags .= '<a class="but ' . $color_array[$key] . '" title="查看此分类更多文章" href="' . \joe\root_relative_link($value['permalink']) . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
+		$tags .= '<a class="but ' . $color_list[$key] . '" title="查看此分类更多文章" href="' . \joe\root_relative_link($value['permalink']) . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
 	}
 	foreach ($item->tags as $key => $value) {
 		$tags .= '<a href="' . \joe\root_relative_link($value['permalink']) . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';
@@ -1044,7 +1049,9 @@ function custom_navs()
 function custom_navs_title($title)
 {
 	if (str_starts_with($title, '[fa-')) {
-		$title = preg_replace('/\[(.+)\]/i', '<i class="fa $1"></i>', $title);
+		$color_list = \joe\zibll_color_list();
+		$color = $color_list[array_rand($color_list)];
+		$title = preg_replace('/\[(.+)\]/i', '<i class="fa $1 ' . $color . '"></i>', $title);
 	} else if (preg_match('/\[(.+\s.+)\]/i', $title)) {
 		$title = preg_replace('/\[(.+)\]/i', '<i class="$1"></i>', $title);
 	} else {

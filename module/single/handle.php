@@ -13,9 +13,9 @@ if ($this->is('post')) $this->options->JArticleCopyrightHTML();
 ?>
 <div class="article-tags">
 	<?php
-	$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
+	$color_list = joe\zibll_color_list();
 	foreach ($this->categories as $key => $item) {
-		echo '<a href="' . joe\root_relative_link($item['permalink']) . '" class="but ml6 radius ' . ($color_array[$key] ? $color_array[$key] : 'c-blue') . '" title="查看此分类更多文章"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $item['name'] . '</a>';
+		echo '<a href="' . joe\root_relative_link($item['permalink']) . '" class="but ml6 radius ' . ($color_list[$key] ? $color_list[$key] : 'c-blue') . '" title="查看此分类更多文章"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $item['name'] . '</a>';
 	}
 	if (!empty($this->tags)) echo '<br>';
 	foreach ($this->tags as $key => $value) {

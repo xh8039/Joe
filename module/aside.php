@@ -227,7 +227,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php
 				$this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 20))->to($tags);
 				if ($tags->have()) {
-					$color_list = array('c-blue', 'c-yellow', 'c-green', 'c-purple', 'c-red', 'c-blue-2', 'c-yellow-2', 'c-green-2', 'c-purple-2', 'c-red-2');
+					$color_list = joe\zibll_color_list();
 					while ($tags->next()) {
 						$color_class = $color_list[array_rand($color_list)];
 						$permalink = joe\root_relative_link($tags->permalink);

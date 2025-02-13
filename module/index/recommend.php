@@ -66,9 +66,9 @@ if (!empty($recommend)) {
 							</h2>
 							<div class="item-tags scroll-x no-scrollbar mb6">
 								<?php
-								$color_array = ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
+								$color_list = joe\zibll_color_list();
 								foreach ($item->categories as $key => $value) {
-									echo '<a class="but ' . $color_array[$key] . '" title="查看此分类更多文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
+									echo '<a class="but ' . $color_list[$key] . '" title="查看此分类更多文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
 								}
 								foreach ($item->tags as $key => $value) {
 									echo '<a href="' . joe\root_relative_link($value['permalink']) . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';

@@ -48,6 +48,17 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 							<input class="form-control" type="email" name="email" value="<?= $rememberMail ?>" placeholder="请输入邮箱" maxlength="64">
 						</div>
 						<?php
+						if (extension_loaded('gd')) {
+						?>
+							<div class="form-group">
+								<label>图像验证码</label>
+								<div class="input-group">
+									<input type="text" class="form-control" name="captcha" minlength="6" maxlength="6" placeholder="请先填写图像验证码后在获取邮箱验证码">
+									<img src="<?php $this->options->themeUrl('module/captcha.php') ?>" alt="验证码">
+								</div>
+							</div>
+						<?php
+						}
 						if (joe\email_config()) {
 						?>
 							<div class="form-group">

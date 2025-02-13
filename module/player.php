@@ -3,11 +3,11 @@ require_once dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR .
 \Widget\Init::alloc();
 require_once dirname(__DIR__) . '/public/function.php';
 
-$autoplay = $_GET['autoplay'] ? 'true' : 'false';
-$theme = $_GET['theme'] ? $_GET['theme'] : '#409eff';
+$autoplay = (isset($_GET['autoplay']) && $_GET['autoplay']) ? 'true' : 'false';
+$theme = $_GET['theme'] ?? '#409eff';
 $preload = (empty($_GET['pic']) || $_GET['pic'] == 'null') ? 'auto' : 'metadata';
 $loop = (isset($_GET['loop']) && $_GET['loop']) ? 'true' : 'false';
-$screenshot = $_GET['screenshot'] ? 'true' : 'false';
+$screenshot = (isset($_GET['screenshot']) && $_GET['screenshot']) ? 'true' : 'false';
 $url = addslashes(strip_tags($_GET['url']));
 $pic = (empty($_GET['pic']) || $_GET['pic'] == 'null') ? 'null' : '"' . addslashes(strip_tags($_GET['pic'])) . '"';
 if (strpos($url, 'magnet:') === 0) {

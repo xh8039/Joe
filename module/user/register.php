@@ -54,7 +54,7 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 								<label>图像验证码</label>
 								<div class="input-group">
 									<input type="text" class="form-control" id="captcha" minlength="4" maxlength="4" placeholder="请先填写图像验证码后再获取邮箱验证码">
-									<img style="cursor:pointer;width:100px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" alt="验证码" onclick="this.src=this.src+'?d='+Math.random();">
+									<img style="cursor:pointer;width:100px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" alt="验证码" onclick="this.src=this.src+'?d='+Math.random();" data-toggle="tooltip" title="点击刷新">
 								</div>
 							</div>
 						<?php

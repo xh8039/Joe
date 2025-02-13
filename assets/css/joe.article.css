@@ -132,6 +132,7 @@
 	text-align: justify;
 }
 
+.joe_detail__article p:not([align]):has(> a[href]),
 .joe_detail__article p:not([align]):has(> code),
 .joe_detail__article p:not([align]):has(> .joe_anote),
 .joe_detail__article p:not([align]):has(> .joe_abtn) {

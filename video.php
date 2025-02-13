@@ -41,6 +41,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<?php
 						if (empty($this->options->JCustomPlayer)) {
 						?>
+							<style>
+								html .joe_video__player-play {
+									height: auto !important;
+								}
+							</style>
 							<div class="joe_video__player-play" webkit-playsinline="" playsinline=""></div>
 						<?php
 						} else {

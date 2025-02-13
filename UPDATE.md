@@ -380,4 +380,6 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 - 主题全局SQL驱动器更换为ThinkORM
 - 优化主题目录结构
 - 优化评论至少包含一个中文功能为管理员除外
+- 优化PC端的用户登录注册页面
+- 优化PC端动态背景特效为PC端和移动端都可以展示
 - 正在开发中...

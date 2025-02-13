@@ -6,64 +6,68 @@ textarea {
 	font-family: 'Joe Font';
 }
 
-.container {
-	margin-top: 40px;
+/* .joe_main {
 	display: flex;
 	justify-content: center;
 	width: 100%;
-}
+} */
 
-.container>div>.card-body {
-	padding: 2.25rem;
+.joe_main .card-body {
+	padding: 2rem;
 	background: var(--background);
 	border-radius: 5px;
-	width: 500px;
-	max-width: 90vw;
+	width: 100%;
+	/* max-width: 90vw; */
 	box-shadow: var(--box-shadow);
 	margin-bottom: 30px;
 }
 
-.container>div>.text-muted {
-	margin-bottom: 30px;
+.joe_main .card-body>form {
+	/* width: 500px; */
+	margin: auto;
 }
 
-.container .card-body>.title {
+.joe_main .text-muted {
+	/* margin-bottom: 30px; */
+}
+
+.joe_main .card-body>.title {
 	text-align: center;
-	margin-bottom: 2.25rem;
+	margin-bottom: 1.5rem;
 }
 
-.container .title>h4 {
+.joe_main .title>h4 {
 	font-weight: 700;
 	margin-bottom: 10px;
 	font-size: 1.125rem;
 	color: var(--routine);
 }
 
-.container .title>p {
-	color: var(--seat);
+.joe_main .title>p {
+	color: var(--routine);
 }
 
-.container .form-group {
+.joe_main .form-group {
 	margin-bottom: 1.5rem;
 }
 
-.container .input-group {
+.joe_main .input-group {
 	display: flex;
 }
 
-.container .form-group>label {
+.joe_main .form-group>label {
 	color: var(--routine);
 	font-weight: 600;
 	display: inline-block;
 	margin-bottom: .5rem;
 }
 
-.container .form-group>a {
-	float: right;
+.joe_main .form-group>a {
+
 	/* color: var(--minor); */
 }
 
-.container .form-control {
+.joe_main .form-control {
 	display: block;
 	width: 100%;
 	padding: .45rem .9rem;
@@ -76,11 +80,11 @@ textarea {
 	transition: 0.3s;
 }
 
-.container .form-control:focus {
+.joe_main .form-control:focus {
 	border-color: var(--theme);
 }
 
-.container .btn {
+.joe_main .btn {
 	text-align: center;
 	font-weight: 400;
 	white-space: nowrap;
@@ -89,7 +93,7 @@ textarea {
 	transition: 0.3s;
 }
 
-.container .btn-primary {
+.joe_main .btn-primary {
 	display: block;
 	padding: .45rem 1.2rem;
 	line-height: 1.5;
@@ -102,19 +106,19 @@ textarea {
 	border: none;
 }
 
-.container .btn-primary:hover {
+.joe_main .btn-primary:hover {
 	opacity: 0.9;
 }
 
-.container .btn-primary:active {
+.joe_main .btn-primary:active {
 	opacity: 0.7;
 }
 
-.container .input-group>.form-control {
+.joe_main .input-group>.form-control {
 	border-right: none;
 }
 
-.container .input-group>.btn {
+.joe_main .input-group>.btn {
 	border: 2px solid var(--classA);
 	border-left: none;
 	padding: .45rem .9rem;
@@ -122,16 +126,16 @@ textarea {
 	color: var(--main);
 }
 
-.container .input-group>.btn:hover {
+.joe_main .input-group>.btn:hover {
 	border-color: var(--seat);
 	background: var(--classA);
 }
 
-.container .input-group>.btn:focus {
+.joe_main .input-group>.btn:focus {
 	background: var(--seat);
 }
 
-.container .text-muted {
+.joe_main .text-muted {
 	/* color: var(--minor); */
 	text-align: center
 }

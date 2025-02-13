@@ -1,6 +1,9 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 $JFavicon = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JFavicon',
@@ -65,17 +68,17 @@ $DynamicBackground = new \Typecho\Widget\Helper\Form\Element\Select(
 	'DynamicBackground',
 	array(
 		'off' => '关闭（默认）',
-		'backdrop1.js' => '效果1',
-		'backdrop2.js' => '效果2',
-		'backdrop3.js' => '效果3',
-		'backdrop4.js' => '效果4',
-		'backdrop5.js' => '效果5',
-		'backdrop6.js' => '效果6'
+		'backdrop1.js' => '几何蜘网',
+		'backdrop2.js' => '流动线条',
+		'backdrop3.js' => '绚烂彩虹',
+		'backdrop4.js' => '樱花飘落',
+		'backdrop5.js' => '素描气球',
+		'backdrop6.js' => '一个线条'
 	),
 	'off',
-	'是否开启动态背景图（仅限PC）',
-	'介绍：用于设置PC端动态背景<br />
-	 注意：如果您填写了下方PC端静态壁纸，将优先展示下方静态壁纸！如需显示动态壁纸，请将PC端静态壁纸设置成空'
+	'是否开启动态背景图',
+	'介绍：用于设置动态背景<br />
+	 注意：如果您填写了下方的 PC端/移动端 静态壁纸，将优先展示下方静态壁纸！如需显示动态壁纸，请将PC端静态壁纸设置成空'
 );
 $DynamicBackground->setAttribute('class', 'joe_content joe_image');
 $form->addInput($DynamicBackground->multiMode());

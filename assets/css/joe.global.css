@@ -849,17 +849,15 @@
 
 .joe_aside {
 	width: 311px;
-	/* padding: 20px 0; */
 	margin-left: 15px
 }
 
 .joe_aside__item {
-	position: relative;
+	/* position: relative; */
 	width: 311px;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 	border-radius: var(--radius-inner);
-	/* box-shadow: var(--box-shadow); */
-	overflow: hidden
+	/* overflow: hidden */
 }
 
 .joe_aside__item:last-child {

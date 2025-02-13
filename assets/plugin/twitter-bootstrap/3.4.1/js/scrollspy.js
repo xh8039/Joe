@@ -106,18 +106,12 @@
 
 		this.clear()
 
-		var selector = this.selector +
-			'[data-target="' + target + '"],' +
-			this.selector + '[href="' + target + '"]'
+		var selector = this.selector + '[data-target="' + target + '"],' + this.selector + '[href="' + target + '"]'
 
-		var active = $(selector)
-			.parents('li')
-			.addClass('active')
+		var active = $(selector).parents('li').addClass('active')
 
 		if (active.parent('.dropdown-menu').length) {
-			active = active
-				.closest('li.dropdown')
-				.addClass('active')
+			active = active.closest('li.dropdown').addClass('active')
 		}
 
 		active.trigger('activate.bs.scrollspy')

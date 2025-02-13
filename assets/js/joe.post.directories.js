@@ -126,7 +126,7 @@ function section_navs(selector) {
 			offset: $('.joe_header').innerHeight() + 10 + 1,
 		});
 		// 目录随文章内容滚动
-		if (getHiddenElementHeight($(nav_selector + '>ul')) > 400) {
+		if (getHiddenElementHeight($(nav_selector + '>ul')) >= 400) {
 			$(nav_selector).on('activate.bs.scrollspy', function () {
 				var currentItem = $(this).find('ul>li.active');
 				$(this).scrollTop(currentItem[0].offsetTop - 50);
@@ -162,6 +162,16 @@ function section_navs(selector) {
 	if ($(selector_s).length > 2) {
 		if (Joe.IS_MOBILE && !$('.joe_action>' + navbox_selector).length) {
 			$('.joe_action').append('<div data-affix="true" class="joe_action_item posts-nav-box posts-nav-switcher" data-title="文章目录"><i class="fa fa-list-ul"></i></div>');
+		}
+		if (!Joe.IS_MOBILE) {
+			if (!$('.joe_aside>' + navbox_selector).length) {
+				const section = '<section data-affix="true" class="posts-nav-box joe_aside__item" data-title="文章目录"></section>';
+				$('.joe_aside').children().eq(1).after(section);
+				$('.joe_aside').append(section);
+			}
+			document.addEventListener('turbolinks:complete', () => {
+				$('.joe_aside>' + navbox_selector).remove();
+			},{ once: true });
 		}
 		add_box();
 	} else {

@@ -29,12 +29,12 @@ $this->need('module/single/pjax.php');
 <body>
 	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
-		<?php
-		$this->need('module/post/image.php');
-		$this->need('module/post/breadcrumb.php');
-		?>
 		<div class="joe_container">
 			<div class="joe_main joe_post">
+				<?php
+				$this->need('module/post/image.php');
+				$this->need('module/post/breadcrumb.php');
+				?>
 				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
 					<?php
 					$this->need('module/single/batten.php');

@@ -19,12 +19,13 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
 		<?php $referer = empty($_GET['referer']) ? '/' : urlencode(strip_tags($_GET['referer'])); ?>
-		<div class="container">
-			<div>
+		<div class="joe_container">
+			<div class="joe_main">
 				<div class="card-body">
 					<div class="title">
 						<h4>账号注册</h4>
 						<p>创建您的帐号，只需不到一分钟</p>
+						<p class="text-muted">已有账号? <a href="<?= joe\user_url('login', $referer) ?>" class="text-dark ml-1"><b>登陆</b></a></p>
 					</div>
 					<form id="user-form" operate="注册" action="<?= $this->options->index ?>/joe/api/user-register" method="post">
 						<div class="form-group mb-3">
@@ -75,8 +76,8 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 						<button class="btn btn-primary" type="submit">注 册</button>
 					</form>
 				</div>
-				<p class="text-muted">已有账号? <a href="<?= joe\user_url('login', $referer) ?>" class="text-dark ml-1"><b>登陆</b></a></p>
 			</div>
+			<?php if (joe\isPc()) $this->need('module/aside.php') ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>
 	</div>

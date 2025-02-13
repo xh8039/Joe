@@ -89,8 +89,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		</div>
 	</section>
 
-	<?= ($this->is('post') && !joe\isMobile() && $this->options->JArticle_Guide == 'on') ? '<section data-affix="true" class="posts-nav-box joe_aside__item" data-title="文章目录"></section>' : null ?>
-
 	<?php if (!empty($this->options->JAside_Notice) && !joe\detectSpider()) : ?>
 		<section class="joe_aside__item notice">
 			<div class="joe_aside__item-title">
@@ -101,6 +99,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</section>
 	<?php endif; ?>
+
+	<?= ($this->is('post') && !joe\isMobile() && $this->options->JArticle_Guide == 'on') ? '<section data-affix="true" class="posts-nav-box joe_aside__item" data-title="文章目录"></section>' : null ?>
+
 	<?php if ($this->options->JAside_Timelife_Status === 'on') : ?>
 		<section class="joe_aside__item timelife">
 			<div class="joe_aside__item-title">

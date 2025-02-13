@@ -19,42 +19,40 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div id="Joe">
 		<?php $referer = empty($_GET['referer']) ? '/' : urlencode(strip_tags($_GET['referer'])); ?>
 		<div class="joe_container">
-			<div class="joe_main container">
-				<div>
-					<div class="card-body">
-						<div class="title">
-							<h4>用户登录</h4>
-							<p>请输入帐号密码进行登录</p>
-						</div>
-						<form id="user-form" operate="登录" action="<?= $this->options->index ?>/joe/api/user-login" method="post">
-							<div class="form-group">
-								<label>账号/邮箱</label>
-								<input class="form-control" type="text" name="username" minlength="3" maxlength="30" required placeholder="请输入您的账号/邮箱">
-							</div>
-							<div class="form-group">
-								<label class="float-left" for="password">密码</label>
-								<?php
-								if ($this->options->JUserRetrieve == 'on' && joe\email_config()) {
-								?>
-									<a href="<?= joe\user_url('retrieve', $referer) ?>" class="text-muted float-right">
-										<small>忘记密码?</small>
-									</a>
-								<?php
-								}
-								?>
-								<input class="form-control" type="password" name="password" minlength="6" maxlength="18" required placeholder="请输入您的密码">
-							</div>
-							<input type="hidden" name="referer" value="<?= $referer ?>">
-							<button type="submit" class="btn btn-primary">登 录</button>
-						</form>
+			<div class="joe_main">
+				<div class="card-body">
+					<div class="title">
+						<h4>用户登录</h4>
+						<p>请输入帐号密码进行登录</p>
 					</div>
-					<?php
-					if ($this->options->allowRegister) {
-					?>
-						<p class="text-muted">没有账号吗？<a href="<?= joe\user_url('register', $referer) ?>" class="text-dark ml-1"><b>注册</b></a></p>
-					<?php
-					}
-					?>
+					<form id="user-form" operate="登录" action="<?= $this->options->index ?>/joe/api/user-login" method="post">
+						<div class="form-group">
+							<label class="float-left">账号/邮箱</label>
+							<?php
+							if ($this->options->allowRegister) {
+							?>
+								<span class="text-muted" style="float: right;color:var(--routine);">没有账号吗？<a href="<?= joe\user_url('register', $referer) ?>" class="text-dark ml-1"><b>注册</b></a></span>
+							<?php
+							}
+							?>
+							<input class="form-control" type="text" name="username" minlength="3" maxlength="30" required placeholder="请输入您的账号/邮箱">
+						</div>
+						<div class="form-group">
+							<label class="float-left" for="password">密码</label>
+							<?php
+							if ($this->options->JUserRetrieve == 'on' && joe\email_config()) {
+							?>
+								<a href="<?= joe\user_url('retrieve', $referer) ?>" style="float: right;color:var(--routine);">
+									<small>忘记密码?</small>
+								</a>
+							<?php
+							}
+							?>
+							<input class="form-control" type="password" name="password" minlength="6" maxlength="18" required placeholder="请输入您的密码">
+						</div>
+						<input type="hidden" name="referer" value="<?= $referer ?>">
+						<button type="submit" class="btn btn-primary">登 录</button>
+					</form>
 				</div>
 			</div>
 			<?php if (joe\isPc()) $this->need('module/aside.php') ?>

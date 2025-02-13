@@ -27,10 +27,6 @@
 	padding-top: 20px;
 }
 
-.joe_container .joe_aside {
-	padding-top: 12px;
-}
-
 .joe_post__ad-link {
 	display: block;
 	position: relative;
@@ -66,9 +62,9 @@
 }
 
 .joe_bread {
-	padding-top: 20px;
 	opacity: .6;
 	color: var(--main-color);
+	margin-bottom: 12px;
 }
 
 .joe_bread__bread {

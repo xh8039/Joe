@@ -47,6 +47,7 @@ body {
 	overflow-x: hidden;
 	line-height: 1.42857143;
 	color: var(--main-color);
+	padding-top: 88px;
 	background: var(--body-bg-color);
 	background-blend-mode: multiply;
 	background-position: center 0;
@@ -207,12 +208,7 @@ botton {
 .joe_main {
 	min-width: 0;
 	flex: 1;
-	padding: 15px 0;
-	padding-top: 20px;
-}
-
-.joe_post {
-	padding-top: 12px;
+	padding-bottom: 20px;
 }
 
 .joe_container {

@@ -47,9 +47,9 @@ class Api
 	{
 		if (extension_loaded('gd')) {
 			$captcha = $self->request->captcha;
-			if (empty($captcha)) return (['code' => 0, 'message' => '请先输入图像验证码！']);
-			if (empty($_SESSION['joe_image_captcha'])) return (['code' => 0, 'msg' => '验证码过期，请点击验证码图片刷新']);
-			if ($_SESSION['joe_image_captcha'] != $captcha) return ['code' => 0, 'msg' => '验证码错误'];
+			if (empty($captcha)) return (['message' => '请先输入图像验证码！']);
+			if (empty($_SESSION['joe_image_captcha'])) return (['message' => '验证码过期，请点击验证码图片刷新']);
+			if ($_SESSION['joe_image_captcha'] != $captcha) return ['message' => '验证码错误'];
 			unset($_SESSION['joe_image_captcha']);
 		}
 		$email = $self->request->email;

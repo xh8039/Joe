@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 视频
+ * 苹果CMS影视
  *
  * @package custom
  *

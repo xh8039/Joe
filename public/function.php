@@ -606,7 +606,7 @@ function email_config()
 function send_email(string $mail_title, string|null $subtitle, array|string $content, $email = '', int $limit_time = 0)
 {
 	if (!email_config()) return '管理员未配置发件邮箱';
-	if (defined('JOE_ROOT')) define('JOE_ROOT', dirname(__DIR__) . '/');
+	if (!defined('JOE_ROOT')) define('JOE_ROOT', dirname(__DIR__) . '/');
 	require_once JOE_ROOT . 'system/vendor/autoload.php';
 	if (empty($email)) {
 		$mail = Db::name('users')->where('uid', 1)->value('mail');

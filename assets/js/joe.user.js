@@ -81,9 +81,11 @@ Joe.DOMContentLoaded.user ||= () => {
 		$("#send-captcha").click(function () {
 			let email = $("#user-form input[name=email]").val();
 			if (!email) return autolog.log('请输入邮箱后发送验证码', 'warn');
+			let data = { email: email };
+			if (document.getElementById('captcha')) data.captcha = $("#captcha").val();
 			ajax({
 				url: $(this).attr('action'),
-				data: { email: email },
+				data: data,
 				operate: '发送',
 				button: '#send-captcha',
 				success: function (data) {

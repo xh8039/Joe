@@ -32,7 +32,10 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	?>
 		<div class="input">
 			<label class="input-label">提交验证</label>
-			<div style="display: flex;align-items: center;"><input placeholder="请输入图片中的内容" name="captcha"><img style="cursor: pointer;height: 36px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" data-toggle="tooltip" title="点击刷新"></div>
+			<div style="display: flex;align-items: center;">
+				<input placeholder="请输入图片中的内容" name="captcha" minlength="4" maxlength="4">
+				<img style="cursor: pointer;height: 36px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" data-toggle="tooltip" title="点击刷新">
+			</div>
 		</div>
 	<?php
 	}

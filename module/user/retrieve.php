@@ -37,6 +37,19 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<label>确认密码</label>
 							<input class="form-control" type="password" name="confirm_password" minlength="6" maxlength="18" placeholder="请再次输入您的新密码">
 						</div>
+						<?php
+						if (extension_loaded('gd')) {
+						?>
+							<div class="form-group">
+								<label>图像验证码</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="captcha" minlength="4" maxlength="4" placeholder="请先填写图像验证码后再获取邮箱验证码">
+									<img style="cursor:pointer;width:100px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" alt="验证码" onclick="this.src=this.src+'?d='+Math.random();">
+								</div>
+							</div>
+						<?php
+						}
+						?>
 						<div class="form-group">
 							<label>验证码</label>
 							<div class="input-group">

@@ -45,9 +45,16 @@ class Api
 	/** 用户注册邮箱验证码 */
 	public static function userRegisterCaptcha(\Widget\Archive $self)
 	{
+		if (extension_loaded('gd')) {
+			$captcha = $self->request->captcha;
+			if (empty($captcha)) return (['code' => 0, 'message' => '请先输入图像验证码！']);
+			if (empty($_SESSION['joe_image_captcha'])) return (['code' => 0, 'msg' => '验证码过期，请点击验证码图片刷新']);
+			if ($_SESSION['joe_image_captcha'] != $captcha) return ['code' => 0, 'msg' => '验证码错误'];
+			unset($_SESSION['joe_image_captcha']);
+		}
 		$email = $self->request->email;
 		if (empty($email)) return ['message' => '请输入邮箱后发送验证码'];
-		if (Db::name('users')->where('mail', $email)->find()) return ['message' => '邮箱已经注册'];
+		if (Db::name('users')->where('mail', $email)->find()) return ['message' => '该邮箱已经注册'];
 
 		$_SESSION['joe_user_register_captcha'] = rand(100000, 999999);
 		$_SESSION['joe_user_register_email'] = $email;
@@ -140,6 +147,13 @@ class Api
 	/** 用户重置密码邮箱验证码 */
 	public static function userRetrieveCaptcha(\Widget\Archive $self)
 	{
+		if (extension_loaded('gd')) {
+			$captcha = $self->request->captcha;
+			if (empty($captcha)) return (['code' => 0, 'message' => '请先输入图像验证码！']);
+			if (empty($_SESSION['joe_image_captcha'])) return (['code' => 0, 'msg' => '验证码过期，请点击验证码图片刷新']);
+			if ($_SESSION['joe_image_captcha'] != $captcha) return ['code' => 0, 'msg' => '验证码错误'];
+			unset($_SESSION['joe_image_captcha']);
+		}
 		/** 初始化验证类 */
 		$validator = new \Typecho\Validate();
 		$validator->addRule('email', 'required', _t('请输入邮箱后发送验证码'));
@@ -738,12 +752,9 @@ class Api
 		if (extension_loaded('gd')) {
 			$captcha = $self->request->captcha;
 			if (empty($captcha)) return (['code' => 0, 'msg' => '请输入验证码！']);
-			if (empty($_SESSION['joe_captcha'])) return (['code' => 0, 'msg' => '验证码过期，请重新获取验证码']);
-			if ($_SESSION['joe_captcha'] != $captcha) {
-				unset($_SESSION['joe_captcha']);
-				return ['code' => 0, 'msg' => '验证码错误'];
-			}
-			unset($_SESSION['joe_captcha']);
+			if (empty($_SESSION['joe_image_captcha'])) return (['code' => 0, 'msg' => '验证码过期，请点击验证码图片刷新']);
+			if ($_SESSION['joe_image_captcha'] != $captcha) return ['code' => 0, 'msg' => '验证码错误'];
+			unset($_SESSION['joe_image_captcha']);
 		}
 
 		$title = $self->request->title;

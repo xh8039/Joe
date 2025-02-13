@@ -14,9 +14,10 @@ Joe.DOMContentLoaded.user ||= () => {
 			complete: function () {
 				Joe.btnLoad(button, false);
 			},
-			error: function () {
+			error: function (xhr, status, error) {
 				Joe.btnLoad(button, false);
-				autolog.log('服务器繁忙', 'error');
+				const message = xhr.responseText || '服务器繁忙';
+				autolog.log(message, 'error');
 			},
 			success(data) {
 				autolog.log(data.message, data.code == 200 ? 'success' : 'warn');

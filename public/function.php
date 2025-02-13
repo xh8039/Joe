@@ -1043,7 +1043,7 @@ function custom_navs()
 
 function custom_navs_title($title)
 {
-	if (str_starts_with($title, 'fa-')) {
+	if (str_starts_with($title, '[fa-')) {
 		$title = preg_replace('/\[(.+)\]/i', '<i class="fa $1"></i>', $title);
 	} else if (preg_match('/\[(.+\s.+)\]/i', $title)) {
 		$title = preg_replace('/\[(.+)\]/i', '<i class="$1"></i>', $title);

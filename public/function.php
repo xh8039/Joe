@@ -14,6 +14,12 @@ function zibll_color_list(): array
 	return ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 }
 
+function zibll_rand_color() : string
+{
+	$color_list = zibll_color_list();
+	return $color_list[array_rand($color_list)];
+}
+
 function comment_author($comment)
 {
 	if (preg_match('/^https?:\/\/[^\s]*/i', $comment->url)) {
@@ -1049,8 +1055,7 @@ function custom_navs()
 function custom_navs_title($title)
 {
 	if (str_starts_with($title, '[fa-')) {
-		$color_list = \joe\zibll_color_list();
-		$color = $color_list[array_rand($color_list)];
+		$color = \joe\zibll_rand_color();
 		$title = preg_replace('/\[(.+)\]/i', '<i class="fa $1 ' . $color . '"></i>', $title);
 	} else if (preg_match('/\[(.+\s.+)\]/i', $title)) {
 		$title = preg_replace('/\[(.+)\]/i', '<i class="$1"></i>', $title);

@@ -227,9 +227,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php
 				$this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 20))->to($tags);
 				if ($tags->have()) {
-					$color_list = joe\zibll_color_list();
 					while ($tags->next()) {
-						$color_class = $color_list[array_rand($color_list)];
+						$color_class = joe\zibll_rand_color();
 						$permalink = joe\root_relative_link($tags->permalink);
 						echo "<a href=\"{$permalink}\" class=\"text-ellipsis but {$color_class}\">{$tags->name}</a>";
 					}

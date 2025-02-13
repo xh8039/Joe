@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 直播
+ * 虎牙直播
  *
  * @package custom
  *

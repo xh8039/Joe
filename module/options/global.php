@@ -42,7 +42,7 @@ $JStaticAssetsUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	'自定义静态资源URL',
 	'介绍：将本主题所需要的CSS、JS等资源文件使用某个站点来提供，以便节省服务器宽带 提升小型服务器加载速度<br>
 	注意：必须保证对方站点同样为再续前缘版并且版本一致<br>
-	例如：//storage.bri6.cn/typecho/usr/themes/Joe@1.33<br>
+	例如：//storage.bri6.cn/typecho/usr/themes/Joe@' . JOE_VERSION . '<br>
 	其他：<a target="_blank" href="http://auth.bri6.cn/server/joe/sitelist">本站同款站点列表</a>'
 );
 $JStaticAssetsUrl->setAttribute('class', 'joe_content joe_global');

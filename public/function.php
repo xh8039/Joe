@@ -1043,7 +1043,13 @@ function custom_navs()
 
 function custom_navs_title($title)
 {
-	$title = preg_replace('/\[(.+)\]/i', '<svg class="svg" aria-hidden="true"><use xlink:href="#$1"></use></svg>', $title);
+	if (str_starts_with($title, 'fa-')) {
+		$title = preg_replace('/\[(.+)\]/i', '<i class="fa $1"></i>', $title);
+	} else if (preg_match('/\[(.+\s.+)\]/i', $title)) {
+		$title = preg_replace('/\[(.+)\]/i', '<i class="$1"></i>', $title);
+	} else {
+		$title = preg_replace('/\[(.+)\]/i', '<svg class="svg" aria-hidden="true"><use xlink:href="#$1"></use></svg>', $title);
+	}
 	return $title;
 }
 

@@ -561,6 +561,7 @@ Joe.DOMContentLoaded.short ||= () => {
 		connectedCallback() {
 			// 确保 Prism 已加载
 			if (!window.Prism || !this.className.includes('language-')) return;
+			Prism.plugins.autoloader.languages_path = Joe.CDN_URL + 'prism/1.9.0/components/';
 			// 获取代码内容并格式化
 			const text = $(this).text().replace(/    /g, '	');
 			// 高亮代码

@@ -547,10 +547,6 @@ body:not(.nav-fixed) .header.show-slide {
 	transform: translateX(5px);
 }
 
-.navbar-top .sub-menu li>a>.fa {
-	color: var(--theme);
-}
-
 .navbar-top .navbar-right .sub-menu {
 	right: 0;
 }

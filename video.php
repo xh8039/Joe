@@ -35,7 +35,17 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</div>
 					<div class="joe_video__player joe_video__contain">
 						<div class="joe_video__contain-title">正在播放：</div>
-						<iframe allowfullscreen="true" class="joe_video__player-play" data-player="<?php $this->options->JCustomPlayer ? $this->options->JCustomPlayer() : Helper::options()->themeUrl('module/player.php?url=') ?>"></iframe>
+						<?php
+						if (empty($this->options->JCustomPlayer)) {
+						?>
+							<div class="joe_video__player-play" webkit-playsinline="" playsinline=""></div>
+						<?php
+						} else {
+						?>
+							<iframe allowfullscreen="true" class="joe_video__player-play" data-player="<?= $this->options->JCustomPlayer ?>"></iframe>
+						<?php
+						}
+						?>
 					</div>
 				<?php else : ?>
 					<div class="joe_video__type joe_video__contain">

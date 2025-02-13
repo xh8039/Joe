@@ -114,6 +114,7 @@ Joe.DOMContentLoaded.video ||= () => {
 	}
 	function initVideoDetail() {
 		const player = $('.joe_video__player-play').attr('data-player');
+		if (!player) var localPlayer = new VideoPlayer(options);
 		$.ajax({
 			url: Joe.BASE_API + '/maccms-list',
 			type: 'POST',
@@ -172,7 +173,11 @@ Joe.DOMContentLoaded.video ||= () => {
 			$('.joe_video__source-list .item').removeClass('active');
 			$(this).addClass('active');
 			const url = $(this).attr('data-src') || $(this).html();
-			$('.joe_video__player-play').attr({ src: player + url });
+			if (player) {
+				$('.joe_video__player-play').attr({ src: player + url });
+			} else {
+				localPlayer.switchVideo({ url: url });
+			}
 			const offset = $('.joe_video__player').offset().top - $('.joe_header').height() - 15;
 			window.scrollTo({ top: offset, behavior: 'smooth' });
 		});

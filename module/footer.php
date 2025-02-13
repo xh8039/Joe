@@ -274,8 +274,8 @@ if (!empty($footer_tabbar)) {
 <?php if ($this->options->JAside_3DTag == 'on') : ?>
 	<script src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js', null); ?>"></script>
 <?php endif; ?>
-<?php if (!empty($this->options->NewYearLantern)) : ?>
-	<script src="<?= joe\theme_url('assets/plugin/yihang/china-lantern.min.js', ['text' => $this->options->NewYearLantern]); ?>"></script>
+<?php if (!empty($this->options->JFestivalLantern)) : ?>
+	<script src="<?= joe\theme_url('assets/plugin/yihang/china-lantern.min.js', ['text' => $this->options->JFestivalLantern]); ?>"></script>
 <?php endif; ?>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects != 'off') : ?>
 	<script src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects, null) ?>"></script>

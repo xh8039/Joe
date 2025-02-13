@@ -14,8 +14,8 @@ $NProgressJS = new \Typecho\Widget\Helper\Form\Element\Select(
 $NProgressJS->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($NProgressJS->multiMode());
 
-$NewYearLantern = new \Typecho\Widget\Helper\Form\Element\Text(
-	'NewYearLantern',
+$JFestivalLantern = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JFestivalLantern',
 	NULL,
 	NULL,
 	'节日灯笼挂件文字',
@@ -23,8 +23,8 @@ $NewYearLantern = new \Typecho\Widget\Helper\Form\Element\Text(
 	示例：新年快乐<br>
 	关于：春节，亦称农历新年，是中国最重要的传统节日之一，春节时期往往伴随着阖家团圆和一个新的开始，春节不仅是一个普通的节日，它凝聚了中华民族的历史记忆和文化情感，承载着深厚的文化意义和社会价值'
 );
-$NewYearLantern->setAttribute('class', 'joe_content joe_decoration');
-$form->addInput($NewYearLantern->multiMode());
+$JFestivalLantern->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JFestivalLantern->multiMode());
 
 $JLogo_Light_Effect = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLogo_Light_Effect',

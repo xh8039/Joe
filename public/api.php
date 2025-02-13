@@ -58,7 +58,12 @@ class Api
 
 		$_SESSION['joe_user_register_captcha'] = rand(100000, 999999);
 		$_SESSION['joe_user_register_email'] = $email;
-		$send_email = \joe\send_email('注册验证', '您正在进行注册操作，验证码是：', $_SESSION['joe_user_register_captcha'], $email, 60);
+		$send_email = \joe\send_email('注册验证', '您正在本站进行注册验证操作，如非您本人操作，请忽略此邮件。', [
+			'验证码30分钟内有效，如果超时请重新获取',
+			'您的邮箱为：' . $email,
+			'您的验证码为：',
+			'<span style="border-bottom: 1px dashed #ccc; z-index: 1; position: static;">' . $_SESSION['joe_user_register_captcha'] . '</span>',
+		], $email, 60);
 		return $send_email === true ? ['code' => 200, 'message' => '验证码已发送到您的邮箱'] : ['message' => $send_email];
 	}
 	/** 用户注册 */
@@ -167,7 +172,12 @@ class Api
 
 		$_SESSION['joe_user_retrieve_captcha'] = rand(100000, 999999);
 		$_SESSION['joe_user_retrieve_email'] = $email;
-		$send_email = \joe\send_email('密码重置', '您正在进行重置密码操作，验证码是：', $_SESSION["joe_user_retrieve_captcha"], $email, 60);
+		$send_email = \joe\send_email('密码重置', '您正在本站进行重置密码验证操作，如非您本人操作，请忽略此邮件。', [
+			'验证码30分钟内有效，如果超时请重新获取',
+			'您的邮箱为：' . $email,
+			'您的验证码为：',
+			'<span style="border-bottom: 1px dashed #ccc; z-index: 1; position: static;">' . $_SESSION['joe_user_retrieve_captcha'] . '</span>'
+		], $email, 60);
 		if ($send_email === true) {
 			return (['code' => 200, 'message' => '验证码已发送到您的邮箱']);
 		} else {

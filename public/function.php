@@ -14,7 +14,7 @@ function zibll_color_list(): array
 	return ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];
 }
 
-function zibll_rand_color() : string
+function zibll_rand_color(): string
 {
 	$color_list = zibll_color_list();
 	return $color_list[array_rand($color_list)];
@@ -603,7 +603,7 @@ function email_config()
  * 发送电子邮件
  * @return true|string
  */
-function send_email($mail_title, $subtitle, array|string $content, $email = '', $limit_time = 0)
+function send_email(string $mail_title, string|null $subtitle, array|string $content, $email = '', int $limit_time = 0)
 {
 	if (!email_config()) return '管理员未配置发件邮箱';
 	require_once dirname(__DIR__) . '/system/vendor/autoload.php';
@@ -618,7 +618,11 @@ function send_email($mail_title, $subtitle, array|string $content, $email = '', 
 	if (is_array($content)) {
 		$content_string = '';
 		foreach ($content as $name => $value) {
-			$content_string .= $name . '：' . $value . '<br>';
+			if (is_numeric($name)) {
+				$content_string .=  '<p>' . $value . '</p>';
+			} else {
+				$content_string .= $name . '：' . $value . '<br>';
+			}
 		}
 		$content = $content_string;
 	}

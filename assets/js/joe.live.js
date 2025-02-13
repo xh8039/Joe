@@ -26,7 +26,7 @@ Joe.DOMContentLoaded.live ||= () => {
 		renderLiveType();
 		function renderLiveType() {
 			$.ajax({
-				url: `${Joe.options.themeUrl}assets/json/joe.live.json`,
+				url: `${Joe.options.themeUrl}/assets/json/joe.live.json`,
 				dataType: 'json',
 				success(res) {
 					const item = res[queryData.index];

@@ -8,11 +8,11 @@ $referer_parse = parse_url($referer);
 $referer_host = $referer_parse['host'] ?? null;
 $referer_path = $referer_parse['path'] ?? '';
 if ($referer_host == $_SERVER['HTTP_HOST'] || substr($referer_path, 0, 1) == '/') {
-	if ($this->user->hasLogin()) {
-		exit("<script>window.location.href='{$referer}'</script>");
-	} else {
-		echo "<script>window.Joe.referer='{$referer}'</script>";
-		echo '<link href="' . joe\theme_url('assets/css/joe.user.css') . '" rel="stylesheet" type="text/css" />';
-		echo '<script src="' . joe\theme_url('assets/js/joe.user.js') . '"></script>';
-	}
+	if ($this->user->hasLogin()) exit("<script>window.location.href='{$referer}'</script>");
 }
+?>
+<script>
+	window.Joe.referer = '<?= $referer ?>';
+</script>
+<link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
+<script src="<?= joe\theme_url('assets/js/joe.user.js') ?>"></script>

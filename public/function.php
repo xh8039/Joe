@@ -537,7 +537,11 @@ function user_url($action, $referer = true)
 			$url = '?referer=' . urlencode($sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url);
 		}
 	} else if (is_string($referer)) {
-		$url = '?referer=' . urlencode($referer);
+		if (urldecode($referer) == $referer) {
+			$url = '?referer=' . urlencode($referer);
+		} else {
+			$url = '?referer=' . $referer;
+		}
 	} else {
 		$url = '';
 	}

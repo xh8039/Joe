@@ -735,14 +735,16 @@ class Api
 	// 提交友情链接
 	public static function friendSubmit($self)
 	{
-		$captcha = $self->request->captcha;
-		if (empty($captcha)) return (['code' => 0, 'msg' => '请输入验证码！']);
-		if (empty($_SESSION['joe_captcha'])) return (['code' => 0, 'msg' => '验证码过期，请重新获取验证码']);
-		if ($_SESSION['joe_captcha'] != $captcha) {
+		if (extension_loaded('gd')) {
+			$captcha = $self->request->captcha;
+			if (empty($captcha)) return (['code' => 0, 'msg' => '请输入验证码！']);
+			if (empty($_SESSION['joe_captcha'])) return (['code' => 0, 'msg' => '验证码过期，请重新获取验证码']);
+			if ($_SESSION['joe_captcha'] != $captcha) {
+				unset($_SESSION['joe_captcha']);
+				return ['code' => 0, 'msg' => '验证码错误'];
+			}
 			unset($_SESSION['joe_captcha']);
-			return ['code' => 0, 'msg' => '验证码错误'];
 		}
-		unset($_SESSION['joe_captcha']);
 
 		$title = $self->request->title;
 		$description = $self->request->description;

@@ -27,10 +27,16 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<label class="input-label">联系邮箱</label>
 		<input type="email" placeholder="请输入您的联系邮箱号<?= Helper::options()->JFriendEmail == 'on' ? '，通过后会邮箱通知您' : null ?>" name="email">
 	</div>
-	<div class="input">
-		<label class="input-label">提交验证</label>
-		<div style="display: flex;align-items: center;"><input placeholder="请输入图片中的内容" name="captcha"><img style="cursor: pointer;height: 36px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" data-toggle="tooltip" title="点击刷新"></div>
-	</div>
+	<?php
+	if (extension_loaded('gd')) {
+	?>
+		<div class="input">
+			<label class="input-label">提交验证</label>
+			<div style="display: flex;align-items: center;"><input placeholder="请输入图片中的内容" name="captcha"><img style="cursor: pointer;height: 36px;" src="<?php $this->options->themeUrl('module/captcha.php') ?>" onclick="this.src=this.src+'?d='+Math.random();" data-toggle="tooltip" title="点击刷新"></div>
+		</div>
+	<?php
+	}
+	?>
 	<div class="button">
 		<button class="submit" type="submit">立即提交</button>
 		<button type="reset" class="reset">重 置</button>

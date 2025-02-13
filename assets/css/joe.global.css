@@ -60,8 +60,8 @@
 }
 
 .joe_header {
-	position: -webkit-sticky;
-	position: sticky;
+	position: fixed;
+	width: 100vw;
 	top: 0;
 	z-index: 1000;
 	background: var(--background);
@@ -849,7 +849,7 @@
 
 .joe_aside {
 	width: 311px;
-	padding: 20px 0;
+	/* padding: 20px 0; */
 	margin-left: 15px
 }
 

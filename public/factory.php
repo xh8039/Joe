@@ -20,7 +20,7 @@ class Intercept
 		}
 
 		// 判断评论是否至少包含一个中文
-		if (Helper::options()->JLimitOneChinese == "on" && preg_match("/[\x{4e00}-\x{9fa5}]/u", $text) == 0) {
+		if ($GLOBALS['JOE_USER']->group != 'administrator' && Helper::options()->JLimitOneChinese == "on" && preg_match("/[\x{4e00}-\x{9fa5}]/u", $text) == 0) {
 			Typecho\Cookie::set('__typecho_remember_text', $text);
 			throw new Typecho\Widget\Exception(_t('评论至少包含一个中文！'));
 		}

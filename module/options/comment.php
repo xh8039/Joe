@@ -64,11 +64,11 @@ $form->addInput($JSensitiveWords);
 
 $JLimitOneChinese = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JLimitOneChinese',
-	array('off' => '关闭（默认）', 'on' => '开启'),
+	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
 	'是否开启评论至少包含一个中文',
-	'介绍：开启后如果评论内容未包含一个中文，则禁止评论 <br />
-		 其他：用于屏蔽国外机器人刷的全英文垃圾广告信息'
+	'介绍：开启后如果评论内容未包含一个中文，则禁止评论（管理员除外） <br />
+	其他：用于屏蔽国外机器人刷的全英文垃圾广告信息'
 );
 $JLimitOneChinese->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JLimitOneChinese->multiMode());

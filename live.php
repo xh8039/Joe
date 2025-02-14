@@ -25,7 +25,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
 		<div class="joe_container">
-			<div class="joe_main">
+			<main class="joe_main">
 				<!-- 播放页 -->
 				<?php if (isset($_GET['profileRoom'])) : ?>
 					<div class="joe_live__contain joe_live__play">
@@ -49,7 +49,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<div class="joe_live__list"></div>
 					<ul class="joe_live__pagination"></ul>
 				<?php endif; ?>
-			</div>
+			</main>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>

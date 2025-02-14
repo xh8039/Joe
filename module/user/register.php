@@ -20,7 +20,7 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 	<div id="Joe">
 		<?php $referer = empty($_GET['referer']) ? '/' : urlencode(strip_tags($_GET['referer'])); ?>
 		<div class="joe_container">
-			<div class="joe_main">
+			<main class="joe_main">
 				<div class="card-body">
 					<div class="title">
 						<h4>账号注册</h4>
@@ -76,7 +76,7 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 						<button class="btn btn-primary" type="submit">注 册</button>
 					</form>
 				</div>
-			</div>
+			</main>
 			<?php if (joe\isPc()) $this->need('module/aside.php') ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>

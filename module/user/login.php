@@ -19,7 +19,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div id="Joe">
 		<?php $referer = empty($_GET['referer']) ? '/' : urlencode(strip_tags($_GET['referer'])); ?>
 		<div class="joe_container">
-			<div class="joe_main">
+			<main class="joe_main">
 				<div class="card-body">
 					<div class="title">
 						<h4>用户登录</h4>
@@ -54,7 +54,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<button type="submit" class="btn btn-primary">登 录</button>
 					</form>
 				</div>
-			</div>
+			</main>
 			<?php if (joe\isPc()) $this->need('module/aside.php') ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>

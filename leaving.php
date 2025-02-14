@@ -26,7 +26,7 @@ $this->need('module/single/pjax.php');
 	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
 		<div class="joe_container">
-			<div class="joe_main">
+			<main class="joe_main">
 				<div class="joe_detail" data-cid="<?= $this->cid ?>">
 					<?php
 					$this->need('module/single/batten.php');
@@ -34,7 +34,7 @@ $this->need('module/single/pjax.php');
 					?>
 				</div>
 				<?php $this->need('module/single/comment.php'); ?>
-			</div>
+			</main>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>
 	</div>

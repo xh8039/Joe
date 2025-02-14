@@ -890,7 +890,7 @@ Joe.DOMContentLoaded.global ||= () => {
 
 	if (Joe.options.JTurbolinks == 'on') {
 		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);
-		TurboLinks.start(['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '.joe_main']);
+		TurboLinks.start(['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '.joe_main', '.joe_bottom']);
 		document.addEventListener('turbolinks:send', () => {
 			NProgress.done();
 			NProgress.start();

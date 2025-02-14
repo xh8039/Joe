@@ -849,7 +849,8 @@
 
 .joe_aside {
 	width: 311px;
-	margin-left: 15px
+	margin-left: 15px;
+	padding-bottom: 20px;
 }
 
 .joe_aside__item {

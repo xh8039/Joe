@@ -16,7 +16,7 @@ $this->need('module/single/pjax.php');
 	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
 		<div class="joe_container">
-			<div class="joe_main">
+			<main class="joe_main">
 				<div class="joe_detail" data-cid="<?php echo $this->cid ?>">
 					<?php $this->need('module/single/batten.php'); ?>
 					<?php $this->need('module/single/article.php'); ?>
@@ -24,7 +24,7 @@ $this->need('module/single/pjax.php');
 					<?php $this->need('module/single/copyright.php'); ?>
 				</div>
 				<?php $this->need('module/single/comment.php'); ?>
-			</div>
+			</main>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>

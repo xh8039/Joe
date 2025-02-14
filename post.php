@@ -30,7 +30,7 @@ $this->need('module/single/pjax.php');
 	<?php $this->need('module/header.php'); ?>
 	<div id="Joe">
 		<div class="joe_container">
-			<div class="joe_main joe_post">
+			<main class="joe_main joe_post">
 				<?php
 				$this->need('module/post/image.php');
 				$this->need('module/post/breadcrumb.php');
@@ -54,7 +54,7 @@ $this->need('module/single/pjax.php');
 				require_once JOE_ROOT . 'module/single/related.php'; //相关推荐 
 				$this->need('module/single/comment.php');
 				?>
-			</div>
+			</main>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>

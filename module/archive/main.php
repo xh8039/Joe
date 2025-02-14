@@ -1,4 +1,4 @@
-<div class="joe_main">
+<main class="joe_main">
     <div class="joe_archive">
         <div class="joe_archive__title">
             <svg width="20" height="20" class="joe_archive__title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -38,4 +38,4 @@
         'nextClass' => 'next'
     ]);
     ?>
-</div>
+</main>

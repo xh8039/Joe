@@ -18,7 +18,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div id="Joe">
 		<?php $referer = empty($_GET['referer']) ? '/' : urlencode(strip_tags($_GET['referer'])); ?>
 		<div class="joe_container">
-			<div class="joe_main">
+			<main class="joe_main">
 				<div class="card-body">
 					<div class="title">
 						<h4>重置密码</h4>
@@ -62,7 +62,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</form>
 				</div>
 				<p class="text-muted">返回 <a href="<?= joe\user_url('login', $referer) ?>" class="text-dark ml-1"><b>登陆</b></a></p>
-			</div>
+			</main>
 			<?php if (joe\isPc()) $this->need('module/aside.php') ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>

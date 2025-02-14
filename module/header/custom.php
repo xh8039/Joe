@@ -21,7 +21,7 @@ $custom_navs = joe\custom_navs();
 			<?php
 			if (joe\isPc()) {
 			?>
-				<div class="collapse navbar-collapse">
+				<nav class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<?php
 						'current-menu-item';
@@ -228,7 +228,7 @@ $custom_navs = joe\custom_navs();
 					<?php
 					}
 					?>
-				</div>
+				</nav>
 			<?php
 			}
 			?>

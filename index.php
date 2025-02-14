@@ -36,7 +36,7 @@ if ($this->options->IndexAjaxList != 'on') $this->need('module/index/pjax.php');
 	<div id="Joe">
 		<?php $this->need('module/index/image.php') ?>
 		<div class="joe_container">
-			<div class="joe_main">
+			<main class="joe_main">
 				<div class="joe_index">
 					<?php
 					$this->need('module/index/carousel.php');
@@ -52,7 +52,7 @@ if ($this->options->IndexAjaxList != 'on') $this->need('module/index/pjax.php');
 					echo '<div class="joe_load_box"><a href="javascript:;" class="joe_load"><i class="fa fa-angle-right"></i>加载更多</a></div>';
 				} else if ($this->have()) $this->need('module/index/page.php');
 				?>
-			</div>
+			</main>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>

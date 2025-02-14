@@ -899,12 +899,11 @@ Joe.DOMContentLoaded.global ||= () => {
 		});
 		document.addEventListener('turbolinks:load', () => {
 			if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();
+			console.log(`已使用堆内存：${Joe.getMemoryUsage()?.usedMB} MB`);
 		});
 		document.addEventListener('turbolinks:complete', () => {
 			if (window.Joe.loadingEnd) window.Joe.loadingEnd();
 			NProgress.done();
-			const memoryInfo = Joe.getMemoryUsage();
-			if (memoryInfo) console.log(`已使用堆内存：${memoryInfo.usedMB} MB`);
 		});
 		$(document).on('click', 'a[href]', function (event) {
 			if (!window.Joe.internalForwardUrl(this)) return true;

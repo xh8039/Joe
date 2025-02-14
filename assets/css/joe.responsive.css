@@ -769,6 +769,10 @@
 	html .hide-sm {
 		display: none !important;
 	}
+
+	html body {
+		padding-top: 72px;
+	}
 }
 
 @media (max-width: 500px) {

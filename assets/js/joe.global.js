@@ -869,9 +869,9 @@ Joe.DOMContentLoaded.global ||= () => {
 
 	/* NProgress.js */
 	(() => {
-		if (!window.NProgress || Joe.options.NProgressJS != 'on') return;
-		if (Joe.options.JTurbolinks == 'on') return;
+		if (!window.NProgress) return;
 		NProgress.configure({ trickleSpeed: 10 });
+		if (Joe.options.NProgressJS != 'on' || Joe.options.JTurbolinks == 'on') return;
 		$(document).on('click', 'a[href]', function (e) {
 			if (!window.Joe.internalForwardUrl(this)) return;
 			NProgress.start();

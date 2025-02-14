@@ -50,7 +50,7 @@ var autolog = (function () {
 					mainEl.removeChild(el);
 					el = null;
 				}, time);
-			} else el?.querySelector(".icon")?.addEventListener("click", () => {
+			} else el?.querySelector(".icon:last-child")?.addEventListener("click", () => {
 				el.classList.add("hide");
 				setTimeout(() => {
 					mainEl.removeChild(el);

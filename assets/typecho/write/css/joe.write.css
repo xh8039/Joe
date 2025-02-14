@@ -176,6 +176,8 @@ body.fullscreen {
 	color: #abb2bf;
 	caret-color: #528bff;
 	padding: 0;
+	padding-bottom: 22.5px;
+	padding-right: 5px;
 	-webkit-user-modify: read-write-plaintext-only;
 	word-wrap: break-word;
 	white-space: normal;

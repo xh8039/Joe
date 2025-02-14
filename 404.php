@@ -12,11 +12,13 @@
 			<main class="joe_main">
 				<center>
 					<div class="image-box"><img referrerpolicy="no-referrer" rel="noreferrer" src="https://gitee.com/static/errors/images/404.png"></div>
-					<h3>你所访问的页面不存在！</h3>
-					<p>资源不存在或者没有访问权限，<a href="/">点击这里</a>返回首页</p>
+					<h3>您所访问的页面不存在！</h3>
+					<p>资源不存在或没有访问权限，<a href="/" style="color: var(--theme);">点击这里</a>返回首页</p>
 				</center>
 			</main>
+			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
+		<?php $this->need('module/bottom.php'); ?>
 	</div>
 	<?php $this->need('module/footer.php') ?>
 </body>

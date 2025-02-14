@@ -59,7 +59,7 @@ Joe.DOMContentLoaded.global ||= () => {
 				$('.navbar-logo>img').attr('src', switchSrc);
 				$('.navbar-logo>img').attr('switch-src', src);
 				if (!Joe.IS_MOBILE) {
-					$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+					$(".joe_action_item.mode").attr('title', '日间模式');
 					$(".joe_action_item.mode").tooltip({
 						container: "body"
 					});
@@ -69,7 +69,7 @@ Joe.DOMContentLoaded.global ||= () => {
 				$(".joe_action_item.mode .icon-2").addClass("active");
 				$('body').removeClass('dark-theme');
 				if (!Joe.IS_MOBILE) {
-					$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+					$(".joe_action_item.mode").attr('title', '夜间模式');
 					$(".joe_action_item.mode").tooltip({
 						container: "body"
 					});
@@ -87,7 +87,7 @@ Joe.DOMContentLoaded.global ||= () => {
 					$("html").removeAttr("data-night");
 					localStorage.removeItem("data-night");
 					if (!Joe.IS_MOBILE) {
-						$(".joe_action_item.mode").attr('data-original-title', '夜间模式');
+						$(".joe_action_item.mode").attr('title', '夜间模式');
 						$(".joe_action_item.mode").tooltip({
 							container: "body"
 						});
@@ -99,7 +99,7 @@ Joe.DOMContentLoaded.global ||= () => {
 					$("html").attr("data-night", "night");
 					localStorage.setItem("data-night", "night");
 					if (!Joe.IS_MOBILE) {
-						$(".joe_action_item.mode").attr('data-original-title', '日间模式');
+						$(".joe_action_item.mode").attr('title', '日间模式');
 						$(".joe_action_item.mode").tooltip({
 							container: "body"
 						});

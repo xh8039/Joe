@@ -31,7 +31,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<?php
 						if ($this->options->JFriends_shuffle == 'on') shuffle($friends);
 						$friends = array_values($friends);
-						foreach ($friends as $key => $item) echo '<a rel="' . $item['rel'] . '" target="_blank" class="' . ($key ? 'icon-spot' : null) . '" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="' . ($item['description'] ?? '暂无简介') . '" referrer="unsafe-url" href="' . $item['url'] . '" data-original-title="' . $item['title'] . '">' . $item['title'] . '</a>';
+						foreach ($friends as $key => $item) echo '<a rel="' . $item['rel'] . '" target="_blank" class="' . ($key ? 'icon-spot' : null) . '" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="' . ($item['description'] ?? '暂无简介') . '" referrer="unsafe-url" href="' . $item['url'] . '" data-title="' . $item['title'] . '">' . $item['title'] . '</a>';
 						if ($friends_page_url) echo '<a class="icon-spot" href="' . $friends_page_url . '">查看更多</a>';
 						?>
 					</div>

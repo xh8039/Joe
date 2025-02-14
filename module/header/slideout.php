@@ -20,25 +20,31 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<p class="motto joe_motto mb0"></p>
 		</div>
 	</div>
-	<ul class="joe_header__slideout-count">
-		<?php
-		Typecho\Widget::widget('Widget_Stat')->to($stat);
-		$PostsNum = joe\number_word($stat->myPublishedPostsNum);
-		$CommentsNum = joe\number_word($stat->myPublishedCommentsNum);
-		?>
-		<li class="item">
-			<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
-				<use xlink:href="#icon-joe-slideout-write"></use>
-			</svg>
-			<span>累计撰写 <strong><?= $PostsNum ?></strong> 篇文章</span>
-		</li>
-		<li class="item">
-			<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
-				<use xlink:href="#icon-joe-slideout-envelope"></use>
-			</svg>
-			<span>累计收到 <strong><?= $CommentsNum ?></strong> 条评论</span>
-		</li>
-	</ul>
+	<?php
+	if ($this->user->hasLogin()) {
+	?>
+		<ul class="joe_header__slideout-count">
+			<?php
+			Typecho\Widget::widget('Widget_Stat')->to($stat);
+			$PostsNum = joe\number_word($stat->myPublishedPostsNum);
+			$CommentsNum = joe\number_word($stat->myPublishedCommentsNum);
+			?>
+			<li class="item">
+				<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+					<use xlink:href="#icon-joe-slideout-write"></use>
+				</svg>
+				<span>累计撰写 <strong><?= $PostsNum ?></strong> 篇文章</span>
+			</li>
+			<li class="item">
+				<svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+					<use xlink:href="#icon-joe-slideout-envelope"></use>
+				</svg>
+				<span>累计收到 <strong><?= $CommentsNum ?></strong> 条评论</span>
+			</li>
+		</ul>
+	<?php
+	}
+	?>
 	<ul class="joe_header__slideout-menu panel-box">
 		<?php
 		$custom_navs = joe\custom_navs();

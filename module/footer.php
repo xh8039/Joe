@@ -59,7 +59,7 @@ if ($this->options->JFooterMode == 'commercial') {
 							}
 							if (!empty($this->options->JFooterContactQQ)) {
 							?>
-								<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="QQ联系" href="https://wpa.qq.com/msgrd?v=3&uin=<?= $this->options->JFooterContactQQ ?>&site=qq&menu=yes">
+								<a class="toggle-radius" data-toggle="tooltip" target="_blank" title="QQ联系" href="https://wpa.qq.com/msgrd?v=3&uin=<?= $this->options->JFooterContactQQ ?>&site=qq&menu=yes">
 									<svg class="icon svg" aria-hidden="true" data-viewBox="-50 0 1100 1100" viewBox="-50 0 1100 1100">
 										<use xlink:href="#icon-d-qq"></use>
 									</svg>
@@ -68,7 +68,7 @@ if ($this->options->JFooterMode == 'commercial') {
 							}
 							if (!empty($this->options->JFooterContactWeiBo)) {
 							?>
-								<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="微博" href="<?= $this->options->JFooterContactWeiBo ?>">
+								<a class="toggle-radius" data-toggle="tooltip" target="_blank" title="微博" href="<?= $this->options->JFooterContactWeiBo ?>">
 									<svg class="icon svg" aria-hidden="true">
 										<use xlink:href="#icon-d-weibo"></use>
 									</svg>
@@ -77,7 +77,7 @@ if ($this->options->JFooterMode == 'commercial') {
 							}
 							if (!empty($this->options->JFooterContactEmail)) {
 							?>
-								<a class="toggle-radius" data-toggle="tooltip" target="_blank" data-original-title="发邮件" href="mailto:<?= $this->options->JFooterContactEmail ?>">
+								<a class="toggle-radius" data-toggle="tooltip" target="_blank" title="发邮件" href="mailto:<?= $this->options->JFooterContactEmail ?>">
 									<svg class="icon svg" aria-hidden="true" data-viewBox="-20 80 1024 1024" viewBox="-20 80 1024 1024">
 										<use xlink:href="#icon-d-email"></use>
 									</svg>
@@ -169,13 +169,13 @@ if ($this->options->JMusic == 'on') {
 ?>
 
 <div class="joe_action">
-	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" data-original-title="返回顶部">
+	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" title="返回顶部">
 		<i class="fa fa-angle-up em12"></i>
 	</div>
 	<?php
 	if ($this->options->JThemeModeSwitch == 'on') {
 	?>
-		<div class="joe_action_item mode" data-toggle="tooltip" data-placement="left" data-original-title="夜间模式">
+		<div class="joe_action_item mode" data-toggle="tooltip" data-placement="left" title="夜间模式">
 			<i class="icon-1 fa fa-sun-o"></i>
 			<i class="icon-2 fa fa-moon-o"></i>
 		</div>
@@ -191,11 +191,11 @@ if ($this->options->JMusic == 'on') {
 	?>
 	<?php if ($this->user->uid == $this->authorId) : ?>
 		<?php if ($this->is('post')) : ?>
-			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" data-original-title="编辑文章">
+			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" title="编辑文章">
 				<a target="_blank" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
 			</div>
 		<?php elseif ($this->is('page')) : ?>
-			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" data-original-title="编辑页面">
+			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" title="编辑页面">
 				<a target="_blank" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
 			</div>
 		<?php endif; ?>

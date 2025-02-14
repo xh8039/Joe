@@ -9,7 +9,7 @@
         <?php foreach ($video_arr as $key => $item) :
             $index = $key + 1;
             $video_title = $item['title'] ? $item['title'] : ('第' . $index . '集'); ?>
-            <a data-toggle="tooltip" class="switch-video text-ellipsis" data-index="<?= $index ?>" video-url="<?= $item['url'] ?>" data-original-title="<?= $item['description'] ? $item['description'] : $video_title ?>" href="javascript:;"><span class="mr6 badg badg-sm"><?= $index ?></span><i class="episode-active-icon"></i><?= $video_title ?></a>
+            <a data-toggle="tooltip" class="switch-video text-ellipsis" data-index="<?= $index ?>" video-url="<?= $item['url'] ?>" title="<?= $item['description'] ? $item['description'] : $video_title ?>" href="javascript:;"><span class="mr6 badg badg-sm"><?= $index ?></span><i class="episode-active-icon"></i><?= $video_title ?></a>
         <?php endforeach; ?>
     </div>
 </div>

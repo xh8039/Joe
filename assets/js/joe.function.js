@@ -206,21 +206,18 @@ window.Joe.addMeta = (name, content) => {
 }
 
 window.Joe.tooltip = (selectors = '', options = {}) => {
+	const tooltip = '[data-toggle="tooltip"]:not([data-original-title])';
+	const selector = `${selectors}${tooltip},${selectors} ${tooltip}`;
 	if (Joe.IS_MOBILE && options instanceof Object) {
-		// 遍历所有的元素
-		$(selectors + ' [data-toggle="tooltip"]').each(function () {
-			// 获取当前元素的data-original-title属性
-			var title = $(this).attr('data-original-title') || $(this).attr('title');
-			// 设置title属性为data-original-title的值
-			$(this).attr('title', title);
+		$(selector).each(function () {
 			['data-toggle', 'data-placement'].forEach(value => {
 				$(this).removeAttr(value);
 			});
 		});
 	} else {
 		if (options instanceof Object) options.container = options.container ? options.container : 'body';
-		$(selectors + ' [data-toggle="tooltip"]').tooltip(options);
-		if (options instanceof Object) $(selectors + ' [data-toggle="tooltip"]').on('click', function (event) {
+		$(selector).tooltip(options);
+		if (options instanceof Object) $(selector).on('click', function (event) {
 			$(this).tooltip('hide');
 		});
 	}

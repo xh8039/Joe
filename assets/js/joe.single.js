@@ -256,7 +256,7 @@ Joe.DOMContentLoaded.single ||= () => {
 		$('.featured-video-episode>.switch-video').on('click', function () {
 			$(this).addClass('active').siblings().removeClass('active');
 			const url = $(this).attr('video-url');
-			let title = $(this).attr('data-original-title');
+			let title = $(this).attr('title');
 			if (firstVideo) {
 				firstVideo = false;
 				player.switchVideo({ url: url, pic: Joe.CONTENT.cover });

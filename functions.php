@@ -27,7 +27,8 @@ function themeConfig($form)
 			title: `<?= trim(Helper::options()->title ?? '') ?>`,
 			version: `<?= trim(JOE_VERSION) ?>`,
 			logo: `<?= trim(Helper::options()->JLogo ?? '') ?>`,
-			Favicon: `<?= trim(Helper::options()->JFavicon ?? '') ?>`
+			Favicon: `<?= trim(Helper::options()->JFavicon ?? '') ?>`,
+			BASE_API: `<?= joe\root_relative_link(joe\index('joe/api')) ?>`
 		}
 	</script>
 	<script src="<?php Helper::options()->themeUrl('assets/typecho/config/js/joe.config.min.js') ?>"></script>
@@ -55,14 +56,16 @@ function themeConfig($form)
 					<a class="item" data-current="joe_code" href="<?= Helper::options()->rootUrl . __TYPECHO_ADMIN_DIR__ ?>options-theme.php?joe_code=true">插入代码</a>
 					<li class="item" data-current="joe_other">其他设置</li>
 				</ul>
-				<form action="options-theme.php" method="post" class="mailtest" style="display: none;">
-					<input name="mod" value="mailtest">
-				</form>
 				<div class="typecho-login" style="display: none;"></div>
+				<div class="backup">
+					<button onclick="Joe.update('active');">检测更新</button>
+					<button onclick="Joe.backup('backup');">备份设置</button>
+					<button onclick="Joe.backup('revert');">还原备份</button>
+					<button onclick="Joe.backup('delete');">删除备份</button>
+				</div>
 				<script>
 					document.querySelector('.operate>a:last-child').target = '_blank';
 				</script>
-				<?php require_once JOE_ROOT . 'module/options/backup.php'; ?>
 			</div>
 		</div>
 		<div class="joe_config__notice">请求数据中...</div>

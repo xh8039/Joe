@@ -59,7 +59,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 	if (sizeof($row) > 0) {
 		if (Helper::options()->JPaymentOrderToAdminEmail == 'on' && !$row['admin_email']) {
 			$type = ['alipay' => '支付宝', 'wxpay' => '微信', 'qqpay' => 'QQ'];
-			$admin_email = joe\send_email(
+			$admin_email = joe\send_mail(
 				'有新的订单已支付',
 				'您的网站 [' . Helper::options()->title . '] 有新的订单已支付！',
 				[
@@ -78,7 +78,7 @@ if ($verify_result && $_GET['trade_status'] == 'TRADE_SUCCESS') {
 		if (Helper::options()->JPaymentOrderEmail == 'on' && is_numeric($row['user_id']) && !$row['user_email']) {
 			$authoInfo = $db->fetchRow($db->select()->from('table.users')->where('uid = ?', $row['user_id']));
 			if (sizeof($authoInfo) > 0) {
-				$user_email = joe\send_email(
+				$user_email = joe\send_mail(
 					'订单支付成功！',
 					'您好！' . $authoInfo['screenName'] . '，您在 [' . Helper::options()->title . '] 购买的商品已支付成功',
 					[

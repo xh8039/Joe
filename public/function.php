@@ -603,7 +603,7 @@ function email_config()
  * 发送电子邮件
  * @return true|string
  */
-function send_email(string $mail_title, string|null $subtitle, array|string $content, $email = '', int $limit_time = 0)
+function send_mail(string $mail_title, string|null $subtitle, array|string $content, $email = '', int $limit_time = 0)
 {
 	if (!email_config()) return '管理员未配置发件邮箱';
 	if (!defined('JOE_ROOT')) define('JOE_ROOT', dirname(__DIR__) . '/');
@@ -690,7 +690,7 @@ function send_email(string $mail_title, string|null $subtitle, array|string $con
 		}
 		return $PHPMailer->send() ? true : $PHPMailer->ErrorInfo;
 	} catch (\PHPMailer\PHPMailer\Exception $e) {
-		return '邮件发送失败: ' . $PHPMailer->ErrorInfo;
+		return '邮件发送失败：' . $PHPMailer->ErrorInfo;
 	}
 }
 

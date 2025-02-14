@@ -92,7 +92,7 @@ class Email
 				/* 被回复的人不是自己时，发送邮件 */
 				if ($parentMail != $comment->mail) {
 					$text = CommentLink($text, $comment->permalink, '回复');
-					joe\send_email('您在 [' . $comment->title . '] 的评论有了新的回复！', '博主：[ ' . $comment->author . ' ] 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您:', $text, $parentMail);
+					joe\send_mail('您在 [' . $comment->title . '] 的评论有了新的回复！', '博主：[ ' . $comment->author . ' ] 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您:', $text, $parentMail);
 					$_SESSION['joe_send_mail_time'] = time();
 				}
 			}
@@ -103,7 +103,7 @@ class Email
 				$authorMail = Db::name('users')->where('uid', $comment->ownerId)->value('mail');
 				if ($authorMail) {
 					$text = CommentLink($text, $comment->permalink, '评论');
-					joe\send_email('您的文章 [' . $comment->title . '] 收到一条新的评论！', $comment->author . ' [' . $comment->ip . '] 在您的《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上发表评论:', $text, $authorMail);
+					joe\send_mail('您的文章 [' . $comment->title . '] 收到一条新的评论！', $comment->author . ' [' . $comment->ip . '] 在您的《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上发表评论:', $text, $authorMail);
 					$_SESSION['joe_send_mail_time'] = time();
 				}
 				/* 如果发表的评论是回复别人 */
@@ -112,7 +112,7 @@ class Email
 				/* 被回复的人不是自己时，发送邮件 */
 				if ($parentMail != $comment->mail) {
 					$text = CommentLink($text, $comment->permalink, '回复');
-					joe\send_email('您在 [' . $comment->title . '] 的评论有了新的回复！', $comment->author . ' 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您:', $text, $parentMail);
+					joe\send_mail('您在 [' . $comment->title . '] 的评论有了新的回复！', $comment->author . ' 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您:', $text, $parentMail);
 					$_SESSION['joe_send_mail_time'] = time();
 				}
 			}

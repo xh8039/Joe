@@ -119,7 +119,7 @@ if ($action == 'delete') {
 		if (Helper::options()->JFriendsStatusEmail == 'on') {
 			foreach ($friends as $key => $value) {
 				if (!empty($value['email']) && preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $value['email'])) {
-					joe\send_email('您的友情链接已被删除', '', [
+					joe\send_mail('您的友情链接已被删除', '', [
 						'友链标题' => $value['title'],
 						'友链网址' => $value['url'],
 						'友链描述' => $value['description'],
@@ -142,7 +142,7 @@ if ($action == 'open') {
 			$friends = getFriends($id);
 			foreach ($friends as $value) {
 				if (!empty($value['email']) && preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $value['email'])) {
-					joe\send_email('您的友情链接已通过审核', '', [
+					joe\send_mail('您的友情链接已通过审核', '', [
 						'友链标题' => $value['title'],
 						'友链网址' => $value['url'],
 						'友链描述' => $value['description'],
@@ -165,7 +165,7 @@ if ($action == 'disable') {
 			$friends = getFriends($id);
 			foreach ($friends as $value) {
 				if (!empty($value['email']) && preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $value['email'])) {
-					joe\send_email('您的友情链接已被禁用', '', [
+					joe\send_mail('您的友情链接已被禁用', '', [
 						'友链标题' => $value['title'],
 						'友链网址' => $value['url'],
 						'友链描述' => $value['description'],

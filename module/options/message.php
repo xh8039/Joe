@@ -1,21 +1,14 @@
 <?php
 
-use think\facade\Db;
-
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
 
-$mail = Db::name('users')->where('uid', 1)->value('mail');
-$email = $mail ? $mail :  \Helper::options()->JCommentMailAccount;
-
 if (joe\email_config()) {
-	$JEmailTestText = '<a href="javascript:document.querySelector(\'.mailtest\').submit();">点击给 ' . $email . ' 发一封测试邮件</a>';
-	if (isset($_POST['mod']) && $_POST['mod'] == 'mailtest') {
-		$send_email = joe\send_email('邮件发送测试', null, '这是一封测试邮件！', $email);
-		$JEmailTestText = ($send_email === true ? '邮件发送成功！' : $send_email);
-	}
+	$mail = think\facade\Db::name('users')->where('uid', 1)->value('mail');
+	$email = $mail ? $mail :  \Helper::options()->JCommentMailAccount;
+	$JEmailTestText = '<a href="javascript:Joe.mailTest();">点击给 ' . $email . ' 发一封测试邮件</a>';
 	$JEmailTest = new \Typecho\Widget\Helper\Form\Element\Hidden('', NULL, NULL, $JEmailTestText);
 	$JEmailTest->setAttribute('class', 'joe_content joe_message');
 	$form->addInput($JEmailTest);

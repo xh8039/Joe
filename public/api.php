@@ -31,6 +31,49 @@ class Api
 		];
 	}
 
+	public static function optionsBackup(\Widget\Archive $self)
+	{
+		if (self::$user->group != 'administrator') return ['message' => '权限不足！'];
+		$action = $self->request->action;
+		$theme_field = 'theme:' . THEME_NAME;
+		$backup_field = $theme_field . '_backup';
+		if ($action == 'backup') {
+			$theme_options = Db::name('options')->where('name', $theme_field)->value('value');
+			if (empty($theme_options)) return ['message' => '备份失败！无法获取主题设置！'];
+			if (Db::name('options')->where('name', $backup_field)->find()) {
+				Db::name('options')->where('name', $backup_field)->update(['value' => $theme_options]);
+				return ['code' => 200, 'message' => '主题备份已更新！'];
+			} else {
+				Db::name('options')->insert(['name' => $backup_field, 'user' => '0', 'value' => $theme_options]);
+				return ['code' => 200, 'message' => '主题设置已备份！'];
+			}
+		}
+		if ($action == 'revert') {
+			$backup_value = Db::name('options')->where('name', $backup_field)->value('value');
+			if (empty($backup_value)) return ['message' => '未备份过数据，无法恢复！'];
+			Db::name('options')->where('name', $theme_field)->update(['value' => $backup_value]);
+			return ['code' => 200, 'message' => '主题设置已还原！'];
+		}
+		if ($action == 'delete') {
+			$backup_delete = Db::name('options')->where('name', $backup_field)->delete();
+			if (!$backup_delete) return ['message' => '没有备份内容，无法删除！'];
+			return ['code' => 200, 'message' => '主题备份已删除！'];
+		}
+	}
+
+	public static function mailTest()
+	{
+		if (self::$user->group != 'administrator') return ['message' => '权限不足！'];
+		$mail = Db::name('users')->where('uid', 1)->value('mail');
+		$email = $mail ? $mail : self::$options->JCommentMailAccount;
+		$send_email = \joe\send_mail('邮件发送测试', null, '这是一封测试邮件！', $email);
+		if ($send_email === true) {
+			return ['code' => 200, 'message' => '邮件发送成功！'];
+		} else {
+			return ['message' => $send_email];
+		}
+	}
+
 	/** 用户登录 */
 	public static function userLogin()
 	{
@@ -58,7 +101,7 @@ class Api
 
 		$_SESSION['joe_user_register_captcha'] = rand(100000, 999999);
 		$_SESSION['joe_user_register_email'] = $email;
-		$send_email = \joe\send_email('注册验证', '您正在本站进行注册验证操作，如非您本人操作，请忽略此邮件。', [
+		$send_email = \joe\send_mail('注册验证', '您正在本站进行注册验证操作，如非您本人操作，请忽略此邮件。', [
 			'验证码30分钟内有效，如果超时请重新获取',
 			'您的邮箱为：' . $email,
 			'您的验证码为：',
@@ -137,7 +180,7 @@ class Api
 		$_SESSION['joe_user_register_captcha'] = null;
 		$_SESSION['joe_user_register_email'] = null;
 
-		\joe\send_email('注册成功', '您已成功注册账号，您的账号信息如下：', [
+		\joe\send_mail('注册成功', '您已成功注册账号，您的账号信息如下：', [
 			'昵称' => $self->request->nickname,
 			'账号' => $self->request->username,
 			'邮箱' => $self->request->email,
@@ -172,7 +215,7 @@ class Api
 
 		$_SESSION['joe_user_retrieve_captcha'] = rand(100000, 999999);
 		$_SESSION['joe_user_retrieve_email'] = $email;
-		$send_email = \joe\send_email('密码重置', '您正在本站进行重置密码验证操作，如非您本人操作，请忽略此邮件。', [
+		$send_email = \joe\send_mail('密码重置', '您正在本站进行重置密码验证操作，如非您本人操作，请忽略此邮件。', [
 			'验证码30分钟内有效，如果超时请重新获取',
 			'您的邮箱为：' . $email,
 			'您的验证码为：',
@@ -796,7 +839,7 @@ class Api
 			$EmailTitle = '友链申请';
 			$subtitle = $title . ' 向您提交了友链申请';
 			$content = ['站点标题' => $title, '站点链接' => $url, '站点图标' => $logo, '站点描述' => $description, '对方邮箱' => $email];
-			$SendEmail = \joe\send_email($EmailTitle, $subtitle, $content);
+			$SendEmail = \joe\send_mail($EmailTitle, $subtitle, $content);
 			if ($SendEmail !== true) return (['code' => 0, 'msg' => '提交失败，' . $SendEmail]);
 		}
 		return ['code' => 200, 'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待'];

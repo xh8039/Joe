@@ -383,4 +383,5 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 - 优化PC端的用户登录注册页面
 - 优化PC端动态背景特效为PC端和移动端都可以展示
 - 优化单页模式的PC端侧栏算法
+- 优化后台主题设置面板的UI和交互
 - 正在开发中...

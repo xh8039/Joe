@@ -9,6 +9,9 @@ class TurboLinks {
 
 	"use strict";
 
+	/** 是否开启调试模式 */
+	static debug = false;
+
 	/** Pjax实例 */
 	static pjax;
 
@@ -76,7 +79,7 @@ class TurboLinks {
 			// 加载新的link标签中的CSS文件
 			for (let url in TurboLinks.responseDOMCSSLinkList) {
 				if (repeatCSSList.includes(url)) {
-					console.log('跳过CSS：' + url);
+					if (TurboLinks.debug) console.log('跳过CSS：' + url);
 				} else {
 					TurboLinks.loadCSSLink(url);
 				}
@@ -102,7 +105,7 @@ class TurboLinks {
 			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
 			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
 				if (!TurboLinks.responseDOMCSSLinkList[element.href] && !element.getAttribute('data-turbolinks-permanent')) {
-					console.log('删除CSS：' + element.href);
+					if (TurboLinks.debug) console.log('删除CSS：' + element.href);
 					element.remove();
 				}
 			});
@@ -135,7 +138,7 @@ class TurboLinks {
 	static JsLoaded(element) {
 		TurboLinks.documentScriptList.push(element.src);
 		if (TurboLinks.loadJSIndex == TurboLinks.loadJSList.length) {
-			console.log('TurboLinks：所有JavaScript文件都已加载');
+			if (TurboLinks.debug) console.log('TurboLinks：所有JavaScript文件都已加载');
 			TurboLinks.loadJSList = [];
 			TurboLinks.loadJSIndex = 1;
 			return TurboLinks.pjax.originHandleResponse(TurboLinks.handleResponseParam.responseText, TurboLinks.handleResponseParam.request, TurboLinks.handleResponseParam.href, TurboLinks.handleResponseParam.options);
@@ -161,7 +164,7 @@ class TurboLinks {
 			script.src = element.src;
 			script.async = false;
 			script.addEventListener('load', () => {
-				console.log('引入JS：' + element.src);
+				if (TurboLinks.debug) console.log('引入JS：' + element.src);
 				TurboLinks.JsLoaded(element);
 			});
 			script.addEventListener('error', () => {
@@ -186,7 +189,7 @@ class TurboLinks {
 
 		let parent = document.querySelector("head") || document.documentElement;
 		parent.appendChild(script);
-		if (code) console.log('执行JS：' + code.replace(/\s/g, ' ').replace(/ +/g, ' ').trim());
+		if (code && TurboLinks.debug) console.log('执行JS：' + code.replace(/\s/g, ' ').replace(/ +/g, ' ').trim());
 		// 仅避免 head 或 body 标签污染
 		if ((parent instanceof HTMLHeadElement || parent instanceof HTMLBodyElement) && parent.contains(script)) {
 			parent.removeChild(script);
@@ -198,7 +201,7 @@ class TurboLinks {
 	static loadStyle(element) {
 		let code = element.text || element.textContent || element.innerHTML || null;
 		if (!code) return false;
-		console.log('引入style：' + code);
+		if (TurboLinks.debug) console.log('引入style：' + code);
 		let style = document.createElement('style');
 		style.type = 'text/css';
 		try {
@@ -216,6 +219,6 @@ class TurboLinks {
 		css.rel = 'stylesheet';
 		css.href = url;
 		document.head.appendChild(css);
-		console.log('引入CSS：' + url);
+		if (TurboLinks.debug) console.log('引入CSS：' + url);
 	}
 }

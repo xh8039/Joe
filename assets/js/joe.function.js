@@ -5,6 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.Joe.$body = $(document.body);
 });
 
+window.Joe.getMemoryUsage = () => {
+	if (window.performance && window.performance.memory) {
+		const memory = window.performance.memory;
+		return {
+			usedMB: (memory.usedJSHeapSize / (1024 * 1024)).toFixed(2),
+			totalMB: (memory.totalJSHeapSize / (1024 * 1024)).toFixed(2),
+			limitMB: (memory.jsHeapSizeLimit / (1024 * 1024)).toFixed(2)
+		};
+	} else {
+		console.log('当前浏览器不支持 performance.memory');
+		return null;
+	}
+}
+
 window.Joe.WeakMap = (new WeakMap);
 
 window.Joe.btnLoad = (element, message = null) => {

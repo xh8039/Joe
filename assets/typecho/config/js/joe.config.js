@@ -86,7 +86,7 @@ window.Joe.backup = (action = 'backup') => {
 		dataType: 'json',
 		success: (data) => {
 			layer.close(loading);
-			autolog.log(data.message, data.code == 200 ? 'success' : 'error');
+			autolog.log(data.message, data.code == 200 ? 'info' : 'error');
 			if (action == 'revert' && data.code == 200) {
 				setTimeout(() => window.location.reload(), 3000);
 			}

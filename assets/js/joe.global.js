@@ -868,25 +868,20 @@ Joe.DOMContentLoaded.global ||= () => {
 	}
 
 	/* NProgress.js */
-	if (window.NProgress) {
+	(() => {
+		if (!window.NProgress || Joe.options.NProgressJS != 'on') return;
+		if (Joe.options.JTurbolinks == 'on') return;
 		NProgress.configure({ trickleSpeed: 10 });
-		if (window.Joe.options.NProgressJS == 'on') {
-			$(document).on('click', 'a[href]', function (e) {
-				if (window.Joe.internalForwardUrl(this)) {
-					NProgress.start();
-					window.addEventListener('visibilitychange', function () {
-						if (document.visibilityState === 'hidden') NProgress.done();
-					});
-					window.addEventListener('pagehide', function (event) {
-						NProgress.done();
-					});
-					window.addEventListener('unload', function (event) {
-						NProgress.remove();
-					});
-				}
+		$(document).on('click', 'a[href]', function (e) {
+			if (!window.Joe.internalForwardUrl(this)) return;
+			NProgress.start();
+			window.addEventListener('visibilitychange', function () {
+				if (document.visibilityState === 'hidden') NProgress.done();
 			});
-		}
-	}
+			window.addEventListener('pagehide', () => NProgress.done());
+			window.addEventListener('unload', () => NProgress.remove());
+		});
+	})();
 
 	if (Joe.options.JTurbolinks == 'on') {
 		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);

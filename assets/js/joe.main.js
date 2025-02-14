@@ -56,7 +56,7 @@ Joe.DOMContentLoaded.main ||= () => {
 		// tooltip.js
 		window.Joe.tooltip();
 		// popover.js
-		$("[data-toggle='popover']").popover({ html: true });
+		$("[data-toggle='popover']:not([data-original-title])").popover({ html: true });
 	}
 }
 document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.main, { once: true });

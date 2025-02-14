@@ -207,7 +207,7 @@ window.Joe.addMeta = (name, content) => {
 
 window.Joe.tooltip = (selectors = '', options = {}) => {
 	const tooltip = '[data-toggle="tooltip"]:not([data-original-title])';
-	const selector = `${selectors}${tooltip},${selectors} ${tooltip}`;
+	const selector = selectors ? `${selectors}${tooltip},${selectors} ${tooltip}` : tooltip;
 	if (Joe.IS_MOBILE && options instanceof Object) {
 		$(selector).each(function () {
 			['data-toggle', 'data-placement'].forEach(value => {

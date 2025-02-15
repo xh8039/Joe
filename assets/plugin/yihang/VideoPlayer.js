@@ -7,7 +7,7 @@
  * @description 使用现代ES特性实现的增强型播放器，支持多格式扩展和异步资源加载
  * @giant DPlayer 基于DPlayer的增强实现
  */
-if (window.VideoPlayer) console.log(VideoPlayer);
+console.log(VideoPlayer);
 class VideoPlayer {
 
 	/** 播放器单例实例 */
@@ -71,12 +71,14 @@ class VideoPlayer {
 		// 读取CSS变量
 		const documentTheme = getComputedStyle(document.documentElement).getPropertyValue('--theme').trim();
 
+		if (!options.video) options.video = {};
+
 		// 🌈 合并配置
 		this.options = {
 			theme: documentTheme || '#b7daff',
 			playbackSpeed: [0.5, 1, 1.5, 2, 2.5, 3], // 播放速度选项
 			airplay: true,   // AirPlay投屏支持
-			// screenshot: true,// 截图功能
+			screenshot: options.video.pic ? false : true,// 截图功能
 			callback: callback,
 			...options       // 用户自定义配置（覆盖默认值）
 		};

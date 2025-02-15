@@ -7,7 +7,6 @@
  * @description 使用现代ES特性实现的增强型播放器，支持多格式扩展和异步资源加载
  * @giant DPlayer 基于DPlayer的增强实现
  */
-console.log(VideoPlayer);
 class VideoPlayer {
 
 	/** 播放器单例实例 */

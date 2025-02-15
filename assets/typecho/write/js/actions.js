@@ -334,8 +334,8 @@ class JoeAction {
 				</div>
 			`,
 			confirm: () => {
-				const title = $(".cm-modal input[name='title']").val() || '链接标题';
-				const url = $(".cm-modal input[name='url']").val() || 'http://';
+				const title = $(".cm-modal input[name='title']").val().trim() || '链接标题';
+				const url = $(".cm-modal input[name='url']").val().trim() || 'http://';
 				this._replaceSelection(cm, `[${title}](${url})`);
 				cm.focus();
 			}
@@ -355,8 +355,8 @@ class JoeAction {
 				</div>
 			`,
 			confirm: () => {
-				const title = $(".cm-modal input[name='title']").val() || '图片';
-				const url = $(".cm-modal input[name='url']").val() || 'http://';
+				const title = $(".cm-modal input[name='title']").val().trim() || '图片';
+				const url = $(".cm-modal input[name='url']").val().trim() || 'http://';
 				this._replaceSelection(cm, `![${title}](${url})`);
 				cm.focus();
 			}
@@ -591,12 +591,12 @@ class JoeAction {
 </div>
 			`,
 			confirm: () => {
-				let url = $(".cm-modal input[name='src']").val();
-				let pic = $(".cm-modal input[name='pic']").val();
-				let theme = $(".cm-modal input[name='theme']").val();
-				let autoplay = $(".cm-modal select[name='autoplay']").val();
-				let loop = $(".cm-modal select[name='loop']").val();
-				let screenshot = $(".cm-modal select[name='screenshot']").val();
+				let url = $(".cm-modal input[name='src']").val().trim();
+				let pic = $(".cm-modal input[name='pic']").val().trim();
+				let theme = $(".cm-modal input[name='theme']").val().trim();
+				let autoplay = $(".cm-modal select[name='autoplay']").val().trim();
+				let loop = $(".cm-modal select[name='loop']").val().trim();
+				let screenshot = $(".cm-modal select[name='screenshot']").val().trim();
 				const str = `\n{dplayer src="${url}" pic="${pic}" theme="${theme}" autoplay="${autoplay}" loop="${loop}" screenshot="${screenshot}" /}\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
@@ -965,8 +965,8 @@ class JoeAction {
 			confirm: () => {
 				const name = $(".cm-modal input[name='name']").val();
 				const artist = $(".cm-modal input[name='artist']").val();
-				const url = $(".cm-modal input[name='url']").val();
-				const cover = $(".cm-modal input[name='cover']").val();
+				const url = $(".cm-modal input[name='url']").val().trim();
+				const cover = $(".cm-modal input[name='cover']").val().trim();
 				const theme = $(".cm-modal input[name='theme']").val();
 				const lrc = $(".cm-modal input[name='lrc']").val();
 				const lrcType = $(".cm-modal input[name='lrcType']").val();
@@ -1113,8 +1113,8 @@ class JoeAction {
 			confirm: () => {
 				const type = $(".cm-modal select[name='type']").val();
 				const title = $(".cm-modal input[name='title']").val();
-				const url = $(".cm-modal input[name='url']").val();
-				const password = $(".cm-modal input[name='password']").val();
+				const url = $(".cm-modal input[name='url']").val().trim();
+				const password = $(".cm-modal input[name='password']").val().trim();
 				const str = `{cloud title="${title}" type="${type}" url="${url}" password="${password}"/}`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);

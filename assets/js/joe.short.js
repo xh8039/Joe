@@ -437,10 +437,10 @@ Joe.DOMContentLoaded.short ||= () => {
 							url: this.options.src
 						}
 					};
-					if (!window.VideoPlayer) {
-						$.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => new VideoPlayer(options));
-					} else {
+					if (typeof VideoPlayer === 'function') {
 						new VideoPlayer(options);
+					} else {
+						$.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => new VideoPlayer(options));
 					}
 				} else {
 					if (this.options.pic == decodeURIComponent(this.options.pic)) {

@@ -37,7 +37,7 @@ window.Joe.Map = new Map;
  * @returns {HTMLAudioElement} 音频对象
  */
 window.Joe.playAudio = (url, options = {}) => {
-	url = Joe.THEME_URL + 'assets/audio/';
+	url = `${Joe.THEME_URL}assets/audio/${url}`;
 
 	// 优先使用缓存实例
 	let audio = Joe.Map.get(url);

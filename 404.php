@@ -3,7 +3,7 @@
 
 <head>
 	<?php $this->need('module/head.php') ?>
-	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/404.css') ?>">
+	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.404.css') ?>">
 </head>
 
 <body class="error404">

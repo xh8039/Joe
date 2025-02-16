@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 if (window.autolog) {
+	const log = autolog.log
 	autolog.log = (text = "", type = "", time = 2500, autoClose = true) => {
 		if (Joe.options.UISoundEffects) {
 			const typeList = {
@@ -16,7 +17,7 @@ if (window.autolog) {
 			};
 			if (typeList[type]) Joe.AudioManager.play(`notification/${typeList[type]}`);
 		}
-		return autolog.log(text, type, time, autoClose);
+		return log(text, type, time, autoClose);
 	}
 	autolog.info = message => autolog.log(message, 'info');
 	autolog.success = message => autolog.log(message, 'success');

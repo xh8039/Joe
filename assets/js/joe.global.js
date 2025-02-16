@@ -929,7 +929,7 @@ Joe.DOMContentLoaded.global ||= () => {
 				Joe.AudioManager.play('HeiHei.mp3');
 				HeiHei = true
 			} else {
-				Joe.AudioManager.play('EffectTick.ogg', { volume: 2 });
+				Joe.AudioManager.play('EffectTick.ogg', { volume: (Joe.IS_MOBILE ? 2 : 1) });
 			}
 		});
 	}

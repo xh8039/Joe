@@ -26,7 +26,7 @@ if (window.autolog) {
 
 window.Joe.WeakMap = new WeakMap;
 
-window.Joe.AudioManager = new AudioManager({ base: window.location.protocol + Joe.THEME_URL + 'assets/audio/' });
+window.Joe.AudioManager = new AudioManager({ base: Joe.THEME_URL + 'assets/audio/' });
 
 window.Joe.playNotificationAudio = () => {
 	const list = ['WaterDay.ogg', 'WaterEvening.ogg', 'WaterMidday.ogg', 'WaterNight.ogg', 'WaterDropPreview.ogg', 'WaterDropDay1.ogg', 'WaterDropDay2.ogg', 'WaterDropDay3.ogg', 'WaterDropEvening1.ogg', 'WaterDropEvening2.ogg', 'WaterDropEvening3.ogg', 'WaterDropMidday1.ogg', 'WaterDropMidday2.ogg', 'WaterDropMidday3.ogg', 'WaterDropNight1.ogg', 'WaterDropNight2.ogg', 'WaterDropNight3.ogg'];

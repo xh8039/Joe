@@ -929,6 +929,12 @@ Joe.DOMContentLoaded.global ||= () => {
 				Joe.AudioManager.play('HeiHei.mp3');
 				HeiHei = true
 			} else {
+				// 过滤非按钮元素
+				const tagName = event.target.tagName.toLowerCase();
+				const nameList = ['a', 'button', 'input', 'svg', 'i'];
+				const innerText = event.target.innerText ? event.target.innerText.trim() : '';
+				const tagCursor = getComputedStyle(event.target).getPropertyValue('cursor');
+				if (tagCursor != 'pointer' && !nameList.includes(tagName) && innerText.length > 5) return;
 				Joe.AudioManager.play('EffectTick.ogg', { volume: (Joe.IS_MOBILE ? 2 : 1) });
 			}
 		});

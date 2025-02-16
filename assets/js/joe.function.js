@@ -99,7 +99,7 @@ window.Joe.playAudio = (url, options = {}) => {
 }
 
 window.Joe.preloadAudio = (url) => {
-	return playAudio(url, { preload: true, autoplay: false });
+	return Joe.playAudio(url, { preload: true, autoplay: false });
 }
 
 window.Joe.playNotificationAudio = () => {

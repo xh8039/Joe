@@ -12,7 +12,7 @@ if (window.autolog) {
 				info: 'WaterDay.ogg',
 				success: 'WaterEvening.ogg',
 				warn: 'WaterDropPreview.ogg',
-				error: 'SystemError.ogg',
+				error: 'SystemDelete.ogg',
 			};
 			if (typeList[type]) Joe.playAudio(`notification/${typeList[type]}`);
 		}

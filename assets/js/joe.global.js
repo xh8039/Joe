@@ -910,7 +910,7 @@ Joe.DOMContentLoaded.global ||= () => {
 
 	if (Joe.options.UISoundEffects) {
 		// 批量预加载
-		const audioList = ['HeiHei.mp3', 'EffectTick.ogg', 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemError.ogg'];
+		const audioList = ['HeiHei.mp3', 'EffectTick.ogg', 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemDelete.ogg'];
 		audioList.forEach(url => Joe.preloadAudio(url));
 		$(document).on('click', 'a[href],button,input[type=submit]', function (event) {
 			Joe.playAudio('EffectTick.ogg');

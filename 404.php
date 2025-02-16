@@ -32,10 +32,6 @@
 						</form>
 					</div>
 				</div>
-				<center>
-					<h3>您所访问的页面不存在！</h3>
-					<p>资源不存在或没有访问权限，<a href="/" style="color: var(--theme);">点击这里</a>返回首页</p>
-				</center>
 			</main>
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>

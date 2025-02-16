@@ -73,6 +73,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <!-- <script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js') ?>" data-turbolinks-permanent></script> -->
+<script src="<?= joe\theme_url('assets/plugin/autolog.js/3.0/autolog.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>" data-turbolinks-permanent></script>
 
 <?php if ($this->is('single')) : ?>
@@ -85,7 +86,6 @@ if ($this->options->JLoading != 'off') : ?>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/tooltip.js', false); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/popover.js', false); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\cdn('lazysizes/5.3.2/lazysizes.min.js') ?>" data-turbolinks-permanent></script>
-<script src="<?= joe\theme_url('assets/plugin/autolog.js/3.0/autolog.js'); ?>" data-turbolinks-permanent></script>
 
 <?php if ($this->is('single')) : ?>
 	<script src="<?= joe\theme_url('assets/js/joe.short.js'); ?>" data-turbolinks-permanent></script>

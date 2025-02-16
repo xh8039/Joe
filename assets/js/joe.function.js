@@ -5,6 +5,111 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.Joe.$body = $(document.body);
 });
 
+if (window.autolog) {
+	autolog.log = (text = "", type = "", time = 2500, autoClose = true) => {
+		if (Joe.options.UISoundEffects) {
+			const typeList = {
+				info: 'WaterDay.ogg',
+				success: 'WaterEvening.ogg',
+				warn: 'WaterDropPreview.ogg',
+				error: 'SystemError.ogg',
+			};
+			if (typeList[type]) Joe.playAudio(`notification/${typeList[type]}`);
+		}
+		return autolog.log(text, type, time, autoClose);
+	}
+	autolog.info = message => autolog.log(message, 'info');
+	autolog.success = message => autolog.log(message, 'success');
+	autolog.warn = message => autolog.log(message, 'warn');
+	autolog.error = message => autolog.log(message, 'error');
+}
+
+window.Joe.WeakMap = new WeakMap;
+window.Joe.Map = new Map;
+
+/**
+ * 音频播放器（支持预加载和中文错误提示）
+ * @param {string} url - 音频文件地址
+ * @param {Object} [options] - 配置选项
+ * @param {boolean} [options.loop=false] - 循环播放
+ * @param {boolean} [options.autoplay=false] - 自动播放
+ * @param {boolean} [options.preload=false] - 预加载音频
+ * @returns {HTMLAudioElement} 音频对象
+ */
+window.Joe.playAudio = (url, options = {}) => {
+	url = Joe.THEME_URL + 'assets/audio/';
+
+	// 优先使用缓存实例
+	let audio = Joe.Map.get(url);
+
+	// 创建新实例
+	if (!audio) {
+		audio = new Audio();
+		audio.src = url;
+		Joe.Map.set(url, audio);
+	}
+
+	// 基础配置
+	audio.loop = options.loop || false;
+	audio.autoplay = options.autoplay || true;
+
+	// 进度监控
+	audio.addEventListener('progress', () => {
+		const buffered = audio.buffered.end(0);
+		const duration = audio.duration;
+		console.log(`加载进度: ${(buffered / duration * 100).toFixed(1)}%`);
+	});
+
+	// 预加载控制
+	if (options.preload) {
+		audio.preload = 'auto'; // 允许浏览器预加载
+		audio.load();           // 主动触发加载
+		console.log(`[预加载] 开始加载音频: ${url}`);
+	} else {
+		audio.preload = 'none';
+	}
+
+	// 中文错误提示系统
+	audio.addEventListener('error', (e) => {
+		const errorMap = { 1: '用户中止加载', 2: '网络错误', 3: '解码错误', 4: '不支持的音频格式' };
+		const message = `音频错误: ${errorMap[e.target.error.code] || '未知错误'}`;
+		console.error(message);
+		autolog.log(message, 'error');
+	});
+
+	// 智能播放处理
+	const playHandler = () => {
+		audio.play().then(() => console.log(`开始播放: ${url}`)).catch(error => {
+			console.error('播放失败:', error.message);
+			autolog.log('音频播放失败:' + error.message);
+			// 自动播放被阻止时，可以显示播放按钮引导用户点击
+		});
+	};
+
+	// 元数据加载完成后处理
+	if (audio.readyState > 1) { // 已有缓存
+		if (options.autoplay) playHandler();
+	} else {
+		audio.addEventListener('loadeddata', () => {
+			if (options.autoplay) playHandler();
+		});
+	}
+
+	return audio;
+}
+
+window.Joe.preloadAudio = (url) => {
+	return playAudio(url, { preload: true, autoplay: false });
+}
+
+window.Joe.playNotificationAudio = () => {
+	const list = ['WaterDay.ogg', 'WaterEvening.ogg', 'WaterMidday.ogg', 'WaterNight.ogg', 'WaterDropPreview.ogg', 'WaterDropDay1.ogg', 'WaterDropDay2.ogg', 'WaterDropDay3.ogg', 'WaterDropEvening1.ogg', 'WaterDropEvening2.ogg', 'WaterDropEvening3.ogg', 'WaterDropMidday1.ogg', 'WaterDropMidday2.ogg', 'WaterDropMidday3.ogg', 'WaterDropNight1.ogg', 'WaterDropNight2.ogg', 'WaterDropNight3.ogg'];
+	const index = Math.floor(Math.random() * list.length);
+	const value = list[index];
+	console.log(value);
+	return Joe.playAudio(`notification/${value}`);
+}
+
 window.Joe.getMemoryUsage = () => {
 	if (window.performance && window.performance.memory) {
 		const memory = window.performance.memory;
@@ -18,8 +123,6 @@ window.Joe.getMemoryUsage = () => {
 		return null;
 	}
 }
-
-window.Joe.WeakMap = (new WeakMap);
 
 window.Joe.btnLoad = (element, message = null) => {
 	if (message === false) return Joe.btnLoaded(element);

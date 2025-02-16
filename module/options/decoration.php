@@ -5,6 +5,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+$UISoundEffects = new \Typecho\Widget\Helper\Form\Element\Select(
+	'UISoundEffects',
+	['on' => '开启（默认）', 'off' => '关闭'],
+	'on',
+	'界面交互音效'
+);
+$UISoundEffects->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($UISoundEffects->multiMode());
+
 $NProgressJS = new \Typecho\Widget\Helper\Form\Element\Select(
 	'NProgressJS',
 	['on' => '开启（默认）', 'off' => '关闭'],

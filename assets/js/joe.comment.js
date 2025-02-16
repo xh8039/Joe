@@ -55,6 +55,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 	(() => {
 		/* 重写回复功能 */
 		$(document.body).on('click', '.joe_comment__reply', function () {
+			if (Joe.options.UISoundEffects) Joe.playAudio('EffectTick.ogg');
 			if (Joe.IS_MOBILE) $('.comment-list__item .content').tooltip('destroy');
 			const respond = $(".joe_comment__respond");
 			/* 父级ID */
@@ -71,6 +72,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 		});
 		/* 重写取消回复功能 */
 		$(document.body).on('click', '.joe_comment__cancle', function () {
+			if (Joe.options.UISoundEffects) Joe.playAudio('EffectTick.ogg');
 			const respond = $(".joe_comment__respond");
 			/* 移除自定义属性父级ID */
 			respond.find(".joe_comment__respond-form").removeAttr('data-coid');
@@ -86,6 +88,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 			const button_html = $button.html();
 			const operate_list = { delete: '删除', waiting: '标记审核', spam: '标记垃圾' };
 			const status = $button.attr('status');
+			if (Joe.options.UISoundEffects) Joe.playAudio(status == 'delete' ? 'Delete.ogg' : 'Ocelot.mp3');
 			const operate = operate_list[status];
 			$button.html(`<i class="loading mr3"></i>${operate}中...`);
 			$button.addClass('disabled');
@@ -107,6 +110,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 		/* 移动端评论长按回复或删除 */
 		if (!Joe.IS_MOBILE) return;
 		$(document.body).on('focus', '.comment-list__item .content', function () {
+			if (Joe.options.UISoundEffects) Joe.playAudio('EffectTick.ogg');
 			const coid = $(this).attr('data-coid');
 			const data_id = $(this).attr('data-id');
 			let html = `<span class="joe_comment__reply" data-id="${data_id}" data-coid="${coid}">回复</span>`;

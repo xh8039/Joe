@@ -250,9 +250,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			DPlayer.on('error', () => {
 				// 不是视频加载错误，可能是海报加载失败
 				if (!DPlayer.video.error) return;
-				// 不是视频加载错误，是播放器已经销毁
-				if (DPlayer.options.destroy === true) return;
-				console.log(DPlayer.video, DPlayer.video.error);
+				console.log(DPlayer.video.error);
 				setTimeout(() => next(DPlayer), 2000);
 			});
 		});

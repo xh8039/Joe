@@ -164,7 +164,8 @@ class VideoPlayer {
 
 	destroy() {
 		if (!this.DPlayer) return;
-		this.DPlayer.options.destroy = true; // 标记视频已经销毁
+		this.DPlayer.events.events = {}; // 销毁监听事件
+		this.DPlayer.isDestroy = true; // 标记视频已经销毁
 		this.DPlayer.destroy(); // 销毁视频
 		this.DPlayer = null; // 销毁实例
 	}

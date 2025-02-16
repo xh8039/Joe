@@ -909,33 +909,30 @@ Joe.DOMContentLoaded.global ||= () => {
 	}
 
 	if (Joe.options.UISoundEffects) {
-		// 批量预加载
-		const audioList = ['HeiHei.mp3', 'EffectTick.ogg', 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemDelete.ogg'];
-		audioList.forEach(url => Joe.AudioManager.preload(url));
-		var HeiHei = false;
-		var lastUserClick = 0;
+		// 配置项
+		const AUDIO = {
+			PRELOAD: ['HeiHei.mp3', 'EffectTick.ogg', 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemDelete.ogg'],
+			CLICK_DELAY: 300,
+			TARGET_TAGS: new Set(['a', 'button', 'input', 'svg', 'i'])
+		};
+		// 初始化
+		let heiheiPlayed = false, lastClick = 0;
+		AUDIO.PRELOAD.forEach(url => Joe.AudioManager.preload(url));
 		document.addEventListener('click', (event) => {
-			// 过滤非用户触发事件
-			if (!event.isTrusted) return;
-			// 防抖动处理（300ms间隔）
-			const now = Date.now();
-			if (now - lastUserClick < 300) {
-				console.log('重复点击过滤');
+			if (!event.isTrusted || Date.now() - lastClick < AUDIO.CLICK_DELAY) return;
+			lastClick = Date.now();
+			if (!heiheiPlayed) {
+				Joe.AudioManager.play('HeiHei.mp3');
+				heiheiPlayed = true;
 				return;
 			}
-			lastUserClick = now;
-			// 执行音频播放逻辑
-			if (HeiHei === false) {
-				Joe.AudioManager.play('HeiHei.mp3');
-				HeiHei = true
-			} else {
-				// 过滤非按钮元素
-				const tagName = event.target.tagName.toLowerCase();
-				const nameList = ['a', 'button', 'input', 'svg', 'i'];
-				const innerText = event.target.innerText ? event.target.innerText.trim() : '';
-				const tagCursor = getComputedStyle(event.target).getPropertyValue('cursor');
-				if (tagCursor != 'pointer' && !nameList.includes(tagName) && innerText.length > 5) return;
-				Joe.AudioManager.play('EffectTick.ogg', { volume: (Joe.IS_MOBILE ? 2 : 1) });
+			const target = event.target;
+			const isPointer = getComputedStyle(target).cursor === 'pointer';
+			const validText = target.innerText?.trim().length <= 5;
+			if (AUDIO.TARGET_TAGS.has(target.tagName.toLowerCase()) || isPointer || validText) {
+				Joe.AudioManager.play('EffectTick.ogg', {
+					volume: Joe.IS_MOBILE ? 2 : 1
+				});
 			}
 		});
 	}

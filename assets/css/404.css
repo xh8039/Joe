@@ -1,0 +1,125 @@
+.f404 {
+	text-align: center;
+	margin: 20px 0 20px;
+}
+
+.f404 img {
+	max-width: 500px;
+	width: 80%;
+}
+
+.search-input {
+	max-width: 600px;
+	margin: auto;
+}
+
+.search-input .line-form {
+	display: flex;
+	align-items: flex-end;
+}
+
+.line-form,
+.relative {
+	position: relative;
+}
+
+.search-input .line-form .search-input-text {
+	flex-grow: 2;
+}
+
+.line-form-input {
+	outline: 0 !important;
+	border: none;
+	display: block;
+	width: 100%;
+	padding: 1em 2em .4em .3em;
+	opacity: .8;
+	transition: .3s;
+	background: 0 0 !important;
+}
+
+.line-form-line,
+.line-form-line:before {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 1px;
+	width: 100%;
+	transition: .8s;
+	background: var(--main-border-color);
+}
+
+.line-form-input:focus {
+	opacity: 1;
+}
+
+.line-form-input::-webkit-input-placeholder {
+	color: var(--muted-2-color)
+}
+
+.line-form-line,
+.line-form-line:before {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 1px;
+	width: 100%;
+	transition: .8s;
+	background: var(--main-border-color)
+}
+
+.line-form-line:before {
+	content: '';
+	width: 0;
+	background: var(--focus-color)
+}
+
+.line-form-input:focus~.line-form-line:before,
+.line-form-input:hover~.line-form-line:before {
+	width: 100%
+}
+
+.line-form-input:focus~.line-form-line:before {
+	box-shadow: 0 -1px 3px 1.5px var(--focus-shadow-color)
+}
+
+.scale-placeholder {
+	position: absolute;
+	bottom: 5px;
+	opacity: .5;
+	transition: .2s;
+	padding-left: 4px;
+	transform-origin: left top;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	z-index: 1;
+	cursor: text;
+}
+
+.line-form .abs-right {
+	margin-top: 3px;
+}
+
+button.null {
+	background: 0 0;
+	border: none;
+	margin: 0;
+	padding: 0;
+	color: var(--muted-color);
+}
+
+.scale-placeholder.is-focus,
+input:focus~.scale-placeholder {
+	transform: translateY(-20px);
+	font-size: 11px
+}
+
+input:focus~.scale-placeholder {
+	color: var(--focus-color);
+	opacity: .9
+}

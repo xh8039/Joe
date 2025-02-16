@@ -73,7 +73,7 @@ window.Joe.playAudio = (url, options = {}) => {
 	audio.addEventListener('error', (e) => {
 		const errorMap = { 1: '用户中止加载', 2: '网络错误', 3: '解码错误', 4: '不支持的音频格式' };
 		const message = `音频错误: ${errorMap[e.target.error.code] || '未知错误'}`;
-		console.error(message);
+		console.error(audio.src, message);
 		autolog.log(message, 'error');
 	});
 

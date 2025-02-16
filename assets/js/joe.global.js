@@ -649,7 +649,7 @@ Joe.DOMContentLoaded.global ||= () => {
 				let vh = window.innerHeight * 0.01;
 				document.documentElement.style.setProperty('--vh', `${vh}px`);
 				// document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
-				console.log('重新计算VH高度');
+				// console.log('重新计算VH高度');
 			}
 			resetVhAndPx();
 			// 监听resize事件 视图大小发生变化就重新计算1vh的值
@@ -911,11 +911,16 @@ Joe.DOMContentLoaded.global ||= () => {
 	if (Joe.options.UISoundEffects) {
 		// 批量预加载
 		const audioList = ['HeiHei.mp3', 'EffectTick.ogg', 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemDelete.ogg'];
-		audioList.forEach(url => Joe.preloadAudio(url));
+		audioList.forEach(url => Joe.AudioManager.preload(url));
+		var HeiHei = false;
 		$(document).on('click', 'a[href],button,input[type=submit]', function (event) {
-			Joe.playAudio('EffectTick.ogg');
+			if (HeiHei === false) return;
+			Joe.AudioManager.play('EffectTick.ogg');
 		});
-		document.addEventListener('click', () => Joe.playAudio('HeiHei.mp3'), { once: true });
+		document.addEventListener('click', () => {
+			Joe.AudioManager.play('HeiHei.mp3');
+			HeiHei = true;
+		}, { once: true });
 	}
 
 }

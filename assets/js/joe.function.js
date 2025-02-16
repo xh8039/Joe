@@ -14,7 +14,7 @@ if (window.autolog) {
 				warn: 'WaterDropPreview.ogg',
 				error: 'SystemDelete.ogg',
 			};
-			if (typeList[type]) Joe.AudioManager.plays(`notification/${typeList[type]}`);
+			if (typeList[type]) Joe.AudioManager.play(`notification/${typeList[type]}`);
 		}
 		return autolog.log(text, type, time, autoClose);
 	}

@@ -913,14 +913,14 @@ Joe.DOMContentLoaded.global ||= () => {
 		const audioList = ['HeiHei.mp3', 'EffectTick.ogg', 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemDelete.ogg'];
 		audioList.forEach(url => Joe.AudioManager.preload(url));
 		var HeiHei = false;
-		$(document).on('click', 'a[href],button,input[type=submit]', function (event) {
-			if (HeiHei === false) return;
-			Joe.AudioManager.play('EffectTick.ogg');
-		});
 		document.addEventListener('click', () => {
-			Joe.AudioManager.play('HeiHei.mp3');
-			HeiHei = true;
-		}, { once: true });
+			if (HeiHei === false) {
+				Joe.AudioManager.play('HeiHei.mp3');
+				HeiHei = true;
+			} else {
+				Joe.AudioManager.play('EffectTick.ogg');
+			}
+		});
 	}
 
 }

@@ -55,7 +55,6 @@ Joe.DOMContentLoaded.comment ||= () => {
 	(() => {
 		/* 重写回复功能 */
 		$(document.body).on('click', '.joe_comment__reply', function () {
-			if (Joe.options.UISoundEffects) Joe.AudioManager.play('EffectTick.ogg');
 			if (Joe.IS_MOBILE) $('.comment-list__item .content').tooltip('destroy');
 			const respond = $(".joe_comment__respond");
 			/* 父级ID */
@@ -72,7 +71,6 @@ Joe.DOMContentLoaded.comment ||= () => {
 		});
 		/* 重写取消回复功能 */
 		$(document.body).on('click', '.joe_comment__cancle', function () {
-			if (Joe.options.UISoundEffects) Joe.AudioManager.play('EffectTick.ogg');
 			const respond = $(".joe_comment__respond");
 			/* 移除自定义属性父级ID */
 			respond.find(".joe_comment__respond-form").removeAttr('data-coid');
@@ -110,7 +108,6 @@ Joe.DOMContentLoaded.comment ||= () => {
 		/* 移动端评论长按回复或删除 */
 		if (!Joe.IS_MOBILE) return;
 		$(document.body).on('focus', '.comment-list__item .content', function () {
-			if (Joe.options.UISoundEffects) Joe.AudioManager.play('EffectTick.ogg');
 			const coid = $(this).attr('data-coid');
 			const data_id = $(this).attr('data-id');
 			let html = `<span class="joe_comment__reply" data-id="${data_id}" data-coid="${coid}">回复</span>`;

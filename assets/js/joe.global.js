@@ -913,10 +913,21 @@ Joe.DOMContentLoaded.global ||= () => {
 		const audioList = ['HeiHei.mp3', 'EffectTick.ogg', 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemDelete.ogg'];
 		audioList.forEach(url => Joe.AudioManager.preload(url));
 		var HeiHei = false;
-		document.addEventListener('click', () => {
+		var lastUserClick = 0;
+		document.addEventListener('click', (event) => {
+			// 过滤非用户触发事件
+			if (!event.isTrusted) return;
+			// 防抖动处理（300ms间隔）
+			const now = Date.now();
+			if (now - lastUserClick < 300) {
+				console.log('重复点击过滤');
+				return;
+			}
+			lastUserClick = now;
+			// 执行音频播放逻辑
 			if (HeiHei === false) {
 				Joe.AudioManager.play('HeiHei.mp3');
-				HeiHei = true;
+				HeiHei = true
 			} else {
 				Joe.AudioManager.play('EffectTick.ogg');
 			}

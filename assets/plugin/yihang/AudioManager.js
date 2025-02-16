@@ -15,9 +15,9 @@ class AudioManager {
 			const arrayBuffer = await response.arrayBuffer();
 			const decoded = await this.audioContext.decodeAudioData(arrayBuffer);
 			this.cache.set(url, decoded);
-			console.log(`[预加载完成] ${url}`);
+			// console.log(`[音频预加载完成] ${url}`);
 		} catch (error) {
-			console.error(`预加载失败: ${url}`, error);
+			console.error(`音频预加载失败: ${url}`, error);
 		}
 	}
 
@@ -40,7 +40,7 @@ class AudioManager {
 		gainNode.connect(this.audioContext.destination);
 
 		source.start(0);
-		console.log(`[立即播放] ${url}`);
+		// console.log(`[立即播放] ${url}`);
 
 		return {
 			stop: () => source.stop(),

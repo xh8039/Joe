@@ -282,15 +282,15 @@ if (!empty($footer_tabbar)) {
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
 
+<!-- 自定义底部HTML代码 -->
+<?php $this->options->JCustomBodyEnd() ?>
+<!-- 自定义底部HTML代码 -->
+
 <!-- 自定义JavaScript -->
 <script>
 	<?php $this->options->JCustomScript() ?>
 </script>
 <!-- 自定义JavaScript -->
-
-<!-- 自定义底部HTML代码 -->
-<?php $this->options->JCustomBodyEnd() ?>
-<!-- 自定义底部HTML代码 -->
 
 <!-- 网站统计HTML代码 -->
 <?php $this->options->JCustomTrackCode() ?>

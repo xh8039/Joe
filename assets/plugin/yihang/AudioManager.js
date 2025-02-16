@@ -7,7 +7,7 @@ class AudioManager {
 
 	// 简化的预加载方法
 	async preload(url) {
-		url = this.base + url;
+		if (!/^http[s]?\:\/\//.test(url)) url = this.base + url;
 		if (this.cache.has(url)) return;
 
 		try {
@@ -23,7 +23,7 @@ class AudioManager {
 
 	// 可靠的播放方法
 	play(url, { volume = 1, loop = false } = {}) {
-		url = this.base + url;
+		if (!/^http[s]?\:\/\//.test(url)) url = this.base + url;
 		if (!this.cache.has(url)) {
 			console.warn('音频未预加载，启用紧急加载');
 			return this._emergencyPlay(url);

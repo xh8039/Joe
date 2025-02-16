@@ -232,13 +232,14 @@ Joe.DOMContentLoaded.single ||= () => {
 			video: { pic: Joe.CONTENT.cover }
 		};
 		const next = (DPlayer) => {
+			const item = document.querySelector('.featured-video-episode>.switch-video.active');
+			if (!item) return;
 			const notice = videoModule.querySelector('.dplayer-notice');
 			if (notice) {
 				notice.classList.add('remove-notice');
 				DPlayer.events.trigger('notice_hide');
 				setTimeout(() => notice.remove(), 3000);
 			}
-			const item = document.querySelector('.featured-video-episode>.switch-video.active');
 			if (item.nextSibling) item.nextSibling.nextElementSibling.click();
 			const classList = DPlayer.options.container.classList;
 			if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
@@ -249,6 +250,9 @@ Joe.DOMContentLoaded.single ||= () => {
 			DPlayer.on('error', () => {
 				// 不是视频加载错误，可能是海报加载失败
 				if (!DPlayer.video.error) return;
+				// 不是视频加载错误，是播放器已经销毁
+				if (DPlayer.options.destroy === true) return;
+				console.log(DPlayer.video, DPlayer.video.error);
 				setTimeout(() => next(DPlayer), 2000);
 			});
 		});
@@ -273,9 +277,7 @@ Joe.DOMContentLoaded.single ||= () => {
 				});
 			}
 		});
-		document.addEventListener('turbolinks:load', () => {
-			if (player.DPlayer) player.DPlayer.destroy();
-		}, { once: true });
+		document.addEventListener('turbolinks:load', () => player.destroy(), { once: true });
 	})();
 
 	/* 复制链接 */

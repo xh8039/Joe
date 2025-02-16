@@ -162,6 +162,13 @@ class VideoPlayer {
 		// }
 	}
 
+	destroy() {
+		if (!this.DPlayer) return;
+		this.DPlayer.options.destroy = true; // 标记视频已经销毁
+		this.DPlayer.destroy(); // 销毁视频
+		this.DPlayer = null; // 销毁实例
+	}
+
 	/**
 	 * 智能加载脚本（带缓存机制）
 	 * @param {string} url - 脚本URL

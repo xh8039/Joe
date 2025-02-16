@@ -443,9 +443,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					} else {
 						$.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => player = new VideoPlayer(options));
 					}
-					document.addEventListener('turbolinks:load', () => {
-						if (player.DPlayer) player.DPlayer.destroy();
-					}, { once: true });
+					document.addEventListener('turbolinks:load', () => player.destroy(), { once: true });
 				} else {
 					if (this.options.pic == decodeURIComponent(this.options.pic)) {
 						this.options.pic = encodeURIComponent(this.options.pic);

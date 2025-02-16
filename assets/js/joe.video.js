@@ -126,9 +126,7 @@ Joe.DOMContentLoaded.video ||= () => {
 				video: { pic: Joe.CONTENT.cover }
 			};
 			var localPlayer = new VideoPlayer(options);
-			document.addEventListener('turbolinks:load', () => {
-				if (localPlayer.DPlayer) localPlayer.DPlayer.destroy();
-			}, { once: true });
+			document.addEventListener('turbolinks:load', () => localPlayer.destroy(), { once: true });
 		}
 		$.ajax({
 			url: Joe.BASE_API + '/maccms-list',

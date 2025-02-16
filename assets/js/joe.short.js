@@ -437,11 +437,15 @@ Joe.DOMContentLoaded.short ||= () => {
 							url: this.options.src
 						}
 					};
+					var player;
 					if (typeof VideoPlayer === 'function') {
-						new VideoPlayer(options);
+						player = new VideoPlayer(options);
 					} else {
-						$.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => new VideoPlayer(options));
+						$.getScript(Joe.THEME_URL + 'assets/plugin/yihang/VideoPlayer.js', () => player = new VideoPlayer(options));
 					}
+					document.addEventListener('turbolinks:load', () => {
+						if (player.DPlayer) player.DPlayer.destroy();
+					}, { once: true });
 				} else {
 					if (this.options.pic == decodeURIComponent(this.options.pic)) {
 						this.options.pic = encodeURIComponent(this.options.pic);

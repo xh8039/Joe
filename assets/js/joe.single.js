@@ -273,6 +273,9 @@ Joe.DOMContentLoaded.single ||= () => {
 				});
 			}
 		});
+		document.addEventListener('turbolinks:load', () => {
+			if (player.DPlayer) player.DPlayer.destroy();
+		}, { once: true });
 	})();
 
 	/* 复制链接 */

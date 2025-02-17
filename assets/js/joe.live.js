@@ -31,8 +31,8 @@ Joe.DOMContentLoaded.live ||= () => {
 				success(res) {
 					const item = res[queryData.index];
 					$('.joe_live__type-title .text').html(item.name);
-					let htmlStr = '<li class="item animated swing" data-gameId="">全部</li>';
-					item.list.forEach(_ => (htmlStr += `<li class="item animated swing" data-gameId="${_.gameId}">${_.name}</li>`));
+					let htmlStr = '<li class="item animate__animated animate__swing" data-gameId="">全部</li>';
+					item.list.forEach(_ => (htmlStr += `<li class="item animate__animated animate__swing" data-gameId="${_.gameId}">${_.name}</li>`));
 					$('.joe_live__type-list').html(htmlStr);
 					$('.joe_live__type-list .item').first().click();
 				}
@@ -55,7 +55,7 @@ Joe.DOMContentLoaded.live ||= () => {
 					let htmlStr = '';
 					res.data.datas.forEach(_ => {
 						htmlStr += `
-                            <a target="_blank" rel="noopener noreferrer nofollow" class="joe_live__list-item animated bounceIn" href="${window.location.href + '?profileRoom=' + _.profileRoom + '&title=' + _.nick}">
+                            <a target="_blank" rel="noopener noreferrer nofollow" class="joe_live__list-item animate__animated animate__bounceIn" href="${window.location.href + '?profileRoom=' + _.profileRoom + '&title=' + _.nick}">
                                 <div class="thumb">
                                     <i class="recommendTagName" style="display: ${_.recommendTagName ? '' : 'none'}">${_.recommendTagName}</i>
                                     <img width="100%" height="100%" class="screenshot lazyload" src="${Joe.options.JLazyload}" data-src="${_.screenshot}" alt="${_.introduction}" />

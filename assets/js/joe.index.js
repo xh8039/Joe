@@ -324,7 +324,7 @@ Joe.DOMContentLoaded.index ||= () => {
 	/* 激活列表特效 */
 	{
 		const wow = $('.joe_index__list').attr('data-wow');
-		if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
+		if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animate__animated animate__${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
 	}
 }
 document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.index, { once: true });

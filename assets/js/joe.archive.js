@@ -7,7 +7,7 @@ Joe.DOMContentLoaded.archive ||= () => {
 		if (wow !== 'off' && wow)
 			new WOW({
 				boxClass: 'wow',
-				animateClass: 'animated '.concat(wow),
+				animateClass: 'animate__animated animate__'.concat(wow),
 				offset: 0,
 				mobile: true,
 				live: true,

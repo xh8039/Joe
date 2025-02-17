@@ -36,6 +36,7 @@ class TurboLinks {
 	static start(selectors = [], options = {}) {
 		document.dispatchEvent(new CustomEvent('turbolinks:load'));
 		TurboLinks.createLink();
+		if (!Array.isArray(selectors)) options = selectors;
 		options.pjax = options.pjax || 'TurboLinks';
 		options.selectors = options.selectors || selectors;
 		options.cacheBust = options.cacheBust || false;
@@ -96,7 +97,7 @@ class TurboLinks {
 		}
 		document.addEventListener('pjax:send', (options) => {
 			if (options.pjax != 'TurboLinks') return;
-			document.dispatchEvent(new CustomEvent('turbolinks:send'));
+			document.dispatchEvent(new CustomEvent('turbolinks:send', { detail: options }));
 		});
 		document.addEventListener('pjax:complete', (options) => {
 			if (options.pjax != 'TurboLinks') return;
@@ -109,11 +110,11 @@ class TurboLinks {
 					element.remove();
 				}
 			});
-			document.dispatchEvent(new CustomEvent('turbolinks:complete'));
+			document.dispatchEvent(new CustomEvent('turbolinks:complete', { detail: options }));
 		})
 		document.addEventListener('pjax:success', (options) => {
 			if (options.pjax != 'TurboLinks') return;
-			document.dispatchEvent(new CustomEvent('turbolinks:load'));
+			document.dispatchEvent(new CustomEvent('turbolinks:load', { detail: options }));
 		});
 	}
 

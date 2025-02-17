@@ -11,7 +11,7 @@ Joe.DOMContentLoaded.wallpaper ||= () => {
 			if (res.code !== 1) return $('.joe_wallpaper__type-list').html('<li class="error">壁纸抓取失败！请联系作者！</li>');
 			if (!res.data.length) return $('.joe_wallpaper__type-list').html(`<li class="error">暂无数据！</li>`);
 			let htmlStr = '';
-			res.data.forEach(_ => (htmlStr += `<li class="item animated swing" data-cid="${_.id}">${_.name}</li>`));
+			res.data.forEach(_ => (htmlStr += `<li class="item animate__animated animate__swing" data-cid="${_.id}">${_.name}</li>`));
 			$('.joe_wallpaper__type-list').html(htmlStr);
 			$('.joe_wallpaper__type-list .item').first().click();
 		}
@@ -43,7 +43,7 @@ Joe.DOMContentLoaded.wallpaper ||= () => {
 				let htmlStr = '';
 				res.data.forEach(_ => {
 					htmlStr += `
-						<a class="item animated bounceIn" data-fancybox="gallery" href="${_.url}">
+						<a class="item animate__animated animate__bounceIn" data-fancybox="gallery" href="${_.url}">
 							<img width="100%" height="100%" class="lazyload" src="${Joe.options.JLazyload}" data-src="${_.img_1024_768 || _.url}" alt="壁纸">
 						</a>`;
 				});

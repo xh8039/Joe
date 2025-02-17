@@ -46,7 +46,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.responsive.css'); ?>">
 
-<link rel="stylesheet" href="<?= joe\cdn('animate.css/3.7.2/animate.min.css') ?>" />
+<link rel="stylesheet" href="<?= joe\cdn('animate.css/4.1.1/animate.min.css') ?>" />
 <link rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>">
 
 <?php $this->need('module/config.php'); ?>

@@ -21,7 +21,7 @@ Joe.DOMContentLoaded.video ||= () => {
 				if (res.code !== 1) return $('.joe_video__type-list').html(`<li class="error">${res.data}</li>`);
 				if (!res.data.class.length) return $('.joe_video__type-list').html(`<li class="error">暂无数据！</li>`);
 				let htmlStr = '<li class="item" data-t="">全部</li>';
-				res.data.class.forEach(_ => (htmlStr += `<li class="item animated swing" data-t="${_.type_id}">${_.type_name}</li>`));
+				res.data.class.forEach(_ => (htmlStr += `<li class="item animate__animated animate__swing" data-t="${_.type_id}">${_.type_name}</li>`));
 				$('.joe_video__type-list').html(htmlStr);
 				$('.joe_video__type-list .item').first().click();
 			}
@@ -53,7 +53,7 @@ Joe.DOMContentLoaded.video ||= () => {
 						let htmlStr = '';
 						res.data.list.forEach(_ => {
 							htmlStr += `
-								<a class="item animated bounceIn" href="${window.location.href + '?vod_id=' + _.vod_id}" target="_blank" rel="noopener noreferrer nofollow">
+								<a class="item animate__animated animate__bounceIn" href="${window.location.href + '?vod_id=' + _.vod_id}" target="_blank" rel="noopener noreferrer nofollow">
 									<i class="year" style="display: ${_.vod_year && _.vod_year != 0 ? 'block' : 'none'}">${_.vod_year}</i>
 									<div class="thumb">
 										<img width="100%" height="100%" class="pic lazyload" src="${Joe.options.JLazyload}" data-src="${_.vod_pic}" alt="${_.vod_name}">

@@ -3704,7 +3704,12 @@ html .aplayer .aplayer-lrc {
 
 .joe_main {
 	/* position: relative; */
+}
+
+.joe_main.animate__animated {
 	--animate-duration: 0.6s;
+	transform: translateZ(0);
+	backface-visibility: hidden;
 }
 
 @media(max-width: 768px) {

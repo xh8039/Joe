@@ -889,11 +889,14 @@ Joe.DOMContentLoaded.global ||= () => {
 		options.switches = {};
 		if (Joe.IS_MOBILE) options.switches['.joe_main'] = function (oldEl, newEl, options) {
 			const forward = options.backward ? false : true;
+			newEl.style.opacity = '0';
+			newEl.style.transition = '0.3s';
 			const slideAnimate = forward ? 'animate__slideInRight' : 'animate__slideInLeft';
 			const classList = ['animate__animated', 'animate__faster', slideAnimate];
 			newEl.classList.add(...classList);
 			oldEl.outerHTML = newEl.outerHTML;
 			const main = document.querySelector('.joe_main');
+			setTimeout(() => main.style.opacity = '1', 10);
 			main.addEventListener('animationend', () => {
 				main.classList.remove(...classList);
 			}, { once: true });

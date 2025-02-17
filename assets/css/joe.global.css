@@ -3712,6 +3712,42 @@ html .aplayer .aplayer-lrc {
 	backface-visibility: hidden;
 }
 
+.joe_main.animate__slideInRight {
+	-webkit-animation-name: slideInRight20;
+	animation-name: slideInRight20
+}
+
+@keyframes slideInRight20 {
+	0% {
+		-webkit-transform: translate3d(20%, 0, 0);
+		transform: translate3d(20%, 0, 0);
+		visibility: visible;
+	}
+
+	to {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0)
+	}
+}
+
+.joe_main.animate__slideInLeft {
+	-webkit-animation-name: slideInLeft20;
+	animation-name: slideInLeft20
+}
+
+@keyframes slideInLeft20 {
+	0% {
+		-webkit-transform: translate3d(-20%, 0, 0);
+		transform: translate3d(-20%, 0, 0);
+		visibility: visible
+	}
+
+	to {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0)
+	}
+}
+
 @media(max-width: 768px) {
 	.joe-stretch {
 		display: none

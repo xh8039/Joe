@@ -886,25 +886,18 @@ Joe.DOMContentLoaded.global ||= () => {
 	if (Joe.options.JTurbolinks == 'on') {
 		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);
 		const options = {};
-		options.switches = {
-			'.joe_main': function (oldEl, newEl, options) {
-				const forward = options.backward ? false : true;
-
-				const slideAnimate = forward ? 'animate__slideInRight' : 'animate__slideInLeft';
-
-				const classList = ['animate__animated', 'animate__faster', 'animate__fadeIn', slideAnimate];
-
-				newEl.classList.add(...classList);
-				oldEl.outerHTML = newEl.outerHTML;
-
-				const main = document.querySelector('.joe_main');
-				// 监听动画结束事件
-				main.addEventListener('animationend', () => {
-					main.classList.remove(...classList);
-				}, { once: true });
-
-				this.onSwitch();
-			}
+		options.switches = {};
+		if (Joe.IS_MOBILE) options.switches['.joe_main'] = function (oldEl, newEl, options) {
+			const forward = options.backward ? false : true;
+			const slideAnimate = forward ? 'animate__slideInRight' : 'animate__slideInLeft';
+			const classList = ['animate__animated', 'animate__faster', 'animate__fadeIn', slideAnimate];
+			newEl.classList.add(...classList);
+			oldEl.outerHTML = newEl.outerHTML;
+			const main = document.querySelector('.joe_main');
+			main.addEventListener('animationend', () => {
+				main.classList.remove(...classList);
+			}, { once: true });
+			this.onSwitch();
 		}
 		options.selectors = ['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '.joe_main', '.joe_bottom'];
 		TurboLinks.start(options);

@@ -47,8 +47,12 @@ class TurboLinks {
 			if (!responseText) {
 				console.log(request);
 				if (request.status == 0) {
-					let protocol = location.protocol == 'http:' ? 'https:' : 'http:';
-					autolog.log(`对 '${href.replace(location.protocol, protocol)}' 的请求已被浏览器的 CORS 策略阻止，${location.protocol} 协议的网页无法请求 ${protocol} 协议的资源，网站管理员真是大傻春`, 'error');
+					const url = new URL(href);
+					if (url.protocol == location.protocol) {
+						autolog.log('您似乎未连接到 Internet，请检查您的网络连接', 'error');
+					} else {
+						autolog.log(`对 '${href}' 的请求已被浏览器的 CORS 策略阻止，${location.protocol} 协议的网页无法请求 ${url.protocol} 协议的资源，网站管理员真是大傻春`, 'error');
+					}
 				} else {
 					autolog.log('请求失败：' + (request.statusText || request.status), 'error');
 				}

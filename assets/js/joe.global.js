@@ -890,7 +890,7 @@ Joe.DOMContentLoaded.global ||= () => {
 		if (Joe.IS_MOBILE) options.switches['.joe_main'] = function (oldEl, newEl, options) {
 			const forward = options.backward ? false : true;
 			const slideAnimate = forward ? 'animate__slideInRight' : 'animate__slideInLeft';
-			const classList = ['animate__animated', 'animate__faster', 'animate__fadeIn', slideAnimate];
+			const classList = ['animate__animated', 'animate__faster', slideAnimate];
 			newEl.classList.add(...classList);
 			oldEl.outerHTML = newEl.outerHTML;
 			const main = document.querySelector('.joe_main');

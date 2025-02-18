@@ -56,10 +56,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					lrc: this.options.lrc
 				}]
 			});
-			document.addEventListener('turbolinks:complete', () => {
-				console.log(aplayer);
-				aplayer.destroy();
-			}, { once: true });
+			document.addEventListener('turbolinks:complete', () => aplayer.destroy(), { once: true });
 		}
 	});
 

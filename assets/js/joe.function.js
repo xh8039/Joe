@@ -31,6 +31,23 @@ if (typeof AudioManager === 'function') {
 	window.Joe.AudioManager = new AudioManager({ base: Joe.THEME_URL + 'assets/audio/' });
 }
 
+window.Joe.httpBuildQuery = (object) => {
+	if (object === null || typeof object !== 'object') return '';
+	return Object.keys(object).map(k => {
+		const encodedKey = encodeURIComponent(k);
+		let value = object[k];
+		try {
+			// 检查是否为已编码字符串，避免二次编码
+			const decodedValue = decodeURIComponent(value);
+			if (value === decodedValue) value = encodeURIComponent(value);
+		} catch (e) {
+			// 解码失败时视为未编码字符串
+			value = encodeURIComponent(value);
+		}
+		return `${encodedKey}=${value}`;
+	}).join('&');
+}
+
 window.Joe.playNotificationAudio = () => {
 	const list = ['WaterDay.ogg', 'WaterEvening.ogg', 'WaterMidday.ogg', 'WaterNight.ogg', 'WaterDropPreview.ogg', 'WaterDropDay1.ogg', 'WaterDropDay2.ogg', 'WaterDropDay3.ogg', 'WaterDropEvening1.ogg', 'WaterDropEvening2.ogg', 'WaterDropEvening3.ogg', 'WaterDropMidday1.ogg', 'WaterDropMidday2.ogg', 'WaterDropMidday3.ogg', 'WaterDropNight1.ogg', 'WaterDropNight2.ogg', 'WaterDropNight3.ogg'];
 	const index = Math.floor(Math.random() * list.length);

@@ -26,12 +26,12 @@ Joe.DOMContentLoaded.short ||= () => {
 				url: this.getAttribute('url').trim(),
 				theme: (this.getAttribute('theme') || '#1989fa').trim(),
 				cover: this.getAttribute('cover').trim(),
-				autoplay: this.getAttribute('autoplay') ? true : false,
+				autoplay: this.getAttribute('autoplay') == '1' ? true : false,
 				loop: this.getAttribute('loop').trim(),
 				artist: this.getAttribute('artist').trim(),
 				lrc: this.getAttribute('lrc') ? this.getAttribute('lrc').trim() : '[00:00.000] 暂无歌词',
 				autotheme: this.getAttribute('autotheme').trim(),
-				lrcType: this.getAttribute('lrcType').trim()
+				lrcType: Number(this.getAttribute('lrcType').trim())
 			};
 			this.render();
 		}
@@ -47,17 +47,16 @@ Joe.DOMContentLoaded.short ||= () => {
 				lrcType: this.options.lrcType,
 				autotheme: this.options.autotheme,
 				storage: this.options.url,
-				audio: [
-					{
-						url: this.options.url,
-						name: this.options.name,
-						cover: this.options.cover,
-						artist: this.options.artist,
-						lrc: this.options.lrc
-					}
-				]
+				audio: [{
+					url: this.options.url,
+					name: this.options.name,
+					cover: this.options.cover,
+					artist: this.options.artist,
+					lrc: this.options.lrc
+				}]
 			});
-			document.addEventListener('turbolinks:load', () => {
+			document.addEventListener('turbolinks:complete', () => {
+				console.log(aplayer);
 				aplayer.destroy();
 			}, { once: true });
 		}
@@ -69,7 +68,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			this.options = {
 				id: this.getAttribute('id'),
 				color: this.getAttribute('color') || '#1989fa',
-				autoplay: this.getAttribute('autoplay') ? true : false,
+				autoplay: this.getAttribute('autoplay') == '1' ? true : false,
 				autotheme: this.getAttribute('autotheme'),
 				loop: this.getAttribute('loop')
 			};
@@ -91,9 +90,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					preload: 'auto',
 					audio
 				});
-				document.addEventListener('turbolinks:load', () => {
-					aplayer.destroy();
-				}, { once: true });
+				document.addEventListener('turbolinks:complete', () => aplayer.destroy(), { once: true });
 			});
 		}
 	});
@@ -104,7 +101,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			this.options = {
 				id: this.getAttribute('id'),
 				color: this.getAttribute('color') || '#1989fa',
-				autoplay: this.getAttribute('autoplay') ? true : false,
+				autoplay: this.getAttribute('autoplay') == '1' ? true : false,
 				autotheme: this.getAttribute('autotheme'),
 				loop: this.getAttribute('loop'),
 				order: this.getAttribute('order')
@@ -128,9 +125,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					preload: 'auto',
 					audio
 				});
-				document.addEventListener('turbolinks:load', () => {
-					aplayer.destroy();
-				}, { once: true });
+				document.addEventListener('turbolinks:complete', () => aplayer.destroy(), { once: true });
 			});
 		}
 	});
@@ -412,10 +407,10 @@ Joe.DOMContentLoaded.short ||= () => {
 			this.options = {
 				src: this.getAttribute('src'),
 				pic: this.getAttribute('pic'),
-				theme: this.getAttribute('theme') ? this.getAttribute('theme') : (getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') ? getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('--theme') : getComputedStyle(document.documentElement).getPropertyValue('--theme')).trim(),
-				autoplay: this.getAttribute('autoplay') == '1' ? this.getAttribute('autoplay') : 0,
-				loop: this.getAttribute('loop') == '1' ? this.getAttribute('autoplay') : 0,
-				screenshot: this.getAttribute('screenshot') == '1' ? this.getAttribute('autoplay') : 0,
+				theme: (this.getAttribute('theme') ? this.getAttribute('theme') : getComputedStyle(document.documentElement).getPropertyValue('--theme')).trim(),
+				autoplay: this.getAttribute('autoplay') == '1' ? true : false,
+				loop: this.getAttribute('loop') == '1' ? true : false,
+				screenshot: this.getAttribute('screenshot') == '1' ? true : false,
 				player: this.getAttribute('player')
 			};
 			this.style.display = 'block';
@@ -429,7 +424,6 @@ Joe.DOMContentLoaded.short ||= () => {
 						container: this, // 播放器容器元素
 						autoplay: this.options.autoplay, // 视频自动播放
 						theme: this.options.theme, // 主题色
-						preload: 'metadata', // 视频预加载，可选值: 'none', 'metadata', 'auto'
 						loop: this.options.loop, // 视频循环播放
 						screenshot: this.options.screenshot, // 开启截图，如果开启，视频和视频封面需要允许跨域
 						video: {
@@ -445,31 +439,15 @@ Joe.DOMContentLoaded.short ||= () => {
 					}
 					document.addEventListener('turbolinks:load', () => player.destroy(), { once: true });
 				} else {
-					if (this.options.pic == decodeURIComponent(this.options.pic)) {
-						this.options.pic = encodeURIComponent(this.options.pic);
-					}
-					// 如果url等于已经解码的url，说明url未编码
-					if (this.options.src == decodeURIComponent(this.options.src)) {
-						this.options.src = encodeURIComponent(this.options.src); // 对url进行编码
-					}
 					let options = {
+						src: this.options.src,
 						pic: this.options.pic,
-						theme: encodeURIComponent(this.options.theme),
+						theme: this.options.theme,
 						autoplay: this.options.autoplay,
 						loop: this.options.loop,
 						screenshot: this.options.screenshot
 					}
-					let fnParams2Url = function (obj) {
-						let array_url = [];
-						let fnAdd = function (key, value) {
-							return key + '=' + value;
-						}
-						for (var k in obj) {
-							array_url.push(fnAdd(k, obj[k]));
-						}
-						return (array_url.join('&'));
-					}
-					let url = this.options.player + this.options.src + '&' + fnParams2Url(options);
+					let url = this.options.player + Joe.httpBuildQuery(options);
 					this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${url}"></iframe>`;
 				}
 			} else {

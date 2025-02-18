@@ -93,7 +93,10 @@ class TurboLinks {
 			// 获取新的文档中head标签内的JS文件列表
 			TurboLinks.loadJSList = responseDOM.head.querySelectorAll('script[src]');
 			// 如果没有则直接载入响应的HTML文本
-			if (TurboLinks.loadJSList.length < 1) return TurboLinks.pjax.originHandleResponse(responseText, request, href, options);
+			if (TurboLinks.loadJSList.length < 1) {
+				document.dispatchEvent(new CustomEvent('turbolinks:complete', { detail: options }));
+				return TurboLinks.pjax.originHandleResponse(responseText, request, href, options);
+			}
 			// 记录当前文档中的JS文件列表
 			document.querySelectorAll('script[src]').forEach(element => TurboLinks.documentScriptList.push(element.src));
 			// 先载入新的文档中的JS文件，再载入HTML文本
@@ -114,7 +117,6 @@ class TurboLinks {
 					element.remove();
 				}
 			});
-			document.dispatchEvent(new CustomEvent('turbolinks:complete', { detail: options }));
 		})
 		document.addEventListener('pjax:success', (options) => {
 			if (options.pjax != 'TurboLinks') return;
@@ -146,6 +148,7 @@ class TurboLinks {
 			if (TurboLinks.debug) console.log('TurboLinks：所有JavaScript文件都已加载');
 			TurboLinks.loadJSList = [];
 			TurboLinks.loadJSIndex = 1;
+			document.dispatchEvent(new CustomEvent('turbolinks:complete', { detail: this.pjax.options }));
 			return TurboLinks.pjax.originHandleResponse(TurboLinks.handleResponseParam.responseText, TurboLinks.handleResponseParam.request, TurboLinks.handleResponseParam.href, TurboLinks.handleResponseParam.options);
 		}
 		TurboLinks.loadJSIndex++;

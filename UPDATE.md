@@ -378,6 +378,7 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 - 全新的主题404页面
 - 修复文章编辑器全屏状态下，Tooltip提示被页面顶部遮挡导致不显示的BUG
 - 修复留言页面无法Ajax评论的BUG
+- 修复单页模式下切页后文章音乐模块不生效的BUG
 - 由于Live2d人物特效占用空间高达30MB，所以已经删除该功能，如有需要请使用自定义JS代码功能自行引入
 - 主题全局SQL驱动器更换为ThinkORM
 - 优化主题目录结构

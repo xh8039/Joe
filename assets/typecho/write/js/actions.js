@@ -522,7 +522,7 @@ class JoeAction {
 				const loop = $(".cm-modal select[name='loop']").val();
 				const autotheme = $(".cm-modal select[name='autotheme']").val();
 				const order = $(".cm-modal select[name='order']").val();
-				const str = `\n{${type ? 'music-list' : 'music'} id="${id}" loop="${loop}" autotheme="${autotheme}" order="${order}" color="${color}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n\n`;
+				const str = `\n{${type ? 'music-list' : 'music'} id="${id}" loop="${loop}" autotheme="${autotheme}" order="${order}" color="${color}" autoplay="${autoplay}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
@@ -931,7 +931,8 @@ class JoeAction {
 <div class="fitem">
 	<label>歌词类型</label>
 	<select name="lrcType">
-		<option value="3" selected>LRC文件</option>
+		<option value="0" selected>关闭歌词</option>
+		<option value="3">LRC文件</option>
 		<option value="1">字符串</option>
 	</select>
 </div>
@@ -969,11 +970,11 @@ class JoeAction {
 				const cover = $(".cm-modal input[name='cover']").val().trim();
 				const theme = $(".cm-modal input[name='theme']").val();
 				const lrc = $(".cm-modal input[name='lrc']").val();
-				const lrcType = $(".cm-modal input[name='lrcType']").val();
-				const loop = $(".cm-modal input[name='loop']").val();
+				const lrcType = $(".cm-modal select[name='lrcType']").val();
+				const loop = $(".cm-modal select[name='loop']").val();
 				const autoplay = $(".cm-modal select[name='autoplay']").val();
 				const autotheme = $(".cm-modal select[name='autotheme']").val();
-				const str = `\n{mp3 name="${name}" artist="${artist}" url="${url}" cover="${cover}" theme="${theme}" lrc="${lrc}" lrcType="${lrcType}" loop="${loop}" autotheme="${autotheme}" ${autoplay == '1' ? 'autoplay="autoplay"' : ''}/}\n\n`;
+				const str = `\n{mp3 name="${name}" artist="${artist}" url="${url}" cover="${cover}" theme="${theme}" lrc="${lrc}" lrcType="${lrcType}" loop="${loop}" autotheme="${autotheme}" autoplay="${autoplay}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();

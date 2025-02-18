@@ -167,7 +167,7 @@ $JCustomTrackCode = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	NULL,
 	'网站统计HTML代码（非必填）',
-	'位于底部，用于添加第三方流量数据统计代码，如：Google analytics、百度统计、CNZZ、51la，国内站点推荐使用百度统计，国外站点推荐使用Google analytics。需填HTML标签，如果是javascript代码，请保存在自定义javascript代码'
+	'位于底部，用于添加第三方流量数据统计代码，如：Google analytics、百度统计、CNZZ、51la（会跳大咪咪），国内站点推荐使用百度统计，国外站点推荐使用Google analytics。需填HTML标签，如果是javascript代码，请保存在自定义javascript代码'
 );
 $JCustomTrackCode->setAttribute('class', 'joe_content joe_code');
 $JCustomTrackCode->setAttribute('data-language', 'htmlmixed');

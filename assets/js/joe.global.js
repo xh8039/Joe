@@ -888,7 +888,16 @@ Joe.DOMContentLoaded.global ||= () => {
 		const options = {};
 		options.switches = {};
 		if (Joe.IS_MOBILE) options.switches['.joe_main'] = function (oldEl, newEl, options) {
-			const forward = options.backward ? false : true;
+			const url = document.querySelector(options.elements).href;
+			const origin = location.origin + '/';
+			if (location.href === url) {
+				oldEl.outerHTML = newEl.outerHTML;
+				return this.onSwitch();
+			} else if (url == origin) {
+				var forward = false;
+			} else {
+				var forward = options.backward ? false : true;
+			}
 			newEl.style.opacity = '0';
 			newEl.style.transition = '0.3s';
 			const slideAnimate = forward ? 'animate__slideInRight' : 'animate__slideInLeft';

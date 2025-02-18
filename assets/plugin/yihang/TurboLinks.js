@@ -139,6 +139,7 @@ class TurboLinks {
 
 	static visit(url) {
 		url = url.replace(/^https?:/i, location.protocol);
+		TurboLinks.linkElement.href = url;
 		return TurboLinks.pjax.loadUrl(url);
 	}
 

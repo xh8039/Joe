@@ -93,9 +93,9 @@ $user = json_encode($user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 	// 自定义字体
 	if (empty($this->options->JCustomFont)) {
 		echo "body {font-family: 'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Arial', 'sans-serif'}";
-	} else {
-		echo "@font-face {font-family: 'Joe Font';font-weight: 400;font-style: normal;font-display: swap;src: url('{$this->options->JCustomFont}');}";
-		echo "body {font-family: 'Joe Font';}";
+	} else if (!\think\helper\Str::contains($this->options->JCustomFont, '||')) {
+		echo "@font-face {font-family: 'Joe Font';font-weight: normal;font-style: normal;font-display: swap;src: url('{$this->options->JCustomFont}');}";
+		echo "body {font-family: 'Joe Font'}";
 	}
 	?>
 	/* 自定义CSS */

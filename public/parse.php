@@ -30,7 +30,7 @@ function _checkXSS($text)
 		'/onselect/is',
 		'/onsubmit/is',
 		'/onunload/is',
-		'/eval/is',
+		'/eval\(/is',
 		'/ascript:/is',
 		'/style=/is',
 		'/width=/is',

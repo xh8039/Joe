@@ -281,6 +281,19 @@ if (!empty($footer_tabbar)) {
 	<script src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects, null) ?>"></script>
 <?php endif; ?>
 <script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
+<?php
+if (\think\helper\Str::contains($this->options->JCustomFont, '||')) {
+	$JCustomFont = joe\optionMulti($this->options->JCustomFont, '||', null, ['url', 'font']);
+	?>
+	<link rel="stylesheet" href="<?= $JCustomFont['url'] ?>" async>
+	<style>
+		html body {
+			font-family: '<?= $JCustomFont['font'] ?>'
+		}
+	</style>
+<?php
+}
+?>
 
 <!-- 自定义底部HTML代码 -->
 <?php $this->options->JCustomBodyEnd() ?>

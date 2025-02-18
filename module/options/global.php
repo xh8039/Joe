@@ -134,8 +134,9 @@ $JCustomFont = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'自定义网站字体（非必填）',
 	'介绍：用于修改全站字体，填写则使用引入的字体，不填写使用默认字体 <br>
-		 格式：字体URL链接（推荐使用woff2格式的字体，网页专用字体格式，占用空间小，加载速度更快） <br>
-		 注意：字体文件一般能上MB大小，建议使用cdn链接，如果和本站不是同一个域名，则需要远程资源URL响应允许跨域的响应头规则'
+	普通方式：直接填写字体URL链接（推荐使用woff2格式的字体，网页专用字体格式，占用空间小，加载速度更快，如果和本站不是同一个域名，则需要远程资源URL响应允许跨域的响应头规则） <br>
+	跨域方式：字体CSS文件的URL链接 || CSS文件中font-family属性的值 <a target="_blank" href="http://blog.bri6.cn/archives/365.html">查看官网教程</a> <br>
+	注意：字体文件一般能几MB大小，建议使用CDN链接，'
 );
 $JCustomFont->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomFont);

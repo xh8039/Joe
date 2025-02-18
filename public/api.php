@@ -296,7 +296,7 @@ class Api
 			if ($status == 'delete') {
 				if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
 					$draw_file = __TYPECHO_ROOT_DIR__ . $matches[1];
-					if (file_exists($draw_file)) {
+					if (@file_exists($draw_file)) {
 						$delete_comment = unlink($draw_file);
 						if ($delete_comment !== true) return ['message' => '删除画图文件失败，请检查文件权限！'];
 					} else {

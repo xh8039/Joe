@@ -42,7 +42,7 @@ class Intercept
 		}
 
 		// 用户输入内容画图模式
-		if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches) && Helper::options()->JcommentDraw == 'on') {
+		if (preg_match('/\{!\{(.*)\}!\}/i', $comment['text'], $matches) && Helper::options()->JcommentDraw == 'on') {
 			// 如果判断是否有双引号，如果有双引号，则禁止评论
 			if (strpos($matches[1], '"') !== false || _checkXSS($matches[1])) {
 				$comment['status'] = 'waiting';

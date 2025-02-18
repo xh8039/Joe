@@ -508,6 +508,13 @@ class JoeAction {
 					</select>
 				</div>
 				<div class="fitem">
+					<label>播放记忆</label>
+					<select name="storage" value="${type ? '1' : '0'}">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+				</div>
+				<div class="fitem">
 					<label>自动主题色</label>
 					<select name="autotheme">
 						<option value="1" selected>是</option>
@@ -520,9 +527,10 @@ class JoeAction {
 				const color = $(".cm-modal input[name='color']").val();
 				const autoplay = $(".cm-modal select[name='autoplay']").val();
 				const loop = $(".cm-modal select[name='loop']").val();
-				const autotheme = $(".cm-modal select[name='autotheme']").val();
+				const storage = $(".cm-modal select[name='storage']").val();
 				const order = $(".cm-modal select[name='order']").val();
-				const str = `\n{${type ? 'music-list' : 'music'} id="${id}" loop="${loop}" autotheme="${autotheme}" order="${order}" color="${color}" autoplay="${autoplay}"/}\n\n`;
+				const autotheme = $(".cm-modal select[name='autotheme']").val();
+				const str = `\n{${type ? 'music-list' : 'music'} id="${id}" loop="${loop}" order="${order}" color="${color}" autoplay="${autoplay}" storage="${storage}" autotheme="${autotheme}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
@@ -952,6 +960,13 @@ class JoeAction {
 	</select>
 </div>
 <div class="fitem">
+	<label>播放记忆</label>
+	<select name="storage">
+		<option value="1">是</option>
+		<option value="0" selected>否</option>
+	</select>
+</div>
+<div class="fitem">
 	<label>自动主题色</label>
 	<select name="autotheme">
 		<option value="1" selected>是</option>
@@ -973,8 +988,9 @@ class JoeAction {
 				const lrcType = $(".cm-modal select[name='lrcType']").val();
 				const loop = $(".cm-modal select[name='loop']").val();
 				const autoplay = $(".cm-modal select[name='autoplay']").val();
+				const storage = $(".cm-modal select[name='storage']").val();
 				const autotheme = $(".cm-modal select[name='autotheme']").val();
-				const str = `\n{mp3 name="${name}" artist="${artist}" url="${url}" cover="${cover}" theme="${theme}" lrc="${lrc}" lrcType="${lrcType}" loop="${loop}" autotheme="${autotheme}" autoplay="${autoplay}"/}\n\n`;
+				const str = `\n{mp3 name="${name}" artist="${artist}" url="${url}" cover="${cover}" theme="${theme}" lrc="${lrc}" lrcType="${lrcType}" loop="${loop}" autoplay="${autoplay}" storage="${storage}" autotheme="${autotheme}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();

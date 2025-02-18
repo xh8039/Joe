@@ -31,7 +31,8 @@ Joe.DOMContentLoaded.short ||= () => {
 				artist: this.getAttribute('artist').trim(),
 				lrc: this.getAttribute('lrc') ? this.getAttribute('lrc').trim() : '[00:00.000] 暂无歌词',
 				autotheme: this.getAttribute('autotheme').trim(),
-				lrcType: Number(this.getAttribute('lrcType').trim())
+				lrcType: Number(this.getAttribute('lrcType').trim()),
+				storage: this.getAttribute('storage') == '1' ? this.getAttribute('url').trim() : false
 			};
 			this.render();
 		}
@@ -46,7 +47,7 @@ Joe.DOMContentLoaded.short ||= () => {
 				preload: 'auto',
 				lrcType: this.options.lrcType,
 				autotheme: this.options.autotheme,
-				storage: this.options.url,
+				storage: this.options.storage,
 				audio: [{
 					url: this.options.url,
 					name: this.options.name,
@@ -70,7 +71,8 @@ Joe.DOMContentLoaded.short ||= () => {
 				color: this.getAttribute('color') || '#1989fa',
 				autoplay: this.getAttribute('autoplay') == '1' ? true : false,
 				autotheme: this.getAttribute('autotheme'),
-				loop: this.getAttribute('loop')
+				loop: this.getAttribute('loop'),
+				storage: this.getAttribute('storage') == '1' ? this.getAttribute('id') : false
 			};
 			this.render();
 		}
@@ -85,7 +87,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					theme: this.options.color,
 					autoplay: this.options.autoplay,
 					autotheme: this.options.autotheme,
-					storage: this.options.id,
+					storage: this.options.storage,
 					loop: this.options.loop,
 					preload: 'auto',
 					audio
@@ -104,7 +106,8 @@ Joe.DOMContentLoaded.short ||= () => {
 				autoplay: this.getAttribute('autoplay') == '1' ? true : false,
 				autotheme: this.getAttribute('autotheme'),
 				loop: this.getAttribute('loop'),
-				order: this.getAttribute('order')
+				order: this.getAttribute('order'),
+				storage: this.getAttribute('storage') ? this.getAttribute('id') : false
 			};
 			this.render();
 		}
@@ -119,7 +122,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					theme: this.options.color,
 					autoplay: this.options.autoplay,
 					autotheme: this.options.autotheme,
-					storage: this.options.id,
+					storage: this.options.storage,
 					loop: this.options.loop,
 					order: this.options.order,
 					preload: 'auto',

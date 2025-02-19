@@ -756,8 +756,12 @@
 		display: none !important;
 	}
 
-	html .footer .list-inline>li+li+li {
+	html .footer .list-inline>li:last-child {
 		float: unset;
+	}
+
+	html .footer .container-footer>.list-inline.flex {
+		display: block;
 	}
 
 	html .footer .container-footer {

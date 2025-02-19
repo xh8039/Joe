@@ -388,4 +388,5 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 - 优化PC端动态背景特效为PC端和移动端都可以展示
 - 优化单页模式的PC端侧栏算法
 - 优化后台主题设置面板的UI和交互
+- 优化PC端更加完善的百度统计数据展示
 - 正在开发中...

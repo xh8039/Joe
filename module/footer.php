@@ -12,7 +12,7 @@ if ($this->options->JFooterMode == 'commercial') {
 	<footer class="footer">
 		<div class="container-fluid container-footer">
 			<?= base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cuYnJpNi5jbiIgcmVsPSJmcmllbmQiIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0iaGlkZSI+5piT6Iiq5Y2a5a6iPC9hPg=='); ?>
-			<ul class="list-inline">
+			<ul class="list-inline <?= empty($this->options->baidu_statistics) ? null : 'flex' ?>">
 				<li class="hidden-xs" style="max-width: 300px;">
 					<p>
 						<a class="footer-logo" href="/" title="<?php $this->options->title() ?>">
@@ -24,23 +24,14 @@ if ($this->options->JFooterMode == 'commercial') {
 				</li>
 				<li style="max-width: 550px;">
 					<p class="fcode-links"><?= $this->options->JFooterCenter1 ?></p>
-					<div class="footer-muted em09"><?= $this->options->JFooterCenter2 ?></div>
-					<?php if ($this->options->JBirthDay) : ?>
-						<div class="footer-muted em09">
+					<div class="footer-muted em09 mb10"><?= $this->options->JFooterCenter2 ?></div>
+					<?php
+					if (empty($this->options->baidu_statistics) && $this->options->JBirthDay) { ?>
+						<div class="footer-muted em09 mb10">
 							<span>已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒</span>
 						</div>
-					<?php endif; ?>
-					<?php if (!empty($this->options->baidu_statistics)) : ?>
-						<style>
-							#statistics>span>strong {
-								color: var(--theme)
-							}
-						</style>
-						<div class="footer-muted em09" id="statistics">
-							<span>今日浏览量&nbsp;<strong>...</strong>丨</span><span>昨日访客&nbsp;<strong>...</strong>丨</span><span>本月访问量&nbsp;<strong>...</strong></span>
-						</div>
-					<?php endif; ?>
 					<?php
+					}
 					if (!empty($this->options->JFooterContactWechatImg) || !empty($this->options->JFooterContactQQ) || !empty($this->options->JFooterContactWeiBo) || !empty($this->options->JFooterContactEmail)) {
 					?>
 						<div class="footer-contact mt10">
@@ -91,11 +82,57 @@ if ($this->options->JFooterMode == 'commercial') {
 					?>
 				</li>
 				<?php
+				if (!empty($this->options->baidu_statistics)) {
+				?>
+					<li style="max-width: 550px;">
+						<?php
+						if ($this->options->JBirthDay) {
+						?>
+							<div class="footer-muted em09 mb10">
+								已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒
+							</div>
+							<?php
+						}
+						if (!empty($this->options->baidu_statistics)) {
+							if (joe\isMobile()) {
+							?>
+								<div class="footer-muted em09" id="statistics">
+									<span>今日浏览 <strong>...</strong> 次丨</span>
+									<span>昨日访客 <strong>...</strong> 位丨</span>
+									<span>本月访问 <strong>...</strong> 次</span>
+								</div>
+							<?php
+							} else {
+							?>
+								<div class="footer-muted em09" id="statistics">
+									<p>
+										<span>今日均访 <strong>...</strong> 秒丨</span>
+										<span>昨日均访 <strong>...</strong> 秒丨</span>
+										<span>本月均访 <strong>...</strong> 秒</span>
+									</p>
+									<p>
+										<span>今日访客 <strong>...</strong> 位丨</span>
+										<span>昨日访客 <strong>...</strong> 位丨</span>
+										<span>本月访客 <strong>...</strong> 位</span>
+									</p>
+									<p>
+										<span>今日浏览 <strong>...</strong> 次丨</span>
+										<span>昨日浏览 <strong>...</strong> 次丨</span>
+										<span>本月浏览 <strong>...</strong> 次</span>
+									</p>
+								</div>
+						<?php
+							}
+						}
+						?>
+					</li>
+					<?php
+				}
 				$JFooterMiniImg = joe\optionMulti($this->options->JFooterMiniImg);
 				if (!empty($JFooterMiniImg)) {
 					echo '<li>';
 					foreach ($JFooterMiniImg as $key => $value) {
-				?>
+					?>
 						<div class="footer-miniimg" data-toggle="tooltip" title="<?= $value[0] ?? '' ?>">
 							<p>
 								<img referrerpolicy="no-referrer" rel="noreferrer" class="lazyload" src="<?= joe\theme_url('assets/images/thumb/thumbnail-sm.svg', false) ?>" data-src="<?= $value[1] ?? '' ?>" alt="<?= $value[0] ?? '' ?> - <?= $this->options->title ?>">
@@ -138,11 +175,6 @@ if ($this->options->JFooterMode == 'commercial') {
 			<?php
 			if (!empty($this->options->baidu_statistics)) {
 			?>
-				<style>
-					#statistics>span>strong {
-						color: var(--theme)
-					}
-				</style>
 				<div class="item" id="statistics">
 					<span>今日浏览量&nbsp;<strong>...</strong>丨</span><span>昨日访客&nbsp;<strong>...</strong>丨</span><span>本月访问量&nbsp;<strong>...</strong></span>
 				</div>
@@ -284,7 +316,7 @@ if (!empty($footer_tabbar)) {
 <?php
 if (\think\helper\Str::contains($this->options->JCustomFont, '||')) {
 	$JCustomFont = joe\optionMulti($this->options->JCustomFont, '||', null, ['url', 'font']);
-	?>
+?>
 	<link rel="stylesheet" href="<?= $JCustomFont['url'] ?>" async>
 	<style>
 		html body {

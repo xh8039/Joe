@@ -491,21 +491,7 @@ body:not(.nav-fixed) .header.show-slide {
 .list-inline {
 	padding-left: 0;
 	list-style: none;
-	margin-left: -5px;
-}
-
-.list-inline {
-	margin-left: 0;
-}
-
-.list-inline>li {
-	display: inline-block;
-	padding-right: 5px;
-	padding-left: 5px;
-}
-
-.list-inline>li {
-	vertical-align: middle;
+	margin-left: 0px;
 }
 
 .navbar-avatar {

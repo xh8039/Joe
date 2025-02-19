@@ -12,7 +12,7 @@ $baidu_statistics = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'介绍：用于展示站点的百度统计信息<br>
 	格式：第一行填写：access_token，二：refresh_token，三：API Key，四：Secret Key<br>
 	' . $update_access_token_url . '
-	百度统计API文档：<a href="https://tongji.baidu.com/api/manual/Chapter2/openapi.html">tongji.baidu.com/api/manual/Chapter2/openapi.html</a>'
+	百度统计API文档：<a target="_blank" href="https://tongji.baidu.com/api/manual/Chapter2/openapi.html">tongji.baidu.com/api/manual/Chapter2/openapi.html</a>'
 );
 $baidu_statistics->setAttribute('class', 'joe_content joe_statistic');
 $form->addInput($baidu_statistics);

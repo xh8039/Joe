@@ -3907,11 +3907,16 @@ html .aplayer .aplayer-lrc {
 	vertical-align: middle;
 }
 
+.container-footer>.list-inline.flex {
+	justify-content: space-between;
+	align-items: center;
+}
+
 .footer .list-inline>li {
 	margin: 5px 15px;
 }
 
-.footer .list-inline>li+li+li {
+.footer .list-inline>li:last-child {
 	float: right;
 }
 
@@ -4324,4 +4329,9 @@ html #nprogress .spinner-icon {
 
 html .tooltip {
 	z-index: 99;
+}
+
+#statistics strong {
+	color: var(--theme);
+	font-weight: 500;
 }

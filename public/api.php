@@ -425,7 +425,7 @@ class Api
 					])->toArray();
 					if (is_array($refresh_token)) {
 						$theme_options = self::$options->__get('theme:' . THEME_NAME);
-						if (empty($theme_options)) return (['msg' => '请更新您的 access_token']);
+						if (empty($theme_options)) return (['message' => '请更新您的 access_token']);
 						$backup_field = 'theme:' . THEME_NAME . '_backup';
 						$backup = Db::name('options')->where('name', $backup_field)->find();
 						if ($backup) {
@@ -442,23 +442,22 @@ class Api
 
 						$options_update = Db::name('options')->where('name', 'theme:' . THEME_NAME)->update(['value' => serialize($theme_options)]);
 						if ($options_update) {
-							return (['code' => 200, 'msg' => 'access_token 已更新']);
+							return ['code' => 200, 'message' => 'access_token 已更新'];
 						} else {
-							return (['msg' => 'access_token 更新失败！']);
+							return ['message' => 'access_token 更新失败！'];
 						}
 					} else {
-						return (['msg' => '请更新您的 access_token']);
+						return ['message' => '请更新您的 access_token'];
 					}
 				}
-				return ($data);
+				return $data;
 			}
 			return $data['list'];
 		};
 		// 获取站点详情
-		$web_metrics = function ($list, $start_date, $end_date) use ($statistics_config) {
+		$web_metrics = function ($site_id, $start_date, $end_date) use ($statistics_config) {
 			$access_token = $statistics_config['access_token'];
-			$site_id = $list['site_id'];
-			$url = "https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=$access_token&site_id=$site_id&method=trend/time/a&start_date=$start_date&end_date=$end_date&metrics=pv_count,ip_count&gran=day";
+			$url = "https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=$access_token&site_id=$site_id&method=trend/time/a&start_date=$start_date&end_date=$end_date&metrics=avg_visit_time,ip_count,pv_count,&gran=day";
 			$data = \network\http\post($url)->toArray();
 			if (is_array($data)) {
 				$data = $data['result']['sum'][0];
@@ -474,21 +473,17 @@ class Api
 				break;
 			}
 		}
-		if (!isset($list['domain']) || $list['domain'] != JOE_DOMAIN) {
-			$data = array(
-				'msg' => '没有当前站点'
-			);
-			return ($data);
-		}
-		$today = $web_metrics($list, date('Ymd'), date('Ymd'));
-		$yesterday = $web_metrics($list, date('Ymd', strtotime("-1 days")), date('Ymd', strtotime("-1 days")));
-		$moon = $web_metrics($list, date('Ym') . '01', date('Ymd'));
-		$data = array(
+		if (!isset($list['domain']) || $list['domain'] != JOE_DOMAIN) return ['message' => '没有当前站点'];
+
+		$today = $web_metrics($list['site_id'], date('Ymd'), date('Ymd'));
+		$yesterday = $web_metrics($list['site_id'], date('Ymd', strtotime("-1 days")), date('Ymd', strtotime("-1 days")));
+		$moon = $web_metrics($list['site_id'], date('Ym') . '01', date('Ymd'));
+		$data = [
 			'code' => 200,
 			'today' => $today,
 			'yesterday' => $yesterday,
 			'month' => $moon
-		);
+		];
 		return ($data);
 	}
 

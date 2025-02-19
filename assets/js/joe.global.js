@@ -338,15 +338,25 @@ Joe.DOMContentLoaded.global ||= () => {
 						$("#statistics").remove();
 						return;
 					}
-					if (data.msg) {
+					if (data.message) {
 						$("#statistics").remove();
-						data.code == 200 ? autolog.log('百度统计：' + data.msg, 'info') : autolog.log('百度统计：' + data.msg, 'error');
+						data.code == 200 ? autolog.log('百度统计：' + data.message, 'info') : autolog.log('百度统计：' + data.message, 'error');
 						return;
 					}
-					let statistics = $('#statistics span strong');
-					$(statistics[0]).text(data['today'][0]);
-					$(statistics[1]).text(data['yesterday'][1]);
-					$(statistics[2]).text(data['month'][0]);
+					if (document.querySelector('#statistics>p')) {
+						let dataKey = ['today', 'yesterday', 'month'];
+						let statistics = document.querySelectorAll('#statistics>p');
+						statistics.forEach((p, index) => {
+							p.querySelectorAll('strong').forEach((element, i) => {
+								element.innerText = data[dataKey[i]][index];
+							});
+						});
+					} else {
+						let statistics = $('#statistics span strong');
+						$(statistics[0]).text(data['today'][2]);
+						$(statistics[1]).text(data['yesterday'][1]);
+						$(statistics[2]).text(data['month'][2]);
+					}
 				},
 				error() {
 					$("#statistics").remove();

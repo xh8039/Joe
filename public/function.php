@@ -877,7 +877,7 @@ function install()
 	}
 
 	if (\Typecho\Common::VERSION <= '1.2.1') {
-		/* 修复typecho用户登陆后审核状态的评论不显示的BUG */
+		/* 修复typecho用户登陆后待审核状态的评论不显示的BUG */
 		$typecho_comments_archive_file = __TYPECHO_ROOT_DIR__ . '/var/Widget/Comments/Archive.php';
 		if (!is_writable($typecho_comments_archive_file)) throw new \Typecho\Exception('请先给予主题目录读写权限！');
 		$typecho_comments_archive_content = file_get_contents($typecho_comments_archive_file);

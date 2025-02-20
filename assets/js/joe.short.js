@@ -87,7 +87,7 @@ Joe.DOMContentLoaded.short ||= () => {
 					storage: this.options.storage,
 					loop: this.options.loop,
 					preload: 'auto',
-					audio
+					audio: [audio]
 				});
 				document.addEventListener('turbolinks:complete', () => aplayer.destroy(), { once: true });
 			});

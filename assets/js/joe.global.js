@@ -945,10 +945,11 @@ Joe.DOMContentLoaded.global ||= () => {
 		});
 	}
 
-	if (Joe.options.UISoundEffects) {
+	if (Joe.options.UISoundEffect) {
+		const EffectTick = Joe.options.UITickEffectUrl ? Joe.options.UITickEffectUrl : 'EffectTick.ogg';
 		// 配置项
 		const AUDIO = {
-			PRELOAD: ['HeiHei.mp3', 'EffectTick.ogg', 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemDelete.ogg'],
+			PRELOAD: ['HeiHei.mp3', EffectTick, 'Delete.ogg', 'Ocelot.mp3', 'notification/WaterDay.ogg', 'notification/WaterEvening.ogg', 'notification/WaterDropPreview.ogg', 'notification/SystemDelete.ogg'],
 			CLICK_DELAY: 300,
 			TARGET_TAGS: new Set(['a', 'button', 'input', 'svg', 'i'])
 		};
@@ -967,7 +968,7 @@ Joe.DOMContentLoaded.global ||= () => {
 			const isPointer = getComputedStyle(target).cursor === 'pointer';
 			const validText = target.innerText?.trim().length <= 5;
 			if (AUDIO.TARGET_TAGS.has(target.tagName.toLowerCase()) || isPointer || validText) {
-				Joe.AudioManager.play('EffectTick.ogg', {
+				Joe.AudioManager.play(EffectTick, {
 					volume: Joe.IS_MOBILE ? 2 : 1
 				});
 			}

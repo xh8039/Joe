@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 if (window.autolog) {
 	const log = autolog.log
 	autolog.log = (text = "", type = "", time = 2500, autoClose = true) => {
-		if (Joe.options.UISoundEffects) {
+		if (Joe.options.UISoundEffect) {
 			const typeList = {
 				info: 'WaterDay.ogg',
 				success: 'WaterEvening.ogg',

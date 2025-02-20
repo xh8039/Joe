@@ -86,7 +86,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 			const button_html = $button.html();
 			const operate_list = { delete: '删除', waiting: '标记审核', spam: '标记垃圾' };
 			const status = $button.attr('status');
-			if (Joe.options.UISoundEffects) Joe.AudioManager.play(status == 'delete' ? 'Delete.ogg' : 'Ocelot.mp3');
+			if (Joe.options.UISoundEffect) Joe.AudioManager.play(status == 'delete' ? 'Delete.ogg' : 'Ocelot.mp3');
 			const operate = operate_list[status];
 			$button.html(`<i class="loading mr3"></i>${operate}中...`);
 			$button.addClass('disabled');

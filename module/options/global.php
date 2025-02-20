@@ -137,7 +137,7 @@ $JCustomFont = new \Typecho\Widget\Helper\Form\Element\Text(
 	普通方式：直接填写字体URL链接（推荐使用woff2格式的字体，网页专用字体格式，占用空间小，加载速度更快，如果和本站不是同一个域名，则需要远程资源URL响应允许跨域的响应头规则） <br>
 	跨域方式：字体CSS文件的URL链接 || CSS文件中font-family属性的值 <br>
 	跨域方式示例：https://sfile.chatglm.cn/chatglm4/06088824-012c-4851-8f49-19d3cbb59acf.css || HarmonyOS Sans SC Medium <br>
-	注意：字体文件一般能几MB大小，建议使用CDN链接，'
+	注意：字体文件一般能有几MB大小，建议使用CDN链接，'
 );
 $JCustomFont->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomFont);

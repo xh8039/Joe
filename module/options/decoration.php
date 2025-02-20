@@ -5,14 +5,24 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
-$UISoundEffects = new \Typecho\Widget\Helper\Form\Element\Select(
-	'UISoundEffects',
+$UISoundEffect = new \Typecho\Widget\Helper\Form\Element\Select(
+	'UISoundEffect',
 	['on' => '开启（默认）', 'off' => '关闭'],
 	'on',
 	'界面交互音效'
 );
-$UISoundEffects->setAttribute('class', 'joe_content joe_decoration');
-$form->addInput($UISoundEffects->multiMode());
+$UISoundEffect->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($UISoundEffect->multiMode());
+
+$UITickEffectUrl = new \Typecho\Widget\Helper\Form\Element\Text(
+	'UITickEffectUrl',
+	NULL,
+	NULL,
+	'自定义点击音效URL',
+	'不填写则为默认的点击音效，推荐使用OGG音频文件，解析快，声音播放延迟低'
+);
+$UITickEffectUrl->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($UITickEffectUrl->multiMode());
 
 $NProgressJS = new \Typecho\Widget\Helper\Form\Element\Select(
 	'NProgressJS',

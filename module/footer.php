@@ -97,28 +97,20 @@ if ($this->options->JFooterMode == 'commercial') {
 							if (joe\isMobile()) {
 							?>
 								<div class="footer-muted em09" id="statistics">
-									<span>今日浏览 <strong>...</strong> 次丨</span>
-									<span>昨日访客 <strong>...</strong> 位丨</span>
-									<span>本月访问 <strong>...</strong> 次</span>
+									<span>今日浏览 <strong>...</strong> 次丨</span><span>昨日访客 <strong>...</strong> 位丨</span><span>本月访问 <strong>...</strong> 次</span>
 								</div>
 							<?php
 							} else {
 							?>
 								<div class="footer-muted em09" id="statistics">
 									<p>
-										<span>今日均访 <strong>...</strong> 秒丨</span>
-										<span>昨日均访 <strong>...</strong> 秒丨</span>
-										<span>本月均访 <strong>...</strong> 秒</span>
+										<span>今日均访 <strong>...</strong> 秒丨</span><span>昨日均访 <strong>...</strong> 秒丨</span><span>本月均访 <strong>...</strong> 秒</span>
 									</p>
 									<p>
-										<span>今日访客 <strong>...</strong> 位丨</span>
-										<span>昨日访客 <strong>...</strong> 位丨</span>
-										<span>本月访客 <strong>...</strong> 位</span>
+										<span>今日访客 <strong>...</strong> 位丨</span><span>昨日访客 <strong>...</strong> 位丨</span><span>本月访客 <strong>...</strong> 位</span>
 									</p>
 									<p>
-										<span>今日浏览 <strong>...</strong> 次丨</span>
-										<span>昨日浏览 <strong>...</strong> 次丨</span>
-										<span>本月浏览 <strong>...</strong> 次</span>
+										<span>今日浏览 <strong>...</strong> 次丨</span><span>昨日浏览 <strong>...</strong> 次丨</span><span>本月浏览 <strong>...</strong> 次</span>
 									</p>
 								</div>
 						<?php

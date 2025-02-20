@@ -23,7 +23,7 @@ Joe.DOMContentLoaded.user ||= () => {
 				autolog.log(data.message, data.code == 200 ? 'success' : 'warn');
 				if (data.location) {
 					const location = data.location == true ? window.Joe.referer : data.location;
-					setTimeout(() => window.location.href = location, 3500);
+					setTimeout(() => window.location.href = location, 1500);
 				}
 				if (options.success) options.success(data);
 			}

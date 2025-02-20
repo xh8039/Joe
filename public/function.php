@@ -1229,14 +1229,16 @@ function markdown_hide($content, $post, $login)
 	} else {
 		// 获取用户邮箱地址，登录用户使用全局变量，未登录用户使用文章记住的邮箱
 		$userEmail = $login ? $GLOBALS['JOE_USER']->mail : $post->remember('mail', true);
-		// 查询评论信息
-		$comment = Db::name('comments')->where(['cid' => $post->cid, 'mail' => $userEmail])->find();
-		if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
-			// 查询支付信息
-			$payment = Db::name('orders')->where(['user_id' => USER_ID, 'status' => 1, 'content_cid' => $post->cid])->find();
-			$showContent = !empty($payment); // 是否已支付决定是否显示内容
-		} else {
-			$showContent = !empty($comment); // 是否已评论决定是否显示内容
+		if (!empty($userEmail)) {
+			// 查询评论信息
+			$comment = Db::name('comments')->where(['cid' => $post->cid, 'mail' => $userEmail])->find();
+			if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
+				// 查询支付信息
+				$payment = Db::name('orders')->where(['user_id' => USER_ID, 'status' => 1, 'content_cid' => $post->cid])->find();
+				$showContent = !empty($payment); // 是否已支付决定是否显示内容
+			} else {
+				$showContent = !empty($comment); // 是否已评论决定是否显示内容
+			}
 		}
 	}
 

@@ -15,13 +15,15 @@ function _parseContent($post, $content = null)
 	}
 
 	// 任务
-	if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
-		$content = strtr($content, array(
+	if (\think\helper\Str::contains($content, ['{x}', '{ }', '<li>[x]', '<li>[ ]'])) {
+		$content = strtr($content, [
 			// 任务已完成
-			"{x}" => '<input type="checkbox" class="joe_checkbox" checked></input>',
+			'{x}' => '<input type="checkbox" class="joe_checkbox" checked></input>',
+			'<li>[x]' => '<li><input type="checkbox" class="joe_checkbox" checked></input>',
 			// 任务未完成
-			"{ }" => '<input type="checkbox" class="joe_checkbox"></input>'
-		));
+			'{ }' => '<input type="checkbox" class="joe_checkbox"></input>',
+			'<li>[ ]' => '<li><input type="checkbox" class="joe_checkbox"></input>'
+		]);
 	}
 
 	// 网易云音乐

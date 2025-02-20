@@ -190,7 +190,9 @@ window.Joe.internalForwardUrl = (string) => {
 			string = string.href;
 		}
 		if (string.startsWith('/')) return true;
+		if (string.startsWith('#')) return false;
 		let url = new URL(string);
+		if (url.hash) return false;
 		if (url.host != location.host) return false;
 		if (url.protocol == 'javascript:') return false;
 		console.log(url);

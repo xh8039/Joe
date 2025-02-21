@@ -64,14 +64,11 @@ $user = json_encode($user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 	}
 
 	// 非移动端情况下
-	if (!joe\isMobile()) {
+	if (joe\isPc()) {
 		// PC端自定义背景壁纸
 		if ($this->options->JWallpaper_Background_PC) {
 			echo 'html .joe_list>li {opacity: 0.85;}';
 			echo 'html body {background: url(' . $this->options->JWallpaper_Background_PC . ')}';
-		}
-		if ($this->is('single') && $this->fields->max_image_height) {
-			echo '.joe_detail__article img:not([class]) {max-height: ' . $this->fields->max_image_height . '}';
 		}
 	}
 

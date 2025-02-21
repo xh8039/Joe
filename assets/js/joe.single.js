@@ -254,24 +254,19 @@ Joe.DOMContentLoaded.single ||= () => {
 				setTimeout(() => next(DPlayer), 2000);
 			});
 		});
-		var firstVideo = true;
 		$('.featured-video-episode>.switch-video').on('click', function () {
 			$(this).addClass('active').siblings().removeClass('active');
 			const url = $(this).attr('video-url');
-			let title = $(this).attr('title');
-			if (firstVideo) {
-				firstVideo = false;
-				player.switchVideo({ url: url, pic: Joe.CONTENT.cover });
-			} else {
-				player.switchVideo({ url: url });
-			}
+			let title = $(this).attr('title') || $(this).attr('data-original-title');
+			const pic = this.dataset.pic || Joe.CONTENT.cover;
+			player.switchVideo({ url: url, pic: pic });
 			if (title) videoModule.querySelector('.title').innerHTML = title;
 			if ("mediaSession" in navigator) {
 				navigator.mediaSession.metadata = new MediaMetadata({
 					title: title,
 					artist: document.title,
 					album: document.title,
-					artwork: [{ src: Joe.CONTENT.cover }],
+					artwork: [{ src: pic }],
 				});
 			}
 		});

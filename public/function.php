@@ -1296,7 +1296,13 @@ function parse_markdown_link($content)
 			$description = null;
 		}
 		$url = trim($matches[2][$key]);
-		$data[] = ['title' => $title, 'description' => $description, 'url' => $url];
+		$pic = null;
+		if (strpos($url, '||') !== false) {
+			$url_list = optionMulti($url, '||', null, ['url', 'pic']);
+			$url = $url_list['url'];
+			$pic = $url_list['pic'];
+		}
+		$data[] = ['title' => $title, 'description' => $description, 'url' => $url, 'pic' => $pic];
 	}
 	return $data;
 }

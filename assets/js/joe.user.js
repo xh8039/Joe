@@ -14,9 +14,10 @@ Joe.DOMContentLoaded.user ||= () => {
 			complete: function () {
 				Joe.btnLoad(button, false);
 			},
-			error: function (xhr, status, error) {
+			error: function (xhr, textStatus, error) {
+				console.log(xhr, error);
 				Joe.btnLoad(button, false);
-				const message = xhr.responseText || error || '服务器繁忙：' + status;
+				const message = xhr.responseText?.replace(/<[^>]*>/g, "").replace(/\s+/g, ' ').trim() || error || '请求异常：' + textStatus;
 				autolog.log(message, 'error');
 			},
 			success(data) {

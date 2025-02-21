@@ -159,6 +159,7 @@ if (Helper::options()->JEditor !== 'off') {
 	Typecho_Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
 	Typecho_Plugin::factory('admin/write-post.php')->option  = array('Editor', 'labelSelection');
 	Typecho_Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
+	Typecho_Plugin::factory('admin/write-page.php')->option  = array('Editor', 'visibility');
 }
 
 class Editor
@@ -249,6 +250,17 @@ class Editor
 				?>
 			</ul>
 		</section>
-<?php
+	<?php
+	}
+
+	public static function visibility()
+	{
+	?>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				$('select[name=visibility]').append(`<option value="private">私密</option>`);
+			})
+		</script>
+	<?php
 	}
 }

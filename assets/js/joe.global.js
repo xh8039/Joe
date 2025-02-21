@@ -860,21 +860,18 @@ Joe.DOMContentLoaded.global ||= () => {
 	}
 
 	/** 全局Loading动画补全 */
-	if (window.Joe.loadingEnd) {
-		window.Joe.loadingEnd();
+	(() => {
+		if (!window.Joe.loadingEnd) return;
+		Joe.loadingEnd();
 		if (!Joe.loadingStart || Joe.options.FirstLoading == 'on' || Joe.options.JTurbolinks == 'on') return;
 		// a标签加载动画
 		$(document).on('click', 'a[href]', function (e) {
-			if (!window.Joe.internalForwardUrl(this)) return true;
-			window.Joe.loadingStart();
-			setTimeout(() => {
-				window.Joe.loadingEnd();
-			}, 5000);
-			window.addEventListener('beforeunload', function (event) {
-				window.Joe.loadingEnd();
-			});
+			if (!Joe.internalForwardUrl(this)) return true;
+			Joe.loadingStart();
+			setTimeout(() => Joe.loadingEnd(), 5000);
+			window.addEventListener('beforeunload', () => Joe.loadingEnd());
 		});
-	}
+	})();
 
 	/* NProgress.js */
 	(() => {

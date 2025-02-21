@@ -68,7 +68,7 @@ $JSensitiveWordApi = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'评论敏感词检测API（非必填）',
 	'介绍：用于检测评论敏感词汇，如果用户评论包含这些词汇，则将会把评论置为审核状态，需要接口返回JSON格式的内容 <br />
-	格式：API地址 || 请求时的评论内容字段 || 返回内容是否违规字段 <br />
+	格式：API地址 || 请求时的评论内容字段 || 返回内容是否违规字段 || 请求头Content-Type（默认留空即可） <br />
 	例如：https://v2.xxapi.cn/api/detect || text || is_prohibited'
 );
 $JSensitiveWordApi->setAttribute('class', 'joe_content joe_comment');

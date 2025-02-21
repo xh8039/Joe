@@ -14,7 +14,7 @@ class Intercept
 	public static function waiting($text)
 	{
 		// 判断用户输入是否大于字符
-		if (Helper::options()->JTextLimit && strlen($text) > Helper::options()->JTextLimit) {
+		if (Helper::options()->JTextLimit && mb_strlen($text) > Helper::options()->JTextLimit) {
 			Typecho\Cookie::set('__typecho_remember_text', $text);
 			throw new Typecho\Widget\Exception(_t('评论的内容超出 ' . Helper::options()->JTextLimit . ' 字符限制！'));
 		}
@@ -30,16 +30,26 @@ class Intercept
 
 		// 评论敏感词API检测
 		if (Helper::options()->JSensitiveWordApi) {
-			$sensitive_word_api = joe\optionMulti(Helper::options()->JSensitiveWordApi, '||', null, ['api', 'content', 'is']);
+			$sensitive_word_api = joe\optionMulti(Helper::options()->JSensitiveWordApi, '||', null, ['api', 'content', 'is', 'content-type']);
 			if (empty($sensitive_word_api['api'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API地址设置错误'));
 			if (empty($sensitive_word_api['content'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API请求内容字段设置错误'));
 			if (empty($sensitive_word_api['is'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API响应违规字段设置错误'));
 
 			$client = new network\http\Client(['timeout' => 5]);
-			$response = $client->get($sensitive_word_api['api'], [$sensitive_word_api['content'] => $text]);
+			$IP = joe\request()->getIp();
+			if (!empty($IP)) $client->header([
+				'client-ip' => $IP,
+				'x-real-ip' => $IP,
+				'x-forwarded-for' => $IP,
+			]);
+			if (!empty($sensitive_word_api['content-type'])) $client->header('content-type', $sensitive_word_api['content-type']);
+			$response = $client->post($sensitive_word_api['api'], [
+				$sensitive_word_api['content'] => $text,
+				'userIp' => $IP,
+			]);
 			$data = $response->toArray();
 			if (is_array($data)) {
-				if ($data[$sensitive_word_api['is']]) return true;
+				if (isset($data[$sensitive_word_api['is']]) && $data[$sensitive_word_api['is']]) return true;
 			} else {
 				throw new Typecho\Widget\Exception(_t('评论敏感词检测接口响应失败：' . $response->error()));
 			}

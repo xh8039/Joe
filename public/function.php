@@ -9,6 +9,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+function request()
+{
+	return \Typecho\Request::getInstance();
+}
+
 function zibll_color_list(): array
 {
 	return ['c-blue', 'c-yellow', 'c-green', 'c-cyan', 'c-blue-2', 'c-purple-2', 'c-yellow-2', 'c-purple', 'c-red-2', 'c-red'];

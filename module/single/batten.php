@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <div class="joe_detail__count">
 	<div class="joe_detail__count-information">
 		<a href="<?= joe\root_relative_link($this->author->permalink); ?>">
-			<img width="38" height="38" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author(); ?>" />
+			<img onerror="Joe.avatarError(this)" width="38" height="38" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author(); ?>" />
 		</a>
 		<div class="meta ml10">
 			<div class="author">

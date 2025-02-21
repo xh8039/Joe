@@ -177,11 +177,11 @@ function threadedComments($comments, $options)
 				if ($comments->authorId == $comments->ownerId && joe\isMobile()) $mobile_handle .= ' style="border-color: var(--theme);"';
 				if ($comments->request->getHeader('x-requested-with')) {
 				?>
-					<img <?= $mobile_handle ?> width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
+					<img onerror="Joe.avatarError(this)" <?= $mobile_handle ?> width="48" height="48" class="avatar" src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
 				<?php
 				} else {
 				?>
-					<img <?= $mobile_handle ?> width="48" height="48" class="avatar lazyload" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
+					<img onerror="Joe.avatarError(this)" <?= $mobile_handle ?> width="48" height="48" class="avatar lazyload" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($comments->mail); ?>" alt="头像" />
 				<?php
 				}
 				if (joe\isPc()) {

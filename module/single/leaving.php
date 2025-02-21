@@ -5,7 +5,7 @@
 			<?php while ($comments->next()) : ?>
 				<li class="item">
 					<div class="user">
-						<img class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($comments->mail) ?>" alt="用户头像" />
+						<img onerror="Joe.avatarError(this)" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($comments->mail) ?>" alt="用户头像" />
 						<div class="nickname"><?php $comments->author(); ?></div>
 						<div class="date"><?php $comments->date('Y/m/d'); ?></div>
 					</div>

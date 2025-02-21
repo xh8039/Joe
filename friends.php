@@ -48,7 +48,7 @@ $this->need('module/single/pjax.php');
 										<span class="title"><?= $item['title'] ?></span>
 										<div class="content">
 											<div class="desc"><?= $item['description'] ?></div>
-											<img referrerpolicy="no-referrer" rel="noreferrer" width="40" height="40" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?= $item['logo'] ?>" alt="<?= $item['title'] ?>" />
+											<img referrerpolicy="no-referrer" rel="noreferrer" width="40" height="40" class="avatar lazyload" onerror="Joe.avatarError(this)" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?= $item['logo'] ?>" alt="<?= $item['title'] ?>" />
 										</div>
 									</a>
 								</li>
@@ -66,13 +66,6 @@ $this->need('module/single/pjax.php');
 			<?php joe\isPc() ? $this->need('module/aside.php') : null ?>
 		</div>
 		<?php $this->need('module/bottom.php'); ?>
-		<script>
-			const AvatarLazyload = `${Joe.THEME_URL}assets/images/avatar-default.png`;
-			$('.joe_detail__friends .avatar').on('error', function() {
-				$(this).attr('data-src', AvatarLazyload);
-				$(this).attr('src', AvatarLazyload);
-			});
-		</script>
 	</div>
 	<?php $this->need('module/footer.php') ?>
 </body>

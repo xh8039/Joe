@@ -59,7 +59,7 @@ Joe.DOMContentLoaded.index ||= () => {
 									<item class="meta-author flex ac">
 										<a href="${_.author_permalink}">
 											<span class="avatar-mini">
-												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1" onerror="Joe.avatarError(this)">
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>
@@ -106,7 +106,7 @@ Joe.DOMContentLoaded.index ||= () => {
 									<item class="meta-author flex ac">
 										<a href="${_.author_permalink}">
 											<span class="avatar-mini">
-												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1" onerror="Joe.avatarError(this)">
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>
@@ -171,7 +171,7 @@ Joe.DOMContentLoaded.index ||= () => {
 								<item class="meta-author flex ac">
 									<a href="${_.author_permalink}">
 										<span class="avatar-mini">
-											<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+											<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1" onerror="Joe.avatarError(this)">
 										</span>
 									</a>
 									<span class="hide-sm ml6">${_.author_screenName}</span>
@@ -217,7 +217,7 @@ Joe.DOMContentLoaded.index ||= () => {
 									<item class="meta-author flex ac">
 										<a href="${_.author_permalink}">
 											<span class="avatar-mini">
-												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1">
+												<img alt="${_.author_screenName}的头像 - ${Joe.options.title}" src="${Joe.THEME_URL}/assets/images/avatar-default.png" data-src="${_.author_avatar}" class="lazyload avatar avatar-id-1" onerror="Joe.avatarError(this)">
 											</span>
 										</a>
 										<span class="hide-sm ml6">${_.author_screenName}</span>

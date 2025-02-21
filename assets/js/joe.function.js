@@ -100,6 +100,16 @@ window.Joe.thumbnailError = (element) => {
 	element.dataset.thumbnailLoaded = true;
 }
 
+window.Joe.avatarError = (element) => {
+	if (element.tagName.toLowerCase() != 'img') return;
+	if (element.dataset.defaultAvatarLoaded) return true;
+	console.log('头像加载失败', element, element.src);
+	const defaultAvatar = Joe.THEME_URL + 'assets/images/avatar-default.png';
+	element.dataset.src = defaultAvatar;
+	element.src = defaultAvatar;
+	element.dataset.defaultAvatarLoaded = true;
+}
+
 window.Joe.pjax = (url, selectors = [], options = {}) => {
 	if (url instanceof Object) {
 		options = url;

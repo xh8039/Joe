@@ -33,7 +33,7 @@ while ($article = $this->next()) :
 						<item class="meta-author flex ac">
 							<a href="<?= joe\root_relative_link($this->author->permalink) ?>">
 								<span class="avatar-mini">
-									<img alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
+									<img onerror="Joe.avatarError(this)" alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
 								</span>
 							</a>
 							<span class="hide-sm ml6"><?= $this->author->screenName ?></span>
@@ -75,7 +75,7 @@ while ($article = $this->next()) :
 						<item class="meta-author flex ac">
 							<a href="<?= joe\root_relative_link($this->author->permalink) ?>">
 								<span class="avatar-mini">
-									<img alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
+									<img onerror="Joe.avatarError(this)" alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
 								</span>
 							</a>
 							<span class="hide-sm ml6"><?= $this->author->screenName ?></span>
@@ -136,7 +136,7 @@ while ($article = $this->next()) :
 					<item class="meta-author flex ac">
 						<a href="<?= joe\root_relative_link($this->author->permalink) ?>">
 							<span class="avatar-mini">
-								<img alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
+								<img onerror="Joe.avatarError(this)" alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
 							</span>
 						</a>
 						<span class="hide-sm ml6"><?= $this->author->screenName ?></span>
@@ -179,7 +179,7 @@ while ($article = $this->next()) :
 						<item class="meta-author flex ac">
 							<a href="<?= joe\root_relative_link($this->author->permalink) ?>">
 								<span class="avatar-mini">
-									<img alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
+									<img onerror="Joe.avatarError(this)" alt="<?= $this->author->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->author->mail) ?>" class="lazyload avatar avatar-id-<?= $this->author->uid ?>">
 								</span>
 							</a>
 							<span class="hide-sm ml6"><?= $this->author->screenName ?></span>

@@ -19,20 +19,6 @@ Joe.DOMContentLoaded.global ||= () => {
 		detectIE() && alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。');
 	}
 
-	/** 捕获图像加载失败 */
-	{
-		document.body.addEventListener('error', function (event) {
-			var element = event.target;
-			if (element.tagName.toLowerCase() != 'img') return;
-			// 头像加载失败代替
-			if (element.classList.contains('avatar') && !element.dataset.defaultAvatarLoaded) {
-				element.setAttribute('data-src', Joe.THEME_URL + 'assets/images/avatar-default.png');
-				element.setAttribute('src', Joe.THEME_URL + 'assets/images/avatar-default.png');
-				element.dataset.defaultAvatarLoaded = true;
-			}
-		}, true);
-	}
-
 	/* 设置$.getScript()方法缓存 */
 	{
 		jQuery.ajaxSetup({ cache: true });

@@ -43,7 +43,7 @@ if ((is_numeric($this->options->JIndex_Hot)) && ($this->options->JIndex_Hot >= 1
 						<div class="item-meta muted-2-color flex jsb ac">
 							<item class="meta-author flex ac">
 								<a href="<?= joe\root_relative_link($item->author->permalink) ?>"><span class="avatar-mini">
-										<img alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-<?= $this->user->uid ?> ls-is-cached lazyload"></span></a>
+										<img onerror="Joe.avatarError(this)" alt="<?php $item->author() ?>的头像 - <?php $this->options->title() ?>" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->author->mail) ?>" class="avatar avatar-id-<?= $this->user->uid ?> ls-is-cached lazyload"></span></a>
 								<span title="<?= $item->date('Y-m-d H:i:s') ?>" class="ml6"><?= joe\dateWord($item->dateWord) ?></span>
 							</item>
 							<div class="meta-right">

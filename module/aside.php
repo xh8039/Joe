@@ -35,7 +35,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				?>
 					<div class="user-avatar">
 						<a href="<?= joe\root_relative_link($this->user->permalink) ?>">
-							<span class="avatar-img avatar-lg"><img alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="avatar avatar-id-<?= $this->user->uid ?> ls-is-cached lazyload"></span>
+							<span class="avatar-img avatar-lg"><img onerror="Joe.avatarError(this)" alt="<?= $this->user->screenName ?>的头像 - <?= $this->options->title ?>" src="<?= joe\getAvatarLazyload() ?>" data-src="<?php joe\getAvatarByMail($this->user->mail) ?>" class="avatar avatar-id-<?= $this->user->uid ?> ls-is-cached lazyload"></span>
 						</a>
 					</div>
 					<div class="user-info mt20 mb10">
@@ -70,7 +70,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<?php
 				} else {
 				?>
-					<div class="user-avatar"><span class="avatar-img avatar-lg"><img alt="默认头像 - <?= $this->options->title ?>" class="fit-cover avatar" src="<?= joe\theme_url('assets/images/avatar-default.png') ?>"></span></div>
+					<div class="user-avatar"><span class="avatar-img avatar-lg"><img onerror="Joe.avatarError(this)" alt="默认头像 - <?= $this->options->title ?>" class="fit-cover avatar" src="<?= joe\theme_url('assets/images/avatar-default.png') ?>"></span></div>
 					<div class="user-info mt10">
 						<div class="text-center">
 							<p class="muted-color box-body em12">HI！请登录</p>
@@ -251,7 +251,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					<?php while ($item->next()) : ?>
 						<li class="item">
 							<div class="user">
-								<img width="40" height="40" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->mail) ?>" alt="<?php $item->author(false) ?>" />
+								<img onerror="Joe.avatarError(this)" width="40" height="40" class="avatar lazyload" src="<?= joe\getAvatarLazyload(); ?>" data-src="<?php joe\getAvatarByMail($item->mail) ?>" alt="<?php $item->author(false) ?>" />
 								<div class="info">
 									<div class="author"><?php $item->author(false) ?></div>
 									<span class="date"><?php $item->date('Y-m-d'); ?></span>

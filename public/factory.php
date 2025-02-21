@@ -28,6 +28,23 @@ class Intercept
 		// 判断评论内容是否包含敏感词
 		if (Helper::options()->JSensitiveWords && joe\checkSensitiveWords(Helper::options()->JSensitiveWords, $text)) return true;
 
+		// 评论敏感词API检测
+		if (Helper::options()->JSensitiveWordApi) {
+			$sensitive_word_api = joe\optionMulti(Helper::options()->JSensitiveWordApi, '||', null, ['api', 'content', 'is']);
+			if (empty($sensitive_word_api['api'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API地址设置错误'));
+			if (empty($sensitive_word_api['content'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API请求内容字段设置错误'));
+			if (empty($sensitive_word_api['is'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API响应违规字段设置错误'));
+
+			$client = new network\http\Client(['timeout' => 5]);
+			$response = $client->get($sensitive_word_api['api'], [$sensitive_word_api['content'] => $text]);
+			$data = $response->toArray();
+			if (is_array($data)) {
+				if ($data[$sensitive_word_api['is']]) return true;
+			} else {
+				throw new Typecho\Widget\Exception(_t('评论敏感词检测接口响应失败：' . $response->error()));
+			}
+		}
+
 		return false;
 	}
 	public static function message($comment)

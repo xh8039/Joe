@@ -17,6 +17,7 @@
 	width: 100vw;
 	height: 100vh;
 	transition: background-color var(--trans-dur), color var(--trans-dur);
+	top: 0;
 }
 
 #loading-animation .device {

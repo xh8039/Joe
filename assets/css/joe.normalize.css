@@ -43,7 +43,7 @@ html {
 	/* 修复iOS点击高亮问题 */
 	-webkit-tap-highlight-color: transparent;
 	/* 平滑滚动 */
-	scroll-behavior: smooth;
+	/* scroll-behavior: smooth; */
 }
 
 body {

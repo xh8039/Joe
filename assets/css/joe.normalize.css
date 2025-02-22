@@ -385,8 +385,8 @@ botton {
 }
 
 .focus-color {
-	--this-color: var(--focus-color);
-	color: var(--focus-color)
+	--this-color: var(--theme);
+	color: var(--theme)
 }
 
 .muted-color {
@@ -781,7 +781,7 @@ a[href] {
 }
 
 .b-theme {
-	--this-bg: var(--focus-color)
+	--this-bg: var(--theme)
 }
 
 .b-gray {
@@ -834,7 +834,7 @@ a[href] {
 }
 
 .c-theme {
-	--this-color: var(--focus-color);
+	--this-color: var(--theme);
 	--this-bg: var(--focus-color-opacity1)
 }
 
@@ -1106,8 +1106,8 @@ badge.p2-10 {
 
 .but.hollow.c-white:hover {
 	background: 0 0;
-	--this-color: var(--focus-color);
-	color: var(--focus-color)
+	--this-color: var(--theme);
+	color: var(--theme)
 }
 
 .hollow-radio {
@@ -1118,7 +1118,7 @@ badge.p2-10 {
 }
 
 .hollow-radio.active {
-	border-color: var(--focus-color)
+	border-color: var(--theme)
 }
 
 .badg.cir,
@@ -1846,7 +1846,7 @@ img.lazyloaded:not(.lazyloadafter) {
 
 .active.badg,
 .active>.badg:not(.vip-tag) {
-	--this-bg: var(--focus-color);
+	--this-bg: var(--theme);
 	--this-color: #fff
 }
 
@@ -1940,7 +1940,7 @@ img.lazyloaded:not(.lazyloadafter) {
 
 .loading-spot.zts {
 	height: 1em;
-	--this-bg: var(--focus-color)
+	--this-bg: var(--theme)
 }
 
 .loading-spot::after,

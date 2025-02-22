@@ -50,7 +50,7 @@
 .posts-nav-lists li a:hover,
 .posts-nav-lists li.active a {
 	background: var(--main-shadow);
-	color: var(--focus-color)
+	color: var(--theme)
 }
 
 .posts-nav-lists li.n-H1 a,
@@ -85,7 +85,7 @@
 	left: -6px;
 	width: 11px;
 	height: 11px;
-	border: 2px solid var(--focus-color);
+	border: 2px solid var(--theme);
 	background: var(--main-bg-color);
 	border-radius: 15px;
 	content: '';
@@ -124,7 +124,7 @@
 .posts-nav-lists li:hover::before {
 	opacity: 1;
 	border-width: 2px;
-	background: var(--focus-color)
+	background: var(--theme)
 }
 
 .joe_action_item.posts-nav-switcher {

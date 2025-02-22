@@ -1911,7 +1911,7 @@
 .line-form-line:before {
 	content: '';
 	width: 0;
-	background: var(--focus-color);
+	background: var(--theme);
 }
 
 .joe_main .joe_detail .single-metabox {
@@ -4093,7 +4093,7 @@ html .aplayer .aplayer-lrc {
 }
 
 .switch-video.active {
-	color: var(--focus-color);
+	color: var(--theme);
 }
 
 .featured-video-episode .badg.badg-sm {
@@ -4101,7 +4101,7 @@ html .aplayer .aplayer-lrc {
 }
 
 .switch-video.active .badg {
-	background: var(--focus-color);
+	background: var(--theme);
 	color: #fff;
 }
 

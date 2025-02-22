@@ -69,7 +69,7 @@ body:not(.nav-fixed) .header.show-slide {
 }
 
 .header-slider-search .search-type-but-average .but.active {
-	--this-bg: var(--focus-color);
+	--this-bg: var(--theme);
 	--this-color: #fff
 }
 
@@ -292,7 +292,7 @@ body:not(.nav-fixed) .header.show-slide {
 	position: absolute;
 	width: 100%;
 	top: -10px;
-	background: var(--focus-color);
+	background: var(--theme);
 	height: 5px;
 	border-radius: 0 0 15px 15px;
 	opacity: 0;
@@ -309,7 +309,7 @@ body:not(.nav-fixed) .header.show-slide {
 .navbar-top .nav li a:focus,
 .navbar-top .nav li a:hover {
 	background-color: transparent;
-	color: var(--focus-color);
+	color: var(--theme);
 }
 
 .nav>li>a {
@@ -335,7 +335,7 @@ body:not(.nav-fixed) .header.show-slide {
 
 .navbar-top li.current-menu-item>a,
 .navbar-top li:hover>a {
-	color: var(--focus-color);
+	color: var(--theme);
 }
 
 .navbar-form {
@@ -412,12 +412,12 @@ body:not(.nav-fixed) .header.show-slide {
 }
 
 .navbar-form .form-control:hover {
-	border-color: var(--focus-color);
+	border-color: var(--theme);
 	opacity: .8;
 }
 
 .navbar-form .form-control:focus {
-	border-color: var(--focus-color);
+	border-color: var(--theme);
 	box-shadow: 0 0 2px 3px rgba(64, 158, 255, .4);
 }
 

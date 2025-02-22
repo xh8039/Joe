@@ -71,7 +71,7 @@
 .line-form-line:before {
 	content: '';
 	width: 0;
-	background: var(--focus-color)
+	background: var(--theme)
 }
 
 .line-form-input:focus~.line-form-line:before,
@@ -120,6 +120,6 @@ input:focus~.scale-placeholder {
 }
 
 input:focus~.scale-placeholder {
-	color: var(--focus-color);
+	color: var(--theme);
 	opacity: .9
 }

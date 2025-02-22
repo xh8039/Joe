@@ -65,7 +65,7 @@ html .joe_header__mask.slideout {
 
 .tabbar-item.active,
 .tabbar-item.actived {
-	color: var(--focus-color)
+	color: var(--theme)
 }
 
 .tabbar-item>icon,

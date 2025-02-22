@@ -30,7 +30,8 @@
 	transform: translateX(-50%) perspective(600px) rotateX(-45deg);
 	transition: opacity 0.35s, visibility 0.35s, -webkit-transform 0.35s;
 	transition: opacity 0.35s, visibility 0.35s, transform 0.35s;
-	transition: opacity 0.35s, visibility 0.35s, transform 0.35s, -webkit-transform 0.35s
+	transition: opacity 0.35s, visibility 0.35s, transform 0.35s, -webkit-transform 0.35s;
+	will-change: transform, opacity;
 }
 
 .joe_dropdown__menu::before {
@@ -2299,60 +2300,6 @@
 .action-like .loading.zts {
 	--this-color: var(--theme);
 }
-
-/* .joe_detail__agree {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 15px
-}
-
-.joe_detail__agree .agree {
-	text-align: center;
-	font-size: 12px;
-	color: var(--minor);
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none
-}
-
-.joe_detail__agree .agree .icon {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 42px;
-	height: 42px;
-	border-radius: 50%;
-	background: #f56c6c;
-	cursor: pointer;
-	margin-bottom: 8px
-}
-
-.joe_detail__agree .agree .icon.active {
-	-webkit-animation: box_shadow 1s;
-	animation: box_shadow 1s;
-	box-shadow: 0 0 0 20px rgba(255, 255, 255, 0)
-}
-
-.joe_detail__agree .agree .icon svg {
-	position: absolute;
-	width: 28px;
-	height: 28px;
-	-webkit-transform: scale(0);
-	transform: scale(0);
-	opacity: 0;
-	transition: opacity 0.85s, -webkit-transform 0.85s;
-	transition: transform 0.85s, opacity 0.85s;
-	transition: transform 0.85s, opacity 0.85s, -webkit-transform 0.85s
-}
-
-.joe_detail__agree .agree .icon svg.active {
-	-webkit-transform: scale(1);
-	transform: scale(1);
-	opacity: 1
-} */
 
 .joe_detail__copyright .content {
 	padding: 15px 0;

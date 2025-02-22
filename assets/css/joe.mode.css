@@ -1,142 +1,106 @@
 /* 昼夜模式专用css */
-/* 以下配色为全球公认的一套色彩值，如无必要，无需修改下方色彩值（主题色可以修改） */
-html {
-	--theme: #409eff;
-	--background: #fff;
+/* 使用 light-dark() 函数统一管理配色 */
+:root {
+	color-scheme: light dark;
+
+	/* 主题色保持独立，可单独修改 */
+	--theme: light-dark(#409eff, #54b5db);
+
+	/* 基础配色 */
+	--background: light-dark(#fff, #323335);
 	--background-grey: #f5f5f5;
-	--body-bg-color: #f5f6f7;
-	--back-trn-85: rgba(255, 255, 255, 0.85);
-	--back-trn-75: rgba(255, 255, 255, 0.75);
-	--back-trn-6: rgba(255, 255, 255, 0.6);
-	--float-btn-bg: rgba(200, 200, 200, 0.4);
-	--main-border-color: rgba(50, 50, 50, 0.06);
-	--main: #303133;
-	--routine: #606266;
-	--minor: #909399;
-	--seat: #c0c4cc;
-	--classA: #dcdfe6;
-	--classB: #e4e7ed;
-	--classC: #ebeef5;
-	--classD: #f2f6fc;
+	--body-bg-color: light-dark(#f5f6f7, #292a2d);
+	--back-trn-85: light-dark(rgba(255, 255, 255, 0.85), rgba(35, 35, 35, 0.85));
+	--back-trn-75: light-dark(rgba(255, 255, 255, 0.75), rgba(35, 35, 35, 0.75));
+	--back-trn-6: light-dark(rgba(255, 255, 255, 0.6), rgba(35, 35, 35, 0.6));
+	--float-btn-bg: light-dark(rgba(200, 200, 200, 0.4), rgba(70, 70, 70, 0.4));
+
+	/* 文字颜色 */
+	--main: light-dark(#303133, #b4b6bb);
+	--routine: light-dark(#606266, #888);
+	--minor: light-dark(#909399, #777);
+	--seat: light-dark(#c0c4cc, #666);
+
+	/* 灰度层级 */
+	--classA: light-dark(#dcdfe6, #515253);
+	--classB: light-dark(#e4e7ed, #454545);
+	--classC: light-dark(#ebeef5, #414243);
+	--classD: light-dark(#f2f6fc, #303030);
+
+	/* 渐变系统 */
+	--back-line-color-left: var(--theme);
+	--back-line-color-right: light-dark(#05D1D3, #6a80e3);
+	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
+	--back-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
+
+	/* 阴影系统 */
+	--text-shadow: light-dark(0 1px 2px rgba(0, 0, 0, 0.25), none);
+	--box-shadow: light-dark(0px 0px 20px -5px rgba(158, 158, 158, 0.22), none);
+	--main-shadow: light-dark(rgba(116, 116, 116, 0.08), rgba(24, 24, 24, 0.1));
+
+	/* 扩展配色 */
+	--main-bg-color: light-dark(#fff, #323335);
+	--key-color: light-dark(#333, var(--main));
+	--main-color: light-dark(#4e5358, var(--main));
+	--muted-color: light-dark(#777, #b4b6bb);
+	--muted-2-color: light-dark(#999, #888a8f);
+	--muted-3-color: light-dark(#b1b1b1, #636469);
+	--muted-border-color: light-dark(rgba(0, 0, 0, 0.03), rgba(184, 184, 184, 0.02));
+	--blur-bg: light-dark(#ffffff, rgba(50, 51, 53, 0.8));
+
+	/* 公共样式 */
 	--radius-wrap: 8px;
 	--radius-inner: 3.5px;
 	--main-radius: var(--radius-inner);
-	--text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-	--box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.22);
-	--main-shadow: rgba(116, 116, 116, 0.08);
-	--back-line-color-left: var(--theme);
-	--back-line-color-right: #05D1D3;
-	--back-line: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3);
-	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
-	--back-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
-	--border-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
+	--main-border-color: light-dark(rgba(50, 50, 50, 0.06), rgba(114, 114, 114, 0.1));
 	--transition: 0.1s;
-
-	--main-bg-color: #fff;
-	--key-color: #333;
-	--main-color: #4e5358;
-	--muted-color: #777;
-	--muted-2-color: #999;
-	--muted-3-color: #b1b1b1;
-	--muted-color: #777;
-	--focus-color: var(--theme);
-	--muted-border-color: rgba(0, 0, 0, 0.03);
-	--blur-bg: #ffffff;
+	--border-line-bottom: var(--back-line-bottom);
 	--footer-bg: var(--main-bg-color);
 	--footer-color: var(--muted-2-color);
 }
 
-/* 黑夜模式的配色方案 */
-html[data-night='night'] body {
-	/* --theme: #54b5db; */
-	/* --background: #232323; */
-	--background: #323335;
-	--back-line-color-left: var(--theme);
-	--back-line-color-right: #6a80e3;
-	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
-	--back-trn-85: rgba(35, 35, 35, 0.85);
-	--back-trn-75: rgba(35, 35, 35, 0.75);
-	--back-trn-6: rgba(35, 35, 35, 0.6);
-	/* --main: #999; */
-	--main: #b4b6bb;
-	--routine: #888;
-	--minor: #777;
-	--seat: #666;
-	--classA: #515253;
-	--classB: #454545;
-	--classC: #414243;
-	--classD: #303030;
-	--text-shadow: none;
-	--box-shadow: none;
-
-	--body-bg-color: #292a2d;
-	/* --key-color: #f8fafc; */
-	/* --main-color: #e5eef7; */
-	/* --main-color: #b4b6bb; */
-	--main-color: var(--main);
-	--key-color: var(--main-color);
-	--main-shadow: rgba(24, 24, 24, 0.1);
-	--muted-color: #b4b6bb;
-	--muted-2-color: #888a8f;
-	--muted-3-color: #636469;
-	/* --body-bg-color: #000102; */
-	--main-bg-color: #323335;
-	--muted-bg-color: #2d2e31;
-	--main-border-color: rgba(114, 114, 114, 0.1);
-	--muted-border-color: rgba(184, 184, 184, 0.02);
-	--blur-bg: rgba(50, 51, 53, 0.8);
-	--float-btn-bg: rgba(70, 70, 70, 0.4);
+/* 强制所有元素继承颜色方案 */
+* {
+	color-scheme: inherit;
 }
 
-/* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */
-/* html[data-night='night'] body::before {
-	background: #121212;
-	z-index: -500
-} */
+/* 深色模式下的网页背景颜色及文本颜色 */
 
-html[data-night='night'] .joe_header__above-logo>.light {
+/* 保留需要切换的图片样式 */
+body.dark-theme .joe_header__above-logo>.light,
+body.dark-theme .footer .footer-logo>.light {
 	display: none;
 }
 
-html[data-night='night'] .joe_header__above-logo>.dark {
+body.dark-theme .joe_header__above-logo>.dark,
+body.dark-theme .footer .footer-logo>.dark {
 	display: block;
 }
-/* 
-html[data-night='night'] .joe_detail__article-video .episodes .box .item:not(.active) {
-	background: var(--classC)
-} */
 
-html[data-night='night'] .joe_detail__article blockquote {
+/* 保留特殊元素样式 */
+body.dark-theme .joe_detail__article blockquote {
 	background: var(--classD);
 	color: var(--routine);
-	border-color: var(--classA)
+	border-color: var(--classA);
 }
 
-html[data-night='night'] .joe_detail__article code:not([class]) {
+body.dark-theme .joe_detail__article code:not([class]) {
 	background: #fdf0ec38;
-	color: #a6aba8
+	color: #a6aba8;
 }
 
-html[data-night='night'] .joe_detail__article-anote {
-	color: #ffffff9c
+body.dark-theme .joe_detail__article-anote {
+	color: #ffffff9c;
 }
 
-html[data-night='night'] .joe_detail__article-abtn {
-	color: #ffffff9c
+body.dark-theme .joe_detail__article-abtn {
+	color: #ffffff9c;
 }
 
-html[data-night='night'] .joe_detail__overdue-wrapper {
-	background: var(--classD)
+body.dark-theme .joe_detail__overdue-wrapper {
+	background: var(--classD);
 }
 
-html[data-night='night'] .joe_list>li {
+body.dark-theme .joe_list>li {
 	background: var(--background);
-}
-
-html[data-night='night'] .footer .footer-logo>.light {
-	display: none;
-}
-
-html[data-night='night'] .footer .footer-logo>.dark {
-	display: block;
 }

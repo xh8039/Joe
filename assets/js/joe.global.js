@@ -25,75 +25,43 @@ Joe.DOMContentLoaded.global ||= () => {
 	}
 
 	/* 初始化昼夜模式 */
-	{
-		if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
-		} else {
-			$("html").removeAttr("data-night");
-		}
-		if (document.querySelector('.toggle-theme')) {
-			$(".toggle-theme").on("click", () => {
-				$(".joe_action_item.mode").click();
-			});
-		}
-		if (document.querySelector('.joe_action_item.mode')) {
-			if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
-				$(".joe_action_item.mode .icon-1").addClass("active");
-				$(".joe_action_item.mode .icon-2").removeClass("active");
-				$('body').addClass('dark-theme');
-				let switchSrc = $('.navbar-logo>img').attr('switch-src');
-				let src = $('.navbar-logo>img').attr('src');
-				$('.navbar-logo>img').attr('src', switchSrc);
-				$('.navbar-logo>img').attr('switch-src', src);
-				if (!Joe.IS_MOBILE) {
-					$(".joe_action_item.mode").attr('title', '日间模式');
-					$(".joe_action_item.mode").tooltip({
-						container: "body"
-					});
-				}
+	(() => {
+		if (!document.querySelector('.toggle-theme')) return;
+		const modeElement = $(".joe_action_item.mode");
+		const setTheme = (theme = null) => {
+			if (theme) {
+				Joe.themeManager.setTheme(theme);
 			} else {
-				$(".joe_action_item.mode .icon-1").removeClass("active");
-				$(".joe_action_item.mode .icon-2").addClass("active");
-				$('body').removeClass('dark-theme');
-				if (!Joe.IS_MOBILE) {
-					$(".joe_action_item.mode").attr('title', '夜间模式');
-					$(".joe_action_item.mode").tooltip({
-						container: "body"
-					});
-				}
+				theme = Joe.themeManager.currentTheme;
 			}
-			$(".joe_action_item.mode").on("click", () => {
-				let switchSrc = $('.navbar-logo>img').attr('switch-src');
-				let src = $('.navbar-logo>img').attr('src');
-				$('.navbar-logo>img').attr('src', switchSrc);
-				$('.navbar-logo>img').attr('switch-src', src);
-				if (localStorage.getItem("data-night") || $("html").attr("data-night") == 'night') {
-					$(".joe_action_item.mode .icon-1").removeClass("active");
-					$(".joe_action_item.mode .icon-2").addClass("active");
-					$('body').removeClass('dark-theme');
-					$("html").removeAttr("data-night");
-					localStorage.removeItem("data-night");
-					if (!Joe.IS_MOBILE) {
-						$(".joe_action_item.mode").attr('title', '夜间模式');
-						$(".joe_action_item.mode").tooltip({
-							container: "body"
-						});
-					}
-				} else {
-					$(".joe_action_item.mode .icon-1").addClass("active");
-					$(".joe_action_item.mode .icon-2").removeClass("active");
-					$('body').addClass('dark-theme');
-					$("html").attr("data-night", "night");
-					localStorage.setItem("data-night", "night");
-					if (!Joe.IS_MOBILE) {
-						$(".joe_action_item.mode").attr('title', '日间模式');
-						$(".joe_action_item.mode").tooltip({
-							container: "body"
-						});
-					}
-				}
-			});
+
+			const isDark = theme === 'dark';
+
+			// 切换图标状态
+			modeElement.find(".icon-1").toggleClass("active", isDark);
+			modeElement.find(".icon-2").toggleClass("active", !isDark);
+
+			// 更新提示文字
+			if (!Joe.IS_MOBILE) {
+				const title = isDark ? '日间模式' : '夜间模式';
+				modeElement.attr('title', title).tooltip({ container: "body", trigger: 'hover' });
+			}
 		}
-	}
+		setTheme(localStorage.getItem('theme'));
+		// 主切换按钮
+		$(document.body).on('click', '.toggle-theme', () => {
+			Joe.themeManager.toggle();
+			setTheme();
+			// 切换 Logo
+			const logoElement = $('.navbar-logo>img');
+			if (logoElement.length) {
+				const currentSrc = logoElement.attr('src');
+				const switchSrc = logoElement.attr('switch-src');
+				logoElement.attr('src', switchSrc);
+				logoElement.attr('switch-src', currentSrc);
+			}
+		});
+	})();
 
 	/* 激活侧边栏人生倒计时功能 */
 	{

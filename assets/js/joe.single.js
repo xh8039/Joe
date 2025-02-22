@@ -154,22 +154,22 @@ Joe.DOMContentLoaded.single ||= () => {
 					if (res.code != 1) return;
 					count = flag ? count - 1 : count + 1;
 					if (count < 0) count = 0;
+					$('.action-like>count').text(count);
+					$('.meta-like>span').text(count);
 					if (flag) {
-						$('.action-like>count').html(count);
 						const index = agreeArr.findIndex(_ => _ === Joe.CONTENT.cid);
 						agreeArr.splice(index, 1);
 						$('.action-like').removeClass('active');
 						$('.action-like>text').text('点赞');
 						autolog.log('取消点赞', 'info');
 					} else {
-						$('.action-like>count').html(count);
 						agreeArr.push(Joe.CONTENT.cid);
 						$('.action-like').addClass('active');
 						$('.action-like>text').text('已赞');
 						autolog.log('已赞，感谢您的支持！', 'success');
 					}
 					localStorage.setItem('content-agree', JSON.stringify(agreeArr));
-					$('.action-like').css('pointer-events', '')
+					$('.action-like').css('pointer-events', '');
 				},
 				complete() {
 					_loading = false;

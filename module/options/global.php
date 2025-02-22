@@ -17,8 +17,8 @@ $form->addInput($JTurbolinks);
 
 $JThemeMode = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JThemeMode',
-	['auto' => '早6晚7自动切换', 'light' => '日间亮色主题（默认）', 'night' => '夜间深色主题'],
-	'light',
+	['system' => '跟随系统（默认）', 'light' => '日间亮色主题', 'dark' => '夜间深色主题'],
+	'system',
 	'默认主题风格',
 	'介绍：此处设置为默认风格，实际显示风格以用户设置优先。如需固定风格，则关闭还需下方主题切换按钮'
 );

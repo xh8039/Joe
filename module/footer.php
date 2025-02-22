@@ -89,7 +89,7 @@ if ($this->options->JFooterMode == 'commercial') {
 						if ($this->options->JBirthDay) {
 						?>
 							<div class="footer-muted em09 mb10">
-								已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒
+								本站已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒
 							</div>
 							<?php
 						}
@@ -199,7 +199,7 @@ if ($this->options->JMusic == 'on') {
 	<?php
 	if ($this->options->JThemeModeSwitch == 'on') {
 	?>
-		<div class="joe_action_item mode" data-toggle="tooltip" data-placement="left" title="夜间模式">
+		<div class="joe_action_item mode toggle-theme" data-toggle="tooltip" data-placement="left" title="夜间模式">
 			<i class="icon-1 fa fa-sun-o"></i>
 			<i class="icon-2 fa fa-moon-o"></i>
 		</div>

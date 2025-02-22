@@ -45,12 +45,7 @@ $user = json_encode($user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 	Joe.options.index = Joe.options.index.replace(/^https?:/i, location.protocol);
 	Joe.DOMContentLoaded.event = Joe.options.JTurbolinks == 'on' ? 'turbolinks:load' : 'DOMContentLoaded';
 
-	// 19:00 PM - 6:00 AM 是黑夜
-	if (Joe.options.JThemeMode == 'auto' && ((new Date()).getHours() >= 19 || (new Date()).getHours() < 6)) {
-		document.querySelector("html").setAttribute("data-night", "night");
-	}
-	if (Joe.options.JThemeMode == 'night') document.querySelector("html").setAttribute("data-night", "night");
-	localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
+	if (Joe.options.JThemeMode && !localStorage.getItem('theme')) localStorage.setItem('theme', Joe.options.JThemeMode);
 </script>
 <style>
 	<?php

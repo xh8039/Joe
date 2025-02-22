@@ -31,6 +31,8 @@ if (typeof AudioManager === 'function') {
 	window.Joe.AudioManager = new AudioManager({ base: Joe.THEME_URL + 'assets/audio/' });
 }
 
+if (typeof ThemeManager === 'function') window.Joe.themeManager = new ThemeManager();
+
 window.Joe.httpBuildQuery = (object) => {
 	if (object === null || typeof object !== 'object') return '';
 	return Object.keys(object).map(k => {

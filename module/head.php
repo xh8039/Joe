@@ -75,6 +75,7 @@ if ($this->options->JLoading != 'off') : ?>
 <!-- <script src="<?= joe\theme_url('assets/plugin/layer/3.7.0/layer.js') ?>" data-turbolinks-permanent></script> -->
 <script src="<?= joe\theme_url('assets/plugin/autolog.js/3.0/autolog.js'); ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/plugin/yihang/AudioManager.js') ?>" data-turbolinks-permanent></script>
+<script src="<?= joe\theme_url('assets/plugin/yihang/ThemeManager.js') ?>" data-turbolinks-permanent></script>
 <script src="<?= joe\theme_url('assets/js/joe.function.js'); ?>" data-turbolinks-permanent></script>
 
 <?php if ($this->is('single')) : ?>

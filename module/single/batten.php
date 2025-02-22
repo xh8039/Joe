@@ -41,7 +41,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<svg class="icon" aria-hidden="true">
 					<use xlink:href="#icon-like"></use>
 				</svg>
-				<?= joe\getAgree($this) ?>
+				<span><?= joe\getAgree($this) ?></span>
 			</item>
 		</div>
 		<div class="clearfix ml6">

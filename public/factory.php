@@ -84,7 +84,7 @@ class Intercept
 					return false;
 				}
 			}
-		} else if (self::waiting($comment['text'])) {
+		} else if ($GLOBALS['JOE_USER']->group !== 'administrator' && self::waiting($comment['text'])) {
 			$comment['status'] = 'waiting';
 		}
 
@@ -261,6 +261,6 @@ class Editor
 				$('select[name=visibility]').append(`<option value="private">私密</option>`);
 			})
 		</script>
-	<?php
+<?php
 	}
 }

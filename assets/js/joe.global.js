@@ -19,6 +19,16 @@ Joe.DOMContentLoaded.global ||= () => {
 		detectIE() && alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。');
 	}
 
+	{
+		if (!CSS.supports('color', 'light-dark(white, black)')) {
+			const link = document.createElement('link');
+			link.type = 'text/css';
+			link.rel = 'stylesheet';
+			link.href = Joe.THEME_URL + 'assets/css/joe.mode.min.css';
+			document.head.appendChild(link);
+		}
+	}
+
 	/* 设置$.getScript()方法缓存 */
 	{
 		jQuery.ajaxSetup({ cache: true });

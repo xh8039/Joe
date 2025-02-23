@@ -3,30 +3,15 @@ Joe.DOMContentLoaded.global ||= () => {
 
 	/* 检测IE */
 	{
-		function detectIE() {
-			var n = window.navigator.userAgent,
-				e = n.indexOf("MSIE ");
-			if (e > 0) {
-				return parseInt(n.substring(e + 5, n.indexOf(".", e)), 10)
-			}
-			if (n.indexOf("Trident/") > 0) {
-				var r = n.indexOf("rv:");
-				return parseInt(n.substring(r + 3, n.indexOf(".", r)), 10)
-			}
-			var i = n.indexOf("Edge/");
-			return i > 0 && parseInt(n.substring(i + 5, n.indexOf(".", i)), 10)
-		};
-		detectIE() && alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。');
+		Joe.detectIE() && alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。');
 	}
 
-	{
-		if (!CSS.supports('color', 'light-dark(white, black)')) {
-			const link = document.createElement('link');
-			link.type = 'text/css';
-			link.rel = 'stylesheet';
-			link.href = Joe.THEME_URL + 'assets/css/joe.mode.min.css';
-			document.head.appendChild(link);
-		}
+	if (!CSS.supports('color', 'light-dark(white, black)')) {
+		const link = document.createElement('link');
+		link.type = 'text/css';
+		link.rel = 'stylesheet';
+		link.href = Joe.THEME_URL + 'assets/css/joe.mode.min.css';
+		document.head.appendChild(link);
 	}
 
 	/* 设置$.getScript()方法缓存 */

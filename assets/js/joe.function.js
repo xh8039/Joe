@@ -37,6 +37,20 @@ if (typeof AudioManager === 'function') {
 
 if (typeof ThemeManager === 'function') window.Joe.themeManager = new ThemeManager();
 
+window.Joe.detectIE = () => {
+	var n = window.navigator.userAgent,
+		e = n.indexOf("MSIE ");
+	if (e > 0) {
+		return parseInt(n.substring(e + 5, n.indexOf(".", e)), 10)
+	}
+	if (n.indexOf("Trident/") > 0) {
+		var r = n.indexOf("rv:");
+		return parseInt(n.substring(r + 3, n.indexOf(".", r)), 10)
+	}
+	var i = n.indexOf("Edge/");
+	return i > 0 && parseInt(n.substring(i + 5, n.indexOf(".", i)), 10)
+}
+
 window.Joe.httpBuildQuery = (object) => {
 	if (object === null || typeof object !== 'object') return '';
 	return Object.keys(object).map(k => {

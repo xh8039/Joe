@@ -460,6 +460,18 @@ Joe.DOMContentLoaded.global ||= () => {
 		}
 	}
 
+	/** 初始化当前网速 */
+	(() => {
+		if (!document.querySelector('.connection-downlink')) return;
+		if (!navigator.connection) {
+			document.querySelector('.connection-downlink').parentElement.remove();
+			return;
+		}
+		setInterval(() => {
+			document.querySelector('.connection-downlink').innerText = `${navigator.connection.downlink} Mb/s`;
+		}, 500);
+	})();
+
 	/* 切换标签显示不同的标题 */
 	{
 		if (Joe.options.JDocumentTitle) {

@@ -1234,6 +1234,7 @@ function markdown_hide($content, $post, $login)
 	} else {
 		// 获取用户邮箱地址，登录用户使用全局变量，未登录用户使用文章记住的邮箱
 		$userEmail = $login ? $GLOBALS['JOE_USER']->mail : $post->remember('mail', true);
+		$comment = null;
 		if (!empty($userEmail)) {
 			// 查询评论信息
 			$comment = Db::name('comments')->where(['cid' => $post->cid, 'mail' => $userEmail])->find();

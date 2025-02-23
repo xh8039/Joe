@@ -16,6 +16,10 @@ if (window.autolog) {
 				error: 'SystemDelete.ogg',
 			};
 			if (typeList[type]) Joe.AudioManager.play(`notification/${typeList[type]}`);
+			if ("vibrate" in navigator) {
+				if (type == 'warn') navigator.vibrate(200);
+				if (type == 'error') navigator.vibrate(500);
+			}
 		}
 		return log(text, type, time, autoClose);
 	}

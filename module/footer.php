@@ -88,33 +88,32 @@ if ($this->options->JFooterMode == 'commercial') {
 						<?php
 						if ($this->options->JBirthDay) {
 						?>
+							<div class="footer-muted em09 mb10">本机当前下行带宽网速：<span class="connection-downlink" style="color: var(--theme);"></span></div>
 							<div class="footer-muted em09 mb10">
 								本站已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒
 							</div>
-							<?php
-						}
-						if (!empty($this->options->baidu_statistics)) {
-							if (joe\isMobile()) {
-							?>
-								<div class="footer-muted em09" id="statistics">
-									<span>今日浏览 <strong>...</strong> 次丨</span><span>昨日访客 <strong>...</strong> 位丨</span><span>本月访问 <strong>...</strong> 次</span>
-								</div>
-							<?php
-							} else {
-							?>
-								<div class="footer-muted em09" id="statistics">
-									<p>
-										<span>今日均访 <strong>...</strong> 秒丨</span><span>昨日均访 <strong>...</strong> 秒丨</span><span>本月均访 <strong>...</strong> 秒</span>
-									</p>
-									<p>
-										<span>今日访客 <strong>...</strong> 位丨</span><span>昨日访客 <strong>...</strong> 位丨</span><span>本月访客 <strong>...</strong> 位</span>
-									</p>
-									<p>
-										<span>今日浏览 <strong>...</strong> 次丨</span><span>昨日浏览 <strong>...</strong> 次丨</span><span>本月浏览 <strong>...</strong> 次</span>
-									</p>
-								</div>
 						<?php
-							}
+						}
+						if (joe\isMobile()) {
+						?>
+							<div class="footer-muted em09" id="statistics">
+								<span>今日浏览 <strong>...</strong> 次丨</span><span>昨日访客 <strong>...</strong> 位丨</span><span>本月访问 <strong>...</strong> 次</span>
+							</div>
+						<?php
+						} else {
+						?>
+							<div class="footer-muted em09" id="statistics">
+								<p>
+									<span>今日均访 <strong>...</strong> 秒丨</span><span>昨日均访 <strong>...</strong> 秒丨</span><span>本月均访 <strong>...</strong> 秒</span>
+								</p>
+								<p>
+									<span>今日访客 <strong>...</strong> 位丨</span><span>昨日访客 <strong>...</strong> 位丨</span><span>本月访客 <strong>...</strong> 位</span>
+								</p>
+								<p>
+									<span>今日浏览 <strong>...</strong> 次丨</span><span>昨日浏览 <strong>...</strong> 次丨</span><span>本月浏览 <strong>...</strong> 次</span>
+								</p>
+							</div>
+						<?php
 						}
 						?>
 					</li>

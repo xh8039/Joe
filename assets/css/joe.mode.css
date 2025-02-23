@@ -65,7 +65,7 @@
 }
 
 /* 深色模式下的网页背景颜色及文本颜色 */
-
+/* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */
 /* 保留需要切换的图片样式 */
 body.dark-theme .joe_header__above-logo>.light,
 body.dark-theme .footer .footer-logo>.light {

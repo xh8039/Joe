@@ -7,6 +7,7 @@ Joe.DOMContentLoaded.global ||= () => {
 	}
 
 	if (!CSS.supports('color', 'light-dark(white, black)')) {
+		alert('当前浏览器版本低');
 		const link = document.createElement('link');
 		link.type = 'text/css';
 		link.rel = 'stylesheet';

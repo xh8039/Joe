@@ -87,3 +87,44 @@ html body.dark-theme {
 	--blur-bg: rgba(50, 51, 53, 0.8);
 	--float-btn-bg: rgba(70, 70, 70, 0.4);
 }
+
+/* 深色模式下的网页背景颜色及文本颜色 */
+/* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */
+/* 保留需要切换的图片样式 */
+body.dark-theme .joe_header__above-logo>.light,
+body.dark-theme .footer .footer-logo>.light {
+	display: none;
+}
+
+body.dark-theme .joe_header__above-logo>.dark,
+body.dark-theme .footer .footer-logo>.dark {
+	display: block;
+}
+
+/* 保留特殊元素样式 */
+body.dark-theme .joe_detail__article blockquote {
+	background: var(--classD);
+	color: var(--routine);
+	border-color: var(--classA);
+}
+
+body.dark-theme .joe_detail__article code:not([class]) {
+	background: #fdf0ec38;
+	color: #a6aba8;
+}
+
+body.dark-theme .joe_detail__article-anote {
+	color: #ffffff9c;
+}
+
+body.dark-theme .joe_detail__article-abtn {
+	color: #ffffff9c;
+}
+
+body.dark-theme .joe_detail__overdue-wrapper {
+	background: var(--classD);
+}
+
+body.dark-theme .joe_list>li {
+	background: var(--background);
+}

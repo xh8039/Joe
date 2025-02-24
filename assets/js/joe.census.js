@@ -29,11 +29,11 @@ Joe.DOMContentLoaded.census ||= () => {
 				dataType: 'json',
 				success(res) {
 					if (!res.status) {
-						autolog.log('服务器接口异常！', 'warn');
+						autolog.warn('服务器接口异常！');
 						return;
 					}
 					if (res.message) {
-						autolog.log(res.message, 'warn');
+						autolog.warn(res.message);
 						return;
 					}
 					{
@@ -323,7 +323,7 @@ Joe.DOMContentLoaded.census ||= () => {
 				success(res) {
 					if (!res.length) {
 						$('.joe_census__filing .item.load').remove();
-						return autolog.log('没有更多内容了', 'warn');
+						return autolog.warn('没有更多内容了');
 					}
 					let htmlStr = '';
 					res.forEach(item => {

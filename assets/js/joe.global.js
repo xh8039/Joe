@@ -6,14 +6,6 @@ Joe.DOMContentLoaded.global ||= () => {
 		Joe.detectIE() && alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。');
 	}
 
-	if (!CSS.supports('color', 'light-dark(white, black)')) {
-		const link = document.createElement('link');
-		link.type = 'text/css';
-		link.rel = 'stylesheet';
-		link.href = Joe.THEME_URL + 'assets/css/joe.mode.min.css';
-		document.head.appendChild(link);
-	}
-
 	/* 设置$.getScript()方法缓存 */
 	{
 		jQuery.ajaxSetup({ cache: true });
@@ -289,7 +281,7 @@ Joe.DOMContentLoaded.global ||= () => {
 					}
 					if (data.message) {
 						$("#statistics").remove();
-						data.code == 200 ? autolog.log('百度统计：' + data.message, 'info') : autolog.log('百度统计：' + data.message, 'error');
+						data.code == 200 ? autolog.info('百度统计：' + data.message) : autolog.error('百度统计：' + data.message);
 						return;
 					}
 					if (document.querySelector('#statistics>p')) {
@@ -463,8 +455,9 @@ Joe.DOMContentLoaded.global ||= () => {
 			return;
 		}
 		setInterval(() => {
+			if (!document.querySelector('.connection-downlink')) return;
 			document.querySelector('.connection-downlink').innerText = `${navigator.connection.downlink} Mb/s`;
-		}, 500);
+		}, 10000);
 	})();
 
 	/* 切换标签显示不同的标题 */
@@ -724,7 +717,7 @@ Joe.DOMContentLoaded.global ||= () => {
 				try {
 					jsonData = JSON.parse(data);
 					if (jsonData) {
-						autolog.log(jsonData.message, 'error');
+						autolog.error(jsonData.message);
 						_modal.modal('hide');
 						return;
 					}
@@ -776,7 +769,7 @@ Joe.DOMContentLoaded.global ||= () => {
 				if (!is_active) {
 					//添加
 					if (_group.find('[data-for="_for"].active').length >= multiple) {
-						return autolog.log('最多可选择' + multiple + '个', 'info');
+						return autolog.info('最多可选择' + multiple + '个');
 					}
 				}
 

@@ -18,10 +18,10 @@ Joe.DOMContentLoaded.user ||= () => {
 				console.log(xhr, error);
 				Joe.btnLoad(button, false);
 				const message = xhr.responseText?.replace(/<[^>]*>/g, "").replace(/\s+/g, ' ').trim() || error || '请求异常：' + textStatus;
-				autolog.log(message, 'error');
+				autolog.error(message);
 			},
 			success(data) {
-				autolog.log(data.message, data.code == 200 ? 'success' : 'warn');
+				autolog[data.code == 200 ? 'success' : 'warn'](data.message);
 				if (data.location) {
 					const location = data.location == true ? window.Joe.referer : data.location;
 					setTimeout(() => window.location.href = location, 1500);
@@ -82,7 +82,7 @@ Joe.DOMContentLoaded.user ||= () => {
 		}
 		$("#send-captcha").click(function () {
 			let email = $("#user-form input[name=email]").val();
-			if (!email) return autolog.log('请输入邮箱后发送验证码', 'warn');
+			if (!email) return autolog.warn('请输入邮箱后发送验证码');
 			let data = { email: email };
 			if (document.getElementById('captcha')) data.captcha = $("#captcha").val();
 			ajax({

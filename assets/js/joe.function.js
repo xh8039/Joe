@@ -5,30 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.Joe.$body = $(document.body);
 });
 
-if (window.autolog) {
-	const log = autolog.log
-	autolog.log = (text = "", type = "", time = 2500, autoClose = true) => {
-		if (Joe.options.UISoundEffect) {
-			const typeList = {
-				info: 'WaterDay.ogg',
-				success: 'WaterEvening.ogg',
-				warn: 'WaterDropPreview.ogg',
-				error: 'SystemDelete.ogg',
-			};
-			if (typeList[type]) Joe.AudioManager.play(`notification/${typeList[type]}`);
-			if ("vibrate" in navigator) {
-				if (type == 'warn') navigator.vibrate(200);
-				if (type == 'error') navigator.vibrate(500);
-			}
-		}
-		return log(text, type, time, autoClose);
-	}
-	autolog.info = message => autolog.log(message, 'info');
-	autolog.success = message => autolog.log(message, 'success');
-	autolog.warn = message => autolog.log(message, 'warn');
-	autolog.error = message => autolog.log(message, 'error');
-}
-
 window.Joe.WeakMap = new WeakMap;
 
 if (typeof AudioManager === 'function') {
@@ -195,9 +171,9 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 }
 
 window.Joe.clipboard = (content, success = undefined, error = undefined) => {
-	if (success == undefined) success = () => { window.autolog ? autolog.log('复制成功', 'success') : alert('复制成功') };
+	if (success == undefined) success = () => { window.autolog ? autolog.success('复制成功') : alert('复制成功') };
 	if (location.protocol == 'https:' && 'clipboard' in navigator) {
-		if (error == undefined) error = () => { window.autolog ? autolog.log('复制失败！', 'error') : alert('复制失败！') };
+		if (error == undefined) error = () => { window.autolog ? autolog.error('复制失败！') : alert('复制失败！') };
 		navigator.clipboard.writeText(content).then(success, error);
 	} else {
 		let aux = document.createElement("input");
@@ -585,7 +561,7 @@ function zib_ajax(_this, data, success, noty, no_loading) {
 
 	var _text = _this.html();
 	var _loading = no_loading ? _text : '<i class="loading mr6"></i><text>请稍候</text>';
-	noty != 'stop' && autolog.log(noty || '正在处理请稍后...', 'load', '', 'wp_ajax', 'warn');
+	noty != 'stop' && autolog.warn(noty || '正在处理请稍后...', 'load', '', 'wp_ajax');
 	_this.attr('disabled', true).html(_loading);
 	var _url = _this.attr('ajax-href') || window.Joe.BASE_API;
 
@@ -601,7 +577,7 @@ function zib_ajax(_this, data, success, noty, no_loading) {
 			}
 			console.error('ajax请求错误，错误信息如下：', n);
 			// Qmsg.error(_msg, 'danger', '', noty != 'stop' ? 'wp_ajax' : '');
-			autolog.log(_msg, 'error');
+			autolog.error(_msg);
 			_this.attr('disabled', false).html(_text);
 		},
 		success: function (n) {
@@ -612,10 +588,10 @@ function zib_ajax(_this, data, success, noty, no_loading) {
 			}
 			if (noty != 'stop') {
 				// Qmsg.success(n.msg || '处理完成', ys, '', 'wp_ajax');
-				autolog.log(n.msg || '处理完成', 'success');
+				autolog.success(n.msg || '处理完成');
 			} else if (n.msg) {
 				// Qmsg.success(n.msg, ys);
-				autolog.log(n.msg, 'success');
+				autolog.success(n.msg);
 			}
 
 			_this.attr('disabled', false).html(_text).trigger('zib_ajax.success', n); //完成

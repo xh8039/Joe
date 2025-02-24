@@ -34,7 +34,10 @@ if ($this->options->JLoading != 'off') : ?>
 <?php endif; ?>
 
 <!-- 昼夜模式配色表 -->
-<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
+<link rel="stylesheet" id="joe-mode-css" href="<?= joe\theme_url('assets/css/joe.mode.css'); ?>">
+<script data-turbolinks-permanent>
+	if (!CSS.supports('color', 'light-dark(white, black)')) document.getElementById('joe-mode-css').href = `<?= joe\theme_url('assets/css/joe.mode.min.css'); ?>`;
+</script>
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
 <link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css', false); ?>">

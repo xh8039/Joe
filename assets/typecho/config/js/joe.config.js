@@ -67,12 +67,12 @@ window.Joe.update = (type = 'passive') => {
 					layer.alert(`<p>最怕问初衷，大梦成空。</p><p>眉间鬓上老英雄，剑甲鞮鍪封厚土，说甚擒龙。</p><p>壮志付西风，逝去无踪。</p><p>少年早作一闲翁，诗酒琴棋终日里，岁月匆匆。</p><p>不更新等着养老吗？</p>`);
 				});
 			} else if (type == 'active') {
-				autolog.log(data.message, 'success');
+				autolog.success(data.message);
 			}
 		},
 		error: () => {
 			layer.close(loading);
-			autolog.log('请求错误，请检查您的网络', 'error');
+			autolog.error('请求错误，请检查您的网络');
 		}
 	});
 }
@@ -93,7 +93,7 @@ window.Joe.backup = (action = 'backup') => {
 		},
 		error: () => {
 			layer.close(loading);
-			autolog.log('请求错误，请检查您的网络', 'error');
+			autolog.error('请求错误，请检查您的网络');
 		}
 	});
 }
@@ -110,7 +110,7 @@ window.Joe.mailTest = () => {
 		},
 		error: () => {
 			layer.close(loading);
-			autolog.log('请求错误，请检查您的网络', 'error');
+			autolog.error('请求错误，请检查您的网络');
 		}
 	});
 }

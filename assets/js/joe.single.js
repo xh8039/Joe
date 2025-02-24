@@ -62,7 +62,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			}
 			span.click(() => {
 				Joe.clipboard(text, () => {
-					autolog.log(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
+					autolog.success(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, false);
 				});
 			});
 			$(item).append(span);
@@ -74,7 +74,7 @@ Joe.DOMContentLoaded.single ||= () => {
 	(() => {
 		if (!document.querySelector('.joe_detail__article')) return;
 		document.querySelector('.joe_detail__article').addEventListener('copy', () => {
-			autolog.log(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, 'warn', false);
+			autolog.warn(`本文版权属于 ${Joe.options.title} 转载请标明出处！`, false);
 		});
 	})();
 
@@ -161,12 +161,12 @@ Joe.DOMContentLoaded.single ||= () => {
 						agreeArr.splice(index, 1);
 						$('.action-like').removeClass('active');
 						$('.action-like>text').text('点赞');
-						autolog.log('取消点赞', 'info');
+						autolog.info('取消点赞');
 					} else {
 						agreeArr.push(Joe.CONTENT.cid);
 						$('.action-like').addClass('active');
 						$('.action-like>text').text('已赞');
-						autolog.log('已赞，感谢您的支持！', 'success');
+						autolog.success('已赞，感谢您的支持！');
 					}
 					localStorage.setItem('content-agree', JSON.stringify(agreeArr));
 					$('.action-like').css('pointer-events', '');
@@ -186,7 +186,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			e.preventDefault();
 			const url = $(this).attr('action') + '&time=' + +new Date();
 			const protectPassword = $(this).find('input[type="password"]').val();
-			if (protectPassword.trim() === '') return autolog.log('请输入访问密码！', 'info');
+			if (protectPassword.trim() === '') return autolog.info('请输入访问密码！');
 			if (isSubmit) return;
 			isSubmit = true;
 			$.ajax({
@@ -206,7 +206,7 @@ Joe.DOMContentLoaded.single ||= () => {
 						if (_.parentNode.className === 'container') str = _;
 					});
 					if (!/Joe/.test(res)) {
-						autolog.log(str.textContent.trim() || '', 'warn');
+						autolog.warn(str.textContent.trim() || '');
 						isSubmit = false;
 						$('.joe_comment__respond-form .foot .submit button').html('发表评论');
 					} else {
@@ -279,7 +279,7 @@ Joe.DOMContentLoaded.single ||= () => {
 		let button = document.querySelector('.share-btn.copy');
 		button.addEventListener('click', () => {
 			window.Joe.clipboard(button.dataset.clipboardText, () => {
-				autolog.log('链接已复制！', 'success');
+				autolog.success('链接已复制！');
 			});
 		});
 	})();

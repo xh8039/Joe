@@ -67,15 +67,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			success(data) {
 				$('.friend_submit .submit').html('立即提交');
 				if (data.code == 200) {
-					autolog.log(data.msg, 'success');
+					autolog.success(data.msg);
 				} else {
-					autolog.log(data.msg, 'warn');
+					autolog.warn(data.msg);
 				}
 			},
 			error(xhr, status, error) {
 				console.log(xhr);
 				$('.friend_submit .submit').html('立即提交');
-				autolog.log('提交失败！' + HtmlTextContent(xhr.responseText), 'error');
+				autolog.error('提交失败！' + HtmlTextContent(xhr.responseText));
 			}
 		});
 	});

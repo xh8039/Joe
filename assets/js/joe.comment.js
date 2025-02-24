@@ -96,10 +96,10 @@ Joe.DOMContentLoaded.comment ||= () => {
 					$('.joe_comment__title small').html(`共${data.commentsNum}条`);
 					$('.comment-list__item[data-coid="' + coid + '"]').hide('fast', () => {
 						$('.comment-list__item[data-coid="' + coid + '"]').remove();
-						autolog.log(`评论 ${coid} 已${operate}`, 'success');
+						autolog.success(`评论 ${coid} 已${operate}`);
 					});
 				} else {
-					autolog.log(data.message, 'error', false);
+					autolog.error(data.message, false);
 					$button.html(button_html);
 					$button.removeClass('disabled');
 				}
@@ -287,9 +287,9 @@ Joe.DOMContentLoaded.comment ||= () => {
 
 		// 表单验证函数
 		function validateForm(author, mail, text, type) {
-			if (!author.trim()) return autolog.log("请输入昵称！", 'info');
-			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return autolog.log("请输入正确的邮箱！", 'info');
-			if (type == 'text' && !text.trim()) return autolog.log("请输入评论内容！", 'info');
+			if (!author.trim()) return autolog.info("请输入昵称！");
+			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) return autolog.info("请输入正确的邮箱！");
+			if (type == 'text' && !text.trim()) return autolog.info("请输入评论内容！");
 			return true;
 		}
 
@@ -364,7 +364,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 					}
 				},
 				success() {
-					autolog.log('发送成功', 'success');
+					autolog.success('发送成功');
 					$('.joe_comment__cancle').trigger('click');
 					if (Joe.IS_MOBILE) $('.comment-list__item .content').tooltip('destroy');
 				},
@@ -378,7 +378,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 				error(xhr, status, error) {
 					const responseText = xhr.responseText;
 					const msg = responseText.match(/<div class="container">\s+(.+)\s+<\/div>/)?.[1];
-					autolog.log(msg || '发送失败！请刷新重试！', 'warn');
+					autolog.warn(msg || '发送失败！请刷新重试！');
 				}
 			});
 		});

@@ -570,7 +570,7 @@ Joe.DOMContentLoaded.short ||= () => {
 			// 绑定复制功能
 			copyButton.addEventListener('click', () => {
 				Joe.clipboard(text, () => {
-					autolog.log(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, 'success', false);
+					autolog.success(`代码已复制 代码版权属于 ${Joe.options.title} 转载请标明出处！`, false);
 				});
 			});
 			// 将复制按钮添加到父元素

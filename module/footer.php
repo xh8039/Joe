@@ -339,7 +339,7 @@ if (\think\helper\Str::contains($this->options->JCustomFont, '||')) {
 	$type = $cookie . '__typecho_notice_type';
 
 	if (isset($_COOKIE[$notice]) && isset($_COOKIE[$type]) && ($_COOKIE[$type] == 'success' || $_COOKIE[$type] == 'notice' || $_COOKIE[$type] == 'error')) { ?>
-		autolog.log("<?php echo preg_replace('#\[\"(.*?)\"\]#', '$1', $_COOKIE[$notice]); ?>！", 'info');
+		autolog.info("<?php echo preg_replace('#\[\"(.*?)\"\]#', '$1', $_COOKIE[$notice]); ?>！");
 	<?php }
 
 	Typecho_Cookie::delete('__typecho_notice');

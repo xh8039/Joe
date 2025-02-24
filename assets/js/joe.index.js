@@ -276,7 +276,7 @@ Joe.DOMContentLoaded.index ||= () => {
 								$('.joe_index__list .joe_list__loading').hide(500);
 								$('.joe_load').hide();
 								$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
-								return autolog.log('没有更多内容了', 'warn');
+								return autolog.warn('没有更多内容了');
 							}
 							res.data.forEach(data => $('.joe_index__list .joe_list').append(getListMode(data)));
 							if (window.Joe.tooltip) window.Joe.tooltip('.joe_index__list');

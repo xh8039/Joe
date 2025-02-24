@@ -7,7 +7,9 @@ $this->comments()->to($comments);
 $is_comment = ($this->allow('comment') && $this->options->JCommentStatus != "off") ? true : false;
 $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ? true : false;
 ?>
-<div class="joe_comment__title title-theme">评论 <small><?= $is_comment ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
+<div class="box-body notop">
+	<div class="joe_comment__title title-theme">评论 <small><?= $is_comment ? (empty($this->commentsNum) ? '抢沙发' : '共' . $this->commentsNum . '条') : null ?></small></div>
+</div>
 <div class="joe_comment" id="comment_module">
 	<?php
 	if ($this->hidden) {

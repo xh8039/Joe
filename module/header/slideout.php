@@ -160,9 +160,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<ul class="joe_header__slideout-menu panel-box" style="margin-top: 15px; ">
 			<li id="wap-login-main">
 				<a class="link panel" href="javascript:;" rel="nofollow">
-					<span><?php $this->user->screenName(); ?></span>
-					<svg class="icon" width="15" height="15">
-						<use xlink:href="#icon-joe-slideout-user"></use>
+					<span>
+						<svg class="svg">
+							<use xlink:href="#icon-joe-slideout-user"></use>
+						</svg>
+						<?php $this->user->screenName(); ?>
+					</span>
+					<svg class="icon">
+						<use xlink:href="#icon-joe-slideout-forward"></use>
 					</svg>
 				</a>
 				<ul class="slides panel-body">
@@ -188,9 +193,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<ul class="joe_header__slideout-menu panel-box" style="margin-top: 15px; ">
 			<li id="wap-login-main">
 				<a class="link panel" href="javascript:;" rel="nofollow">
-					<span>用户登录</span>
-					<svg class="icon" width="15" height="15">
-						<use xlink:href="#icon-joe-slideout-user"></use>
+					<span>
+						<svg class="svg">
+							<use xlink:href="#icon-joe-slideout-user"></use>
+						</svg>
+						用户登录
+					</span>
+					<svg class="icon">
+						<use xlink:href="#icon-joe-slideout-forward"></use>
 					</svg>
 				</a>
 				<ul class="slides panel-body">

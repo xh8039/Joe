@@ -240,6 +240,11 @@
 
 @media (max-width: 768px) {
 
+	html #nprogress .spinner {
+		top: 5px;
+		right: 3px;
+	}
+
 	html .joe_header.active,
 	html .joe_header:target {
 		top: 0;

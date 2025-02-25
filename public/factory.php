@@ -84,7 +84,7 @@ class Intercept
 				$comment['status'] = 'waiting';
 			} else {
 				$comment_md5 = md5($matches[1]);
-				$save_comment_path = '/usr/uploads/draw-comment/' . $comment_md5 . '.webp';
+				$save_comment_path = '/usr/uploads/joe-draw/' . $comment_md5 . '.webp';
 				$save_comment = joe\draw_save($matches[1], __TYPECHO_ROOT_DIR__ . $save_comment_path);
 				if ($save_comment) {
 					$comment['text'] = '{!{' . $save_comment_path . '}!}';

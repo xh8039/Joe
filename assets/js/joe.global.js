@@ -348,6 +348,7 @@ Joe.DOMContentLoaded.global ||= () => {
 	/* 小屏幕伸缩侧边栏 */
 	{
 		$(".joe_header__above-slideicon").on("click", function () {
+			if (!Joe.IS_MOBILE) return autolog.warn('请关闭浏览器的PC模式后再访问本站', false);
 			/* 关闭搜索框 */
 			$(".joe_header__searchout").removeClass("active");
 			/* 处理开启关闭状态 */

@@ -176,7 +176,7 @@ class Editor
 	public static function Edit()
 	{
 ?>
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
+		<link async rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>">
 		<link rel="stylesheet" href="<?= joe\theme_url('assets/typecho/write/css/joe.write.css') ?>">
 
 		<!-- 自定义CSS样式 -->

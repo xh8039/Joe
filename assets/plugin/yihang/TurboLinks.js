@@ -73,12 +73,12 @@ class TurboLinks {
 
 			// 获取新的CSS文件列表
 			TurboLinks.responseDOMCSSLinkList = {};
-			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
+			responseDOM.head.querySelectorAll('link[rel="stylesheet"][href]:not([data-turbolinks-permanent])').forEach(element => {
 				TurboLinks.responseDOMCSSLinkList[element.href] = element;
 			});
 			const repeatCSSList = [];
 			// 记录重复的CSS文件
-			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
+			document.head.querySelectorAll('link[rel="stylesheet"][href]:not([data-turbolinks-permanent])').forEach(element => {
 				if (TurboLinks.responseDOMCSSLinkList[element.href]) repeatCSSList.push(element.href);
 			});
 			// 加载新的link标签中的CSS文件
@@ -111,8 +111,8 @@ class TurboLinks {
 			// 去除重复的全局JS文件列表
 			TurboLinks.documentScriptList = TurboLinks.unique(TurboLinks.documentScriptList);
 			// 删除旧的CSS文件列表，如果有和新的CSS文件列表重复的，则保留
-			document.head.querySelectorAll('link[rel="stylesheet"][href]').forEach(element => {
-				if (!TurboLinks.responseDOMCSSLinkList[element.href] && !element.getAttribute('data-turbolinks-permanent')) {
+			document.head.querySelectorAll('link[rel="stylesheet"][href]:not([data-turbolinks-permanent])').forEach(element => {
+				if (!TurboLinks.responseDOMCSSLinkList[element.href]) {
 					if (TurboLinks.debug) console.log('删除CSS：' + element.href);
 					element.remove();
 				}

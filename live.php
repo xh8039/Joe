@@ -18,7 +18,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.live.min.css'); ?>">
-	<script src="<?= joe\theme_url('assets/js/joe.live.js'); ?>"></script>
+	<script defer src="<?= joe\theme_url('assets/js/joe.live.js'); ?>"></script>
 </head>
 
 <body>

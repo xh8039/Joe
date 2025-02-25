@@ -97,7 +97,7 @@ $user = json_encode($user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 <?php
 // 文章列表选中动画
 if ($this->options->JIndex_Link_Active == 'on') {
-	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/post-list-active.css') . '">';
+	echo '<link async rel="stylesheet" href="' . joe\theme_url('assets/css/options/post-list-active.css') . '">';
 }
 // 首页文章双栏
 if (($this->is('index') || $this->is('archive')) && $this->options->JArticle_Double_Column == 'on') {
@@ -106,11 +106,11 @@ if (($this->is('index') || $this->is('archive')) && $this->options->JArticle_Dou
 if (joe\isMobile()) {
 	// 部分背景壁纸适配优化
 	if ($this->options->JWallpaper_Background_Optimal == 'all' || $this->options->JWallpaper_Background_Optimal == 'wap') {
-		echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/wallpaper-background-optimal.css') . '">';
+		echo '<link async rel="stylesheet" href="' . joe\theme_url('assets/css/options/wallpaper-background-optimal.css') . '">';
 	}
 } else {
 	if ($this->options->JWallpaper_Background_Optimal == 'all' || $this->options->JWallpaper_Background_Optimal == 'pc') {
-		echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/options/wallpaper-background-optimal.css') . '">';
+		echo '<link async rel="stylesheet" href="' . joe\theme_url('assets/css/options/wallpaper-background-optimal.css') . '">';
 	}
 }
 ?>

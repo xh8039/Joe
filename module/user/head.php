@@ -15,4 +15,4 @@ if ($referer_host == $_SERVER['HTTP_HOST'] || substr($referer_path, 0, 1) == '/'
 	window.Joe.referer = '<?= $referer ?>';
 </script>
 <link href="<?= joe\theme_url('assets/css/joe.user.css') ?>" rel="stylesheet" type="text/css" />
-<script src="<?= joe\theme_url('assets/js/joe.user.js') ?>"></script>
+<script defer src="<?= joe\theme_url('assets/js/joe.user.js') ?>"></script>

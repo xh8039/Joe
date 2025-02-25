@@ -18,8 +18,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <head>
 	<?php $this->need('module/head.php'); ?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.census.css'); ?>">
-	<script src="<?= joe\cdn('echarts/5.1.1/echarts.min.js') ?>" data-turbolinks-permanent></script>
-	<script src="<?= joe\theme_url('assets/js/joe.census.js'); ?>"></script>
+	<script defer src="<?= joe\cdn('echarts/5.1.1/echarts.min.js') ?>" data-turbolinks-permanent></script>
+	<script defer src="<?= joe\theme_url('assets/js/joe.census.js'); ?>"></script>
 </head>
 
 <body>

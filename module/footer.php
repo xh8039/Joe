@@ -145,7 +145,7 @@ if ($this->options->JFooterMode == 'commercial') {
 	</footer>
 	<?php
 	if ($this->options->JFooter_Fish == 'on') {
-		echo '<div id="footer_fish" style="background: var(--main-bg-color);"></div><script src="' . joe\theme_url('assets/plugin/FooterFish.js') . '"></script>';
+		echo '<div id="footer_fish" style="background: var(--main-bg-color);"></div><script defer src="' . joe\theme_url('assets/plugin/FooterFish.js') . '"></script>';
 	}
 } else {
 	?>
@@ -175,7 +175,7 @@ if ($this->options->JFooterMode == 'commercial') {
 		</div>
 		<?php
 		if ($this->options->JFooter_Fish == 'on') {
-			echo '<div id="footer_fish"></div><script src="' . joe\theme_url('assets/plugin/FooterFish.js') . '"></script>';
+			echo '<div id="footer_fish"></div><script defer src="' . joe\theme_url('assets/plugin/FooterFish.js') . '"></script>';
 		}
 		?>
 	</footer>
@@ -281,7 +281,7 @@ if (!empty($footer_tabbar)) {
 
 			var aplayerStyle = document.createElement('style');
 			aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${height + 10}px}`;
-			$('head').append(aplayerStyle);
+			document.head.appendChild(aplayerStyle);
 
 			document.querySelector('body').style.paddingBottom = height + 'px';
 		})();
@@ -295,20 +295,19 @@ if (!empty($footer_tabbar)) {
 	}
 </style>
 <?php if ($this->options->JAside_3DTag == 'on') : ?>
-	<script src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js', null); ?>"></script>
+	<script defer src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js', null); ?>"></script>
 <?php endif; ?>
 <?php if (!empty($this->options->JFestivalLantern)) : ?>
-	<script src="<?= joe\theme_url('assets/plugin/yihang/china-lantern.min.js', ['text' => $this->options->JFestivalLantern]); ?>"></script>
+	<script defer src="<?= joe\theme_url('assets/plugin/yihang/china-lantern.min.js', ['text' => $this->options->JFestivalLantern]); ?>"></script>
 <?php endif; ?>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects != 'off') : ?>
-	<script src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects, null) ?>"></script>
+	<script defer src="<?= joe\theme_url('assets/plugin/cursor/' . $this->options->JCursorEffects, null) ?>"></script>
 <?php endif; ?>
-<script src="<?= joe\theme_url('assets/js/svg.icon.js') ?>"></script>
 <?php
 if (\think\helper\Str::contains($this->options->JCustomFont, '||')) {
 	$JCustomFont = joe\optionMulti($this->options->JCustomFont, '||', null, ['url', 'font']);
 ?>
-	<link rel="stylesheet" href="<?= $JCustomFont['url'] ?>" async>
+	<link async rel="stylesheet" href="<?= $JCustomFont['url'] ?>" async>
 	<style>
 		html body {
 			font-family: '<?= $JCustomFont['font'] ?>'

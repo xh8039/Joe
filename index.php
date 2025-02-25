@@ -22,12 +22,12 @@ if ($this->options->IndexAjaxList != 'on') $this->need('module/index/pjax.php');
 	<?php
 	if (!empty($this->options->JIndex_Carousel)) {
 		echo '<link rel="stylesheet" href="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') . '">';
-		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '" data-turbolinks-permanent></script>';
+		echo '<script defer src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '" data-turbolinks-permanent></script>';
 	}
 	$this->need('module/head.php');
 	echo '<link rel="stylesheet" href="' . joe\theme_url('assets/css/joe.index.css') . '">';
-	if ($this->options->JListAnimate != 'off') echo '<script src="' . joe\cdn('wow/1.1.2/wow.min.js') . '" data-turbolinks-permanent></script>';
-	echo '<script src="' . joe\theme_url('assets/js/joe.index.js') . '"></script>';
+	if ($this->options->JListAnimate != 'off') echo '<script defer src="' . joe\cdn('wow/1.1.2/wow.min.js') . '" data-turbolinks-permanent></script>';
+	echo '<script defer src="' . joe\theme_url('assets/js/joe.index.js') . '"></script>';
 	?>
 </head>
 

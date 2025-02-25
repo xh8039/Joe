@@ -218,6 +218,31 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	?>
 	<script>
 		(function() {
+			const pathname = window.location.pathname;
+			const search = window.location.search;
+			const path = search ? pathname + search : pathname;
+			document.querySelectorAll('.joe_header__slideout-menu a').forEach(aElement => {
+				const tempPath = aElement.getAttribute('href');
+				if (tempPath === path || tempPath === window.location.href) {
+					aElement.classList.add('current', 'in');
+
+					// 向上查找父级结构
+					const liParent = aElement.parentElement;
+					if (!liParent) return;
+
+					const ulParent = liParent.parentElement;
+					if (!ulParent) return;
+
+					// 查找紧邻的前一个兄弟元素并判断是否符合条件
+					const prevSibling = ulParent.previousElementSibling;
+					if (prevSibling && prevSibling.matches('a.link')) {
+						prevSibling.classList.add('current');
+					}
+				}
+			});
+		})();
+		(function() {
+			return;
 			var pathname = window.location.pathname;
 			var search = window.location.search;
 			var path = search ? pathname + search : pathname;

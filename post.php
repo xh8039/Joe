@@ -12,17 +12,17 @@ $this->need('module/single/pjax.php');
 	<?php
 	$this->related(6)->to($relatedPosts);
 	if ($relatedPosts->have()) {
-		echo '<link rel="stylesheet" href="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') . '">';
-		echo '<script src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '" data-turbolinks-permanent></script>';
+		echo '<link async rel="stylesheet" href="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.css') . '">';
+		echo '<script defer src="' . joe\cdn('Swiper/11.0.5/swiper-bundle.min.js') . '" data-turbolinks-permanent></script>';
 	}
 	$this->need('module/head.php');
 	if (!empty($this->options->JPostMetaReferrer)) echo '<meta name="referrer" content="' . $this->options->JPostMetaReferrer . '">';
 	?>
 	<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.css'); ?>">
 	<?php if ($this->options->JArticle_Guide == 'on') : ?>
-		<link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
-		<script src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>" data-turbolinks-permanent></script>
-		<script src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
+		<link async rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.post.directories.css'); ?>">
+		<script defer src="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/js/scrollspy.js'); ?>" data-turbolinks-permanent></script>
+		<script defer src="<?= joe\theme_url('assets/js/joe.post.directories.js'); ?>"></script>
 	<?php endif; ?>
 </head>
 

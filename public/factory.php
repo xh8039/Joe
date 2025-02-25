@@ -30,10 +30,13 @@ class Intercept
 
 		// 评论敏感词API检测
 		if (Helper::options()->JSensitiveWordApi) {
-			$sensitive_word_api = joe\optionMulti(Helper::options()->JSensitiveWordApi, '||', null, ['api', 'content', 'is', 'content-type']);
-			if (empty($sensitive_word_api['api'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API地址设置错误'));
-			if (empty($sensitive_word_api['content'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API请求内容字段设置错误'));
-			if (empty($sensitive_word_api['is'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API响应违规字段设置错误'));
+			$sensitive_word_api = joe\optionMulti(Helper::options()->JSensitiveWordApi);
+			$sensitive_word_api_info = joe\optionMulti($sensitive_word_api[0], ['api', 'content', 'is', 'message']);
+			$sensitive_word_api_header = empty($sensitive_word_api[1]) ? null : $sensitive_word_api[1];
+
+			if (empty($sensitive_word_api_info['api'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API地址设置错误'));
+			if (empty($sensitive_word_api_info['content'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API请求内容字段设置错误'));
+			if (empty($sensitive_word_api_info['is'])) throw new Typecho\Widget\Exception(_t('评论敏感词检测API响应违规字段设置错误'));
 
 			$client = new network\http\Client(['timeout' => 5]);
 			$IP = joe\request()->getIp();
@@ -42,14 +45,20 @@ class Intercept
 				'x-real-ip' => $IP,
 				'x-forwarded-for' => $IP,
 			]);
-			if (!empty($sensitive_word_api['content-type'])) $client->header('content-type', $sensitive_word_api['content-type']);
-			$response = $client->post($sensitive_word_api['api'], [
-				$sensitive_word_api['content'] => $text,
+			if (is_array($sensitive_word_api_header)) $client->header($sensitive_word_api_header);
+			$response = $client->post($sensitive_word_api_info['api'], [
+				$sensitive_word_api_info['content'] => $text,
 				'userIp' => $IP,
 			]);
 			$data = $response->toArray();
-			if (is_array($data)) {
-				if (isset($data[$sensitive_word_api['is']]) && $data[$sensitive_word_api['is']]) return true;
+
+			if (is_array($data) && !empty($data)) {
+				$error_message = $sensitive_word_api_info['message'];
+				if (!isset($data[$sensitive_word_api_info['is']]) && $error_message && isset($data[$error_message])) {
+					throw new Typecho\Widget\Exception(_t('评论敏感词检测接口响应失败：' . $data[$error_message]));
+				} else if ($data[$sensitive_word_api_info['is']]) {
+					return true;
+				}
 			} else {
 				throw new Typecho\Widget\Exception(_t('评论敏感词检测接口响应失败：' . $response->error()));
 			}
@@ -84,7 +93,7 @@ class Intercept
 					return false;
 				}
 			}
-		} else if ($GLOBALS['JOE_USER']->group !== 'administrator' && self::waiting($comment['text'])) {
+		} else if ($GLOBALS['JOE_USER']->group == 'administrator' && self::waiting($comment['text'])) {
 			$comment['status'] = 'waiting';
 		}
 

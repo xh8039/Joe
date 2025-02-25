@@ -62,14 +62,18 @@ $JSensitiveWords = new \Typecho\Widget\Helper\Form\Element\Text(
 $JSensitiveWords->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JSensitiveWords);
 
-$JSensitiveWordApi = new \Typecho\Widget\Helper\Form\Element\Text(
+$JSensitiveWordApi = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JSensitiveWordApi',
 	NULL,
 	NULL,
 	'评论敏感词检测API（非必填）',
 	'介绍：用于检测评论敏感词汇，如果用户评论包含这些词汇，则将会把评论置为审核状态，需要接口返回JSON格式的内容 <br />
-	格式：API地址 || 请求时的评论内容字段 || 返回内容是否违规字段 || 请求头Content-Type（默认留空即可） <br />
-	例如：https://v2.xxapi.cn/api/detect || text || is_prohibited'
+	说明：第一行填写API相关信息，第二行可填写自定义请求头，如果不需要自定义请求头则无需填写第二行 <br />
+	格式（第一行）：API地址 || 请求时的评论内容字段 || 返回内容是否违规字段 || 请求失败消息字段（若无留空即可） <br />
+	格式（第二行）：请求头:请求值 || 请求头:请求值 <br />
+	例如：<br />
+	https://v2.xxapi.cn/api/detect || text || is_prohibited || error_message <br>
+	Content-Type: application/x-www-form-urlencoded || Authorization: ZDjTRbBlgADFDHRRJWOBFGA'
 );
 $JSensitiveWordApi->setAttribute('class', 'joe_content joe_comment');
 $form->addInput($JSensitiveWordApi);

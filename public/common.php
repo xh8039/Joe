@@ -29,7 +29,7 @@ header('Yihang-Typecho-Joe: true');
 require_once JOE_ROOT . 'public/widget.php';
 
 /* Composer 自动加载 */
-require_once JOE_ROOT . 'system/vendor/autoload.php';
+require_once JOE_ROOT . 'public/autoload.php';
 
 /* ThinkORM 数据库配置 */
 require_once JOE_ROOT . 'public/database.php';

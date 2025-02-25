@@ -422,6 +422,7 @@ Joe.DOMContentLoaded.comment ||= () => {
 			let url = $('#comment_module>.joe_pagination>li.active>a').attr('href') || location.href;
 			window.Joe.pjax(url, ['#comment_module>.comment-list', '.joe_comment__title>small'], {
 				success() {
+					if (Joe.IS_MOBILE) $('.comment-list__item .content').tooltip('destroy');
 					return window.Joe.commentListAutoRefresh;
 				},
 				replace() {

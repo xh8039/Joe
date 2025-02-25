@@ -798,26 +798,89 @@ function dateWord($original_date)
 	return $original_date;
 }
 
-function optionMulti($string, string $line = "\r\n", $separator = '||', array $key = []): array
-{
-	if (empty($string) || !is_string($string)) return [];
-	$explode_string = explode($line, $string);
+// function optionMulti($string, string|array $line = "\r\n", $separator = '||', array $key = []): array
+// {
+// 	if (empty($string) || (!is_string($string) && !is_array($string))) return [];
+// 	if (is_array($line) && is_array($string)) {
+// 		$key = $line;
+// 		$line = "\r\n";
+// 		$separator = null;
+// 	}
+// 	$explode_string = is_string($string) ? explode($line, $string) : $string;
+// 	if (is_string($separator)) {
+// 		$optionMulti = [];
+// 		foreach ($explode_string as $index => $value) {
+// 			$option = array_map('trim', explode($separator, $value));
+// 			foreach ($key as $i => $val) {
+// 				$option[$val] = isset($option[$i]) ? $option[$i] : null;
+// 			}
+// 			$optionMulti[$index] = $option;
+// 		}
+// 	} else {
+// 		$optionMulti = array_map('trim', $explode_string);
+// 		foreach ($key as $index => $value) {
+// 			if (isset($optionMulti[$index])) {
+// 				$optionMulti[$value] = $optionMulti[$index];
+// 				unset($optionMulti[$index]);
+// 			} else {
+// 				$optionMulti[$value] = null;
+// 			}
+// 		}
+// 	}
+// 	return $optionMulti;
+// }
+
+/**
+ * 解析多级选项配置
+ * 
+ * @param string|array $input 输入数据(字符串或数组)
+ * @param string|array $line 分隔符或键名配置
+ * @param string|null $separator 次级分隔符
+ * @param array $keys 键名映射
+ * @return array
+ */
+function optionMulti(
+	string|array $input,
+	string|array $line = "\r\n",
+	?string $separator = '||',
+	array $keys = []
+): array {
+	if (empty($input)) return [];
+
+	// 参数重分配：当line是数组且input也是数组时，line参数实际为keys
+	if (is_array($line) && is_array($input)) {
+		$keys = $line;
+		$line = "\r\n";
+		$separator = null;
+	}
+
+	$lines = is_string($input) ? explode($line, $input) : $input;
+	$result = [];
+
 	if (is_string($separator)) {
-		$optionMulti = [];
-		foreach ($explode_string as $index => $value) {
-			$option = array_map('trim', explode($separator, $value));
-			foreach ($key as $i => $val) {
-				$option[$val] = isset($option[$i]) ? $option[$i] : null;
+		foreach ($lines as $idx => $lineStr) {
+			$items = array_map('trim', explode($separator, $lineStr));
+			// 键名替换，移除原数字索引
+			foreach ($keys as $i => $key) {
+				$items[$key] = $items[$i] ?? null;
+				unset($items[$i]);
 			}
-			$optionMulti[$index] = $option;
+			$result[$idx] = $items;
 		}
 	} else {
-		$optionMulti = array_map('trim', $explode_string);
-		foreach ($key as $index => $value) {
-			$optionMulti[$value] = isset($optionMulti[$index]) ? $optionMulti[$index] : null;
+		$result = array_map('trim', $lines);
+		// 键名替换
+		foreach ($keys as $oldIdx => $newKey) {
+			if (array_key_exists($oldIdx, $result)) {
+				$result[$newKey] = $result[$oldIdx];
+				unset($result[$oldIdx]);
+			} else {
+				$result[$newKey] = null;
+			}
 		}
 	}
-	return $optionMulti;
+
+	return $result;
 }
 
 /**
@@ -1040,7 +1103,7 @@ function custom_navs()
 	static $custom_navs = null;
 	if (is_null($custom_navs)) {
 		$custom_navs_text = \Helper::options()->JCustomNavs;
-		$custom_navs_block = optionMulti($custom_navs_text, "\r\n\r\n", false);
+		$custom_navs_block = optionMulti($custom_navs_text, "\r\n\r\n", null);
 		$custom_navs = [];
 		foreach ($custom_navs_block as $key => $value) {
 			$custom_navs_explode = optionMulti($value);

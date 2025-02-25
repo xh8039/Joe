@@ -965,10 +965,6 @@ a[href] {
 	color: var(--muted-2-color);
 }
 
-.flex {
-	display: flex;
-}
-
 .flex.ac,
 .inflex.ac {
 	align-items: center;
@@ -1567,7 +1563,7 @@ img.lazyloaded:not(.lazyloadafter) {
 	width: calc(50% - 6px)
 }
 
-.flex {
+html .flex {
 	display: flex
 }
 

@@ -4202,7 +4202,7 @@ html #nprogress .bar {
 }
 
 html #nprogress .peg {
-	display: none;
+	box-shadow: 0 0 10px var(--theme), 0 0 5px var(--theme);
 }
 
 html #nprogress .spinner-icon {

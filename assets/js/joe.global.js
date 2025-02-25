@@ -845,7 +845,6 @@ Joe.DOMContentLoaded.global ||= () => {
 	})();
 
 	if (Joe.options.JTurbolinks == 'on') {
-		$(document.head).append(`<style>html #nprogress .bar {top:${$('.joe_header').height()}px;}html #nprogress .spinner {top:${$('.joe_header').height() + 15}px;}</style>`);
 		const options = {};
 		options.switches = {};
 		if (Joe.IS_MOBILE) options.switches['.joe_main'] = function (oldEl, newEl, options) {

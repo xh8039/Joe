@@ -833,14 +833,14 @@ function dateWord($original_date)
 /**
  * 解析多级选项配置
  * 
- * @param string|array $input 输入数据(字符串或数组)
+ * @param string|array|null $input 输入数据(字符串或数组)
  * @param string|array $line 分隔符或键名配置
- * @param string|null $separator 次级分隔符
+ * @param ?string $separator 次级分隔符
  * @param array $keys 键名映射
  * @return array
  */
 function optionMulti(
-	string|array $input,
+	$input,
 	string|array $line = "\r\n",
 	?string $separator = '||',
 	array $keys = []

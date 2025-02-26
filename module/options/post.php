@@ -27,8 +27,8 @@ $form->addInput($JPostLinkRedirect);
 
 $JPost_Title_Bold = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPost_Title_Bold',
-	['on' => '开启（默认）', 'off' => '关闭'],
-	'on',
+	['on' => '开启', 'off' => '关闭（默认）'],
+	'off',
 	'是否开启文章标题粗体'
 );
 $JPost_Title_Bold->setAttribute('class', 'joe_content joe_post');

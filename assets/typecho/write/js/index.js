@@ -301,8 +301,11 @@ class JoeEditor extends JoeAction {
 						case 'bilibili':
 							super.handleBilibili(this.cm);
 							break;
-						case 'dplayer':
+						case 'dplayer-single':
 							super.handleDplayer(this.cm);
+							break;
+						case 'dplayer-list':
+							super.handleDplayerList(this.cm);
 							break;
 						case 'draft':
 							super.handleDraft();

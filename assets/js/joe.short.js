@@ -456,6 +456,32 @@ Joe.DOMContentLoaded.short ||= () => {
 		}
 	});
 
+	if (!customElements.get('joe-dplayer-list')) customElements.define('joe-dplayer-list', class JoeDPlayerList extends HTMLElement {
+		constructor() {
+			super();
+			const _temp = getChildren(this, '_temp');
+			let _innerHTML = _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, "");
+			let content = `
+			<h2 class="title" style="margin-top: 0px;">播放预览</h2>
+			<div class="dplayer-video" webkit-playsinline="" playsinline=""></div>
+			<h2>剧集列表</h2>
+			<div class="featured-video-episode mt10 dplayer-featured">
+			`;
+			let index = 1;
+			_innerHTML.replace(/{dplayer-list-item([^}]*)\/}/g, function ($0, $1) {
+				const attr = $1.trim().replace(/^(<br>)|(<br>)$/g, '');
+				const title = attr.match(/title\="(.*?)"/)[1] || '第' + index + '集';
+				const desc = attr.match(/desc\="(.*?)"/)[1] || title;
+				const src = attr.match(/src\="(.*?)"/)[1];
+				const pic = attr.match(/pic\="(.*?)"/)[1];
+				content += `<a data-url="${src}" data-pic="${pic}" data-index="${index}" title="${desc}" href="javascript:;" data-toggle="tooltip" class="switch-video text-ellipsis"><span class="mr6 badg badg-sm">${index}</span><i class="episode-active-icon"></i>${title}</a>`;
+				index++;
+			});
+			this.className = 'joe_detail__article-video';
+			this.innerHTML = content;
+		}
+	});
+
 	if (!customElements.get('joe-bilibili')) customElements.define('joe-bilibili', class JoeBilibili extends HTMLElement {
 		constructor() {
 			super();

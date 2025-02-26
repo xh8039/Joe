@@ -45,9 +45,14 @@ function _parseContent($post, $content = null)
 	}
 
 	// 视频
-	if (strpos($content, '{dplayer') !== false) {
+	if (strpos($content, '{dplayer-single') !== false) {
 		$player = empty(Helper::options()->JCustomPlayer) ? 'false' : Helper::options()->JCustomPlayer;
-		$content = preg_replace('/{dplayer([^}]*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
+		$content = preg_replace('/{dplayer-single([^}]*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
+	}
+
+	// 视频列表
+	if (strpos($content, '{dplayer-list') !== false) {
+		$content = preg_replace('/\{dplayer\-list([^}]*)\}([\s\S]*?)\{\/dplayer\-list\}/', '<section style="margin-bottom: 15px"><joe-dplayer-list $1><span class="_temp" style="display: none">$2</span></joe-dplayer-list></section>', $content);
 	}
 
 	// 居中标题标签

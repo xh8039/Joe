@@ -285,24 +285,23 @@ function getAbstract($item, $type = true)
 function getThumbnails($item)
 {
 	$result = [];
-	$pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
-	$patternMD = '/\!\[.*?\]\((http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i';
-	$patternMDfoot = '/\[.*?\]:\s*(http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i';
 	/* 如果填写了自定义缩略图，则优先显示填写的缩略图 */
 	if ($item->fields->thumb) {
 		$fields_thumb_arr = explode('||', $item->fields->thumb);
 		foreach ($fields_thumb_arr as $list) $result[] = $list;
 	}
 	if (!is_string($item->content)) $item->content = '';
-	/* 如果匹配到正则，则继续补充匹配到的图片 */
-	if (preg_match_all($pattern, $item->content, $thumbUrl)) {
-		foreach ($thumbUrl[1] as $list) $result[] = $list;
-	}
-	if (preg_match_all($patternMD, $item->content, $thumbUrl)) {
-		foreach ($thumbUrl[1] as $list) $result[] = $list;
-	}
-	if (preg_match_all($patternMDfoot, $item->content, $thumbUrl)) {
-		foreach ($thumbUrl[1] as $list) $result[] = $list;
+	$pattern_list = [
+		'/\<img.*?src\=\"(.*?)\"[^>]*>/i',
+		'/\!\[.*?\]\((http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i',
+		'/\[.*?\]:\s*(http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i',
+		'/\{dplayer.*?pic\="(.+?)"/i'
+	];
+	foreach ($pattern_list as $pattern) {
+		/* 如果匹配到正则，则继续补充匹配到的图片 */
+		if (preg_match_all($pattern, $item->content, $thumbUrl)) {
+			foreach ($thumbUrl[1] as $list) $result[] = $list;
+		}
 	}
 	/* 如果上面的数量不足3个，则直接补充3个随即图进去 */
 	if (sizeof($result) < 3) {
@@ -422,7 +421,7 @@ function markdown_filter($content): string
 	$content = preg_replace('/{bilibili([^}]*)\/}/', ' ', $content);
 
 	// 视频
-	$content = preg_replace('/{dplayer([^}]*)\/}/', ' ', $content);
+	$content = preg_replace('/{dplayer-single([^}]*)\/}/', ' ', $content);
 
 	// 居中标题标签
 	$content = preg_replace('/\{mtitle title\="(.*?)"\/\}/', '$1', $content);

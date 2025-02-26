@@ -218,34 +218,33 @@ Joe.DOMContentLoaded.single ||= () => {
 	})();
 
 	/* 激活文章视频模块 */
-	(() => {
-		const videoModule = document.querySelector('.joe_detail__article-video');
-		if (!videoModule) return;
-		// 读取CSS变量
-		const documentTheme = getComputedStyle(document.documentElement).getPropertyValue('--theme').trim();
+	document.querySelectorAll('.joe_detail__article-video').forEach(videoModule => {
 		const options = {
 			cdn: Joe.CDN_URL,
 			container: videoModule.querySelector('.dplayer-video'), // 播放器容器元素
-			autoplay: true, // 视频自动播放
-			theme: documentTheme, // 主题色
+			autoplay: videoModule.getAttribute('autoplay') ? Number(videoModule.getAttribute('autoplay')) : true, // 视频自动播放
+			theme: videoModule.getAttribute('theme') || getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
 			loop: false, // 视频循环播放
 			video: { pic: Joe.CONTENT.cover }
 		};
+		if (videoModule.getAttribute('screenshot')) options.screenshot = Number(videoModule.getAttribute('screenshot'));
 		const next = (DPlayer) => {
-			const item = document.querySelector('.featured-video-episode>.switch-video.active');
+			const item = videoModule.querySelector('.featured-video-episode>.switch-video.active');
 			if (!item) return;
+			if (!item.nextElementSibling) return;
 			const notice = videoModule.querySelector('.dplayer-notice');
 			if (notice) {
 				notice.classList.add('remove-notice');
 				DPlayer.events.trigger('notice_hide');
 				setTimeout(() => notice.remove(), 3000);
 			}
-			if (item.nextSibling) item.nextSibling.nextElementSibling.click();
+			item.nextElementSibling.click();
+			DPlayer.play();
 			const classList = DPlayer.options.container.classList;
 			if (!classList.contains('dplayer-hide-controller')) classList.add('dplayer-hide-controller');
 		}
 		const player = new VideoPlayer(options, (DPlayer) => {
-			$('.featured-video-episode>.switch-video').first().click();
+			videoModule.querySelector('.featured-video-episode>.switch-video').click();
 			DPlayer.on('ended', () => next(DPlayer));
 			DPlayer.on('error', () => {
 				// 不是视频加载错误，可能是海报加载失败
@@ -254,24 +253,22 @@ Joe.DOMContentLoaded.single ||= () => {
 				setTimeout(() => next(DPlayer), 2000);
 			});
 		});
-		$('.featured-video-episode>.switch-video').on('click', function () {
-			$(this).addClass('active').siblings().removeClass('active');
-			const url = $(this).attr('video-url');
-			let title = $(this).attr('title') || $(this).attr('data-original-title');
-			const pic = this.dataset.pic || Joe.CONTENT.cover;
-			player.switchVideo({ url: url, pic: pic });
+		$(videoModule).on('click', '.featured-video-episode>.switch-video', (event) => {
+			const button = event.target;
+			$(button).addClass('active').siblings().removeClass('active');
+			let title = button.title || $(button).attr('data-original-title');
+			const pic = button.dataset.pic || Joe.CONTENT.cover;
+			player.switchVideo({ url: button.dataset.url, pic: pic });
 			if (title) videoModule.querySelector('.title').innerHTML = title;
-			if ("mediaSession" in navigator) {
-				navigator.mediaSession.metadata = new MediaMetadata({
-					title: title,
-					artist: document.title,
-					album: document.title,
-					artwork: [{ src: pic }],
-				});
-			}
+			if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({
+				title: title,
+				artist: document.title,
+				album: document.title,
+				artwork: [{ src: pic }],
+			});
 		});
 		document.addEventListener('turbolinks:load', () => player.destroy(), { once: true });
-	})();
+	});
 
 	/* 复制链接 */
 	(() => {

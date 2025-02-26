@@ -54,7 +54,7 @@ $JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'公共静态资源CDN接口',
 	'
-	<span>介绍：留空则使用本地资源，不懂请勿乱填。若您的站点宽带不高，可从下方接口列表选择或提供自己的接口</span><br>
+	<span>介绍：留空则使用本地资源，不懂请勿乱填。若您的站点宽带不高，可从下方接口列表选择或提供自己的接口。若设置不当会导致网站加载速度变慢或进不去，追求极致稳定就不要填写</span><br>
 	<span>格式：URL接口 || 版本号分隔符</span><br>
 	<span>注意：版本号分隔符不填写则默认为 / ，JsDelivr类型的需要使用 @</span><br>
 	<span>BootCDN：https://cdn.bootcdn.net/ajax/libs/</span><br>
@@ -66,7 +66,7 @@ $JCdnUrl = new \Typecho\Widget\Helper\Form\Element\Text(
 	<span>渺软公益CDN回源JsDelivr（cdn.onmicrosoft.cn）：https://jsd.onmicrosoft.cn/npm/ || @</span><br>
 	<span>渺软公益CDN回源UNPKG（cdn.onmicrosoft.cn）：https://npm.onmicrosoft.cn/</span><br>
 	<span>渺软公益CDN回源CDNJS（cdn.onmicrosoft.cn）：https://cdnjs.onmicrosoft.cn/ajax/libs/</span><br>
-	<span>南方科技大学：https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/</span><br>
+	<span>南方科技大学（推荐）：https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/</span><br>
 	<span>360CDN: https://cdn.baomitu.com</span><br>
 	<span>JsDelivr：https://cdn.jsdelivr.net/npm/ || @</span><br>
 	<span>Google Hosted Libraries（国内用不了）：https://ajax.googleapis.com/ajax/libs/</span><br>

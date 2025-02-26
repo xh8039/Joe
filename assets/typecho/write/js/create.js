@@ -36,8 +36,11 @@ function createPreviewHtml(str) {
 	if (str.indexOf('{mtitle') !== -1) {
 		str = str.replace(/{mtitle([^}]*)\/}/g, '<joe-mtitle $1></joe-mtitle>');
 	}
-	if (str.indexOf('{dplayer') !== -1) {
-		str = str.replace(/{dplayer([^}]*)\/}/g, '<joe-dplayer player="' + player + '" $1></joe-dplayer>');
+	if (str.indexOf('{dplayer-single') !== -1) {
+		str = str.replace(/{dplayer-single([^}]*)\/}/g, '<joe-dplayer player="' + player + '" $1></joe-dplayer>');
+	}
+	if (str.indexOf('{dplayer-list') !== -1) {
+		str = str.replace(/{dplayer-list([^}]*)}([\s\S]*?){\/dplayer-list}/g, '<section style="margin-bottom: 15px"><joe-dplayer-list $1><span class="_temp" style="display: none">$2</span></joe-dplayer-list></section>');
 	}
 	if (str.indexOf('{bilibili') !== -1) {
 		str = str.replace(/{bilibili([^}]*)\/}/g, '<joe-bilibili $1></joe-bilibili>');

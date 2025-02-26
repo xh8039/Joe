@@ -605,10 +605,36 @@ class JoeAction {
 				let autoplay = $(".cm-modal select[name='autoplay']").val().trim();
 				let loop = $(".cm-modal select[name='loop']").val().trim();
 				let screenshot = $(".cm-modal select[name='screenshot']").val().trim();
-				const str = `\n{dplayer src="${url}" pic="${pic}" theme="${theme}" autoplay="${autoplay}" loop="${loop}" screenshot="${screenshot}" /}\n`;
+				const str = `\n{dplayer-single src="${url}" pic="${pic}" theme="${theme}" autoplay="${autoplay}" loop="${loop}" screenshot="${screenshot}" /}\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
+			}
+		});
+	}
+	handleDplayerList(CodeMirror) {
+		this._openModal({
+			title: '视频列表',
+			innerHtml: `
+<div class="fitem">
+	<label>主题颜色</label>
+	<input autocomplete="off" name="theme" type="color" value="#409eff"/>
+</div>
+<div class="fitem">
+	<label>自动播放</label>
+	<select name="autoplay">
+		<option value="1">是</option>
+		<option value="0" selected>否</option>
+	</select>
+</div>
+			`,
+			confirm: () => {
+				const theme = $(".cm-modal input[name='theme']").val().trim();
+				const autoplay = $(".cm-modal select[name='autoplay']").val().trim();
+				const content = `\n{dplayer-list autoplay="${autoplay}" theme="${theme}"}\n{dplayer-list-item title="视频标题" desc="视频简介" src="视频地址" pic="视频封面" /}\n{dplayer-list-item title="视频标题" desc="视频简介" src="视频地址" pic="视频封面" /}\n{/dplayer-list}\n`;
+				if (this._getLineCh(CodeMirror)) this._replaceSelection(CodeMirror, '\n' + content);
+				else this._replaceSelection(CodeMirror, content);
+				CodeMirror.focus();
 			}
 		});
 	}

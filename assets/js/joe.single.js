@@ -225,7 +225,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			autoplay: videoModule.getAttribute('autoplay') ? Number(videoModule.getAttribute('autoplay')) : true, // 视频自动播放
 			theme: videoModule.getAttribute('theme') || getComputedStyle(document.documentElement).getPropertyValue('--theme').trim(), // 主题色
 			loop: false, // 视频循环播放
-			video: { pic: Joe.CONTENT.cover }
+			video: { pic: videoModule.getAttribute('pic') }
 		};
 		if (videoModule.getAttribute('screenshot')) options.screenshot = Number(videoModule.getAttribute('screenshot'));
 		const next = (DPlayer) => {
@@ -257,7 +257,7 @@ Joe.DOMContentLoaded.single ||= () => {
 			const button = event.target;
 			$(button).addClass('active').siblings().removeClass('active');
 			let title = button.title || $(button).attr('data-original-title');
-			const pic = button.dataset.pic || Joe.CONTENT.cover;
+			const pic = button.dataset.pic || videoModule.getAttribute('pic');
 			player.switchVideo({ url: button.dataset.url, pic: pic });
 			if (title) videoModule.querySelector('.title').innerHTML = title;
 			if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({

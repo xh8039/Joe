@@ -415,31 +415,34 @@ function markdown_filter($content): string
 	$content = preg_replace('/{music([^}]*)\/}/', ' ', $content);
 
 	// 音乐标签
-	$content = preg_replace('/\{mp3 name\="(.*?)" artist\="(.*?)".*?\/\}/S', '$1 - $2', $content);
+	$content = preg_replace('/\{mp3 name\="([^}]*)" artist\="([^}]*)"([^}]*)\/\}/S', '$1 - $2', $content);
 
 	// 哔哩哔哩视频
 	$content = preg_replace('/{bilibili([^}]*)\/}/', ' ', $content);
 
 	// 视频
 	$content = preg_replace('/{dplayer-single([^}]*)\/}/', ' ', $content);
+	// 标签页
+	$content = preg_replace('/\{dplayer-list([^}]*)\}([\s\S]*?)\{\/dplayer-list\}/', '$2', $content);
+	$content = preg_replace('/\{dplayer-list-item\b.*?title="([^"]*)".*?desc="([^"]*)".*?\/\}/i', '$1 $2', $content);
 
 	// 居中标题标签
-	$content = preg_replace('/\{mtitle title\="(.*?)"\/\}/', '$1', $content);
+	$content = preg_replace('/\{mtitle title\="([^}]*)"\/\}/', '$1', $content);
 
 	// 多彩按钮
-	$content = preg_replace('/\{abtn.*?content\="(.*?)"\/\}/', '$1', $content);
+	$content = preg_replace('/\{abtn.*?content\="([^}]*)"\/\}/', '$1', $content);
 
 	// 云盘下载
-	$content = preg_replace('/\{cloud title\="(.*?)" type\="\w+" url\="(.*?)" password\="(.*?)"\/\}/', '$1 下载地址：$2 提取码：$3', $content);
+	$content = preg_replace('/\{cloud title\="([^}]*)" type\="\w+" url\="([^}]*)" password\="([^}]*)"\/\}/', '$1 下载地址：$2 提取码：$3', $content);
 
 	// 便条按钮
-	$content = preg_replace('/\{anote.*?content\="(.*?)"\/\}/', '$1', $content);
+	$content = preg_replace('/\{anote.*?content\="([^}]*)"\/\}/', '$1', $content);
 
 	// 彩色虚线
 	$content = preg_replace('/{dotted([^}]*)\/}/', ' ', $content);
 
 	// 消息提示
-	$content = preg_replace('/\{message type="\w+" content\="(.*?)"\/\}/', '$1', $content);
+	$content = preg_replace('/\{message type="\w+" content\="([^}]*)"\/\}/', '$1', $content);
 
 	// 进度条
 	$content = preg_replace('/\{progress percentage="(\d+)" color\="#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})"\/\}/', '进度$1%', $content);
@@ -450,7 +453,7 @@ function markdown_filter($content): string
 	// 以下为双标签
 
 	// 默认卡片
-	$content = preg_replace('/\{card\-default label\="(.*?)" width\="\d+"\}([\s\S]*?)\{\/card\-default\}/', '$1 - $2', $content);
+	$content = preg_replace('/\{card\-default label\="([^}]*)" width\="\d+"\}([\s\S]*?)\{\/card\-default\}/', '$1 - $2', $content);
 
 	// 标注
 	$content = preg_replace('/\{callout color\="#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})"\}([\s\S]*?)\{\/callout\}/', '$1', $content);
@@ -459,11 +462,11 @@ function markdown_filter($content): string
 	$content = preg_replace('/\{alert type\="\w+"\}([\s\S]*?)\{\/alert\}/', '$1', $content);
 
 	// 描述卡片
-	$content = preg_replace('/\{card\-describe title\="(.*?)"\}([\s\S]*?)\{\/card\-describe\}/', '$1 - $2', $content);
+	$content = preg_replace('/\{card\-describe title\="([^}]*)"\}([\s\S]*?)\{\/card\-describe\}/', '$1 - $2', $content);
 
 	// 标签页
 	$content = preg_replace('/\{tabs\}([\s\S]*?)\{\/tabs\}/', '$1', $content);
-	$content = preg_replace('/\{tabs\-pane label\="(.*?)"}([\s\S]*?)\{\/tabs\-pane\}/', '$1 $2', $content);
+	$content = preg_replace('/\{tabs\-pane label\="([^}]*)"}([\s\S]*?)\{\/tabs\-pane\}/', '$1 $2', $content);
 
 	// 卡片列表
 	$content = preg_replace('/\{card\-list\}([\s\S]*?)\{\/card\-list\}/', '$1', $content);
@@ -475,20 +478,20 @@ function markdown_filter($content): string
 
 	// 折叠面板
 	$content = preg_replace('/\{collapse\}([\s\S]*?)\{\/collapse\}/', '$1', $content);
-	$content = preg_replace('/\{collapse\-item label\="(.*?)"\s?[open]*\}([\s\S]*?)\{\/collapse\-item\}/', '$1 - $2', $content);
+	$content = preg_replace('/\{collapse\-item label\="([^}]*)"\s?[open]*\}([\s\S]*?)\{\/collapse\-item\}/', '$1 - $2', $content);
 
 	// 宫格
 	$content = preg_replace('/\{gird column\="\d+" gap\="\d+"\}([\s\S]*?)\{\/gird\}/', '$1', $content);
 	$content = preg_replace('/\{gird\-item\}([\s\S]*?)\{\/gird\-item\}/', '$1', $content);
 
 	// 复制
-	$content = preg_replace('/\{copy showText\="(.*?)" copyText\="(.*?)"\/\}/', '$1 $2', $content);
+	$content = preg_replace('/\{copy showText\="([^}]*)" copyText\="([^}]*)"\/\}/', '$1 $2', $content);
 
 	// 其他开合标签
-	// $content = preg_replace('/\{[\w,\-]+.*?\}(.*?)\{\/[\w,\-]+\}/S', '$1', $content);
+	// $content = preg_replace('/\{[\w,\-]+.*?\}([^}]*)\{\/[\w,\-]+\}/S', '$1', $content);
 
 	// 标签中有content值
-	// $content = preg_replace('/\{.*?content\="(.*?)"\/\}/S', '$1', $content);
+	// $content = preg_replace('/\{.*?content\="([^}]*)"\/\}/S', '$1', $content);
 
 	// 剩下没有文本的单标签
 	// $content = preg_replace('/\{.*?\/\}/S', ' ', $content);

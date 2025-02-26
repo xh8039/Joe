@@ -614,8 +614,12 @@ class JoeAction {
 	}
 	handleDplayerList(CodeMirror) {
 		this._openModal({
-			title: '视频列表',
+			title: '视频剧集',
 			innerHtml: `
+<div class="fitem">
+	<label>默认封面</label>
+	<input autocomplete="off" name="pic" placeholder="请输入视频封面地址"/>
+</div>
 <div class="fitem">
 	<label>主题颜色</label>
 	<input autocomplete="off" name="theme" type="color" value="#409eff"/>
@@ -623,15 +627,16 @@ class JoeAction {
 <div class="fitem">
 	<label>自动播放</label>
 	<select name="autoplay">
-		<option value="1">是</option>
-		<option value="0" selected>否</option>
+		<option value="1" selected>是</option>
+		<option value="0">否</option>
 	</select>
 </div>
 			`,
 			confirm: () => {
+				const pic = $(".cm-modal input[name='pic']").val().trim();
 				const theme = $(".cm-modal input[name='theme']").val().trim();
 				const autoplay = $(".cm-modal select[name='autoplay']").val().trim();
-				const content = `\n{dplayer-list autoplay="${autoplay}" theme="${theme}"}\n{dplayer-list-item title="视频标题" desc="视频简介" src="视频地址" pic="视频封面" /}\n{dplayer-list-item title="视频标题" desc="视频简介" src="视频地址" pic="视频封面" /}\n{/dplayer-list}\n`;
+				const content = `\n{dplayer-list autoplay="${autoplay}" theme="${theme}" pic="${pic}"}\n{dplayer-list-item title="视频标题" desc="视频简介" src="视频地址" pic="视频封面" /}\n{dplayer-list-item title="视频标题" desc="视频简介" src="视频地址" pic="视频封面" /}\n{/dplayer-list}\n`;
 				if (this._getLineCh(CodeMirror)) this._replaceSelection(CodeMirror, '\n' + content);
 				else this._replaceSelection(CodeMirror, content);
 				CodeMirror.focus();

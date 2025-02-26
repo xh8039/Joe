@@ -102,9 +102,9 @@ if ($this->options->JLoading != 'off') : ?>
 <script defer src="<?= joe\theme_url('assets/js/joe.global.js'); ?>" data-turbolinks-permanent></script>
 <script defer src="<?= joe\theme_url('assets/js/joe.main.js'); ?>"></script>
 <?php if ($this->is('single')) : ?>
-	<?php if ($this->fields->video) : ?>
+	<?php if ($this->fields->video || \think\helper\Str::contains($this->content, '{dplayer-list')) : ?>
 		<script defer src="<?= joe\theme_url('assets/plugin/yihang/VideoPlayer.js') ?>" data-turbolinks-permanent></script>
-	<?php endif; ?>
+	<?php endif; ?>	
 	<script defer src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 	<script defer src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>

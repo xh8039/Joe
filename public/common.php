@@ -213,8 +213,11 @@ function themeFields($layout)
 		NULL,
 		NULL,
 		'M3U8或MP4地址',
-		'填写后，文章会插入一个视频模板，如果有多个，换行写即可，不填写则不占用数据库字段空间 <br>
-		 格式：[视频名称--视频介绍](视频地址||视频封面-可不填)'
+		'<b style="color:#666;">该功能已废弃使用，后续版本将删除，请使用主题文章编辑器中的视频列表模块</b>
+		<script>
+		const fieldsVideo = document.querySelector(\'[name="fields[video]"]\');
+		if (!fieldsVideo.value) fieldsVideo.style.display = "none";
+		</script>'
 	);
 	$layout->addItem($video);
 

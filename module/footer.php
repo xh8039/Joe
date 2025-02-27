@@ -5,6 +5,42 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 
+?>
+<div class="joe_action">
+	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" title="返回顶部">
+		<i class="fa fa-angle-up em12"></i>
+	</div>
+	<?php
+	if ($this->options->JThemeModeSwitch == 'on') {
+	?>
+		<div class="joe_action_item mode toggle-theme" data-toggle="tooltip" data-placement="left" title="夜间模式">
+			<i class="icon-1 fa fa-sun-o"></i>
+			<i class="icon-2 fa fa-moon-o"></i>
+		</div>
+	<?php
+	}
+	?>
+	<?php
+	if ($this->is('post') && joe\isMobile() && $this->options->JArticle_Guide == 'on') {
+	?>
+		<div data-affix="true" class="joe_action_item posts-nav-box posts-nav-switcher" data-title="文章目录"><i class="fa fa-list-ul"></i></div>
+	<?php
+	}
+	?>
+	<?php if ($this->user->uid == $this->authorId) : ?>
+		<?php if ($this->is('post')) : ?>
+			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" title="编辑文章">
+				<a target="_blank" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
+			</div>
+		<?php elseif ($this->is('page')) : ?>
+			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" title="编辑页面">
+				<a target="_blank" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
+			</div>
+		<?php endif; ?>
+	<?php endif; ?>
+</div>
+<?php
+
 if ($this->request->getHeader('x-pjax') == 'true') return;
 
 if ($this->options->JFooterMode == 'commercial') {
@@ -182,53 +218,14 @@ if ($this->options->JFooterMode == 'commercial') {
 <?php
 }
 
-$joe_action_bottom = 20;
-
 if ($this->options->JMusic == 'on') {
 ?>
 	<meting-js fixed="true" preload="metadata" mutex="true" volume="0.7" autotheme="true" api="<?= empty($this->options->JMusicApi) ? joe\root_relative_link($this->options->index . '/joe/api/meting?server=:server&type=:type&id=:id') : $this->options->JMusicApi ?>" storage="<?= $this->options->JMusicId ?>" order="<?= $this->options->JMusicOrder ?>" server="<?= $this->options->JMusicServer ?>" type="<?= $this->options->JMusicType ?>" dataId="<?= urlencode($this->options->JMusicId) ?>" <?= $this->options->JMusicPlay == 'on' ? 'autoplay="true"' : null ?>></meting-js>
 <?php
 }
-?>
 
-<div class="joe_action">
-	<div class="joe_action_item scroll" data-toggle="tooltip" data-placement="left" title="返回顶部">
-		<i class="fa fa-angle-up em12"></i>
-	</div>
-	<?php
-	if ($this->options->JThemeModeSwitch == 'on') {
-	?>
-		<div class="joe_action_item mode toggle-theme" data-toggle="tooltip" data-placement="left" title="夜间模式">
-			<i class="icon-1 fa fa-sun-o"></i>
-			<i class="icon-2 fa fa-moon-o"></i>
-		</div>
-	<?php
-	}
-	?>
-	<?php
-	if ($this->is('post') && joe\isMobile() && $this->options->JArticle_Guide == 'on') {
-	?>
-		<div data-affix="true" class="joe_action_item posts-nav-box posts-nav-switcher" data-title="文章目录"><i class="fa fa-list-ul"></i></div>
-	<?php
-	}
-	?>
-	<?php if ($this->user->uid == $this->authorId) : ?>
-		<?php if ($this->is('post')) : ?>
-			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" title="编辑文章">
-				<a target="_blank" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
-			</div>
-		<?php elseif ($this->is('page')) : ?>
-			<div class="joe_action_item" data-toggle="tooltip" data-placement="left" title="编辑页面">
-				<a target="_blank" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>"><i class="fa fa-cog fa-spin"></i></a>
-			</div>
-		<?php endif; ?>
-	<?php endif; ?>
-</div>
-
-<?php
 // SSL安全认证
 if ($this->options->JPendant_SSL == 'on') {
-	$joe_action_bottom = $joe_action_bottom + 65;
 ?>
 	<div id="cc-myssl-seal" style="width:65px;height:65px;z-index:9;position:fixed;right:0;bottom:0;cursor:pointer;">
 		<div title="TrustAsia 安全签章" id="myssl_seal" style="text-align: center">
@@ -265,35 +262,9 @@ if (!empty($footer_tabbar)) {
 		}
 		?>
 	</div>
-	<script>
-		(function() {
-			const height = document.querySelector('.footer-tabbar').clientHeight;
-
-			if (document.querySelector('.joe_action')) {
-				document.querySelector('.joe_action').style.bottom = (height + <?= $joe_action_bottom ?>) + 'px'
-			}
-
-			if (document.getElementById('cc-myssl-seal')) {
-				document.getElementById('cc-myssl-seal').style.bottom = height + 'px';
-			}
-
-			document.querySelector('.joe_header__slideout').style.height = `calc(var(--vh, 1vh) * 100 - ${(height + document.querySelector('.joe_header').clientHeight)}px)`;
-
-			var aplayerStyle = document.createElement('style');
-			aplayerStyle.innerHTML = `html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${height + 10}px}`;
-			document.head.appendChild(aplayerStyle);
-
-			document.querySelector('body').style.paddingBottom = height + 'px';
-		})();
-	</script>
 <?php
 }
 ?>
-<style>
-	html .joe_action {
-		bottom: <?= $joe_action_bottom ?>px;
-	}
-</style>
 <?php if ($this->options->JAside_3DTag == 'on') : ?>
 	<script defer src="<?= joe\theme_url('assets/plugin/3dtag/3dtag.min.js', null); ?>"></script>
 <?php endif; ?>

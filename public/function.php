@@ -915,7 +915,7 @@ function install()
 {
 	if (PHP_VERSION < 8) throw new \Typecho\Exception('请使用 PHP 8 及以上版本！');
 
-	if (\Typecho\Common::VERSION < 1.2) throw new \Typecho\Exception('请使用 Typecho 1.2.0 及以上版本！');
+	if (\Typecho\Common::VERSION < 1.2 || \Typecho\Common::VERSION >= 1.3) throw new \Typecho\Exception('请使用 Typecho 1.2 版本！');
 
 	$DB = \Typecho\Db::get();
 	if ((float) $DB->getVersion() < 5.6) throw new \Typecho\Exception('请使用 MySql 5.6 及以上版本！');

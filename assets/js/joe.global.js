@@ -11,6 +11,36 @@ Joe.DOMContentLoaded.global ||= () => {
 		jQuery.ajaxSetup({ cache: true });
 	}
 
+	(() => {
+		let joe_action_bottom = 20;
+
+		const myssl = document.getElementById('cc-myssl-seal');
+		const footerTabbar = document.querySelector('.footer-tabbar');
+		const style = (content) => {
+			const style = document.createElement('style');
+			style.innerHTML = content;
+			document.head.appendChild(style);
+		}
+
+		if (myssl) joe_action_bottom += 65;
+
+		if (footerTabbar) {
+			const height = footerTabbar.clientHeight;
+
+			joe_action_bottom += height;
+
+			if (myssl) myssl.style.bottom = height + 'px';
+
+			document.querySelector('.joe_header__slideout').style.height = `calc(var(--vh, 1vh) * 100 - ${(height + document.querySelector('.joe_header').clientHeight)}px)`;
+
+			style(`html .aplayer.aplayer-fixed .aplayer-body{bottom: ${height}px} .aplayer.aplayer-fixed .aplayer-lrc{bottom: ${height + 10}px}`);
+
+			document.querySelector('body').style.paddingBottom = height + 'px';
+		}
+
+		style(`html .joe_action{bottom:${joe_action_bottom}px}`);
+	})();
+
 	/* 初始化昼夜模式 */
 	(() => {
 		if (!document.querySelector('.toggle-theme')) return;
@@ -342,7 +372,7 @@ Joe.DOMContentLoaded.global ||= () => {
 
 	/* 激活全局返回顶部功能 */
 	{
-		$(".joe_action_item.scroll").on("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+		$(document.body).on('click', '.joe_action_item.scroll', () => window.scrollTo({ top: 0, behavior: "smooth" }));
 	}
 
 	/* 小屏幕伸缩侧边栏 */
@@ -552,60 +582,59 @@ Joe.DOMContentLoaded.global ||= () => {
 	}
 
 	/* 监听移动端键盘弹出 */
-	{
+	(() => {
 		const footerTabbar = document.querySelector('.footer-tabbar');
 		const joeAction = document.querySelector('.joe_action');
 		const aplayer = document.querySelector('.aplayer.aplayer-fixed');
-		if (footerTabbar || joeAction || aplayer) {
-			const ua = typeof window === 'object' ? window.navigator.userAgent : '';
-			let _isIOS = -1;
-			let _isAndroid = -1;
-			const isIOS = () => {
-				if (_isIOS === -1) {
-					_isIOS = /iPhone|iPod|iPad/i.test(ua) ? 1 : 0;
-				}
-				return _isIOS === 1;
+		if (!footerTabbar && !joeAction && !aplayer) return;
+		const ua = typeof window === 'object' ? window.navigator.userAgent : '';
+		let _isIOS = -1;
+		let _isAndroid = -1;
+		const isIOS = () => {
+			if (_isIOS === -1) {
+				_isIOS = /iPhone|iPod|iPad/i.test(ua) ? 1 : 0;
 			}
-			const isAndroid = () => {
-				if (_isAndroid === -1) {
-					_isAndroid = /Android/i.test(ua) ? 1 : 0;
-				}
-				return _isAndroid === 1;
+			return _isIOS === 1;
+		}
+		const isAndroid = () => {
+			if (_isAndroid === -1) {
+				_isAndroid = /Android/i.test(ua) ? 1 : 0;
 			}
-			const popUp = () => {
-				if (footerTabbar) footerTabbar.style.display = 'none';
-				if (joeAction) joeAction.style.display = 'none';
-				if (aplayer) aplayer.style.display = 'none';
-			}
-			const retract = () => {
-				if (footerTabbar) footerTabbar.style.display = null;
-				if (joeAction) joeAction.style.display = null;
-				if (aplayer) aplayer.style.display = null;
-			}
-			if (isAndroid()) {
-				const innerHeight = window.innerHeight;
-				window.addEventListener('resize', () => {
-					const newInnerHeight = window.innerHeight;
-					if (innerHeight > newInnerHeight) {
-						// 键盘弹出事件处理
-						popUp();
-					} else {
-						// 键盘收起事件处理
-						retract();
-					}
-				});
-			} else if (isIOS()) {
-				window.addEventListener('focusin', () => {
+			return _isAndroid === 1;
+		}
+		const popUp = () => {
+			if (footerTabbar) footerTabbar.style.display = 'none';
+			if (document.querySelector('.joe_action')) document.querySelector('.joe_action').style.display = 'none';
+			if (aplayer) aplayer.style.display = 'none';
+		}
+		const retract = () => {
+			if (footerTabbar) footerTabbar.style.display = null;
+			if (document.querySelector('.joe_action')) document.querySelector('.joe_action').style.display = null;
+			if (aplayer) aplayer.style.display = null;
+		}
+		if (isAndroid()) {
+			const innerHeight = window.innerHeight;
+			window.addEventListener('resize', () => {
+				const newInnerHeight = window.innerHeight;
+				if (innerHeight > newInnerHeight) {
 					// 键盘弹出事件处理
 					popUp();
-				});
-				window.addEventListener('focusout', () => {
+				} else {
 					// 键盘收起事件处理
 					retract();
-				});
-			}
+				}
+			});
+		} else if (isIOS()) {
+			window.addEventListener('focusin', () => {
+				// 键盘弹出事件处理
+				popUp();
+			});
+			window.addEventListener('focusout', () => {
+				// 键盘收起事件处理
+				retract();
+			});
 		}
-	}
+	})();
 
 	/** 动态监听实际VH高度 */
 	{
@@ -871,13 +900,13 @@ Joe.DOMContentLoaded.global ||= () => {
 			}, { once: true });
 			this.onSwitch();
 		}
-		options.selectors = ['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '.joe_main', '.joe_bottom'];
+		options.selectors = ['head>title', 'head>meta[name=description]', 'head>meta[name=keywords]', '.joe_main', '.joe_bottom', '.joe_action'];
 		TurboLinks.start(options);
 		document.addEventListener('turbolinks:send', (event) => {
 			NProgress.done();
 			NProgress.start();
 			Joe.tooltip('body', 'destroy');
-			if (Joe.IS_MOBILE) $('.joe_action>.posts-nav-box').remove();
+			// if (Joe.IS_MOBILE) $('.joe_action>.posts-nav-box').remove();
 		});
 		document.addEventListener('turbolinks:load', () => {
 			if (document.querySelector('.joe_header__mask')) document.querySelector('.joe_header__mask').click();

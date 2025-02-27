@@ -58,5 +58,20 @@ Joe.DOMContentLoaded.main ||= () => {
 		// popover.js
 		$("[data-toggle='popover']:not([data-original-title])").popover({ html: true });
 	}
+
+	{
+		const modeElement = $(".joe_action_item.mode");
+		const isDark = Joe.themeManager.currentTheme === 'dark';
+
+		// 切换图标状态
+		modeElement.find(".icon-1").toggleClass("active", isDark);
+		modeElement.find(".icon-2").toggleClass("active", !isDark);
+
+		// 更新提示文字
+		if (!Joe.IS_MOBILE) {
+			const title = isDark ? '日间模式' : '夜间模式';
+			modeElement.attr('title', title).tooltip({ container: "body", trigger: 'hover' });
+		}
+	}
 }
 document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.main, { once: true });

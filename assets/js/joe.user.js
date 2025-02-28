@@ -17,7 +17,7 @@ Joe.DOMContentLoaded.user ||= () => {
 			error: function (xhr, textStatus, error) {
 				console.log(xhr, error);
 				Joe.btnLoad(button, false);
-				const message = xhr.responseText?.replace(/<[^>]*>/g, "").replace(/\s+/g, ' ').trim() || error || '请求异常：' + textStatus;
+				const message = xhr.responseText ? Joe.htmlTextContent(xhr.responseText) : (error || '请求异常：' + textStatus);
 				autolog.error(message);
 			},
 			success(data) {

@@ -46,14 +46,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	</div>
 </form>
 <script type="text/javascript">
-	function HtmlTextContent(string) {
-		string = string.replace(/<script.*?<\/script>/gis, "").replace(/<style.*?<\/style>/gis, "");
-		let div = document.createElement('div');
-		div.innerHTML = string;
-		let textContent = div.innerText || div.textContent || "";
-		textContent = textContent.replace(/[\r\n]/g, " ").replace(/\s+/g, " ");
-		return textContent;
-	}
 	$(".friend_submit").submit(function(event) {
 		event.preventDefault();
 		$.ajax({
@@ -67,15 +59,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			success(data) {
 				$('.friend_submit .submit').html('立即提交');
 				if (data.code == 200) {
-					autolog.success(data.msg);
+					autolog.success(data.message);
 				} else {
-					autolog.warn(data.msg);
+					autolog.warn(data.message);
 				}
 			},
 			error(xhr, status, error) {
 				console.log(xhr);
 				$('.friend_submit .submit').html('立即提交');
-				autolog.error('提交失败！' + HtmlTextContent(xhr.responseText));
+				autolog.error('提交失败！' + Joe.htmlTextContent(xhr.responseText));
 			}
 		});
 	});

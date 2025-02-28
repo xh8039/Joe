@@ -811,14 +811,14 @@ class Api
 		$logo = $self->request->logo;
 		$email = $self->request->email;
 
-		if (empty($title) || empty($url) || empty($email)) return (['code' => 0, 'msg' => '必填项不能为空']);
-		if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) return (['code' => 0, 'msg' => '联系邮箱错误！']);
-		if (!preg_match('/^http[s]?:\/\/[^\s]*/', $url)) return (['code' => 0, 'msg' => '网站地址错误！']);
+		if (empty($title) || empty($url) || empty($email)) return (['code' => 0, 'message' => '必填项不能为空']);
+		if (!preg_match('/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/', $email)) return (['code' => 0, 'message' => '联系邮箱错误！']);
+		if (!preg_match('/^http[s]?:\/\/[^\s]*/', $url)) return (['code' => 0, 'message' => '网站地址错误！']);
 		if (empty($logo)) $logo = self::$options->themeUrl . '/assets/images/avatar-default.png';
-		if (!preg_match('/^http[s]?:\/\/[^\s]*/', $logo)) return (['code' => 0, 'msg' => '网站LOGO地址错误！']);
+		if (!preg_match('/^http[s]?:\/\/[^\s]*/', $logo)) return (['code' => 0, 'message' => '网站LOGO地址错误！']);
 
 		$friend = Db::name('friends')->where('url')->find();
-		if ($friend) return ['code' => 0, 'msg' => ($friend['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')];
+		if ($friend) return ['code' => 0, 'message' => ($friend['status'] ? '本站已有您的友情链接！' : '您已提交过友链，请耐心等待审核')];
 
 		$insert = Db::name('friends')->insert([
 			'title' => $title,
@@ -829,15 +829,15 @@ class Api
 			'position' => 'single'
 		]);
 
-		if (!$insert) return ['code' => 0, 'msg' => '提交失败，请联系本站点管理员进行处理'];
+		if (!$insert) return ['code' => 0, 'message' => '提交失败，请联系本站点管理员进行处理'];
 		if (self::$options->JFriendEmail == 'on') {
 			$EmailTitle = '友链申请';
 			$subtitle = $title . ' 向您提交了友链申请';
 			$content = ['站点标题' => $title, '站点链接' => $url, '站点图标' => $logo, '站点描述' => $description, '对方邮箱' => $email];
 			$SendEmail = \joe\send_mail($EmailTitle, $subtitle, $content);
-			if ($SendEmail !== true) return (['code' => 0, 'msg' => '提交失败，' . $SendEmail]);
+			if ($SendEmail !== true) return (['code' => 0, 'message' => '提交失败，' . $SendEmail]);
 		}
-		return ['code' => 200, 'msg' => '提交成功，管理员会在24小时内进行审核，请耐心等待'];
+		return ['code' => 200, 'message' => '提交成功，管理员会在24小时内进行审核，请耐心等待'];
 	}
 
 	public static function meting($self)

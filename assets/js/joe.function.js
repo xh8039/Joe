@@ -13,6 +13,15 @@ if (typeof AudioManager === 'function') {
 
 if (typeof ThemeManager === 'function') window.Joe.themeManager = new ThemeManager();
 
+window.Joe.htmlTextContent = (string) => {
+	string = string.replace(/<script.*?<\/script>/gis, "").replace(/<style.*?<\/style>/gis, "");
+	const div = document.createElement('div');
+	div.innerHTML = string;
+	let textContent = div.innerText || div.textContent || "";
+	textContent = textContent.replace(/[\r\n]/g, " ").replace(/\s+/g, " ");
+	return textContent;
+}
+
 window.Joe.detectIE = () => {
 	var n = window.navigator.userAgent,
 		e = n.indexOf("MSIE ");

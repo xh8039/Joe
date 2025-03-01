@@ -859,7 +859,7 @@ function optionMulti(
 	$lines = is_string($input) ? explode($line, $input) : $input;
 	$result = [];
 
-	if (is_string($separator)) {
+	if ($separator && is_string($separator)) {
 		foreach ($lines as $idx => $lineStr) {
 			$items = array_map('trim', explode($separator, $lineStr));
 			// 键名替换，移除原数字索引

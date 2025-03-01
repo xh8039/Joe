@@ -155,12 +155,3 @@ $JCustomAvatarSource = new \Typecho\Widget\Helper\Form\Element\Text(
 $JCustomAvatarSource->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomAvatarSource);
 
-$JoeDeBug = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JoeDeBug',
-	['off' => '关闭（默认）', 'on' => '开启'],
-	'off',
-	'调试模式',
-	'介绍：开启后可查看主题的SQL日志'
-);
-$JoeDeBug->setAttribute('class', 'joe_content joe_global');
-$form->addInput($JoeDeBug);

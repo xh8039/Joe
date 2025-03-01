@@ -41,3 +41,13 @@ $JCustomPlayer = new \Typecho\Widget\Helper\Form\Element\Text(
 );
 $JCustomPlayer->setAttribute('class', 'joe_content joe_other');
 $form->addInput($JCustomPlayer);
+
+$JoeDeBug = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JoeDeBug',
+	['off' => '关闭（默认）', 'on' => '开启'],
+	'off',
+	'主题调试模式',
+	'介绍：开启后可查看主题的SQL日志'
+);
+$JoeDeBug->setAttribute('class', 'joe_content joe_other');
+$form->addInput($JoeDeBug);

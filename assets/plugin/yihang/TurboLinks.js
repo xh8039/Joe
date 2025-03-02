@@ -58,8 +58,13 @@ class TurboLinks {
 				}
 				document.dispatchEvent(new CustomEvent('turbolinks:complete'));
 				setTimeout(() => {
-					if (window.confirm(`是否直接有刷访问 '${href}' ？`)) location.href = href;
-				}, 3000);
+					const message = `是否直接有刷访问 '${href}' ？`;
+					if (window.layer) {
+						layer.confirm(message, () => location.href = href);
+					} else {
+						window.confirm(message) ? location.href = href : null;
+					}
+				}, 1000);
 				return;
 			}
 

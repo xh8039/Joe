@@ -93,7 +93,7 @@ class Intercept
 					return false;
 				}
 			}
-		} else if ($GLOBALS['JOE_USER']->group == 'administrator' && self::waiting($comment['text'])) {
+		} else if ($GLOBALS['JOE_USER']->group !== 'administrator' && self::waiting($comment['text'])) {
 			$comment['status'] = 'waiting';
 		}
 

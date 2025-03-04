@@ -90,9 +90,9 @@ class Api
 	{
 		if (extension_loaded('gd')) {
 			$captcha = $self->request->captcha;
-			if (empty($captcha)) return (['message' => '请先输入图像验证码！']);
-			if (empty($_SESSION['joe_image_captcha'])) return (['message' => '验证码过期，请点击验证码图片刷新']);
-			if ($_SESSION['joe_image_captcha'] != $captcha) return ['message' => '验证码错误'];
+			if (empty($captcha) || !is_string($captcha)) return ['message' => '请先输入图像验证码！'];
+			if (empty($_SESSION['joe_image_captcha']) || !is_string($_SESSION['joe_image_captcha'])) return ['message' => '验证码过期，请点击验证码图片刷新'];
+			if (strtolower($_SESSION['joe_image_captcha']) !== strtolower($captcha)) return ['message' => '验证码错误'];
 			unset($_SESSION['joe_image_captcha']);
 		}
 		$email = $self->request->email;
@@ -147,9 +147,13 @@ class Api
 			return (['message' => '昵称已被其它小伙伴使用了']);
 		}
 
+		$email = trim($self->request->email);
+
 		if (\joe\email_config()) {
-			if (empty($_SESSION['joe_user_register_captcha'])) return (['message' => '请先发送邮箱验证码']);
-			if ($_SESSION['joe_user_register_captcha'] != $self->request->captcha || $_SESSION['joe_user_register_email'] != trim($self->request->email)) return (['message' => '验证码错误或已过期']);
+			$captcha = $self->request->captcha;
+			if (empty($captcha)) return ['message' => '请先输入邮箱验证码！'];
+			if (empty($_SESSION['joe_user_register_captcha'])) return ['message' => '请先发送邮箱验证码'];
+			if ($_SESSION['joe_user_register_captcha'] !== $captcha || $_SESSION['joe_user_register_email'] !== $email) return ['message' => '验证码错误或已过期'];
 		}
 
 		$hasher = new \Utils\PasswordHash(8, true);
@@ -157,7 +161,7 @@ class Api
 
 		$dataStruct = \Widget\Register::pluginHandle()->register([
 			'name' => $self->request->username,
-			'mail' => $self->request->email,
+			'mail' => $email,
 			'screenName' => $self->request->nickname,
 			'password' => $hasher->hashPassword($self->request->password),
 			'created' => self::$options->time,
@@ -197,9 +201,9 @@ class Api
 	{
 		if (extension_loaded('gd')) {
 			$captcha = $self->request->captcha;
-			if (empty($captcha)) return ['message' => '请先输入图像验证码！'];
-			if (empty($_SESSION['joe_image_captcha'])) return ['message' => '验证码过期，请点击验证码图片刷新'];
-			if ($_SESSION['joe_image_captcha'] != $captcha) return ['message' => '验证码错误'];
+			if (empty($captcha) || !is_string($captcha)) return ['message' => '请先输入图像验证码！'];
+			if (empty($_SESSION['joe_image_captcha']) || !is_string($_SESSION['joe_image_captcha'])) return ['message' => '验证码过期，请点击验证码图片刷新'];
+			if (strtolower($_SESSION['joe_image_captcha']) !== strtolower($captcha)) return ['message' => '验证码错误'];
 			unset($_SESSION['joe_image_captcha']);
 		}
 		/** 初始化验证类 */
@@ -260,8 +264,8 @@ class Api
 
 		// 检测验证码
 		if (empty($_SESSION['joe_user_retrieve_captcha'])) return (['message' => '请先发送邮箱验证码']);
-		if ($_SESSION['joe_user_retrieve_captcha'] != $captcha || $_SESSION['joe_user_retrieve_email'] != $email) {
-			return (['message' => '验证码错误或已过期']);
+		if ($_SESSION['joe_user_retrieve_captcha'] !== $captcha || $_SESSION['joe_user_retrieve_email'] !== $email) {
+			return ['message' => '验证码错误或已过期'];
 		}
 
 		// 生成新的用户密码
@@ -799,9 +803,9 @@ class Api
 	{
 		if (extension_loaded('gd')) {
 			$captcha = $self->request->captcha;
-			if (empty($captcha)) return ['message' => '请输入验证码！'];
-			if (empty($_SESSION['joe_image_captcha'])) return ['message' => '验证码过期，请点击验证码图片刷新'];
-			if ($_SESSION['joe_image_captcha'] != $captcha) return ['message' => '验证码错误'];
+			if (empty($captcha) || !is_string($captcha)) return ['message' => '请输入验证码！'];
+			if (empty($_SESSION['joe_image_captcha']) || !is_string($_SESSION['joe_image_captcha'])) return ['message' => '验证码过期，请点击验证码图片刷新'];
+			if (strtolower($_SESSION['joe_image_captcha']) !== strtolower($captcha)) return ['message' => '验证码错误'];
 			unset($_SESSION['joe_image_captcha']);
 		}
 

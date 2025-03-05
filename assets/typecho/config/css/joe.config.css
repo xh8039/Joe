@@ -190,7 +190,7 @@
 	font-weight: bold;
 }
 
-.joe_config>form .joe_content.joe_message .typecho-label:first-child {
+.joe_config>form .joe_content.joe_mail_test .typecho-label {
 	margin-bottom: 0;
 }
 

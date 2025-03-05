@@ -10,7 +10,7 @@ if (joe\email_config()) {
 	$email = $mail ? $mail :  \Helper::options()->JCommentMailAccount;
 	$JEmailTestText = '<a href="javascript:Joe.mailTest();">点击给 ' . $email . ' 发一封测试邮件</a>';
 	$JEmailTest = new \Typecho\Widget\Helper\Form\Element\Hidden('', NULL, NULL, $JEmailTestText);
-	$JEmailTest->setAttribute('class', 'joe_content joe_message');
+	$JEmailTest->setAttribute('class', 'joe_content joe_message joe_mail_test');
 	$form->addInput($JEmailTest);
 }
 
@@ -105,9 +105,8 @@ $JCommentMailPassword = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'邮箱授权码',
 	'介绍：这里填写的是邮箱生成的授权码 <br>
-		 获取方式（以QQ邮箱为例）：<br>
-		 QQ邮箱 > 设置 > 账户 > IMAP/SMTP服务 > 开启 <br>
-		 其他：这个可以百度一下开启教程，有图文教程'
+	获取方式（以QQ邮箱为例）：QQ邮箱 > 设置 > 账户 > IMAP/SMTP服务 > 开启 <br>
+	图文教程：<a href="https://ks3-cn-beijing.ksyuncs.com/wpsmail-miui/qq/QQ%20aouth.html" target="_blank">点击查看</a>丨详细教程可以百度，有各种图文教程'
 );
 $JCommentMailPassword->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailPassword->multiMode());

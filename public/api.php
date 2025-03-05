@@ -95,7 +95,7 @@ class Api
 			if (strtolower($_SESSION['joe_image_captcha']) !== strtolower($captcha)) return ['message' => '验证码错误'];
 			unset($_SESSION['joe_image_captcha']);
 		}
-		$email = $self->request->email;
+		$email = trim($self->request->email);
 		if (empty($email)) return ['message' => '请输入邮箱后发送验证码'];
 		if (Db::name('users')->where('mail', $email)->find()) return ['message' => '该邮箱已经注册'];
 
@@ -112,8 +112,7 @@ class Api
 	/** 用户注册 */
 	public static function userRegister(\Widget\Archive $self)
 	{
-		/** 如果已经登录 */
-		if (!self::$options->allowRegister) return (['message' => '禁止用户注册！']);
+		if (!self::$options->allowRegister) return ['message' => '禁止用户注册！'];
 
 		/** 初始化验证类 */
 		$validator = new \Typecho\Validate();
@@ -141,19 +140,20 @@ class Api
 
 		/** 截获验证异常 */
 		$error = $validator->run($self->request->from('nickname', 'username', 'email', 'password', 'confirm_password'));
-		if ($error) return (['message' => implode('，', $error)]);
+		if ($error) return ['message' => implode('，', $error)];
 
 		if (Db::name('users')->where('screenName', $self->request->nickname)->find()) {
-			return (['message' => '昵称已被其它小伙伴使用了']);
+			return ['message' => '昵称已被其它小伙伴使用了'];
 		}
 
 		$email = trim($self->request->email);
 
 		if (\joe\email_config()) {
 			$captcha = $self->request->captcha;
-			if (empty($captcha)) return ['message' => '请先输入邮箱验证码！'];
+			if (empty($captcha) || !is_string($captcha)) return ['message' => '请先输入邮箱验证码！'];
 			if (empty($_SESSION['joe_user_register_captcha'])) return ['message' => '请先发送邮箱验证码'];
-			if ($_SESSION['joe_user_register_captcha'] !== $captcha || $_SESSION['joe_user_register_email'] !== $email) return ['message' => '验证码错误或已过期'];
+			if ($_SESSION['joe_user_register_email'] !== $email) return ['message' => '接收验证码邮箱与当前邮箱不符'];
+			if ($_SESSION['joe_user_register_captcha'] != trim($captcha)) return ['message' => '验证码错误'];
 		}
 
 		$hasher = new \Utils\PasswordHash(8, true);
@@ -169,9 +169,12 @@ class Api
 		]);
 
 		$insertId = self::$user->insert($dataStruct);
-		if (!$insertId) return (['message' => '服务器异常，请稍后重试']);
+		if (!$insertId) return ['message' => '服务器异常，请稍后重试'];
 
-		self::$user->push(Db::name('users')->where('uid', $insertId)->find());
+		$user = Db::name('users')->where('uid', $insertId)->find();
+		if (!$user) return ['message' => '服务器异常，请稍后重试'];
+
+		self::$user->push($user);
 
 		\Widget\Register::pluginHandle()->finishRegister(self::$user);
 
@@ -263,10 +266,10 @@ class Api
 		if (!$user) return (['message' => '您输入的邮箱未注册账号']);
 
 		// 检测验证码
-		if (empty($_SESSION['joe_user_retrieve_captcha'])) return (['message' => '请先发送邮箱验证码']);
-		if ($_SESSION['joe_user_retrieve_captcha'] !== $captcha || $_SESSION['joe_user_retrieve_email'] !== $email) {
-			return ['message' => '验证码错误或已过期'];
-		}
+		if (empty($captcha) || !is_string($captcha)) return ['message' => '请先输入邮箱验证码！'];
+		if (empty($_SESSION['joe_user_retrieve_captcha'])) return ['message' => '请先发送邮箱验证码'];
+		if ($_SESSION['joe_user_retrieve_email'] !== $email) return ['message' => '接收验证码邮箱与当前邮箱不符'];
+		if ($_SESSION['joe_user_retrieve_captcha'] != trim($captcha)) return ['message' => '验证码错误'];
 
 		// 生成新的用户密码
 		$hasher = new \Utils\PasswordHash(8, true);
@@ -1040,7 +1043,7 @@ class Api
 		$price = $item->fields->price ? $item->fields->price : 0;
 		if (!is_numeric($price) || round($price, 2) <= 0) return (['code' => 503, 'message' => '金额设置错误！']);
 		$price = round($price, 2);
-		$out_trade_no = date("YmdHis") . mt_rand(100, 999);
+		$out_trade_no = date("YmdHis") . rand(100, 999);
 		//构造要请求的参数数组，无需改动
 		$parameter = array(
 			'pid' => $epay_config['partner'],

@@ -55,7 +55,7 @@ body {
 	overflow-x: hidden;
 	line-height: 1.42857143;
 	color: var(--main-color);
-	padding-top: 88px;
+	padding-top: 120px;
 	background: var(--body-bg-color);
 	background-blend-mode: multiply;
 	background-position: center 0;

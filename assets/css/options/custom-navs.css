@@ -1,3 +1,7 @@
+html body {
+	padding-top: 88px;
+}
+
 .header {
 	transition: background .5s
 }

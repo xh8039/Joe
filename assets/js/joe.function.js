@@ -204,14 +204,14 @@ window.Joe.internalForwardUrl = (string) => {
 			if ($element.attr('data-pjax-state') != undefined) return false;
 			string = string.href;
 		}
-		if (string.startsWith('/admin')) return false;
+		console.log(string);
+		if (string.startsWith('/admin') || string.startsWith(location.href + '/admin')) return false;
 		if (string.startsWith('/')) return true;
 		if (string.startsWith('#')) return false;
 		let url = new URL(string);
 		if (url.hash) return false;
 		if (url.host != location.host) return false;
 		if (url.protocol == 'javascript:') return false;
-		console.log(url);
 	} catch (error) {
 		console.log(error);
 		return false;

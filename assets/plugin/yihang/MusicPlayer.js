@@ -2,7 +2,7 @@
  * @package MusicPlayer
  * @version 1.1
  * @author 易航
- * @link http://blog.bri6.cn
+ * @link http://blog.yihang.info
  * @giant APlayer
 */
 class MusicPlayer {

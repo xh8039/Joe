@@ -6,7 +6,7 @@
  * @package Joe再续前缘
  * @author 易航
  * @version 1.34
- * @link http://blog.bri6.cn
+ * @link http://blog.yihang.info
  */
 
 if (!defined('__TYPECHO_ROOT_DIR__')) {

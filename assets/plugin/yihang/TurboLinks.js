@@ -2,7 +2,7 @@
  * @package TurboLinks
  * @version 1.0
  * @author 易航
- * @link http://blog.bri6.cn
+ * @link http://blog.yihang.info
  * @license: MIT
 */
 class TurboLinks {

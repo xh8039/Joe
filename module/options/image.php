@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 $JFavicon = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JFavicon',
 	NULL,
-	'http://blog.bri6.cn/favicon.ico',
+	'http://blog.yihang.info/favicon.ico',
 	'网站 Favicon 设置',
 	'介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
 		 格式：图片 URL地址 或 Base64 地址 <br />
@@ -124,7 +124,7 @@ $form->addInput($JWallpaper_Background_Optimal->multiMode());
 $JShare_QQ_Image = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JShare_QQ_Image',
 	NULL,
-	'http://blog.bri6.cn/favicon.ico',
+	'http://blog.yihang.info/favicon.ico',
 	'QQ分享链接图片',
 	'介绍：用于修改在QQ内分享时卡片链接显示的图片 <br/>
 		 格式：图片地址'

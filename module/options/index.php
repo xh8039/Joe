@@ -20,7 +20,7 @@ $JIndex_Icon_Card = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	NULL,
 	'首页图标卡片模块',
-	'介绍：用于显示首页轮播图下方的图标卡片，请务必填写正确的格式丨<a target="_blank" href="http://blog.bri6.cn/archives/295.html">查看官网教程</a>'
+	'介绍：用于显示首页轮播图下方的图标卡片，请务必填写正确的格式丨<a target="_blank" href="http://blog.yihang.info/archives/295.html">查看官网教程</a>'
 );
 $JIndex_Icon_Card->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndex_Icon_Card);

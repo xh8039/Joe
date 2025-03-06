@@ -11,8 +11,8 @@ $JMaccmsAPI = new \Typecho\Widget\Helper\Form\Element\Text(
 	NULL,
 	'苹果CMS开放API',
 	'介绍：请填写苹果CMS V10开放API，用于视频页面使用<br />
-	例如：http://blog.bri6.cn/api.php/provide/vod/ <br />
-	如果您搭建了苹果cms网站，那么用你自己的即可，如果没有，请去网上找API丨<a target="_blank" href="http://blog.bri6.cn/archives/427.html">查看推荐接口</a>'
+	例如：http://blog.yihang.info/api.php/provide/vod/ <br />
+	如果您搭建了苹果cms网站，那么用你自己的即可，如果没有，请去网上找API丨<a target="_blank" href="http://blog.yihang.info/archives/427.html">查看推荐接口</a>'
 );
 $JMaccmsAPI->setAttribute('class', 'joe_content joe_other');
 $form->addInput($JMaccmsAPI);
@@ -24,7 +24,7 @@ $WallpaperAPI = new \Typecho\Widget\Helper\Form\Element\Text(
 	'壁纸模板API（非必填）',
 	'格式：壁纸分类API || 壁纸列表API <br />
 	示例：http://cdn.apc.360.cn/index.php || http://wallpaper.apc.360.cn/index.php<br>
-	教程：<a target="_blank" href="http://blog.bri6.cn/archives/365.html">查看官网教程</a>'
+	教程：<a target="_blank" href="http://blog.yihang.info/archives/365.html">查看官网教程</a>'
 );
 $WallpaperAPI->setAttribute('class', 'joe_content joe_other');
 $form->addInput($WallpaperAPI);

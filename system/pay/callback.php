@@ -1,7 +1,7 @@
 <?php
 /*
  * @Author: 易航
- * @Url: blog.bri6.cn
+ * @Url: blog.yihang.info
  * @Date: 2024-10-22 00:00:00
  * @LastEditTime: 2024-10-23 00:00:00
  */

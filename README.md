@@ -3,7 +3,7 @@
 > 一款基于Typecho博客的双栏极致优化主题
 
 - 官方通知群：[782778569](https://qm.qq.com/q/9qlyquSaXe)
-- 再续前缘版演示博客：<http://blog.bri6.cn/archives/18.html>
+- 再续前缘版演示博客：<http://blog.yihang.info/archives/18.html>
 - 主题宗旨：简洁、优美、超强、开源、精华
 
 ## 前言

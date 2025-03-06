@@ -10,7 +10,7 @@ $JFooterTabbar = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	NULL,
 	'移动端底部Tab导航',
-	'介绍：在移动端固定显示在最底部的tab导航按钮，支持排序和添加删除，注意开启后按钮不宜过多 | <a target="_blank" href="http://blog.bri6.cn/archives/232.html">查看官网教程</a>'
+	'介绍：在移动端固定显示在最底部的tab导航按钮，支持排序和添加删除，注意开启后按钮不宜过多 | <a target="_blank" href="http://blog.yihang.info/archives/232.html">查看官网教程</a>'
 );
 $JFooterTabbar->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JFooterTabbar->multiMode());
@@ -28,10 +28,10 @@ if (empty(\Helper::options()->JFooterMode) || \Helper::options()->JFooterMode ==
 	$JFooter_Left = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'JFooter_Left',
 		NULL,
-		'2021 - ' . date('Y') . ' © <a href="http://blog.bri6.cn">易航博客</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
+		'2021 - ' . date('Y') . ' © <a href="http://blog.yihang.info">易航博客</a>丨技术支持：<a href="http://blog.yihang.info" target="_blank">易航</a>',
 		'自定义底部栏左侧内容（非必填）',
 		'介绍：用于修改全站底部左侧内容（wap端上方） <br>
-			 例如：<style style="display:inline">2021 - ' . date('Y') . ' © <a href="{站点链接}">{站点标题}</a>丨技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a></style>'
+			 例如：<style style="display:inline">2021 - ' . date('Y') . ' © <a href="{站点链接}">{站点标题}</a>丨技术支持：<a href="http://blog.yihang.info" target="_blank">易航</a></style>'
 	);
 	$JFooter_Left->setAttribute('class', 'joe_content joe_footer');
 	$form->addInput($JFooter_Left);
@@ -39,10 +39,10 @@ if (empty(\Helper::options()->JFooterMode) || \Helper::options()->JFooterMode ==
 	$JFooter_Right = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'JFooter_Right',
 		NULL,
-		'<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>' . PHP_EOL . '<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>' . PHP_EOL . '<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>',
+		'<a href="http://blog.yihang.info/feed/" target="_blank">RSS</a>' . PHP_EOL . '<a href="http://blog.yihang.info/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>' . PHP_EOL . '<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>',
 		'自定义底部栏右侧内容（非必填）',
 		'介绍：用于修改全站底部右侧内容（wap端下方） <br>
-		例如：' . htmlentities('<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>') . '<br>' . htmlentities('<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>') . '<br>' . htmlentities('<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>')
+		例如：' . htmlentities('<a href="http://blog.yihang.info/feed/" target="_blank">RSS</a>') . '<br>' . htmlentities('<a href="http://blog.yihang.info/sitemap.xml" target="_blank" style="margin-left: 15px">MAP</a>') . '<br>' . htmlentities('<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="margin-left: 15px">冀ICP备2021010323号</a>')
 	);
 	$JFooter_Right->setAttribute('class', 'joe_content joe_footer');
 	$form->addInput($JFooter_Right);
@@ -62,15 +62,15 @@ if (empty(\Helper::options()->JFooterMode) || \Helper::options()->JFooterMode ==
 	$JFooterCenter2 = new \Typecho\Widget\Helper\Form\Element\Textarea(
 		'JFooterCenter2',
 		NULL,
-		'<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>
-	<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left:5px;margin-right: 5px;">MAP</a>
+		'<a href="http://blog.yihang.info/feed/" target="_blank">RSS</a>
+	<a href="http://blog.yihang.info/sitemap.xml" target="_blank" style="margin-left:5px;margin-right: 5px;">MAP</a>
 	<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>
 	<br>
-	Copyright © 2022 - ' . date('Y') . ' · <a href="http://blog.bri6.cn">易航博客</a>
+	Copyright © 2022 - ' . date('Y') . ' · <a href="http://blog.yihang.info">易航博客</a>
 	<br>
-	技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>',
+	技术支持：<a href="http://blog.yihang.info" target="_blank">易航</a>',
 		'底部栏中间第二行（建议为版权提醒，备案号等）',
-		'示例：<br>' . str_replace('||', '<br>', htmlentities('<a href="http://blog.bri6.cn/feed/" target="_blank">RSS</a>||<a href="http://blog.bri6.cn/sitemap.xml" target="_blank" style="margin-left:5px;margin-right: 5px;">MAP</a>||<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>||<br>||Copyright © 2022 - ' . date('Y') . ' · <a href="http://blog.bri6.cn">易航博客</a>||<br>||技术支持：<a href="http://blog.bri6.cn" target="_blank">易航</a>'))
+		'示例：<br>' . str_replace('||', '<br>', htmlentities('<a href="http://blog.yihang.info/feed/" target="_blank">RSS</a>||<a href="http://blog.yihang.info/sitemap.xml" target="_blank" style="margin-left:5px;margin-right: 5px;">MAP</a>||<a href="http://beian.miit.gov.cn/" class="icp" target="_blank" rel="nofollow">冀ICP备2021010323号</a>||<br>||Copyright © 2022 - ' . date('Y') . ' · <a href="http://blog.yihang.info">易航博客</a>||<br>||技术支持：<a href="http://blog.yihang.info" target="_blank">易航</a>'))
 	);
 	$JFooterCenter2->setAttribute('class', 'joe_content joe_footer');
 	$form->addInput($JFooterCenter2);

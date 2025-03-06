@@ -114,7 +114,7 @@ $JCustomNavs = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	NULL,
 	NULL,
 	'全新自定义导航栏（非必填）',
-	'介绍：可随意设置导航链接和导航文字加图标的全新导航栏丨<a target="_blank" href="http://blog.bri6.cn/archives/286.html">查看官网教程</a>'
+	'介绍：可随意设置导航链接和导航文字加图标的全新导航栏丨<a target="_blank" href="http://blog.yihang.info/archives/286.html">查看官网教程</a>'
 );
 $JCustomNavs->setAttribute('class', 'joe_content joe_global');
 $form->addInput($JCustomNavs);

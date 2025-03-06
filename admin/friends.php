@@ -7,7 +7,7 @@
  * @author  易航
  * @version 1.0
  * @update: 2025.01.15
- * @link http://blog.bri6.cn
+ * @link http://blog.yihang.info
  */
 
 // include 'common.php';

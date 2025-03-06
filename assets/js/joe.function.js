@@ -204,6 +204,7 @@ window.Joe.internalForwardUrl = (string) => {
 			if ($element.attr('data-pjax-state') != undefined) return false;
 			string = string.href;
 		}
+		if (string.startsWith('/admin')) return false;
 		if (string.startsWith('/')) return true;
 		if (string.startsWith('#')) return false;
 		let url = new URL(string);

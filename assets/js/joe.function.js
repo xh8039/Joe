@@ -205,7 +205,7 @@ window.Joe.internalForwardUrl = (string) => {
 			string = string.href;
 		}
 		console.log(string);
-		if (string.startsWith('/admin') || string.startsWith(location.href + '/admin')) return false;
+		if (string.startsWith('/admin') || string.startsWith(location.href + 'admin')) return false;
 		if (string.startsWith('/')) return true;
 		if (string.startsWith('#')) return false;
 		let url = new URL(string);

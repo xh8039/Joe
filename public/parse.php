@@ -89,7 +89,7 @@ function _parseReply($text)
 				if (\Typecho_Request::getInstance()->getHeader('x-requested-with')) {
 					$emoticon_icon_list[] = '<img height="22px" referrerpolicy="no-referrer" rel="noreferrer" class="owo_image" src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
 				} else {
-					$emoticon_icon_list[] = '<img referrerpolicy="no-referrer" rel="noreferrer" class="owo_image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="' . Helper::options()->themeUrl . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
+					$emoticon_icon_list[] = '<img referrerpolicy="no-referrer" rel="noreferrer" class="owo_image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="' . joe\root_relative_link(Helper::options()->themeUrl) . '/' . $value['icon'] . '" alt="' . $value['text'] . '"/>';
 				}
 			}
 		}
@@ -250,7 +250,7 @@ function _payBox($post)
 					</div>
 				</div>
 				<div class="text-right mt10">
-					<a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . Helper::options()->index . '/joe/api/pay_cashier_modal?cid=' . $post->cid . '" class="cashier-link but jb-red joe_scan_light" href="javascript:;" data-toggle="RefreshModal">立即购买</a>
+					<a data-class="modal-mini" mobile-bottom="true" data-height="300" data-remote="' . joe\root_relative_link(Helper::options()->index . '/') . 'joe/api/pay_cashier_modal?cid=' . $post->cid . '" class="cashier-link but jb-red joe_scan_light" href="javascript:;" data-toggle="RefreshModal">立即购买</a>
 					' . (is_numeric(USER_ID) ? '' : '<div class="pay-extra-hide px12 mt6" style="font-size:12px;">您当前未登录！建议登陆后购买，可保存购买订单</div>') . '
 				</div>
 			</div>

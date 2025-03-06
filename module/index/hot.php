@@ -33,7 +33,7 @@ if ((is_numeric($this->options->JIndex_Hot)) && ($this->options->JIndex_Hot >= 1
 							<?php
 							$color_list = joe\zibll_color_list();
 							foreach ($item->categories as $key => $value) {
-								echo '<a class="but ' . $color_list[$key] . '" title="查看此分类更多文章" href="' . $value['url'] . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
+								echo '<a class="but ' . $color_list[$key] . '" title="查看此分类更多文章" href="' . joe\root_relative_link($value['url']) . '"><i class="fa fa-folder-open-o" aria-hidden="true"></i>' . $value['name'] . '</a>';
 							}
 							foreach ($item->tags as $key => $value) {
 								echo '<a href="' . joe\root_relative_link($value['permalink']) . '" title="查看此标签更多文章" class="but"># ' . $value['name'] . '</a>';

@@ -51,7 +51,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 							<a class="but c-blue tag-posts" data-toggle="tooltip" title="共<?= $PostsNum ?>篇文章" href="<?= joe\root_relative_link($this->user->permalink) ?>"><svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-post"></use>
 								</svg><?= $PostsNum ?></a>
-							<a target="_blank" class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?php $this->options->adminUrl('manage-comments.php') ?>"><svg class="icon svg" aria-hidden="true">
+							<a target="_blank" class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?= joe\root_relative_link($this->options->adminUrl) . 'manage-comments.php' ?>"><svg class="icon svg" aria-hidden="true">
 									<use xlink:href="#icon-comment"></use>
 								</svg><?= $CommentsNum ?></a>
 							<?php $agree = joe\number_word(joe\author_content_field_sum($this->user->uid, 'agree')) ?>
@@ -63,8 +63,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</div>
 						<div class="user-desc mt10 muted-2-color em09 joe_motto">这家伙很懒，什么都没有写...</div>
 						<div class="user-btns mt20">
-							<a target="_blank" rel="nofollow" class="newadd-btns but pw-1em mr6 jb-pink btn-newadd" href="<?php $this->options->adminUrl('write-post.php') ?>">发布文章</a>
-							<a target="_blank" rel="nofollow" href="<?php $this->options->adminUrl('profile.php') ?>" class="but pw-1em ml6 jb-blue">用户中心</a>
+							<a target="_blank" rel="nofollow" class="newadd-btns but pw-1em mr6 jb-pink btn-newadd" href="<?= joe\root_relative_link($this->options->adminUrl) . 'write-post.php' ?>">发布文章</a>
+							<a target="_blank" rel="nofollow" href="<?= joe\root_relative_link($this->options->adminUrl) . 'profile.php' ?>" class="but pw-1em ml6 jb-blue">用户中心</a>
 						</div>
 					</div>
 				<?php

@@ -46,15 +46,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 					</div>
 					<nav class="joe_dropdown__menu">
 						<?php if ($this->user->group == 'administrator' || $this->user->group == 'editor' || $this->user->group == 'contributor') : ?>
-							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("manage-posts.php"); ?>">管理文章</a>
+							<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl)?>manage-posts.php">管理文章</a>
 						<?php endif; ?>
 						<?php if ($this->user->group == 'administrator' || $this->user->group == 'editor') : ?>
-							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("manage-comments.php"); ?>">管理评论</a>
+							<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>manage-comments.php">管理评论</a>
 						<?php endif; ?>
 						<?php if ($this->user->group == 'administrator') : ?>
-							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>">修改外观</a>
+							<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>options-theme.php">修改外观</a>
 						<?php endif; ?>
-						<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>">进入后台</a>
+						<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>">进入后台</a>
 						<a data-turbolinks="false" href="<?= joe\root_relative_link($this->options->logoutUrl) ?>">退出登录</a>
 					</nav>
 				</div>

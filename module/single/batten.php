@@ -47,13 +47,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<div class="clearfix ml6">
 			<?php if ($this->user->group == 'administrator' || $this->user->uid == $this->authorId) : ?>
 				<?php if ($this->is('post')) : ?>
-					<a target="_blank" href="<?php $this->options->adminUrl(); ?>write-post.php?cid=<?php echo $this->cid; ?>" title="编辑文章">
+					<a target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>write-post.php?cid=<?php echo $this->cid; ?>" title="编辑文章">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-menu_2"></use>
 						</svg>
 					</a>
 				<?php else : ?>
-					<a target="_blank" href="<?php $this->options->adminUrl(); ?>write-page.php?cid=<?php echo $this->cid; ?>" title="编辑页面">
+					<a target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>write-page.php?cid=<?php echo $this->cid; ?>" title="编辑页面">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-menu_2"></use>
 						</svg>

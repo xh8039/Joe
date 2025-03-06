@@ -52,7 +52,7 @@ $login_comment = $this->options->JcommentLogin == 'on' && !is_numeric(USER_ID) ?
 				}
 				?>
 			</div>
-			<form method="post" class="joe_comment__respond-form" action="<?php $this->commentUrl() ?>" data-type="text">
+			<form method="post" class="joe_comment__respond-form" action="<?= joe\root_relative_link($this->commentUrl) ?>" data-type="text">
 				<div class="head">
 					<?php
 					if ($this->user->hasLogin() || $login_comment) {

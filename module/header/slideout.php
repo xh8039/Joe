@@ -173,15 +173,15 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 				<ul class="slides panel-body">
 					<li>
 						<?php if ($this->user->group == 'administrator' || $this->user->group == 'editor' || $this->user->group == 'contributor') { ?>
-							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("manage-posts.php"); ?>" class="link">管理文章</a>
+							<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>manage-posts.php" class="link">管理文章</a>
 						<?php } ?>
 						<?php if ($this->user->group == 'administrator' || $this->user->group == 'editor') { ?>
-							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("manage-comments.php"); ?>" class="link">管理评论</a>
+							<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>manage-comments.php" class="link">管理评论</a>
 						<?php } ?>
 						<?php if ($this->user->group == 'administrator') { ?>
-							<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>" class="link">主题设置</a>
+							<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>options-theme.php" class="link">主题设置</a>
 						<?php } ?>
-						<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>" class="link">进入后台</a>
+						<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>" class="link">进入后台</a>
 						<a data-turbolinks="false" href="<?= joe\root_relative_link($this->options->logoutUrl) ?>" class="link">退出登录</a>
 					</li>
 				</ul>

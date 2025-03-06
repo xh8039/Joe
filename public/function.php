@@ -47,6 +47,12 @@ function comment_author($comment)
  */
 function root_relative_link($link)
 {
+	// if (str_starts_with('http://', $link)) {
+	// 	return str_starts_replace(str_starts_replace('https://', 'http://', \Helper::options()->siteUrl), '/', $link);
+	// }
+	// if (str_starts_with('https://', $link)) {
+	// 	return str_starts_replace(str_starts_replace('http://', 'https://', \Helper::options()->siteUrl), '/', $link);
+	// }
 	return str_starts_replace(\Helper::options()->siteUrl, '/', $link);
 }
 

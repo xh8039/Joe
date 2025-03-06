@@ -45,7 +45,7 @@ $custom_navs = joe\custom_navs();
 						}
 						?>
 					</ul>
-					<form method="get" class="navbar-form navbar-left hover-show" action="<?php $this->options->siteUrl(); ?>">
+					<form method="get" class="navbar-form navbar-left hover-show" action="/">
 						<div class="form-group relative dropdown">
 							<input type="text" class="form-control search-input focus-show" name="s" placeholder="搜索内容" value="<?php echo $this->is('search') ? $this->archiveTitle(' &raquo; ', '', '') : '' ?>">
 							<div class="abs-right muted-3-color">
@@ -97,10 +97,10 @@ $custom_navs = joe\custom_navs();
 								<use xlink:href="#icon-menu_2"></use>
 							</svg></a></div>
 					<div class="navbar-form navbar-right navbar-but">
-						<a rel="nofollow" class="newadd-btns but nowave jb-blue radius btn-newadd" href="<?= $this->user->hasLogin() ? $this->options->adminUrl . 'write-post.php' : joe\user_url('login') ?>"><i class="fa fa-fw fa-pencil"></i>发布</a>
+						<a rel="nofollow" class="newadd-btns but nowave jb-blue radius btn-newadd" href="<?= $this->user->hasLogin() ? (joe\root_relative_link($this->options->adminUrl) . 'write-post.php') : joe\user_url('login') ?>"><i class="fa fa-fw fa-pencil"></i>发布</a>
 					</div>
 					<div class="navbar-form navbar-right">
-						<a href="javascript:;" class="toggle-theme toggle-radius"><i class="fa fa-toggle-theme"></i></a><?= $this->user->hasLogin() ? '<a rel="nofollow" href="' . $this->options->adminUrl . 'manage-comments.php" class="msg-news-icon ml10"><span class="toggle-radius msg-icon"><i class="fa fa-bell-o" aria-hidden="true"></i></span></a>' : null ?>
+						<a href="javascript:;" class="toggle-theme toggle-radius"><i class="fa fa-toggle-theme"></i></a><?= $this->user->hasLogin() ? ('<a rel="nofollow" href="' . joe\root_relative_link($this->options->adminUrl) . 'manage-comments.php" class="msg-news-icon ml10"><span class="toggle-radius msg-icon"><i class="fa fa-bell-o" aria-hidden="true"></i></span></a>') : null ?>
 					</div>
 					<?php
 					if ($this->user->hasLogin()) {
@@ -130,7 +130,7 @@ $custom_navs = joe\custom_navs();
 															<div class="px12 muted-2-color text-ellipsis">这家伙很懒，什么都没有写...</div>
 														</div>
 													</div>
-													<a href="<?php $this->options->adminUrl('manage-comments.php') ?>" class="msg-news-icon abs-right">
+													<a href="<?= joe\root_relative_link($this->options->adminUrl) ?>manage-comments.php" class="msg-news-icon abs-right">
 														<span class="toggle-radius msg-icon">
 															<i class="fa fa-bell-o" aria-hidden="true"></i>
 														</span>
@@ -147,7 +147,7 @@ $custom_navs = joe\custom_navs();
 															<use xlink:href="#icon-post"></use>
 														</svg><?= $PostsNum ?>
 													</a>
-													<a class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?php $this->options->adminUrl('manage-comments.php') ?>">
+													<a class="but c-green tag-comment" data-toggle="tooltip" title="共<?= $CommentsNum ?>条评论" href="<?= joe\root_relative_link($this->options->adminUrl) ?>manage-comments.php">
 														<svg class="icon svg" aria-hidden="true">
 															<use xlink:href="#icon-comment"></use>
 														</svg><?= $CommentsNum ?>
@@ -167,13 +167,13 @@ $custom_navs = joe\custom_navs();
 												</div>
 												<div class="mt10 text-center">
 													<div class="flex jsa header-user-href">
-														<a rel="nofollow" href="<?php $this->options->adminUrl('profile.php') ?>">
+														<a rel="nofollow" href="<?= joe\root_relative_link($this->options->adminUrl) ?>profile.php">
 															<div class="badg mb6 toggle-radius c-blue"><svg style="transform: translate(1px, -50%)" class="icon svg" aria-hidden="true" data-viewBox="50 0 924 924" viewBox="50 0 924 924">
 																	<use xlink:href="#icon-user"></use>
 																</svg></div>
 															<div class="c-blue">用户中心</div>
 														</a>
-														<a rel="nofollow" class="newadd-btns start-new-posts btn-newadd" href="<?php $this->options->adminUrl('write-post.php') ?>">
+														<a rel="nofollow" class="newadd-btns start-new-posts btn-newadd" href="<?= joe\root_relative_link($this->options->adminUrl) ?>write-post.php">
 															<div class="badg mb6 toggle-radius c-green"><i style="transform: translate(1px, -50%)" class="fa fa-fw fa-pencil-square-o"></i></div>
 															<div class="c-green">发布文章</div>
 														</a>
@@ -188,17 +188,17 @@ $custom_navs = joe\custom_navs();
 													if ($this->user->group == 'administrator') {
 													?>
 														<div class="flex jsa header-user-href">
-															<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl('options-theme.php') ?>">
+															<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>options-theme.php">
 																<div class="badg mb6 toggle-radius c-yellow"><svg class="icon svg" aria-hidden="true">
 																		<use xlink:href="#icon-theme"></use>
 																	</svg></div>
 																<div class="c-yellow">主题设置</div>
 															</a>
-															<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl('manage-comments.php') ?>">
+															<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>manage-comments.php">
 																<div class="badg mb6 toggle-radius c-yellow"><i class="fa fa-comments"></i></div>
 																<div class="c-yellow">管理评论</div>
 															</a>
-															<a rel="nofollow" target="_blank" href="<?php $this->options->adminUrl() ?>">
+															<a rel="nofollow" target="_blank" href="<?= joe\root_relative_link($this->options->adminUrl) ?>">
 																<div class="badg mb6 toggle-radius c-yellow"><svg class="icon svg" aria-hidden="true">
 																		<use xlink:href="#icon-set"></use>
 																	</svg>

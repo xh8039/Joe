@@ -285,6 +285,10 @@
 		border: 1px solid transparent;
 	}
 
+	html body {
+		padding-top: 70px;
+	}
+
 	html .joe_header__below {
 		display: none
 	}
@@ -777,10 +781,6 @@
 @media (max-width: 640px) {
 	html .hide-sm {
 		display: none !important;
-	}
-
-	html body {
-		padding-top: 72px;
 	}
 }
 

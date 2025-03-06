@@ -124,7 +124,7 @@ $form->addInput($JWallpaper_Background_Optimal->multiMode());
 $JShare_QQ_Image = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JShare_QQ_Image',
 	NULL,
-	"http://blog.bri6.cn/usr/uploads/logo/favicon.ico",
+	'http://blog.bri6.cn/favicon.ico',
 	'QQ分享链接图片',
 	'介绍：用于修改在QQ内分享时卡片链接显示的图片 <br/>
 		 格式：图片地址'

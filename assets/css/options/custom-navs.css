@@ -2,6 +2,12 @@ html body {
 	padding-top: 88px;
 }
 
+@media (max-width: 640px) {
+	html body {
+		padding-top: 72px;
+	}
+}
+
 .header {
 	transition: background .5s
 }

@@ -1,17 +1,7 @@
 <?php
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
-$useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
-// if (strpos($useragent, 'iphone') !== false || strpos($useragent, 'ipod') !== false) {
-//     $alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rLrNvRzmibibqrjTFj5g2kzGyoQj3ViartAEQ/0" class="icon-safari" /> <span id="openm">Safari打开</span>';
-// } else
-if (strpos($useragent, 'micromessenger') !== false) {
-	$alert = '//ae01.alicdn.com/kf/Ha91852136d9041c5a27f9e3b9663d39d4.png';
-?>
-	<div style="width: 100%;height:3px;background-color:rgb(7, 193, 96);position:fixed;top:0px;z-index:9999999999;">
-	</div>
-<?php
-} else {
-	$alert = '//external-30160.picsz.qpic.cn/f5c4cd695818494d727d8715bcfe7239';
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
 }
 ?>
 <!DOCTYPE html>
@@ -168,6 +158,21 @@ if (strpos($useragent, 'micromessenger') !== false) {
 </head>
 
 <body>
+	<?php
+	$useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
+	// if (strpos($useragent, 'iphone') !== false || strpos($useragent, 'ipod') !== false) {
+	//     $alert = '<img src="//puep.qpic.cn/coral/Q3auHgzwzM4fgQ41VTF2rLrNvRzmibibqrjTFj5g2kzGyoQj3ViartAEQ/0" class="icon-safari" /> <span id="openm">Safari打开</span>';
+	// } else
+	if (strpos($useragent, 'micromessenger') !== false) {
+		$alert = joe\theme_url('assets/images/browser/WeChat.jpg');
+	?>
+		<div style="width: 100%;height:3px;background-color:rgb(7, 193, 96);position:fixed;top:0px;z-index:9999999999;">
+		</div>
+	<?php
+	} else {
+		$alert = '//external-30160.picsz.qpic.cn/f5c4cd695818494d727d8715bcfe7239';
+	}
+	?>
 	<div class="linear">
 		<img src="<?php echo $alert ?>" width="100%" />
 	</div>

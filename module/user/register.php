@@ -27,7 +27,7 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 						<p>创建您的帐号，只需不到一分钟</p>
 						<p class="text-muted">已有账号? <a href="<?= joe\user_url('login', $referer) ?>" class="text-dark ml-1"><b>登陆</b></a></p>
 					</div>
-					<form id="user-form" operate="注册" action="<?= $this->options->index ?>/joe/api/user-register" method="post">
+					<form id="user-form" operate="注册" action="<?= joe\root_relative_link($this->options->index . '/joe/api/user-register') ?>" method="post">
 						<div class="form-group mb-3">
 							<label>昵称</label>
 							<input class="form-control" type="text" name="nickname" maxlength="10" placeholder="请输入您要显示的名称">

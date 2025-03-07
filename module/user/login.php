@@ -25,7 +25,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<h4>用户登录</h4>
 						<p>请输入帐号密码进行登录</p>
 					</div>
-					<form id="user-form" operate="登录" action="<?= $this->options->index ?>/joe/api/user-login" method="post">
+					<form id="user-form" operate="登录" action="<?= joe\root_relative_link($this->options->index . '/joe/api/user-login') ?>" method="post">
 						<div class="form-group">
 							<label class="float-left">账号/邮箱</label>
 							<?php

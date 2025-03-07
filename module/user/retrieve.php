@@ -24,7 +24,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						<h4>重置密码</h4>
 						<p>通过注册时的邮箱设置新密码</p>
 					</div>
-					<form id="user-form" operate="设置" action="<?= $this->options->index ?>/joe/api/user-retrieve" method="post">
+					<form id="user-form" operate="设置" action="<?= joe\root_relative_link($this->options->index . '/joe/api/user-retrieve') ?>" method="post">
 						<div class="form-group mb-3" id="post1">
 							<label>邮箱</label>
 							<input class="form-control" type="email" name="email" maxlength="64" placeholder="请输入您的邮箱">

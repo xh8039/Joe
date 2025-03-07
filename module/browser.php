@@ -9,7 +9,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 <head>
 	<meta charset="UTF-8">
-	<title>请使用浏览器打开</title>
+	<title>请使用浏览器打开 - <?= $this->options->title ?></title>
 	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
@@ -111,8 +111,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			display: flex;
 			flex-direction: row;
 			-ms-flex-direction: row;
-			width: 80%;
-			margin: 40% auto auto auto;
+			width: 100%;
+			max-width: 560px;
+			position: fixed;
+			bottom: 0;
+			font-size: 12px;
 			padding: 5%;
 			background: #f9f9f9;
 			border-radius: 4px;
@@ -176,7 +179,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div class="linear">
 		<img src="<?php echo $alert ?>" width="100%" />
 	</div>
-	<div style="width:100%;max-width:560px;position:fixed;bottom: 0;font-size: 12px;margin-bottom: 10px;" class="download-area">
+	<div class="download-area">
 		<img src="//external-30160.picsz.qpic.cn/60d9f46afebf468646b2e008a020d1a2" class="logo">
 		<div>
 			<div class="t-1">管家检测正常，请按上图提示打开。</div>

@@ -60,7 +60,7 @@ function themeInit($self)
 	/* 强制回复楼层最高999层 */
 	Helper::options()->commentsMaxNestingLevels = 999;
 
-	$is_iframe = (isset($_SERVER['HTTP_SEC_FETCH_DEST']) && $_SERVER['HTTP_SEC_FETCH_DEST'] === 'iframe') || isset($_GET['iframe']);
+	$is_iframe = (isset($_SERVER['HTTP_SEC_FETCH_DEST']) && $_SERVER['HTTP_SEC_FETCH_DEST'] === 'iframe') || isset($_GET['iframe']) || (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest');
 
 	if (Helper::options()->JForceBrowser == 'on' && (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') !== false) && !$is_iframe) {
 		// 我就不信这次腾讯会再给封了！！！

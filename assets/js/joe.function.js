@@ -197,9 +197,7 @@ window.Joe.clipboard = (content, success = undefined, error = undefined) => {
 
 String.prototype.startsWithArray = function (searchArray, start = 0) {
 	for (const key in searchArray) {
-		const searchvalue = searchArray[key];
-		console.log(this.startsWith(searchvalue, start), searchvalue);
-		if (this.startsWith(searchvalue, start)) return true;
+		if (this.startsWith(searchArray[key], start)) return true;
 	}
 	return false;
 }

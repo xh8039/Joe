@@ -917,8 +917,8 @@ Joe.DOMContentLoaded.global ||= () => {
 			NProgress.done();
 		});
 		$(document).on('click', 'a[href]', function (event) {
+			if (this.dataset.turbolinks == 'false') return true;
 			if (!window.Joe.internalForwardUrl(this)) return true;
-			if ($(this).attr('data-turbolinks') == 'false') return true;
 			event.preventDefault(); // 阻止默认行为
 			TurboLinks.visit(this.href);
 		});

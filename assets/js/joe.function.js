@@ -195,6 +195,15 @@ window.Joe.clipboard = (content, success = undefined, error = undefined) => {
 	}
 }
 
+// 给 String 增加判空方法
+String.prototype.startsWithArray = (searchvalue, start = 0) => {
+	console.log(this);
+	searchvalue.forEach(value => {
+		if (!this.startsWith(value, start)) return false;
+	});
+	return true;
+}
+
 window.Joe.internalForwardUrl = (string) => {
 	try {
 		if (string instanceof Element) {
@@ -205,9 +214,16 @@ window.Joe.internalForwardUrl = (string) => {
 			string = string.href;
 		}
 		console.log(string);
-		if (string.startsWith('/admin') || string.startsWith(location.href + 'admin')) return false;
+		if (string.startsWithArray([
+			'/admin',
+			location.origin + '/admin',
+			'/goto',
+			location.origin + '/goto',
+			'#'
+		])) {
+			return false
+		};
 		if (string.startsWith('/')) return true;
-		if (string.startsWith('#')) return false;
 		let url = new URL(string);
 		if (url.hash) return false;
 		if (url.host != location.host) return false;

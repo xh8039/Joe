@@ -45,7 +45,7 @@ function themeConfig($form)
 					<li class="item" data-current="joe_aside">侧栏设置</li>
 					<li class="item" data-current="joe_index">首页设置</li>
 					<li class="item" data-current="joe_decoration">特效设置</li>
-					<li class="item" data-current="joe_user">登录设置</li>
+					<li class="item" data-current="joe_user">用户设置</li>
 					<li class="item" data-current="joe_music">音乐设置</li>
 					<li class="item" data-current="joe_friend">友链设置</li>
 					<li class="item" data-current="joe_comment">评论设置</li>

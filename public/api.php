@@ -136,10 +136,9 @@ class Api
 		$validator->addRule('password', 'required', _t('请输入密码'));
 		$validator->addRule('password', 'minLength', _t('为了保证账户安全, 请输入至少六位的密码'), 6);
 		$validator->addRule('password', 'maxLength', _t('为了便于记忆, 密码长度请不要超过十八位'), 18);
-		$validator->addRule('confirm_password', 'confirm', _t('两次输入的密码不一致'), 'password');
 
 		/** 截获验证异常 */
-		$error = $validator->run($self->request->from('nickname', 'username', 'email', 'password', 'confirm_password'));
+		$error = $validator->run($self->request->from('nickname', 'username', 'email', 'password'));
 		if ($error) return ['message' => implode('，', $error)];
 
 		if (Db::name('users')->where('screenName', $self->request->nickname)->find()) {

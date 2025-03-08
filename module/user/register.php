@@ -41,10 +41,6 @@ $rememberMail = htmlspecialchars(\Typecho\Cookie::get('__typecho_remember_mail')
 							<input class="form-control" type="password" name="password" minlength="6" maxlength="18" placeholder="请输入 6 到 18 位的密码">
 						</div>
 						<div class="form-group mb-3">
-							<label>确认密码</label>
-							<input class="form-control" type="password" name="confirm_password" minlength="6" maxlength="18" placeholder="请再次输入您的密码">
-						</div>
-						<div class="form-group mb-3">
 							<label>邮箱（用于找回密码）</label>
 							<input class="form-control" type="email" name="email" value="<?= $rememberMail ?>" placeholder="请输入邮箱" maxlength="64">
 						</div>

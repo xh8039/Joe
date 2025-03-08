@@ -195,12 +195,13 @@ window.Joe.clipboard = (content, success = undefined, error = undefined) => {
 	}
 }
 
-// 给 String 增加判空方法
-String.prototype.startsWithArray = (searchvalue, start = 0) => {
+String.prototype.startsWithArray = function (searchArray, start = 0) {
 	console.log(this);
-	searchvalue.forEach(value => {
-		if (!this.startsWith(value, start)) return false;
-	});
+	for (const key in searchArray) {
+		const searchvalue = searchArray[key];
+		console.log(this.startsWith(searchvalue, start), searchvalue);
+		if (!this.startsWith(searchvalue, start)) return false;
+	}
 	return true;
 }
 

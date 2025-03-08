@@ -236,8 +236,7 @@ window.Joe.internalForwardUrl = (string) => {
 window.Joe.internalUrl = (string) => {
 	try {
 		if (string instanceof Element) {
-			let $element = $(string);
-			if ($element.attr('target') == '_blank') return false;
+			if (string.target == '_blank') return false;
 			string = string.href;
 		}
 		if (string.startsWithArray([

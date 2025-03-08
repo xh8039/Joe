@@ -143,13 +143,17 @@ function _parseContent($post, $content = null)
 				function ($matches) use ($post_cid) {
 					$url = 'http' . $matches[1];
 					$redirect_link = joe\ExternaToInternalLink($url, $post_cid);
-					return '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';
+					if ($url === $redirect_link) {
+						return '<a href="' . $redirect_link . '" rel="nofollow"';
+					} else {
+						return '<a href="' . $redirect_link . '" target="_blank" rel="noopener nofollow"';
+					}
 				},
 				$content
 			);
 		} else {
 			// 告诉搜索引擎不将这个链接的权重传递给目标页面
-			$content = str_replace('<a href="http', '<a target="_blank" rel="noopener nofollow" href="http', $content);
+			$content = str_replace('<a href="http', '<a rel="noopener nofollow" href="http', $content);
 		}
 	}
 

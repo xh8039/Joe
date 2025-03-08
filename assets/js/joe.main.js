@@ -1,36 +1,33 @@
 Joe.DOMContentLoaded.main ||= () => {
 	console.log('调用：Joe.DOMContentLoaded.main');
 
-	{
-		if (document.querySelector('.navbar-nav')) {
-			$('.navbar-nav li.menu-item').removeClass('current-menu-item');
-			let pathname = window.location.pathname;
-			let search = window.location.search;
-			var path = search ? pathname + search : pathname;
-			$('.navbar-nav a').each(function () {
-				temp_path = $(this).attr('href');
-				if (temp_path == path || temp_path == window.location.href) {
-					$(this).parent('li.menu-item').addClass('current-menu-item');
-					$(this).parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').addClass('current-menu-item');
-				}
-			});
-		}
+	/** 自定义导航栏高亮 */
+	if (document.querySelector('.navbar-nav')) {
+		$('.navbar-nav li.menu-item').removeClass('current-menu-item');
+		const pathname = window.location.pathname;
+		const search = window.location.search;
+		const path = search ? pathname + search : pathname;
+		$('.navbar-nav a').each(function () {
+			const temp_path = $(this).attr('href');
+			if (temp_path == path || temp_path == window.location.href) {
+				$(this).parent('li.menu-item').addClass('current-menu-item');
+				$(this).parent('li.menu-item').parent('ul.sub-menu').parent('li.menu-item').addClass('current-menu-item');
+			}
+		});
 	}
 
 	/** 反机器人评论机制 */
-	if (window.Joe.commentsAntiSpam) {
-		var r = document.getElementById(window.Joe.respondId);
-		if (r) {
-			var input = document.createElement('input');
-			input.type = 'hidden';
-			input.name = '_';
-			input.value = window.Joe.commentsAntiSpam;
-			var forms = r.getElementsByTagName('form');
-			if (forms.length > 0) {
-				forms[0].appendChild(input);
-			}
-		}
-	}
+	(() => {
+		if (!window.Joe.commentsAntiSpam) return;
+		const r = document.getElementById(window.Joe.respondId);
+		if (!r) return;
+		const input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = '_';
+		input.value = window.Joe.commentsAntiSpam;
+		const forms = r.getElementsByTagName('form');
+		if (forms.length > 0) forms[0].appendChild(input);
+	})();
 
 	/* 座右铭 */
 	{

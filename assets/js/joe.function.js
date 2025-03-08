@@ -240,6 +240,14 @@ window.Joe.internalUrl = (string) => {
 			if ($element.attr('target') == '_blank') return false;
 			string = string.href;
 		}
+		if (string.startsWithArray([
+			'/admin',
+			location.origin + '/admin',
+			'/goto',
+			location.origin + '/goto'
+		])) {
+			return false
+		};
 		if (string.startsWith('/')) return true;
 		let url = new URL(string);
 		if (url.protocol == 'javascript:') return true;

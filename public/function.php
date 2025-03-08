@@ -633,9 +633,9 @@ function send_mail(string $mail_title, string|null $subtitle, array|string $cont
 		$content_string = '';
 		foreach ($content as $name => $value) {
 			if (is_numeric($name)) {
-				$content_string .=  '<p>' . $value . '</p>';
+				$content_string .=  '<p style="margin-top: 10px;margin-bottom: 10px;">' . $value . '</p>';
 			} else {
-				$content_string .= '<p>' . $name . '：' . $value . '</p>';
+				$content_string .= '<p style="margin-top: 10px;margin-bottom: 10px;">' . $name . '：' . $value . '</p>';
 			}
 		}
 		$content = $content_string;
@@ -644,7 +644,7 @@ function send_mail(string $mail_title, string|null $subtitle, array|string $cont
 	$html = file_get_contents(JOE_ROOT . 'module/email.html');
 	$html = strtr($html, [
 		'{$title}' => $mail_title,
-		'{$subtitle}' => empty($subtitle) ? '' : '<div style="margin-bottom: 20px;line-height: 1.5;">' . $subtitle . '</div>',
+		'{$subtitle}' => empty($subtitle) ? '' : '<div style="margin-bottom:20px;line-height:1.5;">' . $subtitle . '</div>',
 		'{$content}' => $content,
 		'{$site_url}' => \Helper::options()->siteUrl
 	]);

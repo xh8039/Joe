@@ -14,18 +14,13 @@
 			margin-bottom: 10px;
 		}
 	</style>
-	<div class="mail_container"
-		style="font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;width: 95%;margin: 0 auto;border-radius: 8px;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);word-break: break-all">
-		<div class="mail_container_title"
-			style="color: #ffffff;background: linear-gradient(-45deg, rgba(9, 69, 138, 0.2), rgba(68, 155, 255, 0.7), rgba(117, 113, 251, 0.7), rgba(68,155,255,0.7), rgba(9, 69, 138, 0.2));background-size: 400% 400%;background-position: 50% 100%;padding: 15px;font-size: 15px;line-height: 1.5">
-			{$title}</div>
-		<div class="mail_container_main" style="background: #fff;padding: 20px;font-size: 13px;color: #666;">
+	<div class="mail_container" style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;width:95%;margin:0 auto;border-radius:8px;box-shadow:0 2px 12px 0 rgba(0, 0, 0, 0.1);word-break:break-all">
+		<div class="mail_container_title" style="color:#ffffff;background:linear-gradient(-45deg, rgba(9, 69, 138, 0.2), rgba(68, 155, 255, 0.7), rgba(117, 113, 251, 0.7), rgba(68,155,255,0.7), rgba(9, 69, 138, 0.2));background-size:400% 400%;background-position:50% 100%;padding:15px;font-size:15px;line-height:1.5">{$title}</div>
+		<div class="mail_container_main" style="background:#fff;padding:20px;font-size:13px;color:#666;">
 			{$subtitle}
-			<div style="margin-bottom: 20px;padding: 15px;margin-bottom: 20px;line-height: 1.5;background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);"
-				class="mail_container_content">{$content}</div>
-			<div style="margin-bottom: 20px;">请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div>
-			<div style="line-height: 2;"><a href="{$site_url}" target="_blank">访问网站</a>丨<a>联系站长</a>
-			</div>
+			<div style="padding:15px;margin-bottom:17px;line-height:1.5;background:repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);" class="mail_container_content">{$content}</div>
+			<div style="margin-bottom:5px;">请注意：此邮件由系统自动发送，请勿直接回复。<br>若此邮件不是您请求的，请忽略并删除！</div>
+			<div style="line-height:1;"><a href="{$site_url}" target="_blank">访问网站</a>丨<a>联系站长</a></div>
 		</div>
 	</div>
 </body>

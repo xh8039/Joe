@@ -481,7 +481,7 @@ Joe.DOMContentLoaded.global ||= () => {
 	/** 初始化当前在线人数 */
 	(() => {
 		if (!document.querySelector('.online-users-count')) return;
-		setInterval(() => {
+		const online = () => {
 			if (!document.querySelector('.online-users-count')) return;
 			$.get(Joe.BASE_API + '/online', (data, status) => {
 				console.log(status);
@@ -491,7 +491,9 @@ Joe.DOMContentLoaded.global ||= () => {
 				}
 				document.querySelector('.online-users-count').innerText = data.count;
 			}, 'json');
-		}, Joe.options.JOnLineCountThreshold);
+		};
+		online();
+		setInterval(online, Joe.options.JOnLineCountThreshold);
 	})();
 
 	/* 切换标签显示不同的标题 */

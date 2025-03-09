@@ -148,7 +148,7 @@ $JBirthDay = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JBirthDay',
 	NULL,
 	date('Y/n/j H:i:s'),
-	'网站成立日期（两种模式通用）',
+	'网站成立日期',
 	'介绍：用于显示当前站点已经运行了多少时间。<br>
 		 注意：填写时务必保证填写正确！例如：2021/1/1 00:00:00 <br>
 		 其他：不填写则不显示，若填写错误，则不会显示计时'
@@ -160,7 +160,7 @@ $JOnLineCountThreshold = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JOnLineCountThreshold',
 	NULL,
 	'30',
-	'在线人数统计时间阈值（两种模式通用）',
+	'在线人数统计时间阈值',
 	'介绍：用于统计显示当前多少人在线。填写数字 10 便是 10 秒统计一次<br>
 	注意：时间越短统计越精准，但服务器消耗也会越高 <br>
 	其他：不填写则不显示，若填写错误，则不会显示'

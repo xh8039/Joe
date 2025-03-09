@@ -64,7 +64,7 @@ if ($this->options->JFooterMode == 'commercial') {
 					<?php
 					if (empty($this->options->baidu_statistics) && $this->options->JOnLineCountThreshold && is_numeric($this->options->JOnLineCountThreshold)) {
 					?>
-						<div class="footer-muted em09 mb10">当前在线 <span class="online-users-count" style="color: var(--theme);"></span> 人</div>
+						<div class="footer-muted em09 mb10">当前在线人数 <span class="online-users-count" style="color: var(--theme);"></span> 位</div>
 					<?php
 					}
 					if (empty($this->options->baidu_statistics) && $this->options->JBirthDay) { ?>
@@ -129,7 +129,7 @@ if ($this->options->JFooterMode == 'commercial') {
 						<?php
 						if ($this->options->JOnLineCountThreshold && is_numeric($this->options->JOnLineCountThreshold)) {
 						?>
-							<div class="footer-muted em09 mb10">当前在线 <span class="online-users-count" style="color: var(--theme);"></span> 人</div>
+							<div class="footer-muted em09 mb10">当前在线人数 <span class="online-users-count" style="color: var(--theme);"></span> 位</div>
 						<?php
 						}
 						if ($this->options->JBirthDay) {

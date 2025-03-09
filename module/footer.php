@@ -62,6 +62,11 @@ if ($this->options->JFooterMode == 'commercial') {
 					<p class="fcode-links"><?= $this->options->JFooterCenter1 ?></p>
 					<div class="footer-muted em09 mb10"><?= $this->options->JFooterCenter2 ?></div>
 					<?php
+					if (empty($this->options->baidu_statistics) && $this->options->JOnLineCountThreshold && is_numeric($this->options->JOnLineCountThreshold)) {
+					?>
+						<div class="footer-muted em09 mb10">当前在线 <span class="online-users-count" style="color: var(--theme);"></span> 人</div>
+					<?php
+					}
 					if (empty($this->options->baidu_statistics) && $this->options->JBirthDay) { ?>
 						<div class="footer-muted em09 mb10">
 							<span>已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒</span>
@@ -122,9 +127,13 @@ if ($this->options->JFooterMode == 'commercial') {
 				?>
 					<li style="max-width: 550px;">
 						<?php
+						if ($this->options->JOnLineCountThreshold && is_numeric($this->options->JOnLineCountThreshold)) {
+						?>
+							<div class="footer-muted em09 mb10">当前在线 <span class="online-users-count" style="color: var(--theme);"></span> 人</div>
+						<?php
+						}
 						if ($this->options->JBirthDay) {
 						?>
-							<div class="footer-muted em09 mb10">本机当前下行带宽网速：<span class="connection-downlink" style="color: var(--theme);"></span></div>
 							<div class="footer-muted em09 mb10">
 								本站已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒
 							</div>
@@ -191,6 +200,11 @@ if ($this->options->JFooterMode == 'commercial') {
 			<div class="item">
 				<?php $this->options->JFooter_Left() ?>
 			</div>
+			<?php if ($this->options->JOnLineCountThreshold && is_numeric($this->options->JOnLineCountThreshold)) : ?>
+				<div class="item">
+					<span>当前在线 <span class="online-users-count" style="color: var(--theme);"></span> 人</span>
+				</div>
+			<?php endif; ?>
 			<?php if ($this->options->JBirthDay) : ?>
 				<div class="item">
 					<span>已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒</span>

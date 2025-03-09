@@ -478,17 +478,20 @@ Joe.DOMContentLoaded.global ||= () => {
 		}
 	}
 
-	/** 初始化当前网速 */
+	/** 初始化当前在线人数 */
 	(() => {
-		if (!document.querySelector('.connection-downlink')) return;
-		if (!navigator.connection) {
-			document.querySelector('.connection-downlink').parentElement.remove();
-			return;
-		}
+		if (!document.querySelector('.online-users-count')) return;
 		setInterval(() => {
-			if (!document.querySelector('.connection-downlink')) return;
-			document.querySelector('.connection-downlink').innerText = `${navigator.connection.downlink} Mb/s`;
-		}, 10000);
+			if (!document.querySelector('.online-users-count')) return;
+			$.get(Joe.BASE_API + '/online', (data, status) => {
+				console.log(status);
+				if (success != 'success' || data.count == undefined) {
+					document.querySelector('.online-users-count').parentElement.remove();
+					return;
+				}
+				document.querySelector('.online-users-count').innerText = data.count;
+			}, 'json');
+		}, Joe.options.JOnLineCountThreshold);
 	})();
 
 	/* 切换标签显示不同的标题 */

@@ -31,6 +31,39 @@ class Api
 		];
 	}
 
+	public static function online()
+	{
+		// 设置在线时间阈值
+		$inactiveThreshold = self::$options->JOnLineCountThreshold;
+
+		if (!is_numeric($inactiveThreshold)) return ['message' => '未填写在线人数统计时间阈值'];
+
+		// 获取当前会话保存路径
+		$sessionPath = session_save_path();
+
+		// 若路径为空，使用默认临时目录（根据服务器环境调整）
+		if (empty($sessionPath)) $sessionPath = sys_get_temp_dir();
+
+		// 初始化在线人数计数器
+		$onlineCount = 0;
+
+		// 遍历会话目录
+		$dirHandle = opendir($sessionPath);
+		if ($dirHandle) {
+			while (($file = readdir($dirHandle)) !== false) {
+				// 仅处理以"sess_"开头的会话文件
+				if (strpos($file, 'sess_') === 0) {
+					$filePath = $sessionPath . DIRECTORY_SEPARATOR . $file;
+					// 检查文件最后修改时间
+					if (filemtime($filePath) + $inactiveThreshold >= time()) $onlineCount++;
+				}
+			}
+			closedir($dirHandle);
+		}
+
+		return ['count' => $onlineCount];
+	}
+
 	public static function optionsBackup(\Widget\Archive $self)
 	{
 		if (self::$user->group != 'administrator') return ['message' => '权限不足！'];

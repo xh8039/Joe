@@ -155,3 +155,15 @@ $JBirthDay = new \Typecho\Widget\Helper\Form\Element\Text(
 );
 $JBirthDay->setAttribute('class', 'joe_content joe_footer');
 $form->addInput($JBirthDay);
+
+$JOnLineCountThreshold = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JOnLineCountThreshold',
+	NULL,
+	'30',
+	'在线人数统计时间阈值（两种模式通用）',
+	'介绍：用于统计显示当前多少人在线。填写数字 10 便是 10 秒统计一次<br>
+	注意：时间越短统计越精准，但服务器消耗也会越高 <br>
+	其他：不填写则不显示，若填写错误，则不会显示'
+);
+$JOnLineCountThreshold->setAttribute('class', 'joe_content joe_footer');
+$form->addInput($JOnLineCountThreshold);

@@ -1012,7 +1012,7 @@ Joe.DOMContentLoaded.global ||= () => {
 
 		messages.forEach((msg, index) => {
 			const message = msg + (index === 0 ? '🕒' : '✨');
-			autolog.log(message);
+			setTimeout(() => autolog.log(message), 3000);
 		});
 
 	})();

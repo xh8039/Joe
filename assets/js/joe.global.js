@@ -999,7 +999,7 @@ Joe.DOMContentLoaded.global ||= () => {
 		const currentDate = new Date();
 		const currentHour = currentDate.getHours();
 		const currentMinute = currentDate.getMinutes().toString().padStart(2, '0');
-		const timeGreeting = `你好！很高兴在${currentHour}:${currentMinute}见到你呀！`;
+		const timeGreeting = `你好！很高兴在${currentHour}:${currentMinute}见到你！`;
 		const messages = [timeGreeting];
 		let compliment = null;
 		for (const group of greetings) {

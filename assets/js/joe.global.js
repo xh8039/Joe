@@ -480,15 +480,16 @@ Joe.DOMContentLoaded.global ||= () => {
 
 	/** 初始化当前在线人数 */
 	(() => {
-		if (!document.querySelector('.online-users-count')) return;
+		const dom = '.online-users-count';
+		if (!document.querySelector(dom)) return;
 		const online = () => {
-			if (!document.querySelector('.online-users-count')) return;
+			if (!document.querySelector(dom)) return;
 			$.get(Joe.BASE_API + '/online', (data, status) => {
 				if (status != 'success' || data.count == undefined) {
-					document.querySelector('.online-users-count').parentElement.remove();
+					document.querySelector(dom).parentElement.remove();
 					return;
 				}
-				document.querySelector('.online-users-count').innerText = data.count;
+				document.querySelector(dom).innerText = data.count;
 			}, 'json');
 		};
 		online();

@@ -484,8 +484,7 @@ Joe.DOMContentLoaded.global ||= () => {
 		const online = () => {
 			if (!document.querySelector('.online-users-count')) return;
 			$.get(Joe.BASE_API + '/online', (data, status) => {
-				console.log(status);
-				if (success != 'success' || data.count == undefined) {
+				if (status != 'success' || data.count == undefined) {
 					document.querySelector('.online-users-count').parentElement.remove();
 					return;
 				}

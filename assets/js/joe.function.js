@@ -132,6 +132,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 			if (options.url) this.ajax(options);
 			if (options.element && document.querySelector(options.element)) {
 				$(options.element).attr('data-turbolinks', 'false').attr('ajax-replace', 'true');
+				$(document).off('click', options.element);
 				$(document).on('click', options.element, (event) => {
 					event.preventDefault();
 					options.url = event.target.href;

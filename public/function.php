@@ -616,15 +616,15 @@ function email_config()
  * 发送电子邮件
  * @return true|string
  */
-function send_mail(string $mail_title, string|null $subtitle, array|string $content, $email = '', int $limit_time = 0)
+function send_mail(string $mail_title, string|null $subtitle, array|string $content, $to_email = '', int $limit_time = 0)
 {
 	if (!email_config()) return '管理员未配置发件邮箱';
 	if (!defined('JOE_ROOT')) define('JOE_ROOT', dirname(__DIR__) . '/');
 	require_once JOE_ROOT . 'system/vendor/autoload.php';
-	if (empty($email)) {
-		$mail = Db::name('users')->where('uid', 1)->value('mail');
-		$email = $mail ? $mail : \Helper::options()->JCommentMailAccount;
-	}
+
+	$mailto = empty(\Helper::options()->JCommentMailAccount) ? Db::name('users')->where('group', 'administrator')->value('mail') : \Helper::options()->JCommentMailAccount;
+
+	if (empty($to_email)) $to_email = $mailto;
 
 	if (empty($subtitle)) $subtitle = '';
 	$mail_title = $mail_title . ' - ' . \Helper::options()->title;
@@ -646,7 +646,8 @@ function send_mail(string $mail_title, string|null $subtitle, array|string $cont
 		'{$title}' => $mail_title,
 		'{$subtitle}' => empty($subtitle) ? '' : '<div style="margin-bottom:20px;line-height:1.5;">' . $subtitle . '</div>',
 		'{$content}' => $content,
-		'{$site_url}' => \Helper::options()->siteUrl
+		'{$site_url}' => \Helper::options()->siteUrl,
+		'{$mailto}' => $mailto,
 	]);
 	$FromName = empty(\Helper::options()->JCommentMailFromName) ? \Helper::options()->title : \Helper::options()->JCommentMailFromName;
 
@@ -662,7 +663,7 @@ function send_mail(string $mail_title, string|null $subtitle, array|string $cont
 			$JMailApi['title'] =>  $mail_title,
 			$JMailApi['name'] => $FromName,
 			$JMailApi['content'] => $html,
-			$JMailApi['email'] => $email
+			$JMailApi['email'] => $to_email
 		])->toArray();
 		if (is_array($send_email)) {
 			if (!isset($send_email[$JMailApi['code']])) return 'API对接发件失败！成功字段未返回';
@@ -693,7 +694,7 @@ function send_mail(string $mail_title, string|null $subtitle, array|string $cont
 		$PHPMailer->Password = \Helper::options()->JCommentMailPassword;
 		$PHPMailer->isHTML(true);
 		$PHPMailer->Body = $html;
-		$PHPMailer->addAddress($email);
+		$PHPMailer->addAddress($to_email);
 		$PHPMailer->Subject = $mail_title;
 		if ($PHPMailer->send()) {
 			if ($limit_time) $_SESSION['joe_send_mail_time'] = time();

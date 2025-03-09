@@ -493,7 +493,7 @@ Joe.DOMContentLoaded.global ||= () => {
 			}, 'json');
 		};
 		online();
-		setInterval(online, Joe.options.JOnLineCountThreshold);
+		setInterval(online, Joe.options.JOnLineCountThreshold * 1000);
 	})();
 
 	/* 切换标签显示不同的标题 */

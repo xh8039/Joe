@@ -1010,10 +1010,22 @@ Joe.DOMContentLoaded.global ||= () => {
 		}
 		if (compliment) messages.push(compliment);
 
-		messages.forEach((msg, index) => {
-			const message = msg + (index === 0 ? '🕒' : '✨');
-			setTimeout(() => autolog.log(message), 3000);
-		});
+		let index = 0;
+
+		var Interval = setInterval(() => {
+			if (!messages[index]) {
+				clearInterval(Interval);
+				return;
+			}
+			const message = messages[index] + (index === 0 ? '🕒' : '✨');
+			autolog.log(message);
+			index++;
+		}, 3000);
+
+		// messages.forEach((msg, index) => {
+		// 	const message = msg + (index === 0 ? '🕒' : '✨');
+		// 	setTimeout(() => autolog.log(message), 3000);
+		// });
 
 	})();
 

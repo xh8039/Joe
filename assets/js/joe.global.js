@@ -989,7 +989,7 @@ Joe.DOMContentLoaded.global ||= () => {
 			const prefix = index === 0 ? '🕒' : '✨';
 			autolog.log(prefix + ' ' + messages[index]);
 			index++;
-		}, 3000);
+		}, 3100);
 	})();
 
 }

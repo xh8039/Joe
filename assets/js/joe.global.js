@@ -971,10 +971,9 @@ Joe.DOMContentLoaded.global ||= () => {
 		// 时间计算模块
 		const now = new Date();
 		const currentHour = now.getHours();
-		const currentMinute = now.getMinutes().toString().padStart(2, '0');
 
 		// 消息生成模块
-		const timeGreeting = `你好！很高兴在${currentHour}:${currentMinute}见到你！`;
+		const timeGreeting = `你好！很高兴在 ${currentHour} 点见到你！`;
 		const compliment = greetings.find(g => currentHour >= g.start_time && currentHour <= g.end_time)?.compliment;
 		const messages = [timeGreeting, ...(compliment ? [compliment] : [])];
 

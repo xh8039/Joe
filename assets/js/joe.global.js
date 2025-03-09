@@ -953,9 +953,11 @@ Joe.DOMContentLoaded.global ||= () => {
 	}
 
 	(() => {
-		// 阻止页面刷新后重复提醒
-		// if (sessionStorage.getItem('greetingShown')) return;
-		// sessionStorage.setItem('greetingShown', 'true');
+		// 非单页模式阻止页面刷新后重复提醒
+		if (Joe.options.JTurbolinks != 'on') {
+			if (sessionStorage.getItem('greetingShown')) return;
+			sessionStorage.setItem('greetingShown', 'true');
+		}
 
 		const greetings = [
 			{ compliment: "太晚啦，还不睡的嘛！太厉害了叭！", start_time: 0, end_time: 5 },

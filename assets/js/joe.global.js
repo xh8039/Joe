@@ -953,80 +953,42 @@ Joe.DOMContentLoaded.global ||= () => {
 	}
 
 	(() => {
+		// 阻止页面刷新后重复提醒
+		// if (sessionStorage.getItem('greetingShown')) return;
+		// sessionStorage.setItem('greetingShown', 'true');
+
 		const greetings = [
-			{
-				compliment: "太晚啦，还不睡的嘛！太厉害了叭！",
-				start_time: 0,
-				end_time: 5
-			},
-			{
-				compliment: "早起的鸟儿有虫吃，您真自律呀！",
-				start_time: 6,
-				end_time: 9
-			},
-			{
-				compliment: "状态很好，继续保持哦～",
-				start_time: 10,
-				end_time: 10
-			},
-			{
-				compliment: "坚持到现在很棒啦，准备吃午饭叭！",
-				start_time: 11,
-				end_time: 11
-			},
-			{
-				compliment: "午休是充电的好时机呢！",
-				start_time: 12,
-				end_time: 14
-			},
-			{
-				compliment: "今天又是充实的一天呢！",
-				start_time: 14,
-				end_time: 18
-			},
-			{
-				compliment: "晚餐要好好犒劳自己哦！",
-				start_time: 19,
-				end_time: 19
-			},
-			{
-				compliment: "放松时间到，享受此刻的宁静吧～",
-				start_time: 20,
-				end_time: 24
-			}
+			{ compliment: "太晚啦，还不睡的嘛！太厉害了叭！", start_time: 0, end_time: 5 },
+			{ compliment: "早起的鸟儿有虫吃，您真自律呀！", start_time: 6, end_time: 9 },
+			{ compliment: "状态很好，继续保持哦～", start_time: 10, end_time: 10 },
+			{ compliment: "坚持到现在很棒啦，准备吃午饭叭！", start_time: 11, end_time: 11 },
+			{ compliment: "午休是充电的好时机呢！", start_time: 12, end_time: 14 },
+			{ compliment: "今天又是充实的一天呢！", start_time: 14, end_time: 18 },
+			{ compliment: "晚餐要好好犒劳自己哦！", start_time: 19, end_time: 19 },
+			{ compliment: "放松时间到，享受此刻的宁静吧～", start_time: 20, end_time: 24 }
 		];
 
-		const currentDate = new Date();
-		const currentHour = currentDate.getHours();
-		const currentMinute = currentDate.getMinutes().toString().padStart(2, '0');
+		// 时间计算模块
+		const now = new Date();
+		const currentHour = now.getHours();
+		const currentMinute = now.getMinutes().toString().padStart(2, '0');
+
+		// 消息生成模块
 		const timeGreeting = `你好！很高兴在${currentHour}:${currentMinute}见到你！`;
-		const messages = [timeGreeting];
-		let compliment = null;
-		for (const group of greetings) {
-			if (currentHour >= group.start_time && currentHour <= group.end_time) {
-				compliment = group.compliment;
-				break;
-			}
-		}
-		if (compliment) messages.push(compliment);
+		const compliment = greetings.find(g => currentHour >= g.start_time && currentHour <= g.end_time)?.compliment;
+		const messages = [timeGreeting, ...(compliment ? [compliment] : [])];
 
+		// 消息逐条展示
 		let index = 0;
-
-		var Interval = setInterval(() => {
-			if (!messages[index]) {
-				clearInterval(Interval);
+		const intervalId = setInterval(() => {
+			if (index >= messages.length) {
+				clearInterval(intervalId);
 				return;
 			}
-			const message = (index === 0 ? '🕒' : '✨') + messages[index];
-			autolog.log(message);
+			const prefix = index === 0 ? '🕒' : '✨';
+			autolog.log(prefix + messages[index]);
 			index++;
 		}, 3000);
-
-		// messages.forEach((msg, index) => {
-		// 	const message = msg + (index === 0 ? '🕒' : '✨');
-		// 	setTimeout(() => autolog.log(message), 3000);
-		// });
-
 	})();
 
 }

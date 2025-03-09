@@ -1017,7 +1017,7 @@ Joe.DOMContentLoaded.global ||= () => {
 				clearInterval(Interval);
 				return;
 			}
-			const message = messages[index] + (index === 0 ? '🕒' : '✨');
+			const message = (index === 0 ? '🕒' : '✨') + messages[index];
 			autolog.log(message);
 			index++;
 		}, 3000);

@@ -38,11 +38,10 @@ class Api
 
 		if (!is_numeric($inactiveThreshold)) return ['message' => '未填写在线人数统计时间阈值'];
 
-		// 获取当前会话保存路径
-		$sessionPath = session_save_path();
+		$_SESSION['time'] = time();
 
-		// 若路径为空，使用默认临时目录（根据服务器环境调整）
-		if (empty($sessionPath)) $sessionPath = sys_get_temp_dir();
+		// 获取当前会话保存路径
+		$sessionPath = empty($GLOBALS['session_save_path']) ? sys_get_temp_dir() : $GLOBALS['session_save_path'];
 
 		// 初始化在线人数计数器
 		$onlineCount = 0;

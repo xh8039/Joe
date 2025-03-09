@@ -68,6 +68,8 @@ function themeInit($self)
 		$self->setThemeFile('module/browser.php');
 	}
 
+	$GLOBALS['session_save_path'] = session_save_path();
+
 	if (!joe\is_session_started()) session_start();
 
 	if (!isset($GLOBALS['JOE_USER'])) {

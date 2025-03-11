@@ -602,7 +602,6 @@ function email_config()
 		empty(\Helper::options()->JCommentMailHost) ||
 		empty(\Helper::options()->JCommentMailPort) ||
 		empty(\Helper::options()->JCommentMailAccount) ||
-		empty(\Helper::options()->JCommentMailFromName) ||
 		empty(\Helper::options()->JCommentSMTPSecure) ||
 		empty(\Helper::options()->JCommentMailPassword)
 	) {

@@ -6,7 +6,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 if (joe\email_config()) {
-	$mail = think\facade\Db::name('users')->where('uid', 1)->value('mail');
+	$mail = think\facade\Db::name('users')->where('group', 'administrator')->value('mail');
 	$email = $mail ? $mail :  \Helper::options()->JCommentMailAccount;
 	$JEmailTestText = '<a href="javascript:Joe.mailTest();">点击给 ' . $email . ' 发一封测试邮件</a>';
 	$JEmailTest = new \Typecho\Widget\Helper\Form\Element\Hidden('', NULL, NULL, $JEmailTestText);

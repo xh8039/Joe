@@ -318,7 +318,7 @@ if (\think\helper\Str::contains($this->options->JCustomFont, '||')) {
 
 <script>
 	<?php
-	$cookie = Typecho_Cookie::getPrefix();
+	$cookie = Typecho\Cookie::getPrefix();
 	$notice = $cookie . '__typecho_notice';
 	$type = $cookie . '__typecho_notice_type';
 
@@ -326,8 +326,8 @@ if (\think\helper\Str::contains($this->options->JCustomFont, '||')) {
 		autolog.info("<?php echo preg_replace('#\[\"(.*?)\"\]#', '$1', $_COOKIE[$notice]); ?>！");
 	<?php }
 
-	Typecho_Cookie::delete('__typecho_notice');
-	Typecho_Cookie::delete('__typecho_notice_type');
+	Typecho\Cookie::delete('__typecho_notice');
+	Typecho\Cookie::delete('__typecho_notice_type');
 	?>
 	console.log("%cTypecho Theme By Joe再续前缘", "color:#fff; background: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3); padding: 8px 15px; border-radius: 0 15px 0 15px");
 	window.addEventListener('load', () => {

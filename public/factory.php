@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 /* 加强评论拦截功能 */
-Typecho_Plugin::factory('Widget_Feedback')->comment = array('Intercept', 'message');
+Typecho\Plugin::factory('Widget_Feedback')->comment = array('Intercept', 'message');
 class Intercept
 {
 	public static function waiting($text)
@@ -89,7 +89,7 @@ class Intercept
 				if ($save_comment) {
 					$comment['text'] = '{!{' . $save_comment_path . '}!}';
 				} else {
-					throw new Typecho_Exception(_t('画图图片保存失败！'));
+					throw new Typecho\Exception(_t('画图图片保存失败！'));
 					return false;
 				}
 			}
@@ -97,7 +97,7 @@ class Intercept
 			$comment['status'] = 'waiting';
 		}
 
-		// Typecho_Cookie::delete('__typecho_remember_text');
+		// Typecho\Cookie::delete('__typecho_remember_text');
 		return $comment;
 	}
 }
@@ -106,10 +106,10 @@ class Intercept
 if (Helper::options()->JCommentMail === 'on' && joe\email_config()) {
 	if (isset($_SESSION['joe_send_mail_time'])) {
 		if (time() - $_SESSION['joe_send_mail_time'] >= 180) {
-			Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
+			Typecho\Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
 		}
 	} else {
-		Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
+		Typecho\Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
 	}
 }
 
@@ -165,10 +165,10 @@ function CommentLink($text, $link, $type)
 
 /* 加强后台编辑器功能 */
 if (Helper::options()->JEditor !== 'off') {
-	Typecho_Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
-	Typecho_Plugin::factory('admin/write-post.php')->option  = array('Editor', 'labelSelection');
-	Typecho_Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
-	Typecho_Plugin::factory('admin/write-page.php')->option  = array('Editor', 'visibility');
+	Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
+	Typecho\Plugin::factory('admin/write-post.php')->option  = array('Editor', 'labelSelection');
+	Typecho\Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
+	Typecho\Plugin::factory('admin/write-page.php')->option  = array('Editor', 'visibility');
 }
 
 class Editor

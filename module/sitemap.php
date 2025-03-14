@@ -1,7 +1,7 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
 $db = Typecho\Db::get();
-$options = Typecho\Widget::widget('Widget_Options');
+$options = Typecho\Widget::widget('Widget\Options');
 $limit = Helper::options()->JSiteMap;
 $pages = $db->fetchAll(
 	$db->select()->from('table.contents')
@@ -43,7 +43,7 @@ foreach ($articles as $article) {
 		->order('table.metas.order', Typecho\Db::SORT_ASC));
 	$article['category'] = urlencode(current(Typecho\Common::arrayFlatten($article['categories'], 'slug')));
 	$article['slug'] = urlencode($article['slug']);
-	$article['date'] = new Typecho_Date($article['created']);
+	$article['date'] = new Typecho\Date($article['created']);
 	$article['year'] = $article['date']->year;
 	$article['month'] = $article['date']->month;
 	$article['day'] = $article['date']->day;

@@ -76,13 +76,11 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 					$prefix = $db->getPrefix();
 					$link = $db->fetchRow($db->select()->from($prefix . 'friends')->where('id = ?', $request->id));
 					if (!$link) {
-						throw new Typecho_Widget_Exception(_t('友链不存在'), 404);
+						throw new Typecho\Widget\Exception(_t('友链不存在'), 404);
 					}
 
 					$name->value($link['title']);
 					$url->value($link['url']);
-					// $sort->value($link['sort']);
-					// $email->value($link['email']);
 					$logo->value($link['logo']);
 					$description->value($link['description']);
 					$rel->value($link['rel']);

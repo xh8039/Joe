@@ -2,13 +2,13 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
-class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
+class JoeOrders_Widget extends Typecho\Widget implements Widget_Interface_Do
 {
 	/**
 	 * 全局选项
 	 *
 	 * @access protected
-	 * @var Widget_Options
+	 * @var Widget\Options
 	 */
 	protected $options;
 
@@ -16,14 +16,14 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	 * 用户对象
 	 *
 	 * @access protected
-	 * @var Widget_User
+	 * @var Widget\User
 	 */
 	protected $user;
 
 	/**
 	 * 安全模块
 	 *
-	 * @var Widget_Security
+	 * @var Widget\Security
 	 */
 	protected $security;
 
@@ -31,7 +31,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	 * 数据库对象
 	 *
 	 * @access protected
-	 * @var Typecho_Db
+	 * @var Typecho\Db
 	 */
 	protected $db;
 
@@ -61,7 +61,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	 * 分页计算对象
 	 *
 	 * @access private
-	 * @var Typecho_Db_Query
+	 * @var Typecho\Db\Query
 	 */
 	private $_countSql;
 
@@ -89,9 +89,9 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		$this->db = Typecho\Db::get();
 
 		/** 初始化常用组件 */
-		// $this->options = $this->widget('Widget_Options');
-		// $this->user = $this->widget('Widget_User');
-		// $this->security = $this->widget('Widget_Security');
+		// $this->options = $this->widget('Widget\Options');
+		// $this->user = $this->widget('Widget\User');
+		// $this->security = $this->widget('Widget\Security');
 
 		$this->bots = ['wxpay' => '微信', 'alipay' => '支付宝', 'qqpay' => 'QQ'];
 	}
@@ -174,7 +174,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	 * @access public
 	 * @param array $value 需要过滤的行数据
 	 * @return array
-	 * @throws Typecho_Widget_Exception
+	 * @throws Typecho\Widget\Exception
 	 */
 	public function filter(array $value)
 	{
@@ -202,7 +202,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 	{
 		$query = $this->request->makeUriByRequest('page={page}');
 		/** 使用盒状分页 */
-		$nav = new Typecho_Widget_Helper_PageNavigator_Box(
+		$nav = new Typecho\Widget\Helper\PageNavigator\Box(
 			false === $this->_total ? $this->_total = $this->size($this->_countSql) : $this->_total,
 			$this->_currentPage,
 			$this->parameter->pageSize,
@@ -223,7 +223,7 @@ class JoeOrders_Widget extends Typecho_Widget implements Widget_Interface_Do
 		return $this->_total;
 	}
 
-	public function size(Typecho_Db_Query $condition)
+	public function size(Typecho\Db\Query $condition)
 	{
 		return $this->db->fetchObject($condition
 			->select(array('COUNT(DISTINCT id)' => 'num'))

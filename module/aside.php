@@ -44,7 +44,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</div>
 						<div class="author-tag mt10 mini-scrollbar">
 							<?php
-							Typecho\Widget::widget('Widget_Stat')->to($stat);
+							Typecho\Widget::widget('Widget\Stat')->to($stat);
 							$PostsNum = joe\number_word($stat->myPublishedPostsNum);
 							$CommentsNum = joe\number_word($stat->myPublishedCommentsNum);
 							?>
@@ -166,7 +166,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="joe_aside__item-title">
 				<div class="text">热门文章</div>
 			</div>
-			<?php $this->widget('Widget_Contents_Hot@Aside', 'pageSize=' . $this->options->JAside_Hot_Num)->to($item); ?>
+			<?php $this->widget('Widget\Contents\Hot@Aside', 'pageSize=' . $this->options->JAside_Hot_Num)->to($item); ?>
 			<ol class="joe_aside__item-contain">
 				<?php if ($item->have()) : ?>
 					<?php $index = 1; ?>
@@ -204,7 +204,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="joe_aside__item-title">
 				<div class="text">3D标签云</div>
 			</div>
-			<?php $this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 50))->to($tags); ?>
+			<?php $this->widget('Widget\Metas\Tag\Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 50))->to($tags); ?>
 			<div class="joe_aside__item-contain">
 				<?php if ($tags->have()) : ?>
 					<div class="tag"></div>
@@ -226,7 +226,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 			<div class="zib-widget widget-tag-cloud author-tag">
 				<?php
-				$this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 20))->to($tags);
+				$this->widget('Widget\Metas\Tag\Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 20))->to($tags);
 				if ($tags->have()) {
 					while ($tags->next()) {
 						$color_class = joe\zibll_rand_color();
@@ -245,7 +245,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="joe_aside__item-title">
 				<div class="text">最新回复</div>
 			</div>
-			<?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true&pageSize=3')->to($item); ?>
+			<?php $this->widget('Widget\Comments\Recent', 'ignoreAuthor=true&pageSize=3')->to($item); ?>
 			<ul class="joe_aside__item-contain">
 				<?php if ($item->have()) : ?>
 					<?php while ($item->next()) : ?>

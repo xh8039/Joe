@@ -36,7 +36,7 @@ $JUserRetrieve = new \Typecho\Widget\Helper\Form\Element\Select(
 	array('on' => '开启（默认）', 'off' => '关闭'),
 	'on',
 	'找回密码',
-	'介绍：未配置邮箱无法发送验证码 访问地址：<a target="_blank" href="' . Typecho_Common::url('user/retrieve', Helper::options()->index) . '">' . Typecho_Common::url('user/retrieve', Helper::options()->index) . '</a>'
+	'介绍：未配置邮箱无法发送验证码 访问地址：<a target="_blank" href="' . Typecho\Common::url('user/retrieve', Helper::options()->index) . '">' . Typecho\Common::url('user/retrieve', Helper::options()->index) . '</a>'
 );
 $JUserRetrieve->setAttribute('class', 'joe_content joe_user');
 $form->addInput($JUserRetrieve->multiMode());

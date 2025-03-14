@@ -54,7 +54,7 @@ if (!function_exists('array_is_list')) {
 	}
 }
 
-class Widget_Contents_Hot extends Widget_Abstract_Contents
+class Widget_Contents_Hot extends Widget\Abstract\Contents
 {
 	public function execute()
 	{
@@ -81,7 +81,7 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 	}
 }
 
-class Widget_Contents_Sort extends Widget_Abstract_Contents
+class Widget_Contents_Sort extends Widget\Abstract\Contents
 {
 	public function execute()
 	{
@@ -115,7 +115,7 @@ class Widget_Contents_Sort extends Widget_Abstract_Contents
 	}
 }
 
-class Widget_Contents_Post extends Widget_Abstract_Contents
+class Widget_Contents_Post extends Widget\Abstract\Contents
 {
 	public function execute()
 	{

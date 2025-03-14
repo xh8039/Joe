@@ -17,7 +17,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<nav class="joe_header__above-nav">
 			<a class="item <?= $this->is('index') ? 'active' : '' ?>" href="/" title="首页">首页</a>
 			<?php
-			$this->widget('Widget_Contents_Page_List')->to($pages);
+			$this->widget('Widget\Contents\Page\List')->to($pages);
 			$this->options->JNavMaxNum = isset($this->options->JNavMaxNum) ? $this->options->JNavMaxNum : 3;
 			?>
 			<?php if (count($pages->stack) <= $this->options->JNavMaxNum) : ?>

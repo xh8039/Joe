@@ -27,7 +27,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	<div id="Joe">
 		<div class="joe_container">
 			<main class="joe_main">
-				<?php Typecho\Widget::widget('Widget_Stat')->to($item); ?>
+				<?php Typecho\Widget::widget('Widget\Stat')->to($item); ?>
 				<!-- 基础统计 -->
 				<div class="joe_census__basic">
 					<div class="joe_census__basic-item list">
@@ -71,7 +71,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 						</div>
 					</div>
 					<div class="joe_census__basic-item category">
-						<?php $this->widget('Widget_Metas_Category_List')->to($item); ?>
+						<?php $this->widget('Widget\Metas\Category\List')->to($item); ?>
 						<ul>
 							<?php while ($item->next()) : ?>
 								<li data-name="<?php $item->name() ?>" data-value="<?php $item->count() ?>"></li>

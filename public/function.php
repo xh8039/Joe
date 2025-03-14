@@ -541,9 +541,9 @@ function user_login($uid, $expire = 30243600)
 {
 	$db = \Typecho\Db::get();
 	\Typecho\Widget::widget('Widget_User')->simpleLogin($uid);
-	$authCode = function_exists('openssl_random_pseudo_bytes') ? bin2hex(openssl_random_pseudo_bytes(16)) : sha1(\Typecho_Common::randString(20));
-	\Typecho_Cookie::set('__typecho_uid', $uid, time() + $expire);
-	\Typecho_Cookie::set('__typecho_authCode', \Typecho_Common::hash($authCode), time() + $expire);
+	$authCode = function_exists('openssl_random_pseudo_bytes') ? bin2hex(openssl_random_pseudo_bytes(16)) : sha1(\Typecho\Common::randString(20));
+	\Typecho\Cookie::set('__typecho_uid', $uid, time() + $expire);
+	\Typecho\Cookie::set('__typecho_authCode', \Typecho\Common::hash($authCode), time() + $expire);
 	//更新最后登录时间以及验证码
 	$db->query($db->update('table.users')->expression('logged', 'activated')->rows(['authCode' => $authCode])->where('uid = ?', $uid));
 }
@@ -570,7 +570,7 @@ function user_url($action, $referer = true)
 		$url = '';
 	}
 	if (\Helper::options()->JUser_Switch == 'on') {
-		$url = \Typecho_Common::url('user/' . $action, \Helper::options()->index) . $url;
+		$url = \Typecho\Common::url('user/' . $action, \Helper::options()->index) . $url;
 	} else {
 		$url = \Helper::options()->adminUrl . $action . '.php';
 	}
@@ -1289,8 +1289,8 @@ function commentsAntiSpam($respondId)
 	})();
 	</script>
 	";
-		\Typecho_Cookie::delete('__typecho_notice');
-		\Typecho_Cookie::delete('__typecho_notice_type');
+		\Typecho\Cookie::delete('__typecho_notice');
+		\Typecho\Cookie::delete('__typecho_notice_type');
 		return $script;
 	}
 	return '';

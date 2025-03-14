@@ -26,16 +26,6 @@ $JFriends_Submit = new \Typecho\Widget\Helper\Form\Element\Select(
 $JFriends_Submit->setAttribute('class', 'joe_content joe_friend');
 $form->addInput($JFriends_Submit->multiMode());
 
-$JFriendsStatusEmail = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JFriendsStatusEmail',
-	array('on' => '开启（默认）', 'off' => '关闭'),
-	'on',
-	'是否开启友情链接状态更新通知',
-	'注意：需正确配置邮箱 否则收不到申请 友链通过审核、禁用、删除时对方友链QQ号正确的情况下会通过对方的QQ邮箱进行通知'
-);
-$JFriendsStatusEmail->setAttribute('class', 'joe_content joe_friend');
-$form->addInput($JFriendsStatusEmail->multiMode());
-
 $JFriends_shuffle = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JFriends_shuffle',
 	array('on' => '开启（默认）', 'off' => '关闭'),

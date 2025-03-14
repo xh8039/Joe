@@ -123,15 +123,15 @@ $JGrey_Model = new \Typecho\Widget\Helper\Form\Element\Select(
 $JGrey_Model->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($JGrey_Model->multiMode());
 
-$JHeader_Counter = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JHeader_Counter',
+$JHeaderCounter = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JHeaderCounter',
 	array('off' => '关闭（默认）', 'on' => '开启'),
 	'off',
 	'是否开启顶部浏览进度条',
 	'介绍：开启后页面顶部位置将会展示屏幕浏览进度条'
 );
-$JHeader_Counter->setAttribute('class', 'joe_content joe_decoration');
-$form->addInput($JHeader_Counter->multiMode());
+$JHeaderCounter->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JHeaderCounter->multiMode());
 
 $JFooter_Fish = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JFooter_Fish',

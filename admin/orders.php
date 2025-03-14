@@ -5,44 +5,52 @@
  *
  * @package Joe再续前缘
  * @author  易航
- * @version 1.0
- * @update: 2024.10.23
+ * @version 1.1
+ * @update: 2025.03.14
  * @link http://blog.yihang.info
  */
 
-// include 'common.php';
+use think\facade\Db;
+
 if (!defined('__TYPECHO_ROOT_DIR__')) {
 	exit;
 }
 define('JOE_ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('THEME_NAME', basename(JOE_ROOT));
 define('TYPECHO_ADMIN_ROOT', __TYPECHO_ROOT_DIR__ . __TYPECHO_ADMIN_DIR__);
+/* Composer 自动加载 */
+require_once JOE_ROOT . 'public/autoload.php';
+/* ThinkORM 数据库配置 */
+require_once JOE_ROOT . 'public/database.php';
 
-$options = Typecho\Widget::widget('Widget_Options');
-$action = empty($_REQUEST['action']) ? 'index' : $_REQUEST['action'];
+$notice = \Widget\Notice::alloc();
+$action = $request->get('action', 'index');
 
-function alert($content)
-{
-	$url = Helper::security()->getAdminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Forders.php&action=index');
-	echo "<script>alert('$content');window.location.href='$url';</script>";
-}
-function location()
-{
-	$url = Helper::security()->getAdminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Forders.php&action=index');
-	echo "<script>window.location.href='$url';</script>";
-}
-
-if ($action == 'index') {
-	require_once __DIR__ . '/orders/table.php';
-}
+if ($action == 'index') require_once __DIR__ . '/orders/table.php';
 
 if ($action == 'delete') {
 	$id = isset($_POST['id']) ? $_POST['id'] : [];
-	if (!is_array($id)) $id = [];
-	$sql = $db->delete('table.orders')->where('id in?', $id);
-	if ($db->query($sql)) {
-		alert('删除订单成功');
+	if (!is_array($id)) {
+		$notice->set('删除订单传入 ID 数据错误！', 'error');
+		$response->goBack();
+	}
+	$delete = Db::name('orders')->whereIn('id', $id)->delete();
+	if ($delete) {
+		$notice->set('删除订单 [' . implode(',', $id) . '] 成功', 'success');
+		$response->goBack();
 	} else {
-		alert('删除订单失败！');
+		$notice->set('删除订单 [' . implode(',', $id) . '] 失败！', 'error');
+		$response->goBack();
+	}
+}
+
+if ($action == 'clear') {
+	$delete = Db::name('orders')->where('status', 0)->delete();
+	if ($delete) {
+		$notice->set('清理未支付订单成功', 'success');
+		$response->goBack();
+	} else {
+		$notice->set('清理未支付订单失败！', 'error');
+		$response->goBack();
 	}
 }

@@ -992,6 +992,20 @@ Joe.DOMContentLoaded.global ||= () => {
 		}, 3100);
 	})();
 
+	/** 页面浏览进度条 */
+	(() => {
+		if (!document.getElementById('HeaderCounter')) return;
+		$(window).scroll(throttle(() => {
+			let a = $(window).scrollTop(),
+				c = $(document).height(),
+				b = $(window).height();
+			scrollPercent = a / (c - b) * 100;
+			scrollPercent = scrollPercent.toFixed(1);
+			if (!document.getElementById('HeaderCounter')) return;
+			document.getElementById('HeaderCounter').style.width = scrollPercent + '%';
+		}, 300));
+	})();
+
 }
 
 document.addEventListener('DOMContentLoaded', Joe.DOMContentLoaded.global, { once: true });

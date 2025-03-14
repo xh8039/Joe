@@ -29,7 +29,7 @@ if (!$header) return;
 		$this->need('module/header/custom.php');
 	}
 
-	if ($this->options->JHeader_Counter == 'on') $this->need('module/header/counter.php');
+	if ($this->options->JHeaderCounter == 'on') $this->need('module/header/counter.php');
 
 	if (joe\isMobile()) {
 		$this->need('module/header/searchout.php');

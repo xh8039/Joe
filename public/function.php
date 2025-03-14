@@ -619,7 +619,10 @@ function send_mail(string $mail_title, string|null $subtitle, array|string $cont
 {
 	if (!email_config()) return '管理员未配置发件邮箱';
 	if (!defined('JOE_ROOT')) define('JOE_ROOT', dirname(__DIR__) . '/');
+	/* Composer 自动加载 */
 	require_once JOE_ROOT . 'system/vendor/autoload.php';
+	/* ThinkORM 数据库配置 */
+	require_once JOE_ROOT . 'public/database.php';
 
 	$mailto = empty(\Helper::options()->JCommentMailAccount) ? Db::name('users')->where('group', 'administrator')->value('mail') : \Helper::options()->JCommentMailAccount;
 

@@ -11,6 +11,8 @@ function waiting_count()
 	)['count'];
 }
 $waiting_count = waiting_count();
+$friends_url = '../themes/' . THEME_NAME . '/admin/friends.php';
+$panel_url = $options->adminUrl . 'extending.php?panel=' . urlencode($friends_url);
 ?>
 <style>
 	.typecho-list-table td {
@@ -24,20 +26,20 @@ $waiting_count = waiting_count();
 <div class="main">
 	<div class="body container">
 		<div class="typecho-page-title">
-			<h2>友情链接<a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=create'); ?>">新增</a></h2>
+			<h2>友情链接<a href="<?= $panel_url . '&action=create'; ?>">新增</a></h2>
 		</div>
 		<div class="row typecho-page-main" role="main">
 			<div class="col-mb-12 typecho-list">
 				<div class="clearfix">
 					<ul class="typecho-option-tabs">
-						<li class="<?= !isset($_GET['status']) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php') ?>">全部</a></li>
-						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 1) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&status=1') ?>">已通过</a></li>
-						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 0) ? 'current' : null ?>"><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&status=0') ?>">待审核<?= $waiting_count ? ' <span class="balloon">' . $waiting_count . '</span>' : null ?></a></li>
+						<li class="<?= !isset($_GET['status']) ? 'current' : null ?>"><a href="<?= $panel_url ?>">全部</a></li>
+						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 1) ? 'current' : null ?>"><a href="<?= $panel_url . '&status=1' ?>">已通过</a></li>
+						<li class="<?= (isset($_GET['status']) && $_GET['status'] == 0) ? 'current' : null ?>"><a href="<?= $panel_url . '&status=0' ?>">待审核<?= $waiting_count ? ' <span class="balloon">' . $waiting_count . '</span>' : null ?></a></li>
 					</ul>
 				</div>
 				<div class="typecho-list-operate clearfix">
 					<form method="get" action="<?php $options->adminUrl('extending.php'); ?>">
-						<input type="hidden" name="panel" value="<?= '../themes/' . THEME_NAME . '/admin/friends.php' ?>" />
+						<input type="hidden" name="panel" value="<?= $friends_url ?>" />
 						<div class="operate">
 							<label>
 								<i class="sr-only"><?php _e('全选'); ?></i><input type="checkbox" class="typecho-table-select-all" />
@@ -47,18 +49,17 @@ $waiting_count = waiting_count();
 									<i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=open') ?>"><?php _e('通过'); ?></a></li>
-									<li><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=disable') ?>"><?php _e('待审核'); ?></a></li>
-									<li><a lang="<?php _e('你确认要删除这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=delete') ?>"><?php _e('删除'); ?></a></li>
+									<li><a href="<?= $panel_url . '&action=open' ?>"><?php _e('通过'); ?></a></li>
+									<li><a href="<?= $panel_url . '&action=disable' ?>"><?php _e('待审核'); ?></a></li>
+									<li><a href="<?= $panel_url . '&action=delete' ?>" lang="<?php _e('你确认要删除这些友链吗?'); ?>"><?php _e('删除'); ?></a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="search" role="search">
 							<?php if ('' != $request->keywords): ?>
-								<a href="<?php $options->adminUrl('extending.php'); ?>?panel=<?= urlencode('../themes/' . THEME_NAME . '/admin/friends.php') ?>"><?php _e('&laquo; 取消筛选'); ?></a>
+								<a href="<?= $panel_url ?>"><?php _e('&laquo; 取消筛选'); ?></a>
 							<?php endif; ?>
-							<input type="text" class="text-s" placeholder="<?php _e('请输入关键字'); ?>"
-								value="<?php echo $request->filter('html')->keywords; ?>" name="keywords" />
+							<input type="text" class="text-s" placeholder="<?php _e('请输入关键字'); ?>" value="<?= $request->filter('html')->keywords; ?>" name="keywords" />
 							<button type="submit" class="search-btn btn btn-s"><?php _e('筛选'); ?></button>
 						</div>
 					</form>
@@ -97,8 +98,8 @@ $waiting_count = waiting_count();
 										<tr id="<?php $orders->id() ?>">
 											<td><input type="checkbox" value="<?php $orders->id() ?>" name="id[]" /></td>
 											<td>
-												<a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=edit&id=') . $orders->id() ?>"><?php $orders->title() ?></a>
-												<a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=edit&id=') . $orders->id() ?>" title="编辑 <?php $orders->title() ?>"><i class="i-edit"></i></a>
+												<a href="<?= $panel_url . '&action=edit&id=' . $orders->id() ?>"><?php $orders->title() ?></a>
+												<a href="<?= $panel_url . '&action=edit&id=' . $orders->id() ?>" title="编辑 <?php $orders->title() ?>"><i class="i-edit"></i></a>
 											</td>
 											<td><a target="_blank" href="<?php $orders->url() ?>"><?php $orders->url() ?></a></td>
 											<td><?php $orders->description() ?></td>
@@ -132,9 +133,9 @@ $waiting_count = waiting_count();
 									<i class="sr-only"><?php _e('操作'); ?></i><?php _e('选中项'); ?> <i class="i-caret-down"></i>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=open') ?>"><?php _e('通过'); ?></a></li>
-									<li><a href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=disable') ?>"><?php _e('待审核'); ?></a></li>
-									<li><a lang="<?php _e('你确认要删除这些友链吗?'); ?>" href="<?php $options->adminUrl('extending.php?panel=..%2Fthemes%2F' . urlencode(THEME_NAME) . '%2Fadmin%2Ffriends.php&action=delete') ?>"><?php _e('删除'); ?></a></li>
+									<li><a href="<?= $panel_url . '&action=open' ?>"><?php _e('通过'); ?></a></li>
+									<li><a href="<?= $panel_url . '&action=disable' ?>"><?php _e('待审核'); ?></a></li>
+									<li><a lang="<?php _e('你确认要删除这些友链吗?'); ?>" href="<?= $panel_url . '&action=delete' ?>"><?php _e('删除'); ?></a></li>
 								</ul>
 							</div>
 						</div>

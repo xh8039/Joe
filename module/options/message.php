@@ -37,6 +37,17 @@ $JFriendEmail = new \Typecho\Widget\Helper\Form\Element\Select(
 $JFriendEmail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JFriendEmail->multiMode());
 
+$JFriendsStatusEmail = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JFriendsStatusEmail',
+	array('on' => '开启（默认）', 'off' => '关闭'),
+	'on',
+	'是否开启友情链接状态修改通知',
+	'介绍：友链通过审核、禁用、删除时，对方友链邮箱正确的情况下会通过对方的邮箱进行通知<br />
+	注意：此项需要您完整无错的填写下方的邮箱设置！！！'
+);
+$JFriendsStatusEmail->setAttribute('class', 'joe_content joe_message');
+$form->addInput($JFriendsStatusEmail->multiMode());
+
 $JPaymentOrderToAdminEmail = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPaymentOrderToAdminEmail',
 	array('on' => '开启（默认）', 'off' => '关闭'),

@@ -30,7 +30,7 @@ $panel_url = $options->adminUrl . 'extending.php?panel=' . urlencode($orders_url
 <div class="main">
 	<div class="body container">
 		<div class="typecho-page-title">
-			<h2>订单管理<a href="<?= $panel_url . '&action=clear' ?>">一键清理未支付订单</a></h2>
+			<h2>订单管理</h2>
 		</div>
 		<div class="row typecho-page-main" role="main">
 			<div class="col-mb-12 typecho-list">
@@ -48,6 +48,7 @@ $panel_url = $options->adminUrl . 'extending.php?panel=' . urlencode($orders_url
 									<li><a lang="<?php _e('你确认要删除这些订单吗?'); ?>" href="<?= $panel_url . '&action=delete' ?>"><?php _e('删除') ?></a>
 									</li>
 								</ul>
+								<button lang="你确认要清理所有未支付订单吗?" class="btn btn-s btn-warn btn-operate" href="<?= $panel_url . '&action=clear' ?>">清理所有未支付订单</button>
 							</div>
 						</div>
 						<div class="search" role="search">

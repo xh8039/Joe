@@ -25,6 +25,7 @@ require_once JOE_ROOT . 'public/function.php';
 
 $notice = \Widget\Notice::alloc();
 $action = $request->get('action', 'index');
+if (!empty($_REQUEST['referer'])) $_SERVER['HTTP_REFERER'] = $_REQUEST['referer'];
 
 function getFriends(array $id)
 {

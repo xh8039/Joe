@@ -98,8 +98,8 @@ $panel_url = $options->adminUrl . 'extending.php?panel=' . urlencode($friends_ur
 										<tr id="<?php $orders->id() ?>">
 											<td><input type="checkbox" value="<?php $orders->id() ?>" name="id[]" /></td>
 											<td>
-												<a href="<?= $panel_url . '&action=edit&id=' . $orders->id() ?>"><?php $orders->title() ?></a>
-												<a href="<?= $panel_url . '&action=edit&id=' . $orders->id() ?>" title="编辑 <?php $orders->title() ?>"><i class="i-edit"></i></a>
+												<a href="<?= $panel_url . '&action=edit&id=' . $orders->id ?>"><?php $orders->title() ?></a>
+												<a href="<?= $panel_url . '&action=edit&id=' . $orders->id ?>" title="编辑 <?php $orders->title() ?>"><i class="i-edit"></i></a>
 											</td>
 											<td><a target="_blank" href="<?php $orders->url() ?>"><?php $orders->url() ?></a></td>
 											<td><?php $orders->description() ?></td>

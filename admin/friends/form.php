@@ -62,14 +62,13 @@ require_once TYPECHO_ADMIN_ROOT . 'menu.php';
 				$id = new Typecho\Widget\Helper\Form\Element\Hidden('id');
 				$form->addInput($id);
 
-				$referer = new Typecho\Widget\Helper\Form\Element\Hidden('referer', null, Typecho_Request::getInstance()->getHeader('referer'));
+				$referer = new Typecho\Widget\Helper\Form\Element\Hidden('referer', null, $request->getHeader('referer'));
 				$form->addInput($referer);
 
 				/** 提交按钮 */
 				$submit = new Typecho\Widget\Helper\Form\Element\Submit();
 				$submit->input->setAttribute('class', 'btn primary');
 				$form->addItem($submit);
-				$request = Typecho_Request::getInstance();
 
 				if (isset($request->id) && 'create' != $action) {
 					/** 更新模式 */

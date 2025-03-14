@@ -1267,9 +1267,9 @@ function commentsAntiSpam($respondId)
 	if (!\Helper::options()->commentsAntiSpam) return '';
 	static $script = null;
 	if (is_null($script)) {
-		$referer = \Typecho_Request::getInstance()->getReferer();
-		$url = empty($referer) ? \Typecho_Request::getInstance()->getRequestUrl() : $referer;
-		// $url = \Typecho_Request::getInstance()->getRequestUrl();
+		$referer = \Typecho\Request::getInstance()->getReferer();
+		$url = empty($referer) ? \Typecho\Request::getInstance()->getRequestUrl() : $referer;
+		// $url = \Typecho\Request::getInstance()->getRequestUrl();
 		$script = "
 	<script type=\"text/javascript\">
 	(function() {

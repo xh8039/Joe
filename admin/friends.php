@@ -23,7 +23,6 @@ require_once JOE_ROOT . 'public/database.php';
 /* 公用函数 */
 require_once JOE_ROOT . 'public/function.php';
 
-// $options = Typecho\Widget::widget('Widget\Options');
 $notice = \Widget\Notice::alloc();
 $action = $request->get('action', 'index');
 

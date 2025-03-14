@@ -103,7 +103,7 @@ $panel_url = $options->adminUrl . 'extending.php?panel=' . urlencode($friends_ur
 											</td>
 											<td><a target="_blank" href="<?php $orders->url() ?>"><?php $orders->url() ?></a></td>
 											<td><?php $orders->description() ?></td>
-											<td><img onerror="this.src='<?php $options->themeUrl('assets/images/avatar-default.png') ?>'" referrerpolicy="no-referrer" rel="noreferrer" width="50px" height="50px" src="<?php $orders->logo() ?>"></td>
+											<td><img onerror="this.src='<?php $options->themeUrl('assets/images/avatar-default.png') ?>'" referrerpolicy="no-referrer" rel="noreferrer" width="50px" src="<?php $orders->logo() ?>"></td>
 											<td><?php $orders->position(); ?></td>
 											<td><?php $orders->order(); ?></td>
 											<td><?php $orders->status(); ?></td>

@@ -84,7 +84,7 @@ class MusicPlayer {
 		}
 		if (this.OPTIONS.autoplay) {
 			['click', 'keydown', 'mousedown'].forEach(event => {
-				document.addEventListener(event, () => this.handleInteraction(), { once: true });
+				document.addEventListener(event, () => this.handleInteraction(event), { once: true });
 			});
 		}
 		this.APlayer.on('loadeddata', () => {
@@ -138,16 +138,14 @@ class MusicPlayer {
 		})
 	}
 
-	handleInteraction() {
+	handleInteraction(event) {
 		if (this.OPTIONS.userHasInteracted) return;
 		this.OPTIONS.userHasInteracted = true;
-		console.log('用户已与页面交互');
-		if (this.APlayer.audio.paused) {
-			setTimeout(() => {
-				this.APlayer.notice('自动播放音乐');
-				this.APlayer.play();
-			}, 100);
-		}
+		console.log(event);
+		if (this.APlayer.audio.paused) setTimeout(() => {
+			this.APlayer.notice('自动播放音乐');
+			this.APlayer.play();
+		}, 100);
 	}
 
 	/**

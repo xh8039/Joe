@@ -139,8 +139,9 @@ class MusicPlayer {
 	}
 
 	handleInteraction() {
+		console.log(this.OPTIONS);
 		if (this.OPTIONS.userHasInteracted) return;
-		userHasInteracted = true;
+		this.OPTIONS.userHasInteracted = true;
 		console.log('用户已与页面交互');
 		if (this.APlayer.audio.paused) {
 			this.APlayer.notice('自动播放音乐');

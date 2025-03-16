@@ -84,7 +84,7 @@ class MusicPlayer {
 		}
 		if (this.OPTIONS.autoplay) {
 			['click', 'keydown', 'mousedown', 'touchstart'].forEach(event => {
-				document.addEventListener(event, this.handleInteraction, { once: true });
+				document.addEventListener(event, () => this.handleInteraction, { once: true });
 			});
 		}
 		this.APlayer.on('loadeddata', () => {
@@ -139,7 +139,7 @@ class MusicPlayer {
 	}
 
 	handleInteraction() {
-		console.log(this.OPTIONS);
+		console.log(this);
 		if (this.OPTIONS.userHasInteracted) return;
 		this.OPTIONS.userHasInteracted = true;
 		console.log('用户已与页面交互');

@@ -84,7 +84,7 @@ class MusicPlayer {
 		}
 		if (this.OPTIONS.autoplay) {
 			['click', 'keydown', 'mousedown', 'touchstart'].forEach(event => {
-				document.addEventListener(event, () => this.handleInteraction, { once: true });
+				document.addEventListener(event, () => this.handleInteraction(), { once: true });
 			});
 		}
 		this.APlayer.on('loadeddata', () => {

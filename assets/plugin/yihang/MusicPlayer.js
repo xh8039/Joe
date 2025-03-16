@@ -83,7 +83,7 @@ class MusicPlayer {
 			window.addEventListener('beforeunload', () => this.storageMusic(), { once: true });
 		}
 		if (this.OPTIONS.autoplay) {
-			['click', 'keydown', 'mousedown', 'touchstart'].forEach(event => {
+			['click', 'keydown', 'mousedown'].forEach(event => {
 				document.addEventListener(event, () => this.handleInteraction(event), { once: true });
 			});
 		}

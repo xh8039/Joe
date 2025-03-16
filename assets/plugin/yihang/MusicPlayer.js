@@ -139,13 +139,14 @@ class MusicPlayer {
 	}
 
 	handleInteraction() {
-		console.log(this);
 		if (this.OPTIONS.userHasInteracted) return;
 		this.OPTIONS.userHasInteracted = true;
 		console.log('用户已与页面交互');
 		if (this.APlayer.audio.paused) {
-			this.APlayer.notice('自动播放音乐');
-			this.APlayer.play();
+			setTimeout(() => {
+				this.APlayer.notice('自动播放音乐');
+				this.APlayer.play();
+			}, 100);
 		}
 	}
 

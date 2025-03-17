@@ -4,7 +4,8 @@
 	color-scheme: light dark;
 
 	/* 主题色保持独立，可单独修改 */
-	--theme: light-dark(#409eff, #6a80e3);
+	/* --theme: light-dark(#409eff, #6a80e3); */
+	--theme: #409eff;
 
 	/* 基础配色 */
 	--background: light-dark(#fff, #323335);
@@ -29,7 +30,7 @@
 
 	/* 渐变系统 */
 	--back-line-color: light-dark(#05D1D3, #6a80e3);
-	--back-line-right: linear-gradient(to right, var(--back-line-color), var(--theme));
+	--back-line-right: linear-gradient(to right, #6a80e3, var(--theme));
 	--back-line-bottom: linear-gradient(to bottom, var(--theme), var(--back-line-color));
 
 	/* 阴影系统 */

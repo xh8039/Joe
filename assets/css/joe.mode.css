@@ -4,7 +4,7 @@
 	color-scheme: light dark;
 
 	/* 主题色保持独立，可单独修改 */
-	--theme: light-dark(#409eff, #54b5db);
+	--theme: light-dark(#409eff, #6a80e3);
 
 	/* 基础配色 */
 	--background: light-dark(#fff, #323335);
@@ -53,9 +53,6 @@
 	--main-radius: var(--radius-inner);
 	--main-border-color: light-dark(rgba(50, 50, 50, 0.06), rgba(114, 114, 114, 0.1));
 	--transition: 0.1s;
-	--border-line-bottom: var(--back-line-bottom);
-	--footer-bg: var(--main-bg-color);
-	--footer-color: var(--muted-2-color);
 }
 
 /* 强制所有元素继承颜色方案 */

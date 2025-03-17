@@ -3874,11 +3874,11 @@ html .aplayer .aplayer-lrc {
 }
 
 .footer a:not(.but):not(.focus-color) {
-	color: var(--footer-color);
+	color: var(--muted-2-color);
 }
 
 .footer a.toggle-radius:hover {
-	color: var(--footer-color);
+	color: var(--muted-2-color);
 }
 
 .ajax-option .option-items>a+a:before,
@@ -3916,7 +3916,7 @@ html .aplayer .aplayer-lrc {
 }
 
 .footer-contact>a:hover {
-	color: var(--footer-color);
+	color: var(--muted-2-color);
 }
 
 .footer-contact>a>.icon {

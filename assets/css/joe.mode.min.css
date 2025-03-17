@@ -29,7 +29,6 @@
 	--back-line: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3);
 	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
 	--back-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
-	--border-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
 	--transition: 0.1s;
 
 	--main-bg-color: #fff;
@@ -42,8 +41,6 @@
 	--focus-color: var(--theme);
 	--muted-border-color: rgba(0, 0, 0, 0.03);
 	--blur-bg: #ffffff;
-	--footer-bg: var(--main-bg-color);
-	--footer-color: var(--muted-2-color);
 }
 
 /* 黑夜模式的配色方案 */

@@ -29,9 +29,7 @@
 	--classD: light-dark(#f2f6fc, #303030);
 
 	/* 渐变系统 */
-	--back-line-color: light-dark(#05D1D3, #6a80e3);
-	--back-line-right: linear-gradient(to right, #6a80e3, var(--theme));
-	--back-line-bottom: linear-gradient(to bottom, var(--theme), var(--back-line-color));
+	--back-line-right: linear-gradient(to right, var(--theme), #6a80e3);
 
 	/* 阴影系统 */
 	--text-shadow: light-dark(0 1px 2px rgba(0, 0, 0, 0.25), none);

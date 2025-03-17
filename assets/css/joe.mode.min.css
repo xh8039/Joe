@@ -28,7 +28,6 @@
 	--back-line-color-right: #05D1D3;
 	--back-line: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3);
 	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
-	--back-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
 	--transition: 0.1s;
 
 	--main-bg-color: #fff;

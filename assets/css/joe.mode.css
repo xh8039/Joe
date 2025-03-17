@@ -28,10 +28,9 @@
 	--classD: light-dark(#f2f6fc, #303030);
 
 	/* 渐变系统 */
-	--back-line-color-left: var(--theme);
-	--back-line-color-right: light-dark(#05D1D3, #6a80e3);
-	--back-line-right: linear-gradient(to right, var(--back-line-color-left), var(--back-line-color-right));
-	--back-line-bottom: linear-gradient(to bottom, var(--back-line-color-left), var(--back-line-color-right));
+	--back-line-color: light-dark(#05D1D3, #6a80e3);
+	--back-line-right: linear-gradient(to right, var(--back-line-color), var(--theme));
+	--back-line-bottom: linear-gradient(to bottom, var(--theme), var(--back-line-color));
 
 	/* 阴影系统 */
 	--text-shadow: light-dark(0 1px 2px rgba(0, 0, 0, 0.25), none);

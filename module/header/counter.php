@@ -8,9 +8,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 <style>
 	#HeaderCounter {
 		position: absolute;
-		bottom: -3px;
+		bottom: -2px;
 		width: 0;
-		height: 3px;
+		height: 2.5px;
 		z-index: 10;
 		background-image: var(--back-line-right);
 		border-radius: var(--main-radius);

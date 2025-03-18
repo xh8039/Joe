@@ -117,7 +117,7 @@ $JCommentMailPassword = new \Typecho\Widget\Helper\Form\Element\Text(
 	'邮箱授权码',
 	'介绍：这里填写的是邮箱生成的授权码 <br>
 	获取方式（以QQ邮箱为例）：QQ邮箱 > 设置 > 账户 > IMAP/SMTP服务 > 开启 <br>
-	图文教程：<a href="https://ks3-cn-beijing.ksyuncs.com/wpsmail-miui/qq/QQ%20aouth.html" target="_blank">点击查看</a>丨详细教程可以百度，有各种图文教程'
+	图文教程：<a href="https://ks3-cn-beijing.ksyuncs.com/wpsmail-miui/qq/QQ%20aouth.html" target="_blank">简单图文教程</a>丨<a href="http://blog.yihang.info/archives/452.html" target="_blank">详细图文教程</a>'
 );
 $JCommentMailPassword->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailPassword->multiMode());

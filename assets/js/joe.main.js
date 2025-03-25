@@ -73,7 +73,9 @@ Joe.DOMContentLoaded.main ||= () => {
 
 	/** Atropos 悬浮动画 */
 	{
-		if (window.Atropos) Atropos({ el: '.joe_list__item' });
+		if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
+			Atropos({ el: element });
+		});
 	}
 }
 document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.main, { once: true });

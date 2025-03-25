@@ -57,8 +57,8 @@ if ($this->options->JLoading != 'off') : ?>
 
 <?php if ($this->options->JArticleListAtropos == 'on') : ?>
 	<!-- 文章列表选中动画 -->
-	<link async rel="stylesheet" href="<?= joe\theme_url('plugin/atropos/atropos.min.css') ?>">
-	<script src="<?= joe\theme_url('plugin/atropos/atropos.min.js') ?>" defer data-turbolinks-permanent></script>
+	<link async rel="stylesheet" href="<?= joe\theme_url('assets/plugin/atropos/atropos.min.css') ?>">
+	<script src="<?= joe\theme_url('assets/plugin/atropos/atropos.min.js') ?>" defer data-turbolinks-permanent></script>
 	<!-- 文章列表选中动画 -->
 <?php endif; ?>
 

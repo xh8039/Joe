@@ -13,6 +13,7 @@ while ($article = $this->next()) :
 		if (array_intersect($categorize_slug_list, $index_hide_categorize_list)) continue;
 	}
 	if ($this->fields->mode == "default" || !$this->fields->mode) : ?>
+		<?php if ($this->options->JArticleListAtropos) echo '<div class="atropos"><div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">' ?>
 		<li class="joe_list__item wow default">
 			<div class="line"></div>
 			<a href="<?= joe\root_relative_link($this->permalink) ?>" class="thumbnail" title="<?php $this->title() ?>">
@@ -62,6 +63,9 @@ while ($article = $this->next()) :
 				</div>
 			</div>
 		</li>
+
+		<?php if ($this->options->JArticleListAtropos) echo '</div></div></div></div>' ?>
+
 	<?php elseif ($this->fields->mode == "single") : ?>
 		<li class="joe_list__item wow single">
 			<div class="line"></div>

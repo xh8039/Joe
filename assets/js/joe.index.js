@@ -40,6 +40,7 @@ Joe.DOMContentLoaded.index ||= () => {
 			const getListMode = _ => {
 				if (_.mode === 'default') {
 					return `
+					${Joe.options.JArticleListAtropos == 'on' ? '<div class="atropos"><div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">' : ''}
 					<li class="joe_list__item wow default">
 						<div class="line"></div>
 						<a href="${_.permalink}" class="thumbnail" title="${_.title}">
@@ -89,6 +90,7 @@ Joe.DOMContentLoaded.index ||= () => {
 							</div>
 						</div>
 					</li>
+					${Joe.options.JArticleListAtropos == 'on' ? '</div></div></div></div>' : ''}
 				`;
 				} else if (_.mode === 'single') {
 					return `

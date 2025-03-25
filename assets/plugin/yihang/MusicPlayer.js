@@ -141,7 +141,6 @@ class MusicPlayer {
 	handleInteraction(event) {
 		if (this.OPTIONS.userHasInteracted) return;
 		this.OPTIONS.userHasInteracted = true;
-		console.log(event);
 		if (this.APlayer.audio.paused) setTimeout(() => {
 			this.APlayer.notice('自动播放音乐');
 			this.APlayer.play();

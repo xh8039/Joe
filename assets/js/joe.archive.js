@@ -21,6 +21,12 @@ Joe.DOMContentLoaded.archive ||= () => {
 			beforeSend() {
 				$('.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');
 			},
+			success() {
+				/** Atropos 悬浮动画 */
+				if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
+					Atropos({ el: element });
+				});
+			},
 			scrollTo: 0
 		});
 	}

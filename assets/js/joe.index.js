@@ -292,6 +292,11 @@ Joe.DOMContentLoaded.index ||= () => {
 							$('.joe_load').html('<i class="fa fa-angle-right"></i>加载更多');
 							$('.joe_index__list .joe_list__loading').hide();
 							reslove(res.data.length > 0 ? res.data.length - 1 : 0);
+							/** Atropos 悬浮动画 */
+							if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
+								Atropos({ el: element, shadowOffset: 80 });
+								setAtroposOffset(element.querySelector('.atropos-inner'));
+							});
 						},
 						error() {
 							$('.joe_index__title-title .item').css({ 'pointer-events': '', 'cursor': '' });

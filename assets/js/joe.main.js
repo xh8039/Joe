@@ -70,13 +70,5 @@ Joe.DOMContentLoaded.main ||= () => {
 			modeElement.attr('title', title).tooltip({ container: "body", trigger: 'hover' });
 		}
 	}
-
-	/** Atropos 悬浮动画 */
-	{
-		if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
-			Atropos({ el: element, shadowOffset: 80 });
-			setAtroposOffset(element.querySelector('.atropos-inner'));
-		});
-	}
 }
 document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.main, { once: true });

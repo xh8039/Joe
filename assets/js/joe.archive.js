@@ -24,7 +24,8 @@ Joe.DOMContentLoaded.archive ||= () => {
 			replace() {
 				/** Atropos 悬浮动画 */
 				if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
-					Atropos({ el: element, shadowOffset: 10 });
+					Atropos({ el: element, shadowOffset: 80 });
+					setAtroposOffset(element.querySelector('.atropos-inner'));
 				});
 			},
 			scrollTo: 0

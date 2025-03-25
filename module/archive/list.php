@@ -63,10 +63,10 @@ while ($article = $this->next()) :
 				</div>
 			</div>
 		</li>
-
 		<?php if ($this->options->JArticleListAtropos) echo '</div></div></div></div>' ?>
 
 	<?php elseif ($this->fields->mode == "single") : ?>
+		<?php if ($this->options->JArticleListAtropos) echo '<div class="atropos"><div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">' ?>
 		<li class="joe_list__item wow single">
 			<div class="line"></div>
 			<div class="information">
@@ -119,7 +119,9 @@ while ($article = $this->next()) :
 				<a class="abstract" href="<?= joe\root_relative_link($this->permalink) ?>" title="文章摘要"><?php joe\getAbstract($this) ?></a>
 			</div>
 		</li>
+		<?php if ($this->options->JArticleListAtropos) echo '</div></div></div></div>' ?>
 	<?php elseif ($this->fields->mode == "multiple") : ?>
+		<?php if ($this->options->JArticleListAtropos) echo '<div class="atropos"><div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">' ?>
 		<li class="joe_list__item wow multiple">
 			<div class="line"></div>
 			<div class="information">
@@ -169,7 +171,9 @@ while ($article = $this->next()) :
 
 			</div>
 		</li>
+		<?php if ($this->options->JArticleListAtropos) echo '</div></div></div></div>' ?>
 	<?php else : ?>
+		<?php if ($this->options->JArticleListAtropos) echo '<div class="atropos"><div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">' ?>
 		<li class="joe_list__item wow none">
 			<div class="line"></div>
 			<div class="information">
@@ -212,5 +216,6 @@ while ($article = $this->next()) :
 				</div>
 			</div>
 		</li>
+		<?php if ($this->options->JArticleListAtropos) echo '</div></div></div></div>' ?>
 <?php endif;
 endwhile; ?>

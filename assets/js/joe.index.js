@@ -94,6 +94,7 @@ Joe.DOMContentLoaded.index ||= () => {
 				`;
 				} else if (_.mode === 'single') {
 					return `
+					${Joe.options.JArticleListAtropos == 'on' ? '<div class="atropos"><div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">' : ''}
 					<li class="joe_list__item wow single">
 						<div class="line"></div>
 						<div class="information">
@@ -145,9 +146,11 @@ Joe.DOMContentLoaded.index ||= () => {
 							<a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
 						</div>
 					</li>
+					${Joe.options.JArticleListAtropos == 'on' ? '</div></div></div></div>' : ''}
 				`;
 				} else if (_.mode === 'multiple') {
 					return `
+					${Joe.options.JArticleListAtropos == 'on' ? '<div class="atropos"><div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">' : ''}
 					<li class="joe_list__item wow multiple">
 						<div class="line"></div>
 						<div class="information">
@@ -201,9 +204,11 @@ Joe.DOMContentLoaded.index ||= () => {
 							</div>
 						</div>
 					</li>
+					${Joe.options.JArticleListAtropos == 'on' ? '</div></div></div></div>' : ''}
 				`;
 				} else {
 					return `
+					${Joe.options.JArticleListAtropos == 'on' ? '<div class="atropos"><div class="atropos-scale"><div class="atropos-rotate"><div class="atropos-inner">' : ''}
 					<li class="joe_list__item wow none">
 						<div class="line"></div>
 						<div class="information">
@@ -248,6 +253,7 @@ Joe.DOMContentLoaded.index ||= () => {
 							</div>
 						</div>
 					</li>
+					${Joe.options.JArticleListAtropos == 'on' ? '</div></div></div></div>' : ''}
 				`;
 				}
 			};

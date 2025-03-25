@@ -96,8 +96,8 @@ $user = json_encode($user, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 </style>
 <?php
 // 文章列表选中动画
-if ($this->options->JIndex_Link_Active == 'on') {
-	echo '<link async rel="stylesheet" href="' . joe\theme_url('assets/css/options/post-list-active.css') . '">';
+if ($this->options->JArticleListAtropos == 'on') {
+	// echo '<link async rel="stylesheet" href="' . joe\theme_url('assets/css/options/post-list-active.css') . '">';
 }
 // 首页文章双栏
 if (($this->is('index') || $this->is('archive')) && $this->options->JArticle_Double_Column == 'on') {

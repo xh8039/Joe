@@ -55,6 +55,13 @@ if ($this->options->JLoading != 'off') : ?>
 <link async rel="stylesheet" href="<?= joe\cdn('animate.css/4.1.1/animate.min.css') ?>" data-turbolinks-permanent />
 <link async rel="stylesheet" href="<?= joe\cdn('font-awesome/4.7.0/css/font-awesome.css') ?>" data-turbolinks-permanent />
 
+<?php if ($this->options->JArticleListAtropos == 'on') : ?>
+	<!-- 文章列表选中动画 -->
+	<link async rel="stylesheet" href="<?= joe\theme_url('plugin/atropos/atropos.min.css') ?>">
+	<script src="<?= joe\theme_url('plugin/atropos/atropos.min.js') ?>" defer data-turbolinks-permanent></script>
+	<!-- 文章列表选中动画 -->
+<?php endif; ?>
+
 <?php $this->need('module/config.php'); ?>
 
 <script defer src="<?= joe\cdn('jquery/3.6.0/jquery.min.js') ?>" data-turbolinks-permanent></script>
@@ -104,7 +111,7 @@ if ($this->options->JLoading != 'off') : ?>
 <?php if ($this->is('single')) : ?>
 	<?php if ($this->fields->video || \think\helper\Str::contains($this->content, '{dplayer-list')) : ?>
 		<script defer src="<?= joe\theme_url('assets/plugin/yihang/VideoPlayer.js') ?>" data-turbolinks-permanent></script>
-	<?php endif; ?>	
+	<?php endif; ?>
 	<script defer src="<?= joe\theme_url('assets/js/joe.single.js'); ?>"></script>
 	<script defer src="<?= joe\theme_url('assets/js/joe.comment.js'); ?>" data-turbolinks-permanent></script>
 <?php endif; ?>

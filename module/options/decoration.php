@@ -93,15 +93,15 @@ $FirstLoading = new \Typecho\Widget\Helper\Form\Element\Select(
 $FirstLoading->setAttribute('class', 'joe_content joe_decoration');
 $form->addInput($FirstLoading->multiMode());
 
-$JIndex_Link_Active = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JIndex_Link_Active',
+$JArticleListAtropos = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JArticleListAtropos',
 	['off' => '关闭（默认）', 'on' => '开启'],
 	'off',
 	'是否开启文章列表选中动画',
 	'介绍：开启后首页和搜索页面展示的文章列表中文章被鼠标移入或者选中则会出现浮起动画'
 );
-$JIndex_Link_Active->setAttribute('class', 'joe_content joe_decoration');
-$form->addInput($JIndex_Link_Active->multiMode());
+$JArticleListAtropos->setAttribute('class', 'joe_content joe_decoration');
+$form->addInput($JArticleListAtropos->multiMode());
 
 $JPendant_SSL = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JPendant_SSL',

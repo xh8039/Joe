@@ -70,5 +70,10 @@ Joe.DOMContentLoaded.main ||= () => {
 			modeElement.attr('title', title).tooltip({ container: "body", trigger: 'hover' });
 		}
 	}
+
+	/** Atropos 悬浮动画 */
+	{
+		if (window.Atropos) Atropos({ el: '.joe_list__item' });
+	}
 }
 document.addEventListener(Joe.DOMContentLoaded.event, Joe.DOMContentLoaded.main, { once: true });

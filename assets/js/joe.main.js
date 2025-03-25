@@ -74,7 +74,8 @@ Joe.DOMContentLoaded.main ||= () => {
 	/** Atropos 悬浮动画 */
 	{
 		if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
-			Atropos({ el: element, shadowScale: 0.1 });
+			Atropos({ el: element, shadow: false });
+			setAtroposOffset(element.querySelector('.atropos-inner'));
 		});
 	}
 }

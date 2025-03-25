@@ -544,7 +544,23 @@ window.Joe.submit_baidu = (msg = '推送中...') => {
 	});
 }
 
+/**
+ * 递归为元素及其子元素添加层级标记
+ * @param {HTMLElement} element - 当前要处理的元素
+ * @param {number} currentLevel - 当前层级（从 0 开始）
+ */
+function setAtroposOffset(element, currentLevel = 0) {
+	// 为当前元素添加层级标记
+	element.setAttribute('data-atropos-offset', currentLevel.toString());
 
+	// 遍历所有子元素（只处理元素节点，忽略文本节点等）
+	const children = element.children;
+	for (let i = 0; i < children.length; i++) {
+		const child = children[i];
+		// 递归处理子元素，层级 +1
+		setAtroposOffset(child, currentLevel + 1);
+	}
+}
 
 /**
  * @description: ajax请求封装

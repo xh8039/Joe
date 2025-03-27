@@ -463,6 +463,7 @@ class JoeAction {
 				<ul style="list-style:none;padding: 0;">
 					<li>短代码功能正在开发中...</li>
 					<li>仅支持网络图片粘贴上传（截图等）</li>
+					<li><a href="http://blog.yihang.info/archives/436.html" target="_blank">查看 Markdown 语法教程</a></li>
 					<li>本编辑器仅供Joe主题使用，未经允许不得移植至其他主题！</li>
 				</ul>
 			`

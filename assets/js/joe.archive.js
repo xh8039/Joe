@@ -15,6 +15,14 @@ Joe.DOMContentLoaded.archive ||= () => {
 			}).init();
 	}
 
+	/** Atropos 悬浮动画 */
+	{
+		if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
+			Atropos({ el: element, shadowOffset: 80 });
+			setAtroposOffset(element.querySelector('.atropos-inner'));
+		});
+	}
+
 	/* 分页Pjax加载 */
 	{
 		Joe.pjax('.joe_pagination>li>a[href]', ['title', '.joe_main'], {

@@ -322,6 +322,7 @@ Joe.DOMContentLoaded.index ||= () => {
 				window.scrollTo({ top: offset - 15, behavior: 'smooth' });
 			});
 		} else {
+			/** Atropos 悬浮动画 */
 			if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
 				Atropos({ el: element, shadowOffset: 80 });
 				setAtroposOffset(element.querySelector('.atropos-inner'));

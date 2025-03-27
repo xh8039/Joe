@@ -322,6 +322,10 @@ Joe.DOMContentLoaded.index ||= () => {
 				window.scrollTo({ top: offset - 15, behavior: 'smooth' });
 			});
 		} else {
+			if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
+				Atropos({ el: element, shadowOffset: 80 });
+				setAtroposOffset(element.querySelector('.atropos-inner'));
+			});
 			Joe.pjax('.joe_pagination>li>a[href]', ['.joe_index__list', '.joe_pagination'], {
 				beforeSend() {
 					$('.joe_pagination').html('<div class="loading-module"><i class="loading mr6"></i><text>请稍候</text></div>');

@@ -65,26 +65,35 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 {
 	public function execute()
 	{
+		// 排除推荐文章
 		$recommend_text = joe\isMobile() ? Helper::options()->JIndex_Mobile_Recommend : Helper::options()->JIndex_Recommend;
 		$recommend = joe\optionMulti($recommend_text, '||', null);
+		// 排除置顶文章
 		$JIndexSticky = joe\optionMulti(Helper::options()->JIndexSticky, '||', null);
+		// 排除要隐藏的热门文章
 		$IndexHotHidePost = joe\optionMulti(Helper::options()->IndexHotHidePost, '||', null);
+		// 合并排除文章
 		$hide_contents_cid_list = array_unique(array_merge($recommend, $JIndexSticky, $IndexHotHidePost));
 		if (empty($hide_contents_cid_list)) $hide_contents_cid_list = ['empty'];
-		$this->parameter->setDefault(array('pageSize' => 10));
+		// 默认文章一页展示多少个
+		$this->parameter->setDefault(['pageSize' => 10]);
 		$select = $this->select();
 		$select->cleanAttribute('fields');
-		$this->db->fetchAll(
-			$select->from('table.contents')
-				->where('table.contents.cid NOT' . "\r\n" . 'IN?', $hide_contents_cid_list)
-				->where("table.contents.password IS NULL OR table.contents.password = ''")
-				->where('table.contents.status = ?', 'publish')
-				->where('table.contents.created <= ?', time())
-				->where('table.contents.type = ?', 'post')
-				->limit($this->parameter->pageSize)
-				->order('table.contents.views', Typecho\Db::SORT_DESC),
-			array($this, 'push')
-		);
+		$SQL = $select->from('table.contents')
+			->where('cid NOT' . "\r\n" . 'IN?', $hide_contents_cid_list)
+			->where("password IS NULL OR password = ''")
+			->where('status = ?', 'publish')
+			->where('created <= ?', time())
+			->where('type = ?', 'post')
+			->limit($this->parameter->pageSize);
+		if (Helper::options()->JIndexHotArticleView) {
+			$SQL->where('views >= ?', Helper::options()->JIndexHotArticleView);
+			$SQL->order('RAND()', '');
+		} else {
+			$SQL->order('views', Typecho\Db::SORT_DESC);
+		}
+		// echo ($SQL);
+		$this->db->fetchAll($SQL, [$this, 'push']);
 	}
 }
 

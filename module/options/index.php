@@ -140,25 +140,35 @@ $JIndexSticky = new \Typecho\Widget\Helper\Form\Element\Text(
 $JIndexSticky->setAttribute('class', 'joe_content joe_index');
 $form->addInput($JIndexSticky);
 
-$JIndex_Hot = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JIndex_Hot',
+$JIndexHotArticleNumber = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JIndexHotArticleNumber',
 	NULL,
 	'0',
 	'首页热门文章显示数量',
 	'介绍：填写指定数字后，网站首页将会显示浏览量最多的指定数量篇数热门文章'
 );
-$JIndex_Hot->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Hot->multiMode());
+$JIndexHotArticleNumber->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndexHotArticleNumber->multiMode());
 
-$JIndex_Mobile_Hot = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JIndex_Mobile_Hot',
+$JIndexMobileHotArticleNumber = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JIndexMobileHotArticleNumber',
 	NULL,
 	'0',
 	'首页移动端热门文章显示数量',
 	'介绍：填写指定数字后，移动端网站首页将会显示浏览量最多的指定数量篇数热门文章'
 );
-$JIndex_Mobile_Hot->setAttribute('class', 'joe_content joe_index');
-$form->addInput($JIndex_Mobile_Hot->multiMode());
+$JIndexMobileHotArticleNumber->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndexMobileHotArticleNumber->multiMode());
+
+$JIndexHotArticleView = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JIndexHotArticleView',
+	NULL,
+	NULL,
+	'首页热门文章随机显示门槛',
+	'介绍：填写指定数字后，网站首页将会显示达到指定浏览量的随机热门文章'
+);
+$JIndexHotArticleView->setAttribute('class', 'joe_content joe_index');
+$form->addInput($JIndexHotArticleView->multiMode());
 
 $IndexHotHidePost = new \Typecho\Widget\Helper\Form\Element\Text(
 	'IndexHotHidePost',

@@ -328,6 +328,11 @@ Joe.DOMContentLoaded.index ||= () => {
 				},
 				replace() {
 					$('.joe_pagination>li>a[href]').attr('ajax-replace', 'true');
+					/** Atropos 悬浮动画 */
+					if (window.Atropos) document.querySelectorAll('.atropos').forEach(element => {
+						Atropos({ el: element, shadowOffset: 80 });
+						setAtroposOffset(element.querySelector('.atropos-inner'));
+					});
 				},
 				scrollTo: '.joe_index__list'
 			});

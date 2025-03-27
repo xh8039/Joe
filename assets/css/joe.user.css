@@ -121,9 +121,10 @@ textarea {
 .joe_main .input-group>.btn {
 	border: 2px solid var(--classA);
 	border-left: none;
-	padding: .45rem .9rem;
+	/* padding: .45rem .9rem; */
 	background: var(--classB);
 	color: var(--main);
+	width: 120px;
 }
 
 .joe_main .input-group>.btn:hover {

@@ -1373,6 +1373,10 @@
 	border-radius: var(--radius-inner);
 }
 
+.joe_list__item:hover {
+	opacity: 0.8;
+}
+
 .joe_list__item:last-child {
 	border-bottom: none
 }

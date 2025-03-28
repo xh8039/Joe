@@ -103,49 +103,51 @@ $JPost_Record_Detection = new \Typecho\Widget\Helper\Form\Element\Select(
 $JPost_Record_Detection->setAttribute('class', 'joe_content joe_post');
 $form->addInput($JPost_Record_Detection);
 
-$BaiduRecordCookie = new \Typecho\Widget\Helper\Form\Element\Textarea(
-	'BaiduRecordCookie',
-	NULL,
-	NULL,
-	'百度收录检测请求 Cookie 标头',
-	'介绍：检测百度是否收录指定文章时必须带有正确的 Cookie，否则会检测失败<br>
-	获取方法：[<a href="https://www.baidu.com/s?wd=blog.yihang.info&rn=1&tn=json&ie=utf-8&cl=3&f=9" target="_blank">进入此网址</a>] 后打开浏览器开发者工具，再次刷新该网址的窗口，查看调试界面网络栏中的原始请求标头中的 Cookie 请求头的值，复制粘贴到这里即可'
-);
-$BaiduRecordCookie->setAttribute('class', 'joe_content joe_post');
-$form->addInput($BaiduRecordCookie);
+if (!empty(\Helper::options()->JPost_Record_Detection) && \Helper::options()->JPost_Record_Detection == 'on') {
+	$BaiduRecordCookie = new \Typecho\Widget\Helper\Form\Element\Textarea(
+		'BaiduRecordCookie',
+		NULL,
+		NULL,
+		'百度收录检测请求 Cookie 标头',
+		'介绍：检测百度是否收录指定文章时必须带有正确的 Cookie，否则会检测失败<br>
+		获取方法：[<a href="https://www.baidu.com/s?wd=blog.yihang.info&rn=1&tn=json&ie=utf-8&cl=3&f=9" target="_blank">进入此网址</a>] 后打开浏览器开发者工具，再次刷新该网址的窗口，查看调试界面网络栏中的原始请求标头中的 Cookie 请求头的值，复制粘贴到这里即可'
+	);
+	$BaiduRecordCookie->setAttribute('class', 'joe_content joe_post');
+	$form->addInput($BaiduRecordCookie);
 
-$BaiduRecordUserAgent = new \Typecho\Widget\Helper\Form\Element\Text(
-	'BaiduRecordUserAgent',
-	NULL,
-	NULL,
-	'百度收录检测请求 User-Agent 标头',
-	'介绍：检测百度是否收录指定文章时必须带有正确的 User-Agent，否则会检测失败<br>
-	获取方法：[<a href="https://www.baidu.com/s?wd=blog.yihang.info&rn=1&tn=json&ie=utf-8&cl=3&f=9" target="_blank">进入此网址</a>] 后打开浏览器开发者工具，再次刷新该网址的窗口，查看调试界面网络栏中的原始请求标头中的 User-Agent 请求头的值，复制粘贴到这里即可'
-);
-$BaiduRecordUserAgent->setAttribute('class', 'joe_content joe_post');
-$form->addInput($BaiduRecordUserAgent);
+	$BaiduRecordUserAgent = new \Typecho\Widget\Helper\Form\Element\Text(
+		'BaiduRecordUserAgent',
+		NULL,
+		NULL,
+		'百度收录检测请求 User-Agent 标头',
+		'介绍：检测百度是否收录指定文章时必须带有正确的 User-Agent，否则会检测失败<br>
+		获取方法：[<a href="https://www.baidu.com/s?wd=blog.yihang.info&rn=1&tn=json&ie=utf-8&cl=3&f=9" target="_blank">进入此网址</a>] 后打开浏览器开发者工具，再次刷新该网址的窗口，查看调试界面网络栏中的原始请求标头中的 User-Agent 请求头的值，复制粘贴到这里即可'
+	);
+	$BaiduRecordUserAgent->setAttribute('class', 'joe_content joe_post');
+	$form->addInput($BaiduRecordUserAgent);
 
-$BaiduPushToken = new \Typecho\Widget\Helper\Form\Element\Text(
-	'BaiduPushToken',
-	NULL,
-	NULL,
-	'百度推送Token',
-	'介绍：填写此处，前台文章页如果未收录，则会自动将当前链接推送给百度加快收录 <br />
-		 其他：Token在百度收录平台注册账号获取'
-);
-$BaiduPushToken->setAttribute('class', 'joe_content joe_post');
-$form->addInput($BaiduPushToken);
+	$BaiduPushToken = new \Typecho\Widget\Helper\Form\Element\Text(
+		'BaiduPushToken',
+		NULL,
+		NULL,
+		'百度推送Token',
+		'介绍：填写此处，前台文章页如果未收录，则会自动将当前链接推送给百度加快收录 <br />
+			 其他：Token在百度收录平台注册账号获取'
+	);
+	$BaiduPushToken->setAttribute('class', 'joe_content joe_post');
+	$form->addInput($BaiduPushToken);
 
-$BingPushToken = new \Typecho\Widget\Helper\Form\Element\Text(
-	'BingPushToken',
-	NULL,
-	NULL,
-	'必应推送Token',
-	'介绍：填写此处，则会自动将当前链接推送给必应加快收录 <br />
-		 其他：Token在必应收录平台注册账号获取'
-);
-$BingPushToken->setAttribute('class', 'joe_content joe_post');
-$form->addInput($BingPushToken);
+	$BingPushToken = new \Typecho\Widget\Helper\Form\Element\Text(
+		'BingPushToken',
+		NULL,
+		NULL,
+		'必应推送Token',
+		'介绍：填写此处，则会自动将当前链接推送给必应加快收录 <br />
+			 其他：Token在必应收录平台注册账号获取'
+	);
+	$BingPushToken->setAttribute('class', 'joe_content joe_post');
+	$form->addInput($BingPushToken);
+}
 
 $JArticle_Guide = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JArticle_Guide',

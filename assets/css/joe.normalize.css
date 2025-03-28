@@ -445,7 +445,7 @@ botton {
 	right: 0
 }
 
-.swiper-slide {
+html .swiper-slide {
 	transform: translate3d(0, 0, 0);
 	flex-shrink: 0;
 	width: 100%;
@@ -455,7 +455,7 @@ botton {
 	transition-property: transform;
 }
 
-.swiper-scroll .swiper-slide {
+html .swiper-scroll .swiper-slide {
 	width: unset;
 	margin-right: 10px;
 }
@@ -467,7 +467,7 @@ botton {
 	transform: scale(1.05);
 }
 
-.relates-thumb .swiper-slide {
+html .relates-thumb .swiper-slide {
 	width: 220px
 }
 
@@ -605,16 +605,16 @@ botton {
 	float: right;
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
+html .swiper-button-next:after,
+html .swiper-button-prev:after {
 	font-size: 15px;
 	color: #fff;
 }
 
-.swiper-scroll .swiper-button-next,
-.swiper-scroll .swiper-button-prev,
-.swiper-thumbsbox .swiper-button-next,
-.swiper-thumbsbox .swiper-button-prev {
+html .swiper-scroll .swiper-button-next,
+html .swiper-scroll .swiper-button-prev,
+html .swiper-thumbsbox .swiper-button-next,
+html .swiper-thumbsbox .swiper-button-prev {
 	background-color: rgba(0, 0, 0, .5);
 	width: 26px;
 	opacity: 0;
@@ -622,32 +622,30 @@ botton {
 	text-shadow: 0 0 6px #444;
 }
 
-.swiper-button-next {
+html .swiper-button-next {
 	right: -15px;
 	/* left: auto; */
 }
 
-.swiper-button-prev {
+html .swiper-button-prev {
 	left: -15px;
 	/* right: auto; */
 }
 
-.swiper-initialized:hover .swiper-button-next:not(.swiper-button-disabled) {
+html .swiper-initialized:hover .swiper-button-next:not(.swiper-button-disabled) {
 	right: 0;
 	opacity: .8;
 }
 
-.swiper-initialized:hover .swiper-button-prev:not(.swiper-button-disabled) {
+html .swiper-initialized:hover .swiper-button-prev:not(.swiper-button-disabled) {
 	left: 0;
 	opacity: .8;
 }
 
-.swiper-button-next.swiper-button-disabled,
-.swiper-button-prev.swiper-button-disabled {
+html .swiper-button-next.swiper-button-disabled,
+html .swiper-button-prev.swiper-button-disabled {
 	opacity: 0;
 }
-
-
 
 .list-unstyled {
 	padding-left: 0;
@@ -1916,7 +1914,7 @@ html .flex {
 
 .loading,
 .notyf.load::before,
-.swiper-lazy-preloader {
+html .swiper-lazy-preloader {
 	content: '';
 	width: .7em;
 	height: .7em;

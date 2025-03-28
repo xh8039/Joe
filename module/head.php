@@ -38,10 +38,8 @@ if ($this->options->JLoading != 'off') : ?>
 <script data-turbolinks-permanent>
 	if (!CSS.supports('color', 'light-dark(white, black)')) document.getElementById('joe-mode-css').href = `<?= joe\theme_url('assets/css/joe.mode.min.css'); ?>`;
 </script>
-<!-- <link async rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>"> -->
-<?php if ($this->is('single')) : ?>
-	<link async rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>">
-<?php endif; ?>
+<!-- 不开启modal.css popover没有动画 -->
+<link async rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/modal.css', false); ?>">
 <link async rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/tooltip.css', false); ?>" data-turbolinks-permanent>
 <link async rel="stylesheet" href="<?= joe\theme_url('assets/plugin/twitter-bootstrap/3.4.1/css/popover.css', false); ?>" data-turbolinks-permanent>
 <link rel="stylesheet" href="<?= joe\theme_url('assets/css/joe.normalize.css'); ?>" data-turbolinks-permanent>

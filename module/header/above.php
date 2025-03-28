@@ -64,7 +64,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<button type="submit" class="submit">Search</button>
 			<span class="icon"></span>
 			<nav class="result">
-				<?php $this->widget('Widget_Contents_Hot@Search', 'pageSize=5')->to($item); ?>
+				<?php $this->widget('Widget_Contents_Hot@Search', 'action=search&pageSize=5')->to($item); ?>
 				<?php $index = 1; ?>
 				<?php while ($item->next()) : ?>
 					<a href="<?php joe\root_relative_link($item->permalink); ?>" title="<?php $item->title(); ?>" class="item">

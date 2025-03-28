@@ -10,8 +10,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 }
 
 if (joe\isMobile()) $this->options->JIndexHotArticleNumber = $this->options->JIndexMobileHotArticleNumber;
-if (is_numeric($this->options->JIndexHotArticleNumber) && $this->options->JIndexHotArticleNumber >= 1) :
-	$this->widget('Widget_Contents_Hot@Index', 'pageSize=' . $this->options->JIndexHotArticleNumber)->to($item); ?>
+if (is_numeric($this->options->JIndexHotArticleNumber) && $this->options->JIndexHotArticleNumber >= 1) : 
+	$this->widget('Widget_Contents_Hot@Index', 'action=index&pageSize=' . $this->options->JIndexHotArticleNumber)->to($item); ?>
 	<div class="box-body notop">
 		<div class="title-theme">热门文章</div>
 	</div>

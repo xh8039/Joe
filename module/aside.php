@@ -166,7 +166,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			<div class="joe_aside__item-title">
 				<div class="text">热门文章</div>
 			</div>
-			<?php $this->widget('Widget\Contents\Hot@Aside', 'pageSize=' . $this->options->JAside_Hot_Num)->to($item); ?>
+			<?php $this->widget('Widget_Contents_Hot@Aside', 'action=aside&pageSize=' . $this->options->JAside_Hot_Num)->to($item); ?>
 			<ol class="joe_aside__item-contain">
 				<?php if ($item->have()) : ?>
 					<?php $index = 1; ?>

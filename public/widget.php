@@ -61,7 +61,7 @@ if (!function_exists('array_is_list')) {
 	}
 }
 
-class Widget_Contents_Hot extends Widget_Abstract_Contents
+class Widget_Contents_Hot extends Widget\Base\Contents
 {
 	public function execute()
 	{
@@ -86,13 +86,16 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
 			->where('created <= ?', time())
 			->where('type = ?', 'post')
 			->limit($this->parameter->pageSize);
-		if (Helper::options()->JIndexHotArticleView) {
+		if (in_array($this->parameter->action, ['index', 'search']) && is_numeric(Helper::options()->JIndexHotArticleView)) {
 			$SQL->where('views >= ?', Helper::options()->JIndexHotArticleView);
 			$SQL->order('RAND()', '');
+			// 显式转换为字符串并构建子查询
+			$subQuery = $SQL->prepare($SQL);
+			$subQuery = str_replace("\r\n", ' ', $subQuery);
+			$SQL = $this->select()->from('(' . $subQuery . ') AS randomized')->order('views', Typecho\Db::SORT_DESC);
 		} else {
 			$SQL->order('views', Typecho\Db::SORT_DESC);
 		}
-		// echo ($SQL);
 		$this->db->fetchAll($SQL, [$this, 'push']);
 	}
 }

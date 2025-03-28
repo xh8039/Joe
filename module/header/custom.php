@@ -57,7 +57,7 @@ $custom_navs = joe\custom_navs();
 								<div class="dropdown-menu hover-show-con">
 									<div class="search-input">
 										<?php
-										$this->widget('Widget_Contents_Hot@Search', 'pageSize=5')->to($hots);
+										$this->widget('Widget_Contents_Hot@Search', 'action=search&pageSize=5')->to($hots);
 										if ($hots->have()) {
 										?>
 											<div class="search-keywords hot-search">

@@ -55,10 +55,10 @@ if ($action == 'insert') {
 		'status' =>  $_POST['status']
 	]);
 	if ($insert) {
-		$notice->set('添加友链 [' . $_POST['title'] . '] 成功', 'success');
+		$notice->set('友链 [' . $_POST['title'] . '] 已添加', 'success');
 		$response->goBack();
 	} else {
-		$notice->set('添加友链 [' . $_POST['title'] . '] 失败！', 'error');
+		$notice->set('友链 [' . $_POST['title'] . '] 添加失败！', 'error');
 		$response->goBack();
 	}
 }
@@ -82,10 +82,10 @@ if ($action == 'update') {
 			'status' =>  $_POST['status']
 		]);
 		if ($update) {
-			$notice->set('更新友链 [' . $_POST['title'] . '] 成功', 'success');
+			$notice->set('友链 [' . $_POST['title'] . '] 已更新', 'success');
 			$response->goBack();
 		} else {
-			$notice->set('更新友链 [' . $_POST['title'] . '] 失败！', 'error');
+			$notice->set('友链 [' . $_POST['title'] . '] 更新失败！', 'error');
 			$response->goBack();
 		}
 	}
@@ -111,10 +111,10 @@ if ($action == 'delete') {
 				}
 			}
 		}
-		$notice->set('删除友链 [' . implode(',', $id) . '] 成功', 'success');
+		$notice->set('友链 [' . implode(',', $id) . '] 已删除', 'success');
 		$response->goBack();
 	} else {
-		$notice->set('删除友链 [' . implode(',', $id) . '] 失败！', 'error');
+		$notice->set('友链 [' . implode(',', $id) . '] 删除失败！', 'error');
 		$response->goBack();
 	}
 }
@@ -136,10 +136,10 @@ if ($action == 'open') {
 				}
 			}
 		}
-		$notice->set('启用友链 [' . implode(',', $id) . '] 成功', 'success');
+		$notice->set('友链 [' . implode(',', $id) . '] 已启用', 'success');
 		$response->goBack();
 	} else {
-		$notice->set('启用友链 [' . implode(',', $id) . '] 失败！', 'error');
+		$notice->set('友链 [' . implode(',', $id) . '] 启用失败！', 'error');
 		$response->goBack();
 	}
 }
@@ -161,10 +161,10 @@ if ($action == 'disable') {
 				}
 			}
 		}
-		$notice->set('禁用友链 [' . implode(',', $id) . '] 成功', 'success');
+		$notice->set('友链 [' . implode(',', $id) . '] 已禁用', 'success');
 		$response->goBack();
 	} else {
-		$notice->set('禁用友链 [' . implode(',', $id) . '] 失败！', 'error');
+		$notice->set('友链 [' . implode(',', $id) . '] 禁用失败！', 'error');
 		$response->goBack();
 	}
 }

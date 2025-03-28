@@ -1374,7 +1374,8 @@
 }
 
 .joe_list__item:hover {
-	opacity: 0.9;
+	opacity: 0.95;
+	transform: translateY(-3px);
 }
 
 .joe_list__item:last-child {

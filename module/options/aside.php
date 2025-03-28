@@ -97,19 +97,16 @@ $JAside_Hot_Num = new \Typecho\Widget\Helper\Form\Element\Select(
 $JAside_Hot_Num->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Hot_Num->multiMode());
 
-$JAside_Newreply_Status = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JAside_Newreply_Status',
-	array(
-		'off' => '关闭（默认）',
-		'on' => '开启'
-	),
-	'off',
-	'是否开启最新回复栏 - PC',
-	'介绍：用于控制是否开启最新回复栏 <br>
-		 注意：如果您关闭了全站评论，将不会显示最新回复！'
+$JAside_Random_Girl_Api = new \Typecho\Widget\Helper\Form\Element\Text(
+	'JAside_Random_Girl_Api',
+	NULL,
+	NULL,
+	'随机小姐姐视频API - PC',
+	'介绍：用于展示随机美女视频 <br/>
+	注意：填写时务必填写正确！不填写则不会显示，填写多个请用 || 分割'
 );
-$JAside_Newreply_Status->setAttribute('class', 'joe_content joe_aside');
-$form->addInput($JAside_Newreply_Status->multiMode());
+$JAside_Random_Girl_Api->setAttribute('class', 'joe_content joe_aside');
+$form->addInput($JAside_Random_Girl_Api);
 
 $JAside_Weather_Key = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Weather_Key',
@@ -123,6 +120,20 @@ $JAside_Weather_Key = new \Typecho\Widget\Helper\Form\Element\Text(
 );
 $JAside_Weather_Key->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JAside_Weather_Key);
+
+$JAside_Newreply_Status = new \Typecho\Widget\Helper\Form\Element\Select(
+	'JAside_Newreply_Status',
+	array(
+		'off' => '关闭（默认）',
+		'on' => '开启'
+	),
+	'off',
+	'是否开启最新回复栏 - PC',
+	'介绍：用于控制是否开启最新回复栏 <br>
+		 注意：如果您关闭了全站评论，将不会显示最新回复！'
+);
+$JAside_Newreply_Status->setAttribute('class', 'joe_content joe_aside');
+$form->addInput($JAside_Newreply_Status->multiMode());
 
 $JAside_Weather_Style = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JAside_Weather_Style',

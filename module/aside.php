@@ -189,16 +189,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</ol>
 		</section>
 	<?php endif; ?>
-	<?php if ($this->options->JAside_Weather_Key) : ?>
-		<section class="joe_aside__item weather" data-key="<?php $this->options->JAside_Weather_Key() ?>" data-style="<?php $this->options->JAside_Weather_Style() ?>">
-			<div class="joe_aside__item-title">
-				<div class="text">今日天气</div>
-			</div>
-			<div class="joe_aside__item-contain">
-				<div id="he-plugin-standard"></div>
-			</div>
-		</section>
-	<?php endif; ?>
+
 	<?php if ($this->options->JAside_3DTag === 'on') : ?>
 		<section class="joe_aside__item tags">
 			<div class="joe_aside__item-title">
@@ -219,6 +210,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</section>
 	<?php endif; ?>
+
 	<?php if ($this->options->JAsideTagList === 'on') : ?>
 		<section class="joe_aside__item tags">
 			<div class="joe_aside__item-title">
@@ -240,6 +232,36 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</div>
 		</section>
 	<?php endif; ?>
+
+	<?php if ($this->options->JAside_Random_Girl_Api) :
+		if (strpos($this->options->JAside_Random_Girl_Api, '||')) {
+			$JAside_Random_Girl_Api = joe\optionMulti($this->options->JAside_Random_Girl_Api, '||', null);
+			$JAside_Random_Girl_Api = $JAside_Random_Girl_Api[array_rand($JAside_Random_Girl_Api)];
+		} else {
+			$JAside_Random_Girl_Api = trim($this->options->JAside_Random_Girl_Api);
+		}
+	?>
+		<section class="joe_aside__item">
+			<div class="joe_aside__item-title">
+				<div class="text">随机小姐姐</div>
+			</div>
+			<div class="joe_aside__item-contain" style="color: var(--main-color);">
+				<video onloadeddata="this.style.minHeight=null;this.style.minHeight=this.scrollHeight+`px`" class="random-beauties" style="border-radius: var(--main-radius);" width="100%" autoplay muted onended="this.src=`<?= $JAside_Random_Girl_Api . (strpos($JAside_Random_Girl_Api, '?') === false ? '?' : '&') ?>time=`+Date.now()" src="<?= $JAside_Random_Girl_Api ?>"></video>
+			</div>
+		</section>
+	<?php endif; ?>
+
+	<?php if ($this->options->JAside_Weather_Key) : ?>
+		<section class="joe_aside__item weather" data-key="<?php $this->options->JAside_Weather_Key() ?>" data-style="<?php $this->options->JAside_Weather_Style() ?>">
+			<div class="joe_aside__item-title">
+				<div class="text">今日天气</div>
+			</div>
+			<div class="joe_aside__item-contain">
+				<div id="he-plugin-standard"></div>
+			</div>
+		</section>
+	<?php endif; ?>
+
 	<?php if ($this->options->JAside_Newreply_Status === 'on' && $this->options->JCommentStatus !== 'off') : ?>
 		<section class="joe_aside__item newreply">
 			<div class="joe_aside__item-title">
@@ -270,12 +292,14 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			</ul>
 		</section>
 	<?php endif; ?>
+
 	<?php if ($this->options->JADContent) : ?>
 		<a class="joe_aside__item advert" target="_blank" rel="external nofollow" href="<?php echo explode("||", $this->options->JADContent)[1] ?? ''; ?>" title="广告">
 			<img class="lazyload" width="100%" src="<?= joe\getLazyload() ?>" data-src="<?php echo explode("||", $this->options->JADContent)[0] ?? ''; ?>" alt="广告" />
 			<span class="icon">广告</span>
 		</a>
 	<?php endif; ?>
+
 	<?php if ($this->options->JAside_Flatterer === 'on') : ?>
 		<section class="joe_aside__item flatterer">
 			<div class="joe_aside__item-title">

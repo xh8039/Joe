@@ -47,7 +47,7 @@ if ($this->options->JFooterMode == 'commercial') {
 ?>
 	<footer class="footer">
 		<div class="container-fluid container-footer">
-			<?= base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cuYnJpNi5jbiIgcmVsPSJmcmllbmQiIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0iaGlkZSI+5piT6Iiq5Y2a5a6iPC9hPg=='); ?>
+			<?= base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cueWloYW5nLmluZm8iIHJlbD0iZnJpZW5kIiB0YXJnZXQ9Il9ibGFuayIgY2xhc3M9ImhpZGUiPuaYk+iIquWNmuWuojwvYT4='); ?>
 			<ul class="list-inline <?= empty($this->options->baidu_statistics) ? null : 'flex' ?>">
 				<li class="hidden-xs" style="max-width: 300px;">
 					<p>
@@ -196,7 +196,7 @@ if ($this->options->JFooterMode == 'commercial') {
 	?>
 	<footer class="joe_footer">
 		<div class="joe_container">
-			<?= base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cuYnJpNi5jbiIgcmVsPSJmcmllbmQiIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0iaGlkZSI+5piT6Iiq5Y2a5a6iPC9hPg=='); ?>
+			<?= base64_decode('PGEgaHJlZj0iaHR0cDovL2Jsb2cueWloYW5nLmluZm8iIHJlbD0iZnJpZW5kIiB0YXJnZXQ9Il9ibGFuayIgY2xhc3M9ImhpZGUiPuaYk+iIquWNmuWuojwvYT4='); ?>
 			<div class="item">
 				<?php $this->options->JFooter_Left() ?>
 			</div>

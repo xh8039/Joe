@@ -8,7 +8,7 @@ if (!defined('__TYPECHO_ROOT_DIR__') || empty($_SERVER['HTTP_HOST'])) {
 }
 
 if (PHP_VERSION < '8') {
-	throw new Typecho\Exception(base64_decode('5oKo55qEUEhQ54mI5pys6L+H5L2O77yM6K+35L2/55SoVjcuNOWPiuS7peS4iueJiOacrOi/kOihjCA8YSBocmVmPSJodHRwOi8vYmxvZy5icmk2LmNuL2FyY2hpdmVzLzE4Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5Kb2Xlho3nu63liY3nvJjkuLvpopg8L2E+'));
+	throw new Typecho\Exception(base64_decode('5oKo55qEIFBIUCDniYjmnKzov4fkvY7vvIzor7fkvb/nlKggVjguMCDlj4rku6XkuIrniYjmnKzov5DooYwgPGEgaHJlZj0iaHR0cDovL2Jsb2cuYnJpNi5jbi9hcmNoaXZlcy8xOC5odG1sIiB0YXJnZXQ9Il9ibGFuayI+Sm9l5YaN57ut5YmN57yY5Li76aKYPC9hPg=='));
 }
 
 // 记录脚本开始执行的时间戳

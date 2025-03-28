@@ -1,12 +1,18 @@
 <?php
 
-if (!defined('__TYPECHO_ROOT_DIR__')) {http_response_code(404);exit;}
+if (!defined('__TYPECHO_ROOT_DIR__')) {
+	http_response_code(404);
+	exit;
+}
 
 $extension_tip = '';
-$extension = ['bcmath', 'curl', 'openssl'];
-foreach ($extension as  $value) {
-	if (!extension_loaded($value)) {
-		$extension_tip .= '<br /><font color="red">如果使用系统内置解析器，开启前务必先安装 PHP 的 ' . $value . ' 扩展后再开启本功能！安装后重启PHP生效';
+
+if (empty(\Helper::options()->JMusicApi)) {
+	$extension = ['bcmath', 'curl', 'openssl'];
+	foreach ($extension as  $value) {
+		if (!extension_loaded($value)) {
+			$extension_tip .= '<br /><font color="red">如果使用系统内置解析器，开启前务必先安装 PHP 的 ' . $value . ' 扩展后再开启本功能！安装后重启PHP生效';
+		}
 	}
 }
 
@@ -34,15 +40,17 @@ $JMusicApi = new \Typecho\Widget\Helper\Form\Element\Text(
 $JMusicApi->setAttribute('class', 'joe_content joe_music');
 $form->addInput($JMusicApi);
 
-$JMusicCookie = new \Typecho\Widget\Helper\Form\Element\Textarea(
-	'JMusicCookie',
-	NULL,
-	NULL,
-	'账号Cookie',
-	'介绍：登录音乐平台后的Cookie，需要自己抓包获取，如果使用系统内置解析器则必填，不然歌单列表只能获取到前十首，如果您有此平台的会员，那么填写上您账号的Cookie就可以解析会员音乐'
-);
-$JMusicCookie->setAttribute('class', 'joe_content joe_music');
-$form->addInput($JMusicCookie);
+if (empty(\Helper::options()->JMusicApi)) {
+	$JMusicCookie = new \Typecho\Widget\Helper\Form\Element\Textarea(
+		'JMusicCookie',
+		NULL,
+		NULL,
+		'账号Cookie',
+		'介绍：登录音乐平台后的Cookie，需要自己抓包获取，如果使用系统内置解析器则必填，不然歌单列表只能获取到前十首，如果您有此平台的会员，那么填写上您账号的Cookie就可以解析会员音乐'
+	);
+	$JMusicCookie->setAttribute('class', 'joe_content joe_music');
+	$form->addInput($JMusicCookie);
+}
 
 $JMusicServer = new \Typecho\Widget\Helper\Form\Element\Select(
 	'JMusicServer',

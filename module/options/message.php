@@ -70,58 +70,6 @@ $JPaymentOrderEmail = new \Typecho\Widget\Helper\Form\Element\Select(
 $JPaymentOrderEmail->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JPaymentOrderEmail->multiMode());
 
-$JCommentMailHost = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JCommentMailHost',
-	NULL,
-	NULL,
-	'邮箱服务器地址',
-	'例如：smtp.qq.com'
-);
-$JCommentMailHost->setAttribute('class', 'joe_content joe_message');
-$form->addInput($JCommentMailHost->multiMode());
-
-$JCommentSMTPSecure = new \Typecho\Widget\Helper\Form\Element\Select(
-	'JCommentSMTPSecure',
-	['ssl' => 'SSL（默认）', 'tsl' => 'TSL'],
-	'ssl',
-	'加密方式',
-	'介绍：用于选择登录鉴权加密方式'
-);
-$JCommentSMTPSecure->setAttribute('class', 'joe_content joe_message');
-$form->addInput($JCommentSMTPSecure->multiMode());
-
-$JCommentMailPort = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JCommentMailPort',
-	NULL,
-	NULL,
-	'邮箱服务器端口号',
-	'例如：465'
-);
-$JCommentMailPort->setAttribute('class', 'joe_content joe_message');
-$form->addInput($JCommentMailPort->multiMode());
-
-$JCommentMailAccount = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JCommentMailAccount',
-	NULL,
-	NULL,
-	'发件人邮箱',
-	'例如：123456@qq.com'
-);
-$JCommentMailAccount->setAttribute('class', 'joe_content joe_message');
-$form->addInput($JCommentMailAccount->multiMode());
-
-$JCommentMailPassword = new \Typecho\Widget\Helper\Form\Element\Text(
-	'JCommentMailPassword',
-	NULL,
-	NULL,
-	'邮箱授权码',
-	'介绍：这里填写的是邮箱生成的授权码 <br>
-	获取方式（以QQ邮箱为例）：QQ邮箱 > 设置 > 账户 > IMAP/SMTP服务 > 开启 <br>
-	图文教程：<a href="https://ks3-cn-beijing.ksyuncs.com/wpsmail-miui/qq/QQ%20aouth.html" target="_blank">简单图文教程</a>丨<a href="http://blog.yihang.info/archives/452.html" target="_blank">详细图文教程</a>'
-);
-$JCommentMailPassword->setAttribute('class', 'joe_content joe_message');
-$form->addInput($JCommentMailPassword->multiMode());
-
 $JCommentMailFromName = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JCommentMailFromName',
 	NULL,
@@ -132,7 +80,61 @@ $JCommentMailFromName = new \Typecho\Widget\Helper\Form\Element\Text(
 $JCommentMailFromName->setAttribute('class', 'joe_content joe_message');
 $form->addInput($JCommentMailFromName->multiMode());
 
-if (!empty(\Helper::options()->JMailApi)) {
+if (empty(\Helper::options()->JMailApi)) {
+	$JCommentMailHost = new \Typecho\Widget\Helper\Form\Element\Text(
+		'JCommentMailHost',
+		NULL,
+		NULL,
+		'邮箱服务器地址',
+		'例如：smtp.qq.com'
+	);
+	$JCommentMailHost->setAttribute('class', 'joe_content joe_message');
+	$form->addInput($JCommentMailHost->multiMode());
+
+	$JCommentSMTPSecure = new \Typecho\Widget\Helper\Form\Element\Select(
+		'JCommentSMTPSecure',
+		['ssl' => 'SSL（默认）', 'tsl' => 'TSL'],
+		'ssl',
+		'加密方式',
+		'介绍：用于选择登录鉴权加密方式'
+	);
+	$JCommentSMTPSecure->setAttribute('class', 'joe_content joe_message');
+	$form->addInput($JCommentSMTPSecure->multiMode());
+
+	$JCommentMailPort = new \Typecho\Widget\Helper\Form\Element\Text(
+		'JCommentMailPort',
+		NULL,
+		NULL,
+		'邮箱服务器端口号',
+		'例如：465'
+	);
+	$JCommentMailPort->setAttribute('class', 'joe_content joe_message');
+	$form->addInput($JCommentMailPort->multiMode());
+
+	$JCommentMailAccount = new \Typecho\Widget\Helper\Form\Element\Text(
+		'JCommentMailAccount',
+		NULL,
+		NULL,
+		'发件人邮箱',
+		'例如：123456@qq.com'
+	);
+	$JCommentMailAccount->setAttribute('class', 'joe_content joe_message');
+	$form->addInput($JCommentMailAccount->multiMode());
+
+	$JCommentMailPassword = new \Typecho\Widget\Helper\Form\Element\Text(
+		'JCommentMailPassword',
+		NULL,
+		NULL,
+		'邮箱授权码',
+		'介绍：这里填写的是邮箱生成的授权码 <br>
+		获取方式（以QQ邮箱为例）：QQ邮箱 > 设置 > 账户 > IMAP/SMTP服务 > 开启 <br>
+		图文教程：<a href="https://ks3-cn-beijing.ksyuncs.com/wpsmail-miui/qq/QQ%20aouth.html" target="_blank">简单图文教程</a>丨<a href="http://blog.yihang.info/archives/452.html" target="_blank">详细图文教程</a>'
+	);
+	$JCommentMailPassword->setAttribute('class', 'joe_content joe_message');
+	$form->addInput($JCommentMailPassword->multiMode());
+
+	$JMailApiOptions = '';
+} else {
 	$JMailApi = joe\optionMulti(\Helper::options()->JMailApi, '||', null, ['url', 'title', 'name', 'content', 'email', 'code', '200', 'message']);
 	$JMailApiOptions = '<br>
 	<span style="color:#409eff">
@@ -146,8 +148,6 @@ if (!empty(\Helper::options()->JMailApi)) {
 	响应成功内容：' . $JMailApi['200'] . '<br>
 	响应失败内容字段：' . $JMailApi['message'] . '</span>
 	';
-} else {
-	$JMailApiOptions = '';
 }
 
 $JMailApi = new \Typecho\Widget\Helper\Form\Element\Text(

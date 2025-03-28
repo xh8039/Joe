@@ -22,7 +22,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 			}
 			?>
 			<div class="joe_container fluid-widget">
-				<div class="links-widget mb20">
+				<div class="links-widget mb20" style="min-width: 100%;">
 					<div class="box-body notop">
 						<div class="title-theme">友情链接<?= $friends_page_url ? ('<div class="pull-right em09 mt3"><a href="' . $friends_page_url . '" class="muted-2-color"><i class="fa fa-angle-right fa-fw"></i>申请友链</a></div>') : null ?></div>
 					</div>

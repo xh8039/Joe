@@ -122,7 +122,7 @@ if (empty(\Helper::options()->JFooterMode) || \Helper::options()->JFooterMode ==
 		'JFooterMiniImg',
 		NULL,
 		'扫码加QQ群 || https://www.lequxiang.com.cn/view.php/ab5c4bad5d98a61de393ba054415bca3.png
-	扫码加微信 || https://www.lequxiang.com.cn/view.php/ab5c4bad5d98a61de393ba054415bca3.png',
+扫码加微信 || https://www.lequxiang.com.cn/view.php/ab5c4bad5d98a61de393ba054415bca3.png',
 		'底部栏右侧图片（非必填）',
 		'介绍：一行一个，||用来分割<br>
 		格式：显示文字 || 显示图片

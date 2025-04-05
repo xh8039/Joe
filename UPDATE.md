@@ -401,8 +401,11 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 - 优化PC端更加完善的百度统计数据展示
 - 优化监听头像加载失败的方法
 - 优化静态资源文件加载算法，大部分采用异步加载方式，网站首次打开速度大幅度提升
-- 正在开发中...
 - 1.34版本更新到本版本后请手动执行以下MySQL语句
 ```sql
 UPDATE `typecho_contents` SET `text`= REPLACE(`text`, '{dplayer ', '{dplayer-single ') WHERE `text` LIKE '%{dplayer %';
 ```
+
+## 1.50
+
+- 正在开发中...

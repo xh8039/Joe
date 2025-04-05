@@ -366,7 +366,7 @@ DELETE FROM `typecho_orders` WHERE `status` = 0;
 
 ![phpMyAdmin执行SQL语句教程](https://shp.qpic.cn/collector/2136118039/dec4ad69-6461-4d0e-a49e-97440627940d/0)
 
-## 1.35 开发版
+## 1.40
 
 - 文章编辑器新增一键 HTML 转 Markdown 功能
 - 文章编辑器新增视频列表模块，可自定义位置，废弃自定义字段的视频列表功能

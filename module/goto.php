@@ -14,7 +14,7 @@ if (!defined('__TYPECHO_ROOT_DIR__') || empty($_SERVER['HTTP_HOST'])) {
 	<meta charset='utf-8'>
 	<link rel="shortcut icon" href="<?= $this->options->JFavicon ?>" />
 	<meta content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.0, user-scalable=no' name='viewport'>
-	<link rel="stylesheet" media="all" href="https://cn-assets.gitee.com/assets/external_link/app-cdbd476d857bfad8751f35a067840adf.css" />
+	<link rel="stylesheet" media="all" href="<?= joe\theme_url('assets/css/joe.external.css') ?>" />
 </head>
 
 <body>

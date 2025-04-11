@@ -408,4 +408,5 @@ UPDATE `typecho_contents` SET `text`= REPLACE(`text`, '{dplayer ', '{dplayer-sin
 
 ## 1.50
 
+- 修复跳转到外部链接页面样式文件失效的问题
 - 正在开发中...

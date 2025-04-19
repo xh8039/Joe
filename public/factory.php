@@ -132,7 +132,7 @@ class Email
 					$parent_text = preg_replace('/\{!\{([^\"]*)\}!\}/', '<img referrerpolicy="no-referrer" rel="noreferrer" style="max-width: 100%;vertical-align: middle;" src="' . trim(Helper::options()->siteUrl, '/') . '$1"/>', $parent_text);
 					joe\send_mail(
 						'您在 [' . $comment->title . '] 的评论有了新的回复',
-						'博主 [ ' . $comment->author . ' ] 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您:',
+						'博主 [ ' . $comment->author . ' ] 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您：',
 						['评论' => $parent_text, '回复' => $text],
 						$parent_comment['mail']
 					);
@@ -148,7 +148,7 @@ class Email
 					$text = CommentLink($text, $comment->permalink, '评论');
 					joe\send_mail(
 						'您的文章 [' . $comment->title . '] 收到一条新的评论',
-						$comment->author . ' [' . $comment->ip . '] 在您的《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上发表评论:',
+						$comment->author . ' [' . $comment->ip . '] 在您的《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上发表评论：',
 						$text,
 						$authorMail
 					);
@@ -164,7 +164,7 @@ class Email
 					$parent_text = preg_replace('/\{!\{([^\"]*)\}!\}/', '<img referrerpolicy="no-referrer" rel="noreferrer" style="max-width: 100%;vertical-align: middle;" src="' . trim(Helper::options()->siteUrl, '/') . '$1"/>', $parent_text);
 					joe\send_mail(
 						'您在 [' . $comment->title . '] 的评论有了新的回复',
-						$comment->author . ' 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您:',
+						$comment->author . ' 在《 <a style="color: #12addb;text-decoration: none;" href="' . substr($comment->permalink, 0, strrpos($comment->permalink, "#")) . '" target="_blank">' . $comment->title . '</a> 》上回复了您：',
 						['评论' => $parent_text, '回复' => $text],
 						$parent_comment['mail']
 					);

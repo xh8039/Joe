@@ -1232,25 +1232,26 @@ function icon_crid_info($content)
 	];
 }
 
-function ExternaToInternalLink(string $ExternaLink, int $post_cid)
+function ExternaToInternalLink(string $ExternaLink)
 {
+	if (\Helper::options()->JPostLinkRedirect != 'on') return $ExternaLink;
 	if (!preg_match('/^https?:\/\/[^\s]*/', trim($ExternaLink))) return $ExternaLink;
 	$link_host = parse_url($ExternaLink, PHP_URL_HOST);
 	if ($link_host == JOE_DOMAIN) {
 		return $ExternaLink;
 	}
-	return \Helper::options()->index . '/goto?url=' . base64_encode($ExternaLink) . '&cid=' . $post_cid;
+	return \Helper::options()->index . '/goto?url=' . base64_encode($ExternaLink);
 }
 
-function TagExternaToInternalLink(string $content, string $tag_name, string $html_name, string $attr_name, int $post_cid)
+function TagExternaToInternalLink(string $content, string $tag_name, string $html_name, string $attr_name)
 {
 	if (strpos($content, '{' . $tag_name) !== false) {
 		if (\Helper::options()->JPostLinkRedirect == 'on') {
 			// 使用正则表达式匹配链接并直接进行替换
 			$content = preg_replace_callback(
 				'/{' . $tag_name . '([^}]*)' . $attr_name . '\="(.*?)"([^}]*)\/}/',
-				function ($matches) use ($post_cid, $html_name, $attr_name) {
-					$redirect_link = ExternaToInternalLink($matches[2], $post_cid);
+				function ($matches) use ($html_name, $attr_name) {
+					$redirect_link = ExternaToInternalLink($matches[2]);
 					return '<' . $html_name . $matches[1] . $attr_name . '="' . $redirect_link . '"' . $matches[3] . '></' . $html_name . '>';
 				},
 				$content
@@ -1314,7 +1315,9 @@ function markdown_hide($content, $post, $login)
 			$comment = Db::name('comments')->where(['cid' => $post->cid, 'mail' => $userEmail])->find();
 			if ($post->fields->hide == 'pay' && $post->fields->price > 0) {
 				// 查询支付信息
-				$payment = Db::name('orders')->where(['user_id' => USER_ID, 'status' => 1, 'content_cid' => $post->cid])->find();
+				$payment = Db::name('orders')->where(function ($query) {
+					$query->where('ip', \Typecho\Request::getInstance()->getIp())->whereOr('user_id', '>', USER_ID);
+				})->where(['status' => 1, 'content_cid' => $post->cid])->find();
 				$showContent = !empty($payment); // 是否已支付决定是否显示内容
 			} else {
 				$showContent = !empty($comment); // 是否已评论决定是否显示内容

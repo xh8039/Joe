@@ -409,4 +409,7 @@ UPDATE `typecho_contents` SET `text`= REPLACE(`text`, '{dplayer ', '{dplayer-sin
 ## 1.50
 
 - 修复跳转到外部链接页面样式文件失效的问题
+- 新增游客已支付的订单可以通过客户端IP地址自动显示
+- 修复切换页面时点击下一页文字无效的BUG
+- 优化首页大图广告位链接新增外链跳转提示页面
 - 正在开发中...

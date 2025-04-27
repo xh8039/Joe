@@ -135,7 +135,7 @@ window.Joe.pjax = (url, selectors = [], options = {}) => {
 				$(document).off('click', options.element);
 				$(document).on('click', options.element, (event) => {
 					event.preventDefault();
-					options.url = event.target.href;
+					options.url = event.currentTarget.href;
 					this.ajax(options);
 				});
 			}

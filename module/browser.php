@@ -3,6 +3,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 	http_response_code(404);
 	exit;
 }
+
+function get_http_type()
+{
+	$http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+	return $http_type;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -183,7 +190,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 		<img src="//external-30160.picsz.qpic.cn/60d9f46afebf468646b2e008a020d1a2" class="logo">
 		<div>
 			<div class="t-1">管家检测正常，请按上图提示打开。</div>
-			<div width="10">您所访问的地址：<?= $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] ?></div>
+			<div width="10">您所访问的地址：<?= get_http_type() . $_SERVER['HTTP_HOST'] ?></div>
 		</div>
 	</div>
 	<a style="display: none;" href="" id="vurl" rel="noreferrer"></a>

@@ -55,7 +55,7 @@ $client->param('name', '易航'); // 设置请求参数
 
 $client->header('User-Agent', 'Mozilla/5.0'); // 设置请求头
 
-$response = $client->get('http://www.bri6.cn'); // 发送GET请求
+$response = $client->get('http://www.yihang.info'); // 发送GET请求
 
 echo $response; // 输出响应体
 ```

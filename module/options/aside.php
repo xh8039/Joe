@@ -20,7 +20,7 @@ $form->addInput($JAside_Notice);
 $JAside_Author_Background = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	'JAside_Author_Background',
 	NULL,
-	'//api.bri6.cn/api/wallpaper/pc.php',
+	'//api.yihang.info/api/wallpaper/pc.php',
 	'博主栏背景图片/视频 - PC',
 	'介绍：用于修改PC端博主栏的背景壁纸，一行一个，随机展示 <br/>
 	格式：图片/视频地址 或 Base64地址，是否视频类型默认通过后缀名是否为.mp4判断，如需强制视频，请在URL开头添加 video:'
@@ -31,7 +31,7 @@ $form->addInput($JAside_Author_Background);
 $JAside_Wap_Image = new \Typecho\Widget\Helper\Form\Element\Text(
 	'JAside_Wap_Image',
 	NULL,
-	'//api.bri6.cn/api/wallpaper/phone.php',
+	'//api.yihang.info/api/wallpaper/phone.php',
 	'博主栏背景壁纸 - WAP',
 	'介绍：用于修改移动端博主栏的背景壁纸 <br/>
 		 格式：图片地址 或 Base64地址'
@@ -59,7 +59,7 @@ $JMotto = new \Typecho\Widget\Helper\Form\Element\Textarea(
 	格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />
 	其他：API和自定义的座右铭完全可以一起写（换行填写），不会影响 <br />
 	注意：API需要开启跨域权限才能调取，否则会调取失败！<br />
-	推荐API：//api.bri6.cn/api/motto/'
+	推荐API：//api.yihang.info/api/motto/'
 );
 $JMotto->setAttribute('class', 'joe_content joe_aside');
 $form->addInput($JMotto);

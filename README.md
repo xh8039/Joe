@@ -42,7 +42,7 @@
 
 ## 编辑器说明图
 
-![Joe再续前缘编辑器说明图](http://storage.bri6.cn/media/202207252029421.jpg)
+![Joe再续前缘编辑器说明图](http://storage.yihang.info/media/202207252029421.jpg)
 
 ## 主题目录介绍（非实时）
 

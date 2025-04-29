@@ -1,4 +1,4 @@
-; window.Joe.service_domain = '//auth.bri6.cn/server/joe/';
+; window.Joe.service_domain = '//auth.yihang.info/server/joe/';
 
 /** 切换面板显示状态的函数 */
 window.Joe.togglePanelDisplay = (currentTab) => {

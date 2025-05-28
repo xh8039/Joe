@@ -1,4 +1,4 @@
-; window.Joe.service_domain = '//auth.yihang.info/server/joe/';
+; window.Joe.service_domain = '//auth.yihang.info/server/typecho-joe/';
 
 /** 切换面板显示状态的函数 */
 window.Joe.togglePanelDisplay = (currentTab) => {
@@ -45,27 +45,27 @@ window.Joe.openLinkInNewTab = (url) => {
 	}));
 }
 
+window.Joe.updateConfirm = (version, file) => {
+	layer.confirm(`发现新版本V${version}，老版本即刻起停止维护，建议您立即更新！`, { btn: ['前往更新', '暂不更新'] }, () => {
+		Joe.openLinkInNewTab(file);
+	}, () => {
+		layer.alert(`<p>最怕问初衷，大梦成空。</p><p>眉间鬓上老英雄，剑甲鞮鍪封厚土，说甚擒龙。</p><p>壮志付西风，逝去无踪。</p><p>少年早作一闲翁，诗酒琴棋终日里，岁月匆匆。</p><p>不更新等着养老吗？</p>`);
+	});
+}
+
 window.Joe.update = (type = 'passive') => {
 	if (type == 'active') var loading = layer.load(2, { shade: 0.3 });
 	$.ajax({
 		type: "post",
 		url: `${Joe.service_domain}update`,
 		data: {
-			title: Joe.title,
 			version: Joe.version,
-			domain: window.location.host,
-			logo: Joe.logo,
-			favicon: Joe.Favicon
 		},
 		dataType: "json",
 		success: (data) => {
 			layer.close(loading);
 			if (data.update) {
-				layer.confirm(data.message, { btn: data.buttons }, () => {
-					Joe.openLinkInNewTab(data.download);
-				}, () => {
-					layer.alert(`<p>最怕问初衷，大梦成空。</p><p>眉间鬓上老英雄，剑甲鞮鍪封厚土，说甚擒龙。</p><p>壮志付西风，逝去无踪。</p><p>少年早作一闲翁，诗酒琴棋终日里，岁月匆匆。</p><p>不更新等着养老吗？</p>`);
-				});
+				Joe.updateConfirm(data.version, data.file);
 			} else if (type == 'active') {
 				autolog.success(data.message);
 			}
@@ -146,10 +146,31 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	{
-		$.getJSON(`${Joe.service_domain}message`, function (data) {
-			Joe.noticePanel.innerHTML = '<p class="title">最新版本：' + data.title + "</p>" + data.content;
+		$.post(`${Joe.service_domain}save`, {
+			version: Joe.version,
+			domain: window.location.host,
+			data: {
+				title: Joe.title,
+				logo: Joe.logo,
+				favicon: Joe.Favicon
+			}
 		});
-		Joe.update();
+	}
+
+	{
+		$.getJSON(`${Joe.service_domain}version/version/new`, function (version) {
+			if (version.version > window.Joe.version) Joe.updateConfirm(version.version, version.update_file);
+			$.getJSON(`${Joe.service_domain}data`, function (data) {
+				Joe.noticePanel.innerHTML = `<p class="title">最新版本：${version.version}</p>
+				${data.notice}
+				<br /><br />
+				V${version.version}更新内容：
+				<ol>
+				<li>${version.content.join('</li><li>')}</li>
+				</ol>
+				`;
+			});
+		});
 	}
 
 });

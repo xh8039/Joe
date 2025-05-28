@@ -60,20 +60,20 @@ var autolog = (function () {
 			});
 		},
 		info(text = "", time = 2500, autoClose = true) {
-			window.Joe && Joe?.AudioManager.play(`notification/WaterDay.ogg`);
+			window.Joe && Joe?.AudioManager?.play(`notification/WaterDay.ogg`);
 			autolog.log(text, 'info', time, autoClose);
 		},
 		success(text = "", time = 2500, autoClose = true) {
-			window.Joe && Joe?.AudioManager.play(`notification/WaterEvening.ogg`);
+			window.Joe && Joe?.AudioManager?.play(`notification/WaterEvening.ogg`);
 			autolog.log(text, 'success', time, autoClose);
 		},
 		warn(text = "", time = 2500, autoClose = true) {
-			window.Joe && Joe?.AudioManager.play(`notification/WaterDropPreview.ogg`);
+			window.Joe && Joe?.AudioManager?.play(`notification/WaterDropPreview.ogg`);
 			"vibrate" in navigator && navigator.vibrate(200);
 			autolog.log(text, 'warn', time, autoClose);
 		},
 		error(text = "", time = 2500, autoClose = true) {
-			window.Joe && Joe?.AudioManager.play(`notification/SystemDelete.ogg`);
+			window.Joe && Joe?.AudioManager?.play(`notification/SystemDelete.ogg`);
 			"vibrate" in navigator && navigator.vibrate(200);
 			autolog.log(text, 'error', time, autoClose);
 		},
